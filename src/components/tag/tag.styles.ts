@@ -34,6 +34,16 @@ export default css`
     color: var(--sl-color-primary-600);
   }
 
+  .tag--accent {
+    background-color: var(--sl-color-accent-50);
+    border-color: var(--sl-color-accent-200);
+    color: var(--sl-color-accent-800);
+  }
+
+  .tag--accent:active > sl-icon-button {
+    color: var(--sl-color-accent-700);
+  }
+
   .tag--success {
     background-color: var(--sl-color-success-50);
     border-color: var(--sl-color-success-200);

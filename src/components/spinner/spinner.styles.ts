@@ -8,7 +8,7 @@ import { css } from 'lit';
 export default css`
   :host {
     --track-width: 2px;
-    --track-color: rgb(128 128 128 / 25%);
+    --track-color: color-mix(in srgb, var(--sl-color-neutral-500), transparent 75%);
     --indicator-color: var(--sl-color-primary-600);
     --speed: 2s;
 

@@ -5,7 +5,7 @@ export default css`
     --height: 1rem;
     --track-color: var(--sl-color-neutral-200);
     --indicator-color: var(--sl-color-primary-600);
-    --label-color: var(--sl-color-neutral-0);
+    --label-color: var(--sl-color-primary-contrast);
 
     display: block;
   }

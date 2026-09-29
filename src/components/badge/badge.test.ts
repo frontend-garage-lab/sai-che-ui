@@ -61,7 +61,7 @@ describe('<sl-badge>', () => {
     });
   });
 
-  ['primary', 'success', 'neutral', 'warning', 'danger'].forEach(variant => {
+  ['primary', 'accent', 'success', 'neutral', 'warning', 'danger'].forEach(variant => {
     describe(`when passed a variant attribute ${variant}`, () => {
       before(async () => {
         el = await fixture<SlBadge>(html`<sl-badge variant="${variant}">Badge</sl-badge>`);

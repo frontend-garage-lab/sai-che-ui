@@ -74,7 +74,7 @@ export default class SlAlert extends ShoelaceElement {
   @property({ type: Boolean, reflect: true }) closable = false;
 
   /** The alert's theme variant. */
-  @property({ reflect: true }) variant: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'primary';
+  @property({ reflect: true }) variant: 'primary' | 'accent' | 'success' | 'neutral' | 'warning' | 'danger' = 'primary';
 
   /**
    * The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with
@@ -246,6 +246,7 @@ export default class SlAlert extends ShoelaceElement {
           'alert--has-countdown': !!this.countdown,
           'alert--has-icon': this.hasSlotController.test('icon'),
           'alert--primary': this.variant === 'primary',
+          'alert--accent': this.variant === 'accent',
           'alert--success': this.variant === 'success',
           'alert--neutral': this.variant === 'neutral',
           'alert--warning': this.variant === 'warning',

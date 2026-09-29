@@ -32,7 +32,7 @@ export default css`
 
   :host(:not([disabled])) .divider:focus-visible {
     background-color: var(--sl-color-primary-600);
-    color: var(--sl-color-neutral-0);
+    color: var(--sl-color-primary-contrast);
   }
 
   :host([disabled]) .divider {

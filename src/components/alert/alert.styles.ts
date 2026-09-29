@@ -50,6 +50,14 @@ export default css`
     color: var(--sl-color-primary-600);
   }
 
+  .alert--accent {
+    border-top-color: var(--sl-color-accent-500);
+  }
+
+  .alert--accent .alert__icon {
+    color: var(--sl-color-accent-700);
+  }
+
   .alert--success {
     border-top-color: var(--sl-color-success-600);
   }
@@ -119,6 +127,10 @@ export default css`
 
   .alert--primary .alert__countdown-elapsed {
     background-color: var(--sl-color-primary-600);
+  }
+
+  .alert--accent .alert__countdown-elapsed {
+    background-color: var(--sl-color-accent-500);
   }
 
   .alert--success .alert__countdown-elapsed {

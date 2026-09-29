@@ -52,6 +52,7 @@
   "scripts": {
     "start": "node scripts/build.js --serve",
     "build": "node scripts/build.js",
+    "palettes": "node scripts/make-palettes.js",
     "verify": "npm run prettier:check && npm run lint && npm run build && npm run test",
     "prepare": "npx playwright install",
     "prepublishOnly": "npm run verify",

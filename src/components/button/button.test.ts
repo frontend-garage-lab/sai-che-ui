@@ -4,7 +4,7 @@ import { runFormControlBaseTests } from '../../internal/test/form-control-base-t
 import sinon from 'sinon';
 import type SlButton from './button.js';
 
-const variants = ['default', 'primary', 'success', 'neutral', 'warning', 'danger'];
+const variants = ['default', 'primary', 'accent', 'success', 'neutral', 'warning', 'danger'];
 
 describe('<sl-button>', () => {
   describe('accessibility tests', () => {

@@ -371,7 +371,7 @@ describe('<sl-alert>', () => {
   });
 
   describe('alert variants', () => {
-    const variants = ['primary', 'success', 'neutral', 'warning', 'danger'];
+    const variants = ['primary', 'accent', 'success', 'neutral', 'warning', 'danger'];
 
     variants.forEach(variant => {
       it(`adapts to the variant: ${variant}`, async () => {

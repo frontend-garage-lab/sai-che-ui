@@ -110,7 +110,7 @@ export default css`
   :host(:focus-visible) .menu-item {
     outline: none;
     background-color: var(--sl-color-primary-600);
-    color: var(--sl-color-neutral-0);
+    color: var(--sl-color-primary-contrast);
     opacity: 1;
   }
 
