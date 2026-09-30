@@ -13,7 +13,8 @@ export default css`
   .form-control--has-label .form-control__label {
     display: inline-block;
     color: var(--sl-input-label-color);
-    margin-bottom: var(--sl-spacing-3x-small);
+    font-weight: var(--sl-font-weight-semibold);
+    margin-bottom: var(--sl-spacing-2x-small);
   }
 
   .form-control--has-label.form-control--small .form-control__label {
@@ -38,7 +39,7 @@ export default css`
   .form-control--has-help-text .form-control__help-text {
     display: block;
     color: var(--sl-input-help-text-color);
-    margin-top: var(--sl-spacing-3x-small);
+    margin-top: var(--sl-spacing-2x-small);
   }
 
   .form-control--has-help-text.form-control--small .form-control__help-text {

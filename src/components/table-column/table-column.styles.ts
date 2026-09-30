@@ -6,11 +6,14 @@ export default css`
     align-items: center;
     min-width: 0;
     box-sizing: border-box;
+    /* Small caps-style headers: clearly a label row, never mistaken for data */
     font-family: var(--sl-font-sans);
-    font-size: var(--sl-font-size-small);
+    font-size: var(--sl-font-size-x-small);
     font-weight: var(--sl-font-weight-semibold);
     line-height: var(--sl-line-height-dense);
-    color: var(--sl-color-neutral-700);
+    letter-spacing: var(--sl-letter-spacing-loose);
+    text-transform: uppercase;
+    color: var(--sl-color-neutral-600);
   }
 
   :host([align='center']) {

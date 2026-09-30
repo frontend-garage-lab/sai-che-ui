@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="{{ assetUrl('styles/search.css') }}" />
 
   {# Favicons #}
-  <link rel="icon" href="{{ assetUrl('images/logo.svg') }}" type="image/x-icon" />
+  <link rel="icon" href="{{ assetUrl('images/saipem-mark.svg') }}" type="image/svg+xml" />
 
   {# Twitter Cards #}
   <meta name="twitter:card" content="summary" />
@@ -154,8 +154,15 @@
 
   <aside id="sidebar" data-preserve-scroll>
     <header>
-      <a href="/">
-        <img src="{{ assetUrl('images/wordmark.svg') }}" alt="Shoelace" />
+      <a href="/" class="sidebar-logo" aria-label="Saipem Design System">
+        <svg class="sidebar-logo__mark" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M2 2h9v3H5v4H2zM13 2h9v7h-3V5h-6zM2 15h3v4h6v3H2zM19 15h3v7h-9v-3h6z" />
+          <path fill="var(--sl-color-brand-accent)" d="M6 10.5 18 9v4.5L6 15z" />
+        </svg>
+        <span class="sidebar-logo__text">
+          <span class="sidebar-logo__name">SAIPEM</span>
+          <span class="sidebar-logo__product">Design System</span>
+        </span>
       </a>
       <div class="sidebar-version">
         {{ meta.version }}

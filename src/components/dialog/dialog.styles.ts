@@ -30,7 +30,7 @@ export default css`
     max-width: calc(100% - var(--sl-spacing-2x-large));
     max-height: calc(100% - var(--sl-spacing-2x-large));
     background-color: var(--sl-panel-background-color);
-    border-radius: var(--sl-border-radius-medium);
+    border-radius: var(--sl-border-radius-large);
     box-shadow: var(--sl-shadow-x-large);
   }
 
@@ -51,6 +51,7 @@ export default css`
   }
 
   .dialog__header {
+    border-bottom: solid var(--sl-panel-border-width) var(--sl-border-subtle);
     flex: 0 0 auto;
     display: flex;
   }
@@ -58,8 +59,10 @@ export default css`
   .dialog__title {
     flex: 1 1 auto;
     font: inherit;
-    font-size: var(--sl-font-size-large);
+    font-size: 1.125rem; /* 18px */
+    font-weight: var(--sl-font-weight-semibold);
     line-height: var(--sl-line-height-dense);
+    color: var(--sl-color-neutral-900);
     padding: var(--header-spacing);
     margin: 0;
   }
@@ -89,10 +92,15 @@ export default css`
     -webkit-overflow-scrolling: touch;
   }
 
+  /* Actions sit on the sunken surface so they read as separate from the form above them */
   .dialog__footer {
     flex: 0 0 auto;
     text-align: right;
     padding: var(--footer-spacing);
+    border-top: solid var(--sl-panel-border-width) var(--sl-border-subtle);
+    background-color: var(--sl-surface-sunken);
+    border-end-start-radius: inherit;
+    border-end-end-radius: inherit;
   }
 
   .dialog__footer ::slotted(sl-button:not(:first-of-type)) {

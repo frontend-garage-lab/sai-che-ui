@@ -16,12 +16,13 @@ export default css`
     display: flex;
     align-items: center;
     font-family: var(--sl-font-sans);
-    font-size: var(--sl-font-size-medium);
+    font-size: var(--sl-font-size-small);
     font-weight: var(--sl-font-weight-normal);
     line-height: var(--sl-line-height-normal);
     letter-spacing: var(--sl-letter-spacing-normal);
-    color: var(--sl-color-neutral-700);
-    padding: var(--sl-spacing-x-small) var(--sl-spacing-medium) var(--sl-spacing-x-small) var(--sl-spacing-x-small);
+    color: var(--sl-color-neutral-800);
+    border-radius: var(--sl-border-radius-small);
+    padding: var(--sl-spacing-2x-small) var(--sl-spacing-small) var(--sl-spacing-2x-small) var(--sl-spacing-2x-small);
     transition: var(--sl-transition-fast) fill;
     cursor: pointer;
   }
@@ -33,8 +34,8 @@ export default css`
 
   .option--current,
   .option--current.option--disabled {
-    background-color: var(--sl-color-primary-600);
-    color: var(--sl-color-primary-contrast);
+    background-color: var(--sl-color-primary-100);
+    color: var(--sl-color-primary-900);
     opacity: 1;
   }
 
@@ -61,6 +62,7 @@ export default css`
 
   .option--selected .option__check {
     visibility: visible;
+    color: var(--sl-color-primary-600);
   }
 
   .option__prefix,

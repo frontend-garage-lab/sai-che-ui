@@ -8,10 +8,10 @@ export default css`
     box-sizing: border-box;
     padding: var(--sl-spacing-x-small) var(--sl-spacing-small);
     font-family: var(--sl-font-sans);
-    font-size: var(--sl-font-size-medium);
+    font-size: var(--sl-font-size-small);
     font-weight: var(--sl-font-weight-normal);
     line-height: var(--sl-line-height-dense);
-    color: var(--sl-color-neutral-700);
+    color: var(--sl-color-neutral-800);
   }
 
   :host([align='center']) {

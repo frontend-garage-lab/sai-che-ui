@@ -6,9 +6,9 @@ export default css`
   }
 
   .details {
-    border: solid 1px var(--sl-color-neutral-200);
-    border-radius: var(--sl-border-radius-medium);
-    background-color: var(--sl-color-neutral-0);
+    border: solid var(--sl-panel-border-width) var(--sl-border-subtle);
+    border-radius: var(--sl-border-radius-large);
+    background-color: var(--sl-surface-panel);
     overflow-anchor: none;
   }
 
@@ -20,7 +20,9 @@ export default css`
     display: flex;
     align-items: center;
     border-radius: inherit;
-    padding: var(--sl-spacing-medium);
+    padding: var(--sl-spacing-small) var(--sl-spacing-medium);
+    font-weight: var(--sl-font-weight-semibold);
+    color: var(--sl-color-neutral-900);
     user-select: none;
     -webkit-user-select: none;
     cursor: pointer;
@@ -76,6 +78,11 @@ export default css`
 
   .details__body {
     overflow: hidden;
+  }
+
+  /* A divider under the open summary, so a long form section reads as header + body */
+  .details--open .details__body {
+    border-top: solid var(--sl-panel-border-width) var(--sl-border-subtle);
   }
 
   .details__content {

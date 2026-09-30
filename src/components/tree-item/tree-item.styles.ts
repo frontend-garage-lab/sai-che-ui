@@ -34,7 +34,7 @@ export default css`
   .tree-item__checkbox,
   .tree-item__label {
     font-family: var(--sl-font-sans);
-    font-size: var(--sl-font-size-medium);
+    font-size: var(--sl-font-size-small);
     font-weight: var(--sl-font-weight-normal);
     line-height: var(--sl-line-height-dense);
     letter-spacing: var(--sl-letter-spacing-normal);
@@ -57,7 +57,8 @@ export default css`
     justify-content: center;
     box-sizing: content-box;
     color: var(--sl-color-neutral-500);
-    padding: var(--sl-spacing-x-small);
+    /* 6px keeps rows at 28px: dense enough for a deep folder tree, still easy to hit */
+    padding: 0.375rem;
     width: 1rem;
     height: 1rem;
     flex-shrink: 0;
@@ -103,13 +104,19 @@ export default css`
 
   :host(:focus-visible) .tree-item__item {
     outline: var(--sl-focus-ring);
-    outline-offset: var(--sl-focus-ring-offset);
+    outline-offset: calc(-1 * var(--sl-focus-ring-width));
     z-index: 2;
   }
 
+  :host(:not([aria-disabled='true'])) .tree-item__item:hover {
+    background-color: var(--sl-color-neutral-50);
+  }
+
+  /* The selected folder: petrol tint and edge, so it stays findable in a long tree */
   :host(:not([aria-disabled='true'])) .tree-item--selected .tree-item__item {
-    background-color: var(--sl-color-neutral-100);
+    background-color: var(--sl-color-primary-50);
     border-inline-start-color: var(--sl-color-primary-600);
+    color: var(--sl-color-primary-900);
   }
 
   :host(:not([aria-disabled='true'])) .tree-item__expand-button {

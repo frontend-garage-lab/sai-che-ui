@@ -8,19 +8,29 @@ export default css`
     margin: 0;
   }
 
+  /*
+   * Each variant sets four private properties; the layout below only reads them. The alert
+   * is a tinted panel with a thin border and a solid edge on the leading side, so the
+   * variant reads at a glance without the whole surface shouting.
+   */
   .alert {
+    --alert-edge: var(--sl-color-primary-600);
+    --alert-tint: var(--sl-color-primary-50);
+    --alert-border: var(--sl-color-primary-200);
+    --alert-icon: var(--sl-color-primary-600);
+
     position: relative;
     display: flex;
     align-items: stretch;
-    background-color: var(--sl-panel-background-color);
-    border: solid var(--sl-panel-border-width) var(--sl-panel-border-color);
-    border-top-width: calc(var(--sl-panel-border-width) * 3);
+    background-color: var(--alert-tint);
+    border: solid var(--sl-panel-border-width) var(--alert-border);
+    border-inline-start: solid calc(var(--sl-panel-border-width) * 3) var(--alert-edge);
     border-radius: var(--sl-border-radius-medium);
     font-family: var(--sl-font-sans);
     font-size: var(--sl-font-size-small);
     font-weight: var(--sl-font-weight-normal);
-    line-height: 1.6;
-    color: var(--sl-color-neutral-700);
+    line-height: var(--sl-line-height-normal);
+    color: var(--sl-color-neutral-800);
     margin: inherit;
     overflow: hidden;
   }
@@ -33,9 +43,12 @@ export default css`
   .alert__icon {
     flex: 0 0 auto;
     display: flex;
-    align-items: center;
-    font-size: var(--sl-font-size-large);
-    padding-inline-start: var(--sl-spacing-large);
+    align-items: flex-start;
+    /* Line the 16px icon up with the first 14px line of the message, not the whole block */
+    padding-top: calc(var(--sl-spacing-small) + 0.15rem);
+    padding-inline-start: var(--sl-spacing-medium);
+    font-size: var(--sl-font-size-medium);
+    color: var(--alert-icon);
   }
 
   .alert--has-countdown {
@@ -43,57 +56,51 @@ export default css`
   }
 
   .alert--primary {
-    border-top-color: var(--sl-color-primary-600);
-  }
-
-  .alert--primary .alert__icon {
-    color: var(--sl-color-primary-600);
+    --alert-edge: var(--sl-color-primary-600);
+    --alert-tint: var(--sl-color-primary-50);
+    --alert-border: var(--sl-color-primary-200);
+    --alert-icon: var(--sl-color-primary-600);
   }
 
   .alert--accent {
-    border-top-color: var(--sl-color-accent-500);
-  }
-
-  .alert--accent .alert__icon {
-    color: var(--sl-color-accent-700);
+    --alert-edge: var(--sl-color-accent-500);
+    --alert-tint: var(--sl-color-accent-50);
+    --alert-border: var(--sl-color-accent-200);
+    --alert-icon: var(--sl-color-accent-700);
   }
 
   .alert--success {
-    border-top-color: var(--sl-color-success-600);
-  }
-
-  .alert--success .alert__icon {
-    color: var(--sl-color-success-600);
+    --alert-edge: var(--sl-color-success-600);
+    --alert-tint: var(--sl-color-success-50);
+    --alert-border: var(--sl-color-success-200);
+    --alert-icon: var(--sl-color-success-600);
   }
 
   .alert--neutral {
-    border-top-color: var(--sl-color-neutral-600);
-  }
-
-  .alert--neutral .alert__icon {
-    color: var(--sl-color-neutral-600);
+    --alert-edge: var(--sl-color-neutral-500);
+    --alert-tint: var(--sl-color-neutral-50);
+    --alert-border: var(--sl-color-neutral-200);
+    --alert-icon: var(--sl-color-neutral-600);
   }
 
   .alert--warning {
-    border-top-color: var(--sl-color-warning-600);
-  }
-
-  .alert--warning .alert__icon {
-    color: var(--sl-color-warning-600);
+    --alert-edge: var(--sl-color-warning-500);
+    --alert-tint: var(--sl-color-warning-50);
+    --alert-border: var(--sl-color-warning-200);
+    --alert-icon: var(--sl-color-warning-600);
   }
 
   .alert--danger {
-    border-top-color: var(--sl-color-danger-600);
-  }
-
-  .alert--danger .alert__icon {
-    color: var(--sl-color-danger-600);
+    --alert-edge: var(--sl-color-danger-600);
+    --alert-tint: var(--sl-color-danger-50);
+    --alert-border: var(--sl-color-danger-200);
+    --alert-icon: var(--sl-color-danger-600);
   }
 
   .alert__message {
     flex: 1 1 auto;
     display: block;
-    padding: var(--sl-spacing-large);
+    padding: var(--sl-spacing-small) var(--sl-spacing-medium);
     overflow: hidden;
   }
 
@@ -101,9 +108,10 @@ export default css`
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-    font-size: var(--sl-font-size-medium);
-    margin-inline-end: var(--sl-spacing-medium);
-    align-self: center;
+    font-size: var(--sl-font-size-small);
+    margin-inline-end: var(--sl-spacing-x-small);
+    align-self: flex-start;
+    margin-top: var(--sl-spacing-2x-small);
   }
 
   .alert__countdown {
@@ -112,7 +120,7 @@ export default css`
     left: 0;
     width: 100%;
     height: calc(var(--sl-panel-border-width) * 3);
-    background-color: var(--sl-panel-border-color);
+    background-color: var(--alert-border);
     display: flex;
   }
 
@@ -123,30 +131,7 @@ export default css`
   .alert__countdown .alert__countdown-elapsed {
     height: 100%;
     width: 0;
-  }
-
-  .alert--primary .alert__countdown-elapsed {
-    background-color: var(--sl-color-primary-600);
-  }
-
-  .alert--accent .alert__countdown-elapsed {
-    background-color: var(--sl-color-accent-500);
-  }
-
-  .alert--success .alert__countdown-elapsed {
-    background-color: var(--sl-color-success-600);
-  }
-
-  .alert--neutral .alert__countdown-elapsed {
-    background-color: var(--sl-color-neutral-600);
-  }
-
-  .alert--warning .alert__countdown-elapsed {
-    background-color: var(--sl-color-warning-600);
-  }
-
-  .alert--danger .alert__countdown-elapsed {
-    background-color: var(--sl-color-danger-600);
+    background-color: var(--alert-edge);
   }
 
   .alert__timer {

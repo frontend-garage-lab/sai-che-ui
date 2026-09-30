@@ -13,7 +13,7 @@ export default css`
     font-weight: var(--sl-font-weight-semibold);
     border-radius: var(--sl-border-radius-medium);
     color: var(--sl-color-neutral-600);
-    padding: var(--sl-spacing-medium) var(--sl-spacing-large);
+    padding: var(--sl-spacing-small) var(--sl-spacing-medium);
     white-space: nowrap;
     user-select: none;
     -webkit-user-select: none;
@@ -23,8 +23,9 @@ export default css`
       var(--transition-speed) color;
   }
 
+  /* Hover stays neutral so it can't be mistaken for the active (petrol) tab */
   .tab:hover:not(.tab--disabled) {
-    color: var(--sl-color-primary-600);
+    color: var(--sl-color-neutral-900);
   }
 
   :host(:focus) {

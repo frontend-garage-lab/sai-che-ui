@@ -4,7 +4,7 @@ export default css`
   :host {
     --border-color: var(--sl-panel-border-color);
     --border-radius: var(--sl-border-radius-medium);
-    --header-background-color: var(--sl-color-neutral-100);
+    --header-background-color: var(--sl-surface-sunken);
     --stripe-background-color: var(--sl-color-neutral-50);
     --max-height: none;
 
@@ -19,8 +19,10 @@ export default css`
     background-color: var(--sl-color-neutral-0);
     overflow: hidden;
     font-family: var(--sl-font-sans);
-    font-size: var(--sl-font-size-medium);
+    font-size: var(--sl-font-size-small);
     color: var(--sl-color-neutral-700);
+    /* Protocol numbers, dates and sizes line up column-wise */
+    font-variant-numeric: tabular-nums;
   }
 
   .table__toolbar {
@@ -74,7 +76,11 @@ export default css`
     border-bottom: none;
   }
 
-  :host([striped]) .table__body ::slotted(sl-table-row:nth-of-type(even)) {
+  /*
+   * ::slotted() rules beat the row's own :host() rules, so leave hovered and selected rows
+   * alone or their states would disappear on every other row.
+   */
+  :host([striped]) .table__body ::slotted(sl-table-row:nth-of-type(even):not([selected]):not(:hover)) {
     background-color: var(--stripe-background-color);
   }
 

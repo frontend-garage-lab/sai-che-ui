@@ -2,8 +2,8 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --border-color: var(--sl-color-neutral-200);
-    --border-radius: var(--sl-border-radius-medium);
+    --border-color: var(--sl-border-subtle);
+    --border-radius: var(--sl-border-radius-large);
     --border-width: 1px;
     --padding: var(--sl-spacing-large);
 
@@ -40,6 +40,8 @@ export default css`
     display: block;
     border-bottom: solid var(--border-width) var(--border-color);
     padding: calc(var(--padding) / 2) var(--padding);
+    font-weight: var(--sl-font-weight-semibold);
+    color: var(--sl-color-neutral-900);
   }
 
   .card:not(.card--has-header) .card__header {

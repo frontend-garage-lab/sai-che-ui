@@ -314,14 +314,13 @@ export default css`
     display: block;
     position: relative;
     font-family: var(--sl-font-sans);
-    font-size: var(--sl-font-size-medium);
+    font-size: var(--sl-font-size-small);
     font-weight: var(--sl-font-weight-normal);
     box-shadow: var(--sl-shadow-large);
     background: var(--sl-panel-background-color);
     border: solid var(--sl-panel-border-width) var(--sl-panel-border-color);
-    border-radius: var(--sl-border-radius-medium);
-    padding-block: var(--sl-spacing-x-small);
-    padding-inline: 0;
+    border-radius: var(--sl-border-radius-large);
+    padding: var(--sl-spacing-2x-small);
     overflow: auto;
     overscroll-behavior: none;
 

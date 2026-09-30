@@ -22,12 +22,14 @@ export default css`
     background-color: var(--sl-color-neutral-50);
   }
 
+  /* Selected rows get a petrol edge as well as a tint, so selection survives striping */
   :host([selected]) {
-    background-color: var(--sl-color-primary-100);
+    background-color: var(--sl-color-primary-50);
+    box-shadow: inset 3px 0 0 var(--sl-color-primary-600);
   }
 
   :host([selected]:hover) {
-    background-color: var(--sl-color-primary-200);
+    background-color: var(--sl-color-primary-100);
   }
 
   :host([disabled]) {

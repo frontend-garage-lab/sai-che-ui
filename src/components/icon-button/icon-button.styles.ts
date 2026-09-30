@@ -17,17 +17,23 @@ export default css`
     color: inherit;
     padding: var(--sl-spacing-x-small);
     cursor: pointer;
-    transition: var(--sl-transition-x-fast) color;
+    transition:
+      var(--sl-transition-x-fast) color,
+      var(--sl-transition-x-fast) background-color;
     -webkit-appearance: none;
   }
 
+  /*
+   * Ghost behaviour: hover darkens the icon and adds a wash of its own colour. Deriving the wash
+   * from currentColor keeps the button legible on any surface, including the petrol app header.
+   */
   .icon-button:hover:not(.icon-button--disabled),
   .icon-button:focus-visible:not(.icon-button--disabled) {
-    color: var(--sl-color-primary-600);
+    background-color: color-mix(in srgb, currentColor 10%, transparent);
   }
 
   .icon-button:active:not(.icon-button--disabled) {
-    color: var(--sl-color-primary-700);
+    background-color: color-mix(in srgb, currentColor 18%, transparent);
   }
 
   .icon-button:focus {

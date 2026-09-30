@@ -59,7 +59,7 @@ const interactiveSelector =
  *
  * @cssproperty [--border-color=var(--sl-panel-border-color)] - The color of the table's borders.
  * @cssproperty [--border-radius=var(--sl-border-radius-medium)] - The radius of the table's outer border.
- * @cssproperty [--header-background-color=var(--sl-color-neutral-100)] - The background color of the header row.
+ * @cssproperty [--header-background-color=var(--sl-surface-sunken)] - The background color of the header row.
  * @cssproperty [--stripe-background-color=var(--sl-color-neutral-50)] - The background color of striped rows.
  * @cssproperty [--max-height=none] - The maximum height of the scrolling area that holds the header and the rows.
  */

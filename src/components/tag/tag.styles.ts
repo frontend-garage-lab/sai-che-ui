@@ -9,6 +9,7 @@ export default css`
     display: flex;
     align-items: center;
     border: solid 1px;
+    font-weight: var(--sl-font-weight-semibold);
     line-height: 1;
     white-space: nowrap;
     user-select: none;

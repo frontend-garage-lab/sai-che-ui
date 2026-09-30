@@ -16,12 +16,13 @@ export default css`
     display: flex;
     align-items: stretch;
     font-family: var(--sl-font-sans);
-    font-size: var(--sl-font-size-medium);
+    font-size: var(--sl-font-size-small);
     font-weight: var(--sl-font-weight-normal);
     line-height: var(--sl-line-height-normal);
     letter-spacing: var(--sl-letter-spacing-normal);
-    color: var(--sl-color-neutral-700);
+    color: var(--sl-color-neutral-800);
     padding: var(--sl-spacing-2x-small) var(--sl-spacing-2x-small);
+    border-radius: var(--sl-border-radius-small);
     transition: var(--sl-transition-fast) fill;
     user-select: none;
     -webkit-user-select: none;
@@ -107,11 +108,16 @@ export default css`
     color: var(--sl-color-neutral-1000);
   }
 
+  /* Keyboard focus uses a petrol tint rather than a solid fill: visible, but not a block of colour */
   :host(:focus-visible) .menu-item {
     outline: none;
-    background-color: var(--sl-color-primary-600);
-    color: var(--sl-color-primary-contrast);
+    background-color: var(--sl-color-primary-100);
+    color: var(--sl-color-primary-900);
     opacity: 1;
+  }
+
+  .menu-item--checked .menu-item__check {
+    color: var(--sl-color-primary-600);
   }
 
   .menu-item .menu-item__check,

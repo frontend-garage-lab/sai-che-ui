@@ -61,6 +61,13 @@ export { default as SlTable } from './components/table/table.js';
 export { default as SlTableColumn } from './components/table-column/table-column.js';
 export { default as SlTableRow } from './components/table-row/table-row.js';
 export { default as SlTableCell } from './components/table-cell/table-cell.js';
+export { default as SlAppHeader } from './components/app-header/app-header.js';
+export { default as SlFileDrop } from './components/file-drop/file-drop.js';
+export { default as SlStat } from './components/stat/stat.js';
+export { default as SlStatGroup } from './components/stat-group/stat-group.js';
+export { default as SlStatus } from './components/status/status.js';
+export { default as SlStep } from './components/step/step.js';
+export { default as SlStepper } from './components/stepper/stepper.js';
 /* plop:component */
 
 // Utilities

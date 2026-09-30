@@ -74,23 +74,29 @@ export default css`
    * Standard buttons
    */
 
-  /* Default */
+  /*
+   * Default. A quiet secondary action: it stays neutral on hover so the brand colour is
+   * reserved for the primary action and for selection. The border is lighter than an
+   * input's because a button's boundary is carried by its label and shadow too.
+   */
   .button--standard.button--default {
     background-color: var(--sl-color-neutral-0);
-    border-color: var(--sl-input-border-color);
-    color: var(--sl-color-neutral-700);
+    border-color: var(--sl-color-neutral-300);
+    color: var(--sl-color-neutral-800);
+    box-shadow: var(--sl-shadow-x-small);
   }
 
   .button--standard.button--default:hover:not(.button--disabled) {
-    background-color: var(--sl-color-primary-50);
-    border-color: var(--sl-color-primary-300);
-    color: var(--sl-color-primary-700);
+    background-color: var(--sl-color-neutral-50);
+    border-color: var(--sl-color-neutral-400);
+    color: var(--sl-color-neutral-900);
   }
 
   .button--standard.button--default:active:not(.button--disabled) {
-    background-color: var(--sl-color-primary-100);
-    border-color: var(--sl-color-primary-400);
-    color: var(--sl-color-primary-700);
+    background-color: var(--sl-color-neutral-100);
+    border-color: var(--sl-color-neutral-400);
+    color: var(--sl-color-neutral-900);
+    box-shadow: none;
   }
 
   /* Primary */
@@ -222,21 +228,27 @@ export default css`
 
   /* Default */
   .button--outline.button--default {
-    border-color: var(--sl-input-border-color);
-    color: var(--sl-color-neutral-700);
+    border-color: var(--sl-color-neutral-300);
+    color: var(--sl-color-neutral-800);
   }
 
-  .button--outline.button--default:hover:not(.button--disabled),
-  .button--outline.button--default.button--checked:not(.button--disabled) {
-    border-color: var(--sl-color-primary-600);
-    background-color: var(--sl-color-primary-600);
-    color: var(--sl-color-primary-contrast);
+  .button--outline.button--default:hover:not(.button--disabled) {
+    border-color: var(--sl-color-neutral-400);
+    background-color: var(--sl-color-neutral-50);
+    color: var(--sl-color-neutral-900);
   }
 
   .button--outline.button--default:active:not(.button--disabled) {
-    border-color: var(--sl-color-primary-700);
-    background-color: var(--sl-color-primary-700);
-    color: var(--sl-color-primary-contrast);
+    border-color: var(--sl-color-neutral-400);
+    background-color: var(--sl-color-neutral-100);
+    color: var(--sl-color-neutral-900);
+  }
+
+  /* Checked (radio buttons, toggle groups): a selected segment, not a hover state */
+  .button--outline.button--default.button--checked:not(.button--disabled) {
+    border-color: var(--sl-color-primary-600);
+    background-color: var(--sl-color-primary-50);
+    color: var(--sl-color-primary-800);
   }
 
   /* Primary */
@@ -358,6 +370,10 @@ export default css`
    * Text buttons
    */
 
+  /*
+   * Text buttons behave as ghost buttons: a neutral wash on hover gives toolbar actions a
+   * visible hit area without competing with the filled buttons around them.
+   */
   .button--text {
     background-color: transparent;
     border-color: transparent;
@@ -365,21 +381,21 @@ export default css`
   }
 
   .button--text:hover:not(.button--disabled) {
-    background-color: transparent;
+    background-color: var(--sl-color-neutral-100);
     border-color: transparent;
-    color: var(--sl-color-primary-500);
+    color: var(--sl-color-primary-700);
   }
 
   .button--text:focus-visible:not(.button--disabled) {
-    background-color: transparent;
+    background-color: var(--sl-color-neutral-100);
     border-color: transparent;
-    color: var(--sl-color-primary-500);
+    color: var(--sl-color-primary-700);
   }
 
   .button--text:active:not(.button--disabled) {
-    background-color: transparent;
+    background-color: var(--sl-color-neutral-200);
     border-color: transparent;
-    color: var(--sl-color-primary-700);
+    color: var(--sl-color-primary-800);
   }
 
   /*

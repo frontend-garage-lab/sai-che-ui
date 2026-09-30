@@ -107,7 +107,8 @@ function lightRamp(role, ink) {
       const prev = [...keys].reverse().find(k => k < i);
       lightness = interpolate(i, prev, anchors[prev], next, anchors[next]);
     }
-    return { step, hue, saturation: saturation * LIGHT.saturation[step], lightness };
+    const pinned = LIGHT.saturationAnchors?.[role]?.[step];
+    return { step, hue, saturation: pinned ?? saturation * LIGHT.saturation[step], lightness };
   });
 }
 
@@ -118,7 +119,8 @@ function darkRamp(role, ink) {
   return STEPS.map((step, i) => {
     let lightness = spec[step] ?? DARK.lightness[i];
     if (spec[step] === 'contrast') lightness = solveLightness(hue, saturation, ink, 'lighter');
-    return { step, hue, saturation: saturation * DARK.saturation[step], lightness };
+    const pinned = DARK.saturationAnchors?.[role]?.[step];
+    return { step, hue, saturation: pinned ?? saturation * DARK.saturation[step], lightness };
   });
 }
 
@@ -136,8 +138,9 @@ function neutralRamp(theme) {
 function render(theme, name) {
   const ink = theme.ink;
   const ramps = {};
+  const base = hsl(...theme.oneOffs[0]);
   for (const role of Object.keys(ROLES)) {
-    ramps[role] = name === 'light' ? lightRamp(role, hsl(0, 0, 100)) : darkRamp(role, hsl(200, 26, 8));
+    ramps[role] = name === 'light' ? lightRamp(role, base) : darkRamp(role, base);
   }
   ramps.neutral = neutralRamp(theme);
 
@@ -148,7 +151,7 @@ function render(theme, name) {
     success: 'Success',
     warning: 'Warning',
     danger: 'Danger',
-    neutral: 'Neutral — greys tinted toward the petrol'
+    neutral: 'Neutral — near-neutral greys with a faint cool cast'
   };
 
   for (const [role, ramp] of Object.entries(ramps)) {
@@ -161,7 +164,7 @@ function render(theme, name) {
 
   lines.push('  /* Neutral one-offs */');
   for (const [step, value] of Object.entries(theme.oneOffs)) {
-    lines.push(`  --sl-color-neutral-${step}: ${value};`);
+    lines.push(`  --sl-color-neutral-${step}: ${css(...value)};`);
   }
   lines.push('');
 
@@ -181,11 +184,12 @@ function render(theme, name) {
 // color-contrast rule can't see shadow-DOM-styled slotted text, so it will not catch a
 // regression here.
 //
-function audit(name, ramps, ink) {
-  const inkRgb = name === 'light' ? { white: hsl(0, 0, 100) } : { dark: hsl(200, 26, 8) };
+function audit(name, ramps, theme) {
+  const ink = theme.ink;
+  const base = hsl(...theme.oneOffs[0]);
   const resolveInk = role => {
     const token = ink[role];
-    if (token.includes('neutral-0')) return name === 'light' ? hsl(0, 0, 100) : hsl(200, 26, 8);
+    if (token.includes('neutral-0')) return base;
     // The only other ink in use is primary-950.
     const step = ramps.primary.find(s => s.step === 950);
     return hsl(step.hue, step.saturation, step.lightness);
@@ -216,12 +220,29 @@ function audit(name, ramps, ink) {
     const ratio = contrast(hsl(fg.hue, fg.saturation, fg.lightness), hsl(bg.hue, bg.saturation, bg.lightness));
     const ok = ratio >= CONTRAST_FLOOR;
     if (!ok) failed = true;
-    rows.push(`  ${ok ? chalk.green('PASS') : chalk.red('FAIL')} ${role.padEnd(8)} tint  800 on 50    ${ratio.toFixed(2)}`);
+    rows.push(
+      `  ${ok ? chalk.green('PASS') : chalk.red('FAIL')} ${role.padEnd(8)} tint  800 on 50    ${ratio.toFixed(2)}`
+    );
+  }
+
+  // Neutral pairings: body text, placeholders, help text and control borders.
+  const neutral = step => {
+    if (step === 0) return base;
+    const s = ramps.neutral.find(n => n.step === step);
+    return hsl(s.hue, s.saturation, s.lightness);
+  };
+  for (const [fg, bg, floor, label] of theme.audit) {
+    const ratio = contrast(neutral(fg), neutral(bg));
+    const ok = ratio >= floor;
+    if (!ok) failed = true;
+    rows.push(
+      `  ${ok ? chalk.green('PASS') : chalk.red('FAIL')} neutral  ${`${fg} on ${bg}`.padEnd(10)} ` +
+        `${ratio.toFixed(2).padEnd(5)} (≥${floor}) ${label}`
+    );
   }
 
   console.log(chalk.cyan(`\n${name} theme — contrast audit (floor ${CONTRAST_FLOOR}:1)`));
   console.log(rows.join('\n'));
-  void inkRgb;
   return failed;
 }
 
@@ -255,11 +276,13 @@ for (const [name, theme] of [
 ]) {
   const { css: block, ramps } = render(theme, name);
   await write(`src/themes/${name}.css`, block);
-  if (audit(name, ramps, theme.ink)) failed = true;
+  if (audit(name, ramps, theme)) failed = true;
 }
 
 if (failed) {
-  console.error(chalk.red('\nContrast audit failed — a resting fill is below AA. Adjust the anchors in scripts/palettes.config.js.'));
+  console.error(
+    chalk.red('\nContrast audit failed — a pairing is below its floor. Adjust scripts/palettes.config.js.')
+  );
   process.exit(1);
 }
 

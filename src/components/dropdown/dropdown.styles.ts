@@ -31,10 +31,10 @@ export default css`
 
   .dropdown__panel {
     font-family: var(--sl-font-sans);
-    font-size: var(--sl-font-size-medium);
+    font-size: var(--sl-font-size-small);
     font-weight: var(--sl-font-weight-normal);
     box-shadow: var(--sl-shadow-large);
-    border-radius: var(--sl-border-radius-medium);
+    border-radius: var(--sl-border-radius-large);
     pointer-events: none;
   }
 
