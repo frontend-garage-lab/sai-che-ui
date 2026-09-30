@@ -1,0 +1,13 @@
+/* Type checking for the Figma Code Connect templates. Run with `npx tsc -p figma` */
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": ["@figma/code-connect/figma-types"]
+  },
+  "include": ["*.figma.ts"]
+}
