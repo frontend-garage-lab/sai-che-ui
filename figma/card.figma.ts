@@ -22,7 +22,7 @@ export default {
   example: figma.html`<sl-card>${header}
   ${text('This is the card body. It can contain any content you like.')}${footer}
 </sl-card>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/card/card.js'"],
+  imports: ["import 'src/components/card/card.js'"],
   id: 'card',
   metadata: { nestable: true }
 };

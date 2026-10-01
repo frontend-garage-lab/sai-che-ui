@@ -13,7 +13,7 @@ export default {
     <sl-skeleton style="width: 80%;"></sl-skeleton>
   </div>
 </div>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/skeleton/skeleton.js'"],
+  imports: ["import 'src/components/skeleton/skeleton.js'"],
   id: 'skeleton',
   metadata: { nestable: false }
 };

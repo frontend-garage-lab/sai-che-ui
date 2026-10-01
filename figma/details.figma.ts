@@ -19,7 +19,7 @@ export default {
   example: figma.html`<sl-details summary="${text('Document metadata')}"${open ? ' open' : ''}>
   ${text('Author, revision, and approval history go here.')}
 </sl-details>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/details/details.js'"],
+  imports: ["import 'src/components/details/details.js'"],
   id: 'details',
   metadata: { nestable: true }
 };

@@ -30,7 +30,7 @@ const disabled = instance.getEnum('State', {
 
 export default {
   example: figma.html`<sl-menu-item${checked ? ' type="checkbox" checked' : ''}${disabled ? ' disabled' : ''}>${text('Menu item')}</sl-menu-item>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js'"],
+  imports: ["import 'src/components/menu-item/menu-item.js'"],
   id: 'menu-item',
   metadata: { nestable: true }
 };

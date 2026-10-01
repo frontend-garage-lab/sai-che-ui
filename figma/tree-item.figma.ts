@@ -18,7 +18,7 @@ const disabled = instance.getEnum('State', { default: false, hover: false, selec
 
 export default {
   example: figma.html`<sl-tree-item${selected ? ' selected' : ''}${disabled ? ' disabled' : ''}>${text('Folder name')}</sl-tree-item>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/tree-item/tree-item.js'"],
+  imports: ["import 'src/components/tree-item/tree-item.js'"],
   id: 'tree-item',
   metadata: { nestable: true }
 };

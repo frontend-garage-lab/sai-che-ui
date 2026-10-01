@@ -25,7 +25,7 @@ const selected = instance.getEnum('State', { default: false, selected: true });
 
 export default {
   example: figma.html`<sl-stat variant="${variant}" count="${text('128')}"${selected ? ' selected' : ''}>${text('Label')}</sl-stat>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/stat/stat.js'"],
+  imports: ["import 'src/components/stat/stat.js'"],
   id: 'stat',
   metadata: { nestable: true }
 };

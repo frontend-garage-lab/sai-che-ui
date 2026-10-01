@@ -25,7 +25,7 @@ const size = instance.getEnum('Size', { small: 'small', medium: 'medium' });
 
 export default {
   example: figma.html`<sl-status variant="${variant}" size="${size}">${text('Status label')}</sl-status>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/status/status.js'"],
+  imports: ["import 'src/components/status/status.js'"],
   id: 'status',
   metadata: { nestable: true }
 };

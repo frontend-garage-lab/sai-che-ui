@@ -9,7 +9,7 @@ export default {
   <div slot="start"><!-- start panel --></div>
   <div slot="end"><!-- end panel --></div>
 </sl-split-panel>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/split-panel/split-panel.js'"],
+  imports: ["import 'src/components/split-panel/split-panel.js'"],
   id: 'split-panel',
   metadata: { nestable: false }
 };

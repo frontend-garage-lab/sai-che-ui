@@ -24,7 +24,7 @@ const variant = instance.getEnum('Variant', {
 
 export default {
   example: figma.html`<sl-alert variant="${variant}" open>${text('This is a standard alert. You can put any information you want here.')}</sl-alert>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/alert/alert.js'"],
+  imports: ["import 'src/components/alert/alert.js'"],
   id: 'alert',
   metadata: { nestable: true }
 };

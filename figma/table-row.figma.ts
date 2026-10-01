@@ -26,8 +26,8 @@ export default {
   <sl-table-cell>${modified}</sl-table-cell>
 </sl-table-row>`,
   imports: [
-    "import '@shoelace-style/shoelace/dist/components/table-row/table-row.js'",
-    "import '@shoelace-style/shoelace/dist/components/table-cell/table-cell.js'"
+    "import 'src/components/table-row/table-row.js'",
+    "import 'src/components/table-cell/table-cell.js'"
   ],
   id: 'table-row',
   metadata: { nestable: true }

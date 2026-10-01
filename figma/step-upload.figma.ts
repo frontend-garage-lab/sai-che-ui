@@ -15,7 +15,7 @@ function text(...layerNames: string[]) {
 
 export default {
   example: figma.html`<sl-step>${text('Upload')}</sl-step>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/step/step.js'"],
+  imports: ["import 'src/components/step/step.js'"],
   id: 'step-upload',
   metadata: { nestable: true }
 };

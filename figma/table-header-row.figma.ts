@@ -20,7 +20,7 @@ export default {
   example: figma.html`<sl-table-column slot="columns" key="${key(columns[0])}">${columns[0]}</sl-table-column>
 <sl-table-column slot="columns" key="${key(columns[1])}">${columns[1]}</sl-table-column>
 <sl-table-column slot="columns" key="${key(columns[2])}">${columns[2]}</sl-table-column>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/table-column/table-column.js'"],
+  imports: ["import 'src/components/table-column/table-column.js'"],
   id: 'table-header-row',
   metadata: { nestable: true }
 };

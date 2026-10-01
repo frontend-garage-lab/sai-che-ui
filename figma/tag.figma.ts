@@ -25,7 +25,7 @@ const size = instance.getEnum('Size', { small: 'small', medium: 'medium', large:
 
 export default {
   example: figma.html`<sl-tag variant="${variant}" size="${size}">${text('Tag')}</sl-tag>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/tag/tag.js'"],
+  imports: ["import 'src/components/tag/tag.js'"],
   id: 'tag',
   metadata: { nestable: true }
 };

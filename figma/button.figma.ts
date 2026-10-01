@@ -26,7 +26,7 @@ const disabled = instance.getEnum('State', { default: false, hover: false, activ
 
 export default {
   example: figma.html`<sl-button variant="${variant}"${disabled ? ' disabled' : ''}>${text('Button')}</sl-button>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/button/button.js'"],
+  imports: ["import 'src/components/button/button.js'"],
   id: 'button',
   metadata: { nestable: true }
 };

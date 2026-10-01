@@ -22,7 +22,7 @@ export default {
   <a href="#">${text('Reports')}</a>
   <a href="#">${text('Settings')}</a>
 </sl-app-header>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/app-header/app-header.js'"],
+  imports: ["import 'src/components/app-header/app-header.js'"],
   id: 'app-header',
   metadata: { nestable: false }
 };

@@ -15,7 +15,7 @@ function text(...layerNames: string[]) {
 
 export default {
   example: figma.html`<sl-menu-label>${text('SECTION LABEL')}</sl-menu-label>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/menu-label/menu-label.js'"],
+  imports: ["import 'src/components/menu-label/menu-label.js'"],
   id: 'menu-label',
   metadata: { nestable: true }
 };

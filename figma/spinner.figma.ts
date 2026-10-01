@@ -6,7 +6,7 @@ const instance = figma.selectedInstance;
 
 export default {
   example: figma.html`<sl-spinner></sl-spinner>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/spinner/spinner.js'"],
+  imports: ["import 'src/components/spinner/spinner.js'"],
   id: 'spinner',
   metadata: { nestable: true }
 };

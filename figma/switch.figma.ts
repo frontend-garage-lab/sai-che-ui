@@ -19,7 +19,7 @@ const disabled = instance.getEnum('State', { off: false, on: false, 'disabled-of
 
 export default {
   example: figma.html`<sl-switch size="${size}"${checked ? ' checked' : ''}${disabled ? ' disabled' : ''}>${text('Switch label')}</sl-switch>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/switch/switch.js'"],
+  imports: ["import 'src/components/switch/switch.js'"],
   id: 'switch',
   metadata: { nestable: true }
 };

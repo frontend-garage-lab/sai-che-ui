@@ -8,7 +8,7 @@ const disabled = instance.getEnum('State', { default: false, hover: false, activ
 
 export default {
   example: figma.html`<sl-icon-button name="gear" label="Settings"${disabled ? ' disabled' : ''}></sl-icon-button>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js'"],
+  imports: ["import 'src/components/icon-button/icon-button.js'"],
   id: 'icon-button',
   metadata: { nestable: true }
 };

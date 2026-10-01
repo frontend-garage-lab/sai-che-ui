@@ -8,7 +8,7 @@ const vertical = instance.getEnum('Orientation', { horizontal: false, vertical: 
 
 export default {
   example: figma.html`<sl-divider${vertical ? ' vertical' : ''}></sl-divider>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/divider/divider.js'"],
+  imports: ["import 'src/components/divider/divider.js'"],
   id: 'divider',
   metadata: { nestable: true }
 };

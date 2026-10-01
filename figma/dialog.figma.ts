@@ -23,8 +23,8 @@ export default {
   ${text('This dialog body can contain any content, such as a form or a confirmation message.')}${footer}
 </sl-dialog>`,
   imports: [
-    "import '@shoelace-style/shoelace/dist/components/dialog/dialog.js'",
-    "import '@shoelace-style/shoelace/dist/components/button/button.js'"
+    "import 'src/components/dialog/dialog.js'",
+    "import 'src/components/button/button.js'"
   ],
   id: 'dialog',
   metadata: { nestable: false }

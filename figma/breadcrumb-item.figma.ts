@@ -17,7 +17,7 @@ const isLink = instance.getEnum('Type', { link: true, current: false });
 
 export default {
   example: figma.html`<sl-breadcrumb-item${isLink ? ' href="#"' : ''}>${text('Documents', 'Contract_001.pdf')}</sl-breadcrumb-item>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/breadcrumb-item/breadcrumb-item.js'"],
+  imports: ["import 'src/components/breadcrumb-item/breadcrumb-item.js'"],
   id: 'breadcrumb-item',
   metadata: { nestable: true }
 };

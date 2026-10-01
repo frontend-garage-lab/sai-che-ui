@@ -17,7 +17,7 @@ const value = instance.getEnum('Value', { '25': '25', '60': '60', '90': '90' });
 
 export default {
   example: figma.html`<sl-progress-ring value="${value}">${text('25%', '60%', '90%')}</sl-progress-ring>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/progress-ring/progress-ring.js'"],
+  imports: ["import 'src/components/progress-ring/progress-ring.js'"],
   id: 'progress-ring',
   metadata: { nestable: true }
 };

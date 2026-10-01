@@ -17,7 +17,7 @@ const error = instance.getEnum('State', { complete: false, current: false, upcom
 
 export default {
   example: figma.html`<sl-step${error ? ' error' : ''}>${text('Upload', 'Review', 'Approve', 'Publish')}</sl-step>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/step/step.js'"],
+  imports: ["import 'src/components/step/step.js'"],
   id: 'step',
   metadata: { nestable: true }
 };

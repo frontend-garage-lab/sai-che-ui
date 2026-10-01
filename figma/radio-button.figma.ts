@@ -19,7 +19,7 @@ const value = label.toLowerCase().replace(/\s+/g, '-');
 
 export default {
   example: figma.html`<sl-radio-button value="${value}"${disabled ? ' disabled' : ''}>${label}</sl-radio-button>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/radio-button/radio-button.js'"],
+  imports: ["import 'src/components/radio-button/radio-button.js'"],
   id: 'radio-button',
   metadata: { nestable: true }
 };

@@ -17,7 +17,7 @@ const shape = instance.getEnum('Shape', { circle: 'circle', rounded: 'rounded', 
 
 export default {
   example: figma.html`<sl-avatar shape="${shape}" initials="${text('GD')}"></sl-avatar>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/avatar/avatar.js'"],
+  imports: ["import 'src/components/avatar/avatar.js'"],
   id: 'avatar',
   metadata: { nestable: true }
 };

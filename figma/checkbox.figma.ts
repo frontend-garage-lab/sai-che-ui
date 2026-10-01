@@ -33,7 +33,7 @@ const disabled = instance.getEnum('State', {
 
 export default {
   example: figma.html`<sl-checkbox size="${size}"${checked ? ' checked' : ''}${disabled ? ' disabled' : ''}>${text('Checkbox label')}</sl-checkbox>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/checkbox/checkbox.js'"],
+  imports: ["import 'src/components/checkbox/checkbox.js'"],
   id: 'checkbox',
   metadata: { nestable: true }
 };

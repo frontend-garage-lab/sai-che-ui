@@ -17,7 +17,7 @@ const value = instance.getEnum('Value', { '25': '25', '60': '60', '90': '90' });
 
 export default {
   example: figma.html`<sl-progress-bar value="${value}">${text('25%', '60%', '90%')}</sl-progress-bar>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js'"],
+  imports: ["import 'src/components/progress-bar/progress-bar.js'"],
   id: 'progress-bar',
   metadata: { nestable: true }
 };

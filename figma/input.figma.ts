@@ -18,7 +18,7 @@ const disabled = instance.getEnum('State', { default: false, hover: false, focus
 
 export default {
   example: figma.html`<sl-input size="${size}" placeholder="${text('Placeholder text')}"${disabled ? ' disabled' : ''}></sl-input>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/input/input.js'"],
+  imports: ["import 'src/components/input/input.js'"],
   id: 'input',
   metadata: { nestable: true }
 };

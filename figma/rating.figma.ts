@@ -8,7 +8,7 @@ const value = instance.getEnum('Value', { '1': '1', '3': '3', '5': '5' });
 
 export default {
   example: figma.html`<sl-rating label="Rating" value="${value}"></sl-rating>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/rating/rating.js'"],
+  imports: ["import 'src/components/rating/rating.js'"],
   id: 'rating',
   metadata: { nestable: true }
 };

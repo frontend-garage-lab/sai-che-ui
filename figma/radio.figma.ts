@@ -25,7 +25,7 @@ const disabled = instance.getEnum('State', {
 
 export default {
   example: figma.html`<sl-radio size="${size}"${disabled ? ' disabled' : ''}>${text('Radio label')}</sl-radio>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/radio/radio.js'"],
+  imports: ["import 'src/components/radio/radio.js'"],
   id: 'radio',
   metadata: { nestable: true }
 };

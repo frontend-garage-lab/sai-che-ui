@@ -8,7 +8,7 @@ const disabled = instance.getEnum('State', { default: false, hover: false, focus
 
 export default {
   example: figma.html`<sl-range${disabled ? ' disabled' : ''}></sl-range>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/range/range.js'"],
+  imports: ["import 'src/components/range/range.js'"],
   id: 'range',
   metadata: { nestable: true }
 };

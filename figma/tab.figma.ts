@@ -20,7 +20,7 @@ const panel = label.toLowerCase().replace(/\s+/g, '-');
 
 export default {
   example: figma.html`<sl-tab slot="nav" panel="${panel}"${active ? ' active' : ''}${disabled ? ' disabled' : ''}>${label}</sl-tab>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/tab/tab.js'"],
+  imports: ["import 'src/components/tab/tab.js'"],
   id: 'tab',
   metadata: { nestable: true }
 };

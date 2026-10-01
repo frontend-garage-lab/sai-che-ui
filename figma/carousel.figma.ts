@@ -12,8 +12,8 @@ export default {
   <sl-carousel-item><!-- slide 4 --></sl-carousel-item>
 </sl-carousel>`,
   imports: [
-    "import '@shoelace-style/shoelace/dist/components/carousel/carousel.js'",
-    "import '@shoelace-style/shoelace/dist/components/carousel-item/carousel-item.js'"
+    "import 'src/components/carousel/carousel.js'",
+    "import 'src/components/carousel-item/carousel-item.js'"
   ],
   id: 'carousel',
   metadata: { nestable: false }

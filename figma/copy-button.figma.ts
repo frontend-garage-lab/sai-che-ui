@@ -8,7 +8,7 @@ const disabled = instance.getEnum('State', { default: false, success: false, err
 
 export default {
   example: figma.html`<sl-copy-button value="Text to copy"${disabled ? ' disabled' : ''}></sl-copy-button>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/copy-button/copy-button.js'"],
+  imports: ["import 'src/components/copy-button/copy-button.js'"],
   id: 'copy-button',
   metadata: { nestable: true }
 };

@@ -19,7 +19,7 @@ export default {
   example: figma.html`<sl-tooltip content="${text('Tooltip text')}" placement="${placement}">
   <!-- trigger element -->
 </sl-tooltip>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js'"],
+  imports: ["import 'src/components/tooltip/tooltip.js'"],
   id: 'tooltip',
   metadata: { nestable: true }
 };

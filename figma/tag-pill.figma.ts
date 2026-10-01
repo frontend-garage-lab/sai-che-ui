@@ -24,7 +24,7 @@ const variant = instance.getEnum('Variant', {
 
 export default {
   example: figma.html`<sl-tag variant="${variant}" pill>${text('Tag')}</sl-tag>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/tag/tag.js'"],
+  imports: ["import 'src/components/tag/tag.js'"],
   id: 'tag-pill',
   metadata: { nestable: true }
 };

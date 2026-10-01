@@ -24,7 +24,7 @@ const variant = instance.getEnum('Variant', {
 
 export default {
   example: figma.html`<sl-badge variant="${variant}" pill>${text('1')}</sl-badge>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/badge/badge.js'"],
+  imports: ["import 'src/components/badge/badge.js'"],
   id: 'badge-pill',
   metadata: { nestable: true }
 };

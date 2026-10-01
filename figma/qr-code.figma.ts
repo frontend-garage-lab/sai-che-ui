@@ -6,7 +6,7 @@ const instance = figma.selectedInstance;
 
 export default {
   example: figma.html`<sl-qr-code value="https://www.saipem.com" label="Scan this code to visit Saipem"></sl-qr-code>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/qr-code/qr-code.js'"],
+  imports: ["import 'src/components/qr-code/qr-code.js'"],
   id: 'qr-code',
   metadata: { nestable: true }
 };

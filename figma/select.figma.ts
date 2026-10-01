@@ -20,7 +20,7 @@ export default {
   example: figma.html`<sl-select size="${size}" placeholder="${text('Select an option')}"${disabled ? ' disabled' : ''}>
   <!-- sl-option elements -->
 </sl-select>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/select/select.js'"],
+  imports: ["import 'src/components/select/select.js'"],
   id: 'select',
   metadata: { nestable: true }
 };

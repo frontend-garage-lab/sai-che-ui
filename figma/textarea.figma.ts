@@ -18,7 +18,7 @@ const disabled = instance.getEnum('State', { default: false, hover: false, focus
 
 export default {
   example: figma.html`<sl-textarea size="${size}" placeholder="${text('Enter your notes here...')}"${disabled ? ' disabled' : ''}></sl-textarea>`,
-  imports: ["import '@shoelace-style/shoelace/dist/components/textarea/textarea.js'"],
+  imports: ["import 'src/components/textarea/textarea.js'"],
   id: 'textarea',
   metadata: { nestable: true }
 };

@@ -23,8 +23,8 @@ export default {
   ${text('This drawer slides in from the edge and can host filters, forms, or document previews.')}${footer}
 </sl-drawer>`,
   imports: [
-    "import '@shoelace-style/shoelace/dist/components/drawer/drawer.js'",
-    "import '@shoelace-style/shoelace/dist/components/button/button.js'"
+    "import 'src/components/drawer/drawer.js'",
+    "import 'src/components/button/button.js'"
   ],
   id: 'drawer',
   metadata: { nestable: false }
