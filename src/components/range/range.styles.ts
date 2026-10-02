@@ -19,7 +19,7 @@ export default css`
   .range__control {
     --percent: 0%;
     -webkit-appearance: none;
-    border-radius: 3px;
+    border-radius: var(--sl-border-radius-small);
     width: 100%;
     height: var(--track-height);
     background: transparent;
@@ -54,7 +54,7 @@ export default css`
   .range__control::-webkit-slider-runnable-track {
     width: 100%;
     height: var(--track-height);
-    border-radius: 3px;
+    border-radius: var(--sl-border-radius-small);
     border: none;
   }
 
@@ -62,11 +62,16 @@ export default css`
     border: none;
     width: var(--thumb-size);
     height: var(--thumb-size);
-    border-radius: 50%;
+    border-radius: var(--sl-border-radius-circle);
     background-color: var(--sl-color-primary-600);
     border: solid var(--sl-input-border-width) var(--sl-color-primary-600);
     -webkit-appearance: none;
     margin-top: calc(var(--thumb-size) / -2 + var(--track-height) / 2);
+    transition:
+      var(--sl-transition-fast) border-color,
+      var(--sl-transition-fast) background-color,
+      var(--sl-transition-fast) color,
+      var(--sl-transition-fast) box-shadow;
     cursor: pointer;
   }
 
@@ -93,7 +98,7 @@ export default css`
 
   .range__control::-moz-range-progress {
     background-color: var(--track-color-active);
-    border-radius: 3px;
+    border-radius: var(--sl-border-radius-small);
     height: var(--track-height);
   }
 
@@ -101,7 +106,7 @@ export default css`
     width: 100%;
     height: var(--track-height);
     background-color: var(--track-color-inactive);
-    border-radius: 3px;
+    border-radius: var(--sl-border-radius-small);
     border: none;
   }
 
@@ -109,7 +114,7 @@ export default css`
     border: none;
     height: var(--thumb-size);
     width: var(--thumb-size);
-    border-radius: 50%;
+    border-radius: var(--sl-border-radius-circle);
     background-color: var(--sl-color-primary-600);
     border-color: var(--sl-color-primary-600);
     transition:

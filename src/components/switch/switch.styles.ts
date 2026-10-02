@@ -61,14 +61,20 @@ export default css`
     width: var(--thumb-size);
     height: var(--thumb-size);
     background-color: var(--sl-color-neutral-0);
-    border-radius: 50%;
+    border-radius: var(--sl-border-radius-circle);
     border: solid var(--sl-input-border-width) var(--sl-color-neutral-400);
     translate: calc((var(--width) - var(--height)) / -2);
     transition:
       var(--sl-transition-fast) translate ease,
       var(--sl-transition-fast) background-color,
       var(--sl-transition-fast) border-color,
-      var(--sl-transition-fast) box-shadow;
+      var(--sl-transition-fast) box-shadow,
+      var(--sl-transition-fast) scale;
+  }
+
+  /* Pressed feedback */
+  .switch:not(.switch--disabled) .switch__input:active ~ .switch__control .switch__thumb {
+    scale: 0.9;
   }
 
   .switch__input {

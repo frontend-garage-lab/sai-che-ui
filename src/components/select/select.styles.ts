@@ -51,12 +51,15 @@ export default css`
   .select__display-input {
     position: relative;
     width: 100%;
+    min-width: 0;
     font: inherit;
     border: none;
     background: none;
     color: var(--sl-input-color);
     cursor: inherit;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     padding: 0;
     margin: 0;
     -webkit-appearance: none;
@@ -181,12 +184,12 @@ export default css`
   }
 
   .select--small.select--multiple:not(.select--placeholder-visible) .select__combobox {
-    padding-block: 2px;
+    padding-block: var(--sl-spacing-3x-small);
     padding-inline-start: 0;
   }
 
   .select--small .select__tags {
-    gap: 2px;
+    gap: var(--sl-spacing-3x-small);
   }
 
   .select--medium .select__combobox {
@@ -211,11 +214,11 @@ export default css`
 
   .select--medium.select--multiple:not(.select--placeholder-visible) .select__combobox {
     padding-inline-start: 0;
-    padding-block: 3px;
+    padding-block: var(--sl-spacing-2x-small);
   }
 
   .select--medium .select__tags {
-    gap: 3px;
+    gap: var(--sl-spacing-2x-small);
   }
 
   .select--large .select__combobox {
@@ -240,11 +243,11 @@ export default css`
 
   .select--large.select--multiple:not(.select--placeholder-visible) .select__combobox {
     padding-inline-start: 0;
-    padding-block: 4px;
+    padding-block: var(--sl-spacing-x-small);
   }
 
   .select--large .select__tags {
-    gap: 4px;
+    gap: var(--sl-spacing-x-small);
   }
 
   /* Pills */

@@ -40,6 +40,16 @@ export default css`
     box-shadow: 0 0 0 0.1875em var(--status-halo);
   }
 
+  /*
+   * A document state name is user/data driven and can run long; let it truncate instead of
+   * overflowing or wrapping when a consumer (e.g. a table column) constrains the width.
+   */
+  .status__label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .status--primary {
     --status-color: var(--sl-color-primary-600);
     --status-halo: var(--sl-color-primary-100);

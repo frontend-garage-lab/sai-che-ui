@@ -38,10 +38,14 @@ export default css`
 
   .card__header {
     display: block;
+    min-width: 0;
     border-bottom: solid var(--border-width) var(--border-color);
-    padding: calc(var(--padding) / 2) var(--padding);
+    padding: var(--sl-spacing-small) var(--padding);
     font-weight: var(--sl-font-weight-semibold);
     color: var(--sl-color-neutral-900);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .card:not(.card--has-header) .card__header {

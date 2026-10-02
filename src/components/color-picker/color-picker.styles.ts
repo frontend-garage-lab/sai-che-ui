@@ -48,7 +48,7 @@ export default css`
     position: absolute;
     width: var(--grid-handle-size);
     height: var(--grid-handle-size);
-    border-radius: 50%;
+    border-radius: var(--sl-border-radius-circle);
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
     border: solid 2px white;
     margin-top: calc(var(--grid-handle-size) / -2);
@@ -93,7 +93,7 @@ export default css`
     width: var(--slider-handle-size);
     height: var(--slider-handle-size);
     background-color: white;
-    border-radius: 50%;
+    border-radius: var(--sl-border-radius-circle);
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
     margin-left: calc(var(--slider-handle-size) / -2);
   }
@@ -207,7 +207,7 @@ export default css`
   .color-picker__swatches {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    grid-gap: 0.5rem;
+    grid-gap: var(--sl-spacing-x-small);
     justify-items: center;
     border-top: solid 1px var(--sl-color-neutral-200);
     padding: var(--sl-spacing-small);
@@ -219,6 +219,7 @@ export default css`
     width: var(--swatch-size);
     height: var(--swatch-size);
     border-radius: var(--sl-border-radius-small);
+    transition: var(--sl-transition-x-fast) box-shadow;
   }
 
   .color-picker__swatch .color-picker__swatch-color {
@@ -230,6 +231,15 @@ export default css`
     border: solid 1px rgba(0, 0, 0, 0.125);
     border-radius: inherit;
     cursor: pointer;
+    transition: var(--sl-transition-fast) scale;
+  }
+
+  .color-picker__swatch:hover {
+    box-shadow: 0 0 0 2px var(--sl-color-neutral-0), 0 0 0 3px var(--sl-color-neutral-400);
+  }
+
+  .color-picker__swatch:active .color-picker__swatch-color {
+    scale: 0.9;
   }
 
   .color-picker__swatch:focus-visible {

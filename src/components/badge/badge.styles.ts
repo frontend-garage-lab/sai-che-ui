@@ -3,6 +3,7 @@ import { css } from 'lit';
 export default css`
   :host {
     display: inline-flex;
+    min-width: 0;
   }
 
   .badge {
@@ -16,7 +17,10 @@ export default css`
     border-radius: var(--sl-border-radius-small);
     border: solid 1px var(--sl-color-neutral-0);
     white-space: nowrap;
-    padding: 0.35em 0.6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Compact, dense-row sizing: 4px vertical / 8px horizontal, both on the 4px grid. */
+    padding: var(--sl-spacing-2x-small) var(--sl-spacing-x-small);
     user-select: none;
     -webkit-user-select: none;
     cursor: inherit;

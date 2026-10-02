@@ -37,6 +37,7 @@ export default css`
     font: inherit;
     color: inherit;
     text-align: inherit;
+    transition: color var(--sl-transition-x-fast) ease;
   }
 
   :host([align='center']) .column {

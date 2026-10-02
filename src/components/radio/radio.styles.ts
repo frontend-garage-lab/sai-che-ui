@@ -50,14 +50,20 @@ export default css`
     width: var(--toggle-size);
     height: var(--toggle-size);
     border: solid var(--sl-input-border-width) var(--sl-input-border-color);
-    border-radius: 50%;
+    border-radius: var(--sl-border-radius-circle);
     background-color: var(--sl-input-background-color);
     color: transparent;
     transition:
       var(--sl-transition-fast) border-color,
       var(--sl-transition-fast) background-color,
       var(--sl-transition-fast) color,
-      var(--sl-transition-fast) box-shadow;
+      var(--sl-transition-fast) box-shadow,
+      var(--sl-transition-fast) scale;
+  }
+
+  /* Pressed feedback */
+  .radio:not(.radio--disabled) .radio__input:active ~ .radio__control {
+    scale: 0.92;
   }
 
   .radio__input {

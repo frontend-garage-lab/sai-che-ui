@@ -67,7 +67,8 @@ export default css`
     transition:
       var(--sl-transition-fast) background-color,
       var(--sl-transition-fast) border-color,
-      var(--sl-transition-fast) color;
+      var(--sl-transition-fast) color,
+      var(--sl-transition-fast) box-shadow;
   }
 
   .step--current .step__indicator {
@@ -115,6 +116,7 @@ export default css`
   .step__label {
     font-weight: var(--sl-font-weight-semibold);
     color: var(--sl-color-neutral-600);
+    transition: var(--sl-transition-fast) color;
   }
 
   .step--current .step__label,
@@ -155,7 +157,7 @@ export default css`
     display: block;
     border-radius: var(--sl-border-radius-pill);
     background-color: var(--sl-color-neutral-300);
-    transition: var(--sl-transition-medium) background-color;
+    transition: var(--sl-transition-fast) background-color;
   }
 
   .step--complete .step__connector {

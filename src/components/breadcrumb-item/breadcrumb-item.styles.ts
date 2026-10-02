@@ -3,11 +3,13 @@ import { css } from 'lit';
 export default css`
   :host {
     display: inline-flex;
+    min-width: 0;
   }
 
   .breadcrumb-item {
     display: inline-flex;
     align-items: center;
+    min-width: 0;
     font-family: var(--sl-font-sans);
     font-size: var(--sl-font-size-small);
     font-weight: var(--sl-font-weight-semibold);
@@ -18,6 +20,9 @@ export default css`
 
   .breadcrumb-item__label {
     display: inline-block;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-family: inherit;
     font-size: inherit;
     font-weight: inherit;
@@ -30,7 +35,7 @@ export default css`
     padding: 0;
     margin: 0;
     cursor: pointer;
-    transition: var(--sl-transition-fast) --color;
+    transition: var(--sl-transition-fast) color;
   }
 
   :host(:not(:last-of-type)) .breadcrumb-item__label {

@@ -13,14 +13,12 @@ export default css`
     font-weight: var(--sl-font-weight-semibold);
     border-radius: var(--sl-border-radius-medium);
     color: var(--sl-color-neutral-600);
-    padding: var(--sl-spacing-small) var(--sl-spacing-medium);
+    padding: var(--sl-spacing-x-small) var(--sl-spacing-medium);
     white-space: nowrap;
     user-select: none;
     -webkit-user-select: none;
     cursor: pointer;
-    transition:
-      var(--transition-speed) box-shadow,
-      var(--transition-speed) color;
+    transition: var(--sl-transition-fast) color;
   }
 
   /* Hover stays neutral so it can't be mistaken for the active (petrol) tab */

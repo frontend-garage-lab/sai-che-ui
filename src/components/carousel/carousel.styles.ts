@@ -138,6 +138,9 @@ export default css`
     background-color: var(--sl-color-neutral-300);
     padding: 0;
     margin: 0;
+    transition:
+      var(--sl-transition-fast) background-color,
+      var(--sl-transition-fast) transform;
   }
 
   .carousel__pagination-item--active {

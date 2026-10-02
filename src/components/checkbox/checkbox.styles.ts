@@ -47,7 +47,13 @@ export default css`
       var(--sl-transition-fast) border-color,
       var(--sl-transition-fast) background-color,
       var(--sl-transition-fast) color,
-      var(--sl-transition-fast) box-shadow;
+      var(--sl-transition-fast) box-shadow,
+      var(--sl-transition-fast) scale;
+  }
+
+  /* Pressed feedback */
+  .checkbox:not(.checkbox--disabled) .checkbox__input:active ~ .checkbox__control {
+    scale: 0.92;
   }
 
   .checkbox__input {

@@ -16,6 +16,15 @@ export default css`
     -webkit-user-select: none;
   }
 
+  /* Tags sit in dense rows (e.g. a document's metadata); a long label truncates instead of
+   * pushing the layout out when a consumer constrains the tag's width. */
+  .tag__content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
   .tag__remove::part(base) {
     color: inherit;
     padding: 0;

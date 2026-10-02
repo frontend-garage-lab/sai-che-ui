@@ -27,8 +27,14 @@ export default css`
       var(--sl-transition-x-fast) background-color,
       var(--sl-transition-x-fast) color,
       var(--sl-transition-x-fast) border,
-      var(--sl-transition-x-fast) box-shadow;
+      var(--sl-transition-x-fast) box-shadow,
+      var(--sl-transition-fast) scale;
     cursor: inherit;
+  }
+
+  /* Pressed feedback: a quick, subtle squish so clicking always reads as a deliberate action */
+  .button:active:not(.button--disabled) {
+    scale: 0.97;
   }
 
   .button::-moz-focus-inner {
@@ -64,6 +70,10 @@ export default css`
 
   .button__label {
     display: inline-block;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .button__label::slotted(sl-icon) {
@@ -453,17 +463,17 @@ export default css`
 
   .button--circle.button--small {
     width: var(--sl-input-height-small);
-    border-radius: 50%;
+    border-radius: var(--sl-border-radius-circle);
   }
 
   .button--circle.button--medium {
     width: var(--sl-input-height-medium);
-    border-radius: 50%;
+    border-radius: var(--sl-border-radius-circle);
   }
 
   .button--circle.button--large {
     width: var(--sl-input-height-large);
-    border-radius: 50%;
+    border-radius: var(--sl-border-radius-circle);
   }
 
   .button--circle .button__prefix,

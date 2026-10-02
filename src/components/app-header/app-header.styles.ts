@@ -14,9 +14,9 @@ export default css`
   .app-header {
     display: flex;
     align-items: stretch;
-    gap: var(--sl-spacing-large);
+    gap: var(--sl-spacing-small);
     height: var(--height);
-    padding-inline: var(--sl-spacing-large);
+    padding-inline: var(--sl-spacing-small);
     border-bottom: solid 3px var(--accent-color);
     background-color: var(--background);
     color: var(--color);

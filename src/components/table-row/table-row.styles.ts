@@ -6,10 +6,13 @@ export default css`
     grid-template-columns: var(--sl-table-column-template, 1fr);
     align-items: stretch;
     box-sizing: border-box;
-    border-bottom: solid var(--sl-panel-border-width) var(--sl-panel-border-color);
+    border-bottom: solid var(--sl-panel-border-width) var(--border-color, var(--sl-panel-border-color));
     background-color: var(--sl-color-neutral-0);
     outline: none;
-    transition: background-color var(--sl-transition-fast) ease;
+    /* Rows are scanned quickly, so hover/selection feedback needs to feel instant */
+    transition:
+      background-color var(--sl-transition-x-fast) ease,
+      box-shadow var(--sl-transition-x-fast) ease;
   }
 
   /* Hidden by the table when the row falls outside the current page */

@@ -23,7 +23,9 @@ export default css`
     color: var(--sl-color-neutral-800);
     padding: var(--sl-spacing-2x-small) var(--sl-spacing-2x-small);
     border-radius: var(--sl-border-radius-small);
-    transition: var(--sl-transition-fast) fill;
+    transition:
+      background-color var(--sl-transition-x-fast) ease,
+      color var(--sl-transition-x-fast) ease;
     user-select: none;
     -webkit-user-select: none;
     white-space: nowrap;
@@ -58,6 +60,7 @@ export default css`
   .menu-item .menu-item__label {
     flex: 1 1 auto;
     display: inline-block;
+    min-width: 0;
     text-overflow: ellipsis;
     overflow: hidden;
   }

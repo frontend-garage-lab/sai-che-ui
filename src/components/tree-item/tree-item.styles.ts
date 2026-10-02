@@ -57,8 +57,8 @@ export default css`
     justify-content: center;
     box-sizing: content-box;
     color: var(--sl-color-neutral-500);
-    /* 6px keeps rows at 28px: dense enough for a deep folder tree, still easy to hit */
-    padding: 0.375rem;
+    /* 4px keeps rows at 24px: dense enough for a deep folder tree, still easy to hit */
+    padding: var(--sl-spacing-2x-small);
     width: 1rem;
     height: 1rem;
     flex-shrink: 0;
@@ -93,7 +93,13 @@ export default css`
   .tree-item__item {
     display: flex;
     align-items: center;
+    min-width: 0;
     border-inline-start: solid 3px transparent;
+    /* Rows are scanned quickly, so hover/selection feedback needs to feel instant */
+    transition:
+      background-color var(--sl-transition-x-fast) ease,
+      border-inline-start-color var(--sl-transition-x-fast) ease,
+      color var(--sl-transition-x-fast) ease;
   }
 
   .tree-item--disabled .tree-item__item {
@@ -126,7 +132,10 @@ export default css`
   .tree-item__label {
     display: flex;
     align-items: center;
-    transition: var(--sl-transition-fast) color;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .tree-item__children {

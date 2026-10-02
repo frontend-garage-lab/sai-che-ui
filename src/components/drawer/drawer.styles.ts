@@ -89,6 +89,7 @@ export default css`
 
   .drawer__title {
     flex: 1 1 auto;
+    min-width: 0;
     font: inherit;
     font-size: 1.125rem; /* 18px */
     font-weight: var(--sl-font-weight-semibold);
@@ -96,6 +97,9 @@ export default css`
     color: var(--sl-color-neutral-900);
     padding: var(--header-spacing);
     margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .drawer__header-actions {

@@ -41,6 +41,11 @@ export default css`
     display: inline-flex;
     align-items: center;
     gap: var(--sl-spacing-x-small);
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-size: var(--sl-font-size-small);
     font-weight: var(--sl-font-weight-semibold);
     line-height: var(--sl-line-height-dense);
@@ -49,6 +54,7 @@ export default css`
 
   /* Same dot and halo as <sl-status>, so the stat and the table cells it filters match */
   .stat__indicator {
+    flex-shrink: 0;
     width: 0.5rem;
     height: 0.5rem;
     border-radius: var(--sl-border-radius-circle);

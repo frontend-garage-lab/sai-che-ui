@@ -23,7 +23,9 @@ export default css`
     color: var(--sl-color-neutral-800);
     border-radius: var(--sl-border-radius-small);
     padding: var(--sl-spacing-2x-small) var(--sl-spacing-small) var(--sl-spacing-2x-small) var(--sl-spacing-2x-small);
-    transition: var(--sl-transition-fast) fill;
+    transition:
+      background-color var(--sl-transition-x-fast) ease,
+      color var(--sl-transition-x-fast) ease;
     cursor: pointer;
   }
 
@@ -48,6 +50,10 @@ export default css`
   .option__label {
     flex: 1 1 auto;
     display: inline-block;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     line-height: var(--sl-line-height-dense);
   }
 

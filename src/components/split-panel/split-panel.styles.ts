@@ -21,9 +21,12 @@ export default css`
     position: relative;
     align-items: center;
     justify-content: center;
-    background-color: var(--sl-color-neutral-200);
+    background-color: var(--sl-border-subtle);
     color: var(--sl-color-neutral-900);
     z-index: 1;
+    transition:
+      var(--sl-transition-fast) background-color,
+      var(--sl-transition-fast) color;
   }
 
   .divider:focus {
