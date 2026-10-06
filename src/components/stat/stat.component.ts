@@ -8,19 +8,20 @@ import styles from './stat.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
- * @summary Stats show a count with a label, e.g. how many documents are in each status. Inside a
- *  [stat group](/components/stat-group) they also act as filters.
+ * @summary Stats show a count with a label as an icon-first KPI card, e.g. how many documents are in each status.
+ *  Inside a [stat group](/components/stat-group) they also act as filters.
  * @documentation https://shoelace.style/components/stat
  * @status experimental
  * @since 2.20
  *
  * @slot - The stat's label.
- * @slot prefix - An icon or similar element shown before the label.
+ * @slot prefix - An icon shown in the tinted badge, e.g. `<sl-icon>`.
  *
  * @csspart base - The component's base wrapper. A `<button>` inside a stat group, otherwise a `<div>`.
+ * @csspart icon - The tinted circular badge that hosts the prefix icon.
+ * @csspart content - The container that wraps the count and the label.
  * @csspart count - The formatted count.
- * @csspart label - The container that wraps the label and the indicator.
- * @csspart indicator - The coloured dot shown before the label when `variant` is set.
+ * @csspart label - The label.
  */
 export default class SlStat extends ShoelaceElement {
   static styles: CSSResultGroup = [componentStyles, styles];
@@ -50,11 +51,10 @@ export default class SlStat extends ShoelaceElement {
 
   render() {
     const content = html`
-      <span part="count" class="stat__count">${this.localize.number(this.count)}</span>
-      <span part="label" class="stat__label">
-        ${this.variant ? html`<span part="indicator" class="stat__indicator"></span>` : ''}
-        <slot name="prefix"></slot>
-        <slot></slot>
+      <span part="icon" class="stat__icon"><slot name="prefix"></slot></span>
+      <span part="content" class="stat__content">
+        <span part="count" class="stat__count">${this.localize.number(this.count)}</span>
+        <span part="label" class="stat__label"><slot></slot></span>
       </span>
     `;
 

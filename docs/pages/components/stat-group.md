@@ -33,6 +33,31 @@ filter, unless the group is `required`. Stats are toggle buttons, so screen read
 
 ## Examples
 
+### KPI summary row
+
+A dashboard summary row of four stats, with one selected as the active filter.
+
+```html:preview
+<sl-stat-group label="Filter by status" value="expiring">
+  <sl-stat value="safe" count="128" variant="success">
+    <sl-icon slot="prefix" name="shield-check"></sl-icon>
+    Safe
+  </sl-stat>
+  <sl-stat value="expiring" count="14" variant="warning">
+    <sl-icon slot="prefix" name="hourglass-split"></sl-icon>
+    Expiring
+  </sl-stat>
+  <sl-stat value="expired" count="3" variant="danger">
+    <sl-icon slot="prefix" name="exclamation-triangle"></sl-icon>
+    Expired
+  </sl-stat>
+  <sl-stat value="notified" count="9" variant="accent">
+    <sl-icon slot="prefix" name="bell"></sl-icon>
+    Notified
+  </sl-stat>
+</sl-stat-group>
+```
+
 ### Required selection
 
 Add `required` when there's always exactly one view, e.g. switching between incoming and outgoing.

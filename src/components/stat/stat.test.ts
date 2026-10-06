@@ -20,4 +20,19 @@ describe('<sl-stat>', () => {
 
     expect(el.shadowRoot!.querySelector('button')).to.be.null;
   });
+
+  it('should render the icon badge as empty when there is no prefix', async () => {
+    const el = await fixture<SlStat>(html` <sl-stat count="1">Signed</sl-stat> `);
+
+    expect(el.shadowRoot!.querySelector('[part~="icon"]')!.textContent!.trim()).to.equal('');
+  });
+
+  it('should render the prefix slot inside the icon badge', async () => {
+    const el = await fixture<SlStat>(html`
+      <sl-stat count="1"><sl-icon slot="prefix" name="lock"></sl-icon>Signed</sl-stat>
+    `);
+
+    const icon = el.shadowRoot!.querySelector('[part~="icon"]')!;
+    expect(icon.querySelector('slot[name="prefix"]')).not.to.be.null;
+  });
 });

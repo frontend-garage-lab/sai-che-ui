@@ -310,3 +310,63 @@ replace the browser's own menu with your own.
 :::tip
 `sticky-header` only has an effect when the table's height is constrained, e.g. with the `--max-height` custom property.
 :::
+
+### Many columns
+
+There's no limit to the number of columns — add as many `<sl-table-column>`/`<sl-table-cell>` pairs as the record
+needs. When they don't fit the available width, the table scrolls horizontally.
+
+```html:preview
+<sl-table>
+  <sl-table-column slot="columns" key="c1" width="10rem">Protocol</sl-table-column>
+  <sl-table-column slot="columns" key="c2" width="10rem">Subject</sl-table-column>
+  <sl-table-column slot="columns" key="c3" width="10rem">Type</sl-table-column>
+  <sl-table-column slot="columns" key="c4" width="10rem">Status</sl-table-column>
+  <sl-table-column slot="columns" key="c5" width="10rem">Discipline</sl-table-column>
+  <sl-table-column slot="columns" key="c6" width="10rem">Originator</sl-table-column>
+  <sl-table-column slot="columns" key="c7" width="10rem">Recipient</sl-table-column>
+  <sl-table-column slot="columns" key="c8" width="10rem">Issue Date</sl-table-column>
+  <sl-table-column slot="columns" key="c9" width="10rem">Due Date</sl-table-column>
+  <sl-table-column slot="columns" key="c10" width="10rem">Revision</sl-table-column>
+  <sl-table-column slot="columns" key="c11" width="10rem">Priority</sl-table-column>
+  <sl-table-column slot="columns" key="c12" width="10rem">Project</sl-table-column>
+  <sl-table-column slot="columns" key="c13" width="10rem">Contract</sl-table-column>
+  <sl-table-column slot="columns" key="c14" width="10rem">Location</sl-table-column>
+  <sl-table-column slot="columns" key="c15" width="10rem">Reference</sl-table-column>
+
+  <sl-table-row value="1">
+    <sl-table-cell>L-SAI-EXT-7</sl-table-cell>
+    <sl-table-cell>Key personnel for the project</sl-table-cell>
+    <sl-table-cell>Letter</sl-table-cell>
+    <sl-table-cell>Open</sl-table-cell>
+    <sl-table-cell>Mechanical</sl-table-cell>
+    <sl-table-cell>J. Smith</sl-table-cell>
+    <sl-table-cell>A. Rossi</sl-table-cell>
+    <sl-table-cell>18 Jan 2021</sl-table-cell>
+    <sl-table-cell>1 Feb 2021</sl-table-cell>
+    <sl-table-cell>Rev. 2</sl-table-cell>
+    <sl-table-cell>High</sl-table-cell>
+    <sl-table-cell>Saipem Alpha</sl-table-cell>
+    <sl-table-cell>CT-2021-04</sl-table-cell>
+    <sl-table-cell>Milan</sl-table-cell>
+    <sl-table-cell>REF-1001</sl-table-cell>
+  </sl-table-row>
+  <sl-table-row value="2">
+    <sl-table-cell>MOM-001</sl-table-cell>
+    <sl-table-cell>Kick off meeting</sl-table-cell>
+    <sl-table-cell>Minutes of Meeting</sl-table-cell>
+    <sl-table-cell>Closed</sl-table-cell>
+    <sl-table-cell>Electrical</sl-table-cell>
+    <sl-table-cell>M. Bianchi</sl-table-cell>
+    <sl-table-cell>L. Verdi</sl-table-cell>
+    <sl-table-cell>2 Feb 2021</sl-table-cell>
+    <sl-table-cell>9 Feb 2021</sl-table-cell>
+    <sl-table-cell>Rev. 1</sl-table-cell>
+    <sl-table-cell>Medium</sl-table-cell>
+    <sl-table-cell>Saipem Beta</sl-table-cell>
+    <sl-table-cell>CT-2021-05</sl-table-cell>
+    <sl-table-cell>Genoa</sl-table-cell>
+    <sl-table-cell>REF-1002</sl-table-cell>
+  </sl-table-row>
+</sl-table>
+```

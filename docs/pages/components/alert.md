@@ -310,6 +310,58 @@ const App = () => {
 };
 ```
 
+### As a toast notification
+
+The dashboard's four toast cases map onto `sl-alert` variants: `success`, `danger` for "error", `warning`, and
+`primary` for "information" — `primary` is the closer semantic fit than `accent` here, since `accent` is reserved
+for the "Notified" KPI tone elsewhere in this design, while `primary` is this library's general informative variant.
+Each one is closable, carries custom icon slot content, and floats to [the toast stack](#the-toast-stack) top-right
+when `toast()` is called.
+
+```html:preview
+<div class="alert-toast-semantic">
+  <sl-button variant="success">Success</sl-button>
+  <sl-button variant="danger">Error</sl-button>
+  <sl-button variant="warning">Warning</sl-button>
+  <sl-button variant="primary">Information</sl-button>
+
+  <sl-alert variant="success" closable>
+    <sl-icon slot="icon" name="check2-circle"></sl-icon>
+    <strong>Contract renewed</strong><br />
+    The agreement was signed and distributed to all parties.
+  </sl-alert>
+
+  <sl-alert variant="danger" closable>
+    <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+    <strong>Contract expired</strong><br />
+    This agreement lapsed without a signed renewal.
+  </sl-alert>
+
+  <sl-alert variant="warning" closable>
+    <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
+    <strong>Contract expiring soon</strong><br />
+    Renew before the term ends to avoid a lapse.
+  </sl-alert>
+
+  <sl-alert variant="primary" closable>
+    <sl-icon slot="icon" name="info-circle"></sl-icon>
+    <strong>Stakeholders notified</strong><br />
+    An email was sent to everyone on the distribution list.
+  </sl-alert>
+</div>
+
+<script>
+  const semanticContainer = document.querySelector('.alert-toast-semantic');
+
+  ['success', 'danger', 'warning', 'primary'].map(variant => {
+    const button = semanticContainer.querySelector(`sl-button[variant="${variant}"]`);
+    const alert = semanticContainer.querySelector(`sl-alert[variant="${variant}"]`);
+
+    button.addEventListener('click', () => alert.toast());
+  });
+</script>
+```
+
 ### Toast Notifications
 
 To display an alert as a toast notification, or "toast", create the alert and call its `toast()` method. This will move the alert out of its position in the DOM and into [the toast stack](#the-toast-stack) where it will be shown. Once dismissed, it will be removed from the DOM completely. To reuse a toast, store a reference to it and call `toast()` again later on.
