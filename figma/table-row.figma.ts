@@ -29,11 +29,13 @@ const variant = instance.getEnum('Marker', {
   danger: 'danger'
 });
 
-// The Quick Info badge's colour and label are baked into each Marker variant (not independently
-// editable properties), so the badge variant falls back to "neutral" when there's no marker.
+// Quick Info's colour is independent of Marker (an instance-swap of its own, so the two can show
+// different statuses at once). Its label isn't a bound property in Figma, so it's always "Status".
 const hasQuickInfo = instance.getBoolean('Quick Info');
-const quickInfoLabel = text('Overdue', 'At risk', 'On track', 'No marker', 'Primary', 'Accent');
-const quickInfoVariant = variant || 'neutral';
+const quickInfoSwap = hasQuickInfo ? instance.getInstanceSwap('Quick Info Variant') : undefined;
+const quickInfoVariant =
+  quickInfoSwap && quickInfoSwap.type === 'INSTANCE' ? (quickInfoSwap.name.match(/Variant=(\w+)/)?.[1] ?? 'neutral') : 'neutral';
+const quickInfoLabel = 'Status';
 
 export default {
   example: figma.html`<sl-table-row${selected ? ' selected' : ''}${disabled ? ' disabled' : ''}${variant ? ` variant="${variant}"` : ''}>
