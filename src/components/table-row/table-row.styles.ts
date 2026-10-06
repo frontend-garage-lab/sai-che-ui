@@ -25,6 +25,31 @@ export default css`
     background-color: var(--sl-color-neutral-50);
   }
 
+  /* The variant marker shares the same edge as selection, so selection (set below) takes priority when both apply */
+  :host([variant='primary']) {
+    box-shadow: inset 3px 0 0 var(--marker-color, var(--sl-color-primary-600));
+  }
+
+  :host([variant='accent']) {
+    box-shadow: inset 3px 0 0 var(--marker-color, var(--sl-color-accent-500));
+  }
+
+  :host([variant='success']) {
+    box-shadow: inset 3px 0 0 var(--marker-color, var(--sl-color-success-600));
+  }
+
+  :host([variant='neutral']) {
+    box-shadow: inset 3px 0 0 var(--marker-color, var(--sl-color-neutral-500));
+  }
+
+  :host([variant='warning']) {
+    box-shadow: inset 3px 0 0 var(--marker-color, var(--sl-color-warning-500));
+  }
+
+  :host([variant='danger']) {
+    box-shadow: inset 3px 0 0 var(--marker-color, var(--sl-color-danger-600));
+  }
+
   /* Selected rows get a petrol edge as well as a tint, so selection survives striping */
   :host([selected]) {
     background-color: var(--sl-color-primary-50);

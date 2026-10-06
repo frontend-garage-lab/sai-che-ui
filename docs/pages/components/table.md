@@ -174,6 +174,33 @@ when there's nothing to display.
 </sl-table>
 ```
 
+### Action buttons
+
+Put up to 10 `<sl-button>` elements in the `toolbar` slot for actions like export, import or bulk approve. Add an
+icon to the button's `prefix` slot to pair it with a label.
+
+```html:preview
+<sl-table>
+  <div slot="toolbar" style="display: flex; gap: var(--sl-spacing-x-small);">
+    <sl-button size="small" variant="default" outline>
+      <sl-icon slot="prefix" name="download"></sl-icon>
+      Export
+    </sl-button>
+    <sl-button size="small" variant="default" outline>
+      <sl-icon slot="prefix" name="upload"></sl-icon>
+      Import
+    </sl-button>
+    <sl-button size="small" variant="primary">
+      <sl-icon slot="prefix" name="check2"></sl-icon>
+      Approve
+    </sl-button>
+  </div>
+
+  <sl-table-column slot="columns" key="protocol">Protocol Number</sl-table-column>
+  <sl-table-column slot="columns" key="subject">Subject</sl-table-column>
+</sl-table>
+```
+
 ### Status icons and alignment
 
 Cells hold any content, so a status column is just icons or badges. Column alignment cascades to the cells below it.

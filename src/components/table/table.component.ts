@@ -20,6 +20,9 @@ import type { SlSelectEvent } from '../../events/events.js';
 const interactiveSelector =
   'a[href], button, input, select, textarea, sl-button, sl-icon-button, sl-checkbox, sl-switch, sl-select, sl-menu-item, sl-dropdown, [data-sl-table-interactive]';
 
+/** The toolbar slot is meant for a handful of actions — beyond this it tends to wrap awkwardly. */
+const maxToolbarActions = 10;
+
 /**
  * @summary Tables display a list of records in columns, with optional sorting, row selection and pagination.
  * @documentation https://shoelace.style/components/table
@@ -42,7 +45,8 @@ const interactiveSelector =
  *
  * @slot - One `<sl-table-row>` per record.
  * @slot columns - One `<sl-table-column>` per column. They define the header and the table's column widths.
- * @slot toolbar - Content shown above the header, e.g. filters or action buttons.
+ * @slot toolbar - Content shown above the header, e.g. filters or action buttons. Reuse `<sl-button>` (with a
+ *  `prefix` icon) for actions and keep it to 10 or fewer so the toolbar doesn't wrap awkwardly.
  * @slot empty - Content shown in place of the rows when the table has nothing to display.
  * @slot footer - Replaces the built-in pagination controls.
  *
@@ -409,7 +413,18 @@ export default class SlTable extends ShoelaceElement {
   };
 
   private handleToolbarSlotChange = (event: Event) => {
-    this.hasToolbar = (event.target as HTMLSlotElement).assignedNodes({ flatten: true }).length > 0;
+    const assigned = (event.target as HTMLSlotElement).assignedElements({ flatten: true });
+    this.hasToolbar = assigned.length > 0;
+
+    const actionButtons = assigned.flatMap(element =>
+      element.tagName === 'SL-BUTTON' ? [element] : [...element.querySelectorAll('sl-button')]
+    );
+
+    if (actionButtons.length > maxToolbarActions) {
+      console.warn(
+        `<sl-table> toolbar has ${actionButtons.length} <sl-button> actions, but only ${maxToolbarActions} are supported before it wraps awkwardly.`
+      );
+    }
   };
 
   private getRowFromEvent(event: Event): SlTableRow | null {

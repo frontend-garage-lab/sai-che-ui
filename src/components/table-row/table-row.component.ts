@@ -28,6 +28,8 @@ import type SlTableCell from '../table-cell/table-cell.component.js';
  * @csspart checkbox__base - The checkbox's exported `base` part.
  * @csspart actions - The container that wraps the action menu.
  * @csspart action-trigger - The button that opens the action menu, an `<sl-icon-button>` element.
+ *
+ * @cssproperty --marker-color - The colour of the `variant` marker. Defaults to the variant's colour.
  */
 export default class SlTableRow extends ShoelaceElement {
   static styles: CSSResultGroup = [componentStyles, styles];
@@ -47,6 +49,9 @@ export default class SlTableRow extends ShoelaceElement {
 
   /** Disables the row, preventing selection. */
   @property({ type: Boolean, reflect: true }) disabled = false;
+
+  /** Draws a coloured marker on the row's leading edge, e.g. to flag its status. */
+  @property({ reflect: true }) variant: '' | 'primary' | 'accent' | 'success' | 'neutral' | 'warning' | 'danger' = '';
 
   /** The parent table's selection mode. The table keeps this in sync — don't set it yourself. */
   @state() selectionMode: 'none' | 'single' | 'multiple' = 'none';
