@@ -24,6 +24,7 @@ export type { SlLazyLoadEvent } from './sl-lazy-load.js';
 export type { SlLoadEvent } from './sl-load.js';
 export type { SlMutationEvent } from './sl-mutation.js';
 export type { SlRemoveEvent } from './sl-remove.js';
+export type { SlRetryEvent } from './sl-retry.js';
 export type { SlRepositionEvent } from './sl-reposition.js';
 export type { SlRequestCloseEvent } from './sl-request-close.js';
 export type { SlResizeEvent } from './sl-resize.js';

@@ -64,6 +64,15 @@ describe('<sl-tab>', () => {
     expect(closeButton).not.to.be.null;
   });
 
+  it('should set card by attribute', async () => {
+    const el = await fixture<SlTab>(html` <sl-tab card>Test</sl-tab> `);
+
+    const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
+
+    expect(el.card).to.equal(true);
+    expect(base.getAttribute('class')).to.match(/tab tab--card/);
+  });
+
   describe('focus', () => {
     it('should focus itself', async () => {
       const el = await fixture<SlTab>(html` <sl-tab>Test</sl-tab> `);

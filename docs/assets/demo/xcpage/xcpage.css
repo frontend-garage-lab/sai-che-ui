@@ -21,6 +21,12 @@ body {
   display: none !important;
 }
 
+/* Toasts confirm a background action, so they shouldn't cover the header/filters above the fold. */
+.sl-toast-stack {
+  top: auto;
+  bottom: 0;
+}
+
 .muted {
   color: var(--sl-color-neutral-500);
   font-size: var(--sl-font-size-x-small);
@@ -46,22 +52,17 @@ body {
 }
 
 /* Workflow stages */
+.stages {
+  --track-width: 0;
+}
+
 .stages::part(body) {
   display: none;
 }
 
-.stages sl-tab {
-  flex: 1 1 0;
-}
-
-.stages sl-tab::part(base) {
-  justify-content: center;
-  gap: var(--sl-spacing-x-small);
-  font-size: var(--sl-font-size-medium);
-}
-
 .stages::part(tabs) {
   width: 100%;
+  gap: var(--sl-spacing-small);
 }
 
 /* Filters */
@@ -257,27 +258,6 @@ body {
   gap: var(--sl-spacing-small);
 }
 
-.comment {
-  display: flex;
-  align-items: center;
-  gap: var(--sl-spacing-small);
-  padding: var(--sl-spacing-small);
-}
-
-.comment sl-avatar {
-  --size: 2.5rem;
-}
-
-.comment__body {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.comment__author {
-  font-weight: var(--sl-font-weight-semibold);
-  color: var(--sl-color-neutral-900);
-}
-
 .person {
   display: flex;
   align-items: center;
@@ -397,67 +377,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: var(--sl-spacing-x-small);
-}
-
-.upload {
-  display: flex;
-  align-items: center;
-  gap: var(--sl-spacing-small);
-  padding: var(--sl-spacing-x-small) var(--sl-spacing-x-small) var(--sl-spacing-x-small) var(--sl-spacing-small);
-  border: solid var(--sl-panel-border-width) var(--sl-border-subtle);
-  border-radius: var(--sl-border-radius-medium);
-  background: var(--sl-surface-panel);
-}
-
-.upload > sl-icon,
-.upload > sl-spinner {
-  flex: 0 0 auto;
-  font-size: var(--sl-font-size-medium);
-}
-
-.upload__body {
-  flex: 1 1 auto;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--sl-spacing-3x-small);
-}
-
-.upload__name {
-  font-weight: var(--sl-font-weight-semibold);
-  color: var(--sl-color-neutral-900);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.upload sl-progress-bar {
-  --height: 0.5rem;
-}
-
-.upload--done {
-  background: var(--sl-color-success-50);
-  border-color: var(--sl-color-success-200);
-}
-
-.upload--done > sl-icon,
-.upload--done .upload__meta {
-  color: var(--sl-color-success-600);
-}
-
-.upload--failed {
-  background: var(--sl-color-danger-50);
-  border-color: var(--sl-color-danger-200);
-}
-
-.upload--failed > sl-icon,
-.upload--failed .upload__meta {
-  color: var(--sl-color-danger-600);
-}
-
-.upload__meta {
-  font-size: var(--sl-font-size-x-small);
-  color: var(--sl-color-neutral-500);
 }
 
 /* Complete dialog */

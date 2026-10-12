@@ -553,6 +553,15 @@ By default, the toast stack is positioned at the top-right of the viewport. You 
 }
 ```
 
+To make toasts appear at the bottom-right instead, e.g. for a non-blocking confirmation after a background action:
+
+```css
+.sl-toast-stack {
+  top: auto;
+  bottom: 0;
+}
+```
+
 :::tip
 By design, it is not possible to show toasts in more than one stack simultaneously. Such behavior is confusing and makes for a poor user experience.
 :::

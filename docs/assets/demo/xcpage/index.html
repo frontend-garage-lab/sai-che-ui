@@ -10,6 +10,7 @@
     <title>xCPage · Review</title>
     <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
     <link rel="stylesheet" href="./xcpage.css" />
     <script type="module" src="/shoelace.js"></script>
     <script type="module" src="./xcpage.js"></script>
@@ -38,11 +39,11 @@
     <main class="page">
       <!-- Workflow stages -->
       <sl-tab-group class="stages" id="stages">
-        <sl-tab slot="nav" panel="pva">PVA <sl-badge pill variant="neutral" id="count-pva">22</sl-badge></sl-tab>
-        <sl-tab slot="nav" panel="consolidation">
+        <sl-tab slot="nav" panel="pva" card>PVA <sl-badge pill variant="neutral" id="count-pva">22</sl-badge></sl-tab>
+        <sl-tab slot="nav" panel="consolidation" card>
           Consolidation <sl-badge pill variant="neutral" id="count-consolidation">22</sl-badge>
         </sl-tab>
-        <sl-tab slot="nav" panel="review" active>
+        <sl-tab slot="nav" panel="review" card active>
           Review <sl-badge pill variant="primary" id="count-review">11</sl-badge>
         </sl-tab>
       </sl-tab-group>

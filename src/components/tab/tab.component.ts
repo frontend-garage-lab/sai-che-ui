@@ -19,7 +19,7 @@ let id = 0;
  *
  * @dependency sl-icon-button
  *
- * @slot - The tab's label.
+ * @slot - The tab's label. Can also include a leading `<sl-icon>` and/or a trailing `<sl-badge pill>` counter, e.g. when `card` is set.
  *
  * @event sl-close - Emitted when the tab is closable and the close button is activated.
  *
@@ -46,6 +46,9 @@ export default class SlTab extends ShoelaceElement {
 
   /** Makes the tab closable and shows a close button. */
   @property({ type: Boolean, reflect: true }) closable = false;
+
+  /** Draws the tab as a bordered card, e.g. for pairing with a trailing `<sl-badge pill>` counter. */
+  @property({ type: Boolean, reflect: true }) card = false;
 
   /** Disables the tab and prevents selection. */
   @property({ type: Boolean, reflect: true }) disabled = false;
@@ -93,7 +96,8 @@ export default class SlTab extends ShoelaceElement {
           tab: true,
           'tab--active': this.active,
           'tab--closable': this.closable,
-          'tab--disabled': this.disabled
+          'tab--disabled': this.disabled,
+          'tab--card': this.card
         })}
       >
         <slot></slot>

@@ -553,6 +553,135 @@ const App = () => (
 );
 ```
 
+### Tabs with Icons
+
+Add a leading `<sl-icon>` inside a tab's default slot to pair it with a label. The active tab indicator is drawn automatically by `<sl-tab-group>` and needs no extra markup per tab.
+
+```html:preview
+<sl-tab-group>
+  <sl-tab slot="nav" panel="comments" active>
+    <sl-icon name="chat"></sl-icon>
+    Review Comments
+  </sl-tab>
+  <sl-tab slot="nav" panel="dashboard">
+    <sl-icon name="grid"></sl-icon>
+    Dashboard
+  </sl-tab>
+  <sl-tab slot="nav" panel="revisions">
+    <sl-icon name="clock-history"></sl-icon>
+    Revisions
+  </sl-tab>
+
+  <sl-tab-panel name="comments">This is the review comments tab panel.</sl-tab-panel>
+  <sl-tab-panel name="dashboard">This is the dashboard tab panel.</sl-tab-panel>
+  <sl-tab-panel name="revisions">This is the revisions tab panel.</sl-tab-panel>
+</sl-tab-group>
+```
+
+```jsx:react
+import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import SlTab from '@shoelace-style/shoelace/dist/react/tab';
+import SlTabGroup from '@shoelace-style/shoelace/dist/react/tab-group';
+import SlTabPanel from '@shoelace-style/shoelace/dist/react/tab-panel';
+
+const App = () => (
+  <SlTabGroup>
+    <SlTab slot="nav" panel="comments" active>
+      <SlIcon name="chat" />
+      Review Comments
+    </SlTab>
+    <SlTab slot="nav" panel="dashboard">
+      <SlIcon name="grid" />
+      Dashboard
+    </SlTab>
+    <SlTab slot="nav" panel="revisions">
+      <SlIcon name="clock-history" />
+      Revisions
+    </SlTab>
+
+    <SlTabPanel name="comments">This is the review comments tab panel.</SlTabPanel>
+    <SlTabPanel name="dashboard">This is the dashboard tab panel.</SlTabPanel>
+    <SlTabPanel name="revisions">This is the revisions tab panel.</SlTabPanel>
+  </SlTabGroup>
+);
+```
+
+### Card Tabs with Counters
+
+Set the `card` attribute on a tab to draw it as a bordered card, and pair it with a trailing `<sl-badge pill>` to show a count. Useful for workflow stage switchers.
+
+```html:preview
+<sl-tab-group class="tabs-card" style="--track-width: 0;">
+  <sl-tab slot="nav" panel="pva" card>
+    PVA
+    <sl-badge variant="neutral" pill>22</sl-badge>
+  </sl-tab>
+  <sl-tab slot="nav" panel="consolidation" card>
+    Consolidation
+    <sl-badge variant="neutral" pill>22</sl-badge>
+  </sl-tab>
+  <sl-tab slot="nav" panel="review" card active>
+    Review
+    <sl-badge variant="primary" pill>11</sl-badge>
+  </sl-tab>
+
+  <sl-tab-panel name="pva">This is the PVA tab panel.</sl-tab-panel>
+  <sl-tab-panel name="consolidation">This is the consolidation tab panel.</sl-tab-panel>
+  <sl-tab-panel name="review">This is the review tab panel.</sl-tab-panel>
+</sl-tab-group>
+
+<style>
+  .tabs-card::part(tabs) {
+    gap: var(--sl-spacing-small);
+  }
+</style>
+
+<script>
+  const tabGroup = document.querySelector('.tabs-card');
+
+  tabGroup.addEventListener('sl-tab-show', event => {
+    tabGroup.querySelectorAll('sl-tab[card]').forEach(tab => {
+      const badge = tab.querySelector('sl-badge');
+      badge.variant = tab.panel === event.detail.name ? 'primary' : 'neutral';
+    });
+  });
+</script>
+```
+
+```jsx:react
+import SlBadge from '@shoelace-style/shoelace/dist/react/badge';
+import SlTab from '@shoelace-style/shoelace/dist/react/tab';
+import SlTabGroup from '@shoelace-style/shoelace/dist/react/tab-group';
+import SlTabPanel from '@shoelace-style/shoelace/dist/react/tab-panel';
+
+const App = () => (
+  <SlTabGroup>
+    <SlTab slot="nav" panel="pva" card>
+      PVA
+      <SlBadge variant="neutral" pill>
+        22
+      </SlBadge>
+    </SlTab>
+    <SlTab slot="nav" panel="consolidation" card>
+      Consolidation
+      <SlBadge variant="neutral" pill>
+        22
+      </SlBadge>
+    </SlTab>
+    <SlTab slot="nav" panel="review" card active>
+      Review
+      <SlBadge variant="primary" pill>
+        11
+      </SlBadge>
+    </SlTab>
+
+    <SlTabPanel name="pva">This is the PVA tab panel.</SlTabPanel>
+    <SlTabPanel name="consolidation">This is the consolidation tab panel.</SlTabPanel>
+    <SlTabPanel name="review">This is the review tab panel.</SlTabPanel>
+  </SlTabGroup>
+);
+```
+
 ### Manual Activation
 
 When focused, keyboard users can press [[Left]] or [[Right]] to select the desired tab. By default, the corresponding tab panel will be shown immediately (automatic activation). You can change this behavior by setting `activation="manual"` which will require the user to press [[Space]] or [[Enter]] before showing the tab panel (manual activation).

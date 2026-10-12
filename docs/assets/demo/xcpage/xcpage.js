@@ -101,8 +101,8 @@ async function notify(variant, icon, title, message = '') {
   return alert.toast();
 }
 
-function avatar(person) {
-  return `<sl-avatar initials="${esc(person.initials)}" label="${esc(person.name)}" class="avatar--${person.color}"></sl-avatar>`;
+function avatar(person, slot = '') {
+  return `<sl-avatar ${slot ? `slot="${slot}"` : ''} initials="${esc(person.initials)}" label="${esc(person.name)}" class="avatar--${person.color}"></sl-avatar>`;
 }
 
 function descriptionList(pairs, cols = 2) {
@@ -250,18 +250,13 @@ function commentsTemplate(t) {
       ${t.comments
         .map(
           c => `
-          <sl-card class="comment-card">
-            <div class="comment">
-              ${avatar(ME)}
-              <div class="comment__body">
-                <div><span class="comment__author">${esc(ME.name)}</span> <span class="muted">· ${formatDate(c.date, true)}</span></div>
-                <div class="muted">${esc(c.text)} · ${c.files.length} file${c.files.length === 1 ? '' : 's'}</div>
-              </div>
-              <sl-tooltip content="${esc(c.files.join(', '))}">
-                <sl-icon-button name="file-earmark-pdf" label="Open attachment" class="is-pdf"></sl-icon-button>
-              </sl-tooltip>
-            </div>
-          </sl-card>
+          <sl-comment author="${esc(ME.name)}" date="${esc(formatDate(c.date, true))}">
+            ${avatar(ME, 'avatar')}
+            ${esc(c.text)} · ${c.files.length} file${c.files.length === 1 ? '' : 's'}
+            <sl-tooltip slot="attachment" content="${esc(c.files.join(', '))}">
+              <sl-icon-button name="file-earmark-pdf" label="Open attachment" class="is-pdf"></sl-icon-button>
+            </sl-tooltip>
+          </sl-comment>
         `
         )
         .join('')}
@@ -394,33 +389,18 @@ function render() {
 //
 
 function uploadTemplate(u) {
-  const size = `<sl-format-bytes value="${u.size}"></sl-format-bytes>`;
-  const states = {
-    waiting: ['clock', 'Waiting…'],
-    uploading: [null, ''],
-    done: ['check2-circle', 'Uploaded'],
-    failed: ['exclamation-octagon', 'Upload failed · Connection lost']
-  };
-  const [icon, label] = states[u.status];
-  const lead = icon ? `<sl-icon name="${icon}"></sl-icon>` : '<sl-spinner></sl-spinner>';
-  const meta =
-    u.status === 'uploading'
-      ? `<sl-progress-bar value="${u.progress}" label="Upload progress">${Math.round(u.progress)}%</sl-progress-bar>`
-      : `<span class="upload__meta">${u.status === 'done' ? `${size} · ` : ''}${label}</span>`;
-  const removeIcon = u.status === 'done' || u.status === 'failed' ? 'trash' : 'x-lg';
+  const state = u.status === 'done' ? 'uploaded' : u.status;
+  const meta = {
+    waiting: 'Waiting…',
+    uploading: `${Math.round(u.progress)}% · Uploading`,
+    uploaded: `<sl-format-bytes value="${u.size}"></sl-format-bytes> · Uploaded`,
+    failed: 'Upload failed · Connection lost'
+  }[state];
 
   return `
-    <div class="upload upload--${u.status}" data-id="${u.id}">
-      ${lead}
-      <div class="upload__body">
-        <span class="upload__name">${esc(u.name)}</span>
-        ${meta}
-      </div>
-      ${u.status === 'failed' ? '<sl-button size="small" variant="danger" outline class="js-retry">Retry</sl-button>' : ''}
-      <sl-tooltip content="Remove file">
-        <sl-icon-button name="${removeIcon}" label="Remove file" class="js-remove"></sl-icon-button>
-      </sl-tooltip>
-    </div>
+    <sl-file-upload-item data-id="${u.id}" state="${state}" filename="${esc(u.name)}" progress="${u.progress}">
+      <span slot="meta">${meta}</span>
+    </sl-file-upload-item>
   `;
 }
 
@@ -473,10 +453,10 @@ function startUpload(u) {
       return;
     }
 
-    const bar = document.querySelector(`.upload[data-id="${u.id}"] sl-progress-bar`);
-    if (bar) {
-      bar.value = u.progress;
-      bar.textContent = `${Math.round(u.progress)}%`;
+    const item = document.querySelector(`sl-file-upload-item[data-id="${u.id}"]`);
+    if (item) {
+      item.progress = u.progress;
+      item.querySelector('[slot="meta"]').textContent = `${Math.round(u.progress)}% · Uploading`;
     }
   }, 180);
 }
@@ -674,23 +654,23 @@ function wire() {
     if (target.closest('.js-import')) openImport();
     if (target.closest('.js-all-properties')) openAllProperties();
     if (target.closest('[data-close]')) target.closest('sl-dialog').hide();
+  });
 
-    const retry = target.closest('.js-retry');
-    const remove = target.closest('.js-remove');
-    const row = (retry || remove)?.closest('.upload');
-    if (row) {
-      const u = uploads.find(x => x.id === row.dataset.id);
-      if (retry) {
-        u.status = 'waiting';
-        renderUploads();
-        pumpUploads();
-      } else {
-        clearInterval(u.timer);
-        uploads = uploads.filter(x => x !== u);
-        renderUploads();
-        pumpUploads();
-      }
-    }
+  $('#upload-list').addEventListener('sl-retry', event => {
+    const u = uploads.find(x => x.name === event.target.filename);
+    if (!u) return;
+    u.status = 'waiting';
+    renderUploads();
+    pumpUploads();
+  });
+
+  $('#upload-list').addEventListener('sl-remove', event => {
+    const u = uploads.find(x => x.name === event.target.filename);
+    if (!u) return;
+    clearInterval(u.timer);
+    uploads = uploads.filter(x => x !== u);
+    renderUploads();
+    pumpUploads();
   });
 
   // Import dialog

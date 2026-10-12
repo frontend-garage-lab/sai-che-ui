@@ -49,6 +49,30 @@ export default css`
     cursor: not-allowed;
   }
 
+  :host([card]) {
+    flex: 1 1 0;
+  }
+
+  .tab.tab--card {
+    box-sizing: border-box;
+    width: 100%;
+    justify-content: center;
+    gap: var(--sl-spacing-x-small);
+    padding-block: calc(var(--sl-spacing-x-small) + var(--sl-spacing-2x-small));
+    background-color: var(--sl-panel-background-color);
+    border: solid 1px var(--sl-panel-border-color);
+    border-radius: var(--sl-border-radius-large);
+  }
+
+  .tab.tab--card.tab--active:not(.tab--disabled) {
+    background-color: var(--sl-color-primary-50);
+    border-color: var(--sl-color-primary-600);
+  }
+
+  .tab ::slotted(sl-icon) {
+    margin-inline-end: var(--sl-spacing-2x-small);
+  }
+
   .tab__close-button {
     font-size: var(--sl-font-size-small);
     margin-inline-start: var(--sl-spacing-small);
