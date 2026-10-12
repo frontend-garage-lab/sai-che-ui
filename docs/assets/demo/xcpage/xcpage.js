@@ -107,9 +107,9 @@ function avatar(person, slot = '') {
 
 function descriptionList(pairs, cols = 2) {
   return `
-    <dl class="dl" style="--cols: ${cols};">
-      ${pairs.map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${value}</dd></div>`).join('')}
-    </dl>
+    <sl-description-list cols="${cols}">
+      ${pairs.map(([label, value]) => `<sl-description-list-item label="${esc(label)}">${value}</sl-description-list-item>`).join('')}
+    </sl-description-list>
   `;
 }
 

@@ -15,6 +15,8 @@ export { default as SlCheckbox } from './components/checkbox/checkbox.js';
 export { default as SlColorPicker } from './components/color-picker/color-picker.js';
 export { default as SlComment } from './components/comment/comment.js';
 export { default as SlCopyButton } from './components/copy-button/copy-button.js';
+export { default as SlDescriptionList } from './components/description-list/description-list.js';
+export { default as SlDescriptionListItem } from './components/description-list-item/description-list-item.js';
 export { default as SlDetailPanel } from './components/detail-panel/detail-panel.js';
 export { default as SlDetails } from './components/details/details.js';
 export { default as SlDialog } from './components/dialog/dialog.js';

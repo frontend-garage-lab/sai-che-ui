@@ -153,3 +153,43 @@ Alert (success, closable) + ombra posizionandolo manualmente in basso a destra.
 1. Creare un componente "Toast" nella libreria Saipem-DS, anche solo come variante/preset di `Alert` con l'ombra e il
    posizionamento bottom-right già applicati, per evitare la ricomposizione manuale ogni volta.
 2. Nessun nuovo template Code Connect richiesto: resta mappato al componente `Alert` esistente (`figma/alert.figma.ts`).
+
+## Nuovo componente `sl-description-list` / `sl-description-list-item` (Description list)
+
+Nodo `xCPage` 19:4570 / 19:4607 / 19:4619 (schermata "14 · Properties dialog"), ricorrente 3 volte nella stessa
+schermata: implementata in codice la coppia di componenti mancante — una griglia di coppie etichetta/valore.
+
+- Implementazione: `src/components/description-list/` e `src/components/description-list-item/` (pattern
+  contenitore + item, come `tab`/`tab-group` o `breadcrumb`/`breadcrumb-item`).
+- `sl-description-list` ha una prop `cols` (default 2) che imposta `grid-template-columns`; `sl-description-list-item`
+  ha una prop `label` (+ slot `label` per markup ricco) e uno slot di default per il valore (testo o markup, es.
+  `<sl-tag>`, già usato nel demo per "Expires on").
+- Gap verticale/orizzontale (`--sl-spacing-x-small` / `--sl-spacing-medium`) fedele ai token visti in Figma.
+- Esempi: `docs/pages/components/description-list.md`.
+- Usato anche per sostituire l'helper `descriptionList()` + CSS `.dl` fatti a mano nel demo `xcpage` (vedi
+  `docs/assets/demo/xcpage/xcpage.js`).
+
+Il gap resta tutto lato Figma — nessun componente "Description List" esiste nel file `Saipem-DS`:
+
+1. Creare i due componenti nella libreria Saipem-DS (contenitore a griglia + item label/valore), rispecchiando
+   l'implementazione sopra.
+2. Aggiungere `figma/description-list.figma.ts` e `figma/description-list-item.figma.ts` una volta creati i
+   componenti nel file Saipem-DS.
+3. Ricollegare le istanze "Description list" in `xCPage` (nodi 19:4570, 19:4607, 19:4619 e gli analoghi già visti in
+   altre schermate) al nuovo componente DS.
+4. Pubblicazione: CLI con `FIGMA_ACCESS_TOKEN`, non MCP (vedi [[figma-code-connect-todo]]).
+
+## Altre segnalazioni emerse in "14 · Properties dialog" (solo da tracciare)
+
+- **Icone mancanti nel set Figma** (già disponibili lato codice via `bootstrap-icons`, nessuna azione in
+  `sai-che-ui`): `search` (node `9:148`), `clock` (node `9:116`), `check-square` (node `9:107`), `arrow-clockwise`
+  (node `9:103`). Si aggiungono alla lista già aperta in questo file (`plus-lg`, `pencil`, `grid`, `clock-history`,
+  `list-ul`, `inbox`, `dash-lg`, `trash`).
+- **Icona DS rotta**: `Icon/arrow-counterclockwise` (node `13:323`) — annotazione: "DS icon renders clipped/broken in
+  the library. Local Bootstrap replacement — fix the DS icon." Questo è un bug da fixare nella libreria Figma stessa
+  (non un'icona mancante), diverso dagli altri casi.
+- **Candidato per estendere `Table Row`**: "Review Task Row" (node `9:204`) — annotazione: "rich task row for the
+  Review list (status icon, 3-line task title, Rev tag, overdue date). Built locally from DS Table Row Marker, Tag,
+  Icon/dot and DS tokens... Candidate: extend DS Table Row with a multi-line/custom cell slot." Non implementato ora
+  (è una modifica più ampia alla cella del componente `Table Row`/`Table Column`, non una semplice composizione) —
+  da valutare come task a sé quando richiesto esplicitamente.
