@@ -46,8 +46,8 @@ export default css`
     display: grid;
     grid-template-columns: var(--sl-table-column-template, 1fr);
     align-items: stretch;
-    /* Grows to fit columns wider than the scroller so the background covers every column, not just the visible part */
-    width: max-content;
+    /* min-width keeps the row at least as wide as the scroller; fixed-width columns can still push it wider */
+    width: 100%;
     min-width: 100%;
     background-color: var(--header-background-color);
     border-bottom: solid var(--sl-panel-border-width) var(--border-color);
@@ -171,8 +171,8 @@ export default css`
     grid-template-columns: var(--sl-table-column-template, 1fr);
     align-items: stretch;
     box-sizing: border-box;
-    /* Grows to fit columns wider than the scroller so hover/selection/striping cover every column */
-    width: max-content;
+    /* min-width keeps the row at least as wide as the scroller; fixed-width columns can still push it wider */
+    width: 100%;
     min-width: 100%;
     border-bottom: solid var(--sl-panel-border-width) var(--border-color);
     background-color: var(--sl-color-neutral-0);

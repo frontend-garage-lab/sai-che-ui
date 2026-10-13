@@ -416,3 +416,30 @@ Cancel/Complete task(s). Nessuna modifica necessaria lato `sai-che-ui`.
   colonna data) — il limite è solo nel componente Figma, le cui colonne non sono ridimensionabili sulle istanze.
   Da segnalare al team Figma insieme agli altri gap di ridimensionamento colonne già aperti (vedi "Table Header Row"
   più sopra in questo file).
+
+## `Table Row` "Quick Info" ricostruito per allinearsi alla nuova sezione "Status icons and alignment" (2026-10-13)
+
+I doc (`docs/pages/components/table.md`) hanno sostituito l'esempio "Status icons and alignment": non più due
+badge compatti, ma `sl-status` (pallino colorato, pulsante) + `sl-badge pill` (decisione, success/danger) +
+`sl-icon-button` opzionale (allegato, `file-earmark-pdf`, danger, scalato 0.75×). Il componente `Table Row`
+(`53:37`) in Figma aveva ancora la vecchia implementazione a due badge ("O"/"W") — vedi voce precedente in
+questo file — quindi ricostruito su tutte le 28 varianti:
+
+- **Status** (`Quick Info Variant#523:0`, INSTANCE_SWAP già esistente): ripuntato dal componente `Badge` al
+  componente `Status` (size=small, label di testo nascosto, ridimensionato a 14×15), `preferredValues`/
+  `defaultValue` aggiornati di conseguenza (default ora `danger`).
+- **Decision** (ex "Badge 2"): sostituita l'istanza `Badge` con un'istanza di `Badge Pill`, stesso limite già
+  noto (le component property di Figma non supportano due instance-swap indipendenti legati allo stesso
+  boolean) — resta un'istanza semplice, modificabile a mano, non esposta nel pannello proprietà. Testo di
+  default impostato a "Reject" (variant `danger`).
+- **Attachment** (nuovo): istanza di `Icon Button` (variant `danger`, icona `file-earmark-pdf`, 33×33 ≈ scale
+  0.75 del codice), visibilità legata a una nuova property booleana `Attachment#623:0` (default `true`).
+
+`figma/table-row.figma.ts` aggiornato per leggere tutti e tre (il colore della decisione deriva lo stesso testo
+che usa il codice: `success` → "Approver", altrimenti "Reject" — non legge testo libero dal layer, stesso stile
+della vecchia implementazione che aveva "O"/"W" hardcoded). Aggiornato anche il commento in
+`figma/table-header-row.figma.ts` che citava ancora la vecchia combinazione a due badge. Typecheck
+(`npx tsc -p figma`), `npx figma connect parse` e `npx figma connect publish` eseguiti con successo.
+
+Nessun gap aperto da questa modifica oltre al limite "Decision" già descritto sopra (coerente con gli altri
+casi analoghi in questo file). Vedi [[figma-code-connect-todo]] per le convenzioni generali.

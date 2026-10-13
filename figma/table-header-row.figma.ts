@@ -31,7 +31,9 @@ const columnLines = headers
   .join(',\n');
 
 const notes = [
-  quickInfo ? "  // Add a leading column with a cell() returning an <sl-badge> for the 'Quick Info' indicator." : '',
+  quickInfo
+    ? "  // Add a leading column with a cell() returning an <sl-status>/<sl-badge pill>/<sl-icon-button> combo for the status indicator."
+    : '',
   actions ? "  // Add a trailing column with meta: { actions: true } for the row action menu." : ''
 ]
   .filter(Boolean)

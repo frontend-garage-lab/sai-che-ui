@@ -20,17 +20,22 @@ const marker = instance.getEnum('Marker', {
   warning: 'warning',
   danger: 'danger'
 });
-// "Quick Info" shows two short status badges side by side (see the "Status icons and alignment" example
-// in docs/pages/components/table.md) — the first is the formal instance-swap property, the second is a
-// plain nested instance (Figma component properties can't expose two independent instance-swaps bound to
-// the same boolean), so it's read by layer name instead.
+// "Quick Info" shows a status dot + decision badge + optional attachment icon (see the "Status icons and
+// alignment" example in docs/pages/components/table.md) — the dot is the formal instance-swap property,
+// the badge is a plain nested instance (Figma component properties can't expose two independent
+// instance-swaps bound to the same boolean) read by layer name instead, and the icon's visibility is a
+// second boolean property.
 const hasQuickInfo = instance.getBoolean('Quick Info');
-const firstBadgeSwap = hasQuickInfo ? instance.getInstanceSwap('Quick Info Variant') : undefined;
-const firstBadgeVariant =
-  firstBadgeSwap && firstBadgeSwap.type === 'INSTANCE' ? (firstBadgeSwap.name.match(/Variant=(\w+)/)?.[1] ?? 'neutral') : 'neutral';
-const secondBadge = hasQuickInfo ? instance.findInstance('Badge 2') : undefined;
-const secondBadgeVariant =
-  secondBadge && secondBadge.type === 'INSTANCE' ? (secondBadge.name.match(/Variant=(\w+)/)?.[1] ?? 'neutral') : 'neutral';
+const statusSwap = hasQuickInfo ? instance.getInstanceSwap('Quick Info Variant') : undefined;
+const statusVariant =
+  statusSwap && statusSwap.type === 'INSTANCE' ? (statusSwap.name.match(/Variant=(\w+)/)?.[1] ?? 'neutral') : 'neutral';
+const decisionBadge = hasQuickInfo ? instance.findInstance('Decision') : undefined;
+const decisionVariant =
+  decisionBadge && decisionBadge.type === 'INSTANCE' ? (decisionBadge.name.match(/Variant=(\w+)/)?.[1] ?? 'neutral') : 'neutral';
+// The doc example derives the decision label from the same variant the code picks (success = Approver,
+// anything else = Reject) rather than reading free text off the layer, so mirror that here.
+const decisionLabel = decisionVariant === 'success' ? 'Approver' : 'Reject';
+const hasAttachment = hasQuickInfo && instance.getBoolean('Attachment');
 const actions = instance.getBoolean('Actions');
 
 const dataFields = cells.map((text, i) => `column${i + 1}: '${text}'`).join(', ');
@@ -39,7 +44,7 @@ const extraLines = [
   marker ? `\n  table.rowVariant = row => '${marker}';` : '',
   disabled ? `\n  table.rowDisabled = row => true;` : '',
   hasQuickInfo
-    ? `\n  // "Quick Info" column for this row:\n  // {\n  //   id: 'status', header: 'Quick Info',\n  //   cell: ({ row }) => html\`\n  //     <sl-badge variant="${firstBadgeVariant}">O</sl-badge>\n  //     <sl-badge variant="${secondBadgeVariant}">W</sl-badge>\n  //   \`\n  // }`
+    ? `\n  // "Status icons and alignment" column for this row:\n  // {\n  //   id: 'status', header: '',\n  //   cell: ({ row }) => html\`\n  //     <sl-status variant="${statusVariant}" size="small" pulse title="..."></sl-status>\n  //     <sl-badge pill variant="${decisionVariant}">${decisionLabel}</sl-badge>${hasAttachment ? '\\n  //     <sl-icon-button name="file-earmark-pdf" label="Comment uploaded" variant="danger" style="scale: 0.75;"></sl-icon-button>' : ''}\`\n  // }`
     : '',
   actions ? `\n  // Trailing actions column: { id: 'actions', meta: { actions: true }, cell: ({ row }) => ... }` : ''
 ]

@@ -225,7 +225,7 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
 
     const tracks = this.columns
       .filter(column => !this.isActionsColumn(column))
-      .map(column => (column.meta as SlTableColumnMeta | undefined)?.width ?? '1fr');
+      .map(column => (column.meta as SlTableColumnMeta | undefined)?.width ?? 'minmax(0, 1fr)');
     const hasActionsColumn = this.columns.some(column => this.isActionsColumn(column));
     const template = [this.selection === 'multiple' ? 'min-content' : '', ...tracks, hasActionsColumn ? 'min-content' : '']
       .filter(Boolean)
