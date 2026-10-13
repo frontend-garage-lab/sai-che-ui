@@ -18,15 +18,17 @@ import type { CSSResultGroup } from 'lit';
  *
  * @slot label - The panel's title, shown in the header.
  * @slot meta - A secondary line shown below the title, e.g. a revision code.
+ * @slot actions - Extra `<sl-icon-button>` elements shown in the header, before the close button, e.g. settings or edit.
  * @slot - The panel's content, shown below the header. Commonly an `<sl-tab-group>`.
  *
  * @event {{ source: 'close-button' }} sl-request-close - Emitted when the user clicks the close button. Calling
  *   `event.preventDefault()` will stop the panel from being treated as closed, e.g. if closing requires confirmation.
  *
  * @csspart base - The component's base wrapper.
- * @csspart header - The panel's header. Wraps the title, meta line, and close button.
+ * @csspart header - The panel's header. Wraps the title, meta line, actions, and close button.
  * @csspart title - The container that wraps the label slot.
  * @csspart meta - The container that wraps the meta slot.
+ * @csspart actions - The container that wraps the actions slot.
  * @csspart close-button - The close button, an `<sl-icon-button>`.
  * @csspart close-button__base - The close button's exported `base` part.
  * @csspart body - The panel's content, below the header.
@@ -63,6 +65,10 @@ export default class SlDetailPanel extends ShoelaceElement {
             <div part="meta" class="detail-panel__meta">
               <slot name="meta"></slot>
             </div>
+          </div>
+
+          <div part="actions" class="detail-panel__actions">
+            <slot name="actions"></slot>
           </div>
 
           <sl-icon-button

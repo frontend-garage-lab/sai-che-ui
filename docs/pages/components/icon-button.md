@@ -103,6 +103,40 @@ const App = () => (
 );
 ```
 
+### Variants
+
+Use the `variant` attribute to give the icon button a semantic color with a soft, pale background. Add the `filled` attribute to use a solid background instead.
+
+```html:preview
+<div style="display: flex; gap: var(--sl-spacing-x-small);">
+  <sl-icon-button name="download" label="Download" variant="primary"></sl-icon-button>
+  <sl-icon-button name="upload" label="Upload" variant="neutral"></sl-icon-button>
+  <sl-icon-button name="arrow-counterclockwise" label="Undo" variant="danger"></sl-icon-button>
+  <sl-icon-button name="arrow-clockwise" label="Redo" variant="primary"></sl-icon-button>
+  <sl-icon-button name="check-lg" label="Approve" variant="accent" filled></sl-icon-button>
+  <sl-icon-button name="check2-circle" label="Complete" variant="neutral"></sl-icon-button>
+</div>
+```
+
+{% raw %}
+
+```jsx:react
+import SlIconButton from '@shoelace-style/shoelace/dist/react/icon-button';
+
+const App = () => (
+  <div style={{ display: 'flex', gap: 'var(--sl-spacing-x-small)' }}>
+    <SlIconButton name="download" label="Download" variant="primary" />
+    <SlIconButton name="upload" label="Upload" variant="neutral" />
+    <SlIconButton name="arrow-counterclockwise" label="Undo" variant="danger" />
+    <SlIconButton name="arrow-clockwise" label="Redo" variant="primary" />
+    <SlIconButton name="check-lg" label="Approve" variant="accent" filled />
+    <SlIconButton name="check2-circle" label="Complete" variant="neutral" />
+  </div>
+);
+```
+
+{% endraw %}
+
 ### Link Buttons
 
 Use the `href` attribute to convert the button to a link.

@@ -1,20 +1,32 @@
-import { classMap } from 'lit/directives/class-map.js';
-import { html } from 'lit';
+import { FlexRender, TableController } from '@tanstack/lit-table';
+import { html, nothing } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
-import { property, query, state } from 'lit/decorators.js';
-import { watch } from '../../internal/watch.js';
+import { property, state } from 'lit/decorators.js';
+import { slTableFeatures } from './table.types.js';
 import componentStyles from '../../styles/component.styles.js';
 import ShoelaceElement from '../../internal/shoelace-element.js';
 import SlCheckbox from '../checkbox/checkbox.component.js';
+import SlDropdown from '../dropdown/dropdown.component.js';
+import SlIcon from '../icon/icon.component.js';
 import SlIconButton from '../icon-button/icon-button.component.js';
 import SlOption from '../option/option.component.js';
 import SlSelect from '../select/select.component.js';
-import SlTableCell from '../table-cell/table-cell.component.js';
-import SlTableColumn from '../table-column/table-column.component.js';
-import SlTableRow from '../table-row/table-row.component.js';
 import styles from './table.styles.js';
-import type { CSSResultGroup } from 'lit';
+import type {
+  Cell,
+  LitTable,
+  OnChangeFn,
+  PaginationState,
+  Row,
+  RowSelectionState,
+  SortingState,
+  TableOptions
+} from '@tanstack/lit-table';
+import type { PropertyValues } from 'lit';
 import type { SlSelectEvent } from '../../events/events.js';
+import type { SlTableColumnDef, SlTableColumnMeta, SlTableFeatures } from './table.types.js';
+
+type SlTableInstance<TData extends Record<string, unknown>> = LitTable<SlTableFeatures, TData>;
 
 /** Elements that handle their own clicks, so clicking them must not change the row selection. */
 const interactiveSelector =
@@ -24,27 +36,26 @@ const interactiveSelector =
 const maxToolbarActions = 10;
 
 /**
- * @summary Tables display a list of records in columns, with optional sorting, row selection and pagination.
+ * @summary Tables display a list of records in columns, with optional sorting, row selection and pagination. Built on
+ *  [TanStack Table](https://tanstack.com/table/latest).
  * @documentation https://shoelace.style/components/table
  * @status experimental
- * @since 2.20
+ * @since 2.21
  *
  * @dependency sl-checkbox
+ * @dependency sl-dropdown
  * @dependency sl-icon-button
  * @dependency sl-option
  * @dependency sl-select
  *
- * @event {{ selection: SlTableRow[] }} sl-table-selection-change - Emitted when the row selection changes.
- * @event {{ column: SlTableColumn, key: string, direction: 'asc' | 'desc' }} sl-table-sort - Emitted when the user
- *  sorts on a column.
+ * @event {{ selection: unknown[] }} sl-table-selection-change - Emitted when the row selection changes.
+ * @event {{ columnId: string, direction: 'asc' | 'desc' }} sl-table-sort - Emitted when the user sorts on a column.
  * @event {{ page: number, pageSize: number }} sl-table-page-change - Emitted when the user changes page or page size.
- * @event {{ row: SlTableRow, originalEvent: MouseEvent }} sl-table-row-context-menu - Emitted when a row is
+ * @event {{ row: unknown, originalEvent: MouseEvent }} sl-table-row-context-menu - Emitted when a row is
  *  right-clicked. Call `preventDefault()` on `originalEvent` to suppress the browser's own context menu.
- * @event {{ row: SlTableRow, item: SlMenuItem }} sl-table-row-action - Emitted when an item in a row's action menu is
+ * @event {{ row: unknown, item: SlMenuItem }} sl-table-row-action - Emitted when an item in a row's action menu is
  *  selected.
  *
- * @slot - One `<sl-table-row>` per record.
- * @slot columns - One `<sl-table-column>` per column. They define the header and the table's column widths.
  * @slot toolbar - Content shown above the header, e.g. filters or action buttons. Reuse `<sl-button>` (with a
  *  `prefix` icon) for actions and keep it to 10 or fewer so the toolbar doesn't wrap awkwardly.
  * @slot empty - Content shown in place of the rows when the table has nothing to display.
@@ -56,6 +67,11 @@ const maxToolbarActions = 10;
  * @csspart select-all - The select all checkbox, an `<sl-checkbox>` element.
  * @csspart actions-header - The empty header cell above the action column.
  * @csspart body - The container that wraps the rows.
+ * @csspart row - A body row.
+ * @csspart cell - A body cell.
+ * @csspart checkbox - A row's selection checkbox, an `<sl-checkbox>` element.
+ * @csspart actions - The container that wraps a row's action menu trigger.
+ * @csspart action-trigger - The button that opens a row's action menu, an `<sl-icon-button>` element.
  * @csspart empty - The container that wraps the empty slot.
  * @csspart footer - The container that wraps the footer.
  * @csspart summary - The "Showing x – y of z" text.
@@ -67,29 +83,41 @@ const maxToolbarActions = 10;
  * @cssproperty [--stripe-background-color=var(--sl-color-neutral-50)] - The background color of striped rows.
  * @cssproperty [--max-height=none] - The maximum height of the scrolling area that holds the header and the rows.
  */
-export default class SlTable extends ShoelaceElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+export default class SlTable<TData extends Record<string, unknown> = Record<string, unknown>> extends ShoelaceElement {
+  static styles = [componentStyles, styles];
   static dependencies = {
     'sl-checkbox': SlCheckbox,
+    'sl-dropdown': SlDropdown,
+    'sl-icon': SlIcon,
     'sl-icon-button': SlIconButton,
     'sl-option': SlOption,
-    'sl-select': SlSelect,
-    'sl-table-cell': SlTableCell,
-    'sl-table-column': SlTableColumn,
-    'sl-table-row': SlTableRow
+    'sl-select': SlSelect
   };
 
   private readonly localize = new LocalizeController(this);
-  private mutationObserver: MutationObserver;
-  private isReorderingRows = false;
-  private lastSelectedRow: SlTableRow | null = null;
-  private readonly managedAlignmentCells = new WeakSet<Element>();
+  private readonly tableController = new TableController<SlTableFeatures, TData>(this);
 
-  @query('slot:not([name])') defaultSlot: HTMLSlotElement;
-  @query('slot[name="columns"]') columnsSlot: HTMLSlotElement;
-
-  @state() private visibleRowCount = 0;
+  @state() private rowSelection: RowSelectionState = {};
   @state() private hasToolbar = false;
+  @state() private focusedRowId: string | null = null;
+
+  /** The column definitions. Build this array once and keep the reference stable between renders. */
+  @property({ attribute: false }) columns: SlTableColumnDef<TData>[] = [];
+
+  /** The records to display. */
+  @property({ attribute: false }) data: TData[] = [];
+
+  /** Derives a stable row id from a record. Defaults to the record's position in `data`. */
+  @property({ attribute: false }) getRowId: (row: TData, index: number) => string = (_row, index) => String(index);
+
+  /** Returns `true` when a record can't be selected. */
+  @property({ attribute: false }) rowDisabled: (row: TData, index: number) => boolean = () => false;
+
+  /** Returns a coloured marker variant for a record's leading edge, e.g. to flag its status. */
+  @property({ attribute: false }) rowVariant: (
+    row: TData,
+    index: number
+  ) => '' | 'primary' | 'accent' | 'success' | 'neutral' | 'warning' | 'danger' = () => '';
 
   /** An accessible label for the table, announced by screen readers. */
   @property() label = '';
@@ -100,15 +128,15 @@ export default class SlTable extends ShoelaceElement {
    */
   @property({ reflect: true }) selection: 'none' | 'single' | 'multiple' = 'none';
 
-  /** The `key` of the column the table is sorted by. An empty string means the table isn't sorted. */
+  /** The `id` of the column the table is sorted by. An empty string means the table isn't sorted. */
   @property({ attribute: 'sort-column', reflect: true }) sortColumn = '';
 
   /** The direction rows are sorted in. */
   @property({ attribute: 'sort-direction', reflect: true }) sortDirection: 'asc' | 'desc' = 'asc';
 
   /**
-   * How sorting is carried out. With `client`, the table reorders the rows itself using the cells' sort values. With
-   * `server`, the table only emits `sl-table-sort` and expects you to supply the reordered rows.
+   * How sorting is carried out. With `client`, the table reorders the rows itself. With `server`, the table only emits
+   * `sl-table-sort` and expects you to supply the reordered rows.
    */
   @property({ attribute: 'sort-mode' }) sortMode: 'client' | 'server' = 'client';
 
@@ -123,7 +151,7 @@ export default class SlTable extends ShoelaceElement {
 
   /**
    * The total number of records. Set this when the rows for the current page are supplied by a server, which also stops
-   * the table from paginating the rows itself. Leave it unset to paginate the rows in the default slot.
+   * the table from paginating the rows itself. Leave it unset to paginate `data` in place.
    */
   @property({ type: Number, attribute: 'total-items' }) totalItems: number | undefined;
 
@@ -140,12 +168,6 @@ export default class SlTable extends ShoelaceElement {
     }
   })
   pageSizes: number[] = [10, 25, 50, 100];
-
-  /**
-   * Reserves a trailing column for row actions. Put an `<sl-menu>` in a row's `actions` slot and the row shows a button
-   * that opens it.
-   */
-  @property({ type: Boolean, reflect: true }) actions = false;
 
   /** The label of the button that opens a row's action menu. */
   @property({ attribute: 'action-menu-label' }) actionMenuLabel = 'Actions';
@@ -198,93 +220,110 @@ export default class SlTable extends ShoelaceElement {
     this.setAttribute('role', 'grid');
   }
 
-  async firstUpdated() {
-    await this.updateComplete;
+  willUpdate(changedProperties: PropertyValues<this>) {
+    super.willUpdate(changedProperties);
 
-    // Rows and columns live in the light DOM, so we watch for structural changes as well as rows the consumer hides
-    this.mutationObserver = new MutationObserver(this.handleLightDomChange);
-    this.mutationObserver.observe(this, { childList: true, subtree: false, attributeFilter: ['hidden', 'width'] });
-    this.syncTable();
+    const tracks = this.columns
+      .filter(column => !this.isActionsColumn(column))
+      .map(column => (column.meta as SlTableColumnMeta | undefined)?.width ?? '1fr');
+    const hasActionsColumn = this.columns.some(column => this.isActionsColumn(column));
+    const template = [this.selection === 'multiple' ? 'min-content' : '', ...tracks, hasActionsColumn ? 'min-content' : '']
+      .filter(Boolean)
+      .join(' ');
+
+    this.style.setProperty('--sl-table-column-template', template || '1fr');
+    this.setAttribute('aria-rowcount', String(this.itemCount));
+    this.setAttribute('aria-multiselectable', this.selection === 'multiple' ? 'true' : 'false');
   }
 
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    this.mutationObserver?.disconnect();
+  private isActionsColumn(column: SlTableColumnDef<TData>) {
+    return Boolean((column.meta as SlTableColumnMeta | undefined)?.actions);
+  }
+
+  private get table() {
+    return this.tableController.table(this.buildOptions());
+  }
+
+  private buildOptions(): TableOptions<SlTableFeatures, TData> {
+    const isServerPaginated = this.totalItems !== undefined;
+
+    return {
+      features: slTableFeatures,
+      columns: this.columns,
+      data: this.data,
+      getRowId: this.getRowId,
+      renderFallbackValue: null,
+      manualSorting: this.sortMode === 'server',
+      manualPagination: isServerPaginated,
+      rowCount: isServerPaginated ? this.totalItems : undefined,
+      enableMultiSort: false,
+      enableSortingRemoval: false,
+      enableRowSelection: row => this.selection !== 'none' && !this.rowDisabled(row.original, row.index),
+      enableMultiRowSelection: this.selection === 'multiple',
+      state: {
+        sorting: this.sortColumn ? [{ id: this.sortColumn, desc: this.sortDirection === 'desc' }] : [],
+        pagination: {
+          pageIndex: this.page - 1,
+          pageSize: this.paginate ? this.pageSize : Number.POSITIVE_INFINITY
+        },
+        rowSelection: this.rowSelection
+      },
+      onSortingChange: updater => this.handleSortingChange(updater),
+      onPaginationChange: updater => this.handlePaginationChange(updater),
+      onRowSelectionChange: updater => this.handleRowSelectionChange(updater)
+    };
   }
 
   /** The number of records the table knows about, whether they're on screen or not. */
   get itemCount() {
-    return this.totalItems ?? this.getRows().length;
+    return this.totalItems ?? this.data.length;
   }
 
   /** The number of pages the records are spread over. */
   get pageCount() {
-    return Math.max(1, Math.ceil(this.itemCount / this.pageSize));
+    return Math.max(1, this.table.getPageCount());
   }
 
-  private get paginatesRowsItself() {
-    return this.paginate && this.totalItems === undefined;
+  /** Gets the selected records. */
+  getSelection(): TData[] {
+    return this.data.filter((row, index) => this.rowSelection[this.getRowId(row, index)]);
   }
 
-  /** Gets all the columns in the table, in document order. */
-  getColumns(): SlTableColumn[] {
-    return [...this.children].filter((child): child is SlTableColumn => SlTableColumn.isTableColumn(child));
-  }
+  /** Replaces the current selection with the given records and emits `sl-table-selection-change`. */
+  setSelection(rows: TData[]) {
+    const matches = new Set(rows);
+    let next: RowSelectionState = {};
 
-  /** Gets all the rows in the table, in document order, excluding rows the consumer has hidden. */
-  getRows({ includeHidden = false } = {}): SlTableRow[] {
-    return [...this.children].filter(
-      (child): child is SlTableRow => SlTableRow.isTableRow(child) && (includeHidden || !child.hidden)
-    );
-  }
-
-  /** Gets the rows that are on the current page. */
-  getVisibleRows(): SlTableRow[] {
-    return this.getRows().filter(row => !row.hasAttribute('data-sl-table-hidden'));
-  }
-
-  /** Gets the selected rows. */
-  getSelection(): SlTableRow[] {
-    return this.getRows().filter(row => row.selected);
-  }
-
-  /** Replaces the current selection with the given rows and emits `sl-table-selection-change`. */
-  setSelection(rows: SlTableRow[]) {
-    const next = new Set(rows.filter(row => !row.disabled));
-
-    if (this.selection === 'single' && next.size > 1) {
-      const [first] = [...next];
-      next.clear();
-      next.add(first);
-    }
-
-    let changed = false;
-
-    for (const row of this.getRows({ includeHidden: true })) {
-      const selected = next.has(row);
-
-      if (row.selected !== selected) {
-        row.selected = selected;
-        changed = true;
+    this.data.forEach((row, index) => {
+      if (matches.has(row) && !this.rowDisabled(row, index)) {
+        next[this.getRowId(row, index)] = true;
       }
+    });
+
+    if (this.selection === 'single') {
+      const [firstId] = Object.keys(next);
+      next = firstId ? { [firstId]: true } : {};
     }
 
-    if (changed) {
-      this.emit('sl-table-selection-change', { detail: { selection: this.getSelection() } });
-    }
+    const nextIds = Object.keys(next);
+    const prevIds = Object.keys(this.rowSelection);
+    const changed = nextIds.length !== prevIds.length || nextIds.some(id => !this.rowSelection[id]);
 
-    this.requestUpdate();
+    if (!changed) return;
+
+    this.rowSelection = next;
+    this.emit('sl-table-selection-change', { detail: { selection: this.getSelection() } });
   }
 
   /** Selects every selectable row on the current page. Only applies when selection is `multiple`. */
   selectAll() {
     if (this.selection !== 'multiple') return;
-    this.setSelection(this.getVisibleRows().filter(row => !row.disabled));
+    this.table.toggleAllPageRowsSelected(true);
   }
 
   /** Clears the selection. */
   clearSelection() {
-    this.setSelection([]);
+    this.table.resetRowSelection(true);
   }
 
   /** Navigates to the given page, clamped to the available pages, and emits `sl-table-page-change`. */
@@ -293,145 +332,69 @@ export default class SlTable extends ShoelaceElement {
 
     if (next === this.page) return;
 
-    this.page = next;
+    this.table.setPageIndex(next - 1);
+  }
+
+  //
+  // State callbacks — the table's reactive properties are the source of truth, so these just mirror TanStack's
+  // resulting state back into them and emit the matching public event.
+  //
+
+  private handleSortingChange: OnChangeFn<SortingState> = updater => {
+    const prev: SortingState = this.sortColumn ? [{ id: this.sortColumn, desc: this.sortDirection === 'desc' }] : [];
+    const next = typeof updater === 'function' ? updater(prev) : updater;
+    const [nextSort] = next;
+    const columnId = nextSort?.id ?? '';
+    const direction: 'asc' | 'desc' = nextSort?.desc ? 'desc' : 'asc';
+
+    if (columnId === this.sortColumn && direction === this.sortDirection) return;
+
+    this.sortColumn = columnId;
+    this.sortDirection = direction;
+    this.emit('sl-table-sort', { detail: { columnId, direction } });
+  };
+
+  private handlePaginationChange: OnChangeFn<PaginationState> = updater => {
+    const prev: PaginationState = {
+      pageIndex: this.page - 1,
+      pageSize: this.paginate ? this.pageSize : Number.POSITIVE_INFINITY
+    };
+    const next = typeof updater === 'function' ? updater(prev) : updater;
+    const nextPage = next.pageIndex + 1;
+    const nextPageSize = Number.isFinite(next.pageSize) ? next.pageSize : this.pageSize;
+
+    if (nextPage === this.page && nextPageSize === this.pageSize) return;
+
+    this.page = nextPage;
+    this.pageSize = nextPageSize;
     this.emit('sl-table-page-change', { detail: { page: this.page, pageSize: this.pageSize } });
-  }
+  };
 
-  //
-  // Syncing
-  //
-
-  private syncTable() {
-    this.syncColumns();
-    this.syncRows();
-    this.applySort();
-    this.applyPagination();
-    this.requestUpdate();
-  }
-
-  private syncColumns() {
-    const columns = this.getColumns();
-    const tracks = columns.map(column => column.width || '1fr');
-    const template = [this.selection === 'multiple' ? 'min-content' : '', ...tracks, this.actions ? 'min-content' : '']
-      .filter(Boolean)
-      .join(' ');
-
-    this.style.setProperty('--sl-table-column-template', template || '1fr');
-
-    for (const column of columns) {
-      column.sortDirection = column.key && column.key === this.sortColumn ? this.sortDirection : 'none';
-    }
-  }
-
-  private syncRows() {
-    const columns = this.getColumns();
-    const rows = this.getRows();
-
-    this.setAttribute('aria-rowcount', String(this.itemCount));
-    this.setAttribute('aria-multiselectable', this.selection === 'multiple' ? 'true' : 'false');
-
-    for (const row of this.getRows({ includeHidden: true })) {
-      row.selectionMode = this.selection;
-      row.hasActionColumn = this.actions;
-      row.actionMenuLabel = this.actionMenuLabel;
-
-      // Column alignment cascades to cells that don't set their own
-      row.getCells().forEach((cell, index) => {
-        const align = columns[index]?.align;
-
-        if (!cell.hasAttribute('align') || this.managedAlignmentCells.has(cell)) {
-          if (align && align !== 'start') {
-            cell.setAttribute('align', align);
-            this.managedAlignmentCells.add(cell);
-          } else if (this.managedAlignmentCells.has(cell)) {
-            cell.removeAttribute('align');
-            this.managedAlignmentCells.delete(cell);
-          }
-        }
-      });
-    }
-
-    // Roving tabindex, so the table is a single tab stop
-    const focusable = rows.find(row => row.selected && !row.disabled) ?? rows[0];
-    rows.forEach(row => row.setAttribute('tabindex', row === focusable ? '0' : '-1'));
-  }
-
-  private applySort() {
-    if (this.sortMode !== 'client' || !this.sortColumn) return;
-
-    const columns = this.getColumns();
-    const index = columns.findIndex(column => column.key === this.sortColumn);
-
-    if (index === -1) return;
-
-    const rows = this.getRows({ includeHidden: true });
-    const direction = this.sortDirection === 'desc' ? -1 : 1;
-    const collator = new Intl.Collator(this.localize.lang(), { numeric: true, sensitivity: 'base' });
-    const sorted = [...rows].sort((a, b) => {
-      const aValue = a.getCells()[index]?.getSortValue() ?? '';
-      const bValue = b.getCells()[index]?.getSortValue() ?? '';
-      return collator.compare(aValue, bValue) * direction;
-    });
-
-    // Reordering the light DOM triggers the mutation observer, so only touch it when the order actually changed
-    if (sorted.every((row, i) => row === rows[i])) return;
-
-    this.isReorderingRows = true;
-    sorted.forEach(row => this.append(row));
-    this.isReorderingRows = false;
-  }
-
-  private applyPagination() {
-    const rows = this.getRows();
-
-    if (!this.paginatesRowsItself) {
-      rows.forEach(row => row.removeAttribute('data-sl-table-hidden'));
-      this.visibleRowCount = rows.length;
-      return;
-    }
-
-    this.page = Math.min(Math.max(1, this.page), this.pageCount);
-
-    const start = (this.page - 1) * this.pageSize;
-    const end = start + this.pageSize;
-
-    rows.forEach((row, index) => row.toggleAttribute('data-sl-table-hidden', index < start || index >= end));
-    this.visibleRowCount = Math.max(0, Math.min(end, rows.length) - start);
-  }
+  private handleRowSelectionChange: OnChangeFn<RowSelectionState> = updater => {
+    const next = typeof updater === 'function' ? updater(this.rowSelection) : updater;
+    this.rowSelection = next;
+    this.emit('sl-table-selection-change', { detail: { selection: this.getSelection() } });
+  };
 
   //
   // Event handlers
   //
 
-  private handleLightDomChange = () => {
-    if (this.isReorderingRows) return;
-    this.syncTable();
-  };
-
-  private handleSlotChange = () => {
-    this.syncTable();
-  };
-
-  private handleToolbarSlotChange = (event: Event) => {
-    const assigned = (event.target as HTMLSlotElement).assignedElements({ flatten: true });
-    this.hasToolbar = assigned.length > 0;
-
-    const actionButtons = assigned.flatMap(element =>
-      element.tagName === 'SL-BUTTON' ? [element] : [...element.querySelectorAll('sl-button')]
-    );
-
-    if (actionButtons.length > maxToolbarActions) {
-      console.warn(
-        `<sl-table> toolbar has ${actionButtons.length} <sl-button> actions, but only ${maxToolbarActions} are supported before it wraps awkwardly.`
-      );
-    }
-  };
-
-  private getRowFromEvent(event: Event): SlTableRow | null {
+  private findRowId(event: Event): string | null {
     for (const target of event.composedPath()) {
-      if (!(target instanceof Element)) continue;
-      if (SlTableRow.isTableRow(target)) return target;
+      if (!(target instanceof HTMLElement)) continue;
       if (target === this) break;
+      if (target.dataset.rowId !== undefined) return target.dataset.rowId;
+    }
+
+    return null;
+  }
+
+  private findColumnId(event: Event): string | null {
+    for (const target of event.composedPath()) {
+      if (!(target instanceof HTMLElement)) continue;
+      if (target === this) break;
+      if (target.dataset.columnId !== undefined) return target.dataset.columnId;
     }
 
     return null;
@@ -440,108 +403,83 @@ export default class SlTable extends ShoelaceElement {
   private isInteractiveTarget(event: Event) {
     return event.composedPath().some(target => {
       if (!(target instanceof Element)) return false;
-      if (SlTableRow.isTableRow(target)) return false;
+      if (target.hasAttribute('data-row-id')) return false;
       return target.matches?.(interactiveSelector) ?? false;
     });
   }
 
   private handleClick = (event: MouseEvent) => {
-    const column = event
-      .composedPath()
-      .find((target): target is SlTableColumn => target instanceof Element && SlTableColumn.isTableColumn(target));
+    const columnId = this.findColumnId(event);
 
-    if (column) {
-      this.handleColumnClick(column);
+    if (columnId) {
+      this.table.getColumn(columnId)?.getToggleSortingHandler()?.(event);
       return;
     }
 
     if (this.selection === 'none' || this.isInteractiveTarget(event)) return;
 
-    const row = this.getRowFromEvent(event);
+    const rowId = this.findRowId(event);
 
-    if (!row || row.disabled) return;
+    if (!rowId) return;
+
+    const row = this.table.getRow(rowId);
+
+    if (!row.getCanSelect()) return;
 
     this.focusRow(row);
-
-    if (this.selection === 'single') {
-      this.setSelection([row]);
-      this.lastSelectedRow = row;
-      return;
-    }
-
-    if (event.shiftKey && this.lastSelectedRow) {
-      this.selectRange(this.lastSelectedRow, row);
-      return;
-    }
-
-    this.toggleRowSelection(row);
-    this.lastSelectedRow = row;
+    row.getToggleSelectedHandler()(event);
   };
 
-  private handleColumnClick(column: SlTableColumn) {
-    if (!column.sortable || !column.key) return;
-
-    const isSameColumn = this.sortColumn === column.key;
-
-    this.sortDirection = isSameColumn && this.sortDirection === 'asc' ? 'desc' : 'asc';
-    this.sortColumn = column.key;
-
-    this.emit('sl-table-sort', {
-      detail: { column, key: column.key, direction: this.sortDirection }
-    });
-  }
-
   private handleMenuSelect = (event: SlSelectEvent) => {
-    const row = this.getRowFromEvent(event);
+    const rowId = this.findRowId(event);
 
-    if (!row) return;
+    if (!rowId) return;
 
-    this.emit('sl-table-row-action', { detail: { row, item: event.detail.item } });
+    const row = this.table.getRow(rowId);
+    this.emit('sl-table-row-action', { detail: { row: row.original, item: event.detail.item } });
   };
 
   private handleContextMenu = (event: MouseEvent) => {
-    const row = this.getRowFromEvent(event);
+    const rowId = this.findRowId(event);
 
-    if (!row) return;
+    if (!rowId) return;
+
+    const table = this.table;
+    const row = table.getRow(rowId);
 
     // Right-clicking an unselected row selects it first, which is what users expect from a record list
-    if (this.selection !== 'none' && !row.selected && !row.disabled) {
-      this.setSelection([row]);
-      this.lastSelectedRow = row;
+    if (this.selection !== 'none' && !row.getIsSelected() && row.getCanSelect()) {
+      this.focusRow(row);
+      row.toggleSelected(true);
     }
 
-    this.emit('sl-table-row-context-menu', { detail: { row, originalEvent: event } });
+    this.emit('sl-table-row-context-menu', { detail: { row: row.original, originalEvent: event } });
   };
 
   private handleKeyDown = (event: KeyboardEvent) => {
-    const rows = this.getVisibleRows();
+    const table = this.table;
+    const rows = table.getRowModel().rows;
 
     if (rows.length === 0) return;
 
     if (event.key === 'a' && (event.ctrlKey || event.metaKey) && this.selection === 'multiple') {
       event.preventDefault();
-      this.selectAll();
+      table.toggleAllPageRowsSelected(true);
       return;
     }
 
-    const activeRow = this.getRowFromEvent(event);
+    const rowId = this.findRowId(event);
 
-    if (!activeRow) return;
+    if (!rowId) return;
 
-    const index = rows.indexOf(activeRow);
+    const activeRow = table.getRow(rowId);
+    const index = rows.findIndex(row => row.id === activeRow.id);
 
     if ([' ', 'Enter'].includes(event.key)) {
-      if (this.selection === 'none' || activeRow.disabled || this.isInteractiveTarget(event)) return;
+      if (this.selection === 'none' || !activeRow.getCanSelect() || this.isInteractiveTarget(event)) return;
 
       event.preventDefault();
-
-      if (this.selection === 'single') {
-        this.setSelection([activeRow]);
-      } else {
-        this.toggleRowSelection(activeRow);
-      }
-
-      this.lastSelectedRow = activeRow;
+      activeRow.getToggleSelectedHandler()(event);
       return;
     }
 
@@ -558,36 +496,27 @@ export default class SlTable extends ShoelaceElement {
     this.focusRow(rows[Math.min(Math.max(0, nextIndex), rows.length - 1)]);
   };
 
-  private focusRow(row: SlTableRow) {
-    this.getRows().forEach(item => item.setAttribute('tabindex', item === row ? '0' : '-1'));
-    row.focus();
+  private focusRow(row: Row<SlTableFeatures, TData>) {
+    this.focusedRowId = row.id;
+    void this.updateComplete.then(() => {
+      this.shadowRoot!.querySelector<HTMLElement>(`[data-row-id="${row.id}"]`)?.focus();
+    });
   }
 
-  private selectRange(from: SlTableRow, to: SlTableRow) {
-    const rows = this.getVisibleRows();
-    const start = rows.indexOf(from);
-    const end = rows.indexOf(to);
+  private handleToolbarSlotChange = (event: Event) => {
+    const assigned = (event.target as HTMLSlotElement).assignedElements({ flatten: true });
+    this.hasToolbar = assigned.length > 0;
 
-    if (start === -1 || end === -1) {
-      this.setSelection([to]);
-      return;
+    const actionButtons = assigned.flatMap(element =>
+      element.tagName === 'SL-BUTTON' ? [element] : [...element.querySelectorAll('sl-button')]
+    );
+
+    if (actionButtons.length > maxToolbarActions) {
+      console.warn(
+        `<sl-table> toolbar has ${actionButtons.length} <sl-button> actions, but only ${maxToolbarActions} are supported before it wraps awkwardly.`
+      );
     }
-
-    const range = rows.slice(Math.min(start, end), Math.max(start, end) + 1);
-    this.setSelection([...new Set([...this.getSelection(), ...range])]);
-  }
-
-  private toggleRowSelection(row: SlTableRow) {
-    const selection = new Set(this.getSelection());
-
-    if (selection.has(row)) {
-      selection.delete(row);
-    } else {
-      selection.add(row);
-    }
-
-    this.setSelection([...selection]);
-  }
+  };
 
   private handleSelectAllClick = (event: Event) => {
     const checkbox = event.target as SlCheckbox;
@@ -605,81 +534,180 @@ export default class SlTable extends ShoelaceElement {
 
     if (!Number.isFinite(pageSize) || pageSize <= 0 || pageSize === this.pageSize) return;
 
-    this.pageSize = pageSize;
-    this.page = Math.min(this.page, this.pageCount);
-    this.emit('sl-table-page-change', { detail: { page: this.page, pageSize: this.pageSize } });
+    this.table.setPagination({ pageIndex: 0, pageSize });
   };
 
   //
-  // Watchers
+  // Rendering
   //
 
-  @watch('selection', { waitUntilFirstUpdate: true })
-  handleSelectionChange() {
-    if (this.selection === 'none') {
-      this.getRows({ includeHidden: true }).forEach(row => (row.selected = false));
-    }
+  private renderHeaderRow(table: SlTableInstance<TData>) {
+    const [headerGroup] = table.getHeaderGroups();
+    const selectableRows = table.getRowModel().rows.filter(row => row.getCanSelect());
+    const selectedCount = selectableRows.filter(row => row.getIsSelected()).length;
+    const hasActionsColumn = this.columns.some(column => this.isActionsColumn(column));
 
-    this.syncTable();
+    return html`
+      <div part="header" class="table__header" role="row">
+        ${this.selection === 'multiple'
+          ? html`
+              <div class="table__select-all">
+                <sl-checkbox
+                  part="select-all"
+                  title=${this.selectAllLabel}
+                  ?checked=${selectableRows.length > 0 && selectedCount === selectableRows.length}
+                  ?indeterminate=${selectedCount > 0 && selectedCount < selectableRows.length}
+                  ?disabled=${selectableRows.length === 0}
+                  @sl-change=${this.handleSelectAllClick}
+                ></sl-checkbox>
+              </div>
+            `
+          : ''}
+        ${headerGroup?.headers.map(header => {
+          if (this.isActionsColumn(header.column.columnDef)) return '';
+
+          const meta = header.column.columnDef.meta as SlTableColumnMeta | undefined;
+          const canSort = header.column.getCanSort();
+          const sortDirection = header.column.getIsSorted();
+
+          return html`
+            <div
+              part="column"
+              class="table__column ${meta?.align ? `table__column--align-${meta.align}` : ''} ${canSort
+                ? 'table__column--sortable'
+                : ''}"
+              role="columnheader"
+              data-column-id=${header.column.id}
+              tabindex=${canSort ? '0' : '-1'}
+              aria-sort=${canSort ? (sortDirection ? `${sortDirection}ending` : 'none') : nothing}
+            >
+              <span part="column-label" class="table__column-label"
+                >${header.isPlaceholder ? '' : FlexRender({ header })}</span
+              >
+              ${canSort
+                ? html`
+                    <sl-icon
+                      part="sort-icon"
+                      class="table__sort-icon ${sortDirection === 'asc' ? 'table__sort-icon--ascending' : ''} ${!sortDirection
+                        ? 'table__sort-icon--placeholder'
+                        : ''}"
+                      library="system"
+                      name="chevron-down"
+                    ></sl-icon>
+                  `
+                : ''}
+            </div>
+          `;
+        })}
+        ${hasActionsColumn ? html`<div part="actions-header" class="table__actions-header"></div>` : ''}
+      </div>
+    `;
   }
 
-  @watch(['actions', 'actionMenuLabel'], { waitUntilFirstUpdate: true })
-  handleActionsChange() {
-    this.syncColumns();
-    this.syncRows();
+  private renderCell(cell: Cell<SlTableFeatures, TData, unknown>) {
+    const meta = cell.column.columnDef.meta as SlTableColumnMeta | undefined;
+
+    return html`
+      <div
+        part="cell"
+        class="table__cell ${meta?.align ? `table__cell--align-${meta.align}` : ''} ${meta?.nowrap
+          ? 'table__cell--nowrap'
+          : ''}"
+        role="gridcell"
+      >
+        ${FlexRender({ cell })}
+      </div>
+    `;
   }
 
-  @watch(['sortColumn', 'sortDirection'], { waitUntilFirstUpdate: true })
-  handleSortChange() {
-    this.syncColumns();
-    this.applySort();
-    this.applyPagination();
+  private renderActionsCell(cell: Cell<SlTableFeatures, TData, unknown>) {
+    const cellDef = cell.column.columnDef.cell;
+    const content: unknown = typeof cellDef === 'function' ? cellDef(cell.getContext()) : null;
+    const hasActions = content !== null && content !== undefined;
+
+    return html`
+      <div part="actions" class="table__row-actions" role="gridcell">
+        <sl-dropdown class="table__action-menu" placement="bottom-end" hoist ?disabled=${!hasActions}>
+          <sl-icon-button
+            part="action-trigger"
+            slot="trigger"
+            class="table__action-trigger"
+            library="system"
+            name="three-dots-vertical"
+            label=${this.actionMenuLabel}
+            ?disabled=${!hasActions}
+          ></sl-icon-button>
+          ${content ?? ''}
+        </sl-dropdown>
+      </div>
+    `;
   }
 
-  @watch(['page', 'pageSize', 'paginate', 'totalItems'], { waitUntilFirstUpdate: true })
-  handlePaginationChange() {
-    this.applyPagination();
+  private renderBodyRow(row: Row<SlTableFeatures, TData>, focusableRowId: string | undefined) {
+    const cells = row.getAllCells();
+    const actionsCell = cells.find(cell => this.isActionsColumn(cell.column.columnDef));
+    const isFocusable = row.id === focusableRowId;
+    const variant = this.rowVariant(row.original, row.index);
+    const disabled = this.rowDisabled(row.original, row.index);
+
+    return html`
+      <div
+        part="row"
+        class="table__row"
+        role="row"
+        data-row-id=${row.id}
+        tabindex=${isFocusable ? '0' : '-1'}
+        variant=${variant || nothing}
+        ?selected=${row.getIsSelected()}
+        ?disabled=${disabled}
+        aria-selected=${row.getIsSelected() ? 'true' : 'false'}
+        aria-disabled=${disabled ? 'true' : 'false'}
+      >
+        ${this.selection === 'multiple'
+          ? html`
+              <div class="table__row-selection">
+                <sl-checkbox
+                  part="checkbox"
+                  exportparts="base:checkbox__base"
+                  ?checked=${row.getIsSelected()}
+                  ?disabled=${disabled}
+                  tabindex="-1"
+                ></sl-checkbox>
+              </div>
+            `
+          : ''}
+        ${cells.filter(cell => !this.isActionsColumn(cell.column.columnDef)).map(cell => this.renderCell(cell))}
+        ${actionsCell ? this.renderActionsCell(actionsCell) : ''}
+      </div>
+    `;
   }
 
   render() {
-    const isMultiple = this.selection === 'multiple';
-    const selectableRows = this.getVisibleRows().filter(row => !row.disabled);
-    const selectedCount = selectableRows.filter(row => row.selected).length;
-    const isEmpty = this.visibleRowCount === 0;
+    const table = this.table;
+    const rows = table.getRowModel().rows;
+    const isEmpty = rows.length === 0;
     const start = this.itemCount === 0 ? 0 : (this.page - 1) * this.pageSize + 1;
     const end = Math.min(this.page * this.pageSize, this.itemCount);
+    const pageCount = Math.max(1, table.getPageCount());
+
+    const defaultFocusableRowId =
+      table.getSelectedRowModel().rows.find(selected => !this.rowDisabled(selected.original, selected.index))?.id ??
+      rows[0]?.id;
+    const focusableRowId =
+      this.focusedRowId && rows.some(row => row.id === this.focusedRowId) ? this.focusedRowId : defaultFocusableRowId;
 
     return html`
       <div part="base" class="table">
-        <div part="toolbar" class=${classMap({ table__toolbar: true, 'table__toolbar--empty': !this.hasToolbar })}>
+        <div part="toolbar" class="table__toolbar ${this.hasToolbar ? '' : 'table__toolbar--empty'}">
           <slot name="toolbar" @slotchange=${this.handleToolbarSlotChange}></slot>
         </div>
 
         <div class="table__scroller">
-          <div part="header" class="table__header" role="row">
-            ${isMultiple
-              ? html`
-                  <div class="table__select-all">
-                    <sl-checkbox
-                      part="select-all"
-                      title=${this.selectAllLabel}
-                      ?checked=${selectableRows.length > 0 && selectedCount === selectableRows.length}
-                      ?indeterminate=${selectedCount > 0 && selectedCount < selectableRows.length}
-                      ?disabled=${selectableRows.length === 0}
-                      @sl-change=${this.handleSelectAllClick}
-                    ></sl-checkbox>
-                  </div>
-                `
-              : ''}
-            <slot name="columns" @slotchange=${this.handleSlotChange}></slot>
-            ${this.actions ? html`<div part="actions-header" class="table__actions-header"></div>` : ''}
-          </div>
+          ${this.renderHeaderRow(table)}
 
           <div part="body" class="table__body" role="rowgroup">
-            <slot @slotchange=${this.handleSlotChange}></slot>
-            ${isEmpty
-              ? html`<div part="empty" class="table__empty"><slot name="empty">No results found.</slot></div>`
-              : ''}
+            ${rows.map(row => this.renderBodyRow(row, focusableRowId))}
+            ${isEmpty ? html`<div part="empty" class="table__empty"><slot name="empty">No results found.</slot></div>` : ''}
           </div>
         </div>
 
@@ -687,9 +715,7 @@ export default class SlTable extends ShoelaceElement {
           ${this.paginate
             ? html`
                 <div part="footer" class="table__footer">
-                  <span part="summary" class="table__summary">
-                    ${this.summaryFormatter(start, end, this.itemCount)}
-                  </span>
+                  <span part="summary" class="table__summary">${this.summaryFormatter(start, end, this.itemCount)}</span>
 
                   <div part="pagination" class="table__pagination">
                     <sl-icon-button
@@ -697,31 +723,31 @@ export default class SlTable extends ShoelaceElement {
                       name=${this.localize.dir() === 'rtl' ? 'chevron-double-right' : 'chevron-double-left'}
                       label=${this.firstPageLabel}
                       ?disabled=${this.page <= 1}
-                      @click=${() => this.goToPage(1)}
+                      @click=${() => table.firstPage()}
                     ></sl-icon-button>
                     <sl-icon-button
                       library="system"
                       name=${this.localize.dir() === 'rtl' ? 'chevron-right' : 'chevron-left'}
                       label=${this.previousPageLabel}
                       ?disabled=${this.page <= 1}
-                      @click=${() => this.goToPage(this.page - 1)}
+                      @click=${() => table.previousPage()}
                     ></sl-icon-button>
 
-                    <span class="table__page-status">${this.pageFormatter(this.page, this.pageCount)}</span>
+                    <span class="table__page-status">${this.pageFormatter(this.page, pageCount)}</span>
 
                     <sl-icon-button
                       library="system"
                       name=${this.localize.dir() === 'rtl' ? 'chevron-left' : 'chevron-right'}
                       label=${this.nextPageLabel}
-                      ?disabled=${this.page >= this.pageCount}
-                      @click=${() => this.goToPage(this.page + 1)}
+                      ?disabled=${this.page >= pageCount}
+                      @click=${() => table.nextPage()}
                     ></sl-icon-button>
                     <sl-icon-button
                       library="system"
                       name=${this.localize.dir() === 'rtl' ? 'chevron-double-left' : 'chevron-double-right'}
                       label=${this.lastPageLabel}
-                      ?disabled=${this.page >= this.pageCount}
-                      @click=${() => this.goToPage(this.pageCount)}
+                      ?disabled=${this.page >= pageCount}
+                      @click=${() => table.lastPage()}
                     ></sl-icon-button>
                   </div>
 
@@ -729,12 +755,7 @@ export default class SlTable extends ShoelaceElement {
                     ? html`
                         <label class="table__page-size">
                           ${this.pageSizeLabel}
-                          <sl-select
-                            size="small"
-                            value=${String(this.pageSize)}
-                            hoist
-                            @sl-change=${this.handlePageSizeChange}
-                          >
+                          <sl-select size="small" value=${String(this.pageSize)} hoist @sl-change=${this.handlePageSizeChange}>
                             ${this.pageSizes.map(size => html`<sl-option value=${String(size)}>${size}</sl-option>`)}
                           </sl-select>
                         </label>

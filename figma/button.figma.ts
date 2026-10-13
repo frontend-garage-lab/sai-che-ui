@@ -23,9 +23,10 @@ const variant = instance.getEnum('Variant', {
   danger: 'danger'
 });
 const disabled = instance.getEnum('State', { default: false, hover: false, active: false, disabled: true });
+const pill = instance.getBoolean('Pill');
 
 export default {
-  example: figma.html`<sl-button variant="${variant}"${disabled ? ' disabled' : ''}>${text('Button')}</sl-button>`,
+  example: figma.html`<sl-button variant="${variant}"${pill ? ' pill' : ''}${disabled ? ' disabled' : ''}>${text('Button')}</sl-button>`,
   imports: ["import 'src/components/button/button.js'"],
   id: 'button',
   metadata: { nestable: true }

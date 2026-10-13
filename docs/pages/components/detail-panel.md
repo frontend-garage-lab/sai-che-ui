@@ -7,8 +7,9 @@ layout: component
 
 Detail panels show more information about a selected item without taking over the screen the way a
 [dialog](/components/dialog) does, e.g. a document's review history shown next to the list it was selected from. The
-header has a `label` slot for the title, a `meta` slot for a secondary line such as a revision code, and a close
-button. The default slot holds the panel's content, commonly an [`sl-tab-group`](/components/tab-group).
+header has a `label` slot for the title, a `meta` slot for a secondary line such as a revision code, an `actions` slot
+for extra header buttons, and a close button. The default slot holds the panel's content, commonly an
+[`sl-tab-group`](/components/tab-group).
 
 > Detail panels only provide the header/body shell — they don't position or animate themselves. Place one in a layout
 > column, a fixed-position sidebar, or similar, the way you would any other block-level element.
@@ -63,6 +64,22 @@ Combine the panel with [`sl-tab-group`](/components/tab-group) and a list of
   const panel = document.querySelector('.detail-panel-demo');
   panel.addEventListener('sl-request-close', () => panel.remove());
 </script>
+```
+
+### With header actions
+
+Add `<sl-icon-button>` elements to the `actions` slot for extra header buttons, e.g. to add or edit the item. They're
+shown before the close button.
+
+```html:preview
+<sl-detail-panel style="height: 12rem; max-width: 24rem;">
+  <span slot="label">Details</span>
+
+  <sl-icon-button slot="actions" name="plus-lg" library="system" label="Add"></sl-icon-button>
+  <sl-icon-button slot="actions" name="pencil" library="system" label="Edit"></sl-icon-button>
+
+  <div style="padding: var(--sl-spacing-medium);">Panel content</div>
+</sl-detail-panel>
 ```
 
 ### Listening for the close request

@@ -21,12 +21,30 @@
   </head>
 
   <body class="sl-theme-light">
-    <sl-app-header>
+    <sl-header>
+      <svg slot="logo" viewBox="0 0 36 36" role="img" aria-label="Saipem">
+        <rect width="36" height="36" rx="8" fill="#F28531" />
+        <text x="18" y="25" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">S</text>
+      </svg>
       <span slot="logo">xCPage</span>
 
-      <a href="#">Project Data</a>
-      <a href="#" aria-current="page">Review</a>
-      <a href="#">Configuration</a>
+      <sl-header-item>
+        Project Data
+        <sl-menu slot="menu">
+          <sl-menu-item>Documents</sl-menu-item>
+          <sl-menu-item>Distribution History</sl-menu-item>
+          <sl-menu-item>Search</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+      <sl-header-item href="#" current>Review</sl-header-item>
+      <sl-header-item>
+        Configuration
+        <sl-menu slot="menu">
+          <sl-menu-item>Users</sl-menu-item>
+          <sl-menu-item>Permissions</sl-menu-item>
+          <sl-menu-item>Workflow Rules</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
 
       <sl-select slot="actions" size="small" value="99-page-am" style="width: 15rem;">
         <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
@@ -34,7 +52,7 @@
       </sl-select>
       <sl-icon-button slot="actions" name="person" label="Profile"></sl-icon-button>
       <sl-icon-button slot="actions" name="box-arrow-right" label="Sign out"></sl-icon-button>
-    </sl-app-header>
+    </sl-header>
 
     <main class="page">
       <!-- Workflow stages -->
@@ -51,8 +69,8 @@
       <!-- Filters + expiry stats -->
       <section class="filters-row">
         <form class="panel filters" id="filters">
-          <div class="filters__title"><sl-icon name="funnel"></sl-icon> Filters</div>
           <div class="filters__fields">
+            <div class="filters__title"><sl-icon name="funnel"></sl-icon> Filters</div>
             <div class="filters__search">
               <sl-input
                 id="filter-text"
@@ -70,10 +88,10 @@
                 <sl-checkbox id="filter-case" size="small" checked>Case Sensitive</sl-checkbox>
               </div>
             </div>
-            <sl-select id="filter-originator" label="Originator" value="all" size="medium">
+            <sl-select class="filters__originator" id="filter-originator" label="Originator" value="all" size="medium">
               <sl-option value="all">All</sl-option>
             </sl-select>
-            <sl-select id="filter-discipline" label="Discipline" value="all" size="medium">
+            <sl-select class="filters__discipline" id="filter-discipline" label="Discipline" value="all" size="medium">
               <sl-option value="all">All</sl-option>
             </sl-select>
             <div class="filters__actions">
@@ -98,43 +116,36 @@
       <!-- Task list + details -->
       <section class="workspace">
         <div class="panel workspace__table">
-          <sl-table id="tasks" selection="single" sticky-header label="Tasks in review">
+          <sl-table id="tasks" selection="single" sticky-header paginate page-size="10" label="Tasks in review">
             <div slot="toolbar" class="toolbar">
               <div class="toolbar__group">
                 <sl-tooltip content="Download document">
-                  <sl-icon-button id="act-download" name="download" label="Download document"></sl-icon-button>
+                  <sl-icon-button id="act-download" name="download" label="Download document" variant="primary"></sl-icon-button>
                 </sl-tooltip>
                 <sl-tooltip content="Import comment">
-                  <sl-icon-button id="act-import" name="upload" label="Import comment"></sl-icon-button>
+                  <sl-icon-button id="act-import" name="upload" label="Import comment" variant="neutral"></sl-icon-button>
                 </sl-tooltip>
               </div>
               <sl-divider vertical></sl-divider>
               <div class="toolbar__group">
                 <sl-tooltip content="Release task">
-                  <sl-icon-button id="act-release" name="arrow-counterclockwise" label="Release task"></sl-icon-button>
+                  <sl-icon-button id="act-release" name="arrow-counterclockwise" label="Release task" variant="danger"></sl-icon-button>
                 </sl-tooltip>
                 <sl-tooltip content="Refresh list">
-                  <sl-icon-button id="act-refresh" name="arrow-clockwise" label="Refresh list"></sl-icon-button>
+                  <sl-icon-button id="act-refresh" name="arrow-clockwise" label="Refresh list" variant="primary"></sl-icon-button>
                 </sl-tooltip>
               </div>
               <sl-divider vertical></sl-divider>
               <div class="toolbar__group">
                 <sl-tooltip content="Take task">
-                  <sl-icon-button id="act-take" name="check-lg" label="Take task" class="is-accent"></sl-icon-button>
+                  <sl-icon-button id="act-take" name="check-lg" label="Take task" variant="accent" filled></sl-icon-button>
                 </sl-tooltip>
                 <sl-tooltip content="Complete review task">
-                  <sl-icon-button id="act-complete" name="check2-circle" label="Complete review task"></sl-icon-button>
+                  <sl-icon-button id="act-complete" name="check2-circle" label="Complete review task" variant="neutral"></sl-icon-button>
                 </sl-tooltip>
               </div>
               <span class="toolbar__count"><strong id="task-count">11</strong> tasks in review</span>
             </div>
-
-            <sl-table-column slot="columns" key="task" sortable>Task</sl-table-column>
-            <sl-table-column slot="columns" key="rev" width="5rem">Rev.</sl-table-column>
-            <sl-table-column slot="columns" key="created" width="8rem" sortable>Created</sl-table-column>
-            <sl-table-column slot="columns" key="due" width="8rem" sortable>Due date</sl-table-column>
-            <sl-table-column slot="columns" key="discipline" width="9rem">Discipline</sl-table-column>
-            <sl-table-column slot="columns" key="originator" width="9rem">Originator</sl-table-column>
 
             <sl-empty-state
               slot="empty"
@@ -150,6 +161,9 @@
           <sl-detail-panel id="details">
             <span slot="label">Details</span>
             <span slot="meta" id="details-meta"></span>
+
+            <sl-icon-button slot="actions" name="plus-lg" label="Add"></sl-icon-button>
+            <sl-icon-button slot="actions" name="pencil" label="Edit"></sl-icon-button>
 
             <sl-tab-group id="detail-tabs">
               <sl-tab slot="nav" panel="comments"><sl-icon name="chat-left-text"></sl-icon> Review Comments</sl-tab>
@@ -215,10 +229,7 @@
         <sl-icon slot="icon" name="check2-circle"></sl-icon>
         Click on <strong>“Complete task(s)”</strong> to close the current reviews.
       </sl-alert>
-      <sl-table id="complete-table" class="complete-table">
-        <sl-table-column slot="columns" key="document">Document</sl-table-column>
-        <sl-table-column slot="columns" key="date" width="11rem">Comment date</sl-table-column>
-      </sl-table>
+      <sl-table id="complete-table" class="complete-table"></sl-table>
       <p class="muted complete-count">Count: <strong id="complete-count">0</strong></p>
       <sl-button slot="footer" data-close>Cancel</sl-button>
       <sl-button slot="footer" variant="primary" id="complete-confirm">Complete task(s)</sl-button>

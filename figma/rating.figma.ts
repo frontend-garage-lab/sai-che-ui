@@ -5,9 +5,10 @@ import figma from 'figma';
 const instance = figma.selectedInstance;
 
 const value = instance.getEnum('Value', { '1': '1', '3': '3', '5': '5' });
+const disabled = instance.getBoolean('Disabled');
 
 export default {
-  example: figma.html`<sl-rating label="Rating" value="${value}"></sl-rating>`,
+  example: figma.html`<sl-rating label="Rating" value="${value}"${disabled ? ' disabled' : ''}></sl-rating>`,
   imports: ["import 'src/components/rating/rating.js'"],
   id: 'rating',
   metadata: { nestable: true }

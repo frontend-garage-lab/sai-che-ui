@@ -22,13 +22,13 @@ export default css`
     flex: 0 0 auto;
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
     gap: var(--sl-spacing-small);
     padding: var(--sl-spacing-medium);
     border-bottom: solid var(--sl-panel-border-width) var(--sl-border-subtle);
   }
 
   .detail-panel__heading {
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     gap: var(--sl-spacing-3x-small);
@@ -52,6 +52,13 @@ export default css`
 
   .detail-panel__meta:empty {
     display: none;
+  }
+
+  .detail-panel__actions {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: var(--sl-spacing-3x-small);
   }
 
   .detail-panel__close {

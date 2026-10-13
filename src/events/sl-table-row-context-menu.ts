@@ -1,7 +1,5 @@
-import type SlTableRow from '../components/table-row/table-row.js';
-
 export type SlTableRowContextMenuEvent = CustomEvent<{
-  row: SlTableRow;
+  row: unknown;
   originalEvent: MouseEvent;
 }>;
 

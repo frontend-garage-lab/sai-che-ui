@@ -15,9 +15,10 @@ function text(...layerNames: string[]) {
 
 const size = instance.getEnum('Size', { small: 'small', medium: 'medium', large: 'large' });
 const disabled = instance.getEnum('State', { default: false, hover: false, focus: false, disabled: true });
+const pill = instance.getBoolean('Pill');
 
 export default {
-  example: figma.html`<sl-input size="${size}" placeholder="${text('Placeholder text')}"${disabled ? ' disabled' : ''}></sl-input>`,
+  example: figma.html`<sl-input size="${size}" placeholder="${text('Placeholder text')}"${pill ? ' pill' : ''}${disabled ? ' disabled' : ''}></sl-input>`,
   imports: ["import 'src/components/input/input.js'"],
   id: 'input',
   metadata: { nestable: true }

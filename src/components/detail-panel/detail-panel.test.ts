@@ -28,6 +28,20 @@ describe('<sl-detail-panel>', () => {
     expect(el.shadowRoot!.querySelector('[part~="meta"] slot[name="meta"]')).not.to.be.null;
   });
 
+  it('should render icon buttons slotted into actions before the close button', async () => {
+    const el = await fixture<SlDetailPanel>(html`
+      <sl-detail-panel>
+        <sl-icon-button slot="actions" name="pencil" label="Edit"></sl-icon-button>
+      </sl-detail-panel>
+    `);
+
+    const actionsSlot = el.shadowRoot!.querySelector<HTMLSlotElement>('[part~="actions"] slot[name="actions"]')!;
+    const assigned = actionsSlot.assignedElements();
+
+    expect(assigned).to.have.length(1);
+    expect(assigned[0]).to.have.attribute('name', 'pencil');
+  });
+
   it('should emit sl-request-close when the close button is clicked', async () => {
     const el = await fixture<SlDetailPanel>(html` <sl-detail-panel></sl-detail-panel> `);
     const requestCloseSpy = sinon.spy();

@@ -1,8 +1,5 @@
-import type SlTableColumn from '../components/table-column/table-column.js';
-
 export type SlTableSortEvent = CustomEvent<{
-  column: SlTableColumn;
-  key: string;
+  columnId: string;
   direction: 'asc' | 'desc';
 }>;
 

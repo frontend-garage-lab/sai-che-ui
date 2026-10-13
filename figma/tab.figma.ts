@@ -15,11 +15,12 @@ function text(...layerNames: string[]) {
 
 const active = instance.getEnum('State', { default: false, hover: false, active: true, disabled: false });
 const disabled = instance.getEnum('State', { default: false, hover: false, active: false, disabled: true });
+const card = instance.getBoolean('Card');
 const label = text('Tab label');
 const panel = label.toLowerCase().replace(/\s+/g, '-');
 
 export default {
-  example: figma.html`<sl-tab slot="nav" panel="${panel}"${active ? ' active' : ''}${disabled ? ' disabled' : ''}>${label}</sl-tab>`,
+  example: figma.html`<sl-tab slot="nav" panel="${panel}"${active ? ' active' : ''}${disabled ? ' disabled' : ''}${card ? ' card' : ''}>${label}</sl-tab>`,
   imports: ["import 'src/components/tab/tab.js'"],
   id: 'tab',
   metadata: { nestable: true }

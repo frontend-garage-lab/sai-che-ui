@@ -22,9 +22,10 @@ const variant = instance.getEnum('Variant', {
   danger: 'danger'
 });
 const size = instance.getEnum('Size', { small: 'small', medium: 'medium' });
+const pulse = instance.getBoolean('Pulse');
 
 export default {
-  example: figma.html`<sl-status variant="${variant}" size="${size}">${text('Status label')}</sl-status>`,
+  example: figma.html`<sl-status variant="${variant}" size="${size}"${pulse ? ' pulse' : ''}>${text('Status label')}</sl-status>`,
   imports: ["import 'src/components/status/status.js'"],
   id: 'status',
   metadata: { nestable: true }

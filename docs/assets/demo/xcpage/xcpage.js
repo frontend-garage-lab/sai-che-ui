@@ -7,6 +7,8 @@
  * Flow: select a task → Take task → Import comment (upload files) → Finish → Complete review task.
  */
 
+import { html } from 'https://cdn.jsdelivr.net/npm/lit@3/+esm';
+
 const $ = selector => document.querySelector(selector);
 
 const ME = { name: 'Aiello Ciro', initials: 'AC', color: 'primary' };
@@ -81,7 +83,6 @@ function expiryOf(t) {
 }
 
 const EXPIRY_VARIANT = { safe: 'success', expiring: 'warning', expired: 'danger', notified: 'primary' };
-
 function selectedTask() {
   return tasks.find(t => t.id === selectedId) ?? null;
 }
@@ -103,6 +104,10 @@ async function notify(variant, icon, title, message = '') {
 
 function avatar(person, slot = '') {
   return `<sl-avatar ${slot ? `slot="${slot}"` : ''} initials="${esc(person.initials)}" label="${esc(person.name)}" class="avatar--${person.color}"></sl-avatar>`;
+}
+
+function avatarTemplate(person) {
+  return html`<sl-avatar initials=${person.initials} label=${person.name} class="avatar--${person.color}"></sl-avatar>`;
 }
 
 function descriptionList(pairs, cols = 2) {
@@ -140,37 +145,104 @@ function visibleTasks() {
   );
 }
 
-function rowTemplate(t) {
-  const expiry = expiryOf(t);
-  const statusIcon = t.taken
-    ? `<sl-icon name="check-square" class="is-taken" label="Taken"></sl-icon>`
-    : `<sl-icon name="square" label="Not taken"></sl-icon>`;
-  const pdfIcon = t.comments.length ? `<sl-icon name="file-earmark-pdf" class="is-pdf" label="Comment uploaded"></sl-icon>` : '';
-
-  return `
-    <sl-table-row value="${t.id}" ${t.id === selectedId ? 'selected' : ''}>
-      <sl-table-cell sort-value="${esc(t.title)}">
+// Column definitions are built once and kept stable, since sl-table relies on the reference for memoization.
+const TASKS_COLUMNS = [
+  {
+    id: 'status',
+    header: '',
+    meta: { width: '10rem' },
+    cell: ({ row }) => {
+      const t = row.original;
+      const expiry = expiryOf(t);
+      return html`
+        <div class="task__status" style="display: flex; align-items: center; gap: var(--sl-spacing-x-small);">
+          <sl-status variant=${EXPIRY_VARIANT[expiry]} size="small" pulse title=${expiry}></sl-status>
+          <sl-badge pill variant=${t.taken ? 'success' : 'danger'}>${t.taken ? 'Approver' : 'Reject'}</sl-badge>
+          ${t.comments.length
+            ? html`<sl-icon-button
+                name="file-earmark-pdf"
+                label="Comment uploaded"
+                variant="danger"
+                style="scale: 0.75;"
+              ></sl-icon-button>`
+            : ''}
+        </div>
+      `;
+    }
+  },
+  {
+    id: 'task',
+    header: 'Task',
+    enableSorting: true,
+    accessorFn: row => row.title,
+    cell: ({ row }) => {
+      const t = row.original;
+      return html`
         <div class="task">
-          <div class="task__status">
-            <sl-status variant="${EXPIRY_VARIANT[expiry]}" size="small" title="${expiry}"></sl-status>
-            ${statusIcon}${pdfIcon}
-          </div>
           <div class="task__text">
-            <span class="task__title">${esc(t.title)}</span>
-            <span class="task__ref">${esc(t.ref1)}</span>
-            <span class="task__ref">${esc(t.ref2)}</span>
+            <span class="task__title">${t.title}</span>
+            <span class="task__ref">${t.ref1}</span>
+            <span class="task__ref">${t.ref2}</span>
           </div>
         </div>
-      </sl-table-cell>
-      <sl-table-cell><sl-tag size="small" variant="neutral">${esc(t.rev)}</sl-tag></sl-table-cell>
-      <sl-table-cell sort-value="${t.created}" nowrap>${formatDate(t.created)}</sl-table-cell>
-      <sl-table-cell sort-value="${t.due}" nowrap>
-        <span class="${expiry === 'expired' ? 'is-overdue' : ''}">${formatDate(t.due)}</span>
-      </sl-table-cell>
-      <sl-table-cell>${esc(t.discipline)}</sl-table-cell>
-      <sl-table-cell>${esc(t.originator)}</sl-table-cell>
-    </sl-table-row>
-  `;
+      `;
+    }
+  },
+  {
+    id: 'rev',
+    header: 'Rev.',
+    meta: { width: '5rem' },
+    cell: ({ row }) => html`<sl-tag size="small" variant="neutral">${row.original.rev}</sl-tag>`
+  },
+  {
+    id: 'created',
+    header: 'Created',
+    enableSorting: true,
+    accessorFn: row => row.created,
+    meta: { width: '8rem', nowrap: true },
+    cell: ({ row }) => formatDate(row.original.created)
+  },
+  {
+    id: 'due',
+    header: 'Due date',
+    enableSorting: true,
+    accessorFn: row => row.due,
+    meta: { width: '8rem', nowrap: true },
+    cell: ({ row }) => {
+      const t = row.original;
+      const expiry = expiryOf(t);
+      return html`<span class=${expiry === 'expired' ? 'is-overdue' : ''}>${formatDate(t.due)}</span>`;
+    }
+  },
+  { id: 'discipline', accessorKey: 'discipline', header: 'Discipline', meta: { width: '9rem' } },
+  { id: 'originator', accessorKey: 'originator', header: 'Originator', meta: { width: '9rem' } }
+];
+
+const COMPLETE_COLUMNS = [
+  {
+    id: 'document',
+    header: 'Document',
+    cell: ({ row }) => html`
+      <span class="doc"><sl-icon name="file-earmark-pdf"></sl-icon><span class="doc__name">${row.original.title}</span></span>
+    `
+  },
+  {
+    id: 'date',
+    header: 'Comment date',
+    meta: { width: '11rem', nowrap: true },
+    cell: ({ row }) => formatDate(row.original.comments.at(-1).date, true)
+  }
+];
+
+function setupTables() {
+  const tasksTable = $('#tasks');
+  tasksTable.columns = TASKS_COLUMNS;
+  tasksTable.getRowId = row => row.id;
+
+  const completeTable = $('#complete-table');
+  completeTable.columns = COMPLETE_COLUMNS;
+  completeTable.getRowId = row => row.id;
+  completeTable.rowVariant = () => 'success';
 }
 
 function renderTable() {
@@ -178,8 +250,8 @@ function renderTable() {
   const rows = visibleTasks();
   if (selectedId && !rows.some(t => t.id === selectedId)) selectedId = null;
 
-  table.querySelectorAll('sl-table-row').forEach(row => row.remove());
-  table.insertAdjacentHTML('beforeend', rows.map(rowTemplate).join(''));
+  table.data = rows;
+  table.setSelection(selectedId ? rows.filter(t => t.id === selectedId) : []);
 
   $('#task-count').textContent = rows.length;
   $('#count-review').textContent = tasks.length;
@@ -265,49 +337,64 @@ function commentsTemplate(t) {
 }
 
 function dashboardTemplate(t) {
-  return `
-    <sl-table label="Reviewers">
-      <sl-table-column slot="columns" key="name">Name</sl-table-column>
-      <sl-table-column slot="columns" key="status" width="6rem" align="center">Task status</sl-table-column>
-      <sl-table-column slot="columns" key="last" width="10rem">Last operation</sl-table-column>
-      ${reviewersOf(t)
-        .map(
-          r => `
-          <sl-table-row>
-            <sl-table-cell><span class="person">${avatar(r)} <span class="${r.taken ? 'task__title' : ''}">${esc(r.name)}</span></span></sl-table-cell>
-            <sl-table-cell align="center">
-              <sl-icon name="${r.taken ? 'check-square' : 'square'}" class="${r.taken ? 'is-taken' : ''}"></sl-icon>
-            </sl-table-cell>
-            <sl-table-cell nowrap>${r.last ? formatDate(r.last, true) : '—'}</sl-table-cell>
-          </sl-table-row>
-        `
-        )
-        .join('')}
-    </sl-table>
-  `;
+  const table = document.createElement('sl-table');
+  table.label = 'Reviewers';
+  table.columns = [
+    {
+      id: 'name',
+      header: 'Name',
+      cell: ({ row }) => html`
+        <span class="person">${avatarTemplate(row.original)}
+          <span class=${row.original.taken ? 'task__title' : ''}>${row.original.name}</span></span
+        >
+      `
+    },
+    {
+      id: 'status',
+      header: 'Task status',
+      meta: { width: '6rem', align: 'center' },
+      cell: ({ row }) => html`
+        <sl-icon name=${row.original.taken ? 'check-square' : 'square'} class=${row.original.taken ? 'is-taken' : ''}></sl-icon>
+      `
+    },
+    {
+      id: 'last',
+      header: 'Last operation',
+      meta: { width: '10rem', nowrap: true },
+      cell: ({ row }) => (row.original.last ? formatDate(row.original.last, true) : '—')
+    }
+  ];
+  table.data = reviewersOf(t);
+  return table;
 }
 
 function revisionsTemplate(t) {
-  return `
-    <sl-table label="Revisions">
-      <sl-table-column slot="columns" key="document">Document</sl-table-column>
-      <sl-table-column slot="columns" key="revision" width="6rem">Revision</sl-table-column>
-      <sl-table-column slot="columns" key="answer" width="7rem">Client answer</sl-table-column>
-      <sl-table-row>
-        <sl-table-cell>
-          <div class="doc">
-            <sl-icon name="file-earmark-pdf"></sl-icon>
-            <div>
-              <div class="doc__name">${esc(docName(t))}</div>
-              <div class="muted">${esc(t.ref1)}.pdf_sp_0001 · ${esc(t.ref2)}</div>
-            </div>
+  const table = document.createElement('sl-table');
+  table.label = 'Revisions';
+  table.columns = [
+    {
+      id: 'document',
+      header: 'Document',
+      cell: ({ row }) => html`
+        <div class="doc">
+          <sl-icon name="file-earmark-pdf"></sl-icon>
+          <div>
+            <div class="doc__name">${docName(row.original)}</div>
+            <div class="muted">${row.original.ref1}.pdf_sp_0001 · ${row.original.ref2}</div>
           </div>
-        </sl-table-cell>
-        <sl-table-cell><sl-tag size="small" variant="neutral">${esc(t.rev)}</sl-tag></sl-table-cell>
-        <sl-table-cell>—</sl-table-cell>
-      </sl-table-row>
-    </sl-table>
-  `;
+        </div>
+      `
+    },
+    {
+      id: 'revision',
+      header: 'Revision',
+      meta: { width: '6rem' },
+      cell: ({ row }) => html`<sl-tag size="small" variant="neutral">${row.original.rev}</sl-tag>`
+    },
+    { id: 'answer', header: 'Client answer', meta: { width: '7rem' }, cell: () => '—' }
+  ];
+  table.data = [t];
+  return table;
 }
 
 function propertiesTemplate(t) {
@@ -373,8 +460,8 @@ function renderDetails() {
 
   $('#details-meta').textContent = `${t.title} · Rev. ${t.rev}`;
   $('#panel-comments').innerHTML = commentsTemplate(t);
-  $('#panel-dashboard').innerHTML = dashboardTemplate(t);
-  $('#panel-revisions').innerHTML = revisionsTemplate(t);
+  $('#panel-dashboard').replaceChildren(dashboardTemplate(t));
+  $('#panel-revisions').replaceChildren(revisionsTemplate(t));
   $('#panel-properties').innerHTML = propertiesTemplate(t);
 }
 
@@ -498,20 +585,7 @@ function finishImport() {
 function openComplete() {
   const ready = tasks.filter(t => t.comments.length > 0);
   const table = $('#complete-table');
-  table.querySelectorAll('sl-table-row').forEach(row => row.remove());
-  table.insertAdjacentHTML(
-    'beforeend',
-    ready
-      .map(
-        t => `
-        <sl-table-row variant="success">
-          <sl-table-cell><span class="doc"><sl-icon name="file-earmark-pdf"></sl-icon><span class="doc__name">${esc(t.title)}</span></span></sl-table-cell>
-          <sl-table-cell nowrap>${formatDate(t.comments.at(-1).date, true)}</sl-table-cell>
-        </sl-table-row>
-      `
-      )
-      .join('')
-  );
+  table.data = ready;
   $('#complete-count').textContent = ready.length;
   $('#complete-dialog').show();
 }
@@ -594,7 +668,7 @@ function openAllProperties() {
 function wire() {
   // Selection
   $('#tasks').addEventListener('sl-table-selection-change', event => {
-    selectedId = event.detail.selection[0]?.value ?? null;
+    selectedId = event.detail.selection[0]?.id ?? null;
     renderToolbar();
     renderDetails();
   });
@@ -692,6 +766,7 @@ function wire() {
 }
 
 await Promise.all(['sl-table', 'sl-select', 'sl-stat-group', 'sl-dialog', 'sl-file-drop'].map(tag => customElements.whenDefined(tag)));
+setupTables();
 populateFilterOptions();
 wire();
 render();

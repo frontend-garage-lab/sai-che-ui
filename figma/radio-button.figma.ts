@@ -6,12 +6,13 @@ const instance = figma.selectedInstance;
 
 const disabled = instance.getEnum('State', { unchecked: false, checked: false, disabled: true });
 const pill = instance.getBoolean('Pill');
+const size = instance.getEnum('Size', { small: 'small', medium: 'medium', large: 'large' });
 const labelLayer = instance.findText('label');
 const label = labelLayer.type === 'TEXT' ? labelLayer.textContent : 'Option';
 const value = label.toLowerCase().replace(/\s+/g, '-');
 
 export default {
-  example: figma.html`<sl-radio-button value="${value}"${pill ? ' pill' : ''}${disabled ? ' disabled' : ''}>${label}</sl-radio-button>`,
+  example: figma.html`<sl-radio-button value="${value}" size="${size}"${pill ? ' pill' : ''}${disabled ? ' disabled' : ''}>${label}</sl-radio-button>`,
   imports: ["import 'src/components/radio-button/radio-button.js'"],
   id: 'radio-button',
   metadata: { nestable: true }

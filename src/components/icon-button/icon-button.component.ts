@@ -56,6 +56,19 @@ export default class SlIconButton extends ShoelaceElement {
    */
   @property() label = '';
 
+  /** The icon button's theme variant. `default` keeps the plain ghost style used throughout the app. */
+  @property({ reflect: true }) variant:
+    | 'default'
+    | 'primary'
+    | 'accent'
+    | 'success'
+    | 'neutral'
+    | 'warning'
+    | 'danger' = 'default';
+
+  /** Draws the icon button with a solid background instead of the soft, pale variant background. */
+  @property({ type: Boolean, reflect: true }) filled = false;
+
   /** Disables the button. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
@@ -101,6 +114,14 @@ export default class SlIconButton extends ShoelaceElement {
         part="base"
         class=${classMap({
           'icon-button': true,
+          'icon-button--default': this.variant === 'default',
+          'icon-button--primary': this.variant === 'primary',
+          'icon-button--accent': this.variant === 'accent',
+          'icon-button--success': this.variant === 'success',
+          'icon-button--neutral': this.variant === 'neutral',
+          'icon-button--warning': this.variant === 'warning',
+          'icon-button--danger': this.variant === 'danger',
+          'icon-button--filled': this.filled,
           'icon-button--disabled': !isLink && this.disabled,
           'icon-button--focused': this.hasFocus
         })}
