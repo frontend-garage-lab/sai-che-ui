@@ -443,3 +443,39 @@ della vecchia implementazione che aveva "O"/"W" hardcoded). Aggiornato anche il 
 
 Nessun gap aperto da questa modifica oltre al limite "Decision" già descritto sopra (coerente con gli altri
 casi analoghi in questo file). Vedi [[figma-code-connect-todo]] per le convenzioni generali.
+
+## Bug: attivare "Quick Info" rompeva l'allineamento di colonne/header (risolto via MCP, 2026-10-13)
+
+Segnalazione: attivando il boolean "Quick Info" su `Table Row`/`Table Header Row` (lato Figma — lato applicativo
+`sl-table` non ha mai avuto il problema), le colonne non si incolonnavano più e con testo più lungo nel badge
+"Decision" il layout si rompeva ulteriormente.
+
+Causa trovata via MCP (verificata con screenshot prima/dopo):
+
+1. Il frame "Quick Info" dentro `Table Row` aveva sizing **HUG** (si adattava alla larghezza di "Decision", che
+   varia in base al testo — "Approver" vs "Reject"), mentre il frame "Quick Info" dentro `Table Header Row` era
+   **FIXED a 112px**. Due larghezze diverse e non deterministiche per la "stessa" colonna → header e righe non
+   si allineavano mai, e ogni riga poteva avere una larghezza diversa dalle altre a seconda del testo del badge.
+2. Il frame principale di `Table Row` (tutte le 28 varianti) e di `Table Header Row` avevano sizing orizzontale
+   **FIXED** (1070px / 958px), non HUG. Quindi attivare "Quick Info" (o Selection/Actions) rendeva visibile una
+   colonna in più ma il frame non si allargava per farle spazio: il contenuto eccedeva la larghezza nominale del
+   componente invece di spingere la riga a crescere, da cui la rottura del layout.
+
+Fix applicato (via Figma Plugin API, MCP):
+
+- Frame "Quick Info" di tutte le 28 varianti di `Table Row` + `Table Header Row`: sizing portato a **FIXED
+  144px** (coerente con `meta: { width: '9rem' }` usato nel codice per questa colonna in
+  `docs/pages/components/table.md`) e `clipsContent: true` come rete di sicurezza se un'etichetta "Decision"
+  ancora più lunga venisse inserita in futuro.
+- Frame principale di tutte le 28 varianti di `Table Row` + `Table Header Row`: `primaryAxisSizingMode` da
+  `FIXED` ad **`AUTO`** (hug), così che abilitare Quick Info/Selection/Actions su un'istanza faccia crescere
+  l'intera riga invece di farla traboccare. Larghezza di base delle varianti scesa di conseguenza da 1070/958px
+  a ~830px (somma reale delle colonne sempre visibili) — è un effetto collaterale atteso e corretto del fix, non
+  un regressione: prima il valore 1070/958 era solo uno spazio vuoto non utilizzato quando Quick Info era nascosto.
+
+Verificato creando due istanze di prova (header + row) con "Quick Info" attivo e testo "Decision" forzato ad
+"Approver" (il più lungo tra i due): entrambe risultano larghe 974px (830 + 144) e le colonne successive
+(Tasks, Rev. Code, Created Date, …) iniziano esattamente alla stessa x in header e row. Istanze di prova
+rimosse dopo la verifica. Nessuna modifica al codice (`src/components/table/**`) o ai mapping Code Connect
+(`figma/table-row.figma.ts`, `figma/table-header-row.figma.ts`) — il gap era interamente nella struttura del
+componente Figma.
