@@ -13,7 +13,7 @@ function text(...layerNames: string[]) {
   return '';
 }
 
-const placement = instance.getEnum('Placement', { top: 'top', bottom: 'bottom' });
+const placement = instance.getEnum('Placement', { top: 'top', bottom: 'bottom', left: 'left', right: 'right' });
 
 export default {
   example: figma.html`<sl-tooltip content="${text('Tooltip text')}" placement="${placement}">

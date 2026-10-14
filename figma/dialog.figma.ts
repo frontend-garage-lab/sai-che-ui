@@ -13,14 +13,23 @@ function text(...layerNames: string[]) {
   return '';
 }
 
+const hasHeader = instance.getEnum('Header', { true: true, false: false });
 const hasFooter = instance.getEnum('Footer', { true: true, false: false });
 const footer = hasFooter
   ? figma.html`\n  <sl-button slot="footer">${text('Cancel')}</sl-button>\n  <sl-button slot="footer" variant="primary">${text('Confirm')}</sl-button>`
   : '';
 
+const headerActions = instance.getInstanceSwap('Header Actions');
+let headerActionsCode;
+if (hasHeader && headerActions && headerActions.type === 'INSTANCE') {
+  headerActionsCode = headerActions.executeTemplate().example;
+}
+
+const body = instance.getSlot('Body');
+
 export default {
-  example: figma.html`<sl-dialog label="${text('Dialog title')}" open>
-  ${text('This dialog body can contain any content, such as a form or a confirmation message.')}${footer}
+  example: figma.html`<sl-dialog${hasHeader ? ` label="${text('Dialog title')}"` : ' no-header'} open>
+  ${headerActionsCode ? figma.html`<span slot="header-actions">${headerActionsCode}</span>\n  ` : ''}${body}${footer}
 </sl-dialog>`,
   imports: [
     "import 'src/components/dialog/dialog.js'",

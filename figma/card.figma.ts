@@ -18,9 +18,17 @@ const hasFooter = instance.getEnum('Footer', { true: true, false: false });
 const header = hasHeader ? figma.html`\n  <div slot="header">${text('Card header')}</div>` : '';
 const footer = hasFooter ? figma.html`\n  <div slot="footer">${text('Footer content')}</div>` : '';
 
+const image = instance.getInstanceSwap('Image');
+let imageCode;
+if (image && image.type === 'INSTANCE') {
+  imageCode = image.executeTemplate().example;
+}
+
+const body = instance.getSlot('Body');
+
 export default {
-  example: figma.html`<sl-card>${header}
-  ${text('This is the card body. It can contain any content you like.')}${footer}
+  example: figma.html`<sl-card>${imageCode ? figma.html`\n  <span slot="image">${imageCode}</span>` : ''}${header}
+  ${body}${footer}
 </sl-card>`,
   imports: ["import 'src/components/card/card.js'"],
   id: 'card',

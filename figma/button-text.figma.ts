@@ -14,9 +14,10 @@ function text(...layerNames: string[]) {
 }
 
 const disabled = instance.getEnum('State', { default: false, hover: false, active: false, disabled: true });
+const size = instance.getEnum('Size', { small: 'small', medium: 'medium', large: 'large' });
 
 export default {
-  example: figma.html`<sl-button variant="text"${disabled ? ' disabled' : ''}>${text('Button')}</sl-button>`,
+  example: figma.html`<sl-button variant="text" size="${size}"${disabled ? ' disabled' : ''}>${text('Button')}</sl-button>`,
   imports: ["import 'src/components/button/button.js'"],
   id: 'button-text',
   metadata: { nestable: true }

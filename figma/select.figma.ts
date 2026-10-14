@@ -15,9 +15,14 @@ function text(...layerNames: string[]) {
 
 const size = instance.getEnum('Size', { small: 'small', medium: 'medium', large: 'large' });
 const disabled = instance.getEnum('State', { default: false, hover: false, focus: false, disabled: true });
+const filled = instance.getBoolean('Filled');
+const pill = instance.getBoolean('Pill');
+const clearable = instance.getBoolean('Clearable');
+const multiple = instance.getBoolean('Multiple');
+const open = instance.getBoolean('Open');
 
 export default {
-  example: figma.html`<sl-select size="${size}" placeholder="${text('Select an option')}"${disabled ? ' disabled' : ''}>
+  example: figma.html`<sl-select size="${size}" placeholder="${text('Select an option')}"${filled ? ' filled' : ''}${pill ? ' pill' : ''}${clearable ? ' clearable' : ''}${multiple ? ' multiple' : ''}${open ? ' open' : ''}${disabled ? ' disabled' : ''}>
   <!-- sl-option elements -->
 </sl-select>`,
   imports: ["import 'src/components/select/select.js'"],

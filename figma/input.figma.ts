@@ -16,9 +16,31 @@ function text(...layerNames: string[]) {
 const size = instance.getEnum('Size', { small: 'small', medium: 'medium', large: 'large' });
 const disabled = instance.getEnum('State', { default: false, hover: false, focus: false, disabled: true });
 const pill = instance.getBoolean('Pill');
+const filled = instance.getBoolean('Filled');
+const clearable = instance.getBoolean('Clearable');
+const passwordToggle = instance.getBoolean('Password Toggle');
+
+const showLabel = instance.getBoolean('Show Label');
+const label = showLabel ? text('Label') : '';
+const showHelpText = instance.getBoolean('Show Help Text');
+const helpText = showHelpText ? text('Help text') : '';
+
+const showPrefix = instance.getBoolean('Show Prefix');
+const prefix = showPrefix ? instance.getInstanceSwap('Prefix') : null;
+let prefixCode;
+if (prefix && prefix.type === 'INSTANCE') {
+  prefixCode = prefix.executeTemplate().example;
+}
+
+const showSuffix = instance.getBoolean('Show Suffix');
+const suffix = showSuffix ? instance.getInstanceSwap('Suffix') : null;
+let suffixCode;
+if (suffix && suffix.type === 'INSTANCE') {
+  suffixCode = suffix.executeTemplate().example;
+}
 
 export default {
-  example: figma.html`<sl-input size="${size}" placeholder="${text('Placeholder text')}"${pill ? ' pill' : ''}${disabled ? ' disabled' : ''}></sl-input>`,
+  example: figma.html`<sl-input size="${size}"${label ? ` label="${label}"` : ''} placeholder="${text('Placeholder text')}"${helpText ? ` help-text="${helpText}"` : ''}${pill ? ' pill' : ''}${filled ? ' filled' : ''}${clearable ? ' clearable' : ''}${passwordToggle ? ' type="password" password-toggle' : ''}${disabled ? ' disabled' : ''}>${prefixCode ? figma.html`<span slot="prefix">${prefixCode}</span>` : ''}${suffixCode ? figma.html`<span slot="suffix">${suffixCode}</span>` : ''}</sl-input>`,
   imports: ["import 'src/components/input/input.js'"],
   id: 'input',
   metadata: { nestable: true }

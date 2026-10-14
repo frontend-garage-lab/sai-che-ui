@@ -15,8 +15,22 @@ function text(...layerNames: string[]) {
 
 const isLink = instance.getEnum('Type', { link: true, current: false });
 
+const showPrefix = instance.getBoolean('Show Prefix');
+const prefix = showPrefix ? instance.getInstanceSwap('Prefix') : null;
+let prefixCode;
+if (prefix && prefix.type === 'INSTANCE') {
+  prefixCode = prefix.executeTemplate().example;
+}
+
+const showSuffix = instance.getBoolean('Show Suffix');
+const suffix = showSuffix ? instance.getInstanceSwap('Suffix') : null;
+let suffixCode;
+if (suffix && suffix.type === 'INSTANCE') {
+  suffixCode = suffix.executeTemplate().example;
+}
+
 export default {
-  example: figma.html`<sl-breadcrumb-item${isLink ? ' href="#"' : ''}>${text('Documents', 'Contract_001.pdf')}</sl-breadcrumb-item>`,
+  example: figma.html`<sl-breadcrumb-item${isLink ? ' href="#"' : ''}>${prefixCode ? figma.html`<span slot="prefix">${prefixCode}</span>` : ''}${text('Documents', 'Contract_001.pdf')}${suffixCode ? figma.html`<span slot="suffix">${suffixCode}</span>` : ''}</sl-breadcrumb-item>`,
   imports: ["import 'src/components/breadcrumb-item/breadcrumb-item.js'"],
   id: 'breadcrumb-item',
   metadata: { nestable: true }

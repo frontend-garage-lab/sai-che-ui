@@ -20,7 +20,9 @@ const checked = instance.getEnum('State', {
   checked: true,
   'checked-hover': true,
   disabled: false,
-  'disabled-checked': true
+  'disabled-checked': true,
+  indeterminate: false,
+  'indeterminate-hover': false
 });
 const disabled = instance.getEnum('State', {
   unchecked: false,
@@ -28,11 +30,25 @@ const disabled = instance.getEnum('State', {
   checked: false,
   'checked-hover': false,
   disabled: true,
-  'disabled-checked': true
+  'disabled-checked': true,
+  indeterminate: false,
+  'indeterminate-hover': false
 });
+const indeterminate = instance.getEnum('State', {
+  unchecked: false,
+  'unchecked-hover': false,
+  checked: false,
+  'checked-hover': false,
+  disabled: false,
+  'disabled-checked': false,
+  indeterminate: true,
+  'indeterminate-hover': true
+});
+const showHelpText = instance.getBoolean('Help Text');
+const helpText = showHelpText ? text('Help text') : '';
 
 export default {
-  example: figma.html`<sl-checkbox size="${size}"${checked ? ' checked' : ''}${disabled ? ' disabled' : ''}>${text('Checkbox label')}</sl-checkbox>`,
+  example: figma.html`<sl-checkbox size="${size}"${checked ? ' checked' : ''}${indeterminate ? ' indeterminate' : ''}${disabled ? ' disabled' : ''}${helpText ? ` help-text="${helpText}"` : ''}>${text('Checkbox label')}</sl-checkbox>`,
   imports: ["import 'src/components/checkbox/checkbox.js'"],
   id: 'checkbox',
   metadata: { nestable: true }

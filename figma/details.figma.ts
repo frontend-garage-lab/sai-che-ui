@@ -13,10 +13,11 @@ function text(...layerNames: string[]) {
   return '';
 }
 
-const open = instance.getEnum('State', { collapsed: false, expanded: true });
+const open = instance.getEnum('State', { collapsed: false, expanded: true, disabled: false });
+const disabled = instance.getEnum('State', { collapsed: false, expanded: false, disabled: true });
 
 export default {
-  example: figma.html`<sl-details summary="${text('Document metadata')}"${open ? ' open' : ''}>
+  example: figma.html`<sl-details summary="${text('Document metadata')}"${open ? ' open' : ''}${disabled ? ' disabled' : ''}>
   ${text('Author, revision, and approval history go here.')}
 </sl-details>`,
   imports: ["import 'src/components/details/details.js'"],

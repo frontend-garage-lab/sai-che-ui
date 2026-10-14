@@ -13,8 +13,12 @@ function text(...layerNames: string[]) {
   return '';
 }
 
+const showLabel = instance.getBoolean('Show Label');
+const label = showLabel ? text('Upload documents') : '';
+const disabled = instance.getEnum('State', { default: false, dragging: false, disabled: true });
+
 export default {
-  example: figma.html`<sl-file-drop hint="${text('PDF, DOCX up to 10MB')}"></sl-file-drop>`,
+  example: figma.html`<sl-file-drop hint="${text('PDF, DOCX up to 10MB')}"${label ? ` label="${label}"` : ''}${disabled ? ' disabled' : ''}></sl-file-drop>`,
   imports: ["import 'src/components/file-drop/file-drop.js'"],
   id: 'file-drop',
   metadata: { nestable: true }

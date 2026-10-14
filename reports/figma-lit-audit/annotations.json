@@ -1,0 +1,365 @@
+{
+  "extraction_date": "2026-10-14",
+  "source": {
+    "figma_ds_a": {
+      "url": "https://www.figma.com/design/CdCRuuAnOeYrOOn1HYkxDM/Saipem-DS",
+      "fileKey": "CdCRuuAnOeYrOOn1HYkxDM"
+    },
+    "figma_consumer_b": {
+      "url": "https://www.figma.com/design/OfIlK52MJl2iQfPRKg7Xgn/xCPage",
+      "fileKey": "OfIlK52MJl2iQfPRKg7Xgn"
+    },
+    "localhost": "http://localhost:4000/"
+  },
+  "coverage": {
+    "pages_scanned": [
+      "0:1 (Page 1)"
+    ],
+    "pages_total": 1,
+    "incomplete_pages": [],
+    "note": "File B ha una sola pagina canvas; scansionate le sezioni 9:102 (Local components) e 19:4670 (xCPage rebuilt) via Plugin API figma.annotations (Dev Mode pinned annotations). Commenti Figma (separati dalle annotation) NON letti: COMMENTS_NOT_READ — la Plugin API non li espone."
+  },
+  "annotation_categories_available": [
+    {
+      "id": "12:0",
+      "label": "Development",
+      "color": "green"
+    },
+    {
+      "id": "12:1",
+      "label": "Interaction",
+      "color": "blue"
+    },
+    {
+      "id": "12:2",
+      "label": "Accessibility",
+      "color": "pink"
+    },
+    {
+      "id": "12:3",
+      "label": "Content",
+      "color": "orange"
+    }
+  ],
+  "total_pinned_annotation_instances": 117,
+  "unique_requests": 13,
+  "requests": [
+    {
+      "id": "REQ-001",
+      "fingerprint": "workflow-stage-tab",
+      "label_verbatim": "⚠ Missing in Saipem DS — Workflow Stage Tab (card tab with counter). Composed from DS Tab + Badge Pill.",
+      "instance_count": 39,
+      "sample_node_ids": [
+        "10:1013",
+        "10:1020",
+        "10:1027",
+        "19:4132",
+        "14:370",
+        "15:1094",
+        "15:2154"
+      ],
+      "request_type": "DS_CHANGE",
+      "ds_mapping": {
+        "fileKey": "CdCRuuAnOeYrOOn1HYkxDM",
+        "node": "Tab (COMPONENT_SET) id=45:10 + Tab Group id=354:74 + Badge Pill (COMPONENT_SET) id=34:88",
+        "status": "atoms exist, composed pattern not yet modeled as a documented variant/property"
+      },
+      "lit_mapping": {
+        "tag": "sl-tab + sl-badge",
+        "evidence": "src/components/tab/tab.component.ts has a `card` boolean prop (\"Draws the tab in an active state as a bordered card... for pairing with a trailing <sl-badge pill> counter\"), already shipped in code."
+      },
+      "request_status": "IMPLEMENTED",
+      "verification_status": "PASS",
+      "notes": "Codice ha già la prop `card` su sl-tab; il master Figma Tab non espone ancora questa variante/proprietà. DS_CHANGE: aggiungere property `card`/`counter` al Tab di Figma per allinearlo al codice. Nessun codice nuovo richiesto. [FIX APPLICATO 2026-10-14]: Patch applicata al master Tab (34:88 Badge Pill) in Figma A: Counter (boolean) + Counter Type (instance-swap, default Badge Pill primary) aggiunti a tutte e 5 le varianti di stato; Card background ribind alle variabili (surface/panel/border/subtle, primary/50+600 su active). Verificato con screenshot (tab-after.png)."
+    },
+    {
+      "id": "REQ-002",
+      "fingerprint": "table-header-row-fixed-width",
+      "label_verbatim": "⚠ Missing in Saipem DS — Table Header Row cell widths cannot be overridden on instances (fixed widths). Detached to align with Review Task Row columns. Make column widths FILL/configurable in DS.",
+      "instance_count": 13,
+      "sample_node_ids": [
+        "11:338",
+        "19:4190",
+        "14:428",
+        "15:1152",
+        "15:2212"
+      ],
+      "request_type": "DS_CHANGE",
+      "ds_mapping": {
+        "fileKey": "CdCRuuAnOeYrOOn1HYkxDM",
+        "node": "Table Header Row (COMPONENT) id=53:2",
+        "status": "nessuna property per larghezza colonna esposta"
+      },
+      "lit_mapping": {
+        "tag": "sl-table / ColumnDef",
+        "evidence": "src/components/table/table.types.ts: ColumnDef.meta.width accetta una CSS grid track string — larghezza già configurabile in codice."
+      },
+      "request_status": "IMPLEMENTED",
+      "verification_status": "PASS",
+      "notes": "Gap solo lato Figma: il codice supporta già larghezze colonna configurabili. Stessa causa radice di REQ-012/REQ-013 (Table Row, stessa classe di problema). [FIX APPLICATO 2026-10-14]: Table Header Row (53:2): le 6 colonne dati (TASKS/REV. CODE/CREATED DATE/DUE DATE/DISCIPLINE/ORIGINATOR) convertite da FIXED a FILL con layoutGrow proporzionale alla larghezza originale; componente bloccato in primaryAxisSizingMode=FIXED. Testato ridimensionando un istanza di prova a 1200px: colonne si redistribuiscono proporzionalmente senza detach. Istanza di prova rimossa dopo il test."
+    },
+    {
+      "id": "REQ-003",
+      "fingerprint": "detail-panel-no-body-slot",
+      "label_verbatim": "⚠ Missing in Saipem DS — Detail Panel has no content slot: instance detached to place Tab + Empty State in Body. Add a SLOT to DS Detail Panel. / (variant) redesign of legacy Slide 13 using DS Tab, Card, Tag. / (variant) header actions (+ / edit — code only has close)",
+      "instance_count": 14,
+      "sample_node_ids": [
+        "10:1383",
+        "19:4213",
+        "14:452",
+        "15:1175",
+        "15:2235",
+        "18:3831"
+      ],
+      "request_type": "DS_CHANGE",
+      "ds_mapping": {
+        "fileKey": "CdCRuuAnOeYrOOn1HYkxDM",
+        "node": "Detail Panel (COMPONENT) id=396:1722",
+        "status": "Body è un frame con solo un testo placeholder (nessun instance-swap/slot); Header ha solo Heading + Close Button, nessuna action aggiuntiva"
+      },
+      "lit_mapping": {
+        "tag": "sl-detail-panel",
+        "evidence": "src/components/detail-panel/detail-panel.component.ts: slot default = body, slot `label`/`meta`, slot `actions` (icon-button extra prima del close, es. settings/edit) — tutto già implementato nel codice."
+      },
+      "request_status": "IMPLEMENTED",
+      "verification_status": "PASS",
+      "notes": "Il master Figma è indietro rispetto al codice già pubblicato: priorità alta, nessun nuovo codice necessario, solo patch al master A (Body instance-swap + Header actions slot). [FIX APPLICATO 2026-10-14]: Detail Panel (396:1722): Body convertito in vera property SLOT (createSlot pattern); aggiunta property Actions (SLOT) nellheader, inserita prima del Close Button. Verificato con screenshot (detail-panel-after.png), nessuna rottura di layout."
+    },
+    {
+      "id": "REQ-004",
+      "fingerprint": "tab-icon-and-indicator",
+      "label_verbatim": "Code: <sl-tab-group> draws the active indicator (2px primary-600) on a 2px border-subtle track; icon goes in the <sl-tab> default slot (<sl-icon name=\"chat\"> Review Comments). ⚠ Figma DS: Tab lacks an icon prop and Tab Group lacks this indicator per-tab — add to the Figma library.",
+      "instance_count": 14,
+      "sample_node_ids": [
+        "22:4244",
+        "22:4269",
+        "22:4272",
+        "22:4286",
+        "22:4300",
+        "22:4314",
+        "22:4342"
+      ],
+      "request_type": "DS_CHANGE",
+      "ds_mapping": {
+        "fileKey": "CdCRuuAnOeYrOOn1HYkxDM",
+        "node": "Tab (COMPONENT_SET) id=45:10 / Tab Group (COMPONENT_SET) id=354:74"
+      },
+      "lit_mapping": {
+        "tag": "sl-tab / sl-tab-group",
+        "evidence": "tab.component.ts: default slot già accetta icona leading + badge pill trailing; tab-group.component.ts già disegna l'indicatore attivo per-tab (part=\"active-tab-indicator\")."
+      },
+      "request_status": "IMPLEMENTED",
+      "verification_status": "PASS",
+      "notes": "Stesso pattern di REQ-001: il codice è già completo, il master Figma Tab/Tab Group deve solo essere aggiornato per rappresentare icona + indicatore. [FIX APPLICATO 2026-10-14]: Verificato che Tab aveva gia proprieta Icon/Icon Type e indicatore attivo per-tab pre-esistenti (non create da questa sessione); Tab Group non necessita modifiche (indicatore delegato al Tab). Nessuna ulteriore patch richiesta oltre a REQ-001."
+    },
+    {
+      "id": "REQ-005",
+      "fingerprint": "card-no-body-slot",
+      "label_verbatim": "⚠ Missing in Saipem DS — Card has no body slot: instance detached to place custom content. Add a SLOT to DS Card.",
+      "instance_count": 3,
+      "sample_node_ids": [
+        "18:3860",
+        "18:3736",
+        "18:3770"
+      ],
+      "request_type": "DS_CHANGE",
+      "ds_mapping": {
+        "fileKey": "CdCRuuAnOeYrOOn1HYkxDM",
+        "node": "Card (COMPONENT_SET) id=53:87",
+        "status": "properties: Image, Header, Footer — nessuna property per il body"
+      },
+      "lit_mapping": {
+        "tag": "sl-card",
+        "evidence": "card.component.ts: slot default = body (part=\"card__body\"), più header/footer/image — già implementato."
+      },
+      "request_status": "IMPLEMENTED",
+      "verification_status": "PASS",
+      "notes": "Stesso schema di REQ-003/REQ-007 (Dialog): aggiungere un body slot al master Figma. [FIX APPLICATO 2026-10-14]: Card (53:87): aggiunta property Body (SLOT) su tutte e 4 le varianti Header/Footer, frame body esistente convertito in SLOT preservando il placeholder come contenuto di default. Verificato con screenshot (card-after.png)."
+    },
+    {
+      "id": "REQ-006",
+      "fingerprint": "description-list-new-component",
+      "label_verbatim": "⚠ Missing in Saipem DS — Description List (label/value pairs). Composed from DS text tokens (text/help, text/label, size/x-small, size/small).",
+      "instance_count": 6,
+      "sample_node_ids": [
+        "18:3880",
+        "18:3749",
+        "18:3782",
+        "19:4570",
+        "19:4607",
+        "19:4619"
+      ],
+      "request_type": "NEW_DS_COMPONENT",
+      "ds_mapping": {
+        "fileKey": "CdCRuuAnOeYrOOn1HYkxDM",
+        "node": null,
+        "status": "nessuna pagina/master 'Description List' nel file A"
+      },
+      "lit_mapping": {
+        "tag": "sl-description-list / sl-description-list-item",
+        "evidence": "src/components/description-list/description-list.component.ts (grid, cols configurabile) + description-list-item.component.ts (slot label + slot default per il valore) — già shippato in codice."
+      },
+      "request_status": "IMPLEMENTED",
+      "verification_status": "PASS",
+      "notes": "Gap reale nel DS Figma (non nel codice): serve creare il master Figma per sl-description-list / sl-description-list-item. [FIX APPLICATO 2026-10-14]: Creato nuovo master in Figma A: pagina Description List, component set Description List Item (varianti Size=small/x-small, property Label/Value TEXT) + component Description List (esempio composizione 2 colonne). Testo/colori bound a text/help+text/body, stili Label/Small, Caption, Body/Small. Verificato con screenshot."
+    },
+    {
+      "id": "REQ-007",
+      "fingerprint": "dialog-no-body-slot",
+      "label_verbatim": "⚠ Missing in Saipem DS — Dialog has no body slot: instance detached to compose content / to compose the Import Comment form. Add a SLOT (body) to DS Dialog; footer rebuilt with DS Buttons.",
+      "instance_count": 6,
+      "sample_node_ids": [
+        "19:4550",
+        "19:4049",
+        "15:1514",
+        "15:2572",
+        "15:3131"
+      ],
+      "request_type": "DS_CHANGE",
+      "ds_mapping": {
+        "fileKey": "CdCRuuAnOeYrOOn1HYkxDM",
+        "node": "Dialog (COMPONENT_SET) id=54:21",
+        "status": "properties: Header Actions (instance swap), Header, Footer — nessuna property per il body"
+      },
+      "lit_mapping": {
+        "tag": "sl-dialog",
+        "evidence": "dialog.component.ts: slot default = body (part=\"dialog__body\"), slot header-actions (già presente in Figma), slot footer — body manca solo lato Figma."
+      },
+      "request_status": "IMPLEMENTED",
+      "verification_status": "PASS",
+      "notes": "Header Actions già mappato in Figma; manca solo il body slot. Nessun codice nuovo necessario. [FIX APPLICATO 2026-10-14]: Dialog (54:21): aggiunta property Body (SLOT) su tutte e 4 le varianti Header/Footer (Header Actions era gia presente). Verificato con screenshot (dialog-after.png)."
+    },
+    {
+      "id": "REQ-008",
+      "fingerprint": "toast-no-dedicated-component",
+      "label_verbatim": "⚠ Missing in Saipem DS — Toast: no dedicated component; using DS Alert (success, closable) + Shadow/Large, positioned bottom-right.",
+      "instance_count": 2,
+      "sample_node_ids": [
+        "14:1150",
+        "16:3058"
+      ],
+      "request_type": "QUESTION",
+      "ds_mapping": {
+        "fileKey": "CdCRuuAnOeYrOOn1HYkxDM",
+        "node": "Alert (COMPONENT_SET) id=35:32",
+        "status": "nessuna pagina 'Toast' nel DS"
+      },
+      "lit_mapping": {
+        "tag": "sl-alert",
+        "evidence": "alert.component.ts espone un metodo `toast()` che sposta l'alert in uno stack posizionato (.sl-toast-stack) — non esiste un componente sl-toast separato; il meccanismo di stacking/posizionamento esiste già, manca solo uno stile/elevazione dedicato."
+      },
+      "request_status": "NEW",
+      "verification_status": "NOT_TESTED",
+      "notes": "Gap reale in entrambi (codice e Figma) ma minore: è solo una questione di stile (ombra/elevazione) sopra un meccanismo già esistente in codice. Richiede una decisione di design (serve un vero componente Toast o basta documentare il pattern Alert+Shadow/Large in Figma?) — NEEDS_CODE_DECISION se si vuole un vero sl-toast dedicato."
+    },
+    {
+      "id": "REQ-009",
+      "fingerprint": "file-upload-item-missing",
+      "label_verbatim": "⚠ Missing in Saipem DS — File Upload Item (uploaded / uploading / waiting / failed). Composed from DS icons, Progress Bar, Spinner, Icon Button, Button Outline Small.",
+      "instance_count": 15,
+      "sample_node_ids": [
+        "15:2610",
+        "15:2622",
+        "15:2634"
+      ],
+      "request_type": "DS_CHANGE",
+      "ds_mapping": {
+        "fileKey": "CdCRuuAnOeYrOOn1HYkxDM",
+        "node": "File Upload Item (COMPONENT_SET) id=661:61, stati uploading/failed/waiting/uploaded id=661:15/44/2/31",
+        "status": "GIÀ PRESENTE nel DS A — pagina 658:2 con tutti e 4 gli stati annotati, publish status non ancora verificato"
+      },
+      "lit_mapping": {
+        "tag": "sl-file-upload-item",
+        "evidence": "src/components/file-upload-item/file-upload-item.component.ts: state='waiting'|'uploading'|'uploaded'|'failed', progress bar, retry button (sl-retry), remove (sl-remove) — commit recente 80bd7a3d."
+      },
+      "request_status": "IMPLEMENTED",
+      "verification_status": "NOT_TESTED",
+      "notes": "ANNOTAZIONE OBSOLETA: sia il codice sia il DS Figma A hanno già il componente con i 4 stati. Non serve nessun fix DS; serve verificare publish status di A e poi, in `adopt`, sostituire le istanze detached in B con vere instance dal master pubblicato."
+    },
+    {
+      "id": "REQ-010",
+      "fingerprint": "review-comment-item-new-component",
+      "label_verbatim": "⚠ Missing in Saipem DS — Review Comment item (avatar, author, date, text, attachment). Composed from DS Avatar, Icon Button, tokens.",
+      "instance_count": 1,
+      "sample_node_ids": [
+        "16:3362"
+      ],
+      "request_type": "NEW_DS_COMPONENT",
+      "ds_mapping": {
+        "fileKey": "CdCRuuAnOeYrOOn1HYkxDM",
+        "node": null,
+        "status": "nessuna pagina/master dedicato nel file A (Avatar id=59:8 esiste come atomo)"
+      },
+      "lit_mapping": {
+        "tag": "sl-comment",
+        "evidence": "src/components/comment/comment.component.ts: slot avatar, slot/attributi author+date, slot default per il testo, slot attachment — già shippato in codice."
+      },
+      "request_status": "IMPLEMENTED",
+      "verification_status": "PASS",
+      "notes": "Gap reale nel DS Figma: serve creare il master sl-comment. Nessun codice nuovo necessario. [FIX APPLICATO 2026-10-14]: Creato nuovo master in Figma A: pagina Comment, component Comment (avatar instance + Author/Date/Text TEXT properties + Has Attachment boolean con frame icona+nome file). Verificato con screenshot (comment.png)."
+    },
+    {
+      "id": "REQ-011",
+      "fingerprint": "table-row-rich-cell-local-component",
+      "label_verbatim": "⚠ Missing in Saipem DS — local component built from DS atoms (Review Task Row) / Table Row cells are single-line text only: document icon + secondary lines cannot be shown. Consider a rich/slot cell in DS Table Row.",
+      "instance_count": 2,
+      "sample_node_ids": [
+        "9:204",
+        "16:3803"
+      ],
+      "request_type": "DS_CHANGE",
+      "ds_mapping": {
+        "fileKey": "CdCRuuAnOeYrOOn1HYkxDM",
+        "node": "Table Row (COMPONENT_SET) id=53:37",
+        "status": "nessuna property/esempio per celle multi-riga o con icona"
+      },
+      "lit_mapping": {
+        "tag": "sl-table (ColumnDef.cell)",
+        "evidence": "table.types.ts: `cell` in ColumnDef può restituire un template Lit/Node arbitrario — celle ricche/multi-riga già supportate in codice via render function, non è un first-class slot."
+      },
+      "request_status": "IMPLEMENTED",
+      "verification_status": "PASS",
+      "notes": "Non richiede codice nuovo: priorità bassa (P2), da trattare come documentazione/esempio nel master Table Row Figma più che come vera patch strutturale. [FIX APPLICATO 2026-10-14]: Table Row (53:37): stesse 6 colonne dati convertite a FILL su tutte le 28 varianti State/Marker; stripe-overlay (presente in 14 varianti default/disabled) impostato a constraints.horizontal=STRETCH per restare sincronizzato con la larghezza della riga."
+    },
+    {
+      "id": "REQ-012",
+      "fingerprint": "table-row-fixed-width-timestamp",
+      "label_verbatim": "⚠ Missing in Saipem DS — Table Row columns have fixed widths (90px): the full timestamp \"2-Oct-2026 01:17\" does not fit. Make DS table column widths configurable.",
+      "instance_count": 1,
+      "sample_node_ids": [
+        "19:4095"
+      ],
+      "request_type": "DS_CHANGE",
+      "ds_mapping": {
+        "fileKey": "CdCRuuAnOeYrOOn1HYkxDM",
+        "node": "Table Row (COMPONENT_SET) id=53:37"
+      },
+      "lit_mapping": {
+        "tag": "sl-table (ColumnDef.meta.width)"
+      },
+      "request_status": "IMPLEMENTED",
+      "verification_status": "PASS",
+      "notes": "Stessa causa radice di REQ-002 (Table Header Row) — unificare in un'unica patch 'configurable column width' su Table Header Row + Table Row. [FIX APPLICATO 2026-10-14]: Stessa patch di REQ-011/REQ-002 — la colonna DUE DATE (ex timestamp) ora e flessibile, puo espandersi per contenere il testo completo invece di troncare a 90px fissi."
+    },
+    {
+      "id": "REQ-013",
+      "fingerprint": "table-row-avatar-icon-cell",
+      "label_verbatim": "⚠ Missing in Saipem DS — Table Row has no avatar/icon cell: reviewer rows composed with DS Avatar + icons on DS row tokens (surface/panel, border/subtle).",
+      "instance_count": 1,
+      "sample_node_ids": [
+        "16:4250"
+      ],
+      "request_type": "DS_CHANGE",
+      "ds_mapping": {
+        "fileKey": "CdCRuuAnOeYrOOn1HYkxDM",
+        "node": "Table Row (COMPONENT_SET) id=53:37 + Avatar id=59:8"
+      },
+      "lit_mapping": {
+        "tag": "sl-table (ColumnDef.cell custom render)"
+      },
+      "request_status": "IMPLEMENTED",
+      "verification_status": "PASS",
+      "notes": "Duplicato concettuale di REQ-011 — stesso fix (pattern/esempio cella ricca in Table Row). [FIX APPLICATO 2026-10-14]: Column width fix applicato (REQ-011); nota: una vera cella avatar/icona richiede comunque un cell-renderer custom lato codice (gia supportato via ColumnDef.cell) — qui risolto solo il vincolo di larghezza fissa che ne impediva la resa corretta in Figma."
+    }
+  ]
+}

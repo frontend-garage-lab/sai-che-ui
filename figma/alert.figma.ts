@@ -21,9 +21,10 @@ const variant = instance.getEnum('Variant', {
   warning: 'warning',
   danger: 'danger'
 });
+const closable = instance.getBoolean('Closable');
 
 export default {
-  example: figma.html`<sl-alert variant="${variant}" open>${text('This is a standard alert. You can put any information you want here.')}</sl-alert>`,
+  example: figma.html`<sl-alert variant="${variant}" open${closable ? ' closable' : ''}>${text('This is a standard alert. You can put any information you want here.')}</sl-alert>`,
   imports: ["import 'src/components/alert/alert.js'"],
   id: 'alert',
   metadata: { nestable: true }

@@ -16,12 +16,31 @@ function text(...layerNames: string[]) {
 const active = instance.getEnum('State', { default: false, hover: false, active: true, disabled: false });
 const disabled = instance.getEnum('State', { default: false, hover: false, active: false, disabled: true });
 const card = instance.getBoolean('Card');
+const closable = instance.getBoolean('Closable');
 const label = text('Tab label');
 const panel = label.toLowerCase().replace(/\s+/g, '-');
 
+const hasIcon = instance.getBoolean('Icon');
+const icon = hasIcon ? instance.getInstanceSwap('Icon Type') : null;
+const iconName = icon && icon.type === 'INSTANCE' ? icon.name.replace(/^Icon\//, '') : null;
+const iconCode = iconName ? figma.html`<sl-icon name="${iconName}"></sl-icon>\n    ` : '';
+
+const hasCounter = instance.getBoolean('Counter');
+const counter = hasCounter ? instance.getInstanceSwap('Counter Type') : null;
+let counterCode;
+if (counter && counter.type === 'INSTANCE') {
+  counterCode = counter.executeTemplate().example;
+}
+
 export default {
-  example: figma.html`<sl-tab slot="nav" panel="${panel}"${active ? ' active' : ''}${disabled ? ' disabled' : ''}${card ? ' card' : ''}>${label}</sl-tab>`,
-  imports: ["import 'src/components/tab/tab.js'"],
+  example: figma.html`<sl-tab slot="nav" panel="${panel}"${active ? ' active' : ''}${disabled ? ' disabled' : ''}${card ? ' card' : ''}${closable ? ' closable' : ''}>
+    ${iconCode}${label}${counterCode ? figma.html`\n    ${counterCode}` : ''}
+  </sl-tab>`,
+  imports: [
+    "import 'src/components/tab/tab.js'",
+    "import 'src/components/icon/icon.js'",
+    "import 'src/components/badge/badge.js'"
+  ],
   id: 'tab',
   metadata: { nestable: true }
 };

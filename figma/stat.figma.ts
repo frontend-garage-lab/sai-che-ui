@@ -23,8 +23,14 @@ const variant = instance.getEnum('Variant', {
 });
 const selected = instance.getEnum('State', { default: false, selected: true });
 
+const icon = instance.getInstanceSwap('Icon');
+let iconCode;
+if (icon && icon.type === 'INSTANCE') {
+  iconCode = icon.executeTemplate().example;
+}
+
 export default {
-  example: figma.html`<sl-stat variant="${variant}" count="${text('128')}"${selected ? ' selected' : ''}>${text('Label')}</sl-stat>`,
+  example: figma.html`<sl-stat variant="${variant}" count="${text('128')}"${selected ? ' selected' : ''}>${iconCode ? figma.html`<span slot="prefix">${iconCode}</span>` : ''}${text('Label')}</sl-stat>`,
   imports: ["import 'src/components/stat/stat.js'"],
   id: 'stat',
   metadata: { nestable: true }
