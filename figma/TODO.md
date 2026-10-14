@@ -218,15 +218,92 @@ segnalato — una riga che mostra lo stato di upload di un singolo file, con 4 s
   barra di progresso) non comparivano nel frame — dedotti dall'annotazione, da validare col design una volta che
   esistono nel file Figma.
 
-Il gap resta tutto lato Figma — nessun componente "File Upload Item" esiste nel file `Saipem-DS`:
+**Risolto lato Figma (2026-10-13)**: creato da zero il componente `File Upload Item` nella libreria Saipem-DS, su una
+nuova pagina dedicata "File Upload Item" (`658:2`, stessa convenzione una-pagina-per-componente già in uso nel file).
 
-1. Creare il componente nella libreria Saipem-DS con variant `State` (`waiting` / `uploading` / `uploaded` / `failed`),
-   composto da istanze swap di Icon, Progress Bar e Spinner, più Icon Button e Button Outline Small, rispecchiando
-   l'implementazione sopra.
-2. Aggiungere il relativo template `figma/file-upload-item.figma.ts` una volta che il componente esiste (stesso
-   pattern di `tab.figma.ts` / `badge-pill.figma.ts`: leggere `State`/testo e generare l'HTML `<sl-file-upload-item>`).
-3. Ricollegare le istanze "File item · done/failed" in `xCPage` al nuovo componente DS.
-4. Pubblicazione: CLI con `FIGMA_ACCESS_TOKEN`, non MCP (vedi [[figma-code-connect-todo]]).
+1. ~~Creare il componente nella libreria Saipem-DS con variant `State`...~~ **Fatto**: component set `File Upload Item`
+   (node `661:61`) con singola proprietà `State` (`waiting`/`uploading`/`uploaded`/`failed`, minuscolo come `Tab`),
+   4 varianti (`661:2`/`661:15`/`661:31`/`661:44`). Composizione via Plugin API (`use_figma`), stessa tecnica già
+   documentata altrove in questo file (istanze reali dei componenti DS, variabili condivise, overlay/visibilità
+   per stato invece di layout paralleli):
+   - Riga in auto-layout orizzontale (hug, non fixed — stesso fix applicato a `Table Row`), `align-items: center`,
+     padding/gap/radius legati alle stesse variabili `Spacing`/`Radius` usate da `Alert` (`x-small`/`small`/`medium`).
+     Sfondo/bordo legati a `surface/panel`+`border/subtle` (base, come da `--sl-panel-background-color`/
+     `--sl-panel-border-color` in `light.css`) per `waiting`/`uploading`, `success/50`+`success/200` per `uploaded`,
+     `danger/50`+`danger/200` per `failed` — stesse variabili `Palette` già usate da `Alert`/`Card`.
+   - Icona di stato: istanza reale di `Icon/hourglass-split` (waiting), `Icon/check2-circle` (uploaded, già esistente,
+     `214:6`), `Icon/exclamation-octagon` (failed, già esistente, `214:16`), o di `Spinner` (`60:16`, ridimensionato
+     16×16) per `uploading` — una per variante (nessun instance-swap formale: Figma non espone condizionalmente due
+     tipi di componente diversi su una proprietà singola senza esplodere in varianti aggiuntive, stessa limitazione
+     già annotata per "Decision"/"Quick Info" su `Table Row`). Colore dell'icona ricolorato per istanza (override di
+     `fills`/`strokes` sui vettori nidificati) con `neutral/600` (waiting), `success/600` (uploaded), `danger/600`
+     (failed), stesso pattern di override visto sull'icona di `Alert` (success).
+   - Colonna contenuto: testo filename (bold, `text/label`, dimensione `size/small`) + testo meta (`size/x-small`,
+     colore `text/help` di base, `success/600`/`danger/600` per gli stati corrispondenti) + istanza di `Progress Bar`
+     (`Value=60`, `60:52`) visibile solo nella variante `uploading`.
+   - Pulsante Retry: istanza di `Button Outline Small` variante `danger`/`default` (`198:168`), testo impostato a
+     "Retry", presente solo nella variante `failed`.
+   - Pulsante Remove: istanza di `Icon Button` variante `default`/`default` (`47:2`) con la proprietà `Icon`
+     (instance-swap) ripuntata su `Icon/trash`, presente in tutte e 4 le varianti.
+2. ~~Icone Bootstrap mancanti~~ **Create**: `Icon/hourglass-split` (`656:4`) e `Icon/trash` (`656:8`) non esistevano
+   nel set icone (confermato via `search_design_system` scoped alla library Saipem-DS) — create importando l'SVG reale
+   da `node_modules/bootstrap-icons/icons/{hourglass-split,trash}.svg` via `figma.createNodeFromSvg`, fill legato alla
+   stessa variabile `text/body` (`27:11`) usata dalle altre icone, stesso procedimento già documentato per
+   `Icon/arrow-clockwise`. Verificate via screenshot: glifi leggibili e correttamente colorati.
+3. ~~Aggiungere `figma/file-upload-item.figma.ts`~~ **Fatto**: legge `State` (enum) e i layer di testo filename/meta
+   (letti dinamicamente, non hardcoded) e genera `<sl-file-upload-item state="..." filename="..." meta="...">`.
+   Validato con `npx tsc -p figma` e `npx figma connect parse` (nessun errore).
+4. **Pubblicato** con `npx figma connect publish` (`FIGMA_ACCESS_TOKEN`) — `SlFileUploadItem` ora mappato al node
+   `661:61` (verificato nell'output del CLI).
+
+Non fatto in questa passata (fuori scope, nessun nodo `xCPage` noto per questo componente nel file attuale): il
+collegamento delle istanze "File item · done/failed" in `xCPage` al nuovo componente DS, visto che il frame
+originale citato in cima a questa sezione (`xCPage` `15:2150`/`15:2585`) non è stato ritrovato come pagina del file
+`Saipem-DS` in questa sessione — se esiste in un file/branch diverso, ricollegare le istanze lì una volta identificato.
+
+**Fix (2026-10-13, seconda passata)**: revisione dell'utente ha trovato due problemi reali nella prima passata,
+corretti via MCP senza ripartire da zero:
+
+1. **Larghezze incoerenti tra le 4 varianti** (205/270/293px, ciascun frame riga era HUG sulla larghezza del proprio
+   testo filename) — portate tutte a **440px fissi** (sizing `FIXED` sul frame principale di `661:2`/`661:15`/
+   `661:31`/`661:44`, larghezza scelta per contenere comodamente il contenuto più lungo, "H10-RC-B-21214_A1_I.pdf" +
+   "Upload failed · Connection lost" + pulsante Retry visibile). Il frame `content` (filename/meta/progress) è stato
+   portato a `layoutSizingHorizontal: FILL` per crescere a riempire la riga (replica `flex: 1 1 auto` di
+   `.file-upload-item__content` in `file-upload-item.styles.ts`); icona e pulsanti remove/retry restano HUG/fissi
+   (`flex: none` nel CSS reale).
+2. **Progress Bar con percentuale duplicata**: l'istanza `Progress Bar` (`Value=60`, dentro la variante `uploading`,
+   nodo istanza `661:22`) ha un'etichetta testuale "60%" incorporata nella barra di riempimento (`Progress Bar` non
+   ha una variante "senza etichetta" — unica component property è `Value`) — la vera `sl-progress-bar` non mostra
+   mai questa etichetta inline, solo nella riga `meta` sopra. Nascosta impostando `visible = false` sul nodo di testo
+   nidificato (`I661:22;60:54`), stessa tecnica dell'istanza semplice modificabile a mano già documentata per il
+   secondo Badge di `Table Row` ("resta un'istanza semplice, modificabile a mano, non esposta nel pannello
+   proprietà"). Per il valore più vicino al 45% richiesto dai doc: tenuto `Value=60` (distanza 15) invece di
+   `Value=25` (distanza 20) o `Value=90` (distanza 45) — è l'opzione più vicina tra le 3 disponibili.
+3. **Testi di default allineati** a `docs/pages/components/file-upload-item.md` (sezione "States"): `waiting` →
+   "H10-RD-A-87166_A2_A.pdf" / "Waiting to upload"; `uploading` → "H10-RC-B-21213_A1_R.pdf" / "45% · Uploading";
+   `uploaded` → "R1118111-SARC01-A.pdf" / "2.4 MB · Uploaded"; `failed` → "H10-RC-B-21214_A1_I.pdf" / "Upload failed ·
+   Connection lost" (prima erano placeholder generici tipo "project-plan.pdf"). `figma/file-upload-item.figma.ts`
+   aggiornato di conseguenza (le liste di fallback di `text()` leggono il contenuto corrente dei layer).
+4. **Mancava lo scaffold di pagina** (ogni altro componente del file ha una card "Component" + una card "Variants"
+   con esempi d'uso realistici — questa pagina aveva solo il component set nudo). Clonata `Alert Page Layout`
+   (`316:125`) sulla pagina `File Upload Item` (`658:2`) via `node.clone()`, rinominata in "File Upload Item Page
+   Layout" (`677:31`) con sezione "Section: File Upload Item" (`677:32`) e titolo aggiornato; il component set reale
+   `661:61` spostato (non clonato) dentro la "Card: Component" clonata al posto del set `Alert` duplicato (poi
+   eliminato); nella "Card: Variants" → "Variants Stack" creati 4 frame "File Upload Item (Example) — Waiting/
+   Uploading/Uploaded/Failed" (uno per stato, a differenza del singolo esempio di `Alert`, dato che il punto di
+   questo componente sono proprio i 4 stati distinti), ciascuno con un'istanza reale della variante corrispondente e
+   lo stesso testo demo del punto 3, impilati con `itemSpacing: 20` ereditato dal clone. Tutta la struttura è HUG a
+   cascata, quindi si è ridimensionata da sola attorno al nuovo contenuto (verificato via screenshot: nessun
+   overflow/clipping, stesso fill/variabili di sfondo della card di `Alert`).
+   - Nota operativa: durante i primi tentativi di resize in batch su tutte e 4 le varianti in un unico script, un
+     errore a metà script (lookup su un ID di nodo nidificato non più valido dopo un resize) ha causato il rollback
+     automatico dell'intero script da parte del plugin runtime, incluse le modifiche già apparentemente riuscite —
+     e in un caso ha anche scollegato due varianti (`waiting`/`uploaded`) dal component set, ritrovate come
+     componenti standalone sulla pagina e reinserite in `661:61` con `appendChild` prima di riposizionarle. Lezione:
+     applicare queste modifiche a piccoli batch isolati e rileggere lo stato con `get_metadata` tra un batch e
+     l'altro, non un unico script monolitico su più nodi.
+5. **Ripubblicato**: `npx tsc -p figma`, `npx figma connect parse` e `npx figma connect publish` (`FIGMA_ACCESS_TOKEN`)
+   eseguiti con successo — `SlFileUploadItem` confermato nell'output del CLI, ancora mappato al node `661:61`.
 
 ## Body slot su `Dialog` (nessuna modifica di codice necessaria)
 
