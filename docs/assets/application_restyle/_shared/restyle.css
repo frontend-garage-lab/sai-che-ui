@@ -10,9 +10,9 @@
 
 :root {
   /* Layout roles → DS spacing tokens. Change the mapping here, never in a page. */
-  --rs-page-margin: var(--sl-spacing-x-large); /* 28px — outer page margin ≥ 1280px */
-  --rs-gutter: var(--sl-spacing-large); /* 20px — column gap between regions */
-  --rs-section-gap: var(--sl-spacing-x-large); /* 28px — vertical gap between page sections */
+  --rs-page-margin: var(--sl-spacing-large); /* 20px — outer page margin ≥ 1280px */
+  --rs-gutter: var(--sl-spacing-medium); /* 16px — column gap between regions */
+  --rs-section-gap: var(--sl-spacing-medium); /* 16px — vertical gap between page sections */
   --rs-region-padding: var(--sl-spacing-large); /* 20px — inner padding of a card/panel body */
   --rs-field-gap: var(--sl-spacing-medium); /* 16px — gap between form fields */
   --rs-group-gap: var(--sl-spacing-2x-large); /* 36px — gap between form sections */
@@ -24,9 +24,9 @@
 @media (max-width: 79.99rem) {
   /* < 1280px */
   :root {
-    --rs-page-margin: var(--sl-spacing-large);
-    --rs-gutter: var(--sl-spacing-medium);
-    --rs-section-gap: var(--sl-spacing-large);
+    --rs-page-margin: var(--sl-spacing-medium);
+    --rs-gutter: var(--sl-spacing-small);
+    --rs-section-gap: var(--sl-spacing-small);
   }
 }
 
