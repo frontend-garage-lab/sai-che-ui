@@ -82,6 +82,21 @@ shown before the close button.
 </sl-detail-panel>
 ```
 
+### Contained
+
+Set `contained` to draw the panel as a self-contained block, with an outline on every side and rounded corners like
+[table](/components/table) and [card](/components/card). Use it when the panel sits in a grid next to other blocks; leave
+it off for a sidebar attached to the edge of the page.
+
+```html:preview
+<sl-detail-panel contained style="height: 12rem; max-width: 24rem;">
+  <span slot="label">Statement of Work.pdf</span>
+  <span slot="meta">Revision 4</span>
+
+  <div style="padding: var(--sl-spacing-medium);">Panel content</div>
+</sl-detail-panel>
+```
+
 ### Listening for the close request
 
 Clicking the close button emits `sl-request-close`. Call `event.preventDefault()` to keep the panel open, e.g. if

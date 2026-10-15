@@ -1,5 +1,6 @@
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
+import { property } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
 import ShoelaceElement from '../../internal/shoelace-element.js';
 import SlIconButton from '../icon-button/icon-button.component.js';
@@ -24,6 +25,10 @@ import type { CSSResultGroup } from 'lit';
  * @event {{ source: 'close-button' }} sl-request-close - Emitted when the user clicks the close button. Calling
  *   `event.preventDefault()` will stop the panel from being treated as closed, e.g. if closing requires confirmation.
  *
+ * @cssproperty [--border-color=var(--sl-border-subtle)] - The color of the border, used by the start border and by the
+ *  outline of the `contained` variant.
+ * @cssproperty [--border-radius=var(--sl-border-radius-medium)] - The corner radius of the `contained` variant.
+ *
  * @csspart base - The component's base wrapper.
  * @csspart header - The panel's header. Wraps the title, meta line, actions, and close button.
  * @csspart title - The container that wraps the label slot.
@@ -40,6 +45,13 @@ export default class SlDetailPanel extends ShoelaceElement {
   };
 
   private readonly localize = new LocalizeController(this);
+
+  /**
+   * Draws the panel as a self-contained block: an outline on every side with rounded corners, like [table](/components/table)
+   * and [card](/components/card). Use it when the panel sits inside a grid with a gutter; leave it off for a sidebar
+   * attached to the edge of the page.
+   */
+  @property({ type: Boolean, reflect: true }) contained = false;
 
   private requestClose() {
     const slRequestClose = this.emit('sl-request-close', {

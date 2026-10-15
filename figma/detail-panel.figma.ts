@@ -11,8 +11,10 @@ const meta = metaLayer.type === 'TEXT' ? metaLayer.textContent : '';
 const actions = instance.getSlot('Actions');
 const body = instance.getSlot('Body');
 
+// The Figma component is always drawn as a self-contained block (outline on every side), which is what
+// `contained` renders in code; the start-border-only look is the code default for sidebars attached to the page edge.
 export default {
-  example: figma.html`<sl-detail-panel>
+  example: figma.html`<sl-detail-panel contained>
   <span slot="label">${title}</span>
   <span slot="meta">${meta}</span>
   ${actions}

@@ -57,6 +57,17 @@ describe('<sl-table>', () => {
     expect(getRows(el)).to.have.length(3);
   });
 
+  it('should take the height of its container when fill is set', async () => {
+    const wrapper = await fixture<HTMLDivElement>(html`<div style="height: 20rem;"><sl-table fill></sl-table></div>`);
+    const el = wrapper.querySelector<SlTable<ProtocolRecord>>('sl-table')!;
+    el.columns = columns;
+    el.data = data;
+    await el.updateComplete;
+
+    expect(el.fill).to.be.true;
+    expect(el.getBoundingClientRect().height).to.equal(wrapper.getBoundingClientRect().height);
+  });
+
   it('should pass accessibility tests', async () => {
     const el = await makeTable();
     await expect(el).to.be.accessible();

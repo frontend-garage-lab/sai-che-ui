@@ -24,7 +24,7 @@ export default class SlEmptyState extends ShoelaceElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
   /** The title text shown below the icon. */
-  @property() titleText = '';
+  @property({ attribute: 'title-text' }) titleText = '';
 
   /** The supporting description text shown below the title. */
   @property() description = '';

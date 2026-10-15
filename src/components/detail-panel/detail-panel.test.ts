@@ -16,6 +16,23 @@ describe('<sl-detail-panel>', () => {
     await expect(el).to.be.accessible();
   });
 
+  it('should reflect the contained attribute and draw a full outline', async () => {
+    const el = await fixture<SlDetailPanel>(html`<sl-detail-panel contained>Panel content</sl-detail-panel>`);
+    const style = getComputedStyle(el);
+
+    expect(el.contained).to.be.true;
+    expect(style.borderTopWidth).to.equal(style.borderInlineStartWidth);
+    expect(style.borderTopLeftRadius).not.to.equal('0px');
+  });
+
+  it('should only draw the start border by default', async () => {
+    const el = await fixture<SlDetailPanel>(html`<sl-detail-panel>Panel content</sl-detail-panel>`);
+
+    expect(el.contained).to.be.false;
+    expect(getComputedStyle(el).borderTopWidth).to.equal('0px');
+    expect(getComputedStyle(el).borderTopLeftRadius).to.equal('0px');
+  });
+
   it('should render the label and meta slots', async () => {
     const el = await fixture<SlDetailPanel>(html`
       <sl-detail-panel>

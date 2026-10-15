@@ -42,6 +42,21 @@ export default css`
     max-height: var(--max-height);
   }
 
+  :host([fill]) {
+    height: 100%;
+    min-height: 0;
+  }
+
+  :host([fill]) .table {
+    height: 100%;
+  }
+
+  :host([fill]) .table__scroller {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+  }
+
   .table__header {
     display: grid;
     grid-template-columns: var(--sl-table-column-template, 1fr);

@@ -20,7 +20,7 @@ if (action && action.type === 'INSTANCE') {
 }
 
 export default {
-  example: figma.html`<sl-empty-state titletext="${title}" description="${description}">
+  example: figma.html`<sl-empty-state title-text="${title}" description="${description}">
   ${iconCode ? figma.html`<span slot="icon">${iconCode}</span>\n  ` : ''}${actionCode ? figma.html`<span slot="action">${actionCode}</span>` : ''}
 </sl-empty-state>`,
   imports: ["import 'src/components/empty-state/empty-state.js'"],

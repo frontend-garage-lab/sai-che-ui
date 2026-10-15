@@ -455,7 +455,7 @@ Confrontando screenshot reali della pagina doc (`/components/table/`, esempi "St
 2. **Non corretto, da fare**: l'esempio "Action menus" nei doc mostra il pulsante azioni (icona
    three-dots-vertical) **disabilitato/sbiadito** — non nascosto — per le righe senza un menu, proprio per
    mantenere le colonne allineate ("Rows without an actions menu show a disabled button, so the columns stay
-   aligned"). In `Table Row` oggi `Actions#164:5` controlla solo la *visibilità* dell'istanza `row__actions`
+   aligned"). In `Table Row` oggi `Actions#164:5` controlla solo la _visibilità_ dell'istanza `row__actions`
    (nascosta quando false), e l'istanza nidificata ha `Variant`/`State` bloccati su un solo valore
    (`default`) — non c'è modo di selezionare uno stato disabled su quell'icon-button dalle proprietà del
    componente. Per allinearsi ai doc servirebbe: rendere `row__actions` sempre visibile quando la tabella ha
@@ -556,3 +556,161 @@ Verificato creando due istanze di prova (header + row) con "Quick Info" attivo e
 rimosse dopo la verifica. Nessuna modifica al codice (`src/components/table/**`) o ai mapping Code Connect
 (`figma/table-row.figma.ts`, `figma/table-header-row.figma.ts`) — il gap era interamente nella struttura del
 componente Figma.
+
+## Detail Panel `contained`, Table `fill`, Empty State `title-text` (2026-10-15)
+
+Lato codice, completato:
+
+- **`SlEmptyState`**: l'attributo di `titleText` ora è `title-text` (prima era `titletext`, mentre doc, test e demo
+  usavano già `title-text`). `figma/empty-state.figma.ts` aggiornato di conseguenza.
+- **`SlDetailPanel`**: nuova property `contained` (bordo completo + `--border-radius`, default
+  `--sl-border-radius-medium`) e nuove `@cssproperty` `--border-color` / `--border-radius`.
+  `figma/detail-panel.figma.ts` emette sempre `contained`: il componente Figma (`396:1722`) è già disegnato come blocco
+  con bordo su tutti i lati, quindi non serve una property Figma.
+- **`SlTable`**: nuova property `fill` (altezza del contenitore, righe scorrevoli tra toolbar e paginazione). Nessun
+  impatto su Figma, nessun Code Connect da cambiare.
+
+Da fare lato Figma / publish:
+
+1. ~~**Detail Panel (`396:1722`) — raggio**~~ **Fatto il 2026-10-15** (via Plugin API, modifica in-place nel file A):
+   `cornerRadius` 0 → 6 legato a `Radius/medium` (`VariableID:28:15`) su tutti e quattro gli angoli e `Clip content`
+   attivo. ID e component key (`ad7bf2e0…1589`) invariati, 2 figli, 360×420. **Resta da pubblicare la libreria** (Assets →
+   Libraries → Publish), altrimenti i file consumer non vedono il raggio. **Table, rettifica del 2026-10-15**: `Card: Table Row` (`317:318`) è una card di documentazione, come tutte le
+   `Card: …` del DS (raggio `Radius/large`, 8px): l'avevo portata a `Radius/medium` per errore e l'ho **ripristinata a
+   `Radius/large`**. Il contenitore del component set `Table Row` (`53:37`) ha invece `Radius/medium` legato (era 5), ma è
+   solo l'involucro del set e non si propaga alle istanze. Le righe e `Table Header Row` hanno raggio 0: il raggio 6px della
+   tabella (`--sl-border-radius-medium`) vive nel codice di `sl-table` e va applicato al contenitore nei design.
+2. **Publish libreria** (Figma, Full seat) per i raggi di Detail Panel e Table, poi `npx figma connect publish` (con `FIGMA_ACCESS_TOKEN`) per `empty-state.figma.ts` e `detail-panel.figma.ts`. Non
+   cambiano i node-id, non serve toccare gli URL.
+3. Controllare in Dev Mode che lo snippet di Empty State mostri `title-text=` e quello di Detail Panel `contained`.
+
+## Stat Group (nuovo) + Tab Group con i suoi `sl-tab-panel` (2026-10-15)
+
+Deciso con l'utente: `sl-menu` e `sl-tab-panel` restano **senza componente Figma** (contenitori coperti dagli snippet dei
+genitori); `sl-stat-group` ottiene un componente Figma e un Code Connect.
+
+Fatto in Figma (file A, pagina Stat, via Plugin API):
+
+- Nuovo componente **Stat Group** (`840:91`, key `634e4a28…6837`), dentro la
+  nuova card di documentazione `Card: Stat Group` (`840:87`, stesse regole di `Card: Component`).
+  Auto Layout orizzontale con wrap, larghezza 916 (4 Stat da 220 + 3 gap), gap e gap di riga legati a `Spacing/small`
+  (12px, come `sl-stat-group`), 4 istanze di Stat (Safe 128, Expiring 14, Expired 3, Notified 9) come nell'esempio "KPI
+  summary row" della doc. Icone: shield-check, hourglass-split, exclamation-triangle, bell.
+
+Fatto nel codice:
+
+- `figma/stat-group.figma.ts` (nuovo): legge fino a 6 Stat figlie con `findConnectedInstances` e le emette dentro
+  `<sl-stat-group label="Filter by status">`. `label`, `value` e `required` non hanno un layer Figma.
+- `figma/tab-group.figma.ts`: al posto del commento emette un `<sl-tab-panel name="<slug dell'etichetta>">` per ogni Tab,
+  con lo stesso slug che il mapping di Tab scrive nell'attributo `panel`.
+- Inventario e lint della skill `rebranding`: `sl-menu` e `sl-tab-panel` sono `container`, non più "senza Code Connect".
+
+Da fare:
+
+1. **Publish libreria** in Figma (Stat Group è nuovo) e poi `npx figma connect publish` per `stat-group.figma.ts` e
+   `tab-group.figma.ts`.
+2. Controllare in Dev Mode che uno Stat Group mostri `<sl-stat-group label=…>` con le `<sl-stat>` annidate, e che un Tab
+   Group mostri un `sl-tab-panel` per ogni tab.
+3. ~~Icone delle 4 Stat dello Stat Group~~ **Fatto**: `shield-check`, `hourglass-split`, `exclamation-triangle`, `bell`
+   impostate con la proprietà instance-swap `Icon` (come nell'esempio della doc).
+
+**Esito della verifica del 2026-10-15** (letto da Figma via MCP, sola lettura): libreria pubblicata (`CURRENT`) per Stat
+Group, Detail Panel, Table Row, Empty State e Tab Group; snippet Dev Mode corretti per Empty State (`title-text`), Detail
+Panel (`contained`), Stat Group (`<sl-stat-group label=…>` con 4 `<sl-stat>` annidate, icone incluse) e Tab Group (un
+`<sl-tab-panel>` per tab). Tutto il lavoro di questa sezione è chiuso.
+
+## Stepper (nuovo) (2026-10-15)
+
+Fatto in Figma (file A, pagina Stepper, via Plugin API):
+
+- Nuovo componente **Stepper** (`847:44`, key `e35e734d…ac17`) dentro `Card: Component`, sotto il set `Step`: Auto Layout
+  orizzontale, 640px, 4 istanze di Step (Upload complete, Review current, Approve e Publish upcoming; il collegamento
+  dell'ultimo è nascosto). Creato da una copia dell'esempio "Stepper (Horizontal) v2", che resta nella card Variants.
+  La variante verticale (`orientation="vertical"`) non è disegnata in Figma.
+
+Fatto nel codice:
+
+- `figma/stepper.figma.ts` (nuovo): emette `<sl-stepper label="Steps" current="N">` con le Step figlie (fino a 6);
+  `current` è l'indice della prima Step con `State=current`, oppure il numero di step se sono tutte `complete`.
+  `label` e `linear` non hanno un layer Figma.
+- La skill `rebranding` lo classifica ora come componente con Code Connect.
+
+Da fare:
+
+1. **Publish libreria** (Stepper è nuovo) e poi `npx figma connect publish` per `stepper.figma.ts`.
+2. In Dev Mode, uno Stepper deve mostrare `<sl-stepper … current="1">` con le quattro `<sl-step>` annidate.
+3. Facoltativo: variante verticale dello Stepper in Figma (oggi solo orizzontale).
+
+**Esito della verifica del 2026-10-15** (letto da Figma via MCP, sola lettura): Stepper pubblicato (`CURRENT`) e snippet
+Dev Mode corretto: `<sl-stepper label="Steps" current="1">` con le quattro `<sl-step>` annidate. Sezione chiusa.
+
+## Table, Table Pagination, doppie chevron (nuovi) (2026-10-15)
+
+Motivo: in Figma non esisteva un componente "Table" (solo Table Header Row, Table Row e Table Row Marker), la toolbar era
+solo un frame di esempio e la paginazione non esisteva; ogni pagina componeva la tabella a mano.
+
+Fatto in Figma (file A, pagina Table e pagina Icons, via Plugin API):
+
+- **Table** (`858:370`, key `3d69681d…2e1933`) dentro la nuova card `Card: Table`: contenitore con bordo `neutral/200`, raggio
+  `Radius/medium` e fill `neutral/0`; slot **`Toolbar`** (default: Create, Export, "3 records"), slot **`Rows`** (default:
+  Table Header Row + 3 Table Row), istanza **`Pagination`**; opzioni **Show Toolbar** e **Show Pagination**. Verificato su
+  un'istanza temporanea: senza toolbar l'altezza passa da 250 a 205, senza paginazione a 210.
+- **Table Pagination** (`855:430`, set con proprietà `Page size` 10 / 25 / 50 / 100) dentro `Card: Table Pagination`: riepilogo
+  "Showing 1 – 25 of 142", primo / precedente / "Page 1 of 6" / successivo / ultimo, "Rows per page" con Select; usa Icon
+  Button e Select del DS, stili di testo `Body/Small` e variabili esistenti.
+- **Icon/chevron-double-left** (`854:284`) e **Icon/chevron-double-right** (`854:293`) nella pagina Icons, con lo stesso schema
+  delle altre icone (swatch, vettore legato a `text/body`). Servono ai pulsanti "prima / ultima pagina".
+
+Fatto nel codice:
+
+- `figma/table.figma.ts` (nuovo): emette `<sl-table [selection] [striped] [paginate page-size] sticky-header>` con la
+  toolbar nello slot `toolbar` (`<div slot="toolbar">…</div>`); `selection` e `striped` si leggono dalla Header Row e dalla prima
+  Row nello slot `Rows`, `page-size` dall'istanza `Pagination`.
+- `figma/table-pagination.figma.ts` (nuovo): `<sl-table paginate page-size="N" page-sizes="10 25 50 100">`.
+- `figma/icon-chevron-double-left.figma.ts` e `…-right.figma.ts` (nuovi).
+- Table Header Row e Table Row restano mappati come prima (snippet di riferimento per colonne e dati).
+
+Da fare:
+
+1. **Publish libreria** (Table, Table Pagination e le due icone sono nuovi) e poi `npx figma connect publish`.
+2. In Dev Mode: una Table con toolbar e paginazione deve mostrare `<sl-table paginate page-size="25" sticky-header>` con
+   `<div slot="toolbar">` e i pulsanti annidati; senza toolbar o senza paginazione gli attributi spariscono.
+3. Controllare che gli slot compaiano nel pannello Dev Mode/CC come nel Detail Panel. Non l'ho potuto verificare prima del
+   publish: `getSlot` funziona sul Detail Panel, ma qui lo slot ha anche la proprietà `Show Toolbar` collegata alla visibilità.
+4. Facoltativo: usare l'istanza Table nel file xCPage al posto delle tabelle locali "Task table" (vedi adozione).
+
+**Esito della verifica del 2026-10-15** (letto da Figma via MCP, sola lettura): Table, Table Pagination e le due icone
+`chevron-double-*` risultano pubblicati (`CURRENT`). Snippet Dev Mode:
+
+- Table: `<sl-table paginate page-size="25" sticky-header>` con `<div slot="toolbar">` e, dentro, i due `sl-button size="small"`
+  (`variant="primary"` Create, `variant="default"` Export); la paginazione compare come `paginate page-size`. Lo slot `getSlot`
+  funziona anche con la visibilità collegata a `Show Toolbar`.
+- Table Pagination (`Page size=25`): `<sl-table paginate page-size="25" page-sizes="10 25 50 100">`.
+- Nota d'uso: nello slot `Toolbar` generano codice solo i componenti del DS (Button, Input, Dropdown…). Spacer e testo semplice
+  come "3 records" restano design e non diventano markup: in una pagina vera conviene metterci componenti DS.
+
+Sezione chiusa.
+
+## Table: selezione singola, stato vuoto; nuovo Menu (2026-10-15)
+
+Fatto in Figma (file A, via Plugin API), Table `858:370` modificata **in-place** (stesso nodo e stessa chiave):
+
+- Nuove proprietà: **Single Selection** (boolean), **Show Rows** (boolean, default sì), **Show Empty** (boolean, default no) e
+  nuovo slot **`Empty`** con un'istanza di Empty State. Con Show Rows spento e Show Empty acceso l'altezza passa da 250 a 378.
+- Nuovo componente **Menu** (`862:126`, key `1adb1eaa…da7bf`) nella pagina Menu, dentro `Card: Menu`: il pannello del
+  Dropdown con le voci in uno slot **`Items`** (Menu Item, Menu Label, Divider). Serve anche per il menu ⋮ della riga, da
+  posizionare sotto il pulsante.
+
+Fatto nel codice:
+
+- `figma/table.figma.ts`: `selection="single"` quando **Single Selection** è acceso e la Header Row non ha la casella
+  (`multiple` resta guidato dalla casella di selezione); con **Show Empty** emette `<div slot="empty">` con l'Empty State.
+- `figma/menu.figma.ts` (nuovo): `<sl-menu>` con le voci dello slot `Items`. `sl-menu` ha ora un Code Connect.
+
+Da fare:
+
+1. **Publish libreria** e `npx figma connect publish` (`table.figma.ts` cambia, `menu.figma.ts` è nuovo).
+2. In Dev Mode: una Table con Single Selection acceso deve mostrare `selection="single"`; con Show Empty `<div slot="empty">`
+   con `<sl-empty-state>`; un Menu deve mostrare `<sl-menu>` con le `<sl-menu-item>` annidate.
+3. **Intestazioni ordinabili e colonne configurabili**: non ancora fatti, in attesa della scelta della struttura delle
+   colonne (la freccia di ordinamento vive nella cella di intestazione).

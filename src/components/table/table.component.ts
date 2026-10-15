@@ -178,6 +178,12 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
   /** Keeps the header visible while the table's rows scroll. Requires the table to have a constrained height. */
   @property({ type: Boolean, attribute: 'sticky-header', reflect: true }) stickyHeader = false;
 
+  /**
+   * Makes the table take the height of its container instead of its content: the rows scroll in the space left by the
+   * toolbar and the pagination, which stay in place. The container needs a definite height, e.g. a grid cell.
+   */
+  @property({ type: Boolean, reflect: true }) fill = false;
+
   /** The label of the select all checkbox. */
   @property({ attribute: 'select-all-label' }) selectAllLabel = 'Select all rows';
 

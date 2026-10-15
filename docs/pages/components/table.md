@@ -452,6 +452,29 @@ to replace the browser's own menu with your own.
 </script>
 ```
 
+### Filling the container
+
+Set `fill` to make the table take the height of its container, e.g. a grid cell, instead of the height of its rows. The
+toolbar and the pagination stay in place and the rows scroll in the space between them, so the table lines up with a
+neighbouring [detail panel](/components/detail-panel). The container needs a definite height.
+
+```html:preview
+<div style="height: 14rem;">
+  <sl-table class="fill-table" fill sticky-header paginate page-size="25"></sl-table>
+</div>
+
+<script type="module">
+  const table = document.querySelector('.fill-table');
+
+  table.columns = [
+    { id: 'protocol', accessorKey: 'protocol', header: 'Protocol Number', meta: { width: '14rem' } },
+    { id: 'subject', accessorKey: 'subject', header: 'Subject' }
+  ];
+
+  table.data = Array.from({ length: 12 }, (_, i) => ({ protocol: `MOM-${String(i + 1).padStart(3, '0')}`, subject: 'Meeting' }));
+</script>
+```
+
 ### Striped and sticky
 
 ```html:preview

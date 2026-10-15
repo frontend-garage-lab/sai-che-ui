@@ -2,12 +2,21 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --border-color: var(--sl-border-subtle);
+    --border-radius: var(--sl-border-radius-medium);
+
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     height: 100%;
     background-color: var(--sl-surface-panel);
-    border-inline-start: solid var(--sl-panel-border-width) var(--sl-border-subtle);
+    border-inline-start: solid var(--sl-panel-border-width) var(--border-color);
+  }
+
+  :host([contained]) {
+    border: solid var(--sl-panel-border-width) var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
   }
 
   .detail-panel {
