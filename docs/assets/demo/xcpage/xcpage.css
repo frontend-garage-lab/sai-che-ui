@@ -45,10 +45,20 @@ body {
 .page {
   flex: 1 1 auto;
   min-height: 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: auto auto minmax(0, 1fr);
   gap: var(--sl-spacing-medium);
   padding: var(--sl-spacing-large);
+  max-width: 120rem;
+  width: 100%;
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+/* Every macro section spans the 12-column grid; sections subdivide it with subgrid. */
+.page > * {
+  grid-column: 1 / -1;
 }
 
 /* Workflow stages */
@@ -65,15 +75,28 @@ body {
   gap: var(--sl-spacing-small);
 }
 
-/* Filters */
+/* Filters + expiry: 8 / 4 columns of the page grid */
 .filters-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: subgrid;
+  align-items: stretch;
   gap: var(--sl-spacing-medium);
 }
 
+.filters-row > .filters {
+  grid-column: span 8;
+}
+
+.filters-row > .stats {
+  grid-column: span 4;
+}
+
 .filters {
-  padding: var(--sl-spacing-small) var(--sl-spacing-medium);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--sl-spacing-small);
+  padding: var(--sl-spacing-medium);
 }
 
 .filters__title {
@@ -83,38 +106,37 @@ body {
   font-size: var(--sl-input-label-font-size-medium);
   font-weight: var(--sl-input-label-font-weight, var(--sl-font-weight-semibold));
   color: var(--sl-input-label-color);
-  grid-area: title;
 }
 
+/* Fields: 12 columns inside the panel — search 6, selects 3 + 3, actions full width */
 .filters__fields {
   display: grid;
-  grid-template-columns: minmax(14rem, 1fr) 11rem 11rem;
-  grid-template-areas:
-    'title originator discipline'
-    'search originator discipline'
-    'search actions actions';
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   align-items: start;
-  column-gap: var(--sl-spacing-small);
-  row-gap: var(--sl-spacing-2x-small);
+  gap: var(--sl-spacing-small);
 }
 
 .filters__search {
-  grid-area: search;
+  grid-column: span 6;
 }
 
-.filters__originator {
-  grid-area: originator;
-}
-
+.filters__originator,
 .filters__discipline {
-  grid-area: discipline;
+  grid-column: span 3;
+}
+
+.filters__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sl-spacing-small);
 }
 
 .filters__options {
   display: flex;
   align-items: center;
   gap: var(--sl-spacing-x-small);
-  margin-top: var(--sl-spacing-x-small);
 }
 
 .filters__options sl-checkbox + sl-tooltip + sl-checkbox,
@@ -127,14 +149,20 @@ body {
 }
 
 .filters__actions {
-  grid-area: actions;
   display: flex;
   justify-content: end;
   gap: var(--sl-spacing-x-small);
 }
 
+.stats::part(base) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sl-spacing-small);
+}
+
 .stats sl-stat {
-  min-width: 8rem;
+  min-width: 0;
+  width: auto;
 }
 
 /* Workspace */
@@ -142,8 +170,16 @@ body {
   flex: 1 1 auto;
   min-height: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 32rem;
+  grid-template-columns: subgrid;
   gap: var(--sl-spacing-medium);
+}
+
+.workspace > .workspace__table {
+  grid-column: span 8;
+}
+
+.workspace > .workspace__details {
+  grid-column: span 4;
 }
 
 .workspace__table,
@@ -237,7 +273,6 @@ body {
 }
 
 #detail-tabs sl-tab::part(base) {
-  gap: var(--sl-spacing-x-small);
   padding-inline: var(--sl-spacing-small);
 }
 
@@ -288,11 +323,26 @@ body {
   color: var(--sl-color-primary-600);
 }
 
-.props sl-card {
-  width: 100%;
+.props {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sl-spacing-medium);
 }
 
-.props sl-card::part(body) {
+.props > sl-divider {
+  width: 100%;
+  margin: 0;
+}
+
+.props__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sl-spacing-x-small);
+}
+
+.props__section {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: var(--sl-spacing-small);
@@ -364,8 +414,74 @@ body {
   gap: var(--sl-spacing-medium);
 }
 
+.properties-dialog__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sl-spacing-medium);
+}
+
+.properties-dialog__tags {
+  display: flex;
+  gap: var(--sl-spacing-x-small);
+  flex: none;
+}
+
+/* Rows of the description lists are the groups: keep columns tight, rows apart */
+.properties-dialog sl-description-list::part(base) {
+  row-gap: var(--sl-spacing-medium);
+}
+
 .properties-dialog sl-tab-panel::part(base) {
-  padding-top: var(--sl-spacing-medium);
+  padding-top: var(--sl-spacing-large);
+}
+
+/* Responsive: stack filters and stats below 1280px, single column below 1024px. The table leads, so it keeps 8 columns. */
+@media (max-width: 1280px) {
+  .filters-row > .filters {
+    grid-column: 1 / -1;
+  }
+
+  .filters-row > .stats {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 1024px) {
+  html,
+  body {
+    height: auto;
+  }
+
+  .page {
+    grid-template-rows: none;
+  }
+
+  .workspace > .workspace__table,
+  .workspace > .workspace__details {
+    grid-column: 1 / -1;
+  }
+
+  .workspace__table sl-table {
+    --max-height: 32rem;
+  }
+
+  .workspace__details {
+    min-height: 24rem;
+  }
+
+  .filters__search {
+    grid-column: 1 / -1;
+  }
+
+  .filters__originator,
+  .filters__discipline {
+    grid-column: span 6;
+  }
+
+  .toolbar {
+    flex-wrap: wrap;
+  }
 }
 
 /* Avatar colours (initials on a tinted brand fill) */

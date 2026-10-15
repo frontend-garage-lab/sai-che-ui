@@ -16,9 +16,11 @@ function text(...layerNames: string[]) {
 const selected = instance.getEnum('State', { default: false, hover: false, selected: true, disabled: false });
 const disabled = instance.getEnum('State', { default: false, hover: false, selected: false, disabled: true });
 const expanded = instance.getEnum('Expanded', { true: true, false: false });
+// Nested items live in the Children slot, which only exists when the item is expanded.
+const children = expanded ? instance.getSlot('Children') : '';
 
 export default {
-  example: figma.html`<sl-tree-item${selected ? ' selected' : ''}${disabled ? ' disabled' : ''}${expanded ? ' expanded' : ''}>${text('Folder name')}</sl-tree-item>`,
+  example: figma.html`<sl-tree-item${selected ? ' selected' : ''}${disabled ? ' disabled' : ''}${expanded ? ' expanded' : ''}>${text('Folder name')}${children}</sl-tree-item>`,
   imports: ["import 'src/components/tree-item/tree-item.js'"],
   id: 'tree-item',
   metadata: { nestable: true }

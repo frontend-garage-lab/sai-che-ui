@@ -1,0 +1,31 @@
+/*
+ * xCPage-MyTask-PVA — layout rules specific to this flow. Shared rules live in ../_shared/restyle.css.
+ */
+
+.task-search {
+  width: 20rem;
+}
+
+/* Document viewer (new element, see REPORT §4): toolbar in the card header, thumbnails + page in the body */
+.doc-viewer {
+  --padding: var(--sl-spacing-medium);
+}
+
+.doc-viewer__page-input {
+  width: 4rem;
+}
+
+.doc-viewer__toolbar sl-divider {
+  height: var(--sl-input-height-small);
+}
+
+.doc-viewer img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Above the workspace: header, title and stages (Tasks) — the default offset — or, on Documents, scope tabs and the filters card */
+.rs-workspace:has(.document-list) {
+  --rs-workspace-offset: 37rem;
+}

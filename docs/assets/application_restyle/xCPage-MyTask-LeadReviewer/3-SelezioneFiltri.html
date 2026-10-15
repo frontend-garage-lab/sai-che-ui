@@ -1,0 +1,226 @@
+<!doctype html>
+<!--
+  xCPage-MyTask-LeadReviewer · 3-SelezioneFiltri — restyle of application_screenshot/xCPage-MyTask-LeadReviewer/3-SelezioneFiltri.png
+  State: Originator filter open, nothing selected.
+  Built only with sai-che-ui components (see REPORT.md in this folder for mapping and new elements).
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/xCPage-MyTask-LeadReviewer/3-SelezioneFiltri.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>xCPage · Tasks</title>
+    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
+    <link rel="stylesheet" href="../_shared/restyle.css" />
+    <link rel="stylesheet" href="./flow.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <script>
+      // Reload when esbuild rebuilds after a change in src/
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
+  </head>
+
+  <body class="sl-theme-light">
+    <sl-header>
+      <img slot="logo" src="/docs/assets/images/saipem-mark.svg" alt="Saipem" width="32" height="32" />
+      <span slot="logo">xCPage</span>
+
+      <sl-header-item current>
+        Project Data
+        <sl-menu slot="menu">
+          <sl-menu-item>Documents</sl-menu-item>
+          <sl-menu-item>Transmittals</sl-menu-item>
+          <sl-menu-item>Tasks</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+      <sl-header-item>
+        Configuration
+        <sl-menu slot="menu">
+          <sl-menu-item>Users</sl-menu-item>
+          <sl-menu-item>Permissions</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+      <sl-header-item href="#">Dashboard</sl-header-item>
+
+      <sl-select slot="actions" size="small" value="99-page-am" style="width: 16rem">
+        <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
+      </sl-select>
+      <sl-dropdown slot="actions" placement="bottom-end">
+        <sl-icon-button slot="trigger" name="person-fill" label="Account"></sl-icon-button>
+        <sl-menu>
+          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-dropdown>
+    </sl-header>
+
+    <main class="rs-page rs-page--fill" aria-label="Tasks">
+      <div class="rs-page-header">
+        <div class="rs-page-header__text">
+          <h1 class="rs-title">Tasks</h1>
+        </div>
+      </div>
+
+      <!-- Workflow stages -->
+      <sl-tab-group class="rs-stages" aria-label="Workflow stage">
+        <sl-tab slot="nav" panel="pva" card>PVA <sl-badge variant="neutral" pill>22</sl-badge></sl-tab>
+        <sl-tab slot="nav" panel="consolidation" card active>
+          Consolidation <sl-badge variant="primary" pill>22</sl-badge>
+        </sl-tab>
+        <sl-tab slot="nav" panel="review" card>Review <sl-badge variant="neutral" pill>11</sl-badge></sl-tab>
+      </sl-tab-group>
+
+      <!-- Filters + expiry -->
+      <section class="rs-grid rs-grid--stretch" aria-label="Filters and expiry">
+        <sl-card class="rs-span-7 rs-span-md-6" aria-label="Filters">
+          <h2 slot="header" class="rs-heading rs-inline"><sl-icon name="filter"></sl-icon>Filters</h2>
+
+          <form class="rs-grid rs-grid--fields">
+            <sl-input
+              class="rs-span-6"
+              type="search"
+              label="Search"
+              placeholder="Task name, title, SP code or DIN"
+              clearable
+            >
+              <sl-icon slot="prefix" name="search"></sl-icon>
+            </sl-input>
+            <sl-select class="rs-span-3" label="Originator" placeholder="Any" clearable open hoist>
+              <sl-option value="originator-0">AAAAA</sl-option>
+              <sl-option value="originator-1">ARAMCO-BV</sl-option>
+              <sl-option value="originator-2">BBBBB</sl-option>
+              <sl-option value="originator-3">LARSEN &amp; TOUBRO LTD.-0001373173</sl-option>
+              <sl-option value="originator-4">NK-Originator</sl-option>
+              <sl-option value="originator-5">SAIPEM</sl-option>
+              <sl-option value="originator-6">TO_COMPANY_DEP_1</sl-option>
+              <sl-option value="originator-7">TO_COMPANY_DEP_2</sl-option>
+              <sl-option value="originator-8">VDR-20240209</sl-option>
+              <sl-option value="originator-9">VDR-20240414</sl-option>
+              <sl-option value="originator-10">VDR-20240414-1</sl-option>
+              <sl-option value="originator-11">VDR-20240414-2</sl-option>
+              <sl-option value="originator-12">VDR-20240414-3</sl-option>
+              <sl-option value="originator-13">VDR-20240414-4</sl-option>
+            </sl-select>
+            <sl-select class="rs-span-3" label="Discipline" placeholder="Any" clearable>
+              <sl-option value="civil">Civil &amp; Architectural</sl-option>
+              <sl-option value="electrical">Electrical</sl-option>
+              <sl-option value="mechanical">Mechanical</sl-option>
+              <sl-option value="piping">Plant layout &amp; Piping</sl-option>
+            </sl-select>
+
+            <div class="rs-span-12 rs-cluster rs-cluster--between">
+              <div class="rs-cluster">
+                <span class="rs-inline">
+                  <sl-checkbox size="small">Multiple search</sl-checkbox>
+                  <sl-tooltip content="Search several terms at once, separated by commas">
+                    <sl-icon name="info-circle" label="About multiple search"></sl-icon>
+                  </sl-tooltip>
+                </span>
+                <sl-checkbox size="small" checked>Case sensitive</sl-checkbox>
+              </div>
+              <div class="rs-cluster">
+                <sl-button type="reset" variant="text">Reset</sl-button>
+                <sl-button type="submit" variant="primary"
+                  ><sl-icon slot="prefix" name="search"></sl-icon>Search</sl-button
+                >
+              </div>
+            </div>
+          </form>
+        </sl-card>
+
+        <sl-stat-group class="rs-span-5 rs-span-md-6 rs-stats-2x2" label="Filter by expiry">
+          <sl-stat value="safe" count="0" variant="success"
+            ><sl-icon slot="prefix" name="shield-check"></sl-icon>Safe</sl-stat
+          >
+          <sl-stat value="expiring" count="0" variant="warning">
+            <sl-icon slot="prefix" name="hourglass-split"></sl-icon>Expiring
+          </sl-stat>
+          <sl-stat value="expired" count="22" variant="danger">
+            <sl-icon slot="prefix" name="exclamation-triangle"></sl-icon>Expired
+          </sl-stat>
+          <sl-stat value="notified" count="0" variant="accent"
+            ><sl-icon slot="prefix" name="bell"></sl-icon>Notified</sl-stat
+          >
+        </sl-stat-group>
+      </section>
+
+      <div class="rs-workspace">
+        <!-- Task list -->
+        <section class="rs-workspace__main rs-span-7 rs-span-lg-6" aria-label="Consolidation tasks">
+          <sl-table
+            class="task-list"
+            fill
+            selection="single"
+            sticky-header
+            paginate
+            page-size="25"
+            label="Consolidation tasks"
+          >
+            <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow" role="toolbar" aria-label="Task actions">
+              <sl-tooltip content="Download"
+                ><sl-icon-button name="download" label="Download" variant="primary" disabled></sl-icon-button
+              ></sl-tooltip>
+              <sl-tooltip content="Import comments"
+                ><sl-icon-button name="upload" label="Import comments" variant="neutral"></sl-icon-button
+              ></sl-tooltip>
+              <sl-tooltip content="Notify"
+                ><sl-icon-button name="exclamation-lg" label="Notify" variant="danger" disabled></sl-icon-button
+              ></sl-tooltip>
+              <sl-tooltip content="Assign for additional commenting"
+                ><sl-icon-button
+                  name="arrow-right"
+                  label="Assign for additional commenting"
+                  variant="neutral"
+                  disabled
+                ></sl-icon-button
+              ></sl-tooltip>
+              <sl-tooltip content="Accept"
+                ><sl-icon-button name="check-lg" label="Accept" variant="neutral" disabled></sl-icon-button
+              ></sl-tooltip>
+              <sl-tooltip content="Complete"
+                ><sl-icon-button name="check-lg" label="Complete" variant="success" disabled></sl-icon-button
+              ></sl-tooltip>
+              <sl-tooltip content="Abort"
+                ><sl-icon-button name="person-x" label="Abort" variant="danger" disabled></sl-icon-button
+              ></sl-tooltip>
+            </div>
+
+            <sl-empty-state
+              slot="empty"
+              title-text="No consolidation tasks"
+              description="Tasks assigned to you will appear here."
+            >
+              <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+            </sl-empty-state>
+          </sl-table>
+        </section>
+
+        <!-- Task details -->
+        <sl-detail-panel contained class="rs-span-5 rs-span-lg-6" aria-label="Task details">
+          <span slot="label">Details</span>
+          <div class="rs-inset">
+            <sl-empty-state
+              title-text="No task selected"
+              description="Select a task to see its review comments, reviewers, revisions and properties."
+            >
+              <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+            </sl-empty-state>
+          </div>
+        </sl-detail-panel>
+      </div>
+    </main>
+
+    <script type="module">
+      import * as flow from './data.js';
+
+      await flow.mountTable('.task-list', {
+        columns: flow.taskColumns,
+        data: flow.tasks
+      });
+    </script>
+  </body>
+</html>

@@ -69,31 +69,33 @@
       <!-- Filters + expiry stats -->
       <section class="filters-row">
         <form class="panel filters" id="filters">
+          <div class="filters__title"><sl-icon name="funnel"></sl-icon> Filters</div>
           <div class="filters__fields">
-            <div class="filters__title"><sl-icon name="funnel"></sl-icon> Filters</div>
-            <div class="filters__search">
-              <sl-input
-                id="filter-text"
-                size="medium"
-                placeholder="Search task by name, title, SP Code and DIN…"
-                clearable
-              >
-                <sl-icon slot="prefix" name="search"></sl-icon>
-              </sl-input>
-              <div class="filters__options">
-                <sl-checkbox id="filter-multiple" size="small">Multiple Search</sl-checkbox>
-                <sl-tooltip content="Search with several comma-separated terms at once">
-                  <sl-icon name="info-circle" class="info-icon"></sl-icon>
-                </sl-tooltip>
-                <sl-checkbox id="filter-case" size="small" checked>Case Sensitive</sl-checkbox>
-              </div>
-            </div>
+            <sl-input
+              class="filters__search"
+              id="filter-text"
+              label="Search"
+              size="medium"
+              placeholder="Search tasks…"
+              clearable
+            >
+              <sl-icon slot="prefix" name="search"></sl-icon>
+            </sl-input>
             <sl-select class="filters__originator" id="filter-originator" label="Originator" value="all" size="medium">
               <sl-option value="all">All</sl-option>
             </sl-select>
             <sl-select class="filters__discipline" id="filter-discipline" label="Discipline" value="all" size="medium">
               <sl-option value="all">All</sl-option>
             </sl-select>
+          </div>
+          <div class="filters__footer">
+            <div class="filters__options">
+              <sl-checkbox id="filter-multiple" size="small">Multiple Search</sl-checkbox>
+              <sl-tooltip content="Comma-separated terms">
+                <sl-icon name="info-circle" class="info-icon"></sl-icon>
+              </sl-tooltip>
+              <sl-checkbox id="filter-case" size="small" checked>Case Sensitive</sl-checkbox>
+            </div>
             <div class="filters__actions">
               <sl-button type="reset" id="filter-reset">Reset</sl-button>
               <sl-button type="submit" variant="primary">Search</sl-button>
@@ -150,7 +152,7 @@
             <sl-empty-state
               slot="empty"
               title-text="No tasks found"
-              description="Try changing the filters or the expiry status."
+              description="Change filters or expiry."
             >
               <sl-icon slot="icon" name="inbox"></sl-icon>
             </sl-empty-state>
@@ -162,14 +164,14 @@
             <span slot="label">Details</span>
             <span slot="meta" id="details-meta"></span>
 
-            <sl-icon-button slot="actions" name="plus-lg" label="Add"></sl-icon-button>
+            <sl-icon-button slot="actions" name="plus-lg" label="Add" variant="primary"></sl-icon-button>
             <sl-icon-button slot="actions" name="pencil" label="Edit"></sl-icon-button>
 
             <sl-tab-group id="detail-tabs">
-              <sl-tab slot="nav" panel="comments"><sl-icon name="chat-left-text"></sl-icon> Review Comments</sl-tab>
-              <sl-tab slot="nav" panel="dashboard"><sl-icon name="grid"></sl-icon> Dashboard</sl-tab>
-              <sl-tab slot="nav" panel="revisions"><sl-icon name="clock-history"></sl-icon> Revisions</sl-tab>
-              <sl-tab slot="nav" panel="properties"><sl-icon name="list-ul"></sl-icon> Properties</sl-tab>
+              <sl-tab slot="nav" panel="comments">Comments</sl-tab>
+              <sl-tab slot="nav" panel="dashboard">Dashboard</sl-tab>
+              <sl-tab slot="nav" panel="revisions">Revisions</sl-tab>
+              <sl-tab slot="nav" panel="properties">Properties</sl-tab>
 
               <sl-tab-panel name="comments" id="panel-comments"></sl-tab-panel>
               <sl-tab-panel name="dashboard" id="panel-dashboard"></sl-tab-panel>
@@ -182,7 +184,7 @@
             id="details-empty"
             hidden
             title-text="No task selected"
-            description="Select a task in the list to see its comments, reviewers, revisions and properties."
+            description="Select a task to see its details."
           >
             <sl-icon slot="icon" name="cursor"></sl-icon>
           </sl-empty-state>
@@ -232,7 +234,7 @@
       <sl-table id="complete-table" class="complete-table"></sl-table>
       <p class="muted complete-count">Count: <strong id="complete-count">0</strong></p>
       <sl-button slot="footer" data-close>Cancel</sl-button>
-      <sl-button slot="footer" variant="primary" id="complete-confirm">Complete task(s)</sl-button>
+      <sl-button slot="footer" variant="success" id="complete-confirm">Complete task(s)</sl-button>
     </sl-dialog>
 
     <!-- All properties -->

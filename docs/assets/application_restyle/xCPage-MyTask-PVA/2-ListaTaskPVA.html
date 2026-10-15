@@ -1,0 +1,139 @@
+<!doctype html>
+<!--
+  xCPage-MyTask-PVA · 2-ListaTaskPVA — restyle of application_screenshot/xCPage-MyTask-PVA/2-ListaTaskPVA.png
+  State: Task list, nothing selected.
+  Built only with sai-che-ui components (see REPORT.md in this folder for mapping and new elements).
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/xCPage-MyTask-PVA/2-ListaTaskPVA.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>xCPage · Tasks</title>
+    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
+    <link rel="stylesheet" href="../_shared/restyle.css" />
+    <link rel="stylesheet" href="./flow.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <script>
+      // Reload when esbuild rebuilds after a change in src/
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
+  </head>
+
+  <body class="sl-theme-light">
+    <sl-header>
+      <img slot="logo" src="/docs/assets/images/saipem-mark.svg" alt="Saipem" width="32" height="32" />
+      <span slot="logo">xCPage</span>
+
+      <sl-header-item current>
+        Project Data
+        <sl-menu slot="menu">
+          <sl-menu-item>Documents</sl-menu-item>
+          <sl-menu-item>Transmittals</sl-menu-item>
+          <sl-menu-item>Tasks</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+      <sl-header-item>
+        Configuration
+        <sl-menu slot="menu">
+          <sl-menu-item>Users</sl-menu-item>
+          <sl-menu-item>Permissions</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+      <sl-header-item href="#">Dashboard</sl-header-item>
+
+      <sl-select slot="actions" size="small" value="99-page-am" style="width: 16rem">
+        <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
+      </sl-select>
+      <sl-dropdown slot="actions" placement="bottom-end">
+        <sl-icon-button slot="trigger" name="person-fill" label="Account"></sl-icon-button>
+        <sl-menu>
+          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-dropdown>
+    </sl-header>
+
+    <main class="rs-page rs-page--fill" aria-label="Tasks">
+      <div class="rs-page-header">
+        <div class="rs-page-header__text">
+          <h1 class="rs-title">Tasks</h1>
+        </div>
+      </div>
+
+      <!-- Workflow stages -->
+      <sl-tab-group class="rs-stages" aria-label="Workflow stage">
+        <sl-tab slot="nav" panel="pva" card active>PVA <sl-badge variant="primary" pill>22</sl-badge></sl-tab>
+        <sl-tab slot="nav" panel="consolidation" card
+          >Consolidation <sl-badge variant="neutral" pill>22</sl-badge></sl-tab
+        >
+        <sl-tab slot="nav" panel="review" card>Review <sl-badge variant="neutral" pill>11</sl-badge></sl-tab>
+      </sl-tab-group>
+
+      <div class="rs-workspace">
+        <!-- Task list -->
+        <section class="rs-workspace__main rs-span-7 rs-span-lg-6" aria-label="PVA tasks">
+          <sl-table class="task-list" fill selection="single" sticky-header paginate page-size="25" label="PVA tasks">
+            <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow">
+              <sl-input
+                class="task-search"
+                type="search"
+                size="small"
+                placeholder="Search by task, document or DIN"
+                clearable
+              >
+                <sl-icon slot="prefix" name="search"></sl-icon>
+              </sl-input>
+              <sl-tooltip content="Previous match">
+                <sl-icon-button name="chevron-left" label="Previous match"></sl-icon-button>
+              </sl-tooltip>
+              <sl-tooltip content="Next match">
+                <sl-icon-button name="chevron-right" label="Next match"></sl-icon-button>
+              </sl-tooltip>
+              <sl-checkbox size="small">Case sensitive</sl-checkbox>
+              <span class="rs-spacer"></span>
+              <sl-button size="small" variant="primary" disabled>Accept</sl-button>
+              <sl-button size="small" variant="primary" disabled>Reassign</sl-button>
+              <sl-button size="small" variant="success" disabled>Complete</sl-button>
+            </div>
+
+            <sl-empty-state
+              slot="empty"
+              title-text="No PVA tasks"
+              description="Tasks assigned to you will appear here."
+            >
+              <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+            </sl-empty-state>
+          </sl-table>
+        </section>
+
+        <!-- Task details -->
+        <sl-detail-panel contained class="rs-span-5 rs-span-lg-6" aria-label="Task details">
+          <span slot="label">Details</span>
+          <div class="rs-inset">
+            <sl-empty-state
+              title-text="No task selected"
+              description="Select a task to see its document properties, revisions and PDF preview."
+            >
+              <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+            </sl-empty-state>
+          </div>
+        </sl-detail-panel>
+      </div>
+    </main>
+
+    <script type="module">
+      import * as flow from './data.js';
+
+      await flow.mountTable('.task-list', {
+        rowDisabled: flow.isPromoting,
+        columns: flow.taskColumns,
+        data: flow.tasks
+      });
+    </script>
+  </body>
+</html>

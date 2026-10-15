@@ -1,0 +1,14 @@
+/*
+ * xCPage-ExecuteOperation-1 — layout rules specific to this flow. Shared rules live in ../_shared/restyle.css.
+ */
+
+/* Above the workspace: header, title, scope tabs and the filters card (with the applied-filters row) */
+.rs-workspace {
+  --rs-workspace-offset: 40rem;
+}
+
+/* Operations dialog: the two lists share the left column, so cap their height to leave room for the action panel */
+.ops-list,
+.selected-items {
+  --max-height: 13rem;
+}

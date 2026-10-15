@@ -1,0 +1,17 @@
+/*
+ * xCPage-MyTask-LeadReviewer — layout rules specific to this flow. Shared rules live in ../_shared/restyle.css.
+ */
+
+/* KPI placeholders while the counts load (screen 2): same height as an sl-stat card */
+.kpi-skeleton {
+  height: var(--sl-spacing-4x-large);
+}
+
+/* Above the workspace: header, title, stages and the filters/KPI row (Tasks), or scope tabs and filters (Documents) */
+.rs-workspace {
+  --rs-workspace-offset: 35rem;
+}
+
+.rs-workspace:has(.document-list) {
+  --rs-workspace-offset: 37rem;
+}

@@ -714,3 +714,137 @@ Da fare:
    con `<sl-empty-state>`; un Menu deve mostrare `<sl-menu>` con le `<sl-menu-item>` annidate.
 3. **Intestazioni ordinabili e colonne configurabili**: non ancora fatti, in attesa della scelta della struttura delle
    colonne (la freccia di ordinamento vive nella cella di intestazione).
+
+## Table a colonne: Table Column, Table Cell (nuovi) (2026-10-15)
+
+Motivo: con Table Header Row e Table Row le colonne erano 6 e fisse, quindi le liste con colonne diverse (documenti, utenti,
+revisioni, destinatari) richiedevano di staccare le istanze e perdevano il Code Connect. Scelta: **una colonna è un'istanza**,
+dentro lo slot `Rows` di **un'unica Table**: aggiungere o togliere una colonna è aggiungere o togliere un'istanza.
+
+Fatto in Figma (file A, pagina Table, via Plugin API):
+
+- **Table Cell** (`867:2425`, key `ecee9a4f…7b86`, set di 28 varianti) in `Card: Table Cell`: `Type` (text, document, status, tag,
+  checkbox, actions), `Align` (start, center, end), `Height` (compact 41, tall 60) più `Selected`, `Striped`, `Text`,
+  `Meta 1`, `Meta 2`. Usa Status, Tag, Checkbox e Icon Button del DS, i testi e le variabili delle righe esistenti.
+- **Table Column** (`871:2690`, key `db4a725e…e9c0`, set di 14 varianti) in `Card: Table Column`: `Kind`
+  (data, selection, actions), `Sort` (off, none, asc, desc), `Align`, proprietà testo `Label` e slot **`Cells`** con 5 Table Cell
+  di default. `Kind=selection` ha la casella "seleziona tutto", `Kind=actions` la colonna del menu ⋮.
+- **Table** (`858:370`, stessa chiave): lo slot `Rows` ora contiene 4 Table Column (Task, Rev. code, Created, Due date) in
+  orizzontale. Provato su un'istanza temporanea: togliere una colonna la rimuove, aggiungerne una (anche di selezione) la inserisce.
+- Table Header Row e Table Row restano pubblicati e mappati per chi li usa già (file xCPage), ma per le nuove tabelle va usata la
+  Table con le colonne.
+
+Fatto nel codice:
+
+- `figma/table-column.figma.ts` (nuovo): snippet di riferimento della voce di `columns` (`id`, `accessorKey`, `header`,
+  `enableSorting`, `meta.align`; colonna azioni con `meta.actions`).
+- `figma/table-cell.figma.ts` (nuovo): snippet di riferimento della cella per tipo (status, tag, documento, azioni).
+- `figma/table.figma.ts`: ricava dalle colonne annidate `table.columns = […]`, `selection="multiple"` (colonna di selezione),
+  `sort-column` e `sort-direction` (colonna con `Sort=asc/desc`), `striped` dalle celle; resta il ripiego sulle vecchie righe.
+
+Limiti noti:
+
+- Le celle di una riga devono avere lo stesso `Height` (e `Align` coerente con l'intestazione) in tutte le colonne: Figma non lo
+  propaga. Per marcare una riga selezionata o a strisce si selezionano insieme le celle di quella riga e si accende `Selected`.
+- Il testo di Status e Tag si modifica nell'istanza annidata (Figma non permette di collegarlo a una proprietà della cella).
+- Il numero di righe di esempio di una colonna si cambia aggiungendo o togliendo istanze nello slot `Cells`.
+
+Da fare:
+
+1. **Publish libreria** (Table Cell e Table Column sono nuovi, Table cambia) e poi `npx figma connect publish`
+   (`table-cell`, `table-column` nuovi; `table` modificato).
+2. In Dev Mode: una Table con 4 colonne deve mostrare `<sl-table …>` con il commento `table.columns = […]` con 4 voci; con la colonna di
+   selezione `selection="multiple"`; con una colonna `Sort=asc` `sort-column` e `sort-direction`. **Non verificato prima del publish:**
+   che `findConnectedInstances` raggiunga le colonne dentro lo slot (funziona con le istanze figlie di Dropdown e Tab Group, non
+   ancora provato dentro uno slot).
+3. Eventuale: usare l'istanza Table a colonne nel file xCPage al posto dei frame locali.
+
+**Verifica del 2026-10-15 dopo il publish** (letto da Figma via MCP, sola lettura):
+
+- Table Column, Table Cell e Menu risultano pubblicati (`CURRENT`). Snippet Dev Mode:
+  - Table: `<sl-table paginate page-size="25" sticky-header>` con `<div slot="toolbar">` e il commento
+    `table.columns = [ … ]` con le 4 colonne (Task, Rev. code, Created, Due date, ciascuna con `enableSorting: true` perché
+    `Sort=none` significa ordinabile). `findConnectedInstances` raggiunge quindi le colonne dentro lo slot.
+  - Table Column: `<!-- columns entry: { id: 'column', accessorKey: 'column', header: 'Column' } -->`.
+- La Table risultava `CHANGED` (modifiche non pubblicate): la descrizione del componente parlava ancora di Header Row e Row.
+  L'ho riscritta (colonne, Show Rows / Show Empty, Single Selection); **serve un nuovo publish della libreria** e poi nulla da
+  rifare lato Code Connect.
+
+## Marker di riga, cella composita, Table Toolbar (2026-10-15)
+
+Richiesta: prima di togliere le tabelle vecchie (Header Row, Row) servono il marker di riga, la composizione della toolbar con
+gruppi di icon button (frame `435:578`) e una cella unica per stato, badge e icona PDF.
+
+Fatto in Figma (file A, pagina Table, via Plugin API):
+
+- **Table Cell** (`867:2425`, ora 34 varianti, stessa chiave): nuove proprietà **`Marker`** (boolean) e **`Marker Variant`**
+  (instance swap su Table Row Marker, 6 colori) con la barra di 3px a sinistra in tutte le varianti; nuovo `Type=composite` con
+  slot **`Content`** (di default Status, Badge Pill e Icon Button con icona PDF, 32px). Provato su istanze temporanee:
+  Marker acceso con `Variant=success` mostra la barra del colore giusto.
+- **Table Toolbar** (`879:988`, key `98029782…d001`) in `Card: Table Toolbar`: copia della toolbar di riferimento con slot **`Actions`**
+  (gruppi di Icon Button e Divider, contenuto di default identico all'esempio) e proprietà **`Summary`** (testo) e **`Show Summary`**.
+  Padding e bordo li dà lo slot `Toolbar` della Table.
+- **Table Row Marker resta**: è la sorgente dello swap del marker, quindi non va eliminato.
+
+Fatto nel codice:
+
+- `figma/table-toolbar.figma.ts` (nuovo): azioni dello slot e riepilogo dentro `<div slot="toolbar">`.
+- `figma/table-cell.figma.ts`: tipo `composite` con lo slot `Content`; con `Marker` acceso aggiunge `table.rowVariant = row => '<colore>'`.
+- `figma/table.figma.ts`: `table.rowVariant = …` nel commento delle colonne, ricavato dalla prima cella con `Marker`.
+
+Da fare:
+
+1. **Publish libreria** (Table Toolbar è nuovo, Table Cell cambia) e `npx figma connect publish`
+   (`table-toolbar` nuovo; `table-cell` e `table` modificati).
+2. In Dev Mode: una cella composita deve mostrare `<!-- cell: … ${Status, Badge, Icon Button} -->`; con Marker acceso
+   `row marker: table.rowVariant = row => '…'`; una Table Toolbar i suoi Icon Button e Divider dentro `<div slot="toolbar">`.
+   **Non verificato prima del publish:** che gli Icon Button annidati nei frame `group` dello slot `Actions` generino codice.
+3. Poi la pulizia delle tabelle vecchie, in ordine: rifare i 5 esempi con la nuova Table; migrare xCPage; eliminare Table
+   Header Row, Table Row, le 2 card e i Code Connect `table-row` e `table-header-row` (con `figma connect unpublish`).
+
+## Colori del marker e `sl-tree` (2026-10-15)
+
+Contesto: il SUD 3.0 usa tre indicatori di scadenza (Safe / Expiring / Expired) e un albero HBS nella tab Structures.
+
+- **Marker**: nessuna modifica a Figma. Table Row Marker ha già 6 varianti e il codice (`rowVariant`) accetta
+  `success | warning | danger`: Safe → `success`, Expiring → `warning`, Expired → `danger`. `figma/table.figma.ts` ora elenca
+  **tutti** i colori usati nelle celle con `Marker` (prima emetteva solo il primo): con più colori scrive
+  `table.rowVariant = row => '<one per record: success | warning | danger>'`.
+- **Tree** (nuovo, `881:6`, pagina Tree, `Card: Tree`): contenitore con slot `Items` di Tree Item, stessa struttura del Menu.
+  `figma/tree.figma.ts` emette `<sl-tree>` con gli item dello slot; `sl-tree` risulta ora CC nell'inventario.
+- **Limite noto, poi risolto**: Tree Item non aveva uno slot per i figli (vedi la sezione successiva).
+
+Da fare: publish libreria e `npx figma connect publish` (nuovo `tree`, modificato `table`), poi verifica in Dev Mode.
+
+## Icone dei marker di task (2026-10-15)
+
+Richiesta: `person-x` (Abort del Lead Reviewer) mancava; la checkbox "Accepted" e il fumetto del commento devono cambiare forma e colore.
+
+Fatto in Figma (file A, pagina Icons, via Plugin API): quattro nuove icone Bootstrap, clonando lo swatch delle altre (vettore legato alla
+variabile `text/body`): **Icon/person-x** (`887:3`), **Icon/check-square** (`887:12`), **Icon/check-square-fill** (`887:21`),
+**Icon/chat-fill** (`887:27`). `Icon/chat` esisteva già.
+
+Fatto nel codice:
+
+- `figma/icon-person-x.figma.ts`, `icon-check-square.figma.ts`, `icon-check-square-fill.figma.ts`, `icon-chat-fill.figma.ts` (nuovi).
+- Pagine Reviewer e Lead Reviewer: marker "Accepted" `check-square` (neutro) → `check-square-fill` (accent); commento `chat` (neutro) → `chat-fill` (success).
+
+Da fare: publish libreria (4 icone nuove) e `npx figma connect publish` (4 file nuovi); poi in Dev Mode ogni icona deve mostrare
+`<sl-icon name="…"></sl-icon>`.
+
+## Tree Item: slot `Children` (2026-10-15)
+
+Fatto in Figma (file A, pagina Tree, via Plugin API) sul set **Tree Item** (`46:18`, stessa chiave; solo le 4 varianti `Expanded=true`):
+
+- Nuova proprietà **`Children`** (slot) e struttura `Row` (la riga originale con fill, bordo, padding e i 3 layer, stessi ID) +
+  slot `Children` rientrato di 16px (come `--indent-size`). Radice trasparente, in verticale.
+- Gli ID dei layer interni non sono cambiati, quindi gli override di testo delle istanze restano. Le istanze erano 7, tutte nella
+  pagina Tree.
+- Le varianti `Expanded=true` stavano tutte sullo stesso `y` (si sovrapponevano): le ho riposizionate nel set.
+- Lo slot è vuoto di default: un Tree Item non può contenere istanze di se stesso nel master. Il **Tree** di esempio (`881:6`) ora
+  mostra tre livelli (03 HBS › LEVEL1 › ele1_1, KT HBS1) e un fratello (test FD).
+
+Fatto nel codice: `figma/tree-item.figma.ts` emette gli item annidati dentro `<sl-tree-item expanded>…</sl-tree-item>`.
+
+Da fare: publish libreria e `npx figma connect publish` (modificato `tree-item`); in Dev Mode il Tree di esempio deve mostrare
+`<sl-tree-item expanded>03 HBS<sl-tree-item expanded>LEVEL1<sl-tree-item>ele1_1</sl-tree-item></sl-tree-item><sl-tree-item selected>KT HBS1</sl-tree-item></sl-tree-item>`.

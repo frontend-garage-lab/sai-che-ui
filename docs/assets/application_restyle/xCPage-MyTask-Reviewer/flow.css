@@ -1,0 +1,8 @@
+/*
+ * xCPage-MyTask-Reviewer — layout rules specific to this flow. Shared rules live in ../_shared/restyle.css.
+ */
+
+/* Above the workspace: header, title, stages and the filters/KPI row */
+.rs-workspace {
+  --rs-workspace-offset: 35rem;
+}

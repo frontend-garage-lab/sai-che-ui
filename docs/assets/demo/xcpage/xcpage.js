@@ -107,7 +107,13 @@ function avatar(person, slot = '') {
 }
 
 function avatarTemplate(person) {
-  return html`<sl-avatar initials=${person.initials} label=${person.name} class="avatar--${person.color}"></sl-avatar>`;
+  // Table cells render in the table's shadow tree, so page CSS can't reach them: size the avatar inline.
+  return html`<sl-avatar
+    initials=${person.initials}
+    label=${person.name}
+    class="avatar--${person.color}"
+    style="--size: 2rem; flex: none;"
+  ></sl-avatar>`;
 }
 
 function descriptionList(pairs, cols = 2) {
@@ -342,26 +348,31 @@ function dashboardTemplate(t) {
   table.columns = [
     {
       id: 'name',
-      header: 'Name',
+      header: 'Reviewer',
       cell: ({ row }) => html`
-        <span class="person">${avatarTemplate(row.original)}
-          <span class=${row.original.taken ? 'task__title' : ''}>${row.original.name}</span></span
-        >
+        <div style="display: flex; align-items: center; gap: var(--sl-spacing-x-small); min-width: 0;">
+          ${avatarTemplate(row.original)}
+          <div style="display: flex; flex-direction: column; min-width: 0;">
+            <span
+              style="font-weight: var(--sl-font-weight-semibold); color: var(--sl-color-neutral-900); overflow-wrap: anywhere;"
+              >${row.original.name}</span
+            >
+            <span style="font-size: var(--sl-font-size-x-small); color: var(--sl-color-neutral-500);"
+              >${row.original.last ? formatDate(row.original.last, true) : 'No activity yet'}</span
+            >
+          </div>
+        </div>
       `
     },
     {
       id: 'status',
-      header: 'Task status',
-      meta: { width: '6rem', align: 'center' },
+      header: 'Status',
+      meta: { width: '7rem' },
       cell: ({ row }) => html`
-        <sl-icon name=${row.original.taken ? 'check-square' : 'square'} class=${row.original.taken ? 'is-taken' : ''}></sl-icon>
+        <sl-tag size="small" variant=${row.original.taken ? 'success' : 'neutral'}
+          >${row.original.taken ? 'Taken' : 'Waiting'}</sl-tag
+        >
       `
-    },
-    {
-      id: 'last',
-      header: 'Last operation',
-      meta: { width: '10rem', nowrap: true },
-      cell: ({ row }) => (row.original.last ? formatDate(row.original.last, true) : '—')
     }
   ];
   table.data = reviewersOf(t);
@@ -376,22 +387,28 @@ function revisionsTemplate(t) {
       id: 'document',
       header: 'Document',
       cell: ({ row }) => html`
-        <div class="doc">
-          <sl-icon name="file-earmark-pdf"></sl-icon>
-          <div>
-            <div class="doc__name">${docName(row.original)}</div>
-            <div class="muted">${row.original.ref1}.pdf_sp_0001 · ${row.original.ref2}</div>
+        <div style="display: flex; align-items: flex-start; gap: var(--sl-spacing-x-small); min-width: 0;">
+          <sl-icon
+            name="file-earmark-pdf"
+            style="flex: none; font-size: var(--sl-font-size-x-large); color: var(--sl-color-danger-600);"
+          ></sl-icon>
+          <div style="min-width: 0; overflow-wrap: anywhere;">
+            <div style="font-weight: var(--sl-font-weight-semibold); color: var(--sl-color-neutral-900);">
+              ${docName(row.original)}
+            </div>
+            <div style="font-size: var(--sl-font-size-x-small); color: var(--sl-color-neutral-500);">
+              ${row.original.ref1}.pdf_sp_0001 · ${row.original.ref2}
+            </div>
           </div>
         </div>
       `
     },
     {
       id: 'revision',
-      header: 'Revision',
-      meta: { width: '6rem' },
+      header: 'Rev.',
+      meta: { width: '5rem' },
       cell: ({ row }) => html`<sl-tag size="small" variant="neutral">${row.original.rev}</sl-tag>`
     },
-    { id: 'answer', header: 'Client answer', meta: { width: '7rem' }, cell: () => '—' }
   ];
   table.data = [t];
   return table;
@@ -400,9 +417,9 @@ function revisionsTemplate(t) {
 function propertiesTemplate(t) {
   const expired = expiryOf(t) === 'expired';
   return `
-    <div class="stack props">
-      <sl-card>
-        <h3 slot="header" class="section-title">Document info</h3>
+    <div class="props">
+      <section class="props__section">
+        <h3 class="section-title">Document</h3>
         <div class="doc">
           <sl-icon name="file-earmark-pdf"></sl-icon>
           <div>
@@ -411,38 +428,42 @@ function propertiesTemplate(t) {
           </div>
         </div>
         ${descriptionList([
-          ['Revision Code', esc(t.rev)],
+          ['Revision', esc(t.rev)],
           ['Discipline', esc(t.discipline)],
           ['Originator', esc(t.originator)],
-          ['Document Class', 'External Job Document']
+          ['Class', 'External Job Document']
         ])}
-      </sl-card>
+      </section>
 
-      <sl-card>
-        <h3 slot="header" class="section-title">Task info</h3>
+      <sl-divider></sl-divider>
+
+      <section class="props__section">
+        <h3 class="section-title">Task</h3>
         ${descriptionList([
-          ['Lead Reviewer', 'Boffelli Anselmo'],
-          ['DP Name', 'test_notify_rdp_2602183626'],
-          ['Created on', formatDate(t.created)],
-          [
-            'Expires on',
-            `${formatDate(t.due)} ${t.taken ? '<sl-tag size="small" variant="warning">Acquired</sl-tag>' : ''}
-             ${expired ? '<sl-tag size="small" variant="danger">Expired</sl-tag>' : ''}`
-          ]
-        ])}
-      </sl-card>
+          ['Lead reviewer', 'Boffelli Anselmo'],
+          ['DP name', 'test_notify_rdp_2602183626'],
+          ['Created', formatDate(t.created)],
+          ['Expires', `<span class="${expired ? 'is-overdue' : ''}">${formatDate(t.due)}</span>`]
+        ], 1)}
+      </section>
 
-      <sl-card>
-        <h3 slot="header" class="section-title">Review status</h3>
+      <sl-divider></sl-divider>
+
+      <section class="props__section">
+        <h3 class="section-title">Status</h3>
+        <div class="props__tags">
+          <sl-tag size="small" variant="${t.taken ? 'warning' : 'neutral'}">${t.taken ? 'Acquired' : 'Not acquired'}</sl-tag>
+          ${expired ? '<sl-tag size="small" variant="danger">Expired</sl-tag>' : ''}
+        </div>
         <div class="status-line">
           ${
             t.comments.length
-              ? '<span class="is-success"><sl-icon name="check2-circle"></sl-icon> Comment is ready to be published</span>'
-              : '<span class="muted"><sl-icon name="hourglass-split"></sl-icon> No comment uploaded yet</span>'
+              ? '<span class="is-success"><sl-icon name="check2-circle"></sl-icon> Comment ready to publish</span>'
+              : '<span class="muted"><sl-icon name="hourglass-split"></sl-icon> No comment uploaded</span>'
           }
-          <span class="muted"><sl-icon name="info-circle"></sl-icon> Task has not been notified</span>
+          <span class="muted"><sl-icon name="info-circle"></sl-icon> Not notified</span>
         </div>
-      </sl-card>
+      </section>
 
       <sl-button size="small" class="js-all-properties">
         <sl-icon slot="prefix" name="box-arrow-up-right"></sl-icon>
@@ -604,39 +625,43 @@ function openAllProperties() {
   if (!t) return;
   $('#properties-dialog-body').innerHTML = `
     <div class="properties-dialog">
-      <div class="doc">
-        <sl-icon name="file-earmark-pdf"></sl-icon>
-        <div>
-          <div class="doc__name">${esc(t.title)} - ${esc(t.ref1)}</div>
-          <div class="muted">DIN ${esc(t.ref2)}</div>
+      <header class="properties-dialog__head">
+        <div class="doc">
+          <sl-icon name="file-earmark-pdf"></sl-icon>
+          <div>
+            <div class="doc__name">${esc(t.title)} - ${esc(t.ref1)}</div>
+            <div class="muted">DIN ${esc(t.ref2)}</div>
+          </div>
         </div>
-      </div>
+        <div class="properties-dialog__tags">
+          <sl-tag size="small" variant="neutral">Rev. ${esc(t.rev)}</sl-tag>
+          <sl-tag size="small" variant="success">Current</sl-tag>
+        </div>
+      </header>
       ${descriptionList(
         [
-          ['Revision Code', esc(t.rev)],
           ['Second Revision Code', '—'],
-          ['Title', esc(t.ref1)],
           ['Client Answer', '—'],
-          ['Issuing Description', 'B - SUBMIT WITH PROPOSAL'],
-          ['Revision Status', 'Current']
+          ['Issuing Description', 'B - SUBMIT WITH PROPOSAL']
         ],
         3
       )}
       <sl-tab-group>
         <sl-tab slot="nav" panel="info" active>Info</sl-tab>
-        <sl-tab slot="nav" panel="job">Job Document</sl-tab>
-        <sl-tab slot="nav" panel="contents">Contents</sl-tab>
-        <sl-tab slot="nav" panel="comments">Comments</sl-tab>
-        <sl-tab slot="nav" panel="review">Review</sl-tab>
+        <sl-tab slot="nav" panel="job" disabled>Job Document</sl-tab>
+        <sl-tab slot="nav" panel="contents" disabled>Contents</sl-tab>
+        <sl-tab slot="nav" panel="comments" disabled>Comments</sl-tab>
+        <sl-tab slot="nav" panel="review" disabled>Review</sl-tab>
         <sl-tab-panel name="info">
           ${descriptionList(
             [
+              // One row per concern: identification, status, project
               ['Client Document Identification', esc(t.ref2)],
               ['Vendor Document Identification', esc(t.ref2)],
-              ['Document Type', 'External Job Document'],
               ['Second Issuing Description', 'test_review_doc_0001'],
-              ['Superseded By', '—'],
+              ['Document Type', 'External Job Document'],
               ['Document Status', 'Received'],
+              ['Superseded By', '—'],
               ['Project Code', '99_PAGE_AM'],
               ['Company Project Code', '123456789'],
               ['Managing Department - Discipline', esc(t.discipline)]
