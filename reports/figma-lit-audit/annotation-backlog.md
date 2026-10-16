@@ -220,3 +220,93 @@ Corretti tutti e 16 i commenti `url=` con il node-id reale e attuale, verificato
 **Azione richiesta all'utente**: ripetere `figma connect publish` per questi 16 file (o publish completo) ora che gli URL sono corretti, altrimenti Dev Mode continuerà a non trovare/mappare correttamente queste icone.
 
 **Lezione per il futuro** (da riportare anche in `instruction.md`): quando si sostituisce il contenuto di un componente Figma con delete+create (anziché editare i figli in-place), il node-id cambia sempre — va aggiornato manualmente ogni commento `url=` nei file Code Connect che referenziano quel nodo, PRIMA che l'utente esegua il publish, non dopo.
+
+## Fix applicato 2026-10-16 — Detail Panel orfano, Card header icon, Select label/help-text, Input label (File A: Saipem DS `CdCRuuAnOeYrOOn1HYkxDM`)
+
+Origine: riproduzione di `1-ReviewerMainPage.html` nel file Saipem-XcMM (`aHzBtZSU3XnoXxUZsRDT4a`, pagina Restyle) con istanze del DS. Approvazione dell'utente in chat (Detail Panel: "Lo sistemo io nel DS"; Card/Select: "da fare … anche code connect e aggiornamento libreria").
+
+1. **Detail Panel** (`396:1722`, key `ad7bf2e0…`): main component **orfano** (nessun parent, non su nessuna pagina) → `getPublishStatusAsync` = `UNPUBLISHED`, assente da Publish e da `search_design_system`. Riparentato in-place sulla pagina `Detail Panel` (`396:1721`, x=1016 y=0). ID, key, props (`Title`, `Meta`, `Body`, `Actions`) e le 2 istanze di esempio invariati. Pubblicato dall'utente; import per key verificato nel file Saipem-XcMM (`importComponentByKeyAsync` OK). Code Connect `figma/detail-panel.figma.ts` (`node-id=396-1722`) invariato e valido, **mai pubblicato prima** → serve `figma connect publish`.
+2. **Card** (`53:87`): aggiunte `Header Icon` (BOOLEAN, default false) e `Header Icon Type` (INSTANCE_SWAP, default `Icon/filter`) alle 2 varianti con header; icona `header-icon` 16px, gap bindato a `Spacing/x-small`. Additivo: istanze esistenti invariate (verificato con screenshot prima/dopo). Codice: `<div slot="header">` accetta HTML libero, nessuna modifica Lit. CC: `figma/card.figma.ts` emette `<sl-icon …>` prima del testo dell'header.
+3. **Select** (`57:38`): ogni variante (12) ora è un frame verticale con `label` (nascosto), `row` (chrome del controllo, stessi fill/stroke/radius/effetti/padding bindati) e `help-text` (nascosto), come `Input`. Nuove props `Show Label`, `Show Help Text` (BOOLEAN, default false). Screenshot prima/dopo del set identico; test su copia: gli override di testo delle istanze sopravvivono alla riorganizzazione; le 5 istanze di Select nel DS (Header `xCMM Demo`, Table page-size 10/25/50/100) conservano testo e altezza 28. Codice: `sl-select` ha già `label`/`help-text`, nessuna modifica Lit. CC: `figma/select.figma.ts` emette `label=` e `help-text=`.
+4. **Input** (`36:26`): bug di allineamento dell'etichetta e dell'help text (centrati, `HUG`) corretto in tutte le varianti (`FILL` + allineamento a sinistra). Nessun cambio di props.
+
+Verifica: `npx tsc --noEmit -p figma/tsconfig.json` senza errori. Node-id dei set invariati → gli `url=` CC di Card/Select non cambiano.
+
+**Azioni richieste all'utente**: (a) pubblicare la libreria Saipem DS (Card, Select, Input); (b) `npx figma connect publish` con `FIGMA_ACCESS_TOKEN` (card, select, detail-panel); (c) in Saipem-XcMM accettare gli aggiornamenti libreria (Review library updates → Update). Poi adozione: `Header Icon` su Card Filters, `Show Label` sui Select Originator/Discipline al posto delle etichette di testo manuali.
+
+Stage tab (consumer-local nel file Saipem-XcMM, nessuna modifica al DS): `Indicator Bottom` disattivato e gap 12px (`Spacing/small`) tra i card tab, come `.rs-stages` (`--track-width: 0`, `::part(tabs){gap: small}`).
+
+### Adozione 2026-10-16 in Saipem-XcMM (`aHzBtZSU3XnoXxUZsRDT4a`, frame NEW `248:15`)
+Dopo publish libreria + Code Connect + update nel consumer (verificato: `Header Icon`, `Header Icon Type`, `Show Label`, `Show Help Text` visibili via import per key). Card Filters (`251:117`): `Header Icon` attivo. Select Originator (`260:945`) e Discipline (`260:958`): istanze con `Show Label`, al posto dei frame manuali label+select. Verifica visiva a screenshot. Resta come scostamento: 4 `Stat` diretti in griglia 2×2 al posto di `Stat Group` (resize non consentito dentro l'istanza).
+
+## Audit + fix 2026-10-16 (2) — icone orfane, File Drop, Stat Group (File A: Saipem DS `CdCRuuAnOeYrOOn1HYkxDM`)
+
+Origine: icona di upload sbagliata nel dialog Import comment (pagina 4 di Saipem-XcMM). Causa: l'istanza `Icon/cloud-arrow-up` dentro **File Drop** (`217:619/625/631`) puntava ancora al vecchio main component disegnato a mano `173:70` (senza parent, rimasto in vita dalle istanze) invece del componente Bootstrap attuale `818:29`. Stessa classe di bug del fix "16 icone fake→reali" (2026-10-14): le istanze nei componenti non erano state migrate.
+
+Scansione read-only di tutte le 52 pagine (1.196 istanze): 11 istanze con main orfano, tutte migrate con `swapComponent` mantenendo dimensione:
+- `cloud-arrow-up` `173:70`→`818:29`: File Drop (3 varianti)
+- `info-circle` `214:2`→`818:40`: Alert primary (`214:615`), accent (`214:620`)
+- `exclamation-triangle` `214:11`→`818:44`: Alert warning (`214:635`)
+- `exclamation-octagon` `214:16`→`818:48`: Alert danger (`214:641`), File Upload Item failed (`661:45`)
+- `copy` `173:57`→`818:25`: Copy Button (`235:3`, `235:10`)
+Dopo il fix: scansione ripetuta non necessaria per gli altri tipi (nessun altro orfano trovato). Screenshot di File Drop e Alert verificati.
+
+Altri fix (additivi, solo layout):
+- **File Drop** (`41:12`): `zone` ora `FILL` in tutte le 3 varianti (prima fissa 265 px: serviva un override a mano nei file consumer).
+- **Stat Group** (`840:91`): i 4 `Stat` ora `FILL` con `minWidth` 176 (11rem come `sl-stat`). A 916 px restano 4×220; a 507 px vanno a capo 2×2 da 248 px (verificato con istanza di prova poi eliminata). Prima il resize delle istanze interne non era ammesso.
+
+Nessun cambio a nome, key o proprietà → i Code Connect restano validi. **Serve publish della libreria** (poi update nei consumer).
+
+Proposte non applicate (richiedono scelta): Dialog footer con vere istanze `Button`; Description List con slot righe; Tab Group Panel come slot; Comment con nome allegato opzionale; select dell'header a 256 px; Select con stato "valore selezionato".
+
+### Fix aggiuntivi approvati 2026-10-16 (File A: Saipem DS `CdCRuuAnOeYrOOn1HYkxDM`)
+Approvati dall'utente: Comment, Tab Group, Dialog, Description List.
+- **Comment** (`704:2`): nuova prop `Show Attachment Name` (BOOLEAN, default true) sul testo `Attachment name.pdf` (`704:1787`). Additivo. CC invariato (l'allegato resta `<sl-icon-button slot="attachment">`).
+- **Tab Group** (`31:21` set): i 4 frame `Panel` (`354:19`, `354:38`, `354:54`, `354:69`) legati **in place** alla nuova prop `Panel` (SLOT) → ID invariati, quindi gli override `visible=false` dei consumer restano. Verificato su istanza di prova (slot accetta contenuto, poi eliminata). CC invariato (emette solo la shell `sl-tab-panel`).
+- **Description List** (`700:1776`): le 2 `Row` (`700:1777`, `700:1784`) spostate in uno slot `Items` (`923:2884`, prop `Items#923:6`); ID delle righe invariati, aspetto identico (436×110). Limite CC: `description-list.figma.ts` emette ancora al massimo 4 item (`findConnectedInstances`); se si aggiungono righe va esteso.
+- **Dialog** (`54:21`): nelle 2 varianti con footer i riquadri finti Cancel/Confirm (`54:10`, `54:12`) sostituiti da istanze `Button` (default e primary) nominate `Cancel` e `Confirm`. **Cambio di struttura**: i testi sovrascritti nelle istanze esistenti tornano a "Cancel"/"Confirm" (ID dei nodi vecchi non esistono più). CC `dialog.figma.ts` ora legge le etichette dai Button annidati (`findInstance` + `findText('Button')`); `tsc` OK.
+
+Da fare dopo il publish: ritoccare nel file Saipem-XcMM il footer del dialog della pagina 4 ("Import comment" sul Confirm), nascondere il nome allegato nel Comment della pagina 5, e (opzionale) usare gli slot nuovi.
+
+### Verifica File Upload Item (`658:2`) prima del publish — 2026-10-16
+Confronto `file-upload-item.styles.ts` ↔ Figma, per stato: padding (8/8/8/12), gap 12, raggio medium, testi (filename 14 semibold `text/label`, meta 12 `text/help`, success-600 / danger-600), progress 4px, bottoni — **coincidono**. Differenze trovate e corrette:
+1. **Regressione mia**: lo swap delle icone orfane (fix precedente) aveva azzerato i colori per variante. Ripristinati con variabili del DS, come da CSS: File Upload Item `failed` icona `danger/600`; Alert `primary` `primary/600`, `accent` `accent/700`, `warning` `warning/600`, `danger` `danger/600`.
+2. **`Icon/check2-circle` (`214:6`) disegnata a mano** (ellisse chiusa + vettore; Bootstrap ha il cerchio aperto in alto a destra): contenuto sostituito in place con i 2 path SVG reali (ID e key invariati). È usata da File Upload Item `uploaded`, Alert `success` e come icona di default dei 18 `Stat`: colori per istanza ripristinati (success/600; Stat: primary/600, accent/500, success/600, neutral/500, warning/500, danger/600).
+3. **`Icon/box-arrow-right` (`205:575`)**: 4 rettangoli + vettore → 2 path Bootstrap reali, in place (nessuna istanza trovata).
+Dopo questo, nel set Icons (92 componenti) non restano icone con figli diversi da VECTOR. Alert `neutral` usa `Icon/gear` (scelta di design, non un errore).
+Non verificato: confronto pixel con l'HTML renderizzato nel browser (non avviato).
+
+### Fix 2026-10-16 — File Upload Item: sfondo nascosto (`658:2`)
+Segnalato dall'utente (screenshot): `uploaded` senza il verdino dell'HTML. Causa: in **tutte e 4** le varianti il fill della radice (bound `success/50` `#f4faf8` = `--sl-color-success-50`, `danger/50` per `failed`, `surface/panel` per `waiting`/`uploading`) era presente ma `visible: false`. Riattivato (`visible: true`) sui 4 fill; stroke già visibili. Scansione di tutti i component/varianti del DS per fill presenti ma tutti nascosti: solo icone (normale, sfondo trasparente) più `Split Panel` (`65:97`) e `Carousel` (`70:2`) — da verificare se voluto, non toccati.
+
+## Fix 2026-10-16 (3) — Toast / Alert (File A + pagina 5 di Saipem-XcMM)
+Segnalazione utente (screenshot del toast renderizzato). Confronto `alert.styles.ts` + `.sl-toast-stack` (`_utility.css` + override `restyle.css`) ↔ Figma:
+- **Posizione**: `restyle.css` sovrascrive `.sl-toast-stack { top: auto; bottom: 0 }` → toast **in basso a destra** (era in alto a destra). Pagina 5 (`267:3576`) spostata: margine 16, larghezza 416 (28rem − 2×16).
+- **Nome documento** in `<strong>` → range `Inter Semi Bold` sul nome. **Ombra** `.sl-toast-stack sl-alert::part(base)` → stile `Shadow/Large` (key `8d567ce1…`) applicato all'istanza.
+- **DS Alert** (`35:32`, 6 varianti, da ripubblicare): gap icona↔testo 8→**16** (padding sinistro del messaggio = `--sl-spacing-medium`), bound a `Spacing/medium`; pulsante di chiusura ricostruito come icon-button: box 30px (padding 8, icona 14), margine 4 sopra / 8 a destra, icona `neutral/600`; binding `Closable#214:0` sulla visibilità mantenuto (era un'icona 12px a filo del bordo). Verificato con istanza di prova a 416px (poi eliminata). Scostamento residuo: l'icona di stato è 2px più in alto che nel CSS (padding-top small + 0.15rem).
+Il gap/la X arriveranno nel toast di Saipem-XcMM dopo publish + update.
+
+## Fix 2026-10-16 (4) — Comment (`704:2`) allineato a `sl-comment` (File A, da ripubblicare)
+Segnalazione utente (discordanze con l'applicativo). Confronto `comment.styles.ts` ↔ Figma, differenze corrette in place (ID dei nodi invariati):
+- Contenitore: aggiunti padding `Spacing/small`, fill `surface/panel`, bordo 1px `border/subtle`, raggio `Radius/large` (prima nessun chrome).
+- Avatar 32 → **36** (`--size: 2.25rem`). Gap contenuto `2x-small` → `3x-small`; gap meta `x-small` → `2x-small`.
+- Autore 12 medium → **14 semibold** (`size/small`, `weight/semibold`, `text/label`). Data invariata (12, `text/help`) con **"· "** prima (nuovo testo `dot`, `::before`). Testo 14 `text/body` → **12 `text/help`**, ora a capo (fill + auto height).
+- Allegato: da link + nome sotto il testo a **box da 32px a fine riga** (padding 8, raggio medium, icona 16 `neutral/600`), come lo slot `attachment` con `sl-icon-button`; icona predefinita `file-earmark-pdf` (come nell'HTML). Prop `Show Attachment Name` (aggiunta oggi, non ancora adottata) rimossa perché il nome non esiste più; `Has Attachment` resta sul box.
+- `Icon/link-45deg` (`239:9`) era anch'essa disegnata a mano (2 vettori 7×4): sostituita in place con i 2 path Bootstrap.
+CC: `comment.figma.ts` ora emette `name="file-earmark-pdf"` (era `paperclip`, icona non presente nel DS). Impatto istanze: gli override Author/Date/Text e le icone già sostituite nelle istanze restano (stessi ID); il nome allegato nascosto in Saipem-XcMM pagina 5 non serve più.
+
+## Pagine 6–7 del flusso Reviewer + tab del pannello (2026-10-16)
+Saipem-XcMM (`aHzBtZSU3XnoXxUZsRDT4a`), pagina Restyle: `6-DashboardStatus` (`274:3646`), `7-CompleteTask` (`274:4715`) con OLD = screenshot. Adottati gli update di libreria (footer Dialog con Button reali, File Upload verdino, Comment nuovo, `Import comment` sul Confirm della pagina 4). `Stat Group` provato e **non adottabile** a pannello largo (min 176px/stat → 3+1 a 641px; l'HTML usa `.rs-stats-2x2 > sl-stat {flex: 1 1 40%}` regola di pagina): tenuta la griglia 2×2 di `Stat` (icone swap). `Expired` era finito per errore in `State=selected` nelle pagine 4–7: riportato a `default`.
+Tab **Revisions** del pannello: frame `6b-Revisions` (`279:5523`, solo NEW, nessuno screenshot legacy) clonato dalla 6: tabella (icona PDF, documento a 3 righe, `A1` + Tag `Current`), "1 revision".
+**Fix DS (da ripubblicare)**: `Details` (`64:15`) — il corpo della variante `expanded` (`64:13`) era un frame normale, quindi non si poteva inserire una Description List nelle istanze; legato in place alla nuova prop `Body` (SLOT, `Body#939:0`), ID invariato. CC `details.figma.ts` ora emette il contenuto dello slot (`getSlot('Body')`) invece del testo segnaposto; `tsc` OK. Tab **Properties** (2 `Details` aperti con Description List) in attesa di publish + update.
+
+Tab **Properties** costruita (2026-10-16): frame `6c-Properties` (`280:6418`, solo NEW) clonato da `6b-Revisions`, con 2 `Details` `expanded` (slot `Body` pubblicato e verificato) → "Document info" (Name, DIN, Title, Revision code, Originator, Discipline) e "Task info" (Created on + Tag `Acquired` warning, Expires on + Status `Expired` danger). Scostamento: `Description List Item` non ha uno slot per Tag/Status accanto al valore → Tag e Status sono istanze DS posizionate in assoluto accanto al testo del valore (misurato). Possibile miglioramento DS: slot "Value suffix" sull'item.
+
+## Fix 2026-10-16 (5) — Description List Item: slot `Value Suffix` (File A, da ripubblicare)
+Risolve lo scostamento della tab Properties (Tag/Status posizionati in assoluto). `Description List Item` (`700:1775`, 2 varianti): il testo `Value` (`700:6`, `700:9`, ID invariati, prop `Value` invariata) ora è in una riga `value-row` (H, gap `x-small`, wrap) seguito da uno slot `Value Suffix` (prop SLOT `Value Suffix#941:0`). Il testo mantiene il comportamento di prima (larghezza max = quella originale, va a capo); slot vuoto compresso a 1×1 → altezze invariate (45/42). Verificato con istanza di prova (Tag inline accanto al valore, valore lungo a capo), poi eliminata. Codice: `sl-description-list-item` ha già lo slot di default per contenuto ricco (`<sl-tag>`), nessuna modifica Lit. CC `description-list-item.figma.ts` emette `${value}${suffix}` (`getSlot`); `tsc` OK.
+Osservazione non applicata: il valore nel CSS è `font-weight: semibold` e il gap label/valore è `3x-small` (2px) per qualsiasi dimensione, mentre in Figma il valore è Regular e il gap è 8/4 (varianti `small`/`x-small`, che nel codice non esistono).
+Dopo publish + update: in `6c-Properties` (`280:6418`) sostituire Tag e Status in assoluto con contenuto dello slot.
+
+### Allineamento Description List Item al CSS — 2026-10-16 (approvato dall'utente, da ripubblicare)
+Motivo: le varianti `Size=small|x-small` erano state create dalla skill il 14 ottobre (REQ-006) per iniziativa di design ("compact layouts"), senza controparte nel codice (`sl-description-list-item` ha solo `label`). Nessuna istanza usava `x-small` nel DS (scansione di tutte le pagine).
+Fatto su `700:1775`: variante `small` con valore **semibold** (`weight/semibold`, `text/label`) e gap **`3x-small`** (2px) come `description-list-item.styles.ts` → altezza 45→39px; variante `x-small` **eliminata**; descrizione aggiornata (nessun riferimento a Size). Limite API: la proprietà `Size` non è cancellabile via Plugin API (`deleteComponentProperty` rifiuta le variant property): resta con l'unica opzione `small`; rimuoverla a mano in Figma (tasto destro sulla proprietà → Delete) senza conseguenze. Impatto: item ~6px più bassi nelle istanze (Properties, dialog Import comment, Description List esempio); ID dei nodi e override invariati; CC invariato.

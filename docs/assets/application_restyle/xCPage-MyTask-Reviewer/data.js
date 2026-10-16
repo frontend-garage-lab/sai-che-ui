@@ -128,7 +128,7 @@ const quickInfo = row => html`
     ></sl-icon>
     <sl-icon
       variant=${row.comment ? 'success' : 'neutral'}
-      name=${row.comment ? 'chat-fill' : 'chat'}
+      name="chat-fill"
       title=${row.comment ? 'Review comment uploaded' : 'No review comment yet'}
     ></sl-icon>
   </span>

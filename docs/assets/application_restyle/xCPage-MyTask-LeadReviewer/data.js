@@ -142,7 +142,7 @@ const quickInfo = row => html`
     ></sl-icon>
     <sl-icon
       variant=${row.closed ? 'success' : 'neutral'}
-      name=${row.closed ? 'chat-fill' : 'chat'}
+      name="chat-fill"
       title=${row.closed ? 'Reviewer tasks closed' : 'Reviewer tasks in progress'}
     ></sl-icon>
     ${row.notified ? html`<sl-icon variant="danger" name="exclamation-lg" title="Notified"></sl-icon>` : ''}

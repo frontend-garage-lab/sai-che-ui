@@ -15,8 +15,16 @@ function text(...layerNames: string[]) {
 
 const hasHeader = instance.getEnum('Header', { true: true, false: false });
 const hasFooter = instance.getEnum('Footer', { true: true, false: false });
+// The footer holds two real "Button" instances named "Cancel" and "Confirm"; the label is the text layer
+// of each Button (the layer is named after the Button's default content, whatever the override).
+function buttonLabel(instanceName: string) {
+  const button = instance.findInstance(instanceName);
+  if (button.type !== 'INSTANCE') return '';
+  const layer = button.findText('Button');
+  return layer.type === 'TEXT' ? layer.textContent : '';
+}
 const footer = hasFooter
-  ? figma.html`\n  <sl-button slot="footer">${text('Cancel')}</sl-button>\n  <sl-button slot="footer" variant="primary">${text('Confirm')}</sl-button>`
+  ? figma.html`\n  <sl-button slot="footer">${buttonLabel('Cancel')}</sl-button>\n  <sl-button slot="footer" variant="primary">${buttonLabel('Confirm')}</sl-button>`
   : '';
 
 const headerActions = instance.getInstanceSwap('Header Actions');

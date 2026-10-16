@@ -15,7 +15,16 @@ function text(...layerNames: string[]) {
 
 const hasHeader = instance.getEnum('Header', { true: true, false: false });
 const hasFooter = instance.getEnum('Footer', { true: true, false: false });
-const header = hasHeader ? figma.html`\n  <div slot="header">${text('Card header')}</div>` : '';
+// Optional leading icon in the header (Header Icon + Header Icon Type); only variants with a header have it.
+const showHeaderIcon = hasHeader ? instance.getBoolean('Header Icon') : false;
+const headerIcon = showHeaderIcon ? instance.getInstanceSwap('Header Icon Type') : null;
+let headerIconCode;
+if (headerIcon && headerIcon.type === 'INSTANCE') {
+  headerIconCode = headerIcon.executeTemplate().example;
+}
+const header = hasHeader
+  ? figma.html`\n  <div slot="header">${headerIconCode ? headerIconCode : ''}${text('Card header')}</div>`
+  : '';
 const footer = hasFooter ? figma.html`\n  <div slot="footer">${text('Footer content')}</div>` : '';
 
 const image = instance.getInstanceSwap('Image');

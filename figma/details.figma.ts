@@ -16,9 +16,12 @@ function text(...layerNames: string[]) {
 const open = instance.getEnum('State', { collapsed: false, expanded: true, disabled: false });
 const disabled = instance.getEnum('State', { collapsed: false, expanded: false, disabled: true });
 
+// The expanded body is a slot: any content can be dropped into it (e.g. an sl-description-list).
+const body = open ? instance.getSlot('Body') : '';
+
 export default {
   example: figma.html`<sl-details summary="${text('Document metadata')}"${open ? ' open' : ''}${disabled ? ' disabled' : ''}>
-  ${text('Author, revision, and approval history go here.')}
+  ${body}
 </sl-details>`,
   imports: ["import 'src/components/details/details.js'"],
   id: 'details',

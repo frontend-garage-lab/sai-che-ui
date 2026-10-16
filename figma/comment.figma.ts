@@ -9,7 +9,7 @@ const date = instance.getString('Date');
 const text = instance.getString('Text');
 const hasAttachment = instance.getBoolean('Has Attachment');
 const attachment = hasAttachment
-  ? figma.html`\n  <sl-icon-button slot="attachment" name="paperclip" label="View attachment"></sl-icon-button>`
+  ? figma.html`\n  <sl-icon-button slot="attachment" name="file-earmark-pdf" label="View attachment"></sl-icon-button>`
   : '';
 
 export default {

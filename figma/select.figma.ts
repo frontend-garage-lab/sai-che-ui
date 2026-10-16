@@ -21,8 +21,14 @@ const clearable = instance.getBoolean('Clearable');
 const multiple = instance.getBoolean('Multiple');
 const open = instance.getBoolean('Open');
 
+// Label above the control and help text below it (same pattern as Input).
+const showLabel = instance.getBoolean('Show Label');
+const label = showLabel ? text('label', 'Label') : '';
+const showHelpText = instance.getBoolean('Show Help Text');
+const helpText = showHelpText ? text('help-text', 'Help text') : '';
+
 export default {
-  example: figma.html`<sl-select size="${size}" placeholder="${text('Select an option')}"${filled ? ' filled' : ''}${pill ? ' pill' : ''}${clearable ? ' clearable' : ''}${multiple ? ' multiple' : ''}${open ? ' open' : ''}${disabled ? ' disabled' : ''}>
+  example: figma.html`<sl-select size="${size}"${label ? ` label="${label}"` : ''} placeholder="${text('Select an option')}"${helpText ? ` help-text="${helpText}"` : ''}${filled ? ' filled' : ''}${pill ? ' pill' : ''}${clearable ? ' clearable' : ''}${multiple ? ' multiple' : ''}${open ? ' open' : ''}${disabled ? ' disabled' : ''}>
   <!-- sl-option elements -->
 </sl-select>`,
   imports: ["import 'src/components/select/select.js'"],
