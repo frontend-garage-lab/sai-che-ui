@@ -10,6 +10,11 @@ import { documentCell } from '../_shared/restyle.js';
 
 export { mountTable, openHeaderMenu } from '../_shared/restyle.js';
 
+// The comment actions sit in the detail panel header, so they follow the Review comments tab only.
+document.addEventListener('sl-tab-show', ({ detail }) => {
+  document.querySelectorAll('[data-comment-action]').forEach(action => (action.hidden = detail.name !== 'comments'));
+});
+
 // ------------------------------------------------------------------ Review tasks (11, all expired)
 
 const task = (

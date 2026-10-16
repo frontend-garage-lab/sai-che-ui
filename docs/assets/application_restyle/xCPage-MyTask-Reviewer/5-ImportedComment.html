@@ -200,6 +200,15 @@
         <sl-detail-panel contained class="rs-span-5 rs-span-lg-6" aria-label="Task details">
           <span slot="label" class="rs-inline">test Foxit_no signature</span>
           <span slot="meta">Revision A1 · Due 25-Jun-2026</span>
+          <sl-tooltip slot="actions" content="Add comment" data-comment-action
+            ><sl-icon-button name="plus-lg" label="Add comment" disabled></sl-icon-button
+          ></sl-tooltip>
+          <sl-tooltip slot="actions" content="Edit comment" data-comment-action
+            ><sl-icon-button name="pencil" label="Edit comment"></sl-icon-button
+          ></sl-tooltip>
+          <sl-tooltip slot="actions" content="Delete comment" data-comment-action
+            ><sl-icon-button name="trash" label="Delete comment"></sl-icon-button
+          ></sl-tooltip>
 
           <sl-tab-group>
             <sl-tab slot="nav" panel="comments" active
@@ -217,14 +226,6 @@
 
             <sl-tab-panel name="comments" active>
               <div class="rs-inset rs-stack">
-                <div class="rs-cluster rs-cluster--nowrap">
-                  <sl-button size="small" disabled>
-                    <sl-icon slot="prefix" name="plus-lg"></sl-icon>Add comment
-                  </sl-button>
-                  <sl-button size="small"><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-button>
-                  <sl-button size="small"><sl-icon slot="prefix" name="trash"></sl-icon>Delete</sl-button>
-                </div>
-
                 <section class="rs-stack rs-stack--tight" aria-label="Review comments">
                   <div class="rs-cluster rs-cluster--between">
                     <h3 class="rs-subheading">Review comments</h3>

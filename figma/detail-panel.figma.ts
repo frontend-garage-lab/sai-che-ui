@@ -17,7 +17,7 @@ export default {
   example: figma.html`<sl-detail-panel contained>
   <span slot="label">${title}</span>
   <span slot="meta">${meta}</span>
-  ${actions}
+  ${actions ? figma.html`<span slot="actions" style="display: contents">${actions}</span>` : ''}
   ${body}
 </sl-detail-panel>`,
   imports: ["import 'src/components/detail-panel/detail-panel.js'"],
