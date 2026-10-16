@@ -44,6 +44,21 @@ describe('<sl-icon>', () => {
       expect(el.src).to.be.undefined;
       expect(el.label).to.equal('');
       expect(el.library).to.equal('default');
+      expect(el.variant).to.be.undefined;
+    });
+
+    it('inherits the text colour without a variant and uses the token colour with one', async () => {
+      const el = await fixture<SlIcon>(html`
+        <sl-icon library="system" name="check" style="color: rgb(1, 2, 3);"></sl-icon>
+      `);
+      expect(getComputedStyle(el).color).to.equal('rgb(1, 2, 3)');
+
+      for (const variant of ['neutral', 'accent', 'success', 'danger'] as const) {
+        el.variant = variant;
+        await elementUpdated(el);
+        expect(getComputedStyle(el).color).to.not.equal('rgb(1, 2, 3)');
+        expect(el.getAttribute('variant')).to.equal(variant);
+      }
     });
 
     it('renders pre-loaded system icons and emits sl-load event', async () => {

@@ -96,6 +96,12 @@ export default class SlIcon extends ShoelaceElement {
   /** The name of a registered custom icon library. */
   @property({ reflect: true }) library = 'default';
 
+  /**
+   * The colour of the icon, taken from the design tokens. When omitted, the icon inherits the current text colour.
+   * Pair the colour with a different shape (e.g. outline vs. filled) so it is never the only cue.
+   */
+  @property({ reflect: true }) variant?: 'neutral' | 'accent' | 'success' | 'danger';
+
   connectedCallback() {
     super.connectedCallback();
     watchIcon(this);

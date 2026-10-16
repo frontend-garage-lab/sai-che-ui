@@ -109,15 +109,20 @@ const EXPIRY = {
 // Quick info as in the legacy list: expiry dot, accepted checkbox (lit by Accept → accent) and speech bubble (comment
 // uploaded → success). Unlit markers are neutral.
 const quickInfo = row => html`
-  <span class="rs-inline">
-    <sl-status variant=${EXPIRY[row.expiry].variant} size="small" title=${EXPIRY[row.expiry].label}></sl-status>
+  <span class="rs-quick-info">
+    <sl-status
+      class="rs-status-dot"
+      variant=${EXPIRY[row.expiry].variant}
+      size="small"
+      title=${EXPIRY[row.expiry].label}
+    ></sl-status>
     <sl-icon
-      class=${row.acquired ? 'rs-mark--accent' : 'rs-mark'}
-      name=${row.acquired ? 'check-square-fill' : 'check-square'}
+      variant=${row.acquired ? 'accent' : 'neutral'}
+      name=${row.acquired ? 'check-square-fill' : 'square'}
       title=${row.acquired ? 'Accepted' : 'Not accepted yet'}
     ></sl-icon>
     <sl-icon
-      class=${row.comment ? 'rs-mark--success' : 'rs-mark'}
+      variant=${row.comment ? 'success' : 'neutral'}
       name=${row.comment ? 'chat-fill' : 'chat'}
       title=${row.comment ? 'Review comment uploaded' : 'No review comment yet'}
     ></sl-icon>

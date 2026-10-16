@@ -392,6 +392,34 @@ body {
   display: inline-flex;
   align-items: center;
   gap: var(--rs-inline-gap);
+  vertical-align: middle;
+}
+
+/* Quick-info cell: expiry dot + row markers, spaced like a cluster (8px) so the dot's halo does not touch the icons */
+.rs-quick-info {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rs-cluster-gap);
+  vertical-align: middle;
+}
+
+/* Inline-block hosts sit on the text baseline and add line-height slack: make them flex items so status dots and icons share one centre line */
+.rs-inline > sl-status,
+.rs-inline > sl-icon,
+.rs-quick-info > sl-status,
+.rs-quick-info > sl-icon {
+  display: flex;
+  align-items: center;
+}
+
+/* Status with no label (dot only): drop the empty label and its gap so the dot centres on the neighbouring icons */
+sl-status.rs-status-dot::part(base) {
+  gap: 0;
+  line-height: 0;
+}
+
+sl-status.rs-status-dot::part(label) {
+  display: none;
 }
 
 /* Scroll container for regions that fill the remaining height */
@@ -414,21 +442,6 @@ body {
 
 /*
  * Colour language of task actions: the colour of an action is the colour of the row state it switches on
- * (Accept → accent / orange, comment uploaded → success, Notify → danger).
- * Unlit markers stay neutral; every marker keeps its own shape and tooltip, so colour is never the only cue.
+ * (Accept → accent / orange, comment uploaded → success, Notify → danger), set with <sl-icon variant="…">.
+ * Unlit markers use variant="neutral"; every marker keeps its own shape and tooltip, so colour is never the only cue.
  */
-.rs-mark {
-  color: var(--sl-color-neutral-500);
-}
-
-.rs-mark--accent {
-  color: var(--sl-color-accent-600);
-}
-
-.rs-mark--success {
-  color: var(--sl-color-success-600);
-}
-
-.rs-mark--danger {
-  color: var(--sl-color-danger-600);
-}

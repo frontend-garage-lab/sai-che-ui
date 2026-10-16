@@ -76,7 +76,7 @@ const documentInfo = ({ row }) => {
     <span class="rs-inline">
       ${record.checkedOut ? html`<sl-icon name="lock" title="Checked out"></sl-icon>` : ''}
       <sl-icon
-        class=${current ? 'rs-mark--success' : 'rs-mark'}
+        variant=${current ? 'success' : 'neutral'}
         name="flag"
         title=${current ? 'Current revision' : 'Not the current revision'}
       ></sl-icon>
@@ -268,9 +268,32 @@ export async function openRowMenu(selector, index) {
 }
 
 /** Fills a table and, optionally, selects the first record matching `isSelected` and scrolls it into view. */
+// Cell templates render inside the table's shadow root, where the page stylesheet does not reach:
+// the cell helper classes are copied in so they apply there as well.
+const CELL_CLASSES = ['.rs-inline', '.rs-quick-info', '.rs-cell-stack', '.rs-truncate', '.rs-status-dot'];
+
+function adoptCellStyles(table) {
+  const sheet = new CSSStyleSheet();
+  for (const source of document.styleSheets) {
+    let rules;
+    try {
+      rules = [...source.cssRules];
+    } catch {
+      continue; // cross-origin sheet
+    }
+    for (const rule of rules) {
+      if (rule.selectorText && CELL_CLASSES.some(cls => rule.selectorText.includes(cls)))
+        sheet.insertRule(rule.cssText, sheet.cssRules.length);
+    }
+  }
+  table.shadowRoot.adoptedStyleSheets = [...table.shadowRoot.adoptedStyleSheets, sheet];
+}
+
 export async function mountTable(selector, { columns, data, isSelected, rowDisabled } = {}) {
   const table = document.querySelector(selector);
   await customElements.whenDefined('sl-table');
+  await table.updateComplete;
+  adoptCellStyles(table);
   table.columns = columns;
   table.data = data;
   if (rowDisabled) table.rowDisabled = rowDisabled;

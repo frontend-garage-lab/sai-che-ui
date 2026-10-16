@@ -128,19 +128,24 @@ const EXPIRY = {
 // accent), speech bubble (reviewer tasks closed → success) and the "!" of a notified task (danger). Unlit markers are
 // neutral.
 const quickInfo = row => html`
-  <span class="rs-inline">
-    <sl-status variant=${EXPIRY[row.expiry].variant} size="small" title=${EXPIRY[row.expiry].label}></sl-status>
+  <span class="rs-quick-info">
+    <sl-status
+      class="rs-status-dot"
+      variant=${EXPIRY[row.expiry].variant}
+      size="small"
+      title=${EXPIRY[row.expiry].label}
+    ></sl-status>
     <sl-icon
-      class=${row.acquired ? 'rs-mark--accent' : 'rs-mark'}
-      name=${row.acquired ? 'check-square-fill' : 'check-square'}
+      variant=${row.acquired ? 'accent' : 'neutral'}
+      name=${row.acquired ? 'check-square-fill' : 'square'}
       title=${row.acquired ? 'Accepted' : 'Not accepted yet'}
     ></sl-icon>
     <sl-icon
-      class=${row.closed ? 'rs-mark--success' : 'rs-mark'}
+      variant=${row.closed ? 'success' : 'neutral'}
       name=${row.closed ? 'chat-fill' : 'chat'}
       title=${row.closed ? 'Reviewer tasks closed' : 'Reviewer tasks in progress'}
     ></sl-icon>
-    ${row.notified ? html`<sl-icon class="rs-mark--danger" name="exclamation-lg" title="Notified"></sl-icon>` : ''}
+    ${row.notified ? html`<sl-icon variant="danger" name="exclamation-lg" title="Notified"></sl-icon>` : ''}
   </span>
 `;
 

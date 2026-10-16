@@ -114,10 +114,12 @@ signature_qrcode`, rev. A1, VDR-20240415); reviewer Aiello Ciro, Cazzaniga Alice
 ## Colore delle azioni di task (screenshot legacy)
 
 - **Le azioni dei task sono come nel legacy: pulsanti con sola icona**, nello stesso ordine e con lo stesso colore (`sl-icon-button` con `label` e `sl-tooltip`; il testo è solo nel tooltip). Reviewer: Download (primary), Import comment (neutral), Release task (danger), Delegate (primary), Accept (accent), Complete (success). Lead Reviewer: Download (primary), Import comments (neutral), Notify (danger), Assign for additional commenting (neutral), Accept (neutral), Complete (success), Abort (danger, icona `person-x`).
-- Il colore di un'azione è il colore del marker di riga che accende: **Accept → accent (arancione)** ↔ checkbox "Accepted" (`check-square` → `check-square-fill`); commento / reviewer task chiusi → `chat` → `chat-fill` success; Notify → "!" danger. I marker spenti sono neutri (`.rs-mark`), quelli accesi `.rs-mark--accent|success|danger` (token). Il pallino di scadenza resta accanto.
+- Il colore di un'azione è il colore del marker di riga che accende: **Accept → accent (arancione)** ↔ checkbox "Accepted" (`square` → `check-square-fill`); commento / reviewer task chiusi → `chat` → `chat-fill` success; Notify → "!" danger. I marker sono `sl-icon` con `variant`: spenti `neutral`, accesi `accent|success|danger` (token, gestiti dal componente). Il pallino di scadenza resta accanto.
 - PVA: i pulsanti con testo del legacy (Accept, Reassign blu, Complete verde) → `primary`, `primary`, `success`.
-- Icone aggiunte alla libreria Figma (Bootstrap): `person-x`, `check-square`, `check-square-fill`, `chat-fill`. I marker cambiano forma e colore quando si accendono (outline neutro → pieno colorato).
+- Icone aggiunte alla libreria Figma (Bootstrap): `person-x`, `square`, `check-square`, `check-square-fill`, `chat-fill`. I marker cambiano forma e colore quando si accendono (outline neutro → pieno colorato).
 
 - **Detail panel dei task**: niente icona PDF accanto al nome del documento nell'intestazione e niente colonna Quick info (bandiera, PDF) nella tab Revisions: la bandiera ripeteva il tag _Current_ e il PDF non aggiungeva informazione. Restano nella tabella Documents e nel suo pannello revisioni.
 
 - **Tab del pannello di dettaglio**: icona + testo, come la tab Documents (`<span class="rs-inline">`). Review comments `chat`, Dashboard `person-fill`, Revisions `clock-history`, Properties `info-circle`, PDF preview `file-earmark-pdf`. Progress, Transmittals e Distribution process restano solo testo: non c'è un'icona con un significato chiaro.
+
+- **Spazio in pagina (compatto)**: gap tra i box e tra le sezioni 16px (`--sl-spacing-medium`, prima 20 e 28), margine di pagina 20px (prima 28); sotto 1280px 12px / 12px / 16px. Il padding interno di card e pannelli resta 20px. Si cambia solo in `_shared/restyle.css` (variabili `--rs-*`).

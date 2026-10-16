@@ -338,6 +338,57 @@ column to align its header and cells.
 </script>
 ```
 
+### Quick info cell
+
+A quick-info column groups an `sl-status` dot (no label, the state in `title`) with row markers made of `sl-icon`s.
+The marker colour comes from the icon's `variant`: `neutral` while off, `accent` for an accepted task, `success` once
+a comment is uploaded, `danger` for a notified task. The off and on states also change shape (`square` →
+`check-square-fill`, `chat` → `chat-fill`), so colour is never the only cue. Lay the elements out in a flex row with an
+`x-small` gap and centred items so the dot and the icons share one centre line.
+
+```html:preview
+<sl-table class="quick-info-table"></sl-table>
+
+<script type="module">
+  import { html } from 'https://cdn.jsdelivr.net/npm/lit@3/+esm';
+  // sl-status and sl-icon are rendered inside sl-table's own shadow DOM, where the autoloader can't see them.
+  import '/dist/components/status/status.js';
+  import '/dist/components/icon/icon.js';
+
+  const table = document.querySelector('.quick-info-table');
+
+  table.columns = [
+    {
+      id: 'info',
+      header: '',
+      meta: { width: '6rem' },
+      cell: ({ row }) => html`
+        <span style="display: inline-flex; align-items: center; gap: var(--sl-spacing-x-small);">
+          <sl-status variant=${row.original.expiry} size="small" title=${row.original.expiry}></sl-status>
+          <sl-icon
+            variant=${row.original.accepted ? 'accent' : 'neutral'}
+            name=${row.original.accepted ? 'check-square-fill' : 'square'}
+            title=${row.original.accepted ? 'Accepted' : 'Not accepted yet'}
+          ></sl-icon>
+          <sl-icon
+            variant=${row.original.commented ? 'success' : 'neutral'}
+            name=${row.original.commented ? 'chat-fill' : 'chat'}
+            title=${row.original.commented ? 'Review comment uploaded' : 'No review comment yet'}
+          ></sl-icon>
+        </span>
+      `
+    },
+    { id: 'task', accessorKey: 'task', header: 'Task' }
+  ];
+
+  table.data = [
+    { expiry: 'danger', accepted: false, commented: false, task: 'Key personnel for the project' },
+    { expiry: 'warning', accepted: true, commented: false, task: 'Kick off meeting' },
+    { expiry: 'success', accepted: true, commented: true, task: 'Piping layout review' }
+  ];
+</script>
+```
+
 ### Marker
 
 Return a colour from `rowVariant` to flag a record with a coloured leading edge, independent of selection — useful

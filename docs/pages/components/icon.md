@@ -104,6 +104,39 @@ const App = () => (
 
 {% endraw %}
 
+### Variants
+
+Use `variant` to colour an icon with a design token instead of a hard-coded colour: `neutral`, `accent`, `success` or
+`danger`. Without a variant the icon still inherits the current text colour. Pair the colour with a different shape
+(outline vs. filled) so it is never the only cue, e.g. a speech bubble that turns from `chat` to `chat-fill` once a
+comment is uploaded.
+
+```html:preview
+<div style="display: flex; align-items: center; gap: var(--sl-spacing-x-small); font-size: 1.5rem;">
+  <sl-icon name="square" variant="neutral" label="Not accepted yet"></sl-icon>
+  <sl-icon name="check-square-fill" variant="accent" label="Accepted"></sl-icon>
+  <sl-icon name="chat-fill" variant="success" label="Comment uploaded"></sl-icon>
+  <sl-icon name="exclamation-lg" variant="danger" label="Notified"></sl-icon>
+</div>
+```
+
+{% raw %}
+
+```jsx:react
+import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+
+const App = () => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--sl-spacing-x-small)', fontSize: '1.5rem' }}>
+    <SlIcon name="square" variant="neutral" label="Not accepted yet" />
+    <SlIcon name="check-square-fill" variant="accent" label="Accepted" />
+    <SlIcon name="chat-fill" variant="success" label="Comment uploaded" />
+    <SlIcon name="exclamation-lg" variant="danger" label="Notified" />
+  </div>
+);
+```
+
+{% endraw %}
+
 ### Sizing
 
 Icons are sized relative to the current font size. To change their size, set the `font-size` property on the icon itself or on a parent element as shown below.
