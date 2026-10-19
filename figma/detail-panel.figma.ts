@@ -7,7 +7,14 @@ const instance = figma.selectedInstance;
 const titleLayer = instance.findText('Title');
 const title = titleLayer.type === 'TEXT' ? titleLayer.textContent : '';
 const metaLayer = instance.findText('Meta');
-const meta = metaLayer.type === 'TEXT' ? metaLayer.textContent : '';
+const showMeta = instance.getBoolean('Show Meta');
+const meta = showMeta && metaLayer.type === 'TEXT' ? metaLayer.textContent : '';
+const showTitleIcon = instance.getBoolean('Title Icon');
+const titleIcon = showTitleIcon ? instance.getInstanceSwap('Title Icon Type') : null;
+let titleIconCode;
+if (titleIcon && titleIcon.type === 'INSTANCE') {
+  titleIconCode = titleIcon.executeTemplate().example;
+}
 const actions = instance.getSlot('Actions');
 const body = instance.getSlot('Body');
 
@@ -15,8 +22,8 @@ const body = instance.getSlot('Body');
 // `contained` renders in code; the start-border-only look is the code default for sidebars attached to the page edge.
 export default {
   example: figma.html`<sl-detail-panel contained>
-  <span slot="label">${title}</span>
-  <span slot="meta">${meta}</span>
+  <span slot="label">${titleIconCode ? titleIconCode : ''}${title}</span>
+  ${meta ? figma.html`<span slot="meta">${meta}</span>` : ''}
   ${actions ? figma.html`<span slot="actions" style="display: contents">${actions}</span>` : ''}
   ${body}
 </sl-detail-panel>`,

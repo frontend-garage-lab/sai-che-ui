@@ -13,7 +13,8 @@ if (icon && icon.type === 'INSTANCE') {
   iconCode = icon.executeTemplate().example;
 }
 
-const action = instance.getInstanceSwap('Action');
+const showAction = instance.getBoolean('Show Action');
+const action = showAction ? instance.getInstanceSwap('Action') : null;
 let actionCode;
 if (action && action.type === 'INSTANCE') {
   actionCode = action.executeTemplate().example;

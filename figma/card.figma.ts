@@ -22,8 +22,10 @@ let headerIconCode;
 if (headerIcon && headerIcon.type === 'INSTANCE') {
   headerIconCode = headerIcon.executeTemplate().example;
 }
+// Header Actions slot: content on the right of the header (e.g. a text button), inside the same header slot.
+const headerActions = hasHeader ? instance.getSlot('Header Actions') : null;
 const header = hasHeader
-  ? figma.html`\n  <div slot="header">${headerIconCode ? headerIconCode : ''}${text('Card header')}</div>`
+  ? figma.html`\n  <div slot="header">${headerIconCode ? headerIconCode : ''}${text('Card header')}${headerActions ? headerActions : ''}</div>`
   : '';
 const footer = hasFooter ? figma.html`\n  <div slot="footer">${text('Footer content')}</div>` : '';
 

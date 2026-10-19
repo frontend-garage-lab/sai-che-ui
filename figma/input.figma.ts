@@ -24,6 +24,7 @@ const showLabel = instance.getBoolean('Show Label');
 const label = showLabel ? text('Label') : '';
 const showHelpText = instance.getBoolean('Show Help Text');
 const helpText = showHelpText ? text('Help text') : '';
+const required = instance.getBoolean('Required');
 
 const showPrefix = instance.getBoolean('Show Prefix');
 const prefix = showPrefix ? instance.getInstanceSwap('Prefix') : null;
@@ -40,7 +41,7 @@ if (suffix && suffix.type === 'INSTANCE') {
 }
 
 export default {
-  example: figma.html`<sl-input size="${size}"${label ? ` label="${label}"` : ''} placeholder="${text('Placeholder text')}"${helpText ? ` help-text="${helpText}"` : ''}${pill ? ' pill' : ''}${filled ? ' filled' : ''}${clearable ? ' clearable' : ''}${passwordToggle ? ' type="password" password-toggle' : ''}${disabled ? ' disabled' : ''}>${prefixCode ? figma.html`<span slot="prefix">${prefixCode}</span>` : ''}${suffixCode ? figma.html`<span slot="suffix">${suffixCode}</span>` : ''}</sl-input>`,
+  example: figma.html`<sl-input size="${size}"${label ? ` label="${label}"` : ''} placeholder="${text('Placeholder text')}"${helpText ? ` help-text="${helpText}"` : ''}${pill ? ' pill' : ''}${filled ? ' filled' : ''}${clearable ? ' clearable' : ''}${passwordToggle ? ' type="password" password-toggle' : ''}${required ? ' required' : ''}${disabled ? ' disabled' : ''}>${prefixCode ? figma.html`<span slot="prefix">${prefixCode}</span>` : ''}${suffixCode ? figma.html`<span slot="suffix">${suffixCode}</span>` : ''}</sl-input>`,
   imports: ["import 'src/components/input/input.js'"],
   id: 'input',
   metadata: { nestable: true }
