@@ -14,7 +14,7 @@ function text(...layerNames: string[]) {
 }
 
 const showLabel = instance.getBoolean('Show Label');
-const label = showLabel ? text('Upload documents') : '';
+const label = showLabel ? text('label') : '';
 const disabled = instance.getEnum('State', { default: false, dragging: false, disabled: true });
 
 export default {

@@ -14,6 +14,6 @@ export default {
   </div>
 </div>`,
   imports: ["import 'src/components/skeleton/skeleton.js'"],
-  id: 'skeleton',
+  id: 'skeleton-example',
   metadata: { nestable: false }
 };

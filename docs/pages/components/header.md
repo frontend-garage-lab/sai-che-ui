@@ -53,18 +53,6 @@ Images and SVGs in the `logo` slot are sized to fit the header.
 </sl-header>
 ```
 
-### Setting a logo with `logo-src`
-
-When the logo is a single image and no custom markup is needed, set `logo-src` (and `logo-label` for assistive
-devices) instead of composing the `logo` slot by hand. It's ignored if the `logo` slot has content.
-
-```html:preview
-<sl-header logo-src="/assets/images/wordmark.svg" logo-label="Shoelace">
-  <sl-header-item href="#" current>Home</sl-header-item>
-  <sl-header-item href="#">Incoming</sl-header-item>
-</sl-header>
-```
-
 ### Plain links
 
 The default slot also accepts plain `<a>` elements, styled the same way as `sl-header-item`. Mark the current page
