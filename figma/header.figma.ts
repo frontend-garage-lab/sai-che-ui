@@ -13,18 +13,14 @@ function text(...layerNames: string[]) {
   return '';
 }
 
-// The "Logo" instance-swap property lets designers swap the Logo Mark instance for any
-// other component/wordmark; code-side this still renders as markup in the `logo` slot
-// (icon + text), which also supports the simpler `logo-src`/`logo-label` attrs on <sl-header>
-// when a single image is enough.
+// The "Logo" instance-swap property lets designers swap the Saipem Mark instance for any
+// other component/wordmark; code-side this is rendered with the `logo-src` and `logo-label`
+// attributes on <sl-header> when a single image is used (like the Saipem brand mark).
 export default {
-  example: figma.html`<sl-header>
-  <span slot="logo">${text('SAIPEM')}</span>
-
+  example: figma.html`<sl-header logo-src="/assets/images/saipem-mark.png" logo-label="Saipem">
   <sl-header-item href="#">${text('Dashboard')}</sl-header-item>
   <sl-header-item href="#" current>${text('Documents')}</sl-header-item>
   <sl-header-item href="#">${text('Reports')}</sl-header-item>
-  <sl-header-item href="#">${text('Settings')}</sl-header-item>
 </sl-header>`,
   imports: ["import 'src/components/header/header.js'", "import 'src/components/header-item/header-item.js'"],
   id: 'header',

@@ -12,9 +12,7 @@ Navigation entries are [`sl-header-item`](/components/header-item) elements. Mar
 attribute, or set `href` for a plain link. Give an item a `menu` slot to turn it into a dropdown.
 
 ```html:preview
-<sl-header>
-  <span slot="logo">xCPage</span>
-
+<sl-header logo-src="/assets/images/saipem-mark.png" logo-label="Saipem">
   <sl-header-item>
     Project Data
     <sl-menu slot="menu">
@@ -48,13 +46,7 @@ attribute, or set `href` for a plain link. Give an item a `menu` slot to turn it
 Images and SVGs in the `logo` slot are sized to fit the header.
 
 ```html:preview
-<sl-header>
-  <svg slot="logo" viewBox="0 0 24 24" role="img" aria-label="Saipem">
-    <path fill="#fff" d="M2 2h9v3H5v4H2zM13 2h9v7h-3V5h-6zM2 15h3v4h6v3H2zM19 15h3v7h-9v-3h6z" />
-    <path fill="#F28531" d="M6 10.5 18 9v4.5L6 15z" />
-  </svg>
-  <span slot="logo">xCMM</span>
-
+<sl-header logo-src="/assets/images/saipem-mark.png" logo-label="Saipem">
   <sl-header-item href="#" current>Home</sl-header-item>
   <sl-header-item href="#">Incoming</sl-header-item>
   <sl-header-item href="#">Outgoing</sl-header-item>
