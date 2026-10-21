@@ -53,6 +53,27 @@ Images and SVGs in the `logo` slot are sized to fit the header.
 </sl-header>
 ```
 
+### Account menu
+
+Put an `sl-header-item` in the `actions` slot to show the signed-in user. An `sl-avatar` in its label is sized to fit
+next to the name.
+
+```html:preview
+<sl-header logo-src="/assets/images/saipem-mark.png" logo-label="Saipem">
+  <span slot="logo">DMS</span>
+
+  <sl-header-item slot="actions">
+    <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+    Mario Rossi
+    <sl-menu slot="menu">
+      <sl-menu-item>Profile</sl-menu-item>
+      <sl-divider></sl-divider>
+      <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+    </sl-menu>
+  </sl-header-item>
+</sl-header>
+```
+
 ### Plain links
 
 The default slot also accepts plain `<a>` elements, styled the same way as `sl-header-item`. Mark the current page

@@ -8,6 +8,12 @@
  * Classes use the `rs-` prefix to stay clear of the DS `sl-` namespace.
  */
 
+/* Inter: the DS font (--sl-font-sans), self-hosted from @fontsource/inter with the token weights */
+@import '/node_modules/@fontsource/inter/300.css';
+@import '/node_modules/@fontsource/inter/400.css';
+@import '/node_modules/@fontsource/inter/500.css';
+@import '/node_modules/@fontsource/inter/700.css';
+
 :root {
   /* Layout roles → DS spacing tokens. Change the mapping here, never in a page. */
   --rs-page-margin: var(--sl-spacing-large); /* 20px — outer page margin ≥ 1280px */
@@ -90,23 +96,25 @@ body {
 /* ---------------------------------------------------------------- Typography (maps to Figma text styles) */
 
 .rs-title {
+  /* = .sl-heading-2 / Figma Heading/H2 */
   margin: 0;
   font-size: var(--sl-font-size-x-large);
-  font-weight: var(--sl-font-weight-semibold);
+  font-weight: var(--sl-font-weight-bold);
   line-height: var(--sl-line-height-dense);
-  letter-spacing: var(--sl-letter-spacing-dense);
   color: var(--sl-color-neutral-900);
 }
 
 .rs-heading {
+  /* = .sl-heading-4 / Figma Heading/H4 */
   margin: 0;
   font-size: var(--sl-font-size-medium);
   font-weight: var(--sl-font-weight-semibold);
-  line-height: var(--sl-line-height-dense);
+  line-height: var(--sl-line-height-normal);
   color: var(--sl-color-neutral-900);
 }
 
 .rs-subheading {
+  /* = .sl-heading-5 / Figma Heading/H5 */
   margin: 0;
   font-size: var(--sl-font-size-small);
   font-weight: var(--sl-font-weight-semibold);
@@ -115,14 +123,18 @@ body {
 }
 
 .rs-body {
+  /* = .sl-body-small / Figma Body/Small */
   margin: 0;
   font-size: var(--sl-font-size-small);
+  line-height: var(--sl-line-height-normal);
   color: var(--sl-color-neutral-700);
 }
 
 .rs-meta {
+  /* = .sl-caption / Figma Caption */
   margin: 0;
   font-size: var(--sl-font-size-x-small);
+  line-height: var(--sl-line-height-dense);
   color: var(--sl-color-neutral-600);
 }
 
@@ -445,3 +457,19 @@ sl-status.rs-status-dot::part(label) {
  * (Accept → accent / orange, comment uploaded → success, Notify → danger), set with <sl-icon variant="…">.
  * Unlit markers use variant="neutral"; every marker keeps its own shape and tooltip, so colour is never the only cue.
  */
+
+/* App shell: optional <sl-sidebar> on the start side, the page fills the rest below the header. */
+.rs-shell {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+}
+
+.rs-shell > sl-sidebar {
+  flex: 0 0 auto;
+}
+
+.rs-shell > .rs-page {
+  min-width: 0;
+  overflow-y: auto;
+}

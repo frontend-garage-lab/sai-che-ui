@@ -1,6 +1,7 @@
 import { classMap } from 'lit/directives/class-map.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
+import { property } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
 import ShoelaceElement from '../../internal/shoelace-element.js';
 import styles from './card.styles.js';
@@ -26,6 +27,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --border-color - The card's border color, including borders that occur inside the card.
  * @cssproperty --border-radius - The border radius for the card's edges.
  * @cssproperty --border-width - The width of the card's borders.
+ * @cssproperty --accent-width - The width of the colored top edge shown when `variant` is set.
  * @cssproperty --padding - The padding to use for the card's sections.
  */
 export default class SlCard extends ShoelaceElement {
@@ -33,12 +35,22 @@ export default class SlCard extends ShoelaceElement {
 
   private readonly hasSlotController = new HasSlotController(this, 'footer', 'header', 'image');
 
+  /** Colors the card's top edge, e.g. to tell apart the work areas of an application. */
+  @property({ reflect: true }) variant: 'primary' | 'accent' | 'success' | 'neutral' | 'warning' | 'danger' | '' = '';
+
   render() {
     return html`
       <div
         part="base"
         class=${classMap({
           card: true,
+          'card--accented': !!this.variant,
+          'card--primary': this.variant === 'primary',
+          'card--accent': this.variant === 'accent',
+          'card--success': this.variant === 'success',
+          'card--neutral': this.variant === 'neutral',
+          'card--warning': this.variant === 'warning',
+          'card--danger': this.variant === 'danger',
           'card--has-footer': this.hasSlotController.test('footer'),
           'card--has-image': this.hasSlotController.test('image'),
           'card--has-header': this.hasSlotController.test('header')

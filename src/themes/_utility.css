@@ -40,3 +40,77 @@
 .sl-toast-stack sl-alert::part(base) {
   box-shadow: var(--sl-shadow-large);
 }
+
+/*
+ * Text styles: the same scale as the Figma text styles (Heading/H1…H5, Body, Label, Caption), built only from tokens.
+ * They set type, not colour or margins.
+ */
+.sl-heading-1 {
+  font-family: var(--sl-font-sans);
+  font-size: var(--sl-font-size-2x-large);
+  font-weight: var(--sl-font-weight-bold);
+  line-height: var(--sl-line-height-dense);
+}
+
+.sl-heading-2 {
+  font-family: var(--sl-font-sans);
+  font-size: var(--sl-font-size-x-large);
+  font-weight: var(--sl-font-weight-bold);
+  line-height: var(--sl-line-height-dense);
+}
+
+.sl-heading-3 {
+  font-family: var(--sl-font-sans);
+  font-size: var(--sl-font-size-large);
+  font-weight: var(--sl-font-weight-semibold);
+  line-height: var(--sl-line-height-dense);
+}
+
+.sl-heading-4 {
+  font-family: var(--sl-font-sans);
+  font-size: var(--sl-font-size-medium);
+  font-weight: var(--sl-font-weight-semibold);
+  line-height: var(--sl-line-height-normal);
+}
+
+.sl-heading-5 {
+  font-family: var(--sl-font-sans);
+  font-size: var(--sl-font-size-small);
+  font-weight: var(--sl-font-weight-semibold);
+  line-height: var(--sl-line-height-dense);
+}
+
+.sl-body-medium {
+  font-family: var(--sl-font-sans);
+  font-size: var(--sl-font-size-medium);
+  font-weight: var(--sl-font-weight-normal);
+  line-height: var(--sl-line-height-normal);
+}
+
+.sl-body-small {
+  font-family: var(--sl-font-sans);
+  font-size: var(--sl-font-size-small);
+  font-weight: var(--sl-font-weight-normal);
+  line-height: var(--sl-line-height-normal);
+}
+
+.sl-label-medium {
+  font-family: var(--sl-font-sans);
+  font-size: var(--sl-font-size-small);
+  font-weight: var(--sl-font-weight-semibold);
+  line-height: var(--sl-line-height-dense);
+}
+
+.sl-label-small {
+  font-family: var(--sl-font-sans);
+  font-size: var(--sl-font-size-x-small);
+  font-weight: var(--sl-font-weight-semibold);
+  line-height: var(--sl-line-height-dense);
+}
+
+.sl-caption {
+  font-family: var(--sl-font-sans);
+  font-size: var(--sl-font-size-x-small);
+  font-weight: var(--sl-font-weight-normal);
+  line-height: var(--sl-line-height-dense);
+}

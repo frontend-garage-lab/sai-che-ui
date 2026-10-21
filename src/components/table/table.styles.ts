@@ -61,9 +61,9 @@ export default css`
     display: grid;
     grid-template-columns: var(--sl-table-column-template, 1fr);
     align-items: stretch;
-    /* min-width keeps the row at least as wide as the scroller; fixed-width columns can still push it wider */
+    /* Fills the scroller; min-content lets fixed-width columns grow the row (and its background/border) past it */
     width: 100%;
-    min-width: 100%;
+    min-width: min-content;
     background-color: var(--header-background-color);
     border-bottom: solid var(--sl-panel-border-width) var(--border-color);
   }
@@ -186,9 +186,9 @@ export default css`
     grid-template-columns: var(--sl-table-column-template, 1fr);
     align-items: stretch;
     box-sizing: border-box;
-    /* min-width keeps the row at least as wide as the scroller; fixed-width columns can still push it wider */
+    /* Fills the scroller; min-content lets fixed-width columns grow the row (and its background/border) past it */
     width: 100%;
-    min-width: 100%;
+    min-width: min-content;
     border-bottom: solid var(--sl-panel-border-width) var(--border-color);
     background-color: var(--sl-color-neutral-0);
     outline: none;
@@ -306,7 +306,9 @@ export default css`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    /* Block is needed for the ellipsis; align-self keeps it vertically centred like the flex cells */
     display: block;
+    align-self: center;
   }
 
   /* Footer */

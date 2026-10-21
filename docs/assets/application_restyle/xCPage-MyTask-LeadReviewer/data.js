@@ -164,9 +164,9 @@ export const taskColumns = [
     accessorKey: 'created',
     header: 'Created',
     enableSorting: true,
-    meta: { width: '7rem', nowrap: true }
+    meta: { width: '8rem', nowrap: true }
   },
-  { id: 'due', accessorKey: 'due', header: 'Due date', enableSorting: true, meta: { width: '7rem', nowrap: true } },
+  { id: 'due', accessorKey: 'due', header: 'Due date', enableSorting: true, meta: { width: '8rem', nowrap: true } },
   { id: 'discipline', accessorKey: 'discipline', header: 'Discipline', meta: { width: '8rem', nowrap: true } },
   { id: 'originator', accessorKey: 'originator', header: 'Originator', meta: { width: '8rem', nowrap: true } }
 ];

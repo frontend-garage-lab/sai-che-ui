@@ -141,6 +141,8 @@ export const taskColumns = [
     accessorKey: 'document',
     header: 'Task',
     enableSorting: true,
+    // Never narrower than 12rem: with the sidebar expanded the list scrolls sideways instead of hiding the task
+    meta: { width: 'minmax(12rem, 1fr)' },
     cell: ({ row }) => documentCell(row.original.document, row.original.din, row.original.title)
   },
   { id: 'rev', accessorKey: 'rev', header: 'Rev.', meta: { width: '4rem' } },
@@ -149,9 +151,9 @@ export const taskColumns = [
     accessorKey: 'created',
     header: 'Created',
     enableSorting: true,
-    meta: { width: '7rem', nowrap: true }
+    meta: { width: '8rem', nowrap: true }
   },
-  { id: 'due', accessorKey: 'due', header: 'Due date', enableSorting: true, meta: { width: '7rem', nowrap: true } },
+  { id: 'due', accessorKey: 'due', header: 'Due date', enableSorting: true, meta: { width: '8rem', nowrap: true } },
   { id: 'discipline', accessorKey: 'discipline', header: 'Discipline', meta: { width: '8rem', nowrap: true } },
   { id: 'originator', accessorKey: 'originator', header: 'Originator', meta: { width: '8rem', nowrap: true } }
 ];

@@ -48,6 +48,14 @@ export default css`
     outline-offset: -2px;
   }
 
+  /* Label content sits on one line, e.g. an avatar next to the user's name in the account menu */
+  .header-item__label {
+    display: flex;
+    align-items: center;
+    gap: var(--sl-spacing-x-small);
+    --sl-avatar-size: 1.5rem;
+  }
+
   .header-item__chevron {
     flex: 0 0 auto;
     font-size: 0.75em;

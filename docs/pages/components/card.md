@@ -260,6 +260,29 @@ const App = () => (
 );
 ```
 
+### Variants
+
+Set `variant` to color the card's top edge, e.g. to tell apart the work areas of an application. Use `--accent-width` to change its thickness.
+
+```html:preview
+<div class="card-variants">
+  <sl-card variant="primary">Primary</sl-card>
+  <sl-card variant="accent">Accent</sl-card>
+  <sl-card variant="success">Success</sl-card>
+  <sl-card variant="neutral">Neutral</sl-card>
+  <sl-card variant="warning">Warning</sl-card>
+  <sl-card variant="danger">Danger</sl-card>
+</div>
+
+<style>
+  .card-variants {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sl-spacing-medium);
+  }
+</style>
+```
+
 ### Images
 
 Cards accept an `image` slot. The image is displayed atop the card and stretches to fit.

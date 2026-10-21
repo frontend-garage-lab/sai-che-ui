@@ -12,6 +12,7 @@ export default css`
     gap: var(--sl-spacing-small);
     box-sizing: border-box;
     width: 100%;
+    height: 100%;
     min-width: 11rem;
     min-height: 5.75rem;
     margin: 0;

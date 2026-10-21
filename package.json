@@ -85,6 +85,7 @@
     "@11ty/eleventy": "^2.0.1",
     "@custom-elements-manifest/analyzer": "^0.10.3",
     "@figma/code-connect": "^2.0.1",
+    "@fontsource/inter": "^5.3.0",
     "@open-wc/testing": "^4.0.0",
     "@types/mocha": "^10.0.10",
     "@types/react": "^18.3.13",

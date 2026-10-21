@@ -14,6 +14,8 @@ function text(...layerNames: string[]) {
 }
 
 const shape = instance.getEnum('Shape', { circle: 'circle', rounded: 'rounded', square: 'square' });
+// large is the default size, so it doesn't need the attribute
+const size = instance.getEnum('Size', { small: ' size="small"', medium: ' size="medium"', large: '' });
 const type = instance.getEnum('Type', { initials: 'initials', icon: 'icon' });
 // Without initials sl-avatar shows the `icon` slot, person-fill by default (same as the Figma default).
 const icon = instance.getInstanceSwap('Icon');
@@ -22,10 +24,10 @@ const iconName = icon && icon.type === 'INSTANCE' ? icon.name.replace(/^Icon\//,
 export default {
   example:
     type === 'initials'
-      ? figma.html`<sl-avatar shape="${shape}" initials="${text('GD')}"></sl-avatar>`
+      ? figma.html`<sl-avatar${size} shape="${shape}" initials="${text('GD')}"></sl-avatar>`
       : iconName === 'person-fill'
-        ? figma.html`<sl-avatar shape="${shape}"></sl-avatar>`
-        : figma.html`<sl-avatar shape="${shape}"><sl-icon slot="icon" name="${iconName}"></sl-icon></sl-avatar>`,
+        ? figma.html`<sl-avatar${size} shape="${shape}"></sl-avatar>`
+        : figma.html`<sl-avatar${size} shape="${shape}"><sl-icon slot="icon" name="${iconName}"></sl-icon></sl-avatar>`,
   imports: ["import 'src/components/avatar/avatar.js'"],
   id: 'avatar',
   metadata: { nestable: true }

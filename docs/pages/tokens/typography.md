@@ -10,13 +10,13 @@ Typography tokens are used to maintain a consistent set of font styles throughou
 
 ## Font Family
 
-The default font stack is designed to be simple and highly available on as many devices as possible.
+The sans font is **Inter**, the same family as the Saipem DS in Figma, with the system stack as fallback. The theme only names the font: load it in your app, for example with [`@fontsource/inter`](https://fontsource.org/fonts/inter) (weights 300, 400, 500 and 700, the ones the font weight tokens use).
 
-| Token             | Value                                                                                                                                         | Example                                                                                              |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `--sl-font-sans`  | -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' | <span style="font-family: var(--sl-font-sans)">The quick brown fox jumped over the lazy dog.</span>  |
-| `--sl-font-serif` | Georgia, 'Times New Roman', serif                                                                                                             | <span style="font-family: var(--sl-font-serif)">The quick brown fox jumped over the lazy dog.</span> |
-| `--sl-font-mono`  | SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;                                                                                | <span style="font-family: var(--sl-font-mono)">The quick brown fox jumped over the lazy dog.</span>  |
+| Token             | Value                                                                                                                                                  | Example                                                                                              |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
+| `--sl-font-sans`  | 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' | <span style="font-family: var(--sl-font-sans)">The quick brown fox jumped over the lazy dog.</span>  |
+| `--sl-font-serif` | Georgia, 'Times New Roman', serif                                                                                                                      | <span style="font-family: var(--sl-font-serif)">The quick brown fox jumped over the lazy dog.</span> |
+| `--sl-font-mono`  | SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;                                                                                         | <span style="font-family: var(--sl-font-mono)">The quick brown fox jumped over the lazy dog.</span>  |
 
 ## Font Size
 
@@ -62,3 +62,25 @@ Font sizes use `rem` units so they scale with the base font size. The pixel valu
 | `--sl-line-height-normal` | 1.5   | <div style="line-height: var(--sl-line-height-normal);">The quick brown fox jumped over the lazy dog.<br>The quick brown fox jumped over the lazy dog.<br>The quick brown fox jumped over the lazy dog.</div> |
 | `--sl-line-height-loose`  | 2.2   | <div style="line-height: var(--sl-line-height-loose);">The quick brown fox jumped over the lazy dog.<br>The quick brown fox jumped over the lazy dog.<br>The quick brown fox jumped over the lazy dog.</div>  |
 | `--sl-line-height-looser` | 2.6   | <div style="line-height: var(--sl-line-height-looser);">The quick brown fox jumped over the lazy dog.<br>The quick brown fox jumped over the lazy dog.<br>The quick brown fox jumped over the lazy dog.</div> |
+
+## Text Styles
+
+Utility classes in `themes/_utility.css` that combine the tokens above into the text styles of the Saipem DS in Figma. They set the font only: colour and margins stay with the context.
+
+| Class              | Figma text style | Size                      | Weight                      | Line height               |
+| ------------------ | ---------------- | ------------------------- | --------------------------- | ------------------------- |
+| `.sl-heading-1`    | Heading/H1       | `--sl-font-size-2x-large` | `--sl-font-weight-bold`     | `--sl-line-height-dense`  |
+| `.sl-heading-2`    | Heading/H2       | `--sl-font-size-x-large`  | `--sl-font-weight-bold`     | `--sl-line-height-dense`  |
+| `.sl-heading-3`    | Heading/H3       | `--sl-font-size-large`    | `--sl-font-weight-semibold` | `--sl-line-height-dense`  |
+| `.sl-heading-4`    | Heading/H4       | `--sl-font-size-medium`   | `--sl-font-weight-semibold` | `--sl-line-height-normal` |
+| `.sl-heading-5`    | Heading/H5       | `--sl-font-size-small`    | `--sl-font-weight-semibold` | `--sl-line-height-dense`  |
+| `.sl-body-medium`  | Body/Medium      | `--sl-font-size-medium`   | `--sl-font-weight-normal`   | `--sl-line-height-normal` |
+| `.sl-body-small`   | Body/Small       | `--sl-font-size-small`    | `--sl-font-weight-normal`   | `--sl-line-height-normal` |
+| `.sl-label-medium` | Label/Medium     | `--sl-font-size-small`    | `--sl-font-weight-semibold` | `--sl-line-height-dense`  |
+| `.sl-label-small`  | Label/Small      | `--sl-font-size-x-small`  | `--sl-font-weight-semibold` | `--sl-line-height-dense`  |
+| `.sl-caption`      | Caption          | `--sl-font-size-x-small`  | `--sl-font-weight-normal`   | `--sl-line-height-dense`  |
+
+```html
+<h2 class="sl-heading-4">Reviewer comments</h2>
+<p class="sl-caption">2 reviewers</p>
+```

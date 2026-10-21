@@ -47,15 +47,16 @@
       <sl-select slot="actions" size="small" value="99-page-am" style="width: 16rem">
         <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
       </sl-select>
-      <sl-dropdown slot="actions" placement="bottom-end">
-        <sl-icon-button slot="trigger" name="person-fill" label="Account"></sl-icon-button>
-        <sl-menu>
+      <sl-header-item slot="actions">
+        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+        Mario Rossi
+        <sl-menu slot="menu">
           <sl-menu-item>Profile</sl-menu-item>
           <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
           <sl-divider></sl-divider>
           <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
         </sl-menu>
-      </sl-dropdown>
+      </sl-header-item>
     </sl-header>
 
     <main class="rs-page rs-page--fill" aria-label="Transmittals">

@@ -1,4 +1,4 @@
-// url=https://www.figma.com/design/CdCRuuAnOeYrOOn1HYkxDM/Saipem-DS?node-id=768-184
+// url=https://www.figma.com/design/CdCRuuAnOeYrOOn1HYkxDM/Saipem-DS?node-id=1023-4102
 // source=src/components/button-group/button-group.component.ts
 // component=SlButtonGroup
 import figma from 'figma';

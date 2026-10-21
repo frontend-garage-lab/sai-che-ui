@@ -4,6 +4,19 @@ export default css`
   :host {
     display: inline-block;
 
+    /* --sl-avatar-size is inherited, so a parent component can size its avatars (e.g. sl-header-item) */
+    --size: var(--sl-avatar-size, 3rem);
+  }
+
+  :host([size='small']) {
+    --size: 1.5rem;
+  }
+
+  :host([size='medium']) {
+    --size: 2.25rem;
+  }
+
+  :host([size='large']) {
     --size: 3rem;
   }
 

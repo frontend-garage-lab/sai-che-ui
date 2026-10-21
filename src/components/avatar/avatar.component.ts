@@ -26,7 +26,8 @@ import type { CSSResultGroup } from 'lit';
  * @csspart initials - The container that wraps the avatar's initials.
  * @csspart image - The avatar image. Only shown when the `image` attribute is set.
  *
- * @cssproperty --size - The size of the avatar.
+ * @cssproperty --size - The size of the avatar. Overrides `size`. Without either, it follows the inherited
+ *  `--sl-avatar-size` (set by components such as header item and comment), or 3rem.
  */
 export default class SlAvatar extends ShoelaceElement {
   static styles: CSSResultGroup = [componentStyles, styles];
@@ -47,6 +48,12 @@ export default class SlAvatar extends ShoelaceElement {
 
   /** Indicates how the browser should load the image. */
   @property() loading: 'eager' | 'lazy' = 'eager';
+
+  /**
+   * The avatar's size: `small` (1.5rem), `medium` (2.25rem) or `large` (3rem). When omitted, the avatar follows the
+   * size set by its container (e.g. a header item), or `large`.
+   */
+  @property({ reflect: true }) size?: 'small' | 'medium' | 'large';
 
   /** The shape of the avatar. */
   @property({ reflect: true }) shape: 'circle' | 'square' | 'rounded' = 'circle';

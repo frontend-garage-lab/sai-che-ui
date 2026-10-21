@@ -50,6 +50,9 @@ export { default as SlRelativeTime } from './components/relative-time/relative-t
 export { default as SlResizeObserver } from './components/resize-observer/resize-observer.js';
 export { default as SlSelect } from './components/select/select.js';
 export { default as SlSelectableItem } from './components/selectable-item/selectable-item.js';
+export { default as SlSidebar } from './components/sidebar/sidebar.js';
+export { default as SlSidebarGroup } from './components/sidebar-group/sidebar-group.js';
+export { default as SlSidebarItem } from './components/sidebar-item/sidebar-item.js';
 export { default as SlSkeleton } from './components/skeleton/skeleton.js';
 export { default as SlSpinner } from './components/spinner/spinner.js';
 export { default as SlSplitPanel } from './components/split-panel/split-panel.js';

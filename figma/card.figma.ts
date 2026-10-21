@@ -37,8 +37,22 @@ if (image && image.type === 'INSTANCE') {
 
 const body = instance.getSlot('Body');
 
+// Accent: colored top edge, its color is the Variant of the nested Card Accent instance.
+const accent = instance.getBoolean('Accent') ? instance.findInstance('card-accent') : null;
+const variant =
+  accent && accent.type === 'INSTANCE'
+    ? accent.getEnum('Variant', {
+        primary: 'primary',
+        accent: 'accent',
+        success: 'success',
+        neutral: 'neutral',
+        warning: 'warning',
+        danger: 'danger'
+      })
+    : '';
+
 export default {
-  example: figma.html`<sl-card>${imageCode ? figma.html`\n  <span slot="image">${imageCode}</span>` : ''}${header}
+  example: figma.html`<sl-card${variant ? ` variant="${variant}"` : ''}>${imageCode ? figma.html`\n  <span slot="image">${imageCode}</span>` : ''}${header}
   ${body}${footer}
 </sl-card>`,
   imports: ["import 'src/components/card/card.js'"],

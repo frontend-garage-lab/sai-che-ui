@@ -17,10 +17,7 @@ export default css`
 
   .comment__avatar {
     flex: none;
-  }
-
-  .comment__avatar ::slotted(sl-avatar) {
-    --size: 2.25rem;
+    --sl-avatar-size: 2.25rem;
   }
 
   .comment__content {

@@ -105,6 +105,18 @@ const App = () => (
 );
 ```
 
+### Sizes
+
+Use the `size` attribute to change an avatar's size. Without it, the avatar follows the size set by its container
+(e.g. [header item](/components/header-item) and [comment](/components/comment)), or `large`. For any other size, set
+the `--size` custom property.
+
+```html:preview
+<sl-avatar size="small" initials="MR" label="Small avatar"></sl-avatar>
+<sl-avatar size="medium" initials="MR" label="Medium avatar"></sl-avatar>
+<sl-avatar size="large" initials="MR" label="Large avatar"></sl-avatar>
+```
+
 ### Shapes
 
 Avatars can be shaped using the `shape` attribute.

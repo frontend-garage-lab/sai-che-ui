@@ -8,7 +8,8 @@ const placement = instance.getEnum('Placement', { top: 'top', bottom: 'bottom', 
 
 // Nav tabs are real "Tab" instances nested inside this Tab Group's Nav; render each via its own
 // Code Connect template, interpolated individually (not .map().join()).
-const tabs = instance.findConnectedInstances(() => true);
+// The scroll-control Icon Buttons (layers "scroll-button--start/--end") are part of sl-tab-group itself, not tabs.
+const tabs = instance.findConnectedInstances(node => !node.name.startsWith('scroll-button'));
 const tab1 = tabs[0] && tabs[0].type === 'INSTANCE' ? tabs[0].executeTemplate().example : '';
 const tab2 = tabs[1] && tabs[1].type === 'INSTANCE' ? tabs[1].executeTemplate().example : '';
 const tab3 = tabs[2] && tabs[2].type === 'INSTANCE' ? tabs[2].executeTemplate().example : '';
