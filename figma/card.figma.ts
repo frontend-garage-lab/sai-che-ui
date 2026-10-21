@@ -27,7 +27,9 @@ const headerActions = hasHeader ? instance.getSlot('Header Actions') : null;
 const header = hasHeader
   ? figma.html`\n  <div slot="header">${headerIconCode ? headerIconCode : ''}${text('Card header')}${headerActions ? headerActions : ''}</div>`
   : '';
-const footer = hasFooter ? figma.html`\n  <div slot="footer">${text('Footer content')}</div>` : '';
+// Footer Content slot: footer markup (e.g. a subheading and a menu), only variants with a footer have it.
+const footerContent = hasFooter ? instance.getSlot('Footer Content') : null;
+const footer = hasFooter ? figma.html`\n  <div slot="footer">${footerContent ? footerContent : ''}</div>` : '';
 
 const image = instance.getInstanceSwap('Image');
 let imageCode;

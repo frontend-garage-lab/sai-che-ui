@@ -16,9 +16,10 @@ function text(...layerNames: string[]) {
 const size = instance.getEnum('Size', { small: 'small', medium: 'medium', large: 'large' });
 const checked = instance.getEnum('State', { off: false, on: true, 'disabled-off': false, 'disabled-on': true });
 const disabled = instance.getEnum('State', { off: false, on: false, 'disabled-off': true, 'disabled-on': true });
+const helpText = instance.getBoolean('Help Text') ? text('help-text', 'Help text') : '';
 
 export default {
-  example: figma.html`<sl-switch size="${size}"${checked ? ' checked' : ''}${disabled ? ' disabled' : ''}>${text('Switch label')}</sl-switch>`,
+  example: figma.html`<sl-switch size="${size}"${checked ? ' checked' : ''}${disabled ? ' disabled' : ''}${helpText ? ` help-text="${helpText}"` : ''}>${text('Switch label')}</sl-switch>`,
   imports: ["import 'src/components/switch/switch.js'"],
   id: 'switch',
   metadata: { nestable: true }

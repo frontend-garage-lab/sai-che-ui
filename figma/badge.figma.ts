@@ -22,9 +22,10 @@ const variant = instance.getEnum('Variant', {
   danger: 'danger'
 });
 const pulse = instance.getBoolean('Pulse');
+const pill = instance.getEnum('Pill', { true: true, false: false });
 
 export default {
-  example: figma.html`<sl-badge variant="${variant}"${pulse ? ' pulse' : ''}>${text('1')}</sl-badge>`,
+  example: figma.html`<sl-badge variant="${variant}"${pill ? ' pill' : ''}${pulse ? ' pulse' : ''}>${text('1')}</sl-badge>`,
   imports: ["import 'src/components/badge/badge.js'"],
   id: 'badge',
   metadata: { nestable: true }

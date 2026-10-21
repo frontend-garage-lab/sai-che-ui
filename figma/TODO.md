@@ -801,6 +801,8 @@ Da fare:
    **Non verificato prima del publish:** che gli Icon Button annidati nei frame `group` dello slot `Actions` generino codice.
 3. Poi la pulizia delle tabelle vecchie, in ordine: rifare i 5 esempi con la nuova Table; migrare xCPage; eliminare Table
    Header Row, Table Row, le 2 card e i Code Connect `table-row` e `table-header-row` (con `figma connect unpublish`).
+   **Fatto 2026-10-21** (tranne xCPage, dismesso): esempi rifatti su Column/Cell, master e file CC eliminati.
+   Resta `npx figma connect unpublish` dei due mapping (node-id `53-2`, `53-37`).
 
 ## Colori del marker e `sl-tree` (2026-10-15)
 

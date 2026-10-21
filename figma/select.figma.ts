@@ -27,8 +27,18 @@ const label = showLabel ? text('label', 'Label') : '';
 const showHelpText = instance.getBoolean('Show Help Text');
 const helpText = showHelpText ? text('help-text', 'Help text') : '';
 
+// Prefix/suffix slots (icon components are named "Icon/<name>", matching sl-icon `name`).
+function iconSlot(showProp: string, swapProp: string, slot: string) {
+  if (!instance.getBoolean(showProp)) return '';
+  const icon = instance.getInstanceSwap(swapProp);
+  return icon && icon.type === 'INSTANCE' ? figma.html`
+  <sl-icon slot="${slot}" name="${icon.name.replace(/^Icon\//, '')}"></sl-icon>` : '';
+}
+const prefix = iconSlot('Show Prefix', 'Prefix', 'prefix');
+const suffix = iconSlot('Show Suffix', 'Suffix', 'suffix');
+
 export default {
-  example: figma.html`<sl-select size="${size}"${label ? ` label="${label}"` : ''} placeholder="${text('Select an option')}"${helpText ? ` help-text="${helpText}"` : ''}${filled ? ' filled' : ''}${pill ? ' pill' : ''}${clearable ? ' clearable' : ''}${multiple ? ' multiple' : ''}${open ? ' open' : ''}${disabled ? ' disabled' : ''}>
+  example: figma.html`<sl-select size="${size}"${label ? ` label="${label}"` : ''} placeholder="${text('Select an option')}"${helpText ? ` help-text="${helpText}"` : ''}${filled ? ' filled' : ''}${pill ? ' pill' : ''}${clearable ? ' clearable' : ''}${multiple ? ' multiple' : ''}${open ? ' open' : ''}${disabled ? ' disabled' : ''}>${prefix}${suffix}
   <!-- sl-option elements -->
 </sl-select>`,
   imports: ["import 'src/components/select/select.js'"],

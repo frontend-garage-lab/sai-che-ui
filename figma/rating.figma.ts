@@ -4,7 +4,7 @@
 import figma from 'figma';
 const instance = figma.selectedInstance;
 
-const value = instance.getEnum('Value', { '1': '1', '3': '3', '5': '5' });
+const value = instance.getEnum('Value', { '0': '0', '1': '1', '2': '2', '3': '3', '4': '4', '5': '5' });
 const disabled = instance.getBoolean('Disabled');
 
 export default {

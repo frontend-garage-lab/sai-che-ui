@@ -39,11 +39,13 @@ const values = {
 };
 const value = instance.getEnum('Value', values);
 const indeterminate = value === 'indeterminate';
+// The value text is the default slot: only emitted when Show Value is on.
+const showValue = instance.getBoolean('Show Value');
 
 export default {
   example: indeterminate
     ? figma.html`<sl-progress-bar indeterminate></sl-progress-bar>`
-    : figma.html`<sl-progress-bar value="${value}">${text(...Object.keys(values).map(v => `${v}%`))}</sl-progress-bar>`,
+    : figma.html`<sl-progress-bar value="${value}">${showValue ? text(...Object.keys(values).map(v => `${v}%`)) : ''}</sl-progress-bar>`,
   imports: ["import 'src/components/progress-bar/progress-bar.js'"],
   id: 'progress-bar',
   metadata: { nestable: true }

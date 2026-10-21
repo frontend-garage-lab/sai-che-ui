@@ -4,15 +4,6 @@
 import figma from 'figma';
 const instance = figma.selectedInstance;
 
-// Text layers are named after their default content, which differs between variants.
-function text(...layerNames: string[]) {
-  for (const name of layerNames) {
-    const layer = instance.findText(name);
-    if (layer.type === 'TEXT') return layer.textContent;
-  }
-  return '';
-}
-
 const checked = instance.getEnum('State', {
   default: false,
   hover: false,
@@ -44,7 +35,7 @@ if (suffix && suffix.type === 'INSTANCE') {
 }
 
 export default {
-  example: figma.html`<sl-menu-item${checked ? ' type="checkbox" checked' : ''}${disabled ? ' disabled' : ''}${loading ? ' loading' : ''}>${prefixCode ? figma.html`<span slot="prefix">${prefixCode}</span>` : ''}${text('Menu item')}${suffixCode ? figma.html`<span slot="suffix">${suffixCode}</span>` : ''}</sl-menu-item>`,
+  example: figma.html`<sl-menu-item${checked ? ' type="checkbox" checked' : ''}${disabled ? ' disabled' : ''}${loading ? ' loading' : ''}>${prefixCode ? figma.html`<span slot="prefix">${prefixCode}</span>` : ''}${instance.getString('Label')}${suffixCode ? figma.html`<span slot="suffix">${suffixCode}</span>` : ''}</sl-menu-item>`,
   imports: ["import 'src/components/menu-item/menu-item.js'"],
   id: 'menu-item',
   metadata: { nestable: true }

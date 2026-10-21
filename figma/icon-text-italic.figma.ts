@@ -14,8 +14,8 @@ const variant = instance.getEnum('Variant', {
 
 export default {
   example: variant
-    ? figma.html`<sl-icon name="text-italic" variant="${variant}"></sl-icon>`
-    : figma.html`<sl-icon name="text-italic"></sl-icon>`,
+    ? figma.html`<sl-icon name="type-italic" variant="${variant}"></sl-icon>`
+    : figma.html`<sl-icon name="type-italic"></sl-icon>`,
   imports: ["import 'src/components/icon/icon.js'"],
   id: 'icon-text-italic',
   metadata: { nestable: true }

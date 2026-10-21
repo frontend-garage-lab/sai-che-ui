@@ -12,12 +12,14 @@ const type = instance.getEnum('Type', {
   tag: 'tag',
   checkbox: 'checkbox',
   actions: 'actions',
-  composite: 'composite'
+  composite: 'composite',
+  'quick-info': 'quick-info'
 });
 const text = instance.getString('Text');
 const meta1 = instance.getString('Meta 1');
 // `composite` is one cell holding any mix of status, badge and icon: the Content slot is rendered as is.
-const content = type === 'composite' ? instance.getSlot('Content') : '';
+// `quick-info` is the same slot preset with a label-less status dot and the task icons (check-square, chat).
+const content = type === 'composite' || type === 'quick-info' ? instance.getSlot('Content') : '';
 
 // `Marker` flags the row with a coloured leading bar: it is the table's `rowVariant`, one colour per record.
 const marker = instance.getBoolean('Marker');
@@ -37,7 +39,9 @@ const markerVariant =
 const markerNote = marker ? ` (row marker: table.rowVariant = row => '${markerVariant}')` : '';
 
 const example =
-  type === 'composite'
+  type === 'quick-info'
+    ? figma.html`<!-- cell: ({ row }) => html\`<span style="display: inline-flex; align-items: center; gap: var(--sl-spacing-x-small);">${content}</span>\`${markerNote} -->`
+    : type === 'composite'
     ? figma.html`<!-- cell: ({ row }) => html\`${content}\`${markerNote} -->`
     : type === 'document'
       ? figma.html`<!-- cell: ({ row }) => html\`<strong>${text}</strong><br /><small>${meta1}</small>\`${markerNote} -->`

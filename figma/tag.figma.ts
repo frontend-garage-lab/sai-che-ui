@@ -24,9 +24,10 @@ const variant = instance.getEnum('Variant', {
 });
 const size = instance.getEnum('Size', { small: 'small', medium: 'medium', large: 'large' });
 const removable = instance.getBoolean('Removable');
+const pill = instance.getEnum('Pill', { true: true, false: false });
 
 export default {
-  example: figma.html`<sl-tag variant="${variant}" size="${size}"${removable ? ' removable' : ''}>${text('Tag')}</sl-tag>`,
+  example: figma.html`<sl-tag variant="${variant}" size="${size}"${pill ? ' pill' : ''}${removable ? ' removable' : ''}>${text('Tag')}</sl-tag>`,
   imports: ["import 'src/components/tag/tag.js'"],
   id: 'tag',
   metadata: { nestable: true }
