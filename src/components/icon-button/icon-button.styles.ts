@@ -147,4 +147,21 @@ export default css`
   .icon-button--filled:active:not(.icon-button--disabled) {
     filter: brightness(0.95);
   }
+
+  /*
+   * Sizes (theme tokens --sl-icon-button-*). They win over the variant's own size, so a coloured icon
+   * button can also be made compact, e.g. a row action in a table. No size = inherits the font size.
+   */
+  :host([size='small']) .icon-button {
+    font-size: var(--sl-icon-button-font-size-small);
+    padding: var(--sl-icon-button-padding-small);
+  }
+
+  :host([size='large']) .icon-button {
+    font-size: var(--sl-icon-button-font-size-large);
+  }
+
+  :host([size='x-large']) .icon-button {
+    font-size: var(--sl-icon-button-font-size-x-large);
+  }
 `;

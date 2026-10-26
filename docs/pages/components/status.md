@@ -72,6 +72,29 @@ Map each lifecycle state to one variant and use the same mapping everywhere: tab
 </sl-table>
 ```
 
+### Filled
+
+Add `filled` when the state must stand out at a glance, e.g. in a short table of reviewers or in a detail panel. The
+label takes the variant colour on a soft background; the dot stays, so the state never relies on colour alone. Keep the
+default in long columns of states, where coloured blocks would compete with the data.
+
+```html:preview
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+  <sl-status filled size="small" variant="neutral">Not acquired</sl-status>
+  <sl-status filled size="small" variant="warning">Acquired</sl-status>
+  <sl-status filled size="small" variant="success">Completed</sl-status>
+  <sl-status filled size="small" variant="danger">Refused</sl-status>
+  <sl-status filled size="small" variant="primary">Notified</sl-status>
+</div>
+```
+
+### Status or tag?
+
+Use a **status** for a value that changes through the workflow (a document's lifecycle, a task's progress). Use a
+[tag](/components/tag) for a label that classifies a record and doesn't change with the flow, such as a category or an
+applied filter. Use a [badge](/components/badge) for counts. The same state always uses the same component, wherever it
+appears: list, detail panel, dialog or description list.
+
 ### Ongoing states
 
 Add `pulse` when the state is still in progress, e.g. while a distribution is being sent. The animation is turned off

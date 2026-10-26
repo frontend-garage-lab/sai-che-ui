@@ -7,7 +7,7 @@
  */
 
 import { html } from 'https://cdn.jsdelivr.net/npm/lit@3/+esm';
-import { documentCell } from '../_shared/restyle.js';
+import { documentCell, revisionInfoAction, revisionQuickInfo, revisionTag, statusTag } from '../_shared/restyle.js';
 
 export * from '../_shared/restyle.js';
 
@@ -124,8 +124,7 @@ const EXPIRY = {
   expired: { variant: 'danger', label: 'Expired' }
 };
 
-// Quick info as in the legacy list: expiry dot (same colours as the KPI stats), accepted checkbox (lit by Accept →
-// accent), speech bubble (reviewer tasks closed → success) and the "!" of a notified task (danger). Unlit markers are
+// Quick info as in the legacy list: expiry dot (same colours as the KPI stats), speech bubble (reviewer tasks closed → success) and the "!" of a notified task (danger). Unlit markers are
 // neutral.
 const quickInfo = row => html`
   <span class="rs-quick-info">
@@ -136,11 +135,6 @@ const quickInfo = row => html`
       title=${EXPIRY[row.expiry].label}
     ></sl-status>
     <sl-icon
-      variant=${row.acquired ? 'accent' : 'neutral'}
-      name=${row.acquired ? 'check-square-fill' : 'square'}
-      title=${row.acquired ? 'Accepted' : 'Not accepted yet'}
-    ></sl-icon>
-    <sl-icon
       variant=${row.closed ? 'success' : 'neutral'}
       name="chat-fill"
       title=${row.closed ? 'Reviewer tasks closed' : 'Reviewer tasks in progress'}
@@ -150,15 +144,29 @@ const quickInfo = row => html`
 `;
 
 export const taskColumns = [
-  { id: 'info', header: '', meta: { width: '6rem' }, cell: ({ row }) => quickInfo(row.original) },
+  { id: 'info', header: '', meta: { width: '4.5rem' }, cell: ({ row }) => quickInfo(row.original) },
+  {
+    id: 'state',
+    header: 'Status',
+    meta: { width: '7rem' },
+    cell: ({ row }) => statusTag(row.original.acquired ? 'Acquired' : 'Working')
+  },
   {
     id: 'task',
     accessorKey: 'document',
     header: 'Task',
     enableSorting: true,
+    // Never narrower than 12rem: the list scrolls sideways instead of hiding the task
+    meta: { width: 'minmax(12rem, 1fr)' },
     cell: ({ row }) => documentCell(row.original.document, row.original.din, row.original.title)
   },
-  { id: 'rev', accessorKey: 'rev', header: 'Rev.', meta: { width: '4rem' } },
+  {
+    id: 'rev',
+    accessorKey: 'rev',
+    header: 'Rev.',
+    meta: { width: '4rem' },
+    cell: ({ row }) => revisionTag(row.original.rev)
+  },
   {
     id: 'created',
     accessorKey: 'created',
@@ -184,8 +192,13 @@ export const reviewerColumns = [
     header: 'Reviewer',
     cell: ({ row }) =>
       html`<span class="rs-inline"
-        ><sl-avatar shape="circle" initials=${row.original.initials} label=${row.original.name}></sl-avatar> ${row
-          .original.name}</span
+        ><sl-avatar
+          shape="circle"
+          size="small"
+          initials=${row.original.initials}
+          label=${row.original.name}
+        ></sl-avatar>
+        ${row.original.name}</span
       >`
   },
   {
@@ -194,7 +207,7 @@ export const reviewerColumns = [
     meta: { width: '9rem' },
     cell: ({ row }) => html`
       <span class="rs-inline">
-        <sl-status variant="success" size="small">${row.original.status}</sl-status>
+        ${statusTag(row.original.status)}
         ${row.original.comment ? html`<sl-icon name="file-earmark-pdf" title="Comment uploaded"></sl-icon>` : ''}
       </span>
     `
@@ -212,31 +225,31 @@ export const revisions = [
     format: 'pdf'
   },
   {
-    document: 'test_doc_1_1905-A1',
-    din: 'test_doc_1_1905',
-    title: 'test_doc_1_1905',
-    code: 'A1',
-    current: false,
-    format: 'pdf'
-  },
-  {
     document: 'test_doc_1_1905-A2',
     din: 'test_doc_1_1905',
     title: 'test_doc_1_1905',
     code: 'A2',
     current: false,
-    format: 'pdf'
+    format: 'docx',
+    clientAnswer: 'Commented'
+  },
+  {
+    document: 'test_doc_1_1905-A1',
+    din: 'test_doc_1_1905',
+    title: 'test_doc_1_1905',
+    code: 'A1',
+    current: false,
+    format: 'pdf',
+    clientAnswer: 'Approved'
   }
 ];
 
 export const revisionColumns = [
   {
-    id: 'file',
+    id: 'info',
     header: '',
-    meta: { width: '3rem' },
-    // The icon of the native file, shown only when the revision has one (here always a PDF).
-    cell: ({ row }) =>
-      row.original.format === 'pdf' ? html`<sl-icon name="file-earmark-pdf" title="Native file: PDF"></sl-icon>` : ''
+    meta: { width: '4rem' },
+    cell: revisionQuickInfo
   },
   {
     id: 'document',
@@ -245,15 +258,18 @@ export const revisionColumns = [
   },
   {
     id: 'code',
-    header: 'Revision',
+    header: 'Revision code',
     meta: { width: '7rem' },
-    cell: ({ row }) =>
-      html`<span class="rs-inline"
-        >${row.original.code}
-        ${row.original.current ? html`<sl-tag size="small" variant="success">Current</sl-tag>` : ''}</span
-      >`
+    cell: ({ row }) => html`<span class="rs-inline">${revisionTag(row.original.code)}</span>`
   },
-  { id: 'answer', header: 'Client answer', meta: { width: '8rem' }, cell: () => '—' }
+  { id: 'answer', header: 'Client answer', meta: { width: '8rem' }, cell: () => '—' },
+  {
+    id: 'answer',
+    header: 'Client answer',
+    meta: { width: '8rem', nowrap: true },
+    cell: ({ row }) => row.original.clientAnswer ?? '—'
+  },
+  { id: 'actions', header: '', meta: { width: '3rem', align: 'center' }, cell: revisionInfoAction }
 ];
 
 // ------------------------------------------------------------------ Complete lead review task (screen 13)
@@ -276,8 +292,8 @@ export const completionColumns = [
     meta: { width: '11rem' },
     cell: ({ row }) =>
       row.original.missing
-        ? html`<sl-status variant="danger" size="small">Missing</sl-status>`
-        : html`<sl-status variant="success" size="small">Uploaded</sl-status>`
+        ? html`<sl-status filled variant="danger" size="small">Missing</sl-status>`
+        : html`<sl-status filled variant="success" size="small">Uploaded</sl-status>`
   },
   { id: 'document', accessorKey: 'document', header: 'Document', meta: { nowrap: true } },
   {
@@ -290,3 +306,54 @@ export const completionColumns = [
   { id: 'rename', accessorKey: 'rename', header: 'Rename comment', meta: { width: '8rem' } },
   { id: 'binder', accessorKey: 'binder', header: 'Virtual binder', meta: { width: '8rem' } }
 ];
+
+// ------------------------------------------------------------------ Document info dialog (Properties › All metadata)
+
+export const documentInfo = {
+  summary: [
+    ['Name', 'test_doc_1_1905-A3'],
+    ['DIN', 'test_doc_1_1905'],
+    ['Title', 'test_doc_1_1905'],
+    ['Revision code', 'A3']
+  ],
+  sections: [
+    {
+      title: 'Info',
+      groups: [
+        {
+          title: 'Identification',
+          items: [
+            ['SP code', '—'],
+            ['Document class', 'Internal Job Document'],
+            ['Client document identification', '—'],
+            ['Vendor document identification', '—']
+          ]
+        },
+        {
+          title: 'Status and ownership',
+          items: [
+            ['Project code', '99_PAGE_AM'],
+            ['Company project code', '—'],
+            ['PO number', '—'],
+            ['Managing department – discipline', '—'],
+            ['Issuing department – discipline', '—'],
+            ['Second discipline', '—'],
+            ['Originator', '—'],
+            ['Superseded by', '—']
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Job document',
+      groups: [
+        {
+          items: [
+            ['Client answer', '—'],
+            ['Issuing description', '—']
+          ]
+        }
+      ]
+    }
+  ]
+};

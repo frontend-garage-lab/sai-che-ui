@@ -7,15 +7,17 @@ const instance = figma.selectedInstance;
 const author = instance.getString('Author');
 const date = instance.getString('Date');
 const text = instance.getString('Text');
+// Extra content under the text (e.g. the commented file row `a.rs-file`), dropped into the "Body" slot.
+const body = instance.getSlot('Body');
+// Right-side action (a file icon-button or an action menu `sl-dropdown`), dropped into the "Attachment" slot.
 const hasAttachment = instance.getBoolean('Has Attachment');
-const attachment = hasAttachment
-  ? figma.html`\n  <sl-icon-button slot="attachment" name="file-earmark-pdf" label="View attachment"></sl-icon-button>`
-  : '';
+const attachmentSlot = instance.getSlot('Attachment');
+const attachment = hasAttachment ? figma.html`\n  ${attachmentSlot}` : '';
 
 export default {
   example: figma.html`<sl-comment author="${author}" date="${date}">
   <sl-avatar slot="avatar"></sl-avatar>
-  ${text}${attachment}
+  ${text}${body}${attachment}
 </sl-comment>`,
   imports: [
     "import 'src/components/comment/comment.js'",

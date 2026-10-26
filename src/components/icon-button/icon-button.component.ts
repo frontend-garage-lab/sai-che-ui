@@ -66,6 +66,12 @@ export default class SlIconButton extends ShoelaceElement {
     | 'warning'
     | 'danger' = 'default';
 
+  /**
+   * The icon button's size, from the theme tokens `--sl-icon-button-font-size-*` (and `--sl-icon-button-padding-small`).
+   * Without a size, the icon inherits the surrounding font size, as before. Use `small` for row actions in tables.
+   */
+  @property({ reflect: true }) size?: 'small' | 'large' | 'x-large';
+
   /** Draws the icon button with a solid background instead of the soft, pale variant background. */
   @property({ type: Boolean, reflect: true }) filled = false;
 

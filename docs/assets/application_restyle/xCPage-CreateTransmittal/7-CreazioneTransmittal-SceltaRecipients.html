@@ -27,23 +27,6 @@
       <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
       <span slot="logo">xCPage</span>
 
-      <sl-header-item current>
-        Project Data
-        <sl-menu slot="menu">
-          <sl-menu-item>Documents</sl-menu-item>
-          <sl-menu-item>Transmittals</sl-menu-item>
-          <sl-menu-item>Tasks</sl-menu-item>
-        </sl-menu>
-      </sl-header-item>
-      <sl-header-item>
-        Configuration
-        <sl-menu slot="menu">
-          <sl-menu-item>Users</sl-menu-item>
-          <sl-menu-item>Permissions</sl-menu-item>
-        </sl-menu>
-      </sl-header-item>
-      <sl-header-item href="#">Dashboard</sl-header-item>
-
       <sl-select slot="actions" size="small" value="99-page-am" style="width: 16rem">
         <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
       </sl-select>
@@ -59,129 +42,170 @@
       </sl-header-item>
     </sl-header>
 
-    <main class="rs-page rs-page--fill" aria-label="Transmittals">
-      <div class="rs-page-header">
-        <div class="rs-page-header__text">
-          <h1 class="rs-title">Transmittals</h1>
-        </div>
-      </div>
+    <div class="rs-shell">
+      <sl-sidebar label="Project navigation" collapsed>
+        <sl-sidebar-group label="Documenti di progetto" count="70">
+          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+          <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+        </sl-sidebar-group>
 
-      <!-- Workflow areas -->
-      <sl-tab-group class="rs-stages" aria-label="Transmittal area">
-        <sl-tab slot="nav" panel="preparation" card>Preparation area</sl-tab>
-        <sl-tab slot="nav" panel="incoming" card>Incoming</sl-tab>
-        <sl-tab slot="nav" panel="outgoing" card active>Outgoing</sl-tab>
-        <sl-tab slot="nav" panel="distribution" card>Distribution process</sl-tab>
-      </sl-tab-group>
+        <sl-sidebar-group label="Procurement (SAP)" count="71">
+          <sl-icon slot="icon" name="cart"></sl-icon>
+          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+        </sl-sidebar-group>
 
-      <!-- Filters -->
-      <sl-card aria-label="Filters">
-        <div slot="header" class="rs-cluster rs-cluster--between">
-          <h2 class="rs-heading rs-inline"><sl-icon name="filter"></sl-icon>Filters</h2>
-          <sl-button class="more-filters" size="small" variant="text">
-            <sl-icon slot="prefix" name="plus-lg"></sl-icon>
-            More filters (6)
-          </sl-button>
-        </div>
+        <sl-sidebar-group label="Comunicazione" count="47">
+          <sl-icon slot="icon" name="envelope"></sl-icon>
+          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+          <sl-sidebar-item href="#" current>Transmittal · Outgoing</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
+        </sl-sidebar-group>
 
-        <form class="rs-grid rs-grid--fields">
-          <sl-input
-            class="rs-span-4 rs-span-md-6"
-            type="search"
-            label="Search"
-            placeholder="Transmittal name"
-            clearable
-          >
-            <sl-icon slot="prefix" name="search"></sl-icon>
-          </sl-input>
-          <sl-select class="rs-span-2 rs-span-md-6" label="Transmittal type" placeholder="Any" clearable>
-            <sl-option value="outgoing">Outgoing transmittal</sl-option>
-            <sl-option value="incoming">Incoming transmittal</sl-option>
-          </sl-select>
-          <sl-select class="rs-span-2 rs-span-md-6" label="From company" placeholder="Any" clearable></sl-select>
-          <sl-select class="rs-span-2 rs-span-md-6" label="To company" placeholder="Any" clearable></sl-select>
-          <sl-input class="rs-span-2 rs-span-md-6" label="Transmittal category" clearable></sl-input>
+        <sl-sidebar-group label="Tasks" count="55">
+          <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+          <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
+        </sl-sidebar-group>
+      </sl-sidebar>
 
-          <div class="rs-span-12 rs-cluster rs-cluster--between">
-            <div class="rs-cluster">
-              <span class="rs-inline">
-                <sl-checkbox size="small">Multiple search</sl-checkbox>
-                <sl-tooltip content="Search several names at once, separated by commas">
-                  <sl-icon name="info-circle" label="About multiple search"></sl-icon>
-                </sl-tooltip>
-              </span>
-              <span class="rs-inline">
-                <sl-checkbox size="small" checked disabled>Case sensitive</sl-checkbox>
-                <sl-tooltip content="Available when multiple search is off">
-                  <sl-icon name="info-circle" label="About case sensitive"></sl-icon>
-                </sl-tooltip>
-              </span>
-            </div>
-            <div class="rs-cluster">
-              <sl-button type="reset" variant="text">Reset</sl-button>
-              <sl-button type="submit" variant="primary"
-                ><sl-icon slot="prefix" name="search"></sl-icon>Search</sl-button
-              >
-            </div>
+      <main class="rs-page rs-page--fill" aria-label="Transmittals">
+        <div class="rs-page-header">
+          <div class="rs-page-header__text">
+            <h1 class="rs-title">Transmittals</h1>
           </div>
-        </form>
-      </sl-card>
+        </div>
 
-      <div class="rs-workspace">
-        <!-- Transmittal list -->
-        <section class="rs-workspace__main rs-span-8 rs-span-lg-7" aria-label="Outgoing transmittals">
-          <sl-table
-            class="transmittal-list"
-            fill
-            selection="single"
-            sticky-header
-            paginate
-            page-size="25"
-            label="Outgoing transmittals"
-          >
-            <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow">
-              <sl-button size="small" variant="primary">
-                <sl-icon slot="prefix" name="plus-lg"></sl-icon>
-                Create outgoing
-              </sl-button>
-              <sl-button size="small" disabled>Create from existing</sl-button>
-              <sl-divider vertical></sl-divider>
-              <sl-button size="small" disabled>Assign to me</sl-button>
-              <sl-button size="small" disabled>Complete assignment</sl-button>
-              <span class="rs-spacer"></span>
-              <sl-dropdown placement="bottom-end">
-                <sl-button slot="trigger" size="small" caret disabled>Actions</sl-button>
-                <sl-menu>
-                  <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Operations</sl-menu-item>
-                  <sl-menu-item><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-menu-item>
-                  <sl-menu-item
-                    ><sl-icon slot="prefix" name="arrow-right"></sl-icon>Create DP from transmittal</sl-menu-item
-                  >
-                </sl-menu>
-              </sl-dropdown>
-            </div>
+        <!-- Filters -->
+        <sl-card aria-label="Filters">
+          <div slot="header" class="rs-cluster rs-cluster--between">
+            <h2 class="rs-heading rs-inline"><sl-icon name="filter"></sl-icon>Filters</h2>
+            <sl-button class="more-filters" size="small" variant="text">
+              <sl-icon slot="prefix" name="plus-lg"></sl-icon>
+              More filters (6)
+            </sl-button>
+          </div>
 
-            <sl-empty-state
-              slot="empty"
-              title-text="No transmittals"
-              description="Outgoing transmittals you can see appear here."
+          <form class="rs-grid rs-grid--fields">
+            <sl-input
+              class="rs-span-4 rs-span-md-6"
+              type="search"
+              label="Search"
+              placeholder="Transmittal name"
+              clearable
             >
-              <sl-icon slot="icon" name="envelope"></sl-icon>
-            </sl-empty-state>
-          </sl-table>
-        </section>
+              <sl-icon slot="prefix" name="search"></sl-icon>
+            </sl-input>
+            <sl-select class="rs-span-2 rs-span-md-6" label="Transmittal type" placeholder="Any" clearable>
+              <sl-option value="outgoing">Outgoing transmittal</sl-option>
+              <sl-option value="incoming">Incoming transmittal</sl-option>
+            </sl-select>
+            <sl-select class="rs-span-2 rs-span-md-6" label="From company" placeholder="Any" clearable></sl-select>
+            <sl-select class="rs-span-2 rs-span-md-6" label="To company" placeholder="Any" clearable></sl-select>
+            <sl-input class="rs-span-2 rs-span-md-6" label="Transmittal category" clearable></sl-input>
 
-        <!-- Transmittal details -->
-        <sl-detail-panel contained class="rs-span-4 rs-span-lg-5" aria-label="Transmittal details">
-          <span slot="label">Transmittal details</span>
-          <div class="rs-inset">
-            <sl-empty-state title-text="No transmittal selected" description="Select a transmittal to see its details.">
-              <sl-icon slot="icon" name="envelope"></sl-icon>
-            </sl-empty-state>
-          </div>
-        </sl-detail-panel>
-      </div>
-    </main>
+            <div class="rs-span-12 rs-cluster rs-cluster--between">
+              <div class="rs-cluster">
+                <span class="rs-inline">
+                  <sl-checkbox size="small">Multiple search</sl-checkbox>
+                  <sl-tooltip content="Search several names at once, separated by commas">
+                    <sl-icon name="info-circle" label="About multiple search"></sl-icon>
+                  </sl-tooltip>
+                </span>
+                <span class="rs-inline">
+                  <sl-checkbox size="small" checked disabled>Case sensitive</sl-checkbox>
+                  <sl-tooltip content="Available when multiple search is off">
+                    <sl-icon name="info-circle" label="About case sensitive"></sl-icon>
+                  </sl-tooltip>
+                </span>
+              </div>
+              <div class="rs-cluster">
+                <sl-button type="reset" variant="text">Reset</sl-button>
+                <sl-button type="submit" variant="primary"
+                  ><sl-icon slot="prefix" name="search"></sl-icon>Search</sl-button
+                >
+              </div>
+            </div>
+          </form>
+        </sl-card>
+
+        <div class="rs-workspace">
+          <!-- Transmittal list -->
+          <section class="rs-workspace__main rs-span-8 rs-span-lg-7" aria-label="Outgoing transmittals">
+            <sl-table
+              selection="multiple"
+              class="transmittal-list"
+              fill
+              sticky-header
+              paginate
+              page-size="25"
+              label="Outgoing transmittals"
+            >
+              <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow">
+                <sl-button size="small" variant="primary">
+                  <sl-icon slot="prefix" name="plus-lg"></sl-icon>
+                  Create outgoing
+                </sl-button>
+                <sl-button size="small" disabled>Create from existing</sl-button>
+                <sl-divider vertical></sl-divider>
+                <sl-button size="small" disabled>Assign to me</sl-button>
+                <sl-button size="small" disabled>Complete assignment</sl-button>
+                <span class="rs-spacer"></span>
+                <sl-dropdown placement="bottom-end">
+                  <sl-button slot="trigger" size="small" caret disabled>Actions</sl-button>
+                  <sl-menu>
+                    <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Operations</sl-menu-item>
+                    <sl-menu-item><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-menu-item>
+                    <sl-menu-item
+                      ><sl-icon slot="prefix" name="arrow-right"></sl-icon>Create DP from transmittal</sl-menu-item
+                    >
+                  </sl-menu> </sl-dropdown
+                ><sl-divider vertical></sl-divider>
+
+                <sl-dropdown placement="bottom-end" hoist data-table-options>
+                  <sl-button slot="trigger" size="small" caret
+                    ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                  >
+                </sl-dropdown>
+              </div>
+
+              <sl-empty-state
+                slot="empty"
+                title-text="No transmittals"
+                description="Outgoing transmittals you can see appear here."
+              >
+                <sl-icon slot="icon" name="envelope"></sl-icon>
+              </sl-empty-state>
+            </sl-table>
+          </section>
+
+          <!-- Transmittal details -->
+          <sl-detail-panel contained class="rs-span-4 rs-span-lg-5" aria-label="Transmittal details">
+            <span slot="label">Transmittal details</span>
+            <div class="rs-inset">
+              <sl-empty-state
+                title-text="No transmittal selected"
+                description="Select a transmittal to see its details."
+              >
+                <sl-icon slot="icon" name="envelope"></sl-icon>
+              </sl-empty-state>
+            </div>
+          </sl-detail-panel>
+        </div>
+      </main>
+    </div>
 
     <!-- More filters (closed in this state): the 6 secondary legacy filters -->
     <sl-drawer label="More filters" placement="end">
@@ -233,8 +257,8 @@
             </sl-select>
           </div>
           <sl-table
-            class="people-list"
             selection="multiple"
+            class="people-list"
             sticky-header
             label="Available recipients"
             style="--max-height: 16rem"
@@ -245,6 +269,12 @@
               </sl-input>
               <sl-checkbox size="small">Case sensitive</sl-checkbox>
               <span class="rs-meta">44 available</span>
+              <span class="rs-spacer"></span>
+              <sl-dropdown placement="bottom-end" hoist data-table-options>
+                <sl-button slot="trigger" size="small" caret
+                  ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                >
+              </sl-dropdown>
             </div>
           </sl-table>
           <div class="rs-cluster">

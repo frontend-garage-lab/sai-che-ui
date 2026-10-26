@@ -27,6 +27,12 @@ const App = () => (
 );
 ```
 
+:::tip
+A tag labels a record (a category, an applied filter, the current revision in a description list). For a value that
+changes through the workflow, such as a task's progress, use a [status](/components/status) instead — with `filled`
+when it needs to stand out.
+:::
+
 ## Examples
 
 ### Sizes

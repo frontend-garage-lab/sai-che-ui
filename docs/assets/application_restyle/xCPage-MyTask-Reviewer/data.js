@@ -6,14 +6,9 @@
  */
 
 import { html } from 'https://cdn.jsdelivr.net/npm/lit@3/+esm';
-import { documentCell } from '../_shared/restyle.js';
+import { documentCell, revisionFileIcon, revisionInfoAction, revisionTag, statusTag } from '../_shared/restyle.js';
 
-export { mountTable, openHeaderMenu } from '../_shared/restyle.js';
-
-// The comment actions sit in the detail panel header, so they follow the Review comments tab only.
-document.addEventListener('sl-tab-show', ({ detail }) => {
-  document.querySelectorAll('[data-comment-action]').forEach(action => (action.hidden = detail.name !== 'comments'));
-});
+export { mountDocumentInfo, mountTable, openHeaderMenu } from '../_shared/restyle.js';
 
 // ------------------------------------------------------------------ Review tasks (11, all expired)
 
@@ -111,8 +106,8 @@ const EXPIRY = {
   expired: { variant: 'danger', label: 'Expired' }
 };
 
-// Quick info as in the legacy list: expiry dot, accepted checkbox (lit by Accept → accent) and speech bubble (comment
-// uploaded → success). Unlit markers are neutral.
+// Quick info: expiry dot. Whether the task is acquired is a state (Status column: Working → Acquired). The speech
+// bubble (comment uploaded) is Lead Reviewer only, so it is not shown here.
 const quickInfo = row => html`
   <span class="rs-quick-info">
     <sl-status
@@ -121,21 +116,17 @@ const quickInfo = row => html`
       size="small"
       title=${EXPIRY[row.expiry].label}
     ></sl-status>
-    <sl-icon
-      variant=${row.acquired ? 'accent' : 'neutral'}
-      name=${row.acquired ? 'check-square-fill' : 'square'}
-      title=${row.acquired ? 'Accepted' : 'Not accepted yet'}
-    ></sl-icon>
-    <sl-icon
-      variant=${row.comment ? 'success' : 'neutral'}
-      name="chat-fill"
-      title=${row.comment ? 'Review comment uploaded' : 'No review comment yet'}
-    ></sl-icon>
   </span>
 `;
 
 export const taskColumns = [
-  { id: 'info', header: '', meta: { width: '6rem' }, cell: ({ row }) => quickInfo(row.original) },
+  { id: 'info', header: '', meta: { width: '2.5rem' }, cell: ({ row }) => quickInfo(row.original) },
+  {
+    id: 'state',
+    header: 'Status',
+    meta: { width: '7rem' },
+    cell: ({ row }) => statusTag(row.original.acquired ? 'Acquired' : 'Working')
+  },
   {
     id: 'task',
     accessorKey: 'document',
@@ -145,7 +136,13 @@ export const taskColumns = [
     meta: { width: 'minmax(12rem, 1fr)' },
     cell: ({ row }) => documentCell(row.original.document, row.original.din, row.original.title)
   },
-  { id: 'rev', accessorKey: 'rev', header: 'Rev.', meta: { width: '4rem' } },
+  {
+    id: 'rev',
+    accessorKey: 'rev',
+    header: 'Rev.',
+    meta: { width: '4rem' },
+    cell: ({ row }) => revisionTag(row.original.rev)
+  },
   {
     id: 'created',
     accessorKey: 'created',
@@ -161,10 +158,22 @@ export const taskColumns = [
 // ------------------------------------------------------------------ Detail panel of the selected task
 
 export const reviewers = [
-  { name: 'Aiello Ciro', initials: 'AC', acquired: true, last: '02-Oct-2026 13:16' },
-  { name: 'Cazzaniga Alice', initials: 'CA', acquired: false, last: '—' },
-  { name: 'page_wsuser', initials: 'PW', acquired: false, last: '—' }
+  { name: 'Aiello Ciro', initials: 'AC', status: 'acquired', last: '02-Oct-2026 13:16' },
+  { name: 'Cazzaniga Alice', initials: 'CA', status: 'not-acquired', last: '—' },
+  { name: 'page_wsuser', initials: 'PW', status: 'not-acquired', last: '—' },
+  { name: 'Bianchi Marco', initials: 'BM', status: 'completed', file: true, last: '30-Sep-2026 09:42' },
+  { name: 'Rossi Laura', initials: 'RL', status: 'refused', last: '28-Sep-2026 16:05' },
+  { name: 'Verdi Paolo', initials: 'VP', status: 'aborted', last: '25-Sep-2026 11:20' }
 ];
+
+// Reviewer task status → label; the colour comes from the shared STATUS_VARIANT catalog.
+const reviewerStatus = {
+  'not-acquired': 'Not acquired',
+  acquired: 'Acquired',
+  completed: 'Completed',
+  refused: 'Refused',
+  aborted: 'Aborted'
+};
 
 export const reviewerColumns = [
   {
@@ -172,20 +181,42 @@ export const reviewerColumns = [
     header: 'Reviewer',
     cell: ({ row }) =>
       html`<span class="rs-inline"
-        ><sl-avatar shape="circle" initials=${row.original.initials} label=${row.original.name}></sl-avatar> ${row
-          .original.name}</span
+        ><sl-avatar
+          shape="circle"
+          size="small"
+          initials=${row.original.initials}
+          label=${row.original.name}
+        ></sl-avatar>
+        ${row.original.name}</span
       >`
   },
   {
     id: 'status',
     header: 'Task status',
-    meta: { width: '9rem' },
-    cell: ({ row }) =>
-      row.original.acquired
-        ? html`<sl-status variant="warning" size="small">Acquired</sl-status>`
-        : html`<sl-status variant="neutral" size="small">Not acquired</sl-status>`
+    meta: { width: '11rem' },
+    cell: ({ row }) => {
+      const label = reviewerStatus[row.original.status];
+      return html`<span class="rs-inline"
+        >${statusTag(label)}${row.original.file
+          ? html`<sl-tooltip content="Download review file"
+              ><sl-icon-button name="file-earmark-pdf" label="Download review file"></sl-icon-button
+            ></sl-tooltip>`
+          : ''}</span
+      >`;
+    }
   },
-  { id: 'last', accessorKey: 'last', header: 'Last operation', meta: { width: '9rem', nowrap: true } }
+  { id: 'last', accessorKey: 'last', header: 'Last operation', meta: { width: '10.5rem', nowrap: true } },
+  {
+    id: 'actions',
+    meta: { actions: true },
+    cell: () => html`
+      <sl-menu>
+        <sl-menu-item value="edit"><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-menu-item>
+        <sl-divider></sl-divider>
+        <sl-menu-item value="delete"><sl-icon slot="prefix" name="trash"></sl-icon>Delete</sl-menu-item>
+      </sl-menu>
+    `
+  }
 ];
 
 export const revisions = [
@@ -195,18 +226,46 @@ export const revisions = [
     title: 'Test_DM_27091449_2',
     code: 'A1',
     current: true,
+    status: 'Current',
     format: 'pdf'
+  },
+  {
+    document: 'test Foxit_no signature_A',
+    din: 'test Foxit_no signature_qrcode',
+    title: 'Test_DM_27091449_2',
+    code: 'A',
+    current: false,
+    status: 'Current',
+    format: 'pdf',
+    clientAnswer: 'Approved'
+  },
+  {
+    document: 'test Foxit_no signature_00B',
+    din: 'test Foxit_no signature_qrcode',
+    title: 'Test_DM_27091449 – title update',
+    code: '00B',
+    current: false,
+    status: 'Current',
+    format: 'docx'
+  },
+  {
+    document: 'test Foxit_no signature_00',
+    din: 'test Foxit_no signature_qrcode',
+    title: 'Test_DM_27091449',
+    code: '00',
+    current: false,
+    status: 'Current',
+    format: 'pdf',
+    clientAnswer: 'Commented'
   }
 ];
 
 export const revisionColumns = [
   {
-    id: 'file',
+    id: 'info',
     header: '',
     meta: { width: '3rem' },
-    // The icon of the native file, shown only when the revision has one (here always a PDF).
-    cell: ({ row }) =>
-      row.original.format === 'pdf' ? html`<sl-icon name="file-earmark-pdf" title="Native file: PDF"></sl-icon>` : ''
+    cell: revisionFileIcon
   },
   {
     id: 'document',
@@ -214,15 +273,18 @@ export const revisionColumns = [
     cell: ({ row }) => documentCell(row.original.document, row.original.din, row.original.title)
   },
   {
+    id: 'status',
+    header: 'Revision status',
+    meta: { width: '9rem' },
+    cell: ({ row }) => statusTag(row.original.status)
+  },
+  {
     id: 'code',
-    header: 'Revision',
-    meta: { width: '7rem' },
-    cell: ({ row }) =>
-      html`<span class="rs-inline"
-        >${row.original.code}
-        ${row.original.current ? html`<sl-tag size="small" variant="success">Current</sl-tag>` : ''}</span
-      >`
-  }
+    header: 'Revision code',
+    meta: { width: '8rem' },
+    cell: ({ row }) => html`<span class="rs-inline">${revisionTag(row.original.code)}</span>`
+  },
+  { id: 'actions', header: '', meta: { width: '3rem', align: 'center' }, cell: revisionInfoAction }
 ];
 
 // ------------------------------------------------------------------ Complete review task (screen 7)
@@ -236,7 +298,7 @@ export const completionColumns = [
     meta: { width: '10rem' },
     cell: () => html`
       <span class="rs-inline">
-        <sl-status variant="success" size="small">Uploaded</sl-status>
+        <sl-status filled variant="success" size="small">Uploaded</sl-status>
         <sl-icon name="file-earmark-pdf" title="Review comment (PDF)"></sl-icon>
       </span>
     `
@@ -244,3 +306,54 @@ export const completionColumns = [
   { id: 'document', accessorKey: 'document', header: 'Document', meta: { nowrap: true } },
   { id: 'date', accessorKey: 'commentDate', header: 'Comment date', meta: { width: '10rem', nowrap: true } }
 ];
+
+// ------------------------------------------------------------------ Document info dialog (Properties › All metadata)
+
+export const documentInfo = {
+  summary: [
+    ['Name', 'test Foxit_no signature'],
+    ['DIN', 'test Foxit_no signature_qrcode'],
+    ['Title', 'Test_DM_27091449_2'],
+    ['Revision code', 'A1']
+  ],
+  sections: [
+    {
+      title: 'Info',
+      groups: [
+        {
+          title: 'Identification',
+          items: [
+            ['SP code', '—'],
+            ['Document class', 'External Job Document'],
+            ['Client document identification', '—'],
+            ['Vendor document identification', '—']
+          ]
+        },
+        {
+          title: 'Status and ownership',
+          items: [
+            ['Project code', '99_PAGE_AM'],
+            ['Company project code', '—'],
+            ['PO number', '—'],
+            ['Managing department – discipline', '—'],
+            ['Issuing department – discipline', '—'],
+            ['Second discipline', '—'],
+            ['Originator', 'VDR-20240415'],
+            ['Superseded by', '—']
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Job document',
+      groups: [
+        {
+          items: [
+            ['Client answer', '—'],
+            ['Issuing description', '—']
+          ]
+        }
+      ]
+    }
+  ]
+};

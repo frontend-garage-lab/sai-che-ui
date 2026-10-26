@@ -6,7 +6,7 @@
  */
 
 import { html } from 'https://cdn.jsdelivr.net/npm/lit@3/+esm';
-import { documentCell } from '../_shared/restyle.js';
+import { documentCell, revisionTag, statusTag } from '../_shared/restyle.js';
 
 export * from '../_shared/restyle.js';
 
@@ -119,7 +119,6 @@ export const searchColumns = [
     meta: { width: '7rem' },
     cell: ({ row }) => html`
       <span class="rs-inline">
-        <sl-icon name="flag" title=${row.original.flag}></sl-icon>
         <sl-icon name="file-earmark-pdf" title="Native file: PDF"></sl-icon>
         <sl-icon name="file-earmark-text" title="Has attachments"></sl-icon>
       </span>
@@ -132,14 +131,31 @@ export const searchColumns = [
     cell: ({ row }) =>
       documentCell(row.original.document, ...[row.original.din, row.original.title].filter(line => line !== '—'))
   },
-  { id: 'revision', accessorKey: 'revision', header: 'Rev. code', meta: { width: '6rem' } }
+  {
+    id: 'status',
+    header: 'Status',
+    meta: { width: '7rem' },
+    cell: ({ row }) => statusTag(row.original.flag === 'Current revision' ? 'Current' : 'Working')
+  },
+  {
+    id: 'revision',
+    accessorKey: 'revision',
+    header: 'Rev. code',
+    meta: { width: '6rem' },
+    cell: ({ row }) => revisionTag(row.original.revision)
+  }
 ];
 
 /** Columns of the documents already related to the transmittal (step 2): empty until documents are added. */
 export const relatedColumns = [
   { id: 'info', header: 'Quick info', meta: { width: '7rem' } },
   { id: 'document', header: 'Document' },
-  { id: 'revision', header: 'Rev. code', meta: { width: '6rem' } },
+  {
+    id: 'revision',
+    header: 'Rev. code',
+    meta: { width: '6rem' },
+    cell: ({ row }) => revisionTag(row.original.revision)
+  },
   { id: 'answer', header: 'Certifying body answer', meta: { width: '11rem', nowrap: true } },
   { id: 'client', header: 'Client answer', meta: { width: '9rem', nowrap: true } },
   { id: 'reason', header: 'Issuing reason', meta: { width: '9rem', nowrap: true } }

@@ -16,6 +16,7 @@ signature", **importa** il proprio PDF commentato, controlla nella Dashboard lo 
 | 4   | `4-ImportComment.png`    | [4-ImportComment.html](./4-ImportComment.html)       | Dialog Import comment: PDF caricato, formato Acrobat PDF                        |
 | 5   | `5-ImportedComment.png`  | [5-ImportedComment.html](./5-ImportedComment.html)   | Toast di upload, commento nel pannello, icona PDF sulla riga, Complete primario |
 | 6   | `6-DashboardStatus.png`  | [6-DashboardStatus.html](./6-DashboardStatus.html)   | Tab Dashboard: 3 reviewer, solo Aiello Ciro ha acquisito il task                |
+| 6d  | —                        | [6d-DocumentInfo.html](./6d-DocumentInfo.html)       | Tab Properties › "All metadata": dialog Document info con tutti i metadati      |
 | 7   | `7-CompleteTask.png`     | [7-CompleteTask.html](./7-CompleteTask.html)         | Dialog Complete review task                                                     |
 
 ## 2. Layout (griglia 12 colonne)

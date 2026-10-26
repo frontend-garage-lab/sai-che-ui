@@ -473,3 +473,97 @@ sl-status.rs-status-dot::part(label) {
   min-width: 0;
   overflow-y: auto;
 }
+
+/* Review comment file: the commented PDF inside an sl-comment, on one line — large neutral icon, file name + type tag,
+   document + revision tag. The whole row is the download link. */
+.rs-file {
+  display: flex;
+  align-items: center;
+  gap: var(--sl-spacing-x-small);
+  margin-block-start: var(--sl-spacing-x-small);
+  padding: var(--sl-spacing-x-small) var(--sl-spacing-small);
+  border: solid 1px var(--sl-panel-border-color);
+  border-radius: var(--sl-border-radius-medium);
+  background-color: var(--sl-color-neutral-50);
+  color: inherit;
+  text-decoration: none;
+}
+
+.rs-file:hover {
+  border-color: var(--sl-color-neutral-300);
+  background-color: var(--sl-color-neutral-100);
+}
+
+.rs-file:focus-visible {
+  outline: var(--sl-focus-ring);
+  outline-offset: var(--sl-focus-ring-offset);
+}
+
+.rs-file__icon {
+  flex: none;
+  font-size: var(--sl-font-size-2x-large);
+  color: var(--sl-color-neutral-700);
+}
+
+.rs-file__name {
+  min-width: 0;
+  overflow: hidden;
+  font-size: var(--sl-font-size-small);
+  font-weight: var(--sl-font-weight-semibold);
+  color: var(--sl-color-neutral-800);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rs-file__doc {
+  min-width: 0;
+  margin-inline-start: var(--sl-spacing-x-small);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rs-file > sl-tag {
+  flex: none;
+}
+
+/* Table configuration panel (Config button of a table toolbar): show / hide and reorder columns. */
+.rs-table-config {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-spacing-x-small);
+  min-width: 18rem;
+  padding: var(--sl-spacing-small) var(--sl-spacing-medium);
+  background: var(--sl-panel-background-color);
+  border: solid var(--sl-panel-border-width) var(--sl-panel-border-color);
+  border-radius: var(--sl-border-radius-medium);
+  box-shadow: var(--sl-shadow-large);
+}
+
+.rs-table-config__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rs-table-config__item {
+  display: flex;
+  align-items: center;
+  gap: var(--sl-spacing-x-small);
+  padding-block: var(--sl-spacing-3x-small);
+  cursor: grab;
+}
+
+.rs-table-config__grip {
+  color: var(--sl-color-neutral-400);
+}
+
+/* Table toolbar: the divider separates the end-side actions from Config; labels never wrap. */
+[slot='toolbar'] > sl-divider[vertical] {
+  height: 1.5rem;
+  margin-inline: var(--sl-spacing-2x-small);
+}
+
+[slot='toolbar'] sl-checkbox {
+  white-space: nowrap;
+}

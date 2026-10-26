@@ -6,7 +6,14 @@
  */
 
 import { html } from 'https://cdn.jsdelivr.net/npm/lit@3/+esm';
-import { documentCell } from '../_shared/restyle.js';
+import {
+  documentCell,
+  documentColumns,
+  openDocumentInfo,
+  revisionQuickInfo,
+  revisionTag,
+  statusTag
+} from '../_shared/restyle.js';
 
 export * from '../_shared/restyle.js';
 
@@ -74,7 +81,6 @@ export const isSelectedTask = row => row.document === 'rwar-1';
 const KIND_VARIANT = { P: 'warning', V: 'primary', A: 'success' };
 
 // Active → next recipient has the task; Promoting → queue being processed; Complete → process finished.
-const PVA_STATUS_VARIANT = { Active: 'primary', Promoting: 'warning', Complete: 'success' };
 
 export const taskColumns = [
   {
@@ -97,10 +103,7 @@ export const taskColumns = [
     id: 'status',
     header: 'PVA status',
     meta: { width: '8rem' },
-    cell: ({ row }) =>
-      html`<sl-status variant=${PVA_STATUS_VARIANT[row.original.pvaStatus]} size="small"
-        >${row.original.pvaStatus}</sl-status
-      >`
+    cell: ({ row }) => statusTag(row.original.pvaStatus)
   },
   { id: 'type', accessorKey: 'type', header: 'Type', enableSorting: true, meta: { width: '11rem' } },
   {
@@ -124,17 +127,39 @@ export const revisions = [
     version: '1.0',
     current: true,
     format: 'pdf'
+  },
+  {
+    document: 'rwar-0',
+    din: 'rwar',
+    title: 'rwar – draft',
+    status: 'Verified',
+    code: '0',
+    version: '0.2',
+    current: false,
+    format: 'docx',
+    clientAnswer: 'Approved'
   }
 ];
 
+/** Row menu of a revision: every metadata (same "Metadata" dialog as Properties › All metadata), edit or delete it. */
+const revisionMenu = () => html`
+  <sl-menu>
+    <sl-menu-item value="info" @click=${openDocumentInfo}
+      ><sl-icon slot="prefix" name="info-circle"></sl-icon>Document info</sl-menu-item
+    >
+    <sl-divider></sl-divider>
+    <sl-menu-item value="edit"><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-menu-item>
+    <sl-divider></sl-divider>
+    <sl-menu-item value="delete"><sl-icon slot="prefix" name="trash"></sl-icon>Delete</sl-menu-item>
+  </sl-menu>
+`;
+
 export const revisionColumns = [
   {
-    id: 'file',
+    id: 'info',
     header: '',
-    meta: { width: '3rem' },
-    // The icon of the native file, shown only when the revision has one (here always a PDF).
-    cell: ({ row }) =>
-      row.original.format === 'pdf' ? html`<sl-icon name="file-earmark-pdf" title="Native file: PDF"></sl-icon>` : ''
+    meta: { width: '4rem' },
+    cell: revisionQuickInfo
   },
   {
     id: 'document',
@@ -145,19 +170,47 @@ export const revisionColumns = [
     id: 'status',
     header: 'Revision status',
     meta: { width: '8rem' },
-    cell: ({ row }) => html`<sl-status variant="neutral" size="small">${row.original.status}</sl-status>`
+    cell: ({ row }) => statusTag(row.original.status)
   },
-  { id: 'code', accessorKey: 'code', header: 'Revision code', meta: { width: '7rem' } },
+  {
+    id: 'code',
+    accessorKey: 'code',
+    header: 'Revision code',
+    meta: { width: '7rem' },
+    cell: ({ row }) => revisionTag(row.original.code)
+  },
   {
     id: 'version',
     header: 'Version',
     meta: { width: '7rem' },
-    cell: ({ row }) =>
-      html`<span class="rs-inline"
-        >${row.original.version}
-        ${row.original.current ? html`<sl-tag size="small" variant="success">Current</sl-tag>` : ''}</span
-      >`
-  }
+    cell: ({ row }) => html`<span class="rs-inline">${row.original.version}</span>`
+  },
+  { id: 'actions', meta: { actions: true }, cell: revisionMenu }
+];
+
+// ------------------------------------------------------------------ Progress tab (screen 4b)
+
+export const weights = [
+  { step: 'Step 1', company: 'SAIPEM', planned: '4-Jan-2026', actual: '10-Jan-2026', forecast: '12-Jan-2026' },
+  { step: 'Step 2', company: 'SAIPEM', planned: '9-Jan-2026', actual: '15-Jan-2026', forecast: '17-Jan-2026' }
+];
+
+export const weightColumns = [
+  { id: 'step', header: 'Description', cell: ({ row }) => documentCell(row.original.step) },
+  { id: 'company', accessorKey: 'company', header: 'Company', meta: { width: '5.5rem' } },
+  { id: 'planned', accessorKey: 'planned', header: 'Planned date', meta: { width: '7.5rem', nowrap: true } },
+  { id: 'actual', accessorKey: 'actual', header: 'Actual date', meta: { width: '7.5rem', nowrap: true } },
+  { id: 'forecast', accessorKey: 'forecast', header: 'Forecast date', meta: { width: '7.5rem', nowrap: true } }
+];
+
+export const locations = [
+  { name: 'AA-AI-1', path: 'C:\\Users\\nomeutente\\Documents' },
+  { name: 'AA-AI-2', path: 'C:\\Users\\nomeutente\\Documents' }
+];
+
+export const locationColumns = [
+  { id: 'name', header: 'Name', meta: { width: '7rem' }, cell: ({ row }) => documentCell(row.original.name) },
+  { id: 'path', accessorKey: 'path', header: 'Path' }
 ];
 
 // ------------------------------------------------------------------ Users (Choose user, 44 users)
@@ -228,3 +281,89 @@ export const userColumns = [
     cell: ({ row }) => html`<span title=${row.original.description}>${row.original.description}</span>`
   }
 ];
+
+// ------------------------------------------------------------------ Document info dialog (Revisions › info action)
+
+export const documentInfo = {
+  summary: [
+    ['Name', 'rwar-1'],
+    ['DIN', 'rwar'],
+    ['Title', 'rwar'],
+    ['Revision code', '1']
+  ],
+  sections: [
+    {
+      title: 'Info',
+      groups: [
+        {
+          title: 'Identification',
+          items: [
+            ['SP code', '—'],
+            ['Document class', 'Internal Job Document'],
+            ['Client document identification', '—'],
+            ['Vendor document identification', '—']
+          ]
+        },
+        {
+          title: 'Status and ownership',
+          items: [
+            ['Project code', '99_PAGE_AM'],
+            ['Company project code', '—'],
+            ['PO number', '—'],
+            ['Managing department – discipline', '—'],
+            ['Issuing department – discipline', '—'],
+            ['Second discipline', '—'],
+            ['Originator', '—'],
+            ['Superseded by', '—']
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Job document',
+      groups: [
+        {
+          items: [
+            ['Client answer', '—'],
+            ['Issuing description', '—']
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+// ------------------------------------------------------------------ Documents (Main page)
+
+const DOCUMENT_FILE_ICON = {
+  pdf: { name: 'file-earmark-pdf', title: 'Native file: PDF' },
+  text: { name: 'file-earmark-text', title: 'Native file: text' },
+  docx: { name: 'file-earmark-word', title: 'Native file: Word' }
+};
+
+/** Quick info without the current-revision flag: the Status column carries it. */
+const documentQuickInfo = ({ row }) => {
+  const record = row.original;
+  const file = DOCUMENT_FILE_ICON[record.format ?? 'pdf'];
+  return html`
+    <span class="rs-inline">
+      ${record.checkedOut ? html`<sl-icon name="lock" title="Checked out"></sl-icon>` : ''}
+      ${file ? html`<sl-icon name=${file.name} title=${file.title}></sl-icon>` : ''}
+    </span>
+  `;
+};
+
+/** Documents table of the main page: a Status column, Current for the approved document, Working for the others. */
+export const mainDocumentColumns = documentColumns.flatMap(column => {
+  if (column.id === 'info') return [{ ...column, header: '', meta: { width: '5rem' }, cell: documentQuickInfo }];
+  if (column.id !== 'document') return [column];
+  return [
+    column,
+    {
+      id: 'status',
+      header: 'Status',
+      meta: { width: '10rem' },
+      cell: ({ row }) => statusTag(row.original.state === 'Working' ? 'Working' : 'Current')
+    }
+  ];
+});

@@ -27,23 +27,6 @@
       <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
       <span slot="logo">xCPage</span>
 
-      <sl-header-item current>
-        Project Data
-        <sl-menu slot="menu">
-          <sl-menu-item>Documents</sl-menu-item>
-          <sl-menu-item>Transmittals</sl-menu-item>
-          <sl-menu-item>Tasks</sl-menu-item>
-        </sl-menu>
-      </sl-header-item>
-      <sl-header-item>
-        Configuration
-        <sl-menu slot="menu">
-          <sl-menu-item>Users</sl-menu-item>
-          <sl-menu-item>Permissions</sl-menu-item>
-        </sl-menu>
-      </sl-header-item>
-      <sl-header-item href="#">Dashboard</sl-header-item>
-
       <sl-select slot="actions" size="small" value="99-page-am" style="width: 16rem">
         <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
       </sl-select>
@@ -82,14 +65,19 @@
 
         <sl-sidebar-group label="Comunicazione" count="47">
           <sl-icon slot="icon" name="envelope"></sl-icon>
-          <sl-sidebar-item href="#" count="5">Transmittal</sl-sidebar-item>
           <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
           <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
         </sl-sidebar-group>
 
-        <sl-sidebar-group label="Workflow" count="55">
+        <sl-sidebar-group label="Tasks" count="55">
           <sl-icon slot="icon" name="clipboard-check"></sl-icon>
-          <sl-sidebar-item href="#" count="55" current>Tasks</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="11" current>Review</sl-sidebar-item>
         </sl-sidebar-group>
       </sl-sidebar>
 
@@ -99,15 +87,6 @@
             <h1 class="rs-title">Tasks</h1>
           </div>
         </div>
-
-        <!-- Workflow stages -->
-        <sl-tab-group class="rs-stages" aria-label="Workflow stage">
-          <sl-tab slot="nav" panel="pva" card>PVA <sl-badge variant="neutral" pill>22</sl-badge></sl-tab>
-          <sl-tab slot="nav" panel="consolidation" card
-            >Consolidation <sl-badge variant="neutral" pill>22</sl-badge></sl-tab
-          >
-          <sl-tab slot="nav" panel="review" card active>Review <sl-badge variant="primary" pill>11</sl-badge></sl-tab>
-        </sl-tab-group>
 
         <!-- Filters + expiry -->
         <section class="rs-grid rs-grid--stretch" aria-label="Filters and expiry">
@@ -187,9 +166,9 @@
           <!-- Task list -->
           <section class="rs-workspace__main rs-span-7 rs-span-lg-6" aria-label="Review tasks">
             <sl-table
+              selection="multiple"
               class="task-list"
               fill
-              selection="single"
               sticky-header
               paginate
               page-size="25"
@@ -201,24 +180,22 @@
                 role="toolbar"
                 aria-label="Task actions"
               >
-                <sl-tooltip content="Download"
-                  ><sl-icon-button name="download" label="Download" variant="primary"></sl-icon-button
-                ></sl-tooltip>
-                <sl-tooltip content="Import comment"
-                  ><sl-icon-button name="upload" label="Import comment" variant="neutral" disabled></sl-icon-button
-                ></sl-tooltip>
-                <sl-tooltip content="Release task"
-                  ><sl-icon-button name="arrow-counterclockwise" label="Release task" variant="danger"></sl-icon-button
-                ></sl-tooltip>
-                <sl-tooltip content="Delegate"
-                  ><sl-icon-button name="arrow-right" label="Delegate" variant="primary"></sl-icon-button
-                ></sl-tooltip>
-                <sl-tooltip content="Accept"
-                  ><sl-icon-button name="check-lg" label="Accept" variant="accent"></sl-icon-button
-                ></sl-tooltip>
-                <sl-tooltip content="Complete"
-                  ><sl-icon-button name="check-lg" label="Complete" variant="success" disabled></sl-icon-button
-                ></sl-tooltip>
+                <sl-button size="small"><sl-icon slot="prefix" name="download"></sl-icon>Download</sl-button>
+                <sl-button size="small" disabled><sl-icon slot="prefix" name="upload"></sl-icon>Upload</sl-button>
+                <sl-button size="small"
+                  ><sl-icon slot="prefix" name="arrow-counterclockwise"></sl-icon>Refuse</sl-button
+                >
+                <sl-button size="small"><sl-icon slot="prefix" name="arrow-right"></sl-icon>Delegate</sl-button>
+                <sl-button size="small"><sl-icon slot="prefix" name="check-square"></sl-icon>Acquire</sl-button>
+                <sl-button size="small" disabled
+                  ><sl-icon slot="prefix" name="check-square-fill"></sl-icon>Complete</sl-button
+                >
+                <span class="rs-spacer"></span>
+                <sl-dropdown placement="bottom-end" hoist data-table-options>
+                  <sl-button slot="trigger" size="small" caret
+                    ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                  >
+                </sl-dropdown>
               </div>
 
               <sl-empty-state
@@ -235,15 +212,6 @@
           <sl-detail-panel contained class="rs-span-5 rs-span-lg-6" aria-label="Task details">
             <span slot="label" class="rs-inline">test Foxit_no signature</span>
             <span slot="meta">Revision A1 · Due 25-Jun-2026</span>
-            <sl-tooltip slot="actions" content="Add comment" data-comment-action
-              ><sl-icon-button name="plus-lg" label="Add comment" disabled></sl-icon-button
-            ></sl-tooltip>
-            <sl-tooltip slot="actions" content="Edit comment" data-comment-action
-              ><sl-icon-button name="pencil" label="Edit comment" disabled></sl-icon-button
-            ></sl-tooltip>
-            <sl-tooltip slot="actions" content="Delete comment" data-comment-action
-              ><sl-icon-button name="trash" label="Delete comment" disabled></sl-icon-button
-            ></sl-tooltip>
 
             <sl-tab-group>
               <sl-tab slot="nav" panel="comments" active
@@ -262,7 +230,7 @@
               <sl-tab-panel name="comments" active>
                 <div class="rs-inset rs-stack">
                   <section class="rs-stack rs-stack--tight" aria-label="Review comments">
-                    <div class="rs-cluster rs-cluster--between">
+                    <div class="rs-inline">
                       <h3 class="rs-subheading">Review comments</h3>
                       <span class="rs-meta">0</span>
                     </div>
@@ -278,41 +246,81 @@
 
               <sl-tab-panel name="dashboard">
                 <div class="rs-inset rs-stack">
-                  <h3 class="rs-subheading">Current assignment</h3>
-                  <div class="rs-stack rs-stack--tight">
+                  <section class="rs-stack rs-stack--tight" aria-label="Current assignment">
+                    <div class="rs-cluster rs-cluster--between">
+                      <span class="rs-inline">
+                        <h3 class="rs-subheading">Current assignment</h3>
+                        <span class="rs-meta">6</span>
+                      </span>
+                      <sl-button size="small" variant="primary"
+                        ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Add reviewer</sl-button
+                      >
+                    </div>
                     <sl-table class="reviewer-table" label="Reviewers of test Foxit_no signature"></sl-table>
-                    <p class="rs-meta">3 reviewers</p>
-                  </div>
+                  </section>
                 </div>
               </sl-tab-panel>
 
               <sl-tab-panel name="revisions">
                 <div class="rs-inset rs-stack rs-stack--tight">
+                  <div class="rs-inline">
+                    <h3 class="rs-subheading">Revisions</h3>
+                    <span class="rs-meta">4</span>
+                  </div>
                   <sl-table class="revision-table" label="Revisions of test Foxit_no signature"></sl-table>
-                  <p class="rs-meta">1 revision</p>
                 </div>
               </sl-tab-panel>
 
               <sl-tab-panel name="properties">
                 <div class="rs-inset rs-stack rs-stack--tight">
                   <sl-details summary="Document info" open>
-                    <sl-description-list cols="2">
-                      <sl-description-list-item label="Name">test Foxit_no signature</sl-description-list-item>
-                      <sl-description-list-item label="DIN">test Foxit_no signature_qrcode</sl-description-list-item>
-                      <sl-description-list-item label="Title">Test_DM_27091449_2</sl-description-list-item>
-                      <sl-description-list-item label="Revision code">A1</sl-description-list-item>
-                      <sl-description-list-item label="Originator">VDR-20240415</sl-description-list-item>
-                      <sl-description-list-item label="Discipline">—</sl-description-list-item>
-                    </sl-description-list>
+                    <div class="rs-stack">
+                      <sl-description-list cols="2">
+                        <sl-description-list-item label="Name">test Foxit_no signature</sl-description-list-item>
+                        <sl-description-list-item label="DIN">test Foxit_no signature_qrcode</sl-description-list-item>
+                        <sl-description-list-item label="Title">Test_DM_27091449_2</sl-description-list-item>
+                        <sl-description-list-item label="Revision code"
+                          ><sl-tag size="small" variant="neutral">A1</sl-tag></sl-description-list-item
+                        >
+                        <sl-description-list-item label="Originator">VDR-20240415</sl-description-list-item>
+                        <sl-description-list-item label="Discipline">—</sl-description-list-item>
+                        <sl-description-list-item label="Document class"
+                          >External Job Document</sl-description-list-item
+                        >
+                      </sl-description-list>
+                      <div class="rs-cluster">
+                        <sl-button size="small" data-document-info
+                          ><sl-icon slot="prefix" name="info-circle"></sl-icon>All metadata</sl-button
+                        >
+                        <sl-button size="small" variant="primary"
+                          ><sl-icon slot="prefix" name="file-earmark-pdf"></sl-icon>Download</sl-button
+                        >
+                      </div>
+                    </div>
                   </sl-details>
                   <sl-details summary="Task info" open>
                     <sl-description-list cols="2">
-                      <sl-description-list-item label="Created on"
-                        >20-Feb-2026
-                        <sl-tag size="small" variant="neutral">Not acquired</sl-tag></sl-description-list-item
+                      <sl-description-list-item label="Lead reviewer">De Angeli Filippo</sl-description-list-item>
+                      <sl-description-list-item label="DP name">test_review_dp_15051941</sl-description-list-item>
+                      <sl-description-list-item label="Created on">20-Feb-2026</sl-description-list-item>
+                      <sl-description-list-item label="Expires on">25-Jun-2026</sl-description-list-item>
+                      <sl-description-list-item label="Task status"
+                        ><sl-status filled variant="neutral" size="small"
+                          >Not acquired</sl-status
+                        ></sl-description-list-item
                       >
-                      <sl-description-list-item label="Expires on">
-                        25-Jun-2026 <sl-status variant="danger" size="small">Expired</sl-status>
+                      <sl-description-list-item label="Expiry"
+                        ><sl-status filled variant="danger" size="small">Expired</sl-status></sl-description-list-item
+                      >
+                    </sl-description-list>
+                  </sl-details>
+                  <sl-details summary="Review status" open>
+                    <sl-description-list cols="2">
+                      <sl-description-list-item label="Your review comment">
+                        <sl-status filled variant="neutral" size="small">Not commented</sl-status>
+                      </sl-description-list-item>
+                      <sl-description-list-item label="Notification">
+                        <sl-status filled variant="neutral" size="small">Not notified</sl-status>
                       </sl-description-list-item>
                     </sl-description-list>
                   </sl-details>
@@ -327,13 +335,18 @@
     <script type="module">
       import * as flow from './data.js';
 
+      flow.mountDocumentInfo(flow.documentInfo);
+
       flow.setProgress({ accepted: false, commented: false });
       await flow.mountTable('.task-list', {
         columns: flow.taskColumns,
         data: flow.tasks,
         isSelected: flow.isSelectedTask
       });
-      await flow.mountTable('.revision-table', { columns: flow.revisionColumns, data: flow.revisions });
+      await flow.mountTable('.revision-table', {
+        columns: flow.revisionColumns,
+        data: flow.revisions
+      });
     </script>
   </body>
 </html>

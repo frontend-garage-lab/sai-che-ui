@@ -322,3 +322,25 @@ Richiesta utente: portare `sl-sidebar` / `sl-sidebar-group` / `sl-sidebar-item` 
 - **CC**: `figma/sidebar.figma.ts`, `sidebar-group.figma.ts`, `sidebar-item.figma.ts`; tipi property verificati via Plugin API (Prefix/Collapsed/Current sono VARIANT → `getEnum`); `tsc -p figma` OK. Dry-run/publish non eseguiti (serve token utente).
 - Fix 2026-10-21 (segnalazione utente): in `Sidebar` (`1054:73`, `1054:191`) l'icona del gruppo "Documenti di progetto" (Current=true) era nera sul riquadro `primary/600`: lo swap di `Icon` via `setProperties` sull'istanza aveva azzerato l'override di fill. Ripristinato `neutral/0` sui vettori. Attenzione: chi scambia l'icona di un gruppo Current=true in un'istanza potrebbe dover riapplicare `neutral/0`.
 - Publish libreria 2026-10-21: `getPublishStatusAsync` = `CURRENT` (CONFIRMED_API) per Sidebar Item (key `ffadd7dc…`), Sidebar Group (`f5bcad41…`), Sidebar (`436174c0…`). Variabili Size pubblicabili (non nascoste). Code Connect publish: da confermare.
+
+## 2026-10-22 — sl-status `filled` (regola status vs tag)
+
+- Origine: commento Figma su Saipem-XcMM `274:3654` (stati reviewer) + decisione utente "opzione B".
+- Codice: `sl-status` nuova property `filled` (boolean, reflect) — sfondo `<variant>-50` (neutral `-100`), label `<variant>-800`, pill senza bordo; test + docs (`status.md` "Filled", "Status or tag?"; tip in `tag.md`). Test NON eseguiti (richiedono Chromium).
+- DS A `34:62` Status: nuova property VARIANT `Filled` (false/true, default false). 12 varianti esistenti rinominate in-place (`…, Filled=false`, ID/key invariati); 12 nuove `Filled=true` (`1228:62`…`1228:117`). Descrizione set aggiornata.
+- Code Connect `figma/status.figma.ts`: `getEnum('Filled', {true,false})` → attributo `filled`.
+- request_status: IMPLEMENTED (codice, A, CC) · verification_status: UNVERIFIED (publish libreria A e `figma connect publish` da fare a cura dell'utente; adozione in XcMM in attesa).
+- Publish A 2026-10-22: set Status `getPublishStatusAsync` = `CURRENT`; import by key di `Filled=true` riuscito in XcMM (CONFIRMED_API). Code Connect publish: CONFIRMED_USER.
+- Adozione in Saipem-XcMM (`aHzBtZSU3XnoXxUZsRDT4a`, pagine Restyle + Flusso, solo frame NEW): 19 Tag di stato → Status `Filled=true` (stati reviewer, Acquired, Working, Current in Revision status); 9 Status in Detail Panel / Dialog / Description List → `Filled=true`. Liste principali invariate (dot). Marker "Updated marker" sulle schermate toccate. verification_status: PASS (screenshot Dashboard, PVA Revisions, PVA Properties).
+- Fix 2026-10-22: `sl-status` ereditava `--indicator-color` da `sl-tab-group` (pallino blu `primary-600` in tutti i pannelli a tab). Reset su `:host` (`--indicator-color: initial`), override diretto su `sl-status` ancora possibile; test aggiunto. verification_status: PASS (CONFIRMED_USER sull'HTML).
+- 2026-10-22 Comment (DS A `704:2`): nuovo SLOT `Body` (`Body#1240:1`) sotto il testo, vuoto 1px, gap `x-small` — ↔ default slot di `sl-comment`. Proprietà esistenti invariate (primo tentativo testo-nello-slot annullato: perdeva il binding `Text#704:2`). CC `figma/comment.figma.ts`: `getSlot('Body')`. Publish: CONFIRMED_USER + import by key in XcMM OK (CONFIRMED_API).
+- Adozione XcMM: 13 Comment (8 Restyle, 5 Flusso) → Date = "data · descrizione", testo nascosto, Has Attachment=false, slot Body = riga file (Icon file-earmark-pdf 32px `neutral/700`, Label/Medium nome file, Tag neutral "PDF", Caption documento `neutral/600`, Tag neutral revisione; bg `neutral/50`, bordo `border/subtle`, raggio `medium`, spacing `x-small`/`small`). verification_status: PASS (screenshot Lead Reviewer).
+- Fix 2026-10-22 riga file nei Comment (XcMM, 13 istanze): troncamento a una riga (`textAutoResize NONE` + `ENDING`) di nome file / documento solo se la riga eccede; tag PDF e revisione sempre interi; Comment + slot Body in HUG; `paddingTop` slot = `x-small`; gruppo "Document group" (documento + tag revisione) con `paddingLeft` `x-small`, come `.rs-file__doc` in HTML. verification_status: PASS (CONFIRMED_USER su Figma).
+
+## 2026-10-22 — sl-icon-button `size`
+
+- Codice: nuova property `size` (`small|large|x-large`, reflect) su `sl-icon-button`; token tema (light + dark) `--sl-icon-button-font-size-small|large|x-large`, `--sl-icon-button-padding-small`. Le dimensioni si applicano al bottone interno e vincono anche sulle varianti colorate. Senza `size` comportamento invariato. Test + docs (`icon-button.md` › Sizes). Test NON eseguiti (Chromium).
+- DS A `47:10` Icon Button: aggiunti 28 varianti `Size=small` (tutte le Variant × State di `medium`), 22px, padding `2x-small`, icona 14px centrata. Descrizione set aggiornata.
+- Code Connect `figma/icon-button.figma.ts`: `Size` → attributo `size` (small/large/x-large; medium = nessun attributo) al posto dello `style="font-size:…"`.
+- Restyle: azione "Document info" della tab Revisions = `size="small" variant="neutral"`; classe `.rs-row-action` rimossa.
+- request_status: IMPLEMENTED · verification_status: UNVERIFIED (publish A + `figma connect publish` a cura dell'utente).

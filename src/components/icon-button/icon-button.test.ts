@@ -168,4 +168,14 @@ describe('<sl-icon-button>', () => {
       expect(clickHandler).to.have.been.calledOnce;
     });
   });
+
+  it('should reflect size and use the small size tokens', async () => {
+    const el = await fixture<SlIconButton>(
+      html`<sl-icon-button name="info-circle" label="Info" variant="neutral" size="small"></sl-icon-button>`
+    );
+    const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
+    expect(el.getAttribute('size')).to.equal('small');
+    expect(getComputedStyle(base).paddingTop).to.equal('4px');
+    expect(getComputedStyle(base).fontSize).to.equal('14px');
+  });
 });

@@ -21,7 +21,18 @@ const App = () => <SlIconButton name="gear" label="Settings" />;
 
 ### Sizes
 
-Icon buttons inherit their parent element's `font-size`.
+Set `size` to `small`, `large` or `x-large`; the values come from the theme tokens `--sl-icon-button-font-size-*` and
+`--sl-icon-button-padding-small`. Use `small` for row actions in tables. Without `size` (the Figma `medium` size), the `default` icon button
+inherits its parent element's `font-size` and the coloured variants keep their standalone toolbar size.
+
+```html:preview
+<sl-icon-button name="info-circle" label="Document info" variant="neutral" size="small"></sl-icon-button>
+<sl-icon-button name="info-circle" label="Document info" variant="neutral"></sl-icon-button>
+<sl-icon-button name="info-circle" label="Document info" variant="neutral" size="large"></sl-icon-button>
+<sl-icon-button name="info-circle" label="Document info" variant="neutral" size="x-large"></sl-icon-button>
+```
+
+A custom `font-size` still works for any other size.
 
 ```html:preview
 <sl-icon-button name="pencil" label="Edit" style="font-size: 1.5rem;"></sl-icon-button>

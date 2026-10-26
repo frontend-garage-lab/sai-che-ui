@@ -443,6 +443,11 @@
   --sl-button-font-size-small: var(--sl-font-size-x-small);
   --sl-button-font-size-medium: var(--sl-font-size-small);
   --sl-button-font-size-large: var(--sl-font-size-medium);
+  /* Icon buttons: size="small|large|x-large" (no size = inherits the surrounding font size, i.e. "medium") */
+  --sl-icon-button-font-size-small: var(--sl-font-size-small);
+  --sl-icon-button-font-size-large: 1.5rem;
+  --sl-icon-button-font-size-x-large: 2rem;
+  --sl-icon-button-padding-small: var(--sl-spacing-2x-small);
 
   /* Inputs */
   --sl-input-height-small: 1.75rem; /* 28px */

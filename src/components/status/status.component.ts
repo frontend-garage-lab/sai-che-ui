@@ -29,6 +29,12 @@ export default class SlStatus extends ShoelaceElement {
   /** The status's size. */
   @property({ reflect: true }) size: 'small' | 'medium' = 'medium';
 
+  /**
+   * Fills the status with a soft background and colours the label too, for places where the state must stand out at a
+   * glance, e.g. a short table of reviewers. Keep the default (dot only) for long columns of states.
+   */
+  @property({ type: Boolean, reflect: true }) filled = false;
+
   /** Animates the dot to show that the state is ongoing, e.g. an upload or a pending approval. */
   @property({ type: Boolean, reflect: true }) pulse = false;
 
@@ -46,6 +52,7 @@ export default class SlStatus extends ShoelaceElement {
           'status--danger': this.variant === 'danger',
           'status--small': this.size === 'small',
           'status--medium': this.size === 'medium',
+          'status--filled': this.filled,
           'status--pulse': this.pulse
         })}
       >

@@ -5,7 +5,46 @@
  * each flow's data.js.
  */
 
-import { html } from 'https://cdn.jsdelivr.net/npm/lit@3/+esm';
+import { html, render } from 'https://cdn.jsdelivr.net/npm/lit@3/+esm';
+
+/**
+ * One colour per state, everywhere (DECISIONS.md "Stato di un record"): the colour tells the phase of the record.
+ * neutral = not started / inactive / interrupted · primary = in progress · warning = in progress, needs attention ·
+ * success = done · danger = negative or blocked · accent = notified (matches the "Notified" expiry filter) or acquired (client decision).
+ * Every state renders as `sl-status filled size="small"`.
+ */
+export const STATUS_VARIANT = {
+  'Not defined': 'neutral',
+  'Not acquired': 'neutral',
+  'Not commented': 'neutral',
+  'Not notified': 'neutral',
+  Working: 'neutral',
+  Aborted: 'neutral',
+  Active: 'primary',
+  Acquired: 'accent',
+  Expiring: 'warning',
+  Promoting: 'warning',
+  Completed: 'success',
+  Complete: 'success',
+  Closed: 'success',
+  Verified: 'success',
+  Commented: 'success',
+  Uploaded: 'success',
+  Current: 'success',
+  Safe: 'success',
+  Expired: 'danger',
+  Refused: 'danger',
+  Missing: 'danger',
+  Notified: 'accent'
+};
+
+/** A state as the app shows it: filled status, colour from the catalog. */
+export const statusTag = label =>
+  html`<sl-status filled variant=${STATUS_VARIANT[label] ?? 'neutral'} size="small">${label}</sl-status>`;
+
+/** A revision code is a label of the revision, not a state: neutral tag. A missing code stays a dash. */
+export const revisionTag = code =>
+  code && code !== '—' ? html`<sl-tag size="small" variant="neutral">${code}</sl-tag>` : '—';
 
 /** Document identifier first (semibold), then the secondary references as meta lines. */
 export function documentCell(name, ...meta) {
@@ -31,7 +70,7 @@ const doc = (document, din, title, revision, extra = {}) => ({
   format: 'pdf',
   state: 'Working',
   version: '1.0',
-  revisionStatus: 'Current',
+  revisionStatus: 'Working',
   ...extra
 });
 
@@ -42,7 +81,14 @@ export const documents = [
     'Documenz297-10E-7990545,A1-7990545',
     'LV Switchgear Motor Control Center Type Schedule C14.2-MCC1 C14.2-MCC2 C14.2-MCC3 C14.2-MCC4 C14.2-MCC5 C14.2-MCC6',
     'A1',
-    { issuing: 'IFQ – Issue for enquiry', answer: 'Approved', certifying: 'DNV', state: 'Approved', version: '3.0' }
+    {
+      issuing: 'IFQ – Issue for enquiry',
+      answer: 'Approved',
+      certifying: 'DNV',
+      state: 'Approved',
+      version: '3.0',
+      revisionStatus: 'Current'
+    }
   ),
   doc('Test Progress2_01', '123_Auto Populated_000030', 'Test Progress2', '01', { issuing: 'Issued As-Built' }),
   doc('Test-prod-FHM-A3', 'Test-prod-FHM', 'Test-prod-FHM', 'A3', {
@@ -64,26 +110,24 @@ export const isSelectedDocument = isDocument('Documenz297');
 
 const FILE_ICON = {
   pdf: { name: 'file-earmark-pdf', title: 'Native file: PDF' },
-  text: { name: 'file-earmark-text', title: 'Native file: text' }
+  text: { name: 'file-earmark-text', title: 'Native file: text' },
+  docx: { name: 'file-earmark-word', title: 'Native file: Word' }
 };
 
-/** Quick info: checked-out lock, current-revision flag (lit when current) and the icon of the native file, if any. */
+/** Quick info: checked-out lock and the icon of the native file, if any. The current revision is a state (Status column). */
 const documentInfo = ({ row }) => {
   const record = row.original;
-  const current = (record.revisionStatus ?? record.status) === 'Current';
   const file = FILE_ICON[record.format ?? 'pdf'];
   return html`
     <span class="rs-inline">
       ${record.checkedOut ? html`<sl-icon name="lock" title="Checked out"></sl-icon>` : ''}
-      <sl-icon
-        variant=${current ? 'success' : 'neutral'}
-        name="flag"
-        title=${current ? 'Current revision' : 'Not the current revision'}
-      ></sl-icon>
       ${file ? html`<sl-icon name=${file.name} title=${file.title}></sl-icon>` : ''}
     </span>
   `;
 };
+
+/** Revision state of a document: Current (was the green flag) or Working (was the dark flag). */
+const revisionState = record => ((record.revisionStatus ?? record.status) === 'Current' ? 'Current' : 'Working');
 
 /**
  * The actions menu of a document row: the legacy right-click menu, reachable from the row's ⋮ button. It is the same on
@@ -120,15 +164,28 @@ const documentMenu = ({ row }) => html`
 
 /** Columns of the Documents page. */
 export const documentColumns = [
-  { id: 'info', header: 'Quick info', meta: { width: '8rem' }, cell: documentInfo },
+  { id: 'info', header: 'Quick info', meta: { width: '5.5rem' }, cell: documentInfo },
   {
     id: 'document',
     accessorKey: 'document',
     header: 'Document',
     enableSorting: true,
+    meta: { width: 'minmax(12rem, 1fr)' },
     cell: ({ row }) => documentCell(row.original.document, row.original.din, row.original.title)
   },
-  { id: 'revision', accessorKey: 'revision', header: 'Revision', meta: { width: '6rem' } },
+  {
+    id: 'status',
+    header: 'Status',
+    meta: { width: '7rem' },
+    cell: ({ row }) => statusTag(revisionState(row.original))
+  },
+  {
+    id: 'revision',
+    accessorKey: 'revision',
+    header: 'Revision',
+    meta: { width: '6rem' },
+    cell: ({ row }) => revisionTag(row.original.revision)
+  },
   { id: 'issuing', accessorKey: 'issuing', header: 'Issuing description', meta: { width: '11rem', nowrap: true } },
   { id: 'answer', accessorKey: 'answer', header: 'Saipem answer to vendor', meta: { width: '11rem', nowrap: true } },
   { id: 'certifying', accessorKey: 'certifying', header: 'Certifying body', meta: { width: '9rem', nowrap: true } },
@@ -155,7 +212,7 @@ export const documentRevisionsOf = row => [
 export const documentRevisions = documentRevisionsOf(documents[1]);
 
 export const documentRevisionColumns = [
-  { id: 'info', header: '', meta: { width: '6rem' }, cell: documentInfo },
+  { id: 'info', header: '', meta: { width: '4rem' }, cell: documentInfo },
   {
     id: 'document',
     header: 'Document',
@@ -165,10 +222,16 @@ export const documentRevisionColumns = [
     id: 'status',
     header: 'Revision status',
     meta: { width: '8rem' },
-    cell: ({ row }) => html`<sl-status variant="success" size="small">${row.original.status}</sl-status>`
+    cell: ({ row }) => statusTag(row.original.status)
   },
-  { id: 'code', accessorKey: 'code', header: 'Rev.', meta: { width: '4rem' } },
-  { id: 'version', accessorKey: 'version', header: 'Version', meta: { width: '5rem' } },
+  {
+    id: 'code',
+    accessorKey: 'code',
+    header: 'Rev.',
+    meta: { width: '4rem' },
+    cell: ({ row }) => revisionTag(row.original.code)
+  },
+  { id: 'version', accessorKey: 'version', header: 'Ver.', meta: { width: '4rem' } },
   { id: 'actions', meta: { actions: true }, cell: documentMenu }
 ];
 
@@ -246,7 +309,13 @@ export const selectedItemColumns = [
     header: 'Document',
     cell: ({ row }) => documentCell(row.original.document, row.original.din, row.original.title)
   },
-  { id: 'revision', accessorKey: 'revision', header: 'Rev. code', meta: { width: '6rem' } },
+  {
+    id: 'revision',
+    accessorKey: 'revision',
+    header: 'Rev. code',
+    meta: { width: '6rem' },
+    cell: ({ row }) => revisionTag(row.original.revision)
+  },
   { id: 'docClass', accessorKey: 'docClass', header: 'Document class', meta: { width: '11rem', nowrap: true } }
 ];
 
@@ -254,7 +323,13 @@ export const selectedItemColumns = [
 export const transmittalSelectedItemColumns = [
   { id: 'item', accessorKey: 'name', header: 'Item' },
   { id: 'document', accessorKey: 'document', header: 'Document number', meta: { width: '10rem', nowrap: true } },
-  { id: 'revision', accessorKey: 'revision', header: 'Revision code', meta: { width: '8rem' } },
+  {
+    id: 'revision',
+    accessorKey: 'revision',
+    header: 'Revision code',
+    meta: { width: '8rem' },
+    cell: ({ row }) => revisionTag(row.original.revision)
+  },
   { id: 'type', accessorKey: 'type', header: 'Type', meta: { width: '11rem', nowrap: true } }
 ];
 
@@ -270,7 +345,15 @@ export async function openRowMenu(selector, index) {
 /** Fills a table and, optionally, selects the first record matching `isSelected` and scrolls it into view. */
 // Cell templates render inside the table's shadow root, where the page stylesheet does not reach:
 // the cell helper classes are copied in so they apply there as well.
-const CELL_CLASSES = ['.rs-inline', '.rs-quick-info', '.rs-cell-stack', '.rs-truncate', '.rs-status-dot'];
+const CELL_CLASSES = [
+  '.rs-inline',
+  '.rs-quick-info',
+  '.rs-cell-stack',
+  '.rs-subheading',
+  '.rs-meta',
+  '.rs-truncate',
+  '.rs-status-dot'
+];
 
 function adoptCellStyles(table) {
   const sheet = new CSSStyleSheet();
@@ -289,7 +372,97 @@ function adoptCellStyles(table) {
   table.shadowRoot.adoptedStyleSheets = [...table.shadowRoot.adoptedStyleSheets, sheet];
 }
 
-export async function mountTable(selector, { columns, data, isSelected, rowDisabled } = {}) {
+/**
+ * Table configuration (the "Config" button at the end of a table toolbar, `[data-table-options]`): show / hide columns
+ * and change their order (arrows or drag and drop). Built from the table's own columns, so every list gets the same
+ * panel. Columns without a header (quick info, row actions) keep their place at the edges.
+ */
+function mountTableOptions(table) {
+  const dropdown = table.querySelector('[data-table-options]');
+  if (!dropdown) return;
+  const all = table.columns;
+  const named = all.filter(column => typeof column.header === 'string' && column.header);
+  const first = all.indexOf(named[0]);
+  const last = all.indexOf(named[named.length - 1]);
+  const leading = all.slice(0, first);
+  const trailing = all.slice(last + 1);
+  let order = named.map(column => column.id);
+  const hidden = new Set();
+  let dragged;
+  const byId = id => named.find(column => column.id === id);
+  const apply = () => {
+    table.columns = [...leading, ...order.filter(id => !hidden.has(id)).map(byId), ...trailing];
+    update();
+  };
+  const move = (id, to) => {
+    const from = order.indexOf(id);
+    if (to < 0 || to >= order.length || to === from) return;
+    order.splice(from, 1);
+    order.splice(to, 0, id);
+    apply();
+  };
+  const toggle = id => {
+    if (hidden.has(id)) hidden.delete(id);
+    else if (order.length - hidden.size > 1) hidden.add(id);
+    apply();
+  };
+  const host = document.createElement('div');
+  host.className = 'rs-table-config';
+  dropdown.append(host);
+  const update = () =>
+    render(
+      html`
+        <div class="rs-cluster rs-cluster--between">
+          <h3 class="rs-subheading">Columns</h3>
+          <sl-button
+            size="small"
+            variant="text"
+            @click=${() => {
+              order = named.map(column => column.id);
+              hidden.clear();
+              apply();
+            }}
+            >Reset</sl-button
+          >
+        </div>
+        <ul class="rs-table-config__list" aria-label="Columns of ${table.label}">
+          ${order.map(
+            (id, index) => html`
+              <li
+                class="rs-table-config__item"
+                draggable="true"
+                @dragstart=${() => (dragged = id)}
+                @dragover=${event => event.preventDefault()}
+                @drop=${() => move(dragged, index)}
+              >
+                <sl-icon class="rs-table-config__grip" name="grip-vertical" aria-hidden="true"></sl-icon>
+                <sl-checkbox size="small" ?checked=${!hidden.has(id)} @sl-change=${() => toggle(id)}
+                  >${byId(id).header}</sl-checkbox
+                >
+                <span class="rs-spacer"></span>
+                <sl-icon-button
+                  name="arrow-up"
+                  label="Move ${byId(id).header} up"
+                  ?disabled=${index === 0}
+                  @click=${() => move(id, index - 1)}
+                ></sl-icon-button>
+                <sl-icon-button
+                  name="arrow-down"
+                  label="Move ${byId(id).header} down"
+                  ?disabled=${index === order.length - 1}
+                  @click=${() => move(id, index + 1)}
+                ></sl-icon-button>
+              </li>
+            `
+          )}
+        </ul>
+      `,
+      host
+    );
+  update();
+}
+
+export async function mountTable(selector, { columns, data, isSelected, rowDisabled, rowVariant } = {}) {
   const table = document.querySelector(selector);
   await customElements.whenDefined('sl-table');
   await table.updateComplete;
@@ -297,6 +470,8 @@ export async function mountTable(selector, { columns, data, isSelected, rowDisab
   table.columns = columns;
   table.data = data;
   if (rowDisabled) table.rowDisabled = rowDisabled;
+  if (rowVariant) table.rowVariant = rowVariant;
+  mountTableOptions(table);
   if (isSelected) {
     await table.updateComplete;
     table.setSelection(data.filter(isSelected).slice(0, 1));
@@ -312,3 +487,74 @@ export async function openHeaderMenu(item) {
   await item.updateComplete;
   item.shadowRoot.querySelector('sl-dropdown')?.show();
 }
+
+/**
+ * "Document info" dialog: every metadata of a document, opened by the "All metadata" action (`[data-document-info]`)
+ * of a detail panel. `info` = { summary: [[label, value]], sections: [{ title, groups: [{ title, items }] }] }.
+ */
+let documentInfoDialog;
+
+/** Opens the "Document info" dialog mounted by `mountDocumentInfo` (e.g. from the info action of a revision row). */
+export const openDocumentInfo = () => documentInfoDialog?.show();
+
+export function mountDocumentInfo(info, { open = false } = {}) {
+  const triggers = document.querySelectorAll('[data-document-info]');
+  if (!info) return;
+  const item = ([label, value]) =>
+    html`<sl-description-list-item label=${label}
+      >${label === 'Revision code' ? revisionTag(value) : value}</sl-description-list-item
+    >`;
+  const dialog = document.createElement('sl-dialog');
+  dialog.label = 'Metadata';
+  dialog.style.setProperty('--width', '48rem');
+  render(
+    html`
+      <div class="rs-stack">
+        <sl-description-list cols="2">${info.summary.map(item)}</sl-description-list>
+        ${info.sections.map(
+          (section, index) => html`
+            <sl-details summary=${section.title} ?open=${index === 0}>
+              <div class="rs-stack">
+                ${section.groups.map(
+                  group => html`
+                    ${group.title ? html`<h3 class="rs-subheading">${group.title}</h3>` : ''}
+                    <sl-description-list cols="2">${group.items.map(item)}</sl-description-list>
+                  `
+                )}
+              </div>
+            </sl-details>
+          `
+        )}
+      </div>
+      <sl-button slot="footer" variant="primary" @click=${() => dialog.hide()}>Close</sl-button>
+    `,
+    dialog
+  );
+  document.body.append(dialog);
+  documentInfoDialog = dialog;
+  triggers.forEach(trigger => trigger.addEventListener('click', () => dialog.show()));
+  if (open) dialog.show();
+}
+
+// ------------------------------------------------------------------ Revisions tab of a task detail panel
+
+/** Quick info of a revision: icon of the native file (the Revision status column carries current / working). */
+export const revisionQuickInfo = cell => revisionFileIcon(cell);
+
+/** Quick info of a revision without the current flag (the Revision status column carries it): icon of the native file. */
+export const revisionFileIcon = ({ row }) => {
+  const file = FILE_ICON[row.original.format];
+  return file ? html`<sl-icon name=${file.name} label=${file.title}></sl-icon>` : '';
+};
+
+/** Row action (`neutral` icon button: soft background so it reads as clickable): every metadata of the revision, in the same "Document info" dialog as Properties › All metadata. */
+export const revisionInfoAction = () =>
+  html`<sl-tooltip content="Document info"
+    ><sl-icon-button
+      size="small"
+      variant="neutral"
+      name="info-circle"
+      label="Document info"
+      @click=${openDocumentInfo}
+    ></sl-icon-button
+  ></sl-tooltip>`;

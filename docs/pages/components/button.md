@@ -15,6 +15,34 @@ import SlButton from '@shoelace-style/shoelace/dist/react/button';
 const App = () => <SlButton>Button</SlButton>;
 ```
 
+## Choosing a variant
+
+The variant tells the user how much an action weighs, not what kind of action it is. Pick it by the button's role in
+its area (a toolbar, a dialog footer, a panel):
+
+| Role                                | Variant                   | Examples                                          |
+| ----------------------------------- | ------------------------- | ------------------------------------------------- |
+| The next step — **one per area**    | `primary`                 | Accept, then Complete; Apply filters; Execute     |
+| Other available actions             | default                   | Reassign, Progress, Cancel / Close in a dialog    |
+| Reset or leave without consequences | `text`                    | Reset, Clear all, Cancel at the start of a wizard |
+| Destructive or irreversible         | `danger` + a confirmation | Delete, Abort                                     |
+| Not available yet                   | `disabled` + tooltip why  | "Accept the task first"                           |
+
+- Move `primary` as the flow advances: before a task is accepted Accept is primary and Complete is default; once
+  accepted, Complete becomes primary.
+- When the only action left in a dialog is to close it (e.g. after an operation has run), Close becomes `primary`.
+- When a button is disabled, say why in a [tooltip](/components/tooltip). A disabled button receives neither hover nor
+  focus, so put the tooltip on a focusable wrapper:
+
+```html:preview
+<sl-tooltip content="Accept the task first">
+  <span tabindex="0"><sl-button disabled>Complete</sl-button></span>
+</sl-tooltip>
+```
+
+- Don't use `success` for actions: green is the colour of a completed [status](/components/status), and a green button
+  would read as an outcome rather than as something to do.
+
 ## Examples
 
 ### Variants
