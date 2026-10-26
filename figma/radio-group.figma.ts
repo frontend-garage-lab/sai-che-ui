@@ -13,13 +13,14 @@ function text(...layerNames: string[]) {
 }
 
 const showLabel = instance.getBoolean('Show Label');
-const label = showLabel ? text('Label') : '';
+const label = showLabel ? text('label', 'Label') : '';
 const showHelpText = instance.getBoolean('Show Help Text');
-const helpText = showHelpText ? text('Help text') : '';
+const helpText = showHelpText ? text('help-text', 'Help text') : '';
 const required = instance.getBoolean('Required');
 
 // Type=radio holds "Radio" instances (sl-radio, stacked); Type=button holds "Radio Button" instances
 // (sl-radio-button, rendered as a button group). Each child renders via its own Code Connect template.
+// The options live in the `Options` slot (any number of Radio / Radio Button instances).
 const options = instance.findConnectedInstances(() => true);
 const opt1 = options[0] && options[0].type === 'INSTANCE' ? options[0].executeTemplate().example : '';
 const opt2 = options[1] && options[1].type === 'INSTANCE' ? options[1].executeTemplate().example : '';

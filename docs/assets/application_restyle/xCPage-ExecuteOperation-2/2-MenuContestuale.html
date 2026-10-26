@@ -6,317 +6,291 @@
   Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/xCPage-ExecuteOperation-2/2-MenuContestuale.html
 -->
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>xCPage · Documents</title>
-    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/src/themes/light.css" />
-    <link rel="stylesheet" href="/src/themes/_utility.css" />
-    <link rel="stylesheet" href="../_shared/restyle.css" />
-    <link rel="stylesheet" href="./flow.css" />
-    <script type="module" src="/shoelace.js"></script>
-    <script>
-      // Reload when esbuild rebuilds after a change in src/
-      new EventSource('/esbuild').addEventListener('change', () => location.reload());
-    </script>
-  </head>
 
-  <body class="sl-theme-light">
-    <sl-header>
-      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
-      <span slot="logo">xCPage</span>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>xCPage · Documents</title>
+  <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/src/themes/light.css" />
+  <link rel="stylesheet" href="/src/themes/_utility.css" />
+  <link rel="stylesheet" href="../_shared/restyle.css" />
+  <link rel="stylesheet" href="./flow.css" />
+  <script type="module" src="/shoelace.js"></script>
+  <script>
+    // Reload when esbuild rebuilds after a change in src/
+    new EventSource('/esbuild').addEventListener('change', () => location.reload());
+  </script>
+</head>
 
-      <sl-select slot="actions" size="small" value="99-page-am" style="width: 16rem">
-        <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
-      </sl-select>
-      <sl-header-item slot="actions">
-        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
-        Mario Rossi
-        <sl-menu slot="menu">
-          <sl-menu-item>Profile</sl-menu-item>
-          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
-          <sl-divider></sl-divider>
-          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
-        </sl-menu>
-      </sl-header-item>
-    </sl-header>
+<body class="sl-theme-light">
+  <sl-header>
+    <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+    <span slot="logo"></span>
 
-    <div class="rs-shell">
-      <sl-sidebar label="Project navigation" collapsed>
-        <sl-sidebar-group label="Documenti di progetto" count="70">
-          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
-          <sl-sidebar-item href="#" count="6" current>Job Document</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
-        </sl-sidebar-group>
+    <sl-select slot="actions" size="small" value="99-page-am" style="width: 16rem">
+      <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
+    </sl-select>
+    <sl-header-item slot="actions">
+      <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+      Mario Rossi
+      <sl-menu slot="menu">
+        <sl-menu-item>Profile</sl-menu-item>
+        <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+        <sl-divider></sl-divider>
+        <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+      </sl-menu>
+    </sl-header-item>
+  </sl-header>
 
-        <sl-sidebar-group label="Procurement (SAP)" count="71">
-          <sl-icon slot="icon" name="cart"></sl-icon>
-          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
-        </sl-sidebar-group>
+  <div class="rs-shell">
+    <sl-sidebar label="Project navigation" collapsed>
+      <sl-sidebar-group label="Documenti di progetto" count="70">
+        <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+        <sl-sidebar-item href="#" count="6" current>Job Document</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+      </sl-sidebar-group>
 
-        <sl-sidebar-group label="Comunicazione" count="47">
-          <sl-icon slot="icon" name="envelope"></sl-icon>
-          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
-          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
-          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
-          <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
-          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
-        </sl-sidebar-group>
+      <sl-sidebar-group label="Procurement (SAP)" count="71">
+        <sl-icon slot="icon" name="cart"></sl-icon>
+        <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+      </sl-sidebar-group>
 
-        <sl-sidebar-group label="Tasks" count="55">
-          <sl-icon slot="icon" name="clipboard-check"></sl-icon>
-          <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
-        </sl-sidebar-group>
-      </sl-sidebar>
+      <sl-sidebar-group label="Comunicazione" count="47">
+        <sl-icon slot="icon" name="envelope"></sl-icon>
+        <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+        <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+        <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+        <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
+        <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
+      </sl-sidebar-group>
 
-      <main class="rs-page rs-page--fill" aria-label="Documents">
-        <div class="rs-page-header">
-          <div class="rs-page-header__text">
-            <h1 class="rs-title">Documents</h1>
-          </div>
+      <sl-sidebar-group label="Tasks" count="55">
+        <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+        <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
+      </sl-sidebar-group>
+    </sl-sidebar>
+
+    <main class="rs-page rs-page--fill" aria-label="Documents">
+      <div class="rs-page-header">
+        <div class="rs-page-header__text">
+          <h1 class="rs-title">Documents</h1>
         </div>
-
-        <!-- Document scope -->
-        <sl-tab-group aria-label="Document scope">
-          <sl-tab slot="nav" panel="job" active>Job documents</sl-tab>
-          <sl-tab slot="nav" panel="other">Other documents</sl-tab>
-          <sl-tab slot="nav" panel="structures">Structures</sl-tab>
-        </sl-tab-group>
-
-        <!-- Filters -->
-        <sl-card aria-label="Filters">
-          <div slot="header" class="rs-cluster rs-cluster--between">
-            <h2 class="rs-heading rs-inline"><sl-icon name="filter"></sl-icon>Filters</h2>
-            <sl-button class="more-filters" size="small" variant="text">
-              <sl-icon slot="prefix" name="plus-lg"></sl-icon>
-              More filters (8)
-            </sl-button>
-          </div>
-
-          <div class="rs-stack">
-            <form class="rs-grid rs-grid--fields">
-              <sl-input
-                class="rs-span-4 rs-span-md-6"
-                type="search"
-                label="Search"
-                placeholder="Name, SP code, DIN or title"
-                clearable
-              >
-                <sl-icon slot="prefix" name="search"></sl-icon>
-              </sl-input>
-              <sl-select class="rs-span-2 rs-span-md-6" label="Discipline" placeholder="Any" clearable value="civil">
-                <sl-option value="civil">Civil &amp; Architectural</sl-option>
-                <sl-option value="electrical">Electrical</sl-option>
-                <sl-option value="mechanical">Mechanical</sl-option>
-                <sl-option value="piping">Plant layout &amp; Piping</sl-option>
-              </sl-select>
-              <sl-select class="rs-span-2 rs-span-md-6" label="Document type" placeholder="Any" clearable>
-                <sl-option value="job">Job document</sl-option>
-                <sl-option value="vendor">Vendor document</sl-option>
-              </sl-select>
-              <sl-select
-                class="rs-span-2 rs-span-md-6"
-                label="Document class"
-                placeholder="Any"
-                clearable
-                value="Internal Job Document"
-              >
-                <sl-option value="External Job Document">External Job Document</sl-option>
-                <sl-option value="External Job Document - Drawing">External Job Document - Drawing</sl-option>
-                <sl-option value="Internal Job Document">Internal Job Document</sl-option>
-                <sl-option value="Internal Job Document - Drawing">Internal Job Document - Drawing</sl-option>
-              </sl-select>
-              <sl-select class="rs-span-2 rs-span-md-6" label="Document status" placeholder="Any" clearable>
-                <sl-option value="working">Working</sl-option>
-                <sl-option value="approved">Approved</sl-option>
-                <sl-option value="verified">Verified</sl-option>
-              </sl-select>
-
-              <div class="rs-span-12 rs-cluster rs-cluster--between">
-                <div class="rs-cluster">
-                  <sl-checkbox size="small">Multiple search</sl-checkbox>
-                  <span class="rs-inline">
-                    <sl-checkbox size="small">All versions</sl-checkbox>
-                    <sl-tooltip content="Include superseded revisions in the results">
-                      <sl-icon name="info-circle" label="About all versions"></sl-icon>
-                    </sl-tooltip>
-                  </span>
-                  <sl-checkbox size="small" checked>Case sensitive</sl-checkbox>
-                </div>
-                <div class="rs-cluster">
-                  <sl-button type="reset" variant="text">Reset</sl-button>
-                  <sl-button type="submit" variant="primary"
-                    ><sl-icon slot="prefix" name="search"></sl-icon>Search</sl-button
-                  >
-                </div>
-              </div>
-            </form>
-            <div class="rs-cluster" aria-label="Applied filters">
-              <span class="rs-meta">Applied:</span>
-              <sl-tag size="small" removable>Discipline: Civil &amp; Architectural</sl-tag>
-              <sl-tag size="small" removable>Document class: Internal Job Document</sl-tag>
-              <sl-button size="small" variant="text">Clear all</sl-button>
-            </div>
-          </div>
-        </sl-card>
-
-        <div class="rs-workspace">
-          <!-- Document list -->
-          <section class="rs-workspace__main rs-span-8 rs-span-lg-7" aria-label="Job documents">
-            <div class="rs-cluster rs-cluster--nowrap" role="toolbar" aria-label="Job documents actions">
-              <sl-button size="small" variant="primary">
-                <sl-icon slot="prefix" name="plus-lg"></sl-icon>
-                Create virtual binder
-              </sl-button>
-              <sl-divider vertical></sl-divider>
-              <sl-button size="small">Progress</sl-button>
-              <sl-button size="small">Cancel PVA</sl-button>
-              <span class="rs-spacer"></span>
-              <sl-dropdown placement="bottom-end">
-                <sl-button slot="trigger" size="small" caret>
-                  <sl-icon slot="prefix" name="download"></sl-icon>
-                  Export
-                </sl-button>
-                <sl-menu>
-                  <sl-menu-item
-                    ><sl-icon slot="prefix" name="file-earmark-excel"></sl-icon>Export to Excel</sl-menu-item
-                  >
-                  <sl-menu-item><sl-icon slot="prefix" name="clock-history"></sl-icon>View last report</sl-menu-item>
-                </sl-menu>
-              </sl-dropdown>
-            </div>
-            <div class="rs-stack rs-stack--tight rs-grow">
-              <sl-tab-group aria-label="Document view">
-                <sl-tab slot="nav" panel="documents" active>
-                  <span class="rs-inline"><sl-icon name="file-earmark"></sl-icon>Documents</span>
-                </sl-tab>
-                <sl-tab slot="nav" panel="binders">
-                  <span class="rs-inline"><sl-icon name="folder"></sl-icon>Virtual binders</span>
-                </sl-tab>
-                <sl-tab slot="nav" panel="clipboard">
-                  <span class="rs-inline"><sl-icon name="clipboard"></sl-icon>Clipboard</span>
-                </sl-tab>
-              </sl-tab-group>
-
-              <sl-table
-                class="document-list"
-                fill
-                selection="multiple"
-                sticky-header
-                paginate
-                page-size="25"
-                label="Job documents"
-              >
-                <sl-empty-state
-                  slot="empty"
-                  title-text="Search for job documents"
-                  description="Set one or more filters and select Search to list the documents of 99_PAGE_AM."
-                >
-                  <sl-icon slot="icon" name="search"></sl-icon>
-                </sl-empty-state>
-              </sl-table>
-            </div>
-          </section>
-
-          <!-- Document details -->
-          <sl-detail-panel contained class="rs-span-4 rs-span-lg-5" aria-label="Document details">
-            <span slot="label" class="rs-inline"><sl-icon name="file-earmark-pdf"></sl-icon>Test-prod-FHM-A3</span>
-            <span slot="meta">Revision A3 · Version 1.0</span>
-
-            <sl-tab-group>
-              <sl-tab slot="nav" panel="revisions" active
-                ><span class="rs-inline"><sl-icon name="clock-history"></sl-icon>Revisions</span></sl-tab
-              >
-              <sl-tab slot="nav" panel="transmittals">Transmittals</sl-tab>
-              <sl-tab slot="nav" panel="distribution">Distribution process</sl-tab>
-
-              <sl-tab-panel name="revisions" active>
-                <div class="rs-inset rs-stack rs-stack--tight">
-                  <div class="rs-inline">
-                    <h3 class="rs-subheading">Revisions</h3>
-                    <span class="rs-meta">1</span>
-                  </div>
-                  <sl-table class="revision-table" label="Revisions of Test-prod-FHM-A3"></sl-table>
-                </div>
-              </sl-tab-panel>
-              <sl-tab-panel name="transmittals">
-                <div class="rs-inset">
-                  <sl-empty-state
-                    title-text="No transmittals"
-                    description="Transmittals this document was sent with appear here."
-                  >
-                    <sl-icon slot="icon" name="envelope"></sl-icon>
-                  </sl-empty-state>
-                </div>
-              </sl-tab-panel>
-              <sl-tab-panel name="distribution">
-                <div class="rs-inset">
-                  <sl-empty-state
-                    title-text="No distribution process"
-                    description="The distribution process of this document appears here."
-                  >
-                    <sl-icon slot="icon" name="arrow-right"></sl-icon>
-                  </sl-empty-state>
-                </div>
-              </sl-tab-panel>
-            </sl-tab-group>
-          </sl-detail-panel>
-        </div>
-      </main>
-    </div>
-
-    <!-- More filters (closed in this state): the 8 secondary legacy filters -->
-    <sl-drawer label="More filters" placement="end">
-      <div class="rs-stack">
-        <sl-select label="Issuing description" placeholder="Any" clearable>
-          <sl-option value="ifq">IFQ – Issue for enquiry</sl-option>
-          <sl-option value="iab">Issued As-Built</sl-option>
-        </sl-select>
-        <sl-select label="Issuing department" placeholder="Any" clearable></sl-select>
-        <sl-select label="Managing department" placeholder="Any" clearable></sl-select>
-        <sl-select label="Originator" placeholder="Any" clearable></sl-select>
-        <sl-select label="Client answer" placeholder="Any" clearable></sl-select>
-        <sl-select label="Saipem answer to vendor" placeholder="Any" clearable></sl-select>
-        <sl-select label="Revision status" placeholder="Any" clearable>
-          <sl-option value="current">Current</sl-option>
-          <sl-option value="superseded">Superseded</sl-option>
-        </sl-select>
-        <sl-select label="PO number" placeholder="Any" clearable></sl-select>
       </div>
-      <sl-button slot="footer" variant="text">Clear</sl-button>
-      <sl-button slot="footer" variant="primary">Apply filters</sl-button>
-    </sl-drawer>
 
-    <script type="module">
-      import * as flow from './data.js';
+      <!-- Document scope -->
+      <sl-tab-group aria-label="Document scope">
+        <sl-tab slot="nav" panel="job" active>Job documents</sl-tab>
+        <sl-tab slot="nav" panel="other">Other documents</sl-tab>
+        <sl-tab slot="nav" panel="structures">Structures</sl-tab>
+      </sl-tab-group>
 
-      const drawer = document.querySelector('sl-drawer');
-      document.querySelector('.more-filters').addEventListener('click', () => drawer.show());
+      <!-- Filters -->
+      <sl-card aria-label="Filters">
+        <div slot="header" class="rs-cluster rs-cluster--between">
+          <h2 class="rs-heading rs-inline"><sl-icon name="filter"></sl-icon>Filters</h2>
+          <sl-button class="more-filters" size="small" variant="text">
+            <sl-icon slot="prefix" name="plus-lg"></sl-icon>
+            More filters (8)
+          </sl-button>
+        </div>
 
-      const isSelected = flow.isDocument('Test-prod');
-      const selected = flow.documents.find(isSelected);
-      await flow.mountTable('.document-list', {
-        columns: flow.documentColumns,
-        data: flow.documents,
-        isSelected
-      });
-      await flow.mountTable('.revision-table', {
-        columns: flow.documentRevisionColumns,
-        data: flow.documentRevisionsOf(selected)
-      });
-      await flow.openRowMenu('.document-list', flow.documents.findIndex(isSelected));
-    </script>
-  </body>
+        <div class="rs-stack">
+          <form class="rs-grid rs-grid--fields">
+            <sl-input class="rs-span-4 rs-span-md-6" type="search" label="Search"
+              placeholder="Name, SP code, DIN or title" clearable>
+              <sl-icon slot="prefix" name="search"></sl-icon>
+            </sl-input>
+            <sl-select class="rs-span-2 rs-span-md-6" label="Discipline" placeholder="Any" clearable value="civil">
+              <sl-option value="civil">Civil &amp; Architectural</sl-option>
+              <sl-option value="electrical">Electrical</sl-option>
+              <sl-option value="mechanical">Mechanical</sl-option>
+              <sl-option value="piping">Plant layout &amp; Piping</sl-option>
+            </sl-select>
+            <sl-select class="rs-span-2 rs-span-md-6" label="Document type" placeholder="Any" clearable>
+              <sl-option value="job">Job document</sl-option>
+              <sl-option value="vendor">Vendor document</sl-option>
+            </sl-select>
+            <sl-select class="rs-span-2 rs-span-md-6" label="Document class" placeholder="Any" clearable
+              value="Internal Job Document">
+              <sl-option value="External Job Document">External Job Document</sl-option>
+              <sl-option value="External Job Document - Drawing">External Job Document - Drawing</sl-option>
+              <sl-option value="Internal Job Document">Internal Job Document</sl-option>
+              <sl-option value="Internal Job Document - Drawing">Internal Job Document - Drawing</sl-option>
+            </sl-select>
+            <sl-select class="rs-span-2 rs-span-md-6" label="Document status" placeholder="Any" clearable>
+              <sl-option value="working">Working</sl-option>
+              <sl-option value="approved">Approved</sl-option>
+              <sl-option value="verified">Verified</sl-option>
+            </sl-select>
+
+            <div class="rs-span-12 rs-cluster rs-cluster--between">
+              <div class="rs-cluster">
+                <sl-checkbox size="small">Multiple search</sl-checkbox>
+                <span class="rs-inline">
+                  <sl-checkbox size="small">All versions</sl-checkbox>
+                  <sl-tooltip content="Include superseded revisions in the results">
+                    <sl-icon name="info-circle" label="About all versions"></sl-icon>
+                  </sl-tooltip>
+                </span>
+                <sl-checkbox size="small" checked>Case sensitive</sl-checkbox>
+              </div>
+              <div class="rs-cluster">
+                <sl-button type="reset" variant="text">Reset</sl-button>
+                <sl-button type="submit" variant="primary"><sl-icon slot="prefix"
+                    name="search"></sl-icon>Search</sl-button>
+              </div>
+            </div>
+          </form>
+          <div class="rs-cluster" aria-label="Applied filters">
+            <span class="rs-meta">Applied:</span>
+            <sl-tag size="small" removable>Discipline: Civil &amp; Architectural</sl-tag>
+            <sl-tag size="small" removable>Document class: Internal Job Document</sl-tag>
+            <sl-button size="small" variant="text">Clear all</sl-button>
+          </div>
+        </div>
+      </sl-card>
+
+      <div class="rs-workspace">
+        <!-- Document list -->
+        <section class="rs-workspace__main rs-span-8 rs-span-lg-7" aria-label="Job documents">
+          <div class="rs-cluster rs-cluster--nowrap" role="toolbar" aria-label="Job documents actions">
+            <sl-button size="small" variant="primary">
+              <sl-icon slot="prefix" name="plus-lg"></sl-icon>
+              Create virtual binder
+            </sl-button>
+            <sl-divider vertical></sl-divider>
+            <sl-button size="small">Progress</sl-button>
+            <sl-button size="small">Cancel PVA</sl-button>
+            <span class="rs-spacer"></span>
+            <sl-dropdown placement="bottom-end">
+              <sl-button slot="trigger" size="small" caret>
+                <sl-icon slot="prefix" name="download"></sl-icon>
+                Export
+              </sl-button>
+              <sl-menu>
+                <sl-menu-item><sl-icon slot="prefix" name="file-earmark-excel"></sl-icon>Export to Excel</sl-menu-item>
+                <sl-menu-item><sl-icon slot="prefix" name="clock-history"></sl-icon>View last report</sl-menu-item>
+              </sl-menu>
+            </sl-dropdown>
+          </div>
+          <div class="rs-stack rs-stack--tight rs-grow">
+            <sl-tab-group aria-label="Document view">
+              <sl-tab slot="nav" panel="documents" active>
+                <span class="rs-inline"><sl-icon name="file-earmark"></sl-icon>Documents</span>
+              </sl-tab>
+              <sl-tab slot="nav" panel="binders">
+                <span class="rs-inline"><sl-icon name="folder"></sl-icon>Virtual binders</span>
+              </sl-tab>
+              <sl-tab slot="nav" panel="clipboard">
+                <span class="rs-inline"><sl-icon name="clipboard"></sl-icon>Clipboard</span>
+              </sl-tab>
+            </sl-tab-group>
+
+            <sl-table class="document-list" fill selection="multiple" sticky-header paginate page-size="25"
+              label="Job documents">
+              <sl-empty-state slot="empty" title-text="Search for job documents"
+                description="Set one or more filters and select Search to list the documents of 99_PAGE_AM.">
+                <sl-icon slot="icon" name="search"></sl-icon>
+              </sl-empty-state>
+            </sl-table>
+          </div>
+        </section>
+
+        <!-- Document details -->
+        <sl-detail-panel contained class="rs-span-4 rs-span-lg-5" aria-label="Document details">
+          <span slot="label" class="rs-inline"><sl-icon name="file-earmark-pdf"></sl-icon>Test-prod-FHM-A3</span>
+          <span slot="meta">Revision A3 · Version 1.0</span>
+
+          <sl-tab-group>
+            <sl-tab slot="nav" panel="revisions" active><span class="rs-inline"><sl-icon
+                  name="clock-history"></sl-icon>Revisions</span></sl-tab>
+            <sl-tab slot="nav" panel="transmittals">Transmittals</sl-tab>
+            <sl-tab slot="nav" panel="distribution">Distribution process</sl-tab>
+
+            <sl-tab-panel name="revisions" active>
+              <div class="rs-inset rs-stack rs-stack--tight">
+                <div class="rs-inline">
+                  <h3 class="rs-subheading">Revisions</h3>
+                  <span class="rs-meta">1</span>
+                </div>
+                <sl-table class="revision-table" label="Revisions of Test-prod-FHM-A3"></sl-table>
+              </div>
+            </sl-tab-panel>
+            <sl-tab-panel name="transmittals">
+              <div class="rs-inset">
+                <sl-empty-state title-text="No transmittals"
+                  description="Transmittals this document was sent with appear here.">
+                  <sl-icon slot="icon" name="envelope"></sl-icon>
+                </sl-empty-state>
+              </div>
+            </sl-tab-panel>
+            <sl-tab-panel name="distribution">
+              <div class="rs-inset">
+                <sl-empty-state title-text="No distribution process"
+                  description="The distribution process of this document appears here.">
+                  <sl-icon slot="icon" name="arrow-right"></sl-icon>
+                </sl-empty-state>
+              </div>
+            </sl-tab-panel>
+          </sl-tab-group>
+        </sl-detail-panel>
+      </div>
+    </main>
+  </div>
+
+  <!-- More filters (closed in this state): the 8 secondary legacy filters -->
+  <sl-drawer label="More filters" placement="end">
+    <div class="rs-stack">
+      <sl-select label="Issuing description" placeholder="Any" clearable>
+        <sl-option value="ifq">IFQ – Issue for enquiry</sl-option>
+        <sl-option value="iab">Issued As-Built</sl-option>
+      </sl-select>
+      <sl-select label="Issuing department" placeholder="Any" clearable></sl-select>
+      <sl-select label="Managing department" placeholder="Any" clearable></sl-select>
+      <sl-select label="Originator" placeholder="Any" clearable></sl-select>
+      <sl-select label="Client answer" placeholder="Any" clearable></sl-select>
+      <sl-select label="Saipem answer to vendor" placeholder="Any" clearable></sl-select>
+      <sl-select label="Revision status" placeholder="Any" clearable>
+        <sl-option value="current">Current</sl-option>
+        <sl-option value="superseded">Superseded</sl-option>
+      </sl-select>
+      <sl-select label="PO number" placeholder="Any" clearable></sl-select>
+    </div>
+    <sl-button slot="footer" variant="text">Clear</sl-button>
+    <sl-button slot="footer" variant="primary">Apply filters</sl-button>
+  </sl-drawer>
+
+  <script type="module">
+    import * as flow from './data.js';
+
+    const drawer = document.querySelector('sl-drawer');
+    document.querySelector('.more-filters').addEventListener('click', () => drawer.show());
+
+    const isSelected = flow.isDocument('Test-prod');
+    const selected = flow.documents.find(isSelected);
+    await flow.mountTable('.document-list', {
+      columns: flow.documentColumns,
+      data: flow.documents,
+      isSelected
+    });
+    await flow.mountTable('.revision-table', {
+      columns: flow.documentRevisionColumns,
+      data: flow.documentRevisionsOf(selected)
+    });
+    await flow.openRowMenu('.document-list', flow.documents.findIndex(isSelected));
+  </script>
+</body>
+
 </html>

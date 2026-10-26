@@ -45,7 +45,7 @@ const indeterminate = instance.getEnum('State', {
   'indeterminate-hover': true
 });
 const showHelpText = instance.getBoolean('Help Text');
-const helpText = showHelpText ? text('Help text') : '';
+const helpText = showHelpText ? text('help-text', 'Help text') : '';
 
 export default {
   example: figma.html`<sl-checkbox size="${size}"${checked ? ' checked' : ''}${indeterminate ? ' indeterminate' : ''}${disabled ? ' disabled' : ''}${helpText ? ` help-text="${helpText}"` : ''}>${text('Checkbox label')}</sl-checkbox>`,

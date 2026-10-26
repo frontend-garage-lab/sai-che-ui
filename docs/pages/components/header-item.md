@@ -10,7 +10,7 @@ mark the active page, or add a `menu` slot to turn the item into a dropdown.
 
 ```html:preview
 <sl-header>
-  <span slot="logo">xCPage</span>
+  <span slot="logo"></span>
 
   <sl-header-item>
     Project Data
@@ -32,7 +32,7 @@ The item renders a chevron and opens the menu when clicked.
 
 ```html:preview
 <sl-header>
-  <span slot="logo">xCPage</span>
+  <span slot="logo"></span>
 
   <sl-header-item>
     Configuration
@@ -51,7 +51,7 @@ Set the `current` attribute to mark the item for the page the user is on.
 
 ```html:preview
 <sl-header>
-  <span slot="logo">xCPage</span>
+  <span slot="logo"></span>
   <sl-header-item href="#" current>Dashboard</sl-header-item>
   <sl-header-item href="#">Reports</sl-header-item>
 </sl-header>

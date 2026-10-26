@@ -203,3 +203,29 @@ export const recipientColumns = [
   { id: 'reason', header: 'Reason', meta: { width: '12rem', nowrap: true } },
   { id: 'delivery', header: 'Delivery method', meta: { width: '12rem', nowrap: true } }
 ];
+
+// ------------------------------------------------------------------ Membership (step 4)
+
+export const membership = [
+  { role: 'Admins', members: 'Aiello Ciro' },
+  { role: 'Consumers', members: '99_page_am_prj_members' }
+];
+
+export const membershipColumns = [
+  {
+    id: 'role',
+    header: 'Role',
+    meta: { width: '12rem' },
+    cell: ({ row }) => html`<span class="rs-subheading">${row.original.role}</span>`
+  },
+  { id: 'members', accessorKey: 'members', header: 'Members' },
+  {
+    id: 'edit',
+    header: '',
+    meta: { width: '3rem', align: 'center' },
+    cell: ({ row }) =>
+      html`<sl-tooltip content="Edit ${row.original.role.toLowerCase()}"
+        ><sl-icon-button name="pencil" label="Edit ${row.original.role.toLowerCase()}"></sl-icon-button
+      ></sl-tooltip>`
+  }
+];

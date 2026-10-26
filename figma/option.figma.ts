@@ -29,7 +29,7 @@ if (suffix && suffix.type === 'INSTANCE') {
   suffixCode = suffix.executeTemplate().example;
 }
 
-const label = text('Option');
+const label = text('label', 'Option');
 const value = label.toLowerCase().replace(/\s+/g, '-');
 
 export default {

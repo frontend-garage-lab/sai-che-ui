@@ -25,7 +25,7 @@
   <body class="sl-theme-light">
     <sl-header>
       <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
-      <span slot="logo">xCPage</span>
+      <span slot="logo"></span>
 
       <sl-select slot="actions" size="small" value="99-page-am" style="width: 16rem">
         <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
@@ -233,7 +233,7 @@
     </sl-drawer>
 
     <!-- Create transmittal: 4-step wizard -->
-    <sl-dialog label="Create transmittal" open style="--width: 80rem">
+    <sl-dialog label="Create new transmittal" open style="--width: 80rem">
       <div class="rs-stack rs-stack--loose">
         <sl-stepper label="Create transmittal" current="2">
           <sl-step description="Type, template and details">Properties</sl-step>
@@ -241,52 +241,155 @@
           <sl-step description="Who receives it">Recipients</sl-step>
           <sl-step description="Roles and members">Membership</sl-step>
         </sl-stepper>
-        <div class="rs-stack">
-          <h3 class="rs-heading">Add recipients</h3>
-          <div class="rs-grid rs-grid--fields">
-            <sl-select class="rs-span-4" label="Reason" required value="n">
-              <sl-option value="n">N – For notification</sl-option>
-              <sl-option value="a">A – For approval</sl-option>
-              <sl-option value="i">I – For information</sl-option>
-            </sl-select>
-            <sl-select class="rs-span-4" label="Delivery method" placeholder="Select…" required open hoist>
-              <sl-option value="email-attachment">Email Attachment</sl-option>
-              <sl-option value="email-link">Email Link</sl-option>
-              <sl-option value="epic">Export to EPiC</sl-option>
-              <sl-option value="sharepoint">Export to Sharepoint</sl-option>
-              <sl-option value="hard-copy">Hard Copy</sl-option>
-            </sl-select>
-          </div>
+        <div class="rs-stack rs-stack--loose">
           <sl-table
             selection="multiple"
-            class="people-list"
-            sticky-header
-            label="Available recipients"
-            style="--max-height: 16rem"
+            class="recipients"
+            label="Recipients of the transmittal"
+            style="--max-height: 14rem"
           >
             <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow">
-              <sl-input class="rs-grow" type="search" size="small" placeholder="Search by name or email" clearable>
-                <sl-icon slot="prefix" name="search"></sl-icon>
-              </sl-input>
-              <sl-checkbox size="small">Case sensitive</sl-checkbox>
-              <span class="rs-meta">44 available</span>
+              <sl-button class="add-people" size="small" variant="primary">
+                <sl-icon slot="prefix" name="plus-lg"></sl-icon>
+                Add internal
+              </sl-button>
+              <sl-button size="small">Add external</sl-button>
+              <sl-dropdown>
+                <sl-button slot="trigger" size="small" caret>Add from</sl-button>
+                <sl-menu>
+                  <sl-menu-item><sl-icon slot="prefix" name="envelope"></sl-icon>Transmittal or DP</sl-menu-item>
+                  <sl-menu-item><sl-icon slot="prefix" name="person-fill"></sl-icon>Distribution list</sl-menu-item>
+                </sl-menu>
+              </sl-dropdown>
+              <sl-divider vertical></sl-divider>
+              <sl-button size="small" disabled
+                ><sl-icon slot="prefix" name="pencil"></sl-icon>Edit recipients</sl-button
+              >
+              <sl-button size="small" variant="danger" outline disabled
+                ><sl-icon slot="prefix" name="trash"></sl-icon>Remove</sl-button
+              >
               <span class="rs-spacer"></span>
+
               <sl-dropdown placement="bottom-end" hoist data-table-options>
                 <sl-button slot="trigger" size="small" caret
                   ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
                 >
               </sl-dropdown>
             </div>
+            <sl-empty-state
+              slot="empty"
+              title-text="No recipients"
+              description="Add who receives this transmittal and how."
+            >
+              <sl-icon slot="icon" name="envelope"></sl-icon>
+            </sl-empty-state>
           </sl-table>
-          <div class="rs-cluster">
-            <span class="rs-meta">Selected (1)</span>
-            <sl-tag size="small" removable>user_test1</sl-tag>
+          <p class="rs-meta">0 recipients</p>
+
+          <div class="rs-grid rs-grid--fields">
+            <sl-checkbox class="rs-span-12" size="small">Apply distribution matrix</sl-checkbox>
+            <sl-select
+              class="rs-span-6"
+              label="Distribution matrix"
+              placeholder="Select…"
+              disabled
+              help-text="Turn on “Apply distribution matrix” to choose one"
+            ></sl-select>
+            <sl-select class="rs-span-6" label="Assigned group" placeholder="Select…" required clearable></sl-select>
           </div>
         </div>
       </div>
       <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>
-      <sl-button slot="footer"><sl-icon slot="prefix" name="chevron-left"></sl-icon>Back to recipients</sl-button>
-      <sl-button slot="footer" variant="primary">Add recipient (1)</sl-button>
+      <sl-button slot="footer"><sl-icon slot="prefix" name="chevron-left"></sl-icon>Back</sl-button>
+      <sl-button slot="footer" variant="primary" disabled>Next: Membership</sl-button>
+    </sl-dialog>
+
+    <!-- Select transmittal recipient: opens over the wizard (step 3) -->
+    <sl-dialog class="select-recipients" label="Select transmittal recipient" open style="--width: 72rem">
+      <div class="rs-stack">
+        <div class="rs-transfer-options">
+          <sl-select label="Reason" required value="n">
+            <sl-option value="n">N – For notification</sl-option>
+            <sl-option value="a">A – For approval</sl-option>
+            <sl-option value="i">I – For information</sl-option>
+          </sl-select>
+          <sl-select label="Delivery method" placeholder="Select…" required open hoist>
+            <sl-option value="email-attachment">Email Attachment</sl-option>
+            <sl-option value="email-link">Email Link</sl-option>
+            <sl-option value="epic">Export to EPiC</sl-option>
+            <sl-option value="sharepoint">Export to Sharepoint</sl-option>
+            <sl-option value="hard-copy">Hard Copy</sl-option>
+          </sl-select>
+        </div>
+        <div class="rs-transfer">
+          <div class="rs-stack rs-stack--tight">
+            <sl-table
+              selection="multiple"
+              class="people-list"
+              sticky-header
+              label="Available recipients"
+              style="--max-height: 18rem"
+            >
+              <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow">
+                <sl-input class="rs-grow" type="search" size="small" placeholder="Search by name or email" clearable>
+                  <sl-icon slot="prefix" name="search"></sl-icon>
+                </sl-input>
+                <sl-checkbox size="small">Case sensitive</sl-checkbox>
+                <span class="rs-spacer"></span>
+                <sl-dropdown placement="bottom-end" hoist data-table-options>
+                  <sl-button slot="trigger" size="small" caret
+                    ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                  >
+                </sl-dropdown>
+              </div>
+            </sl-table>
+            <span class="rs-meta">44 available</span>
+          </div>
+          <div class="rs-transfer__actions" role="group" aria-label="Move recipients">
+            <sl-tooltip content="Add selected"
+              ><sl-icon-button name="chevron-right" label="Add selected" variant="primary"></sl-icon-button
+            ></sl-tooltip>
+            <sl-tooltip content="Remove selected"
+              ><sl-icon-button name="chevron-left" label="Remove selected" variant="neutral" disabled></sl-icon-button
+            ></sl-tooltip>
+            <sl-tooltip content="Remove all"
+              ><sl-icon-button name="chevron-double-left" label="Remove all" variant="danger" disabled></sl-icon-button
+            ></sl-tooltip>
+          </div>
+          <div class="rs-stack rs-stack--tight">
+            <sl-table
+              selection="multiple"
+              class="chosen-people"
+              sticky-header
+              label="Recipients to add"
+              style="--max-height: 18rem"
+            >
+              <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow">
+                <sl-input class="rs-grow" type="search" size="small" placeholder="Search by name or email" clearable>
+                  <sl-icon slot="prefix" name="search"></sl-icon>
+                </sl-input>
+                <sl-checkbox size="small">Case sensitive</sl-checkbox>
+                <span class="rs-spacer"></span>
+                <sl-dropdown placement="bottom-end" hoist data-table-options>
+                  <sl-button slot="trigger" size="small" caret
+                    ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                  >
+                </sl-dropdown>
+              </div>
+              <sl-empty-state
+                slot="empty"
+                title-text="No recipients selected"
+                description="Select people on the left and add them."
+              >
+                <sl-icon slot="icon" name="person-fill"></sl-icon>
+              </sl-empty-state>
+            </sl-table>
+            <span class="rs-meta">0 to add</span>
+          </div>
+        </div>
+      </div>
+      <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>
+      <sl-button slot="footer" variant="primary" disabled>Finish</sl-button>
     </sl-dialog>
 
     <script type="module">
@@ -297,11 +400,13 @@
         .addEventListener('click', () => document.querySelector('sl-drawer').show());
 
       await flow.mountTable('.transmittal-list', { columns: flow.transmittalColumns, data: flow.transmittals });
+      await flow.mountTable('.recipients', { columns: flow.recipientColumns, data: [] });
       await flow.mountTable('.people-list', {
         columns: flow.peopleColumns,
         data: flow.people,
         isSelected: flow.isUserTest1
       });
+      await flow.mountTable('.chosen-people', { columns: flow.peopleColumns, data: [] });
     </script>
   </body>
 </html>

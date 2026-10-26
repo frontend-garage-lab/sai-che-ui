@@ -15,17 +15,8 @@ function text(...layerNames: string[]) {
 
 const hasHeader = instance.getEnum('Header', { true: true, false: false });
 const hasFooter = instance.getEnum('Footer', { true: true, false: false });
-// The footer holds two real "Button" instances named "Cancel" and "Confirm"; the label is the text layer
-// of each Button (the layer is named after the Button's default content, whatever the override).
-function buttonLabel(instanceName: string) {
-  const button = instance.findInstance(instanceName);
-  if (button.type !== 'INSTANCE') return '';
-  const layer = button.findText('Button');
-  return layer.type === 'TEXT' ? layer.textContent : '';
-}
-const footer = hasFooter
-  ? figma.html`\n  <sl-button slot="footer">${buttonLabel('Cancel')}</sl-button>\n  <sl-button slot="footer" variant="primary">${buttonLabel('Confirm')}</sl-button>`
-  : '';
+// The footer is the `Footer Content` slot: whatever Buttons it holds become the dialog's footer.
+const footer = hasFooter ? figma.html`\n  <div slot="footer">${instance.getSlot('Footer Content')}</div>` : '';
 
 const headerActions = instance.getInstanceSwap('Header Actions');
 let headerActionsCode;
@@ -39,10 +30,7 @@ export default {
   example: figma.html`<sl-dialog${hasHeader ? ` label="${text('Dialog title')}"` : ' no-header'} open>
   ${headerActionsCode ? figma.html`<span slot="header-actions">${headerActionsCode}</span>\n  ` : ''}${body}${footer}
 </sl-dialog>`,
-  imports: [
-    "import 'src/components/dialog/dialog.js'",
-    "import 'src/components/button/button.js'"
-  ],
+  imports: ["import 'src/components/dialog/dialog.js'", "import 'src/components/button/button.js'"],
   id: 'dialog',
   metadata: { nestable: false }
 };

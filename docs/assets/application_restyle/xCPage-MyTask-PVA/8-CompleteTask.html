@@ -6,348 +6,315 @@
   Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/xCPage-MyTask-PVA/8-CompleteTask.html
 -->
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>xCPage · Tasks</title>
-    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/src/themes/light.css" />
-    <link rel="stylesheet" href="/src/themes/_utility.css" />
-    <link rel="stylesheet" href="../_shared/restyle.css" />
-    <link rel="stylesheet" href="./flow.css" />
-    <script type="module" src="/shoelace.js"></script>
-    <script>
-      // Reload when esbuild rebuilds after a change in src/
-      new EventSource('/esbuild').addEventListener('change', () => location.reload());
-    </script>
-  </head>
 
-  <body class="sl-theme-light">
-    <sl-header>
-      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
-      <span slot="logo">xCPage</span>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>xCPage · Tasks</title>
+  <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/src/themes/light.css" />
+  <link rel="stylesheet" href="/src/themes/_utility.css" />
+  <link rel="stylesheet" href="../_shared/restyle.css" />
+  <link rel="stylesheet" href="./flow.css" />
+  <script type="module" src="/shoelace.js"></script>
+  <script>
+    // Reload when esbuild rebuilds after a change in src/
+    new EventSource('/esbuild').addEventListener('change', () => location.reload());
+  </script>
+</head>
 
-      <sl-select slot="actions" size="small" value="99-page-am" style="width: 16rem">
-        <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
-      </sl-select>
-      <sl-header-item slot="actions">
-        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
-        Mario Rossi
-        <sl-menu slot="menu">
-          <sl-menu-item>Profile</sl-menu-item>
-          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
-          <sl-divider></sl-divider>
-          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
-        </sl-menu>
-      </sl-header-item>
-    </sl-header>
+<body class="sl-theme-light">
+  <sl-header>
+    <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+    <span slot="logo"></span>
 
-    <div class="rs-shell">
-      <sl-sidebar label="Project navigation" collapsed>
-        <sl-sidebar-group label="Documenti di progetto" count="70">
-          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
-          <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
-        </sl-sidebar-group>
+    <sl-select slot="actions" size="small" value="99-page-am" style="width: 16rem">
+      <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
+    </sl-select>
+    <sl-header-item slot="actions">
+      <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+      Mario Rossi
+      <sl-menu slot="menu">
+        <sl-menu-item>Profile</sl-menu-item>
+        <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+        <sl-divider></sl-divider>
+        <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+      </sl-menu>
+    </sl-header-item>
+  </sl-header>
 
-        <sl-sidebar-group label="Procurement (SAP)" count="71">
-          <sl-icon slot="icon" name="cart"></sl-icon>
-          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
-        </sl-sidebar-group>
+  <div class="rs-shell">
+    <sl-sidebar label="Project navigation" collapsed>
+      <sl-sidebar-group label="Documenti di progetto" count="70">
+        <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+        <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+      </sl-sidebar-group>
 
-        <sl-sidebar-group label="Comunicazione" count="47">
-          <sl-icon slot="icon" name="envelope"></sl-icon>
-          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
-          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
-          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
-          <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
-          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
-        </sl-sidebar-group>
+      <sl-sidebar-group label="Procurement (SAP)" count="71">
+        <sl-icon slot="icon" name="cart"></sl-icon>
+        <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+      </sl-sidebar-group>
 
-        <sl-sidebar-group label="Tasks" count="55">
-          <sl-icon slot="icon" name="clipboard-check"></sl-icon>
-          <sl-sidebar-item href="#" count="22" current>PVA</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
-        </sl-sidebar-group>
-      </sl-sidebar>
+      <sl-sidebar-group label="Comunicazione" count="47">
+        <sl-icon slot="icon" name="envelope"></sl-icon>
+        <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+        <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+        <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+        <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
+        <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
+      </sl-sidebar-group>
 
-      <main class="rs-page rs-page--fill" aria-label="Tasks">
-        <div class="rs-page-header">
-          <div class="rs-page-header__text">
-            <h1 class="rs-title">Tasks</h1>
-          </div>
+      <sl-sidebar-group label="Tasks" count="55">
+        <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+        <sl-sidebar-item href="#" count="22" current>PVA</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
+      </sl-sidebar-group>
+    </sl-sidebar>
+
+    <main class="rs-page rs-page--fill" aria-label="Tasks">
+      <div class="rs-page-header">
+        <div class="rs-page-header__text">
+          <h1 class="rs-title">Tasks</h1>
         </div>
-
-        <div class="rs-workspace">
-          <!-- Task list -->
-          <section class="rs-workspace__main rs-span-7 rs-span-lg-6" aria-label="PVA tasks">
-            <sl-table
-              selection="multiple"
-              class="task-list"
-              fill
-              sticky-header
-              paginate
-              page-size="25"
-              label="PVA tasks"
-            >
-              <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow">
-                <sl-input
-                  class="task-search"
-                  type="search"
-                  size="small"
-                  placeholder="Search by task, document or DIN"
-                  clearable
-                >
-                  <sl-icon slot="prefix" name="search"></sl-icon>
-                </sl-input>
-                <sl-tooltip content="Previous match">
-                  <sl-icon-button name="chevron-left" label="Previous match"></sl-icon-button>
-                </sl-tooltip>
-                <sl-tooltip content="Next match">
-                  <sl-icon-button name="chevron-right" label="Next match"></sl-icon-button>
-                </sl-tooltip>
-                <sl-checkbox size="small">Case sensitive</sl-checkbox>
-                <span class="rs-spacer"></span>
-                <sl-button size="small" disabled
-                  ><sl-icon slot="prefix" name="check-square"></sl-icon>Accepted</sl-button
-                >
-                <sl-button size="small">Reassign</sl-button>
-                <sl-button size="small" variant="primary">Complete</sl-button><sl-divider vertical></sl-divider>
-
-                <sl-dropdown placement="bottom-end" hoist data-table-options>
-                  <sl-button slot="trigger" size="small" caret
-                    ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
-                  >
-                </sl-dropdown>
-              </div>
-
-              <sl-empty-state
-                slot="empty"
-                title-text="No PVA tasks"
-                description="Tasks assigned to you will appear here."
-              >
-                <sl-icon slot="icon" name="clipboard-check"></sl-icon>
-              </sl-empty-state>
-            </sl-table>
-          </section>
-
-          <!-- Task details -->
-          <sl-detail-panel contained class="rs-span-5 rs-span-lg-6" aria-label="Task details">
-            <span slot="label" class="rs-inline">rwar-1</span>
-            <span slot="meta">rwar-PVA-04-Feb-2021 · Revision 1</span>
-
-            <sl-tab-group>
-              <sl-tab slot="nav" panel="properties"
-                ><span class="rs-inline"><sl-icon name="info-circle"></sl-icon>Properties</span></sl-tab
-              >
-              <sl-tab slot="nav" panel="revisions"
-                ><span class="rs-inline"><sl-icon name="clock-history"></sl-icon>Revisions</span></sl-tab
-              >
-              <sl-tab slot="nav" panel="progress"
-                ><span class="rs-inline"><sl-icon name="gear"></sl-icon>Progress</span></sl-tab
-              >
-              <sl-tab slot="nav" panel="pdf" active
-                ><span class="rs-inline"><sl-icon name="file-earmark-pdf"></sl-icon>PDF preview</span></sl-tab
-              >
-
-              <sl-tab-panel name="properties">
-                <div class="rs-inset rs-stack rs-stack--loose">
-                  <sl-description-list cols="2">
-                    <sl-description-list-item label="Name">rwar-1</sl-description-list-item>
-                    <sl-description-list-item label="DIN">rwar</sl-description-list-item>
-                    <sl-description-list-item label="Revision code"
-                      ><sl-tag size="small" variant="neutral">1</sl-tag></sl-description-list-item
-                    >
-                    <sl-description-list-item label="Title">rwar</sl-description-list-item>
-                    <sl-description-list-item label="Client answer">—</sl-description-list-item>
-                    <sl-description-list-item label="Issuing description">—</sl-description-list-item>
-                  </sl-description-list>
-
-                  <div class="rs-stack rs-stack--tight">
-                    <sl-details summary="Info" open>
-                      <div class="rs-stack">
-                        <h3 class="rs-subheading">Identification</h3>
-                        <sl-description-list cols="2">
-                          <sl-description-list-item label="SP code">—</sl-description-list-item>
-                          <sl-description-list-item label="Document type"
-                            >Internal Job Document</sl-description-list-item
-                          >
-                          <sl-description-list-item label="Client document identification">—</sl-description-list-item>
-                          <sl-description-list-item label="Vendor document identification">—</sl-description-list-item>
-                        </sl-description-list>
-                        <sl-divider></sl-divider>
-                        <h3 class="rs-subheading">Status and ownership</h3>
-                        <sl-description-list cols="2">
-                          <sl-description-list-item label="Revision status">
-                            <sl-status filled variant="neutral" size="small">Working</sl-status>
-                          </sl-description-list-item>
-                          <sl-description-list-item label="Document status">
-                            <sl-status filled variant="success" size="small">Verified</sl-status>
-                          </sl-description-list-item>
-                          <sl-description-list-item label="Superseded by">—</sl-description-list-item>
-                          <sl-description-list-item label="Project code">99_PAGE_AM</sl-description-list-item>
-                          <sl-description-list-item label="Company project code">—</sl-description-list-item>
-                          <sl-description-list-item label="PO number">—</sl-description-list-item>
-                          <sl-description-list-item label="Managing department – discipline"
-                            >—</sl-description-list-item
-                          >
-                          <sl-description-list-item label="Issuing department – discipline">—</sl-description-list-item>
-                          <sl-description-list-item label="Second discipline">—</sl-description-list-item>
-                          <sl-description-list-item label="Originator">—</sl-description-list-item>
-                        </sl-description-list>
-                      </div>
-                    </sl-details>
-                    <sl-details summary="Job document"
-                      ><p class="rs-meta">Not shown in the legacy screens.</p></sl-details
-                    >
-                    <sl-details summary="Contents"><p class="rs-meta">Not shown in the legacy screens.</p></sl-details>
-                    <sl-details summary="Comments"><p class="rs-meta">Not shown in the legacy screens.</p></sl-details>
-                    <sl-details summary="Review"><p class="rs-meta">Not shown in the legacy screens.</p></sl-details>
-                  </div>
-                </div>
-              </sl-tab-panel>
-
-              <sl-tab-panel name="revisions">
-                <div class="rs-inset rs-stack rs-stack--tight">
-                  <div class="rs-inline">
-                    <h3 class="rs-subheading">Revisions</h3>
-                    <span class="rs-meta">2</span>
-                  </div>
-                  <sl-table class="revision-table" label="Revisions of rwar-1"></sl-table>
-                </div>
-              </sl-tab-panel>
-
-              <sl-tab-panel name="progress">
-                <div class="rs-inset">
-                  <sl-empty-state
-                    title-text="No progress recorded"
-                    description="Progress updates for this document appear here."
-                  >
-                    <sl-icon slot="icon" name="clock-history"></sl-icon>
-                  </sl-empty-state>
-                </div>
-              </sl-tab-panel>
-
-              <sl-tab-panel name="pdf" active>
-                <div class="rs-inset">
-                  <sl-card class="doc-viewer" aria-label="PDF preview of rwar-1">
-                    <div slot="header" class="doc-viewer__toolbar rs-cluster rs-cluster--nowrap">
-                      <sl-tooltip content="Thumbnails">
-                        <sl-icon-button name="grid" label="Thumbnails"></sl-icon-button>
-                      </sl-tooltip>
-                      <sl-input
-                        class="doc-viewer__page-input"
-                        type="number"
-                        size="small"
-                        value="1"
-                        min="1"
-                        max="3"
-                        no-spin-buttons
-                        aria-label="Page"
-                      ></sl-input>
-                      <span class="rs-meta">of 3</span>
-                      <sl-divider vertical></sl-divider>
-                      <sl-tooltip content="Zoom out">
-                        <sl-icon-button name="dash" label="Zoom out"></sl-icon-button>
-                      </sl-tooltip>
-                      <span class="rs-meta">27%</span>
-                      <sl-tooltip content="Zoom in">
-                        <sl-icon-button name="plus" label="Zoom in"></sl-icon-button>
-                      </sl-tooltip>
-                      <span class="rs-spacer"></span>
-                      <sl-tooltip content="Rotate">
-                        <sl-icon-button name="arrow-clockwise" label="Rotate"></sl-icon-button>
-                      </sl-tooltip>
-                      <sl-tooltip content="Download">
-                        <sl-icon-button name="download" label="Download"></sl-icon-button>
-                      </sl-tooltip>
-                      <sl-tooltip content="Print">
-                        <sl-icon-button name="printer" label="Print"></sl-icon-button>
-                      </sl-tooltip>
-                      <sl-dropdown placement="bottom-end">
-                        <sl-icon-button slot="trigger" name="three-dots-vertical" label="More tools"></sl-icon-button>
-                        <sl-menu>
-                          <sl-menu-item>Fit to page</sl-menu-item>
-                          <sl-menu-item>Select text</sl-menu-item>
-                          <sl-menu-item><sl-icon slot="prefix" name="pencil"></sl-icon>Draw</sl-menu-item>
-                          <sl-menu-item>Add shape</sl-menu-item>
-                          <sl-divider></sl-divider>
-                          <sl-menu-item disabled>Undo</sl-menu-item>
-                          <sl-menu-item disabled>Redo</sl-menu-item>
-                        </sl-menu>
-                      </sl-dropdown>
-                    </div>
-
-                    <div class="rs-grid rs-grid--fields">
-                      <div class="rs-span-3 rs-stack" aria-label="Pages">
-                        <div class="rs-stack rs-stack--tight">
-                          <img src="./assets/page-1.png" alt="Page 1" />
-                          <span class="rs-meta">1</span>
-                        </div>
-                        <div class="rs-stack rs-stack--tight">
-                          <img src="./assets/page-2.png" alt="Page 2" />
-                          <span class="rs-meta">2</span>
-                        </div>
-                        <div class="rs-stack rs-stack--tight">
-                          <img src="./assets/page-3.png" alt="Page 3" />
-                          <span class="rs-meta">3</span>
-                        </div>
-                      </div>
-                      <div class="rs-span-9">
-                        <img src="./assets/page-1.png" alt="rwar-1, page 1 of 3" />
-                      </div>
-                    </div>
-                  </sl-card>
-                </div>
-              </sl-tab-panel>
-            </sl-tab-group>
-          </sl-detail-panel>
-        </div>
-      </main>
-    </div>
-
-    <!-- Complete task -->
-    <sl-dialog label="Complete task" open style="--width: 40rem">
-      <div class="rs-stack">
-        <sl-description-list cols="2">
-          <sl-description-list-item label="Task">rwar-PVA-04-Feb-2021</sl-description-list-item>
-          <sl-description-list-item label="Document">rwar-1</sl-description-list-item>
-        </sl-description-list>
-        <sl-radio-group
-          label="Complete and"
-          value="forward"
-          help-text="Backward is offered only when the task has a previous recipient."
-        >
-          <sl-radio value="forward">Forward</sl-radio>
-          <sl-radio value="backward">Backward</sl-radio>
-        </sl-radio-group>
-        <sl-textarea label="Instructions" rows="3" help-text="Optional"></sl-textarea>
       </div>
-      <sl-button slot="footer">Cancel</sl-button>
-      <sl-button slot="footer" variant="primary">Complete task</sl-button>
-    </sl-dialog>
 
-    <script type="module">
-      import * as flow from './data.js';
+      <div class="rs-workspace">
+        <!-- Task list -->
+        <section class="rs-workspace__main rs-span-7 rs-span-lg-6" aria-label="PVA tasks">
+          <sl-table selection="multiple" class="task-list" fill sticky-header paginate page-size="25" label="PVA tasks">
+            <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow">
+              <sl-input class="task-search" type="search" size="small" placeholder="Search by task, document or DIN"
+                clearable>
+                <sl-icon slot="prefix" name="search"></sl-icon>
+              </sl-input>
+              <sl-tooltip content="Previous match">
+                <sl-icon-button name="chevron-left" label="Previous match"></sl-icon-button>
+              </sl-tooltip>
+              <sl-tooltip content="Next match">
+                <sl-icon-button name="chevron-right" label="Next match"></sl-icon-button>
+              </sl-tooltip>
+              <sl-checkbox size="small">Case sensitive</sl-checkbox>
+              <span class="rs-spacer"></span>
+              <sl-button size="small" disabled><sl-icon slot="prefix" name="check-square"></sl-icon>Accepted</sl-button>
+              <sl-button size="small">Reassign</sl-button>
+              <sl-button size="small" variant="primary">Complete</sl-button><sl-divider vertical></sl-divider>
 
-      flow.mountDocumentInfo(flow.documentInfo);
+              <sl-dropdown placement="bottom-end" hoist data-table-options>
+                <sl-button slot="trigger" size="small" caret><sl-icon slot="prefix"
+                    name="gear"></sl-icon>Config</sl-button>
+              </sl-dropdown>
+            </div>
 
-      await flow.mountTable('.task-list', {
-        rowDisabled: flow.isPromoting,
-        columns: flow.taskColumns,
-        data: flow.tasks,
-        isSelected: flow.isSelectedTask
-      });
-    </script>
-  </body>
+            <sl-empty-state slot="empty" title-text="No PVA tasks"
+              description="Tasks assigned to you will appear here.">
+              <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+            </sl-empty-state>
+          </sl-table>
+        </section>
+
+        <!-- Task details -->
+        <sl-detail-panel contained class="rs-span-5 rs-span-lg-6" aria-label="Task details">
+          <span slot="label" class="rs-inline">rwar-1</span>
+          <span slot="meta">rwar-PVA-04-Feb-2021 · Revision 1</span>
+
+          <sl-tab-group>
+            <sl-tab slot="nav" panel="properties"><span class="rs-inline"><sl-icon
+                  name="info-circle"></sl-icon>Properties</span></sl-tab>
+            <sl-tab slot="nav" panel="revisions"><span class="rs-inline"><sl-icon
+                  name="clock-history"></sl-icon>Revisions</span></sl-tab>
+            <sl-tab slot="nav" panel="progress"><span class="rs-inline"><sl-icon
+                  name="gear"></sl-icon>Progress</span></sl-tab>
+            <sl-tab slot="nav" panel="pdf" active><span class="rs-inline"><sl-icon name="file-earmark-pdf"></sl-icon>PDF
+                preview</span></sl-tab>
+
+            <sl-tab-panel name="properties">
+              <div class="rs-inset rs-stack rs-stack--loose">
+                <sl-description-list cols="2">
+                  <sl-description-list-item label="Name">rwar-1</sl-description-list-item>
+                  <sl-description-list-item label="DIN">rwar</sl-description-list-item>
+                  <sl-description-list-item label="Revision code"><sl-tag size="small"
+                      variant="neutral">1</sl-tag></sl-description-list-item>
+                  <sl-description-list-item label="Title">rwar</sl-description-list-item>
+                  <sl-description-list-item label="Client answer">—</sl-description-list-item>
+                  <sl-description-list-item label="Issuing description">—</sl-description-list-item>
+                </sl-description-list>
+
+                <div class="rs-stack rs-stack--tight">
+                  <sl-details summary="Info" open>
+                    <div class="rs-stack">
+                      <h3 class="rs-subheading">Identification</h3>
+                      <sl-description-list cols="2">
+                        <sl-description-list-item label="SP code">—</sl-description-list-item>
+                        <sl-description-list-item label="Document type">Internal Job Document</sl-description-list-item>
+                        <sl-description-list-item label="Client document identification">—</sl-description-list-item>
+                        <sl-description-list-item label="Vendor document identification">—</sl-description-list-item>
+                      </sl-description-list>
+                      <sl-divider></sl-divider>
+                      <h3 class="rs-subheading">Status and ownership</h3>
+                      <sl-description-list cols="2">
+                        <sl-description-list-item label="Revision status">
+                          <sl-status filled variant="neutral" size="small">Working</sl-status>
+                        </sl-description-list-item>
+                        <sl-description-list-item label="Document status">
+                          <sl-status filled variant="success" size="small">Verified</sl-status>
+                        </sl-description-list-item>
+                        <sl-description-list-item label="Superseded by">—</sl-description-list-item>
+                        <sl-description-list-item label="Project code">99_PAGE_AM</sl-description-list-item>
+                        <sl-description-list-item label="Company project code">—</sl-description-list-item>
+                        <sl-description-list-item label="PO number">—</sl-description-list-item>
+                        <sl-description-list-item label="Managing department – discipline">—</sl-description-list-item>
+                        <sl-description-list-item label="Issuing department – discipline">—</sl-description-list-item>
+                        <sl-description-list-item label="Second discipline">—</sl-description-list-item>
+                        <sl-description-list-item label="Originator">—</sl-description-list-item>
+                      </sl-description-list>
+                    </div>
+                  </sl-details>
+                  <sl-details summary="Job document">
+                    <p class="rs-meta">Not shown in the legacy screens.</p>
+                  </sl-details>
+                  <sl-details summary="Contents">
+                    <p class="rs-meta">Not shown in the legacy screens.</p>
+                  </sl-details>
+                  <sl-details summary="Comments">
+                    <p class="rs-meta">Not shown in the legacy screens.</p>
+                  </sl-details>
+                  <sl-details summary="Review">
+                    <p class="rs-meta">Not shown in the legacy screens.</p>
+                  </sl-details>
+                </div>
+              </div>
+            </sl-tab-panel>
+
+            <sl-tab-panel name="revisions">
+              <div class="rs-inset rs-stack rs-stack--tight">
+                <div class="rs-inline">
+                  <h3 class="rs-subheading">Revisions</h3>
+                  <span class="rs-meta">2</span>
+                </div>
+                <sl-table class="revision-table" label="Revisions of rwar-1"></sl-table>
+              </div>
+            </sl-tab-panel>
+
+            <sl-tab-panel name="progress">
+              <div class="rs-inset">
+                <sl-empty-state title-text="No progress recorded"
+                  description="Progress updates for this document appear here.">
+                  <sl-icon slot="icon" name="clock-history"></sl-icon>
+                </sl-empty-state>
+              </div>
+            </sl-tab-panel>
+
+            <sl-tab-panel name="pdf" active>
+              <div class="rs-inset">
+                <sl-card class="doc-viewer" aria-label="PDF preview of rwar-1">
+                  <div slot="header" class="doc-viewer__toolbar rs-cluster rs-cluster--nowrap">
+                    <sl-tooltip content="Thumbnails">
+                      <sl-icon-button name="grid" label="Thumbnails"></sl-icon-button>
+                    </sl-tooltip>
+                    <sl-input class="doc-viewer__page-input" type="number" size="small" value="1" min="1" max="3"
+                      no-spin-buttons aria-label="Page"></sl-input>
+                    <span class="rs-meta">of 3</span>
+                    <sl-divider vertical></sl-divider>
+                    <sl-tooltip content="Zoom out">
+                      <sl-icon-button name="dash" label="Zoom out"></sl-icon-button>
+                    </sl-tooltip>
+                    <span class="rs-meta">27%</span>
+                    <sl-tooltip content="Zoom in">
+                      <sl-icon-button name="plus" label="Zoom in"></sl-icon-button>
+                    </sl-tooltip>
+                    <span class="rs-spacer"></span>
+                    <sl-tooltip content="Rotate">
+                      <sl-icon-button name="arrow-clockwise" label="Rotate"></sl-icon-button>
+                    </sl-tooltip>
+                    <sl-tooltip content="Download">
+                      <sl-icon-button name="download" label="Download"></sl-icon-button>
+                    </sl-tooltip>
+                    <sl-tooltip content="Print">
+                      <sl-icon-button name="printer" label="Print"></sl-icon-button>
+                    </sl-tooltip>
+                    <sl-dropdown placement="bottom-end">
+                      <sl-icon-button slot="trigger" name="three-dots-vertical" label="More tools"></sl-icon-button>
+                      <sl-menu>
+                        <sl-menu-item>Fit to page</sl-menu-item>
+                        <sl-menu-item>Select text</sl-menu-item>
+                        <sl-menu-item><sl-icon slot="prefix" name="pencil"></sl-icon>Draw</sl-menu-item>
+                        <sl-menu-item>Add shape</sl-menu-item>
+                        <sl-divider></sl-divider>
+                        <sl-menu-item disabled>Undo</sl-menu-item>
+                        <sl-menu-item disabled>Redo</sl-menu-item>
+                      </sl-menu>
+                    </sl-dropdown>
+                  </div>
+
+                  <div class="rs-grid rs-grid--fields">
+                    <div class="rs-span-3 rs-stack" aria-label="Pages">
+                      <div class="rs-stack rs-stack--tight">
+                        <img src="./assets/page-1.png" alt="Page 1" />
+                        <span class="rs-meta">1</span>
+                      </div>
+                      <div class="rs-stack rs-stack--tight">
+                        <img src="./assets/page-2.png" alt="Page 2" />
+                        <span class="rs-meta">2</span>
+                      </div>
+                      <div class="rs-stack rs-stack--tight">
+                        <img src="./assets/page-3.png" alt="Page 3" />
+                        <span class="rs-meta">3</span>
+                      </div>
+                    </div>
+                    <div class="rs-span-9">
+                      <img src="./assets/page-1.png" alt="rwar-1, page 1 of 3" />
+                    </div>
+                  </div>
+                </sl-card>
+              </div>
+            </sl-tab-panel>
+          </sl-tab-group>
+        </sl-detail-panel>
+      </div>
+    </main>
+  </div>
+
+  <!-- Complete task -->
+  <sl-dialog label="Complete task" open style="--width: 40rem">
+    <div class="rs-stack">
+      <sl-description-list cols="2">
+        <sl-description-list-item label="Task">rwar-PVA-04-Feb-2021</sl-description-list-item>
+        <sl-description-list-item label="Document">rwar-1</sl-description-list-item>
+      </sl-description-list>
+      <sl-radio-group label="Complete and" value="forward"
+        help-text="Backward is offered only when the task has a previous recipient.">
+        <sl-radio value="forward">Forward</sl-radio>
+        <sl-radio value="backward">Backward</sl-radio>
+      </sl-radio-group>
+      <sl-textarea label="Instructions" rows="3" help-text="Optional"></sl-textarea>
+    </div>
+    <sl-button slot="footer">Cancel</sl-button>
+    <sl-button slot="footer" variant="primary">Complete task</sl-button>
+  </sl-dialog>
+
+  <script type="module">
+    import * as flow from './data.js';
+
+    flow.mountDocumentInfo(flow.documentInfo);
+
+    await flow.mountTable('.task-list', {
+      rowDisabled: flow.isPromoting,
+      columns: flow.taskColumns,
+      data: flow.tasks,
+      isSelected: flow.isSelectedTask
+    });
+  </script>
+</body>
+
 </html>

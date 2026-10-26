@@ -6,361 +6,321 @@
   Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/xCPage-MyTask-Reviewer/5-ImportedComment.html
 -->
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>xCPage · Tasks</title>
-    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/src/themes/light.css" />
-    <link rel="stylesheet" href="/src/themes/_utility.css" />
-    <link rel="stylesheet" href="../_shared/restyle.css" />
-    <link rel="stylesheet" href="./flow.css" />
-    <script type="module" src="/shoelace.js"></script>
-    <script>
-      // Reload when esbuild rebuilds after a change in src/
-      new EventSource('/esbuild').addEventListener('change', () => location.reload());
-    </script>
-  </head>
 
-  <body class="sl-theme-light">
-    <sl-header>
-      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
-      <span slot="logo">xCPage</span>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>xCPage · Tasks</title>
+  <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/src/themes/light.css" />
+  <link rel="stylesheet" href="/src/themes/_utility.css" />
+  <link rel="stylesheet" href="../_shared/restyle.css" />
+  <link rel="stylesheet" href="./flow.css" />
+  <script type="module" src="/shoelace.js"></script>
+  <script>
+    // Reload when esbuild rebuilds after a change in src/
+    new EventSource('/esbuild').addEventListener('change', () => location.reload());
+  </script>
+</head>
 
-      <sl-select slot="actions" size="small" value="99-page-am" style="width: 16rem">
-        <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
-      </sl-select>
-      <sl-header-item slot="actions">
-        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
-        Mario Rossi
-        <sl-menu slot="menu">
-          <sl-menu-item>Profile</sl-menu-item>
-          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
-          <sl-divider></sl-divider>
-          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
-        </sl-menu>
-      </sl-header-item>
-    </sl-header>
+<body class="sl-theme-light">
+  <sl-header>
+    <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+    <span slot="logo"></span>
 
-    <div class="rs-shell">
-      <sl-sidebar label="Project navigation" collapsed>
-        <sl-sidebar-group label="Documenti di progetto" count="70">
-          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
-          <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
-        </sl-sidebar-group>
+    <sl-select slot="actions" size="small" value="99-page-am" style="width: 16rem">
+      <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
+    </sl-select>
+    <sl-header-item slot="actions">
+      <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+      Mario Rossi
+      <sl-menu slot="menu">
+        <sl-menu-item>Profile</sl-menu-item>
+        <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+        <sl-divider></sl-divider>
+        <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+      </sl-menu>
+    </sl-header-item>
+  </sl-header>
 
-        <sl-sidebar-group label="Procurement (SAP)" count="71">
-          <sl-icon slot="icon" name="cart"></sl-icon>
-          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
-        </sl-sidebar-group>
+  <div class="rs-shell">
+    <sl-sidebar label="Project navigation" collapsed>
+      <sl-sidebar-group label="Documenti di progetto" count="70">
+        <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+        <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+      </sl-sidebar-group>
 
-        <sl-sidebar-group label="Comunicazione" count="47">
-          <sl-icon slot="icon" name="envelope"></sl-icon>
-          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
-          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
-          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
-          <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
-          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
-        </sl-sidebar-group>
+      <sl-sidebar-group label="Procurement (SAP)" count="71">
+        <sl-icon slot="icon" name="cart"></sl-icon>
+        <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+      </sl-sidebar-group>
 
-        <sl-sidebar-group label="Tasks" count="55">
-          <sl-icon slot="icon" name="clipboard-check"></sl-icon>
-          <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
-          <sl-sidebar-item href="#" count="11" current>Review</sl-sidebar-item>
-        </sl-sidebar-group>
-      </sl-sidebar>
+      <sl-sidebar-group label="Comunicazione" count="47">
+        <sl-icon slot="icon" name="envelope"></sl-icon>
+        <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+        <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+        <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+        <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
+        <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
+      </sl-sidebar-group>
 
-      <main class="rs-page rs-page--fill" aria-label="Tasks">
-        <div class="rs-page-header">
-          <div class="rs-page-header__text">
-            <h1 class="rs-title">Tasks</h1>
-          </div>
+      <sl-sidebar-group label="Tasks" count="55">
+        <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+        <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="11" current>Review</sl-sidebar-item>
+      </sl-sidebar-group>
+    </sl-sidebar>
+
+    <main class="rs-page rs-page--fill" aria-label="Tasks">
+      <div class="rs-page-header">
+        <div class="rs-page-header__text">
+          <h1 class="rs-title">Tasks</h1>
         </div>
+      </div>
 
-        <!-- Filters + expiry -->
-        <section class="rs-grid rs-grid--stretch" aria-label="Filters and expiry">
-          <sl-card class="rs-span-7 rs-span-md-6" aria-label="Filters">
-            <h2 slot="header" class="rs-heading rs-inline"><sl-icon name="filter"></sl-icon>Filters</h2>
+      <!-- Filters + expiry -->
+      <section class="rs-grid rs-grid--stretch" aria-label="Filters and expiry">
+        <sl-card class="rs-span-7 rs-span-md-6" aria-label="Filters">
+          <h2 slot="header" class="rs-heading rs-inline"><sl-icon name="filter"></sl-icon>Filters</h2>
 
-            <form class="rs-grid rs-grid--fields">
-              <sl-input
-                class="rs-span-6"
-                type="search"
-                label="Search"
-                placeholder="Task name, title, SP code or DIN"
-                clearable
-              >
-                <sl-icon slot="prefix" name="search"></sl-icon>
-              </sl-input>
-              <sl-select class="rs-span-3" label="Originator" placeholder="Any" clearable>
-                <sl-option value="originator-0">AAAAA</sl-option>
-                <sl-option value="originator-1">ARAMCO-BV</sl-option>
-                <sl-option value="originator-2">BBBBB</sl-option>
-                <sl-option value="originator-3">LARSEN &amp; TOUBRO LTD.-0001373173</sl-option>
-                <sl-option value="originator-4">NK-Originator</sl-option>
-                <sl-option value="originator-5">SAIPEM</sl-option>
-                <sl-option value="originator-6">TO_COMPANY_DEP_1</sl-option>
-                <sl-option value="originator-7">TO_COMPANY_DEP_2</sl-option>
-                <sl-option value="originator-8">VDR-20240209</sl-option>
-                <sl-option value="originator-9">VDR-20240414</sl-option>
-                <sl-option value="originator-10">VDR-20240414-1</sl-option>
-                <sl-option value="originator-11">VDR-20240414-2</sl-option>
-                <sl-option value="originator-12">VDR-20240414-3</sl-option>
-                <sl-option value="originator-13">VDR-20240414-4</sl-option>
-              </sl-select>
-              <sl-select class="rs-span-3" label="Discipline" placeholder="Any" clearable>
-                <sl-option value="civil">Civil &amp; Architectural</sl-option>
-                <sl-option value="electrical">Electrical</sl-option>
-                <sl-option value="mechanical">Mechanical</sl-option>
-                <sl-option value="piping">Plant layout &amp; Piping</sl-option>
-              </sl-select>
+          <form class="rs-grid rs-grid--fields">
+            <sl-input class="rs-span-6" type="search" label="Search" placeholder="Task name, title, SP code or DIN"
+              clearable>
+              <sl-icon slot="prefix" name="search"></sl-icon>
+            </sl-input>
+            <sl-select class="rs-span-3" label="Originator" placeholder="Any" clearable>
+              <sl-option value="originator-0">AAAAA</sl-option>
+              <sl-option value="originator-1">ARAMCO-BV</sl-option>
+              <sl-option value="originator-2">BBBBB</sl-option>
+              <sl-option value="originator-3">LARSEN &amp; TOUBRO LTD.-0001373173</sl-option>
+              <sl-option value="originator-4">NK-Originator</sl-option>
+              <sl-option value="originator-5">SAIPEM</sl-option>
+              <sl-option value="originator-6">TO_COMPANY_DEP_1</sl-option>
+              <sl-option value="originator-7">TO_COMPANY_DEP_2</sl-option>
+              <sl-option value="originator-8">VDR-20240209</sl-option>
+              <sl-option value="originator-9">VDR-20240414</sl-option>
+              <sl-option value="originator-10">VDR-20240414-1</sl-option>
+              <sl-option value="originator-11">VDR-20240414-2</sl-option>
+              <sl-option value="originator-12">VDR-20240414-3</sl-option>
+              <sl-option value="originator-13">VDR-20240414-4</sl-option>
+            </sl-select>
+            <sl-select class="rs-span-3" label="Discipline" placeholder="Any" clearable>
+              <sl-option value="civil">Civil &amp; Architectural</sl-option>
+              <sl-option value="electrical">Electrical</sl-option>
+              <sl-option value="mechanical">Mechanical</sl-option>
+              <sl-option value="piping">Plant layout &amp; Piping</sl-option>
+            </sl-select>
 
-              <div class="rs-span-12 rs-cluster rs-cluster--between">
-                <div class="rs-cluster">
-                  <span class="rs-inline">
-                    <sl-checkbox size="small">Multiple search</sl-checkbox>
-                    <sl-tooltip content="Search several terms at once, separated by commas">
-                      <sl-icon name="info-circle" label="About multiple search"></sl-icon>
-                    </sl-tooltip>
-                  </span>
-                  <sl-checkbox size="small" checked>Case sensitive</sl-checkbox>
-                </div>
-                <div class="rs-cluster">
-                  <sl-button type="reset" variant="text">Reset</sl-button>
-                  <sl-button type="submit" variant="primary"
-                    ><sl-icon slot="prefix" name="search"></sl-icon>Search</sl-button
-                  >
-                </div>
+            <div class="rs-span-12 rs-cluster rs-cluster--between">
+              <div class="rs-cluster">
+                <span class="rs-inline">
+                  <sl-checkbox size="small">Multiple search</sl-checkbox>
+                  <sl-tooltip content="Search several terms at once, separated by commas">
+                    <sl-icon name="info-circle" label="About multiple search"></sl-icon>
+                  </sl-tooltip>
+                </span>
+                <sl-checkbox size="small" checked>Case sensitive</sl-checkbox>
               </div>
-            </form>
-          </sl-card>
+              <div class="rs-cluster">
+                <sl-button type="reset" variant="text">Reset</sl-button>
+                <sl-button type="submit" variant="primary"><sl-icon slot="prefix"
+                    name="search"></sl-icon>Search</sl-button>
+              </div>
+            </div>
+          </form>
+        </sl-card>
 
-          <sl-stat-group class="rs-span-5 rs-span-md-6 rs-stats-2x2" label="Filter by expiry">
-            <sl-stat value="safe" count="0" variant="success"
-              ><sl-icon slot="prefix" name="shield-check"></sl-icon>Safe</sl-stat
-            >
-            <sl-stat value="expiring" count="0" variant="warning">
-              <sl-icon slot="prefix" name="hourglass-split"></sl-icon>Expiring
-            </sl-stat>
-            <sl-stat value="expired" count="11" variant="danger">
-              <sl-icon slot="prefix" name="exclamation-triangle"></sl-icon>Expired
-            </sl-stat>
-            <sl-stat value="notified" count="0" variant="accent"
-              ><sl-icon slot="prefix" name="bell"></sl-icon>Notified</sl-stat
-            >
-          </sl-stat-group>
+        <sl-stat-group class="rs-span-5 rs-span-md-6 rs-stats-2x2" label="Filter by expiry">
+          <sl-stat value="safe" count="0" variant="success"><sl-icon slot="prefix"
+              name="shield-check"></sl-icon>Safe</sl-stat>
+          <sl-stat value="expiring" count="0" variant="warning">
+            <sl-icon slot="prefix" name="hourglass-split"></sl-icon>Expiring
+          </sl-stat>
+          <sl-stat value="expired" count="11" variant="danger">
+            <sl-icon slot="prefix" name="exclamation-triangle"></sl-icon>Expired
+          </sl-stat>
+          <sl-stat value="notified" count="0" variant="accent"><sl-icon slot="prefix"
+              name="bell"></sl-icon>Notified</sl-stat>
+        </sl-stat-group>
+      </section>
+
+      <div class="rs-workspace">
+        <!-- Task list -->
+        <section class="rs-workspace__main rs-span-7 rs-span-lg-6" aria-label="Review tasks">
+          <sl-table selection="multiple" class="task-list" fill sticky-header paginate page-size="25"
+            label="Review tasks">
+            <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow" role="toolbar" aria-label="Task actions">
+              <sl-button size="small"><sl-icon slot="prefix" name="download"></sl-icon>Download</sl-button>
+              <sl-button size="small"><sl-icon slot="prefix" name="upload"></sl-icon>Upload</sl-button>
+              <sl-button size="small" disabled><sl-icon slot="prefix"
+                  name="arrow-counterclockwise"></sl-icon>Refuse</sl-button>
+              <sl-button size="small" disabled><sl-icon slot="prefix" name="arrow-right"></sl-icon>Delegate</sl-button>
+              <sl-button size="small" disabled><sl-icon slot="prefix" name="check-square"></sl-icon>Acquired</sl-button>
+              <sl-button size="small"><sl-icon slot="prefix" name="check-square-fill"></sl-icon>Complete</sl-button>
+              <span class="rs-spacer"></span>
+              <sl-dropdown placement="bottom-end" hoist data-table-options>
+                <sl-button slot="trigger" size="small" caret><sl-icon slot="prefix"
+                    name="gear"></sl-icon>Config</sl-button>
+              </sl-dropdown>
+            </div>
+
+            <sl-empty-state slot="empty" title-text="No review tasks"
+              description="Tasks assigned to you will appear here.">
+              <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+            </sl-empty-state>
+          </sl-table>
         </section>
 
-        <div class="rs-workspace">
-          <!-- Task list -->
-          <section class="rs-workspace__main rs-span-7 rs-span-lg-6" aria-label="Review tasks">
-            <sl-table
-              selection="multiple"
-              class="task-list"
-              fill
-              sticky-header
-              paginate
-              page-size="25"
-              label="Review tasks"
-            >
-              <div
-                slot="toolbar"
-                class="rs-cluster rs-cluster--nowrap rs-grow"
-                role="toolbar"
-                aria-label="Task actions"
-              >
-                <sl-button size="small"><sl-icon slot="prefix" name="download"></sl-icon>Download</sl-button>
-                <sl-button size="small"><sl-icon slot="prefix" name="upload"></sl-icon>Upload</sl-button>
-                <sl-button size="small" disabled
-                  ><sl-icon slot="prefix" name="arrow-counterclockwise"></sl-icon>Refuse</sl-button
-                >
-                <sl-button size="small" disabled
-                  ><sl-icon slot="prefix" name="arrow-right"></sl-icon>Delegate</sl-button
-                >
-                <sl-button size="small" disabled
-                  ><sl-icon slot="prefix" name="check-square"></sl-icon>Acquired</sl-button
-                >
-                <sl-button size="small"><sl-icon slot="prefix" name="check-square-fill"></sl-icon>Complete</sl-button>
-                <span class="rs-spacer"></span>
-                <sl-dropdown placement="bottom-end" hoist data-table-options>
-                  <sl-button slot="trigger" size="small" caret
-                    ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
-                  >
-                </sl-dropdown>
-              </div>
+        <!-- Task details -->
+        <sl-detail-panel contained class="rs-span-5 rs-span-lg-6" aria-label="Task details">
+          <span slot="label" class="rs-inline">test Foxit_no signature</span>
+          <span slot="meta">Revision A1 · Due 25-Jun-2026</span>
 
-              <sl-empty-state
-                slot="empty"
-                title-text="No review tasks"
-                description="Tasks assigned to you will appear here."
-              >
-                <sl-icon slot="icon" name="clipboard-check"></sl-icon>
-              </sl-empty-state>
-            </sl-table>
-          </section>
+          <sl-tab-group>
+            <sl-tab slot="nav" panel="comments" active><span class="rs-inline"><sl-icon name="chat"></sl-icon>Review
+                comments</span></sl-tab>
+            <sl-tab slot="nav" panel="dashboard"><span class="rs-inline"><sl-icon
+                  name="person-fill"></sl-icon>Dashboard</span></sl-tab>
+            <sl-tab slot="nav" panel="revisions"><span class="rs-inline"><sl-icon
+                  name="clock-history"></sl-icon>Revisions</span></sl-tab>
+            <sl-tab slot="nav" panel="properties"><span class="rs-inline"><sl-icon
+                  name="info-circle"></sl-icon>Properties</span></sl-tab>
 
-          <!-- Task details -->
-          <sl-detail-panel contained class="rs-span-5 rs-span-lg-6" aria-label="Task details">
-            <span slot="label" class="rs-inline">test Foxit_no signature</span>
-            <span slot="meta">Revision A1 · Due 25-Jun-2026</span>
-
-            <sl-tab-group>
-              <sl-tab slot="nav" panel="comments" active
-                ><span class="rs-inline"><sl-icon name="chat"></sl-icon>Review comments</span></sl-tab
-              >
-              <sl-tab slot="nav" panel="dashboard"
-                ><span class="rs-inline"><sl-icon name="person-fill"></sl-icon>Dashboard</span></sl-tab
-              >
-              <sl-tab slot="nav" panel="revisions"
-                ><span class="rs-inline"><sl-icon name="clock-history"></sl-icon>Revisions</span></sl-tab
-              >
-              <sl-tab slot="nav" panel="properties"
-                ><span class="rs-inline"><sl-icon name="info-circle"></sl-icon>Properties</span></sl-tab
-              >
-
-              <sl-tab-panel name="comments" active>
-                <div class="rs-inset rs-stack">
-                  <section class="rs-stack rs-stack--tight" aria-label="Review comments">
-                    <div class="rs-cluster rs-cluster--between">
-                      <span class="rs-inline">
-                        <h3 class="rs-subheading">Review comments</h3>
-                        <span class="rs-meta">1</span>
-                      </span>
-                      <sl-button size="small" variant="primary"
-                        ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Add comment</sl-button
-                      >
-                    </div>
-                    <sl-table class="comment-table" label="Review comments of test Foxit_no signature"></sl-table>
-                  </section>
-                  <section class="rs-stack rs-stack--tight" aria-label="Consolidated comment" aria-busy="true">
-                    <h3 class="rs-subheading">Consolidated comment</h3>
-                    <sl-skeleton effect="sheen"></sl-skeleton>
-                    <sl-skeleton effect="sheen"></sl-skeleton>
-                  </section>
-                </div>
-              </sl-tab-panel>
-
-              <sl-tab-panel name="dashboard">
-                <div class="rs-inset rs-stack">
-                  <section class="rs-stack rs-stack--tight" aria-label="Current assignment">
-                    <div class="rs-cluster rs-cluster--between">
-                      <span class="rs-inline">
-                        <h3 class="rs-subheading">Current assignment</h3>
-                        <span class="rs-meta">6</span>
-                      </span>
-                      <sl-button size="small" variant="primary"
-                        ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Add reviewer</sl-button
-                      >
-                    </div>
-                    <sl-table class="reviewer-table" label="Reviewers of test Foxit_no signature"></sl-table>
-                  </section>
-                </div>
-              </sl-tab-panel>
-
-              <sl-tab-panel name="revisions">
-                <div class="rs-inset rs-stack rs-stack--tight">
-                  <div class="rs-inline">
-                    <h3 class="rs-subheading">Revisions</h3>
-                    <span class="rs-meta">4</span>
+            <sl-tab-panel name="comments" active>
+              <div class="rs-inset rs-stack">
+                <section class="rs-stack rs-stack--tight" aria-label="Review comments">
+                  <div class="rs-cluster rs-cluster--between">
+                    <span class="rs-inline">
+                      <h3 class="rs-subheading">Review comments</h3>
+                      <span class="rs-meta">1</span>
+                    </span>
+                    <sl-button size="small" variant="primary"><sl-icon slot="prefix" name="plus-lg"></sl-icon>Add
+                      comment</sl-button>
                   </div>
-                  <sl-table class="revision-table" label="Revisions of test Foxit_no signature"></sl-table>
-                </div>
-              </sl-tab-panel>
+                  <sl-table class="comment-table" label="Review comments of test Foxit_no signature"></sl-table>
+                </section>
+                <section class="rs-stack rs-stack--tight" aria-label="Consolidated comment" aria-busy="true">
+                  <h3 class="rs-subheading">Consolidated comment</h3>
+                  <sl-skeleton effect="sheen"></sl-skeleton>
+                  <sl-skeleton effect="sheen"></sl-skeleton>
+                </section>
+              </div>
+            </sl-tab-panel>
 
-              <sl-tab-panel name="properties">
-                <div class="rs-inset rs-stack rs-stack--tight">
-                  <sl-details summary="Document info" open>
-                    <div class="rs-stack">
-                      <sl-description-list cols="2">
-                        <sl-description-list-item label="Name">test Foxit_no signature</sl-description-list-item>
-                        <sl-description-list-item label="DIN">test Foxit_no signature_qrcode</sl-description-list-item>
-                        <sl-description-list-item label="Title">Test_DM_27091449_2</sl-description-list-item>
-                        <sl-description-list-item label="Revision code"
-                          ><sl-tag size="small" variant="neutral">A1</sl-tag></sl-description-list-item
-                        >
-                        <sl-description-list-item label="Originator">VDR-20240415</sl-description-list-item>
-                        <sl-description-list-item label="Discipline">—</sl-description-list-item>
-                        <sl-description-list-item label="Document class"
-                          >External Job Document</sl-description-list-item
-                        >
-                      </sl-description-list>
-                      <div class="rs-cluster">
-                        <sl-button size="small" data-document-info
-                          ><sl-icon slot="prefix" name="info-circle"></sl-icon>All metadata</sl-button
-                        >
-                        <sl-button size="small" variant="primary"
-                          ><sl-icon slot="prefix" name="file-earmark-pdf"></sl-icon>Download</sl-button
-                        >
-                      </div>
+            <sl-tab-panel name="dashboard">
+              <div class="rs-inset rs-stack">
+                <section class="rs-stack rs-stack--tight" aria-label="Current assignment">
+                  <div class="rs-cluster rs-cluster--between">
+                    <span class="rs-inline">
+                      <h3 class="rs-subheading">Current assignment</h3>
+                      <span class="rs-meta">6</span>
+                    </span>
+                    <sl-button size="small" variant="primary"><sl-icon slot="prefix" name="plus-lg"></sl-icon>Add
+                      reviewer</sl-button>
+                  </div>
+                  <sl-table class="reviewer-table" label="Reviewers of test Foxit_no signature"></sl-table>
+                </section>
+              </div>
+            </sl-tab-panel>
+
+            <sl-tab-panel name="revisions">
+              <div class="rs-inset rs-stack rs-stack--tight">
+                <div class="rs-inline">
+                  <h3 class="rs-subheading">Revisions</h3>
+                  <span class="rs-meta">4</span>
+                </div>
+                <sl-table class="revision-table" label="Revisions of test Foxit_no signature"></sl-table>
+              </div>
+            </sl-tab-panel>
+
+            <sl-tab-panel name="properties">
+              <div class="rs-inset rs-stack rs-stack--tight">
+                <sl-details summary="Document info" open>
+                  <div class="rs-stack">
+                    <sl-description-list cols="2">
+                      <sl-description-list-item label="Name">test Foxit_no signature</sl-description-list-item>
+                      <sl-description-list-item label="DIN">test Foxit_no signature_qrcode</sl-description-list-item>
+                      <sl-description-list-item label="Title">Test_DM_27091449_2</sl-description-list-item>
+                      <sl-description-list-item label="Revision code"><sl-tag size="small"
+                          variant="neutral">A1</sl-tag></sl-description-list-item>
+                      <sl-description-list-item label="Originator">VDR-20240415</sl-description-list-item>
+                      <sl-description-list-item label="Discipline">—</sl-description-list-item>
+                      <sl-description-list-item label="Document class">External Job Document</sl-description-list-item>
+                    </sl-description-list>
+                    <div class="rs-cluster">
+                      <sl-button size="small" data-document-info><sl-icon slot="prefix" name="info-circle"></sl-icon>All
+                        metadata</sl-button>
+                      <sl-button size="small" variant="primary"><sl-icon slot="prefix"
+                          name="file-earmark-pdf"></sl-icon>Download</sl-button>
                     </div>
-                  </sl-details>
-                  <sl-details summary="Task info" open>
-                    <sl-description-list cols="2">
-                      <sl-description-list-item label="Lead reviewer">De Angeli Filippo</sl-description-list-item>
-                      <sl-description-list-item label="DP name">test_review_dp_15051941</sl-description-list-item>
-                      <sl-description-list-item label="Created on">20-Feb-2026</sl-description-list-item>
-                      <sl-description-list-item label="Expires on">25-Jun-2026</sl-description-list-item>
-                      <sl-description-list-item label="Task status"
-                        ><sl-status filled variant="accent" size="small">Acquired</sl-status></sl-description-list-item
-                      >
-                      <sl-description-list-item label="Expiry"
-                        ><sl-status filled variant="danger" size="small">Expired</sl-status></sl-description-list-item
-                      >
-                    </sl-description-list>
-                  </sl-details>
-                  <sl-details summary="Review status" open>
-                    <sl-description-list cols="2">
-                      <sl-description-list-item label="Your review comment">
-                        <sl-status filled variant="success" size="small">Commented</sl-status>
-                      </sl-description-list-item>
-                      <sl-description-list-item label="Notification">
-                        <sl-status filled variant="neutral" size="small">Not notified</sl-status>
-                      </sl-description-list-item>
-                    </sl-description-list>
-                  </sl-details>
-                </div>
-              </sl-tab-panel>
-            </sl-tab-group>
-          </sl-detail-panel>
-        </div>
-      </main>
-    </div>
+                  </div>
+                </sl-details>
+                <sl-details summary="Task info" open>
+                  <sl-description-list cols="2">
+                    <sl-description-list-item label="Lead reviewer">De Angeli Filippo</sl-description-list-item>
+                    <sl-description-list-item label="DP name">test_review_dp_15051941</sl-description-list-item>
+                    <sl-description-list-item label="Created on">20-Feb-2026</sl-description-list-item>
+                    <sl-description-list-item label="Expires on">25-Jun-2026</sl-description-list-item>
+                    <sl-description-list-item label="Task status"><sl-status filled variant="accent"
+                        size="small">Acquired</sl-status></sl-description-list-item>
+                    <sl-description-list-item label="Expiry"><sl-status filled variant="danger"
+                        size="small">Expired</sl-status></sl-description-list-item>
+                  </sl-description-list>
+                </sl-details>
+                <sl-details summary="Review status" open>
+                  <sl-description-list cols="2">
+                    <sl-description-list-item label="Your review comment">
+                      <sl-status filled variant="success" size="small">Commented</sl-status>
+                    </sl-description-list-item>
+                    <sl-description-list-item label="Notification">
+                      <sl-status filled variant="neutral" size="small">Not notified</sl-status>
+                    </sl-description-list-item>
+                  </sl-description-list>
+                </sl-details>
+              </div>
+            </sl-tab-panel>
+          </sl-tab-group>
+        </sl-detail-panel>
+      </div>
+    </main>
+  </div>
 
-    <!-- Confirmation -->
-    <div class="sl-toast-stack">
-      <sl-alert variant="success" open closable>
-        <sl-icon slot="icon" name="check2-circle"></sl-icon>
-        Your review comment for <strong>test Foxit_no signature</strong> has been uploaded.
-      </sl-alert>
-    </div>
+  <!-- Confirmation -->
+  <div class="sl-toast-stack">
+    <sl-alert variant="success" open closable>
+      <sl-icon slot="icon" name="check2-circle"></sl-icon>
+      Your review comment for <strong>test Foxit_no signature</strong> has been uploaded.
+    </sl-alert>
+  </div>
 
-    <script type="module">
-      import * as flow from './data.js';
+  <script type="module">
+    import * as flow from './data.js';
 
-      flow.mountDocumentInfo(flow.documentInfo);
+    flow.mountDocumentInfo(flow.documentInfo);
 
-      flow.setProgress({ accepted: true, commented: true });
-      await flow.mountTable('.task-list', {
-        columns: flow.taskColumns,
-        data: flow.tasks,
-        isSelected: flow.isSelectedTask
-      });
-      await flow.mountTable('.comment-table', { columns: flow.commentColumns, data: flow.comments });
-      await flow.mountTable('.revision-table', {
-        columns: flow.revisionColumns,
-        data: flow.revisions
-      });
-    </script>
-  </body>
+    flow.setProgress({ accepted: true, commented: true });
+    await flow.mountTable('.task-list', {
+      columns: flow.taskColumns,
+      data: flow.tasks,
+      isSelected: flow.isSelectedTask
+    });
+    await flow.mountTable('.comment-table', { columns: flow.commentColumns, data: flow.comments });
+    await flow.mountTable('.revision-table', {
+      columns: flow.revisionColumns,
+      data: flow.revisions
+    });
+  </script>
+</body>
+
 </html>

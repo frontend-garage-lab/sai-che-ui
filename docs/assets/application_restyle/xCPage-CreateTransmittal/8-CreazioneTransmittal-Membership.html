@@ -25,7 +25,7 @@
   <body class="sl-theme-light">
     <sl-header>
       <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
-      <span slot="logo">xCPage</span>
+      <span slot="logo"></span>
 
       <sl-select slot="actions" size="small" value="99-page-am" style="width: 16rem">
         <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
@@ -233,7 +233,7 @@
     </sl-drawer>
 
     <!-- Create transmittal: 4-step wizard -->
-    <sl-dialog label="Create transmittal" open style="--width: 80rem">
+    <sl-dialog label="Create new transmittal" open style="--width: 80rem">
       <div class="rs-stack rs-stack--loose">
         <sl-stepper label="Create transmittal" current="3">
           <sl-step description="Type, template and details">Properties</sl-step>
@@ -243,20 +243,7 @@
         </sl-stepper>
         <div class="rs-stack">
           <h3 class="rs-heading">Roles and members</h3>
-          <sl-description-list cols="1">
-            <sl-description-list-item label="Admins">
-              <span class="rs-cluster">
-                Aiello Ciro
-                <sl-icon-button name="pencil" label="Edit admins"></sl-icon-button>
-              </span>
-            </sl-description-list-item>
-            <sl-description-list-item label="Consumers">
-              <span class="rs-cluster">
-                99_page_am_prj_members
-                <sl-icon-button name="pencil" label="Edit consumers"></sl-icon-button>
-              </span>
-            </sl-description-list-item>
-          </sl-description-list>
+          <sl-table class="membership" label="Roles and members"></sl-table>
         </div>
       </div>
       <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>
@@ -272,6 +259,7 @@
         .addEventListener('click', () => document.querySelector('sl-drawer').show());
 
       await flow.mountTable('.transmittal-list', { columns: flow.transmittalColumns, data: flow.transmittals });
+      await flow.mountTable('.membership', { columns: flow.membershipColumns, data: flow.membership });
     </script>
   </body>
 </html>

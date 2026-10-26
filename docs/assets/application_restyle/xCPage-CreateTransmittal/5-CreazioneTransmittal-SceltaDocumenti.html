@@ -233,7 +233,7 @@
     </sl-drawer>
 
     <!-- Create transmittal: 4-step wizard -->
-    <sl-dialog label="Create transmittal" open style="--width: 80rem">
+    <sl-dialog label="Create new transmittal" open style="--width: 80rem">
       <div class="rs-stack rs-stack--loose">
         <sl-stepper label="Create transmittal" current="1">
           <sl-step description="Type, template and details">Properties</sl-step>
@@ -241,48 +241,129 @@
           <sl-step description="Who receives it">Recipients</sl-step>
           <sl-step description="Roles and members">Membership</sl-step>
         </sl-stepper>
-        <div class="rs-stack">
-          <h3 class="rs-heading">Add documents</h3>
+        <div class="rs-stack rs-stack--loose">
           <div class="rs-grid rs-grid--fields">
-            <sl-input class="rs-span-4" type="search" label="Search" value="Test" clearable>
-              <sl-icon slot="prefix" name="search"></sl-icon>
-            </sl-input>
-            <sl-select class="rs-span-2" label="Document type" value="job" clearable>
-              <sl-option value="job">Job document</sl-option>
-              <sl-option value="vendor">Vendor document</sl-option>
-            </sl-select>
-            <sl-select class="rs-span-2" label="Revision status" placeholder="Any" clearable></sl-select>
-            <sl-select class="rs-span-2" label="Discipline" placeholder="Any" clearable></sl-select>
-            <sl-select class="rs-span-2" label="Document class" placeholder="Any" clearable></sl-select>
+            <section class="rs-span-6 rs-stack rs-stack--tight" aria-label="SharePoint delivery filters">
+              <h3 class="rs-subheading">SharePoint delivery filters</h3>
+              <sl-checkbox size="small">Contents of job document revision</sl-checkbox>
+              <sl-checkbox size="small">Comments included in the transmittal</sl-checkbox>
+              <sl-checkbox size="small">Renditions associated to the job document</sl-checkbox>
+              <sl-checkbox size="small">All files associated to the document revision</sl-checkbox>
+            </section>
+            <section class="rs-span-6 rs-stack rs-stack--tight" aria-label="Email attachment options">
+              <h3 class="rs-subheading">Email attachment options</h3>
+              <sl-checkbox size="small" checked
+                >Do not include document content files, if any, in email attachments</sl-checkbox
+              >
+            </section>
           </div>
-          <sl-details summary="More filters (4)">
-            <div class="rs-grid rs-grid--fields">
-              <sl-select class="rs-span-3" label="Originator" placeholder="Any" clearable></sl-select>
-              <sl-select class="rs-span-3" label="Managing department" placeholder="Any" clearable></sl-select>
-              <sl-select class="rs-span-3" label="Issue description" placeholder="Any" clearable></sl-select>
-              <sl-select class="rs-span-3" label="Plant unit" placeholder="Any" clearable></sl-select>
+
+          <sl-table
+            selection="multiple"
+            class="related-docs"
+            label="Documents of the transmittal"
+            style="--max-height: 16rem"
+          >
+            <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow">
+              <sl-button class="add-docs" size="small" variant="primary"
+                ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Manage docs</sl-button
+              >
+              <sl-button size="small" disabled
+                ><sl-icon slot="prefix" name="clipboard"></sl-icon>Manage from clipboard</sl-button
+              >
+              <sl-button size="small"><sl-icon slot="prefix" name="folder"></sl-icon>Manage from VB</sl-button>
+              <sl-button size="small"><sl-icon slot="prefix" name="envelope"></sl-icon>Manage from Trm or DP</sl-button>
+              <sl-divider vertical></sl-divider>
+              <sl-button size="small" disabled
+                ><sl-icon slot="prefix" name="pencil"></sl-icon>Edit relation properties</sl-button
+              >
+              <sl-button size="small" disabled
+                ><sl-icon slot="prefix" name="upload"></sl-icon>Import consolidated comments</sl-button
+              >
+              <span class="rs-spacer"></span>
+              <sl-dropdown placement="bottom-end" hoist data-table-options>
+                <sl-button slot="trigger" size="small" caret
+                  ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                >
+              </sl-dropdown>
             </div>
-          </sl-details>
-          <sl-alert variant="primary" open>
-            <sl-icon slot="icon" name="info-circle"></sl-icon>
-            More than 1000 results returned. Refine the search to narrow the list.
-          </sl-alert>
+            <sl-empty-state
+              slot="empty"
+              title-text="No documents attached"
+              description="Add the documents this transmittal delivers."
+            >
+              <sl-icon slot="icon" name="file-earmark"></sl-icon>
+            </sl-empty-state>
+          </sl-table>
+          <p class="rs-meta">0 documents</p>
+        </div>
+      </div>
+      <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>
+      <sl-button slot="footer"><sl-icon slot="prefix" name="chevron-left"></sl-icon>Back</sl-button>
+      <sl-button slot="footer" variant="primary">Next: Recipients</sl-button>
+    </sl-dialog>
+
+    <!-- Relate transmittal to document: opens over the wizard (step 2) -->
+    <sl-dialog class="relate-docs" label="Relate transmittal to document" open style="--width: 72rem">
+      <div class="rs-stack">
+        <div class="rs-grid rs-grid--fields">
+          <sl-input class="rs-span-4" type="search" label="Search" value="Test" clearable>
+            <sl-icon slot="prefix" name="search"></sl-icon>
+          </sl-input>
+          <sl-select class="rs-span-2" label="Document type" value="job" clearable>
+            <sl-option value="job">Job document</sl-option>
+            <sl-option value="vendor">Vendor document</sl-option>
+          </sl-select>
+          <sl-select class="rs-span-2" label="Revision status" placeholder="Any" clearable></sl-select>
+          <sl-select class="rs-span-2" label="Discipline" placeholder="Any" clearable></sl-select>
+          <sl-select class="rs-span-2" label="Document class" placeholder="Any" clearable></sl-select>
+          <sl-select class="rs-span-3" label="Originator" placeholder="Any" clearable></sl-select>
+          <sl-select class="rs-span-3" label="Managing department" placeholder="Any" clearable></sl-select>
+          <sl-select class="rs-span-3" label="Issue description" placeholder="Any" clearable></sl-select>
+          <sl-select class="rs-span-3" label="Plant unit" placeholder="Any" clearable></sl-select>
+        </div>
+        <div class="rs-transfer">
           <sl-table
             class="search-results"
             selection="multiple"
             sticky-header
             label="Documents found"
-            style="--max-height: 16rem"
+            style="--max-height: 18rem"
           ></sl-table>
-          <div class="rs-cluster rs-cluster--between">
-            <span class="rs-meta">Selected (0)</span>
-            <span class="rs-meta">Select the documents to relate, then add them.</span>
+          <div class="rs-transfer__actions" role="group" aria-label="Move documents">
+            <sl-tooltip content="Add selected"
+              ><sl-icon-button name="chevron-right" label="Add selected" variant="primary" disabled></sl-icon-button
+            ></sl-tooltip>
+            <sl-tooltip content="Remove selected"
+              ><sl-icon-button name="chevron-left" label="Remove selected" variant="neutral" disabled></sl-icon-button
+            ></sl-tooltip>
+            <sl-tooltip content="Remove all"
+              ><sl-icon-button name="chevron-double-left" label="Remove all" variant="danger" disabled></sl-icon-button
+            ></sl-tooltip>
           </div>
+          <sl-table
+            class="selected-docs"
+            selection="multiple"
+            sticky-header
+            label="Documents to relate"
+            style="--max-height: 18rem"
+          >
+            <sl-empty-state
+              slot="empty"
+              title-text="No documents selected"
+              description="Select documents on the left and add them."
+            >
+              <sl-icon slot="icon" name="file-earmark"></sl-icon>
+            </sl-empty-state>
+          </sl-table>
+        </div>
+        <div class="rs-cluster rs-cluster--between">
+          <span class="rs-meta">More than 1000 results returned</span>
+          <span class="rs-meta">0 documents to relate</span>
         </div>
       </div>
       <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>
-      <sl-button slot="footer"><sl-icon slot="prefix" name="chevron-left"></sl-icon>Back to documents</sl-button>
-      <sl-button slot="footer" variant="primary" disabled>Add documents (0)</sl-button>
+      <sl-button slot="footer" variant="primary" disabled>Finish</sl-button>
     </sl-dialog>
 
     <script type="module">
@@ -293,7 +374,9 @@
         .addEventListener('click', () => document.querySelector('sl-drawer').show());
 
       await flow.mountTable('.transmittal-list', { columns: flow.transmittalColumns, data: flow.transmittals });
+      await flow.mountTable('.related-docs', { columns: flow.relatedColumns, data: [] });
       await flow.mountTable('.search-results', { columns: flow.searchColumns, data: flow.searchResults });
+      await flow.mountTable('.selected-docs', { columns: flow.searchColumns, data: [] });
     </script>
   </body>
 </html>
