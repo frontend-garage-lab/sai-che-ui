@@ -75,11 +75,10 @@ const columnsComment = entries.length
   ? `table.columns = [\n${entries.join(',\n')}\n];${markerLine}`
   : 'set `columns` and `data` from the Table Header Row and Table Row mappings';
 
-// `striped` lives on the cells (or on the rows of the legacy Table Row), `selection="single"` has no checkbox so it is its own switch, `page-size` is on the pagination.
-const singleSelection = instance.getBoolean('Single Selection');
+// `striped` lives on the cells (or on the rows of the legacy Table Row), `page-size` is on the pagination.
 const header = instance.findInstance('Table Header Row');
 const multiple = hasSelectionColumn || (header.type === 'INSTANCE' && header.getBoolean('Selection'));
-const selection = multiple ? ' selection="multiple"' : singleSelection ? ' selection="single"' : '';
+const selection = multiple ? ' selection="multiple"' : '';
 const firstCell = instance.findInstance('Table Cell');
 const firstRow = instance.findInstance('Table Row');
 const stripedCell = firstCell.type === 'INSTANCE' && firstCell.getBoolean('Striped');
@@ -91,9 +90,11 @@ const pageSize =
     ? pagination.getEnum('Page size', { '10': '10', '25': '25', '50': '50', '100': '100' })
     : '';
 const paginate = pageSize ? ` paginate page-size="${pageSize}"` : '';
+// `Sticky Actions` is behaviour only (the ⋮ column stays pinned while the rows scroll sideways).
+const stickyActions = instance.getBoolean('Sticky Actions') ? ' sticky-actions' : '';
 
 export default {
-  example: figma.html`<sl-table${selection}${striped}${paginate}${sortAttributes} sticky-header>
+  example: figma.html`<sl-table${selection}${striped}${paginate}${sortAttributes}${stickyActions} sticky-header>
   ${toolbar ? figma.html`<div slot="toolbar">${toolbar}</div>` : ''}
   ${empty ? figma.html`<div slot="empty">${empty}</div>` : ''}
   <!-- ${columnsComment} -->

@@ -551,3 +551,37 @@ neighbouring [detail panel](/components/detail-panel). The container needs a def
 :::tip
 `sticky-header` only has an effect when the table's height is constrained, e.g. with the `--max-height` custom property.
 :::
+
+### Sticky Row Actions
+
+Add the `sticky-actions` attribute to keep the row action column (the ⋮ menu of a column with `meta.actions`) pinned to the end side while a wide table scrolls horizontally. The pinned cells take the row's background, so hover, selection and striping stay consistent. It is opt-in: tables that fit their container don't need it.
+
+```html:preview
+<sl-table class="sticky-actions-table" sticky-actions style="max-width: 32rem;"></sl-table>
+
+<script type="module">
+  import { html } from 'https://cdn.jsdelivr.net/npm/lit@3/+esm';
+
+  const table = document.querySelector('.sticky-actions-table');
+
+  const menu = () => html`
+    <sl-menu>
+      <sl-menu-item value="edit">Edit</sl-menu-item>
+      <sl-menu-item value="delete">Delete</sl-menu-item>
+    </sl-menu>
+  `;
+
+  table.columns = [
+    { id: 'protocol', accessorKey: 'protocol', header: 'Protocol Number', meta: { width: '12rem' } },
+    { id: 'subject', accessorKey: 'subject', header: 'Subject', meta: { width: '14rem' } },
+    { id: 'owner', accessorKey: 'owner', header: 'Owner', meta: { width: '10rem' } },
+    { id: 'date', accessorKey: 'date', header: 'Date', meta: { width: '8rem' } },
+    { id: 'actions', meta: { actions: true }, cell: menu }
+  ];
+
+  table.data = [
+    { protocol: 'L-SAI-EXT-7', subject: 'Key personnel', owner: 'Aiello Ciro', date: '14-Oct-2026' },
+    { protocol: 'MOM-001', subject: 'Kick off meeting', owner: 'Cazzaniga Alice', date: '12-Oct-2026' }
+  ];
+</script>
+```

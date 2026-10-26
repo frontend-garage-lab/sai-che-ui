@@ -241,39 +241,7 @@
                         ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Add comment</sl-button
                       >
                     </div>
-                    <sl-comment author="Aiello Ciro">
-                      <sl-avatar slot="avatar" shape="circle" initials="AC"></sl-avatar>
-                      <span slot="date">02-Oct-2026 · Submitted for Lead reviewer</span>
-                      <sl-dropdown slot="attachment" placement="bottom-end" hoist>
-                        <sl-icon-button
-                          slot="trigger"
-                          name="three-dots-vertical"
-                          label="Comment actions"
-                        ></sl-icon-button>
-                        <sl-menu>
-                          <sl-menu-item value="download"
-                            ><sl-icon slot="prefix" name="download"></sl-icon>Download</sl-menu-item
-                          >
-                          <sl-menu-item value="edit"><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-menu-item>
-                          <sl-divider></sl-divider>
-                          <sl-menu-item value="delete"
-                            ><sl-icon slot="prefix" name="trash"></sl-icon>Delete</sl-menu-item
-                          >
-                        </sl-menu>
-                      </sl-dropdown>
-                      <a
-                        class="rs-file"
-                        href="#"
-                        download="test Foxit_no signature_Aiello_Ciro.pdf"
-                        title="Download test Foxit_no signature_Aiello_Ciro.pdf"
-                      >
-                        <sl-icon class="rs-file__icon" name="file-earmark-pdf" aria-hidden="true"></sl-icon>
-                        <span class="rs-file__name">test Foxit_no signature_Aiello_Ciro.pdf</span>
-                        <sl-tag size="small" variant="neutral">PDF</sl-tag>
-                        <span class="rs-meta rs-file__doc">test Foxit_no signature</span>
-                        <sl-tag size="small" variant="neutral">A1</sl-tag>
-                      </a>
-                    </sl-comment>
+                    <sl-table class="comment-table" label="Review comments of test Foxit_no signature"></sl-table>
                   </section>
                 </div>
               </sl-tab-panel>
@@ -391,6 +359,7 @@
         data: flow.tasks,
         isSelected: flow.isSelectedTask
       });
+      await flow.mountTable('.comment-table', { columns: flow.commentColumns, data: flow.comments });
       await flow.mountTable('.revision-table', {
         columns: flow.revisionColumns,
         data: flow.revisions

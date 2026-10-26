@@ -179,6 +179,12 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
   @property({ type: Boolean, attribute: 'sticky-header', reflect: true }) stickyHeader = false;
 
   /**
+   * Keeps the row action column (the ⋮ menu) pinned to the end side while the rows scroll horizontally, so the
+   * actions stay reachable on wide tables. Only has an effect when a column has `meta.actions`.
+   */
+  @property({ type: Boolean, attribute: 'sticky-actions', reflect: true }) stickyActions = false;
+
+  /**
    * Makes the table take the height of its container instead of its content: the rows scroll in the space left by the
    * toolbar and the pagination, which stay in place. The container needs a definite height, e.g. a grid cell.
    */
@@ -233,7 +239,11 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
       .filter(column => !this.isActionsColumn(column))
       .map(column => (column.meta as SlTableColumnMeta | undefined)?.width ?? 'minmax(0, 1fr)');
     const hasActionsColumn = this.columns.some(column => this.isActionsColumn(column));
-    const template = [this.selection === 'multiple' ? 'min-content' : '', ...tracks, hasActionsColumn ? 'min-content' : '']
+    const template = [
+      this.selection === 'multiple' ? 'min-content' : '',
+      ...tracks,
+      hasActionsColumn ? 'min-content' : ''
+    ]
       .filter(Boolean)
       .join(' ');
 
@@ -594,9 +604,9 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
                 ? html`
                     <sl-icon
                       part="sort-icon"
-                      class="table__sort-icon ${sortDirection === 'asc' ? 'table__sort-icon--ascending' : ''} ${!sortDirection
-                        ? 'table__sort-icon--placeholder'
-                        : ''}"
+                      class="table__sort-icon ${sortDirection === 'asc'
+                        ? 'table__sort-icon--ascending'
+                        : ''} ${!sortDirection ? 'table__sort-icon--placeholder' : ''}"
                       library="system"
                       name="chevron-down"
                     ></sl-icon>
@@ -713,7 +723,9 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
 
           <div part="body" class="table__body" role="rowgroup">
             ${rows.map(row => this.renderBodyRow(row, focusableRowId))}
-            ${isEmpty ? html`<div part="empty" class="table__empty"><slot name="empty">No results found.</slot></div>` : ''}
+            ${isEmpty
+              ? html`<div part="empty" class="table__empty"><slot name="empty">No results found.</slot></div>`
+              : ''}
           </div>
         </div>
 
@@ -721,7 +733,9 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
           ${this.paginate
             ? html`
                 <div part="footer" class="table__footer">
-                  <span part="summary" class="table__summary">${this.summaryFormatter(start, end, this.itemCount)}</span>
+                  <span part="summary" class="table__summary"
+                    >${this.summaryFormatter(start, end, this.itemCount)}</span
+                  >
 
                   <div part="pagination" class="table__pagination">
                     <sl-icon-button
@@ -761,7 +775,12 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
                     ? html`
                         <label class="table__page-size">
                           ${this.pageSizeLabel}
-                          <sl-select size="small" value=${String(this.pageSize)} hoist @sl-change=${this.handlePageSizeChange}>
+                          <sl-select
+                            size="small"
+                            value=${String(this.pageSize)}
+                            hoist
+                            @sl-change=${this.handlePageSizeChange}
+                          >
                             ${this.pageSizes.map(size => html`<sl-option value=${String(size)}>${size}</sl-option>`)}
                           </sl-select>
                         </label>

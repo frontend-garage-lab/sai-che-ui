@@ -74,6 +74,8 @@ export const transmittalColumns = [
     accessorKey: 'name',
     header: 'Name',
     enableSorting: true,
+    // Never narrower than 12rem: the list scrolls sideways (row actions stay pinned) instead of hiding the name
+    meta: { width: 'minmax(12rem, 1fr)' },
     cell: ({ row }) => documentCell(row.original.name, row.original.identification)
   },
   {

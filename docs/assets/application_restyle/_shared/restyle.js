@@ -30,6 +30,7 @@ export const STATUS_VARIANT = {
   Verified: 'success',
   Commented: 'success',
   Uploaded: 'success',
+  Submitted: 'success',
   Current: 'success',
   Safe: 'success',
   Expired: 'danger',

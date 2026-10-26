@@ -86,6 +86,20 @@ export default css`
     min-width: calc(var(--sl-font-size-medium) + var(--sl-spacing-x-large));
   }
 
+  /* Pinned action column: header and row cells share one width so the divider lines up, and take the row's background
+     (hover, selected, striped) so content scrolling underneath stays hidden */
+  :host([sticky-actions]) .table__actions-header,
+  :host([sticky-actions]) .table__row-actions {
+    position: sticky;
+    inset-inline-end: 0;
+    z-index: 1;
+    box-sizing: border-box;
+    width: calc(var(--sl-font-size-medium) + var(--sl-spacing-x-large) + var(--sl-spacing-x-small));
+    min-width: calc(var(--sl-font-size-medium) + var(--sl-spacing-x-large) + var(--sl-spacing-x-small));
+    background: inherit;
+    box-shadow: inset var(--sl-panel-border-width) 0 0 var(--border-color);
+  }
+
   /* Column headers */
 
   .table__column {

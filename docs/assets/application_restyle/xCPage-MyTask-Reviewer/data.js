@@ -155,6 +155,55 @@ export const taskColumns = [
   { id: 'originator', accessorKey: 'originator', header: 'Originator', meta: { width: '8rem', nowrap: true } }
 ];
 
+// ------------------------------------------------------------------ Review comments tab (screens 5 →)
+
+export const comments = [
+  {
+    author: 'Aiello Ciro',
+    initials: 'AC',
+    date: '02-Oct-2026',
+    status: 'Submitted',
+    file: 'test Foxit_no signature_Aiello_Ciro.pdf',
+    revision: 'A1'
+  }
+];
+
+export const commentColumns = [
+  {
+    id: 'author',
+    header: 'Reviewer',
+    cell: ({ row }) =>
+      html`<span class="rs-inline"
+        ><sl-avatar
+          shape="circle"
+          size="small"
+          initials=${row.original.initials}
+          label=${row.original.author}
+        ></sl-avatar>
+        ${row.original.author}</span
+      >`
+  },
+  {
+    id: 'file',
+    header: 'Commented file',
+    cell: ({ row }) => documentCell(row.original.file)
+  },
+  { id: 'date', accessorKey: 'date', header: 'Date', meta: { width: '8rem', nowrap: true } },
+  { id: 'status', header: 'Status', meta: { width: '7rem' }, cell: ({ row }) => statusTag(row.original.status) },
+  {
+    id: 'actions',
+    meta: { actions: true },
+    cell: () => html`
+      <sl-menu>
+        <sl-menu-item value="download"><sl-icon slot="prefix" name="download"></sl-icon>Download</sl-menu-item>
+        <sl-menu-item value="edit"><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-menu-item>
+        <sl-divider></sl-divider>
+        <sl-menu-item value="delete"><sl-icon slot="prefix" name="trash"></sl-icon>Delete</sl-menu-item>
+      </sl-menu>
+    `
+  }
+];
+
 // ------------------------------------------------------------------ Detail panel of the selected task
 
 export const reviewers = [
