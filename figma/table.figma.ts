@@ -26,9 +26,10 @@ const described = columns.map(column =>
         kind: column.getEnum('Kind', { data: 'data', selection: 'selection', actions: 'actions' }),
         label: column.getString('Label'),
         sort: column.getEnum('Sort', { off: 'off', none: 'none', asc: 'asc', desc: 'desc' }),
-        align: column.getEnum('Align', { start: 'start', center: 'center', end: 'end' })
+        align: column.getEnum('Align', { start: 'start', center: 'center', end: 'end' }),
+        sticky: column.getBoolean('Sticky')
       }
-    : { kind: 'data', label: '', sort: 'off', align: 'start' }
+    : { kind: 'data', label: '', sort: 'off', align: 'start', sticky: false }
 );
 const hasSelectionColumn = described.some(column => column.kind === 'selection');
 const sorted = described.find(column => column.kind === 'data' && (column.sort === 'asc' || column.sort === 'desc'));
@@ -90,8 +91,8 @@ const pageSize =
     ? pagination.getEnum('Page size', { '10': '10', '25': '25', '50': '50', '100': '100' })
     : '';
 const paginate = pageSize ? ` paginate page-size="${pageSize}"` : '';
-// `Sticky Actions` is behaviour only (the ⋮ column stays pinned while the rows scroll sideways).
-const stickyActions = instance.getBoolean('Sticky Actions') ? ' sticky-actions' : '';
+// `Sticky` on the actions column: the ⋮ column stays pinned while the rows scroll sideways.
+const stickyActions = described.some(column => column.kind === 'actions' && column.sticky) ? ' sticky-actions' : '';
 
 export default {
   example: figma.html`<sl-table${selection}${striped}${paginate}${sortAttributes}${stickyActions} sticky-header>
