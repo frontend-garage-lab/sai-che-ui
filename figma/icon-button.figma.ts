@@ -20,10 +20,20 @@ const size = instance.getEnum('Size', { small: 'small', medium: '', large: 'larg
 
 // Icon component instances are named "Icon/<name>", matching the sl-icon `name` attribute directly.
 const icon = instance.getInstanceSwap('Icon');
-const iconName = icon && icon.type === 'INSTANCE' ? icon.name.replace(/^Icon\//, '') : 'gear';
+// Consumer files rename the swapped layer (e.g. "icon"): when it is not "Icon/<name>", the name is read from the icon's own
+// Code Connect snippet (`<sl-icon name="…">`).
+function resolveIconName() {
+  if (!icon || icon.type !== 'INSTANCE') return 'gear';
+  if (/^Icon\//.test(icon.name)) return icon.name.replace(/^Icon\//, '');
+  const match = /name=\\?"([a-z0-9-]+)\\?"/.exec(JSON.stringify(icon.executeTemplate().example));
+  return match ? match[1] : icon.name;
+}
+const iconName = resolveIconName();
+// A layer renamed by the designer (e.g. "Add selected") is the accessible label; the default layer name keeps "Settings".
+const label = instance.name && instance.name !== 'Icon Button' ? instance.name : 'Settings';
 
 export default {
-  example: figma.html`<sl-icon-button name="${iconName}" label="Settings" variant="${variant}"${filled ? ' filled' : ''}${disabled ? ' disabled' : ''}${size ? figma.html` size="${size}"` : ''}></sl-icon-button>`,
+  example: figma.html`<sl-icon-button name="${iconName}" label="${label}" variant="${variant}"${filled ? ' filled' : ''}${disabled ? ' disabled' : ''}${size ? figma.html` size="${size}"` : ''}></sl-icon-button>`,
   imports: ["import 'src/components/icon-button/icon-button.js'"],
   id: 'icon-button',
   metadata: { nestable: true }

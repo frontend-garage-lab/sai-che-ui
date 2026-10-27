@@ -31,13 +31,22 @@ const header = hasHeader
 const footerContent = hasFooter ? instance.getSlot('Footer Content') : null;
 const footer = hasFooter ? figma.html`\n  <div slot="footer">${footerContent ? footerContent : ''}</div>` : '';
 
-const image = instance.getInstanceSwap('Image');
-let imageCode;
-if (image && image.type === 'INSTANCE') {
-  imageCode = image.executeTemplate().example;
-}
+// `Image` is a BOOLEAN that shows the `card__image` placeholder (a plain rectangle, not an instance): the code side is
+// an <img> in the `image` slot, whose `src` comes from the application.
+const hasImage = instance.getBoolean('Image');
 
-const body = instance.getSlot('Body');
+// Free-form slot: the connected instances found under `Body` (e.g. a Table, a Select) are rendered through their own
+// templates so they show up in the snippet, interpolated individually (not .map().join()); when there are none, the
+// slot placeholder is kept.
+const bodySlot = instance.getSlot('Body');
+const bodyInstances = instance.findConnectedInstances(() => true, { path: ['Body'] });
+const bodyAt = (index: number) =>
+  bodyInstances[index] && bodyInstances[index].type === 'INSTANCE'
+    ? figma.html`${index ? '\n  ' : ''}${bodyInstances[index].executeTemplate().example}`
+    : '';
+const body = bodyInstances.length
+  ? figma.html`${bodyAt(0)}${bodyAt(1)}${bodyAt(2)}${bodyAt(3)}${bodyAt(4)}${bodyAt(5)}${bodyAt(6)}${bodyAt(7)}`
+  : bodySlot;
 
 // Accent: colored top edge, its color is the Variant of the nested Card Accent instance.
 const accent = instance.getBoolean('Accent') ? instance.findInstance('card-accent') : null;
@@ -54,7 +63,7 @@ const variant =
     : '';
 
 export default {
-  example: figma.html`<sl-card${variant ? ` variant="${variant}"` : ''}>${imageCode ? figma.html`\n  <span slot="image">${imageCode}</span>` : ''}${header}
+  example: figma.html`<sl-card${variant ? ` variant="${variant}"` : ''}>${hasImage ? figma.html`\n  <img slot="image" src="…" alt="" />` : ''}${header}
   ${body}${footer}
 </sl-card>`,
   imports: ["import 'src/components/card/card.js'"],

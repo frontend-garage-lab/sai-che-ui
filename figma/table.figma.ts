@@ -7,14 +7,40 @@ const instance = figma.selectedInstance;
 // Regions: the Toolbar slot is the `toolbar` slot of <sl-table>, the footer is the built-in pagination.
 const showToolbar = instance.getBoolean('Show Toolbar');
 const showPagination = instance.getBoolean('Show Pagination');
-const toolbar = showToolbar ? instance.getSlot('Toolbar') : '';
+// A Table Toolbar instance already renders its own `<div slot="toolbar">` wrapper, so it is inlined as is: going through
+// `getSlot` would only emit a `<Toolbar />` placeholder bound to the slot node, which has no Code Connect to open.
+const toolbarInstance = showToolbar ? instance.findInstance('Table Toolbar') : undefined;
+const toolbarIsComponent = !!toolbarInstance && toolbarInstance.type === 'INSTANCE';
+// Any other Toolbar content (Input, Checkbox, Button… placed directly in the slot) is inlined through its own templates.
+const toolbarSlot = showToolbar && !toolbarIsComponent ? instance.getSlot('Toolbar') : undefined;
+const toolbarList = toolbarSlot ? toolbarSlot.connectedInstances : [];
+const toolbarAt = (index: number) =>
+  toolbarList[index] ? figma.html`\n    ${toolbarList[index].executeTemplate().example}` : '';
+const toolbarItems = toolbarList.length
+  ? figma.html`${toolbarAt(0)}${toolbarAt(1)}${toolbarAt(2)}${toolbarAt(3)}${toolbarAt(4)}${toolbarAt(5)}${toolbarAt(6)}${toolbarAt(7)}\n  `
+  : toolbarSlot;
+const toolbar = !showToolbar
+  ? ''
+  : toolbarInstance && toolbarInstance.type === 'INSTANCE'
+    ? toolbarInstance.executeTemplate().example
+    : toolbarItems;
+const showRows = instance.getBoolean('Show Rows');
 // `Show Empty` swaps the rows for the Empty slot, which is the table's `empty` slot.
 const showEmpty = instance.getBoolean('Show Empty');
-const empty = showEmpty ? instance.getSlot('Empty') : '';
+const emptySlot = showEmpty ? instance.getSlot('Empty') : undefined;
+const emptyList = emptySlot ? emptySlot.connectedInstances : [];
+const emptyAt = (index: number) =>
+  emptyList[index] ? figma.html`\n    ${emptyList[index].executeTemplate().example}` : '';
+const empty = emptyList.length ? figma.html`${emptyAt(0)}${emptyAt(1)}${emptyAt(2)}${emptyAt(3)}\n  ` : emptySlot || '';
 
 // Columns: each Table Column instance nested in the Rows slot is one entry of `columns`. `selection` follows the
 // selection column (or the select-all checkbox of the legacy Table Header Row), `sort-column` the column that is sorted.
-const columns = instance.findConnectedInstances(node => node.name === 'Table Column');
+// They are the connected instances directly in the Rows slot (consumer files rename the layers), with the layer name as fallback.
+const rowsSlot = instance.getSlot('Rows');
+const rowsColumns = rowsSlot ? rowsSlot.connectedInstances : [];
+const columns = rowsColumns.length
+  ? rowsColumns
+  : instance.findConnectedInstances(node => node.name === 'Table Column');
 const slugify = (text: string) =>
   text
     .toLowerCase()
@@ -37,7 +63,8 @@ const sortAttributes = sorted ? ` sort-column="${slugify(sorted.label)}" sort-di
 const entries = described
   .filter(column => column.kind !== 'selection')
   .map(column => {
-    if (column.kind === 'actions') return `  { id: 'actions', meta: { actions: true }, cell: ({ row }) => … }`;
+    if (column.kind === 'actions')
+      return `  { id: 'actions', meta: { actions: true }, cell: ({ row }) => '' /* row actions */ }`;
     const id = slugify(column.label);
     const sortable = column.sort !== 'off' ? ', enableSorting: true' : '';
     const align = column.align !== 'start' ? `, meta: { align: '${column.align}' }` : '';
@@ -67,14 +94,32 @@ const markerVariants = [
       })
   )
 ];
-const markerLine = markerVariants.length
+// `columns`, `data` and `rowVariant` are JS-only properties (`attribute: false`): the snippet declares them and binds
+// them with the Lit `.property` syntax instead of setting them through a script.
+// Several tables can sit in the same snippet (e.g. a Dialog body), so a table with a custom layer name gets prefixed
+// variable names (`availableRecipientsColumns`) instead of colliding on `columns` / `data`.
+const camel = (text: string) =>
+  text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+(.)?/g, (_match: string, char?: string) => (char ? char.toUpperCase() : ''))
+    .replace(/^[0-9]+/, '');
+const baseName = instance.name === 'Table' ? '' : camel(instance.name);
+const columnsVar = baseName ? `${baseName}Columns` : 'columns';
+const dataVar = baseName ? `${baseName}Data` : 'data';
+const rowVariantVar = baseName ? `${baseName}RowVariant` : 'rowVariant';
+const rowVariantCode = markerVariants.length
   ? markerVariants.length === 1
-    ? `\ntable.rowVariant = row => '${markerVariants[0]}';`
-    : `\ntable.rowVariant = row => '<one per record: ${markerVariants.join(' | ')}>';`
+    ? `\nconst ${rowVariantVar} = row => '${markerVariants[0]}';`
+    : `\nconst ${rowVariantVar} = row => '<one per record: ${markerVariants.join(' | ')}>';`
   : '';
-const columnsComment = entries.length
-  ? `table.columns = [\n${entries.join(',\n')}\n];${markerLine}`
-  : 'set `columns` and `data` from the Table Header Row and Table Row mappings';
+const rowVariantBinding = markerVariants.length ? ` .rowVariant=\${${rowVariantVar}}` : '';
+const columnsCode = entries.length
+  ? `const ${columnsVar} = [\n${entries.join(',\n')}\n];`
+  : `const ${columnsVar} = []; // set from the Table Column mappings`;
+const dataCode = showRows
+  ? `const ${dataVar} = []; // one object per record, keyed by each column accessorKey`
+  : `const ${dataVar} = []; // no records: the empty slot is shown`;
+const properties = `${columnsCode}\n${dataCode}${rowVariantCode}`;
 
 // `striped` lives on the cells (or on the rows of the legacy Table Row), `page-size` is on the pagination.
 const header = instance.findInstance('Table Header Row');
@@ -95,12 +140,28 @@ const paginate = pageSize ? ` paginate page-size="${pageSize}"` : '';
 const stickyActions = described.some(column => column.kind === 'actions' && column.sticky) ? ' sticky-actions' : '';
 
 export default {
-  example: figma.html`<sl-table${selection}${striped}${paginate}${sortAttributes}${stickyActions} sticky-header>
-  ${toolbar ? figma.html`<div slot="toolbar">${toolbar}</div>` : ''}
-  ${empty ? figma.html`<div slot="empty">${empty}</div>` : ''}
-  <!-- ${columnsComment} -->
+  example: figma.html`${properties}
+
+<sl-table .columns=\${${columnsVar}} .data=\${${dataVar}}${rowVariantBinding}${selection}${striped}${paginate}${sortAttributes}${stickyActions} sticky-header>${
+    toolbar
+      ? toolbarIsComponent
+        ? figma.html`\n  ${toolbar}`
+        : figma.html`\n  <div slot="toolbar">${toolbar}</div>`
+      : ''
+  }${empty ? figma.html`\n  <div slot="empty">${empty}</div>` : ''}
 </sl-table>`,
-  imports: ["import 'src/components/table/table.js'"],
+  // The slots inline other templates, whose own imports are not merged one level down: list the usual toolbar/empty content.
+  imports: [
+    "import 'src/components/table/table.js'",
+    "import 'src/components/button/button.js'",
+    "import 'src/components/icon-button/icon-button.js'",
+    "import 'src/components/icon/icon.js'",
+    "import 'src/components/input/input.js'",
+    "import 'src/components/checkbox/checkbox.js'",
+    "import 'src/components/divider/divider.js'",
+    "import 'src/components/empty-state/empty-state.js'"
+  ],
   id: 'table',
-  metadata: { nestable: false }
+  // Nestable so a Table placed in a Dialog/Drawer/Card body is shown inline in that snippet.
+  metadata: { nestable: true }
 };

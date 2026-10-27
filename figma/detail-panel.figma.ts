@@ -16,7 +16,18 @@ if (titleIcon && titleIcon.type === 'INSTANCE') {
   titleIconCode = titleIcon.executeTemplate().example;
 }
 const actions = instance.getSlot('Actions');
-const body = instance.getSlot('Body');
+// Free-form slot: the connected instances found under `Body` (e.g. a Table, a Select) are rendered through their own
+// templates so they show up in the snippet, interpolated individually (not .map().join()); when there are none, the
+// slot placeholder is kept.
+const bodySlot = instance.getSlot('Body');
+const bodyInstances = instance.findConnectedInstances(() => true, { path: ['Body'] });
+const bodyAt = (index: number) =>
+  bodyInstances[index] && bodyInstances[index].type === 'INSTANCE'
+    ? figma.html`${index ? '\n  ' : ''}${bodyInstances[index].executeTemplate().example}`
+    : '';
+const body = bodyInstances.length
+  ? figma.html`${bodyAt(0)}${bodyAt(1)}${bodyAt(2)}${bodyAt(3)}${bodyAt(4)}${bodyAt(5)}${bodyAt(6)}${bodyAt(7)}`
+  : bodySlot;
 
 // The Figma component is always drawn as a self-contained block (outline on every side), which is what
 // `contained` renders in code; the start-border-only look is the code default for sidebars attached to the page edge.

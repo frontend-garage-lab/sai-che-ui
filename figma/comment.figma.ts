@@ -8,11 +8,34 @@ const author = instance.getString('Author');
 const date = instance.getString('Date');
 const text = instance.getString('Text');
 // Extra content under the text (e.g. the commented file row `a.rs-file`), dropped into the "Body" slot.
-const body = instance.getSlot('Body');
+// Free-form slot: the connected instances found under `Body` (e.g. a Table, a Select) are rendered through their own
+// templates so they show up in the snippet, interpolated individually (not .map().join()); when there are none, the
+// slot placeholder is kept.
+const bodySlot = instance.getSlot('Body');
+const bodyInstances = instance.findConnectedInstances(() => true, { path: ['Body'] });
+const bodyAt = (index: number) =>
+  bodyInstances[index] && bodyInstances[index].type === 'INSTANCE'
+    ? figma.html`${index ? '\n  ' : ''}${bodyInstances[index].executeTemplate().example}`
+    : '';
+const body = bodyInstances.length
+  ? figma.html`${bodyAt(0)}${bodyAt(1)}${bodyAt(2)}${bodyAt(3)}${bodyAt(4)}${bodyAt(5)}${bodyAt(6)}${bodyAt(7)}`
+  : bodySlot;
 // Right-side action (a file icon-button or an action menu `sl-dropdown`), dropped into the "Attachment" slot.
 const hasAttachment = instance.getBoolean('Has Attachment');
-const attachmentSlot = instance.getSlot('Attachment');
-const attachment = hasAttachment ? figma.html`\n  ${attachmentSlot}` : '';
+const attachmentSlot = hasAttachment ? instance.getSlot('Attachment') : undefined;
+// The attachment (Icon, Icon Button or Dropdown) is usually wrapped in a frame inside the slot, so it is searched by
+// layer name instead of through `connectedInstances`; the slot placeholder stays as the fallback.
+const attachmentNode = hasAttachment
+  ? instance.findConnectedInstances(
+      node => node.name.startsWith('Icon/') || node.name === 'Icon Button' || node.name === 'Dropdown'
+    )[0]
+  : undefined;
+const attachment =
+  attachmentNode && attachmentNode.type === 'INSTANCE'
+    ? figma.html`\n  <span slot="attachment">${attachmentNode.executeTemplate().example}</span>`
+    : attachmentSlot
+      ? figma.html`\n  <span slot="attachment">${attachmentSlot}</span>`
+      : '';
 
 export default {
   example: figma.html`<sl-comment author="${author}" date="${date}">
@@ -22,7 +45,8 @@ export default {
   imports: [
     "import 'src/components/comment/comment.js'",
     "import 'src/components/avatar/avatar.js'",
-    "import 'src/components/icon-button/icon-button.js'"
+    "import 'src/components/icon-button/icon-button.js'",
+    "import 'src/components/icon/icon.js'"
   ],
   id: 'comment',
   metadata: { nestable: true }

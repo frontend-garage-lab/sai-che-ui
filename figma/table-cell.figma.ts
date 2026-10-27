@@ -18,7 +18,7 @@ const type = instance.getEnum('Type', {
 const text = instance.getString('Text');
 const meta1 = instance.getString('Meta 1');
 // `composite` is one cell holding any mix of status, badge and icon: the Content slot is rendered as is.
-// `quick-info` is the same slot preset with a label-less status dot and the task icons (check-square, chat).
+// `quick-info` is the same slot preset with a label-less status dot and the chat icon.
 const content = type === 'composite' || type === 'quick-info' ? instance.getSlot('Content') : '';
 
 // `Marker` flags the row with a coloured leading bar: it is the table's `rowVariant`, one colour per record.

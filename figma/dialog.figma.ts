@@ -16,21 +16,51 @@ function text(...layerNames: string[]) {
 const hasHeader = instance.getEnum('Header', { true: true, false: false });
 const hasFooter = instance.getEnum('Footer', { true: true, false: false });
 // The footer is the `Footer Content` slot: whatever Buttons it holds become the dialog's footer.
-const footer = hasFooter ? figma.html`\n  <div slot="footer">${instance.getSlot('Footer Content')}</div>` : '';
+// `getSlot` alone only shows a collapsed `<Slot />` placeholder for the slot node, which has no Code Connect to open:
+// the connected instances placed directly in the slot are rendered through their own templates instead, interpolated
+// individually (not .map().join()), and the slot placeholder stays as the fallback for free-form content.
+const buttonSlot = hasFooter ? instance.getSlot('Footer Content') : undefined;
+const buttonList = buttonSlot ? buttonSlot.connectedInstances : [];
+const buttonAt = (index: number) =>
+  buttonList[index] ? figma.html`\n    ${buttonList[index].executeTemplate().example}` : '';
+const button1 = buttonAt(0);
+const button2 = buttonAt(1);
+const button3 = buttonAt(2);
+const buttonFallback = buttonList.length || !buttonSlot ? '' : figma.html`\n    ${buttonSlot}`;
+const footer = hasFooter
+  ? figma.html`\n  <div slot="footer">${button1}${button2}${button3}${buttonFallback}\n  </div>`
+  : '';
 
-const headerActions = instance.getInstanceSwap('Header Actions');
+// `Header Actions` is a BOOLEAN that shows the `header-actions` instance (an Icon Button), not an instance swap.
+const headerActions = instance.getBoolean('Header Actions') ? instance.findInstance('header-actions') : undefined;
 let headerActionsCode;
 if (hasHeader && headerActions && headerActions.type === 'INSTANCE') {
   headerActionsCode = headerActions.executeTemplate().example;
 }
 
-const body = instance.getSlot('Body');
+// Free-form slot: the connected instances found under `Body` (e.g. a Table, a Select) are rendered through their own
+// templates so they show up in the snippet, interpolated individually (not .map().join()); when there are none, the
+// slot placeholder is kept.
+const bodySlot = instance.getSlot('Body');
+const bodyInstances = instance.findConnectedInstances(() => true, { path: ['Body'] });
+const bodyAt = (index: number) =>
+  bodyInstances[index] && bodyInstances[index].type === 'INSTANCE'
+    ? figma.html`${index ? '\n  ' : ''}${bodyInstances[index].executeTemplate().example}`
+    : '';
+const body = bodyInstances.length
+  ? figma.html`${bodyAt(0)}${bodyAt(1)}${bodyAt(2)}${bodyAt(3)}${bodyAt(4)}${bodyAt(5)}${bodyAt(6)}${bodyAt(7)}`
+  : bodySlot;
 
 export default {
   example: figma.html`<sl-dialog${hasHeader ? ` label="${text('Dialog title')}"` : ' no-header'} open>
   ${headerActionsCode ? figma.html`<span slot="header-actions">${headerActionsCode}</span>\n  ` : ''}${body}${footer}
 </sl-dialog>`,
-  imports: ["import 'src/components/dialog/dialog.js'", "import 'src/components/button/button.js'"],
+  imports: [
+    "import 'src/components/dialog/dialog.js'",
+    "import 'src/components/button/button.js'",
+    "import 'src/components/icon-button/icon-button.js'",
+    "import 'src/components/icon/icon.js'"
+  ],
   id: 'dialog',
   metadata: { nestable: false }
 };

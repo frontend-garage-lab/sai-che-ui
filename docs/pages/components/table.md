@@ -8,6 +8,21 @@ layout: component
 Built on [TanStack Table](https://tanstack.com/table/latest). Set `columns` and `data` as properties — build the
 `columns` array once and keep the reference stable, since it drives TanStack's internal memoization.
 
+`columns`, `data` and `rowVariant` are properties, not attributes, so they cannot be written as HTML markup. In a
+Lit template (or any framework that supports property bindings) bind them with the `.` prefix:
+
+```ts
+const columns = [
+  { id: 'protocol', accessorKey: 'protocol', header: 'Protocol Number' },
+  { id: 'subject', accessorKey: 'subject', header: 'Subject' }
+];
+const data = [{ protocol: 'L-SAI-EXT-7', subject: 'Key personnel for the project' }];
+
+html`<sl-table .columns=${columns} .data=${data}></sl-table>`;
+```
+
+The Code Connect snippet of the Table in Figma Dev Mode uses this form.
+
 ```html:preview
 <sl-table class="basic-table"></sl-table>
 
@@ -158,39 +173,19 @@ when there's nothing to display.
 
 ### Action buttons
 
-Put `<sl-icon-button>` elements in the `toolbar` slot for actions like download, import or approve, grouping related
-actions with `<sl-divider vertical>` and wrapping each button in an `<sl-tooltip>` to label it. A trailing element,
-such as a record count, can be pushed to the end of the toolbar with `margin-inline-start: auto`.
+Put small `<sl-button>` elements with a prefix `<sl-icon>` in the `toolbar` slot for actions like download, upload or
+delegate. Disable the actions that don't apply to the current selection. A trailing element, such as a record count,
+can be pushed to the end of the toolbar with `margin-inline-start: auto`.
 
 ```html:preview
 <sl-table class="toolbar-actions-table" selection="single">
   <div slot="toolbar" style="display: flex; align-items: center; gap: var(--sl-spacing-x-small); width: 100%;">
-    <div style="display: flex; gap: var(--sl-spacing-3x-small);">
-      <sl-tooltip content="Download document">
-        <sl-icon-button name="download" label="Download document" variant="primary"></sl-icon-button>
-      </sl-tooltip>
-      <sl-tooltip content="Import comment">
-        <sl-icon-button name="upload" label="Import comment" variant="neutral"></sl-icon-button>
-      </sl-tooltip>
-    </div>
-    <sl-divider vertical style="height: 1.5rem;"></sl-divider>
-    <div style="display: flex; gap: var(--sl-spacing-3x-small);">
-      <sl-tooltip content="Release task">
-        <sl-icon-button name="arrow-counterclockwise" label="Release task" variant="danger"></sl-icon-button>
-      </sl-tooltip>
-      <sl-tooltip content="Refresh list">
-        <sl-icon-button name="arrow-clockwise" label="Refresh list" variant="primary"></sl-icon-button>
-      </sl-tooltip>
-    </div>
-    <sl-divider vertical style="height: 1.5rem;"></sl-divider>
-    <div style="display: flex; gap: var(--sl-spacing-3x-small);">
-      <sl-tooltip content="Take task">
-        <sl-icon-button name="check-lg" label="Take task" variant="accent" filled></sl-icon-button>
-      </sl-tooltip>
-      <sl-tooltip content="Complete review task">
-        <sl-icon-button name="check2-circle" label="Complete review task" variant="neutral"></sl-icon-button>
-      </sl-tooltip>
-    </div>
+    <sl-button size="small"><sl-icon slot="prefix" name="download"></sl-icon>Download</sl-button>
+    <sl-button size="small" disabled><sl-icon slot="prefix" name="upload"></sl-icon>Upload</sl-button>
+    <sl-button size="small"><sl-icon slot="prefix" name="arrow-counterclockwise"></sl-icon>Refuse</sl-button>
+    <sl-button size="small"><sl-icon slot="prefix" name="arrow-right"></sl-icon>Delegate</sl-button>
+    <sl-button size="small"><sl-icon slot="prefix" name="check-square"></sl-icon>Acquire</sl-button>
+    <sl-button size="small" disabled><sl-icon slot="prefix" name="check-square-fill"></sl-icon>Complete</sl-button>
     <span style="margin-inline-start: auto; color: var(--sl-color-neutral-500);">
       <strong style="color: var(--sl-color-neutral-900);">3</strong> tasks in review
     </span>
@@ -340,11 +335,10 @@ column to align its header and cells.
 
 ### Quick info cell
 
-A quick-info column groups an `sl-status` dot (no label, the state in `title`) with row markers made of `sl-icon`s.
-The marker colour comes from the icon's `variant`: `neutral` while off, `accent` for an accepted task, `success` once
-a comment is uploaded, `danger` for a notified task. The off and on states also change shape (`square` →
-`check-square-fill`, `chat` → `chat-fill`), so colour is never the only cue. Lay the elements out in a flex row with an
-`x-small` gap and centred items so the dot and the icons share one centre line.
+A quick-info column groups an `sl-status` dot (no label, the state in `title`) with a row marker made of an `sl-icon`.
+The marker colour comes from the icon's `variant`: `neutral` while off, `success` once a comment is uploaded. The off
+and on states also change shape (`chat` → `chat-fill`), so colour is never the only cue. Lay the elements out in a flex
+row with an `x-small` gap and centred items so the dot and the icon share one centre line.
 
 ```html:preview
 <sl-table class="quick-info-table"></sl-table>
@@ -366,11 +360,6 @@ a comment is uploaded, `danger` for a notified task. The off and on states also 
         <span style="display: inline-flex; align-items: center; gap: var(--sl-spacing-x-small);">
           <sl-status variant=${row.original.expiry} size="small" title=${row.original.expiry}></sl-status>
           <sl-icon
-            variant=${row.original.accepted ? 'accent' : 'neutral'}
-            name=${row.original.accepted ? 'check-square-fill' : 'square'}
-            title=${row.original.accepted ? 'Accepted' : 'Not accepted yet'}
-          ></sl-icon>
-          <sl-icon
             variant=${row.original.commented ? 'success' : 'neutral'}
             name=${row.original.commented ? 'chat-fill' : 'chat'}
             title=${row.original.commented ? 'Review comment uploaded' : 'No review comment yet'}
@@ -382,9 +371,9 @@ a comment is uploaded, `danger` for a notified task. The off and on states also 
   ];
 
   table.data = [
-    { expiry: 'danger', accepted: false, commented: false, task: 'Key personnel for the project' },
-    { expiry: 'warning', accepted: true, commented: false, task: 'Kick off meeting' },
-    { expiry: 'success', accepted: true, commented: true, task: 'Piping layout review' }
+    { expiry: 'danger', commented: false, task: 'Key personnel for the project' },
+    { expiry: 'warning', commented: false, task: 'Kick off meeting' },
+    { expiry: 'success', commented: true, task: 'Piping layout review' }
   ];
 </script>
 ```

@@ -21,7 +21,8 @@ const variant = instance.getEnum('Variant', {
   warning: 'warning',
   danger: 'danger'
 });
-const selected = instance.getEnum('State', { default: false, selected: true });
+const selected = instance.getEnum('State', { default: false, selected: true, disabled: false });
+const disabled = instance.getEnum('State', { default: false, selected: false, disabled: true });
 
 const icon = instance.getInstanceSwap('Icon');
 let iconCode;
@@ -30,7 +31,7 @@ if (icon && icon.type === 'INSTANCE') {
 }
 
 export default {
-  example: figma.html`<sl-stat variant="${variant}" count="${text('128')}"${selected ? ' selected' : ''}>${iconCode ? figma.html`<span slot="prefix">${iconCode}</span>` : ''}${text('Label')}</sl-stat>`,
+  example: figma.html`<sl-stat variant="${variant}" count="${text('128')}"${selected ? ' selected' : ''}${disabled ? ' disabled' : ''}>${iconCode ? figma.html`<span slot="prefix">${iconCode}</span>` : ''}${text('Label')}</sl-stat>`,
   imports: ["import 'src/components/stat/stat.js'"],
   id: 'stat',
   metadata: { nestable: true }

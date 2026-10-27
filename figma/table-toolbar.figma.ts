@@ -5,17 +5,41 @@ import figma from 'figma';
 const instance = figma.selectedInstance;
 
 // The Table Toolbar is the content of the table's `toolbar` slot: the Actions slot holds Buttons, Icon Buttons and
-// Dividers (each rendered through its own Code Connect template), the summary is plain text at the end.
-const actions = instance.getSlot('Actions');
+// Dividers, each rendered through its own Code Connect template and interpolated individually (not .map().join()),
+// as the Dropdown and Tab Group mappings do. `getSlot('Actions')` would only show a collapsed `Actions` placeholder.
+const actions = instance.findConnectedInstances(node => ['Button', 'Icon Button', 'Divider'].includes(node.name));
+const render = (index: number) =>
+  actions[index] && actions[index].type === 'INSTANCE' ? actions[index].executeTemplate().example : '';
+const action1 = render(0);
+const action2 = render(1);
+const action3 = render(2);
+const action4 = render(3);
+const action5 = render(4);
+const action6 = render(5);
+const action7 = render(6);
+const action8 = render(7);
 const showSummary = instance.getBoolean('Show Summary');
 const summary = showSummary ? instance.getString('Summary') : '';
 
 export default {
   example: figma.html`<div slot="toolbar">
-  ${actions}
+  ${action1}
+  ${action2}
+  ${action3}
+  ${action4}
+  ${action5}
+  ${action6}
+  ${action7}
+  ${action8}
   ${summary ? figma.html`<span style="margin-inline-start: auto;">${summary}</span>` : ''}
 </div>`,
-  imports: ["import 'src/components/table/table.js'"],
+  imports: [
+    "import 'src/components/table/table.js'",
+    "import 'src/components/button/button.js'",
+    "import 'src/components/icon-button/icon-button.js'",
+    "import 'src/components/icon/icon.js'",
+    "import 'src/components/divider/divider.js'"
+  ],
   id: 'table-toolbar',
   metadata: { nestable: true }
 };
