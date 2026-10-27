@@ -36,12 +36,22 @@ const bodyAt = (index: number) =>
   bodyInstances[index] && bodyInstances[index].type === 'INSTANCE'
     ? figma.html`${index ? '\n  ' : ''}${bodyInstances[index].executeTemplate().example}`
     : '';
+// A body made only of text has no instance to render and `getSlot` would print just the slot name: the text layers
+// found under `Body` are emitted as the body content instead.
+const bodyTexts = bodyInstances.length
+  ? []
+  : instance
+      .findLayers(node => node.type === 'TEXT', { path: ['Body'] })
+      .flatMap(node => (node.type === 'TEXT' ? [node.textContent] : []));
 const body = bodyInstances.length
   ? figma.html`${bodyAt(0)}${bodyAt(1)}${bodyAt(2)}${bodyAt(3)}${bodyAt(4)}${bodyAt(5)}${bodyAt(6)}${bodyAt(7)}`
-  : bodySlot;
+  : bodyTexts.length
+    ? bodyTexts.join('\n  ')
+    : bodySlot;
 
+// No `open` attribute: showing the drawer is behaviour (`drawer.show()`), not a design state, and every docs example omits it.
 export default {
-  example: figma.html`<sl-drawer${hasHeader ? ` label="${label}"` : ' no-header'} open>
+  example: figma.html`<sl-drawer${hasHeader ? ` label="${label}"` : ' no-header'}>
   ${headerActionsCode ? figma.html`<span slot="header-actions">${headerActionsCode}</span>\n  ` : ''}${body}${footer}
 </sl-drawer>`,
   imports: ["import 'src/components/drawer/drawer.js'", "import 'src/components/button/button.js'"],

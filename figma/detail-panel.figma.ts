@@ -25,9 +25,18 @@ const bodyAt = (index: number) =>
   bodyInstances[index] && bodyInstances[index].type === 'INSTANCE'
     ? figma.html`${index ? '\n  ' : ''}${bodyInstances[index].executeTemplate().example}`
     : '';
+// A body made only of text has no instance to render and `getSlot` would print just the slot name: the text layers
+// found under `Body` are emitted as the body content instead.
+const bodyTexts = bodyInstances.length
+  ? []
+  : instance
+      .findLayers(node => node.type === 'TEXT', { path: ['Body'] })
+      .flatMap(node => (node.type === 'TEXT' ? [node.textContent] : []));
 const body = bodyInstances.length
   ? figma.html`${bodyAt(0)}${bodyAt(1)}${bodyAt(2)}${bodyAt(3)}${bodyAt(4)}${bodyAt(5)}${bodyAt(6)}${bodyAt(7)}`
-  : bodySlot;
+  : bodyTexts.length
+    ? bodyTexts.join('\n  ')
+    : bodySlot;
 
 // The Figma component is always drawn as a self-contained block (outline on every side), which is what
 // `contained` renders in code; the start-border-only look is the code default for sidebars attached to the page edge.
