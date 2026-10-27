@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-27T00:00:00Z",
+  "title": "Design System: Saipem DS",
+  "extensions": {
+    "colorMeta": {
+      "saipem-deep-teal": {
+        "role": "primary",
+        "displayName": "Saipem Deep Teal",
+        "canonical": "hsl(192 80% 28%)",
+        "tonalRamp": [
+          "#f4fafb",
+          "#e4f3f7",
+          "#16a0c2",
+          "#0e6a81",
+          "#0c5264",
+          "#024050"
+        ]
+      },
+      "signal-orange": {
+        "role": "secondary",
+        "displayName": "Signal Orange",
+        "canonical": "hsl(26 88% 57%)",
+        "tonalRamp": [
+          "#fbf7f3",
+          "#f28431",
+          "#e66c0f"
+        ]
+      },
+      "success-green": {
+        "role": "semantic",
+        "displayName": "Success Green",
+        "canonical": "hsl(162 62% 32%)"
+      },
+      "warning-amber": {
+        "role": "semantic",
+        "displayName": "Warning Amber",
+        "canonical": "hsl(45 93% 30%)"
+      },
+      "danger-red": {
+        "role": "semantic",
+        "displayName": "Danger Red",
+        "canonical": "hsl(6 72% 49.9%)"
+      },
+      "app-gray": {
+        "role": "neutral",
+        "displayName": "App Gray",
+        "canonical": "hsl(200 10% 97.5%)"
+      },
+      "sunken-gray": {
+        "role": "neutral",
+        "displayName": "Sunken Gray",
+        "canonical": "hsl(200 9% 95.5%)"
+      },
+      "steel-text": {
+        "role": "neutral",
+        "displayName": "Steel Text",
+        "canonical": "hsl(200 14% 14%)"
+      }
+    },
+    "typographyMeta": {
+      "title": {
+        "displayName": "Title",
+        "purpose": "One page title per page (.rs-title, Figma Heading/H2)."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Card and region headings (.rs-heading, Heading/H4)."
+      },
+      "subheading": {
+        "displayName": "Subheading",
+        "purpose": "Group labels inside a region (.rs-subheading, Heading/H5)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default text (.rs-body, Body/Small)."
+      },
+      "label": {
+        "displayName": "Meta",
+        "purpose": "Secondary metadata (.rs-meta, Caption)."
+      }
+    },
+    "shadows": [
+      {
+        "name": "x-small",
+        "value": "0 1px 2px hsl(192 60% 10% / 6%)",
+        "purpose": "Cards and panels at rest."
+      },
+      {
+        "name": "medium",
+        "value": "0 4px 8px -2px hsl(192 60% 10% / 8%), 0 2px 4px -2px hsl(192 60% 10% / 4%)",
+        "purpose": "Dropdowns, menus, popovers."
+      },
+      {
+        "name": "large",
+        "value": "0 12px 16px -4px hsl(192 60% 10% / 10%), 0 4px 6px -2px hsl(192 60% 10% / 4%)",
+        "purpose": "Dialogs and drawers."
+      }
+    ],
+    "motion": [
+      {
+        "name": "fast",
+        "value": "150ms",
+        "purpose": "--sl-transition-fast: state feedback (hover, focus, toggle)."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "1024px"
+      },
+      {
+        "name": "desktop",
+        "value": "1280px"
+      },
+      {
+        "name": "wide",
+        "value": "1440px"
+      },
+      {
+        "name": "max",
+        "value": "1920px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single primary action of a region (sl-button variant=\"primary\"). PREVIEW ONLY: in pages use the sl-* component, never this native markup.",
+      "html": "<button class=\"ds-btn-primary\">Accept task</button>",
+      "css": ".ds-btn-primary { font: 500 14px/34px Inter, sans-serif; height: 36px; padding: 0 16px; background: #0e6a81; color: #fff; border: 1px solid #0e6a81; border-radius: 6px; cursor: pointer; transition: background 150ms; } .ds-btn-primary:hover { background: #0c5264; border-color: #0c5264; } .ds-btn-primary:active { background: #024050; border-color: #024050; } .ds-btn-primary:focus-visible { outline: 2px solid #0e6a81; outline-offset: 2px; }"
+    },
+    {
+      "name": "Default Button",
+      "kind": "button",
+      "refersTo": "button-default",
+      "description": "Secondary action (sl-button default). PREVIEW ONLY: in pages use the sl-* component, never this native markup.",
+      "html": "<button class=\"ds-btn-default\">Export</button>",
+      "css": ".ds-btn-default { font: 500 14px/34px Inter, sans-serif; height: 36px; padding: 0 16px; background: #fff; color: #2d3539; border: 1px solid #cbd0d2; border-radius: 6px; box-shadow: 0 1px 2px hsl(192 60% 10% / 6%); cursor: pointer; transition: background 150ms; } .ds-btn-default:hover { background: #f8f9f9; }"
+    },
+    {
+      "name": "Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Text field with the label above it (sl-input). PREVIEW ONLY: in pages use the sl-* component, never this native markup.",
+      "html": "<label class=\"ds-field\"><span>Document code</span><input placeholder=\"e.g. 022000-BGRB-00-RT-001\"></label>",
+      "css": ".ds-field { display: grid; gap: 4px; font: 400 14px/1.5 Inter, sans-serif; color: #2d3539; } .ds-field input { height: 36px; padding: 0 12px; border: 1px solid #889196; border-radius: 6px; background: #fff; font: inherit; } .ds-field input:hover { border-color: #6c767b; } .ds-field input:focus { outline: 2px solid #0e6a81; outline-offset: 2px; border-color: #16a0c2; }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "The standard panel surface (sl-card). PREVIEW ONLY: in pages use the sl-* component, never this native markup.",
+      "html": "<div class=\"ds-card\"><h4>Filters</h4><p>Panel content</p></div>",
+      "css": ".ds-card { background: #fff; border: 1px solid #e3e6e8; border-radius: 8px; box-shadow: 0 1px 2px hsl(192 60% 10% / 6%); padding: 20px; font: 400 14px/1.5 Inter, sans-serif; color: #414a4e; } .ds-card h4 { margin: 0 0 8px; font-weight: 500; font-size: 16px; color: #1f2529; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Engineering Ledger",
+    "overview": "Sober, precise tools for engineers and document controllers who spend whole days in them. Density comes from order, colour belongs to the data, and surfaces are quiet tonal layers. Components and tokens are the vocabulary: screens are composed from them, never restyled.",
+    "keyCharacteristics": [
+      "Operate mode first",
+      "One primary per region",
+      "Tonal layering with minimal shadows",
+      "Inter at dense sizes, 4-based spacing",
+      "12-column grid with whole-column regions"
+    ],
+    "rules": [
+      {
+        "name": "The Meaning-Only Rule",
+        "body": "Semantic colours mark outcomes and states, never the difference between buttons; every state also has a label.",
+        "section": "colors"
+      },
+      {
+        "name": "The Rare Teal Rule",
+        "body": "At most one primary action per region.",
+        "section": "colors"
+      },
+      {
+        "name": "The Identifier-First Rule",
+        "body": "The readable document identifier comes first and in bold; metadata goes beneath it.",
+        "section": "typography"
+      },
+      {
+        "name": "The Quiet Panel Rule",
+        "body": "No shadow on shadow or panel on panel; group with the sunken surface, a divider or spacing.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do compose screens only from sl-* components and documented variants",
+      "Do take spacing only from tokens",
+      "Do keep every legacy datum and action",
+      "Do limit motion to state feedback (150/250ms)"
+    ],
+    "donts": [
+      "Don't use semantic colour to distinguish buttons",
+      "Don't add surfaces to layout wrappers",
+      "Don't hardcode colour or spacing outside tokens or restyle via ::part",
+      "Don't add decorative animation, gradients, illustrations or new typefaces"
+    ]
+  }
+}
