@@ -1,0 +1,443 @@
+<!doctype html>
+<!--
+  xCPage-DistributionMatrices · 7-RemoveUser — restyle of application_screenshot/xCPage - Distribution Matrices/remove_user*.png
+  State: Distribution matrices tab, 032154_Test_DM Upload selected, Remove user dialog: manual input on, fields empty.
+  Built only with sai-che-ui components (see REPORT.md in this folder for mapping and new elements).
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/xCPage-DistributionMatrices/7-RemoveUser.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>xCPage · Distribution matrices</title>
+    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
+    <link rel="stylesheet" href="../_shared/restyle.css" />
+    <link rel="stylesheet" href="./flow.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <script>
+      // Reload when esbuild rebuilds after a change in src/
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
+  </head>
+
+  <body class="sl-theme-light">
+    <sl-header>
+      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+      <span slot="logo"></span>
+
+      <sl-select slot="actions" size="small" value="99-page-am" style="width: 16rem">
+        <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
+      </sl-select>
+      <sl-header-item slot="actions">
+        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+        Mario Rossi
+        <sl-menu slot="menu">
+          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+    </sl-header>
+
+    <div class="rs-shell">
+      <sl-sidebar label="Project navigation" collapsed>
+        <sl-sidebar-group label="Documenti di progetto" count="70">
+          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+          <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Procurement (SAP)" count="71">
+          <sl-icon slot="icon" name="cart"></sl-icon>
+          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Comunicazione" count="47">
+          <sl-icon slot="icon" name="envelope"></sl-icon>
+          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Tasks" count="55">
+          <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+          <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Configuration">
+          <sl-icon slot="icon" name="gear"></sl-icon>
+          <sl-sidebar-item href="#" current>Distribution matrices</sl-sidebar-item>
+        </sl-sidebar-group>
+      </sl-sidebar>
+
+      <main class="rs-page rs-page--fill" aria-label="Distribution matrices">
+        <sl-breadcrumb aria-label="Breadcrumb">
+          <sl-breadcrumb-item href="../DMS-Home/1-Home.html">Home</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Configuration</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Distribution matrices</sl-breadcrumb-item>
+        </sl-breadcrumb>
+
+        <div class="rs-page-header">
+          <div class="rs-page-header__text">
+            <h1 class="rs-title">Distribution matrices</h1>
+            <p class="rs-meta">Who receives the documents of each process, and under which conditions</p>
+          </div>
+        </div>
+
+        <sl-tab-group class="rs-stages" aria-label="Areas">
+          <sl-tab slot="nav" panel="matrices" card active
+            ><span class="rs-inline"><sl-icon name="grid"></sl-icon>Distribution matrices</span></sl-tab
+          >
+          <sl-tab slot="nav" panel="preparation" card
+            ><span class="rs-inline"><sl-icon name="file-earmark-excel"></sl-icon>Preparation area</span></sl-tab
+          >
+
+          <sl-tab-panel name="matrices" active>
+            <div class="rs-stack">
+              <section class="rs-grid rs-grid--stretch" aria-label="Filters and matrix counts">
+                <sl-card class="rs-span-9 rs-span-md-12" aria-label="Filters">
+                  <h2 slot="header" class="rs-heading rs-inline"><sl-icon name="filter"></sl-icon>Filters</h2>
+                  <form class="rs-grid rs-grid--fields">
+                    <sl-input class="rs-span-4" type="search" label="Distribution matrix name" clearable>
+                      <sl-icon slot="prefix" name="search"></sl-icon>
+                    </sl-input>
+                    <sl-select class="rs-span-4" label="Created by" placeholder="Anyone" clearable>
+                      <sl-option value="user_test1">user_test1</sl-option>
+                      <sl-option value="aiello">Aiello Ciro</sl-option>
+                    </sl-select>
+                    <sl-input class="rs-span-4" type="date" label="Created on or after"></sl-input>
+                    <sl-select
+                      class="rs-span-8"
+                      label="Valid types"
+                      placeholder="Any"
+                      multiple
+                      clearable
+                      max-options-visible="4"
+                      value="general-distribution-process review-distribution-process incoming-transmittal outgoing-transmittal"
+                    >
+                      <sl-option value="general-distribution-process">General Distribution Process</sl-option>
+                      <sl-option value="light-distribution-process">Light Distribution Process</sl-option>
+                      <sl-option value="review-distribution-process">Review Distribution Process</sl-option>
+                      <sl-option value="incoming-transmittal">Incoming Transmittal</sl-option>
+                      <sl-option value="outgoing-transmittal">Outgoing Transmittal</sl-option>
+                      <sl-option value="arn-outgoing-transmittal">ARN Outgoing Transmittal</sl-option>
+                      <sl-option value="vendor-incoming-transmittal">Vendor Incoming Transmittal</sl-option>
+                      <sl-option value="engineering-outgoing-transmittal">ENGINEERING OUTGOING TRANSMITTAL</sl-option>
+                    </sl-select>
+                    <sl-select
+                      class="rs-span-4"
+                      label="Find by user"
+                      placeholder="Anyone"
+                      clearable
+                      help-text="Matrices that include this recipient"
+                    >
+                      <sl-option value="alice">Cazzaniga Alice</sl-option>
+                      <sl-option value="ciro">Aiello Ciro</sl-option>
+                    </sl-select>
+                    <div class="rs-span-12 rs-cluster rs-cluster--end">
+                      <sl-button type="reset" variant="text">Reset</sl-button>
+                      <sl-button>Show all</sl-button>
+                      <sl-button type="submit" variant="primary"
+                        ><sl-icon slot="prefix" name="search"></sl-icon>Search</sl-button
+                      >
+                    </div>
+                  </form>
+                </sl-card>
+
+                <sl-stat-group class="rs-span-3 rs-span-md-12 rs-stats-stack" label="Filter by status">
+                  <sl-stat value="published" count="4" variant="success"
+                    ><sl-icon slot="prefix" name="check2-circle"></sl-icon>Published</sl-stat
+                  >
+                  <sl-stat value="draft" count="3" variant="neutral"
+                    ><sl-icon slot="prefix" name="pencil"></sl-icon>Draft</sl-stat
+                  >
+                  <sl-stat value="preparation" count="7" variant="primary"
+                    ><sl-icon slot="prefix" name="file-earmark-excel"></sl-icon>Preparation area</sl-stat
+                  >
+                </sl-stat-group>
+              </section>
+
+              <div class="rs-workspace">
+                <section class="rs-workspace__main rs-span-7" aria-label="Distribution matrices list">
+                  <sl-table
+                    selection="multiple"
+                    class="matrix-list"
+                    fill
+                    sticky-header
+                    paginate
+                    page-size="25"
+                    label="Distribution matrices"
+                  >
+                    <div
+                      slot="toolbar"
+                      class="rs-cluster rs-cluster--nowrap rs-grow"
+                      role="toolbar"
+                      aria-label="Matrix actions"
+                    >
+                      <sl-button size="small"><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-button>
+                      <sl-button size="small" disabled
+                        ><sl-icon slot="prefix" name="x-lg"></sl-icon>Cancel edit</sl-button
+                      >
+                      <sl-button size="small" disabled
+                        ><sl-icon slot="prefix" name="arrow-counterclockwise"></sl-icon>Demote</sl-button
+                      >
+                      <sl-dropdown>
+                        <sl-button slot="trigger" size="small" caret
+                          ><sl-icon slot="prefix" name="person-fill"></sl-icon>Users</sl-button
+                        >
+                        <sl-menu>
+                          <sl-menu-item value="add"
+                            ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Add / update users</sl-menu-item
+                          >
+                          <sl-menu-item value="replace"
+                            ><sl-icon slot="prefix" name="arrow-clockwise"></sl-icon>Replace user</sl-menu-item
+                          >
+                          <sl-menu-item value="remove"
+                            ><sl-icon slot="prefix" name="person-x"></sl-icon>Remove user</sl-menu-item
+                          >
+                        </sl-menu>
+                      </sl-dropdown>
+                      <span class="rs-spacer"></span>
+                      <sl-button size="small" variant="danger" outline
+                        ><sl-icon slot="prefix" name="trash"></sl-icon>Delete</sl-button
+                      >
+                      <sl-button size="small" variant="primary"
+                        ><sl-icon slot="prefix" name="check-lg"></sl-icon>Publish</sl-button
+                      >
+                      <sl-divider vertical></sl-divider>
+                      <sl-dropdown placement="bottom-end" hoist data-table-options>
+                        <sl-button slot="trigger" size="small" caret
+                          ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                        >
+                      </sl-dropdown>
+                    </div>
+                    <sl-empty-state
+                      slot="empty"
+                      title-text="No distribution matrices"
+                      description="Change the filters, or create a template in the Preparation area."
+                    >
+                      <sl-icon slot="icon" name="search"></sl-icon>
+                    </sl-empty-state>
+                  </sl-table>
+                </section>
+
+                <sl-detail-panel contained class="rs-span-5" aria-label="Matrix properties">
+                  <span slot="label">032154_Test_DM Upload</span>
+                  <span slot="meta">34 distributions · Created on 25-Oct-2018</span>
+                  <sl-tooltip slot="actions" content="Edit name"
+                    ><sl-icon-button name="pencil" label="Edit name" variant="neutral"></sl-icon-button
+                  ></sl-tooltip>
+                  <div class="rs-inset rs-stack">
+                    <sl-description-list cols="3">
+                      <sl-description-list-item label="Status"
+                        ><sl-status filled variant="neutral" size="small">Draft</sl-status></sl-description-list-item
+                      >
+                      <sl-description-list-item label="Created by">user_test1</sl-description-list-item>
+                      <sl-description-list-item label="Created on">25-Oct-2018</sl-description-list-item>
+                    </sl-description-list>
+
+                    <sl-table class="distribution-list" sticky-header paginate page-size="5" label="Distributions">
+                      <div
+                        slot="toolbar"
+                        class="rs-cluster rs-cluster--nowrap rs-grow"
+                        role="toolbar"
+                        aria-label="Distribution actions"
+                      >
+                        <sl-button size="small"><sl-icon slot="prefix" name="plus-lg"></sl-icon>New entry</sl-button>
+                        <sl-button size="small" disabled
+                          ><sl-icon slot="prefix" name="pencil"></sl-icon>Modify</sl-button
+                        >
+                        <sl-button size="small" variant="danger" outline disabled
+                          ><sl-icon slot="prefix" name="trash"></sl-icon>Remove</sl-button
+                        >
+                      </div>
+                      <sl-empty-state
+                        slot="empty"
+                        title-text="No distributions"
+                        description="Add a distribution entry to say who receives the documents."
+                      >
+                        <sl-icon slot="icon" name="envelope"></sl-icon>
+                      </sl-empty-state>
+                    </sl-table>
+                  </div>
+                </sl-detail-panel>
+              </div>
+            </div>
+          </sl-tab-panel>
+
+          <sl-tab-panel name="preparation">
+            <div class="rs-stack">
+              <section class="rs-grid rs-grid--stretch" aria-label="Filters and template counts">
+                <sl-card class="rs-span-9 rs-span-md-12" aria-label="Filters">
+                  <h2 slot="header" class="rs-heading rs-inline"><sl-icon name="filter"></sl-icon>Filters</h2>
+                  <form class="rs-grid rs-grid--fields">
+                    <sl-input class="rs-span-4" type="search" label="Template name" clearable>
+                      <sl-icon slot="prefix" name="search"></sl-icon>
+                    </sl-input>
+                    <sl-input class="rs-span-4" type="date" label="Generated on or after"></sl-input>
+                    <sl-select
+                      class="rs-span-4"
+                      label="Valid types"
+                      placeholder="Any"
+                      multiple
+                      clearable
+                      max-options-visible="2"
+                      value="general-distribution-process review-distribution-process arn-outgoing-transmittal incoming-transmittal outgoing-transmittal"
+                    >
+                      <sl-option value="general-distribution-process">General Distribution Process</sl-option>
+                      <sl-option value="light-distribution-process">Light Distribution Process</sl-option>
+                      <sl-option value="review-distribution-process">Review Distribution Process</sl-option>
+                      <sl-option value="incoming-transmittal">Incoming Transmittal</sl-option>
+                      <sl-option value="outgoing-transmittal">Outgoing Transmittal</sl-option>
+                      <sl-option value="arn-outgoing-transmittal">ARN Outgoing Transmittal</sl-option>
+                      <sl-option value="vendor-incoming-transmittal">Vendor Incoming Transmittal</sl-option>
+                      <sl-option value="engineering-outgoing-transmittal">ENGINEERING OUTGOING TRANSMITTAL</sl-option>
+                    </sl-select>
+                    <div class="rs-span-12 rs-cluster rs-cluster--end">
+                      <sl-button type="reset" variant="text">Reset</sl-button>
+                      <sl-button>Show all</sl-button>
+                      <sl-button type="submit" variant="primary"
+                        ><sl-icon slot="prefix" name="search"></sl-icon>Search</sl-button
+                      >
+                    </div>
+                  </form>
+                </sl-card>
+
+                <sl-stat-group class="rs-span-3 rs-span-md-12 rs-stats-stack" label="Filter by validation">
+                  <sl-stat value="working" count="6" variant="neutral"
+                    ><sl-icon slot="prefix" name="hourglass-split"></sl-icon>Working</sl-stat
+                  >
+                  <sl-stat value="failed" count="1" variant="danger"
+                    ><sl-icon slot="prefix" name="exclamation-triangle"></sl-icon>Failed</sl-stat
+                  >
+                </sl-stat-group>
+              </section>
+
+              <div class="rs-workspace">
+                <section class="rs-workspace__main rs-span-7" aria-label="Templates list">
+                  <sl-table
+                    selection="multiple"
+                    class="template-list"
+                    fill
+                    sticky-header
+                    paginate
+                    page-size="25"
+                    label="Templates"
+                  >
+                    <div
+                      slot="toolbar"
+                      class="rs-cluster rs-cluster--nowrap rs-grow"
+                      role="toolbar"
+                      aria-label="Template actions"
+                    >
+                      <sl-button size="small" variant="primary"
+                        ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Create template</sl-button
+                      >
+                      <sl-button size="small"
+                        ><sl-icon slot="prefix" name="upload"></sl-icon>Upload and validate</sl-button
+                      >
+                      <span class="rs-spacer"></span>
+                      <sl-button size="small" variant="danger" outline
+                        ><sl-icon slot="prefix" name="trash"></sl-icon>Abort templates</sl-button
+                      >
+                      <sl-divider vertical></sl-divider>
+                      <sl-dropdown placement="bottom-end" hoist data-table-options>
+                        <sl-button slot="trigger" size="small" caret
+                          ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                        >
+                      </sl-dropdown>
+                    </div>
+                    <sl-empty-state
+                      slot="empty"
+                      title-text="No templates"
+                      description="Create a template to prepare a new distribution matrix."
+                    >
+                      <sl-icon slot="icon" name="file-earmark-excel"></sl-icon>
+                    </sl-empty-state>
+                  </sl-table>
+                </section>
+
+                <sl-detail-panel contained class="rs-span-5" aria-label="Validation detail">
+                  <span slot="label">Validation detail</span>
+                  <span slot="meta">test_separator_2502 · last validation</span>
+                  <div class="rs-inset rs-stack">
+                    <sl-alert variant="danger" open>
+                      <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+                      <strong>Validation failed: 9 errors.</strong> Fix the Excel file, then use Upload and validate:
+                      the new file replaces the current one and runs a new validation.
+                    </sl-alert>
+                    <sl-table class="validation-list" sticky-header label="Validation errors"></sl-table>
+                  </div>
+                </sl-detail-panel>
+              </div>
+            </div>
+          </sl-tab-panel>
+        </sl-tab-group>
+      </main>
+    </div>
+
+    <!-- Remove user (legacy "DM Massive User Removal") -->
+    <sl-dialog label="Remove user" open style="--width: 40rem">
+      <div class="rs-stack rs-stack--loose">
+        <sl-alert variant="primary" open>
+          <sl-icon slot="icon" name="info-circle"></sl-icon>
+          Removes a user from the selected distribution matrices. Users included through a distribution list are not
+          removed.
+        </sl-alert>
+        <sl-description-list cols="2">
+          <sl-description-list-item label="Remove user from">Distribution matrices</sl-description-list-item>
+          <sl-description-list-item label="Distribution matrices">032154_Test_DM Upload</sl-description-list-item>
+        </sl-description-list>
+
+        <section class="rs-stack" aria-label="User to remove">
+          <h3 class="rs-subheading">User to remove</h3>
+          <sl-radio-group label="Find the user in" size="small" value="manual">
+            <sl-radio-button value="directory">Project users</sl-radio-button>
+            <sl-radio-button value="manual">Manual input</sl-radio-button>
+          </sl-radio-group>
+          <div class="rs-grid rs-grid--fields">
+            <sl-input class="rs-span-6" label="Name" required placeholder="User name"></sl-input>
+            <sl-input class="rs-span-6" type="email" label="Email" required placeholder="name@company.com"></sl-input>
+          </div>
+        </section>
+      </div>
+      <sl-button slot="footer">Cancel</sl-button>
+      <sl-button slot="footer" variant="danger" disabled
+        ><sl-icon slot="prefix" name="person-x"></sl-icon>Remove user</sl-button
+      >
+    </sl-dialog>
+
+    <script type="module">
+      import * as flow from './data.js';
+
+      await flow.mountTable('.matrix-list', {
+        columns: flow.matrixColumns,
+        data: flow.matrices,
+        isSelected: flow.isUploadMatrix
+      });
+      await flow.mountTable('.distribution-list', { columns: flow.distributionColumns, data: flow.distributions });
+      await flow.mountTable('.template-list', {
+        columns: flow.templateColumns,
+        data: flow.templates,
+        isSelected: flow.isFailedTemplate
+      });
+      await flow.mountTable('.validation-list', { columns: flow.validationColumns, data: flow.validationErrors });
+    </script>
+  </body>
+</html>

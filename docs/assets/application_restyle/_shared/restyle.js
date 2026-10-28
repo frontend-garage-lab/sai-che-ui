@@ -20,6 +20,8 @@ export const STATUS_VARIANT = {
   'Not notified': 'neutral',
   Working: 'neutral',
   Aborted: 'neutral',
+  Draft: 'neutral',
+  Published: 'success',
   Active: 'primary',
   Acquired: 'accent',
   Expiring: 'warning',

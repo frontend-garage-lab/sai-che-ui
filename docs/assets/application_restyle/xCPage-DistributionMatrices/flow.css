@@ -1,0 +1,8 @@
+/*
+ * xCPage-DistributionMatrices — layout rules specific to this flow. Shared rules live in ../_shared/restyle.css.
+ */
+
+/* Above the workspace: header, breadcrumb, title, area tabs and the filters card */
+.rs-workspace {
+  --rs-workspace-offset: 36rem;
+}

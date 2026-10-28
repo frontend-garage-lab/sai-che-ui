@@ -567,3 +567,37 @@ sl-status.rs-status-dot::part(label) {
 [slot='toolbar'] sl-checkbox {
   white-space: nowrap;
 }
+
+/* ---------------------------------------------------------------- Transfer between two lists (dialogs) */
+
+/* Transfer between two lists (Relate documents, Select recipients, Massive user addition): source · actions · target */
+.rs-transfer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: var(--sl-spacing-medium);
+  align-items: start;
+}
+
+.rs-transfer__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sl-spacing-x-small);
+  align-self: center;
+}
+
+.rs-nowrap {
+  white-space: nowrap;
+}
+
+/* Options that apply to what is added (Reason, Delivery method): above the two lists, start side */
+.rs-transfer-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 17rem));
+  justify-content: start;
+  gap: var(--sl-spacing-medium);
+}
+
+/* KPI stats in a column next to the filters (one per row, as wide as the column) */
+.rs-stats-stack > sl-stat {
+  flex: 1 1 100%;
+}
