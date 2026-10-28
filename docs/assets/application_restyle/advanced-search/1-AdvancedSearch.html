@@ -120,9 +120,8 @@
         </sl-card>
 
         <!-- Saved searches -->
-        <sl-tab-group aria-label="Saved searches">
-          <sl-tab slot="nav" panel="mine" active>My searches</sl-tab>
-          <sl-tab slot="nav" panel="public">Public searches</sl-tab>
+        <sl-tab-group aria-label="Saved searches"><span class="rs-inline"><sl-icon name="bookmark"></sl-icon>My searches</span></sl-tab>
+          <sl-tab slot="nav" panel="public"><span class="rs-inline"><sl-icon name="globe"></sl-icon>Public searches</span></sl-tab>
 
           <sl-tab-panel name="mine" active>
             <sl-table class="my-searches" sticky-header label="My searches">

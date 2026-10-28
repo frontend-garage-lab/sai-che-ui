@@ -350,6 +350,7 @@ export async function openRowMenu(selector, index) {
 // the cell helper classes are copied in so they apply there as well.
 const CELL_CLASSES = [
   '.rs-inline',
+  '.rs-nested-table',
   '.rs-quick-info',
   '.rs-cell-stack',
   '.rs-subheading',

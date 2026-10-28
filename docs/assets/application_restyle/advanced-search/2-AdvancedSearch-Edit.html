@@ -95,17 +95,16 @@
           </div>
           <div class="rs-cluster">
             <sl-button variant="text" href="./1-AdvancedSearch.html">Cancel</sl-button>
-            <sl-button>Edit search properties</sl-button>
-            <sl-button>Save search</sl-button>
+            <sl-button><sl-icon slot="prefix" name="pencil"></sl-icon>Edit search properties</sl-button>
+            <sl-button><sl-icon slot="prefix" name="floppy"></sl-icon>Save search</sl-button>
             <sl-button variant="primary"><sl-icon slot="prefix" name="play-fill"></sl-icon>Run</sl-button>
           </div>
         </div>
 
-        <sl-tab-group aria-label="Search sections">
-          <sl-tab slot="nav" panel="object" active>Object information</sl-tab>
-          <sl-tab slot="nav" panel="relation">Relation</sl-tab>
-          <sl-tab slot="nav" panel="progress">Progress</sl-tab>
-          <sl-tab slot="nav" panel="result">Result</sl-tab>
+        <sl-tab-group aria-label="Search sections"><span class="rs-inline"><sl-icon name="info-circle"></sl-icon>Object information</span></sl-tab>
+          <sl-tab slot="nav" panel="relation"><span class="rs-inline"><sl-icon name="link-45deg"></sl-icon>Relation</span></sl-tab>
+          <sl-tab slot="nav" panel="progress"><span class="rs-inline"><sl-icon name="bar-chart-steps"></sl-icon>Progress</span></sl-tab>
+          <sl-tab slot="nav" panel="result"><span class="rs-inline"><sl-icon name="table"></sl-icon>Result</span></sl-tab>
 
           <!-- Object information (Base Options + Criteria of the legacy dialog) -->
           <sl-tab-panel name="object" active>

@@ -165,12 +165,12 @@
                   <sl-icon slot="prefix" name="plus-lg"></sl-icon>
                   Create outgoing
                 </sl-button>
-                <sl-button size="small" disabled>Create from existing</sl-button>
+                <sl-button size="small" disabled><sl-icon slot="prefix" name="files"></sl-icon>Create from existing</sl-button>
                 <sl-divider vertical></sl-divider>
-                <sl-button size="small" disabled>Assign to me</sl-button>
-                <sl-button size="small" disabled>Complete assignment</sl-button>
-                <span class="rs-spacer"></span>
-                <sl-dropdown placement="bottom-end">
+                <sl-button size="small" disabled><sl-icon slot="prefix" name="person-check"></sl-icon>Assign to me</sl-button>
+                <sl-button size="small" disabled><sl-icon slot="prefix" name="check2-all"></sl-icon>Complete assignment</sl-button>
+                <sl-divider vertical></sl-divider>
+                <sl-dropdown placement="bottom-start">
                   <sl-button slot="trigger" size="small" caret disabled>Actions</sl-button>
                   <sl-menu>
                     <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Operations</sl-menu-item>
@@ -178,9 +178,9 @@
                     <sl-menu-item
                       ><sl-icon slot="prefix" name="arrow-right"></sl-icon>Create DP from transmittal</sl-menu-item
                     >
-                  </sl-menu> </sl-dropdown
-                ><sl-divider vertical></sl-divider>
-
+                  </sl-menu>
+                </sl-dropdown>
+                <span class="rs-spacer"></span>
                 <sl-dropdown placement="bottom-end" hoist data-table-options>
                   <sl-button slot="trigger" size="small" caret
                     ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
@@ -235,7 +235,7 @@
         <sl-select label="PO number" placeholder="Any" clearable></sl-select>
       </div>
       <sl-button slot="footer" variant="text">Clear</sl-button>
-      <sl-button slot="footer" variant="primary">Apply filters</sl-button>
+      <sl-button slot="footer" variant="primary"><sl-icon slot="prefix" name="filter"></sl-icon>Apply filters</sl-button>
     </sl-drawer>
 
     <!-- Create transmittal: 4-step wizard -->
@@ -352,7 +352,7 @@
         </div>
       </div>
       <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>
-      <sl-button slot="footer" variant="primary" disabled>Next: Documents</sl-button>
+      <sl-button slot="footer" variant="primary" disabled>Next: Documents<sl-icon slot="suffix" name="chevron-right"></sl-icon></sl-button>
     </sl-dialog>
 
     <script type="module">

@@ -100,6 +100,10 @@
         <section class="rs-workspace__main rs-span-7 rs-span-lg-6" aria-label="PVA tasks">
           <sl-table selection="multiple" class="task-list" fill sticky-header paginate page-size="25" label="PVA tasks">
             <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow">
+              <sl-button size="small" disabled><sl-icon slot="prefix" name="check-square"></sl-icon>Accepted</sl-button>
+              <sl-button size="small"><sl-icon slot="prefix" name="arrow-right"></sl-icon>Reassign</sl-button>
+              <sl-button size="small" variant="primary"><sl-icon slot="prefix" name="check-square-fill"></sl-icon>Complete</sl-button>
+              <sl-divider vertical></sl-divider>
               <sl-input class="task-search" type="search" size="small" placeholder="Search by task, document or DIN"
                 clearable>
                 <sl-icon slot="prefix" name="search"></sl-icon>
@@ -112,10 +116,6 @@
               </sl-tooltip>
               <sl-checkbox size="small">Case sensitive</sl-checkbox>
               <span class="rs-spacer"></span>
-              <sl-button size="small" disabled><sl-icon slot="prefix" name="check-square"></sl-icon>Accepted</sl-button>
-              <sl-button size="small">Reassign</sl-button>
-              <sl-button size="small" variant="primary">Complete</sl-button><sl-divider vertical></sl-divider>
-
               <sl-dropdown placement="bottom-end" hoist data-table-options>
                 <sl-button slot="trigger" size="small" caret><sl-icon slot="prefix"
                     name="gear"></sl-icon>Config</sl-button>
@@ -140,7 +140,7 @@
             <sl-tab slot="nav" panel="revisions"><span class="rs-inline"><sl-icon
                   name="clock-history"></sl-icon>Revisions</span></sl-tab>
             <sl-tab slot="nav" panel="progress"><span class="rs-inline"><sl-icon
-                  name="gear"></sl-icon>Progress</span></sl-tab>
+                  name="bar-chart-steps"></sl-icon>Progress</span></sl-tab>
             <sl-tab slot="nav" panel="pdf" active><span class="rs-inline"><sl-icon name="file-earmark-pdf"></sl-icon>PDF
                 preview</span></sl-tab>
 
@@ -309,7 +309,7 @@
       <sl-textarea label="Instructions" rows="3" help-text="Optional"></sl-textarea>
     </div>
     <sl-button slot="footer">Cancel</sl-button>
-    <sl-button slot="footer" variant="primary" disabled>Reassign task</sl-button>
+    <sl-button slot="footer" variant="primary" disabled><sl-icon slot="prefix" name="arrow-right"></sl-icon>Reassign task</sl-button>
   </sl-dialog>
 
   <script type="module">

@@ -85,7 +85,7 @@ export const matrixColumns = [
     accessorKey: 'name',
     header: 'Name',
     enableSorting: true,
-    meta: { width: 'minmax(12rem, 1fr)' },
+    meta: { width: 'minmax(10rem, 1fr)' },
     cell: ({ row }) =>
       html`<span class="rs-cell-stack">
         <span class="rs-subheading rs-truncate" title=${row.original.name}>${row.original.name}</span>
@@ -98,10 +98,10 @@ export const matrixColumns = [
     id: 'status',
     accessorKey: 'status',
     header: 'Status',
-    meta: { width: '7rem' },
+    meta: { width: '6.5rem' },
     cell: ({ row }) => statusTag(row.original.status)
   },
-  { id: 'createdBy', accessorKey: 'createdBy', header: 'Created by', meta: { width: '8rem', nowrap: true } },
+  { id: 'createdBy', accessorKey: 'createdBy', header: 'Created by', meta: { width: '7.5rem', nowrap: true } },
   {
     id: 'createdOn',
     accessorKey: 'createdOn',
@@ -109,7 +109,7 @@ export const matrixColumns = [
     enableSorting: true,
     meta: { width: '8rem', nowrap: true }
   },
-  { id: 'validTypes', header: 'Valid types', meta: { width: '15rem' }, cell: validTypesCell }
+  { id: 'validTypes', header: 'Valid types', meta: { width: 'minmax(10rem, 1fr)' }, cell: validTypesCell }
 ];
 
 export const matrixCounts = { published: 4, draft: 3 };
@@ -139,15 +139,29 @@ export const distributions = Array.from({ length: 34 }, (_, index) => {
   return { name, condition: `spm_free_attr3 = '${name}'`, recipients: [alice, second] };
 });
 
-const recipientLine = r =>
-  html`<span class="rs-cell-stack">
-    <span class="rs-inline rs-subheading"
-      >${r.external ? html`<sl-icon name="building" title="External user"></sl-icon>` : ''}${r.name}</span
-    >
-    <span class="rs-meta rs-truncate" title="${r.email} · ${r.reason} · ${r.method}"
-      >${r.email} · ${r.reason} · ${r.method}</span
-    >
-  </span>`;
+/** Recipients of one distribution: a compact sl-table inside the Recipients cell, with its own header (as the legacy). */
+const recipientColumns = [
+  {
+    id: 'name',
+    accessorKey: 'name',
+    header: 'Name',
+    meta: { width: 'minmax(10rem, 1fr)' },
+    cell: ({ row }) =>
+      html`<span class="rs-inline"
+        >${row.original.external ? html`<sl-icon name="building" title="External user"></sl-icon>` : ''}${row.original
+          .name}</span
+      >`
+  },
+  {
+    id: 'email',
+    accessorKey: 'email',
+    header: 'Email',
+    meta: { width: 'minmax(16rem, 1.5fr)', nowrap: true },
+    cell: ({ row }) => html`<span title=${row.original.email}>${row.original.email}</span>`
+  },
+  { id: 'reason', accessorKey: 'reason', header: 'Reason', meta: { width: '6rem', align: 'center' } },
+  { id: 'method', accessorKey: 'method', header: 'Method', meta: { width: '8rem', nowrap: true } }
+];
 
 export const distributionColumns = [
   {
@@ -161,13 +175,20 @@ export const distributionColumns = [
     id: 'condition',
     accessorKey: 'condition',
     header: 'Conditions',
-    meta: { width: '13rem' },
+    meta: { width: '12rem' },
     cell: ({ row }) => html`<span class="rs-mono">${row.original.condition}</span>`
   },
   {
     id: 'recipients',
     header: 'Recipients',
-    cell: ({ row }) => html`<span class="rs-stack rs-stack--tight">${row.original.recipients.map(recipientLine)}</span>`
+    meta: { width: 'minmax(42rem, 1fr)' },
+    cell: ({ row }) =>
+      html`<sl-table
+        class="rs-nested-table"
+        label="Recipients of ${row.original.name}"
+        .columns=${recipientColumns}
+        .data=${row.original.recipients}
+      ></sl-table>`
   }
 ];
 
@@ -303,12 +324,26 @@ export const conditions = [{ type: 'Document', field: 'Name', operator: '=', res
 export const conditionColumns = [
   { id: 'type', accessorKey: 'type', header: 'Type', meta: { width: '8rem' } },
   { id: 'field', accessorKey: 'field', header: 'Field', meta: { width: '10rem' } },
-  { id: 'operator', accessorKey: 'operator', header: 'Operator', meta: { width: '6rem', align: 'center' } },
+  { id: 'operator', accessorKey: 'operator', header: 'Operator', meta: { width: '7rem', align: 'center' } },
   {
     id: 'result',
     accessorKey: 'result',
     header: 'Result condition',
     cell: ({ row }) => html`<span class="rs-mono">${row.original.result}</span>`
+  },
+  {
+    id: 'remove',
+    header: '',
+    meta: { width: '3.5rem', align: 'center' },
+    cell: ({ row }) =>
+      html`<sl-tooltip content="Remove condition"
+        ><sl-icon-button
+          name="trash"
+          label="Remove condition ${row.original.result}"
+          size="small"
+          variant="neutral"
+        ></sl-icon-button
+      ></sl-tooltip>`
   }
 ];
 
@@ -329,5 +364,5 @@ export const userToAddColumns = [
       </span>`
   },
   { id: 'reason', accessorKey: 'reason', header: 'Reason', meta: { width: '10rem', nowrap: true } },
-  { id: 'method', accessorKey: 'method', header: 'Method', meta: { width: '7rem', nowrap: true } }
+  { id: 'method', accessorKey: 'method', header: 'Method', meta: { width: '8rem', nowrap: true } }
 ];

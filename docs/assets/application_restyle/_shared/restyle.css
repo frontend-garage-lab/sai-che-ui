@@ -601,3 +601,8 @@ sl-status.rs-status-dot::part(label) {
 .rs-stats-stack > sl-stat {
   flex: 1 1 100%;
 }
+
+/* Both lists of a transfer share one height, whatever their row count (tables use `fill`) */
+.rs-transfer__list {
+  height: 24rem;
+}

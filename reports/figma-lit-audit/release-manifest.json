@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "release_id": "ds-2026-10-28-001",
+  "source_ds": {
+    "file_url": "https://www.figma.com/design/CdCRuuAnOeYrOOn1HYkxDM/Saipem-DS",
+    "file_key": "CdCRuuAnOeYrOOn1HYkxDM"
+  },
+  "consumer": {
+    "file_url": "https://www.figma.com/design/aHzBtZSU3XnoXxUZsRDT4a/Saipem-XcMM",
+    "file_key": "aHzBtZSU3XnoXxUZsRDT4a"
+  },
+  "scope_request_ids": [
+    "xCPage-DistributionMatrices porting",
+    "icone pulsanti e tab"
+  ],
+  "approved": {
+    "ds_fixes": true,
+    "library_release": true,
+    "consumer_adoption": false
+  },
+  "quality": {
+    "open_p0": 0,
+    "r01_provenance": "PASS",
+    "r02_request_coverage": "PASS",
+    "r03_component_quality": "PASS",
+    "r04_compatibility": "PASS"
+  },
+  "assets": [
+    {
+      "name": "Select",
+      "lit_tag": "sl-select",
+      "node_id": "57:38",
+      "component_key": "2146f01df23f073ddb20f8cf821a94339baea947",
+      "change_type": "MINOR",
+      "gates": "PASS",
+      "breaking": false,
+      "note": "slot Tags + Show Placeholder; spaziature finali del codice"
+    },
+    {
+      "name": "Button",
+      "lit_tag": "sl-button",
+      "node_id": "1081:6712",
+      "component_key": "1d8967a42899d39f0efd3fa7da5ddd7de482fa4e",
+      "change_type": "PATCH",
+      "gates": "PASS",
+      "breaking": false,
+      "note": "spaziature prefix/suffix/caret, icone 12/14/16, peso 500 (larghezze +/- pochi px)"
+    },
+    {
+      "name": "Table Cell",
+      "lit_tag": "sl-table (cell)",
+      "node_id": "867:2425",
+      "component_key": "ecee9a4f9df492dfde74373253a78ce5a2a17b86",
+      "change_type": "PATCH",
+      "gates": "PASS",
+      "breaking": false,
+      "note": "titolo document Medium"
+    },
+    {
+      "name": "File Drop",
+      "lit_tag": "sl-file-drop",
+      "node_id": "41:12",
+      "component_key": "f3e43894b1333345352362c168d4158ccc314c9b",
+      "change_type": "MINOR",
+      "gates": "PASS",
+      "breaking": false,
+      "note": "Show Hint (default true), Show Help Text, label Label/Form; template CC aggiornato"
+    },
+    {
+      "name": "File Upload Item",
+      "lit_tag": "sl-file-upload-item",
+      "node_id": "661:61",
+      "component_key": "3c4abae1a7e379449ef24cbad1702f90f49dd7fb",
+      "change_type": "PATCH",
+      "gates": "PASS",
+      "breaking": false,
+      "note": "interlinea 150% → 59"
+    },
+    {
+      "name": "Icon/* (19 nuove)",
+      "lit_tag": "sl-icon",
+      "node_id": "173:2 (pagina Icons)",
+      "component_key": "vedi icone-pulsanti-tab-2026-10-28.md",
+      "change_type": "MINOR",
+      "gates": "PASS",
+      "breaking": false,
+      "note": "altra sessione"
+    }
+  ],
+  "publication": {
+    "status": "PUBLISHED",
+    "method": "Figma UI manual",
+    "confirmation": "CONFIRMED_API (import per key da Saipem-XcMM: proprietà nuove presenti)"
+  },
+  "code_connect": {
+    "status": "PUBLISHED_ICONS / FILE_DROP_UNVERIFIED",
+    "note": "icone: get_code_connect_map OK su 1398:317; file-drop: snippet della variante default non distingue template vecchio/nuovo"
+  },
+  "consumer_adoption": {
+    "status": "READY",
+    "verification": "xCPage-DistributionMatrices 8/8 = HTML; altri 48 frame: nessuna toolbar fuori tabella, nessun bordo campo errato; 19 frame più alti di 1000 per scelta dell'utente (non toccati)"
+  }
+}

@@ -152,7 +152,7 @@
                     </sl-select>
                     <div class="rs-span-12 rs-cluster rs-cluster--end">
                       <sl-button type="reset" variant="text">Reset</sl-button>
-                      <sl-button>Show all</sl-button>
+                      <sl-button><sl-icon slot="prefix" name="list-ul"></sl-icon>Show all</sl-button>
                       <sl-button type="submit" variant="primary"
                         ><sl-icon slot="prefix" name="search"></sl-icon>Search</sl-button
                       >
@@ -174,7 +174,7 @@
               </section>
 
               <div class="rs-workspace">
-                <section class="rs-workspace__main rs-span-7" aria-label="Distribution matrices list">
+                <section class="rs-workspace__main rs-span-6" aria-label="Distribution matrices list">
                   <sl-table
                     selection="multiple"
                     class="matrix-list"
@@ -194,9 +194,13 @@
                       <sl-button size="small" disabled
                         ><sl-icon slot="prefix" name="x-lg"></sl-icon>Cancel edit</sl-button
                       >
+                      <sl-button size="small" variant="primary" disabled
+                        ><sl-icon slot="prefix" name="check-lg"></sl-icon>Publish</sl-button
+                      >
                       <sl-button size="small"
                         ><sl-icon slot="prefix" name="arrow-counterclockwise"></sl-icon>Demote</sl-button
                       >
+                      <sl-divider vertical></sl-divider>
                       <sl-dropdown>
                         <sl-button slot="trigger" size="small" caret
                           ><sl-icon slot="prefix" name="person-fill"></sl-icon>Users</sl-button
@@ -213,14 +217,11 @@
                           >
                         </sl-menu>
                       </sl-dropdown>
-                      <span class="rs-spacer"></span>
+                      <sl-divider vertical></sl-divider>
                       <sl-button size="small" variant="danger" outline
                         ><sl-icon slot="prefix" name="trash"></sl-icon>Delete</sl-button
                       >
-                      <sl-button size="small" variant="primary" disabled
-                        ><sl-icon slot="prefix" name="check-lg"></sl-icon>Publish</sl-button
-                      >
-                      <sl-divider vertical></sl-divider>
+                      <span class="rs-spacer"></span>
                       <sl-dropdown placement="bottom-end" hoist data-table-options>
                         <sl-button slot="trigger" size="small" caret
                           ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
@@ -237,12 +238,10 @@
                   </sl-table>
                 </section>
 
-                <sl-detail-panel contained class="rs-span-5" aria-label="Matrix properties">
+                <sl-detail-panel contained class="rs-span-6" aria-label="Matrix properties">
                   <span slot="label">Test Matrix Template</span>
                   <span slot="meta">1 distribution · Created on 28-Oct-2026</span>
-                  <sl-tooltip slot="actions" content="Edit name"
-                    ><sl-icon-button name="pencil" label="Edit name" variant="neutral"></sl-icon-button
-                  ></sl-tooltip>
+                  <sl-icon-button slot="actions" name="pencil" label="Edit name"></sl-icon-button>
                   <div class="rs-inset rs-stack">
                     <sl-description-list cols="3">
                       <sl-description-list-item label="Status"
@@ -261,13 +260,22 @@
                         role="toolbar"
                         aria-label="Distribution actions"
                       >
-                        <sl-button size="small"><sl-icon slot="prefix" name="plus-lg"></sl-icon>New entry</sl-button>
+                        <sl-button size="small" variant="primary"
+                          ><sl-icon slot="prefix" name="plus-lg"></sl-icon>New entry</sl-button
+                        >
                         <sl-button size="small" disabled
                           ><sl-icon slot="prefix" name="pencil"></sl-icon>Modify</sl-button
                         >
+                        <sl-divider vertical></sl-divider>
                         <sl-button size="small" variant="danger" outline disabled
                           ><sl-icon slot="prefix" name="trash"></sl-icon>Remove</sl-button
                         >
+                        <span class="rs-spacer"></span>
+                        <sl-dropdown placement="bottom-end" hoist data-table-options>
+                          <sl-button slot="trigger" size="small" caret
+                            ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                          >
+                        </sl-dropdown>
                       </div>
                       <sl-empty-state
                         slot="empty"
@@ -313,7 +321,7 @@
                     </sl-select>
                     <div class="rs-span-12 rs-cluster rs-cluster--end">
                       <sl-button type="reset" variant="text">Reset</sl-button>
-                      <sl-button>Show all</sl-button>
+                      <sl-button><sl-icon slot="prefix" name="list-ul"></sl-icon>Show all</sl-button>
                       <sl-button type="submit" variant="primary"
                         ><sl-icon slot="prefix" name="search"></sl-icon>Search</sl-button
                       >
@@ -354,11 +362,11 @@
                       <sl-button size="small"
                         ><sl-icon slot="prefix" name="upload"></sl-icon>Upload and validate</sl-button
                       >
-                      <span class="rs-spacer"></span>
+                      <sl-divider vertical></sl-divider>
                       <sl-button size="small" variant="danger" outline
                         ><sl-icon slot="prefix" name="trash"></sl-icon>Abort templates</sl-button
                       >
-                      <sl-divider vertical></sl-divider>
+                      <span class="rs-spacer"></span>
                       <sl-dropdown placement="bottom-end" hoist data-table-options>
                         <sl-button slot="trigger" size="small" caret
                           ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button

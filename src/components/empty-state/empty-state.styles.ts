@@ -63,7 +63,8 @@ export default css`
     margin-top: var(--sl-spacing-x-small);
   }
 
-  .empty-state__action:empty {
+  /* The wrapper always renders the slot, so :empty never matches: hide it until an action is slotted. */
+  .empty-state:not(.empty-state--has-action) .empty-state__action {
     display: none;
   }
 `;

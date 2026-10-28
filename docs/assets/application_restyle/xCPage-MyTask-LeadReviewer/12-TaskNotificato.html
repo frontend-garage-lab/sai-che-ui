@@ -170,10 +170,17 @@
               <sl-button size="small"><sl-icon slot="prefix" name="download"></sl-icon>Download</sl-button>
               <sl-button size="small"><sl-icon slot="prefix" name="upload"></sl-icon>Import comments</sl-button>
               <sl-button size="small" disabled><sl-icon slot="prefix" name="exclamation-lg"></sl-icon>Notify</sl-button>
-              <sl-button size="small"><sl-icon slot="prefix" name="arrow-right"></sl-icon>Assign</sl-button>
-              <sl-button size="small"><sl-icon slot="prefix" name="check-square"></sl-icon>Acquire</sl-button>
-              <sl-button size="small"><sl-icon slot="prefix" name="check-square-fill"></sl-icon>Complete</sl-button>
-              <sl-button size="small"><sl-icon slot="prefix" name="person-x"></sl-icon>Abort</sl-button>
+              <sl-button size="small" variant="primary"><sl-icon slot="prefix" name="check-square-fill"></sl-icon>Complete</sl-button>
+              <sl-divider vertical></sl-divider>
+              <sl-dropdown placement="bottom-start">
+                <sl-button slot="trigger" size="small" caret>More</sl-button>
+                <sl-menu>
+                  <sl-menu-item value="acquire"><sl-icon slot="prefix" name="check-square"></sl-icon>Acquire</sl-menu-item>
+                  <sl-menu-item value="assign"><sl-icon slot="prefix" name="arrow-right"></sl-icon>Assign</sl-menu-item>
+                </sl-menu>
+              </sl-dropdown>
+              <sl-divider vertical></sl-divider>
+              <sl-button size="small" variant="danger" outline><sl-icon slot="prefix" name="person-x"></sl-icon>Abort</sl-button>
               <span class="rs-spacer"></span>
               <sl-dropdown placement="bottom-end" hoist data-table-options>
                 <sl-button slot="trigger" size="small" caret><sl-icon slot="prefix"

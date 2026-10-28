@@ -1,3 +1,5 @@
+import { classMap } from 'lit/directives/class-map.js';
+import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { property } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -23,6 +25,8 @@ import type { CSSResultGroup } from 'lit';
 export default class SlEmptyState extends ShoelaceElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
+  private readonly hasSlotController = new HasSlotController(this, 'action');
+
   /** The title text shown below the icon. */
   @property({ attribute: 'title-text' }) titleText = '';
 
@@ -31,7 +35,13 @@ export default class SlEmptyState extends ShoelaceElement {
 
   render() {
     return html`
-      <div part="base" class="empty-state">
+      <div
+        part="base"
+        class=${classMap({
+          'empty-state': true,
+          'empty-state--has-action': this.hasSlotController.test('action')
+        })}
+      >
         <span part="icon" class="empty-state__icon">
           <slot name="icon"></slot>
         </span>

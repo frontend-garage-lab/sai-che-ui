@@ -17,8 +17,12 @@ const showLabel = instance.getBoolean('Show Label');
 const label = showLabel ? text('label') : '';
 const disabled = instance.getEnum('State', { default: false, dragging: false, disabled: true });
 
+// The hint (under the instructions) and the help text (under the drop zone) are both optional in the component.
+const hint = instance.getBoolean('Show Hint') ? text('PDF, DOCX up to 10MB') : '';
+const helpText = instance.getBoolean('Show Help Text') ? text('help-text') : '';
+
 export default {
-  example: figma.html`<sl-file-drop hint="${text('PDF, DOCX up to 10MB')}"${label ? ` label="${label}"` : ''}${disabled ? ' disabled' : ''}></sl-file-drop>`,
+  example: figma.html`<sl-file-drop${label ? ` label="${label}"` : ''}${hint ? ` hint="${hint}"` : ''}${helpText ? ` help-text="${helpText}"` : ''}${disabled ? ' disabled' : ''}></sl-file-drop>`,
   imports: ["import 'src/components/file-drop/file-drop.js'"],
   id: 'file-drop',
   metadata: { nestable: true }

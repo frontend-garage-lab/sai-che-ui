@@ -96,10 +96,9 @@
       </div>
 
       <!-- Document scope -->
-      <sl-tab-group aria-label="Document scope">
-        <sl-tab slot="nav" panel="job" active>Job documents</sl-tab>
-        <sl-tab slot="nav" panel="other">Other documents</sl-tab>
-        <sl-tab slot="nav" panel="structures">Structures</sl-tab>
+      <sl-tab-group aria-label="Document scope"><span class="rs-inline"><sl-icon name="briefcase"></sl-icon>Job documents</span></sl-tab>
+        <sl-tab slot="nav" panel="other"><span class="rs-inline"><sl-icon name="files"></sl-icon>Other documents</span></sl-tab>
+        <sl-tab slot="nav" panel="structures"><span class="rs-inline"><sl-icon name="diagram-3"></sl-icon>Structures</span></sl-tab>
       </sl-tab-group>
 
       <!-- Filters -->
@@ -177,10 +176,10 @@
               Create virtual binder
             </sl-button>
             <sl-divider vertical></sl-divider>
-            <sl-button size="small">Progress</sl-button>
-            <sl-button size="small">Cancel PVA</sl-button>
-            <span class="rs-spacer"></span>
-            <sl-dropdown placement="bottom-end">
+            <sl-button size="small"><sl-icon slot="prefix" name="bar-chart-steps"></sl-icon>Progress</sl-button>
+            <sl-button size="small"><sl-icon slot="prefix" name="x-circle"></sl-icon>Cancel PVA</sl-button>
+            <sl-divider vertical></sl-divider>
+            <sl-dropdown placement="bottom-start">
               <sl-button slot="trigger" size="small" caret>
                 <sl-icon slot="prefix" name="download"></sl-icon>
                 Export
@@ -222,8 +221,8 @@
           <sl-tab-group>
             <sl-tab slot="nav" panel="revisions" active><span class="rs-inline"><sl-icon
                   name="clock-history"></sl-icon>Revisions</span></sl-tab>
-            <sl-tab slot="nav" panel="transmittals">Transmittals</sl-tab>
-            <sl-tab slot="nav" panel="distribution">Distribution process</sl-tab>
+            <sl-tab slot="nav" panel="transmittals"><span class="rs-inline"><sl-icon name="envelope"></sl-icon>Transmittals</span></sl-tab>
+            <sl-tab slot="nav" panel="distribution"><span class="rs-inline"><sl-icon name="send"></sl-icon>Distribution process</span></sl-tab>
 
             <sl-tab-panel name="revisions" active>
               <div class="rs-inset rs-stack rs-stack--tight">
@@ -275,7 +274,7 @@
       <sl-select label="PO number" placeholder="Any" clearable></sl-select>
     </div>
     <sl-button slot="footer" variant="text">Clear</sl-button>
-    <sl-button slot="footer" variant="primary">Apply filters</sl-button>
+    <sl-button slot="footer" variant="primary"><sl-icon slot="prefix" name="filter"></sl-icon>Apply filters</sl-button>
   </sl-drawer>
 
   <!-- Operations: actions on the selected document, opened from the row menu -->
@@ -289,6 +288,12 @@
               <sl-icon slot="prefix" name="search"></sl-icon>
             </sl-input>
             <sl-checkbox size="small">Case sensitive</sl-checkbox>
+            <span class="rs-spacer"></span>
+            <sl-dropdown placement="bottom-end" hoist data-table-options>
+              <sl-button slot="trigger" size="small" caret
+                ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+              >
+            </sl-dropdown>
           </div>
         </sl-table>
         <p class="rs-meta">11 actions</p>
@@ -328,7 +333,7 @@
       </div>
     </div>
     <sl-button slot="footer">Close</sl-button>
-    <sl-button slot="footer" variant="primary">Execute operation</sl-button>
+    <sl-button slot="footer" variant="primary"><sl-icon slot="prefix" name="play-fill"></sl-icon>Execute operation</sl-button>
   </sl-dialog>
 
   <script type="module">
