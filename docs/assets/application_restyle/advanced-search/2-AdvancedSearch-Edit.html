@@ -1,0 +1,392 @@
+<!doctype html>
+<!--
+  advanced-search · 2-AdvancedSearch-Edit — restyle of the "Advanced Search - Create New" dialog
+  (Adv Search - page.png) expanded with Adv Search - Base Options.png, Relation Options.png and Progress Options.png.
+  The legacy dialog becomes a full page because of the number of fields.
+  State: My last search opened; Job Document type, Name contains, Modified anytime, Current revision, Relation exists
+  (Transmittal <-> Document), Progress search on. Tabs: Object information (active) · Relation · Progress · Result.
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/advanced-search/2-AdvancedSearch-Edit.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Advanced search · My last search</title>
+    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
+    <link rel="stylesheet" href="../_shared/restyle.css" />
+    <link rel="stylesheet" href="./flow.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <script>
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
+  </head>
+
+  <body class="sl-theme-light">
+    <sl-header>
+      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+      <span slot="logo"></span>
+
+      <sl-select slot="actions" size="small" value="99-page-am" style="width: 16rem">
+        <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
+      </sl-select>
+      <sl-header-item slot="actions">
+        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+        Mario Rossi
+        <sl-menu slot="menu">
+          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+    </sl-header>
+
+    <div class="rs-shell">
+      <sl-sidebar label="Project navigation" collapsed>
+        <sl-sidebar-group label="Documenti di progetto" count="70">
+          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+          <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Procurement (SAP)" count="71">
+          <sl-icon slot="icon" name="cart"></sl-icon>
+          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Comunicazione" count="47">
+          <sl-icon slot="icon" name="envelope"></sl-icon>
+          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Tasks" count="55">
+          <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+          <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
+        </sl-sidebar-group>
+      </sl-sidebar>
+
+      <main class="rs-page" aria-label="Advanced search · My last search">
+        <sl-breadcrumb>
+          <sl-breadcrumb-item href="../DMS-Home/1-Home.html">Home</sl-breadcrumb-item>
+          <sl-breadcrumb-item href="./1-AdvancedSearch.html">Advanced search</sl-breadcrumb-item>
+          <sl-breadcrumb-item>My last search</sl-breadcrumb-item>
+        </sl-breadcrumb>
+
+        <div class="rs-page-header">
+          <div class="rs-page-header__text">
+            <h1 class="rs-title">My last search</h1>
+          </div>
+          <div class="rs-cluster">
+            <sl-button variant="text" href="./1-AdvancedSearch.html">Cancel</sl-button>
+            <sl-button>Edit search properties</sl-button>
+            <sl-button>Save search</sl-button>
+            <sl-button variant="primary"><sl-icon slot="prefix" name="play-fill"></sl-icon>Run</sl-button>
+          </div>
+        </div>
+
+        <sl-tab-group aria-label="Search sections">
+          <sl-tab slot="nav" panel="object" active>Object information</sl-tab>
+          <sl-tab slot="nav" panel="relation">Relation</sl-tab>
+          <sl-tab slot="nav" panel="progress">Progress</sl-tab>
+          <sl-tab slot="nav" panel="result">Result</sl-tab>
+
+          <!-- Object information (Base Options + Criteria of the legacy dialog) -->
+          <sl-tab-panel name="object" active>
+            <div class="rs-stack">
+              <sl-card aria-label="Scope">
+                <h2 slot="header" class="rs-heading">Scope</h2>
+                <div class="rs-grid rs-grid--fields">
+                  <sl-select class="rs-span-6" label="Type" required value="spm_job_doc">
+                    <sl-option value="spm_job_doc">Job Document (spm_job_doc)</sl-option>
+                  </sl-select>
+                  <div class="rs-span-6 rs-cluster rs-cluster--bottom">
+                    <sl-radio-group label="Locations" value="all">
+                      <sl-radio-button value="all">procpdms</sl-radio-button>
+                      <sl-radio-button value="current">Current location only: procpdms</sl-radio-button>
+                    </sl-radio-group>
+                    <sl-button size="small" variant="text"
+                      ><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-button
+                    >
+                  </div>
+
+                  <sl-input class="rs-span-6" label="Contains" clearable>
+                    <sl-icon slot="prefix" name="search"></sl-icon>
+                  </sl-input>
+                  <div class="rs-span-6 rs-cluster field-end">
+                    <sl-checkbox size="small">Enable fulltext</sl-checkbox>
+                    <sl-checkbox size="small">Case sensitive</sl-checkbox>
+                    <sl-checkbox size="small">All versions</sl-checkbox>
+                  </div>
+
+                  <sl-radio-group class="rs-span-6" label="Revisions" value="current">
+                    <sl-radio-button value="all">All revisions</sl-radio-button>
+                    <sl-radio-button value="latest">Latest revision</sl-radio-button>
+                    <sl-radio-button value="current">Current</sl-radio-button>
+                  </sl-radio-group>
+                  <sl-select class="rs-span-3" label="Size" value="any">
+                    <sl-option value="any">Any size</sl-option>
+                  </sl-select>
+                </div>
+              </sl-card>
+
+              <sl-card aria-label="Properties">
+                <h2 slot="header" class="rs-heading">Properties</h2>
+                <div class="rs-grid rs-grid--fields">
+                  <sl-select class="rs-span-2" label="Operator" value="and">
+                    <sl-option value="and">and</sl-option>
+                    <sl-option value="or">or</sl-option>
+                  </sl-select>
+                  <sl-select class="rs-span-3" label="Property" value="name">
+                    <sl-option value="name">Name</sl-option>
+                  </sl-select>
+                  <sl-select class="rs-span-3" label="Condition" value="contains">
+                    <sl-option value="contains">contains</sl-option>
+                    <sl-option value="equals">equals</sl-option>
+                  </sl-select>
+                  <sl-input class="rs-span-3" label="Value"></sl-input>
+                  <div class="rs-span-1 rs-cluster field-end">
+                    <sl-button size="small" variant="text"
+                      ><sl-icon slot="prefix" name="trash"></sl-icon>Remove</sl-button
+                    >
+                  </div>
+                  <div class="rs-span-12 rs-cluster">
+                    <sl-button size="small" variant="text"
+                      ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Add another property</sl-button
+                    >
+                    <sl-button size="small" variant="text">Open group (</sl-button>
+                    <sl-button size="small" variant="text">Close group )</sl-button>
+                  </div>
+                </div>
+              </sl-card>
+
+              <sl-card aria-label="Date">
+                <h2 slot="header" class="rs-heading">Date</h2>
+                <div class="rs-grid rs-grid--fields">
+                  <sl-select class="rs-span-3" label="Date" value="modified">
+                    <sl-option value="modified">Modified</sl-option>
+                    <sl-option value="created">Created</sl-option>
+                  </sl-select>
+                  <sl-radio-group class="rs-span-3" label="Period" value="anytime">
+                    <sl-radio-button value="anytime">Preset</sl-radio-button>
+                    <sl-radio-button value="range">From – to</sl-radio-button>
+                  </sl-radio-group>
+                  <sl-select class="rs-span-2" label="Preset" value="anytime">
+                    <sl-option value="anytime">Anytime</sl-option>
+                  </sl-select>
+                  <sl-input class="rs-span-2" type="date" label="From" disabled></sl-input>
+                  <sl-input class="rs-span-2" type="date" label="To" disabled></sl-input>
+                </div>
+              </sl-card>
+
+              <sl-card aria-label="Linking and membership">
+                <h2 slot="header" class="rs-heading">Linking and membership</h2>
+                <div class="rs-grid rs-grid--fields">
+                  <sl-select class="rs-span-3" label="Linking" placeholder="Select a property" clearable></sl-select>
+                  <sl-select class="rs-span-4" label="Membership" value="approve-performer">
+                    <sl-option value="approve-performer">External Job Document - Drawing: approve_performer</sl-option>
+                  </sl-select>
+                  <sl-select class="rs-span-2" label="Condition" value="any">
+                    <sl-option value="any">Contains any</sl-option>
+                    <sl-option value="all">Contains all</sl-option>
+                  </sl-select>
+                  <sl-select class="rs-span-2" label="Members" multiple placeholder="No members" clearable></sl-select>
+                  <div class="rs-span-1 rs-cluster field-end">
+                    <sl-button size="small" variant="text"
+                      ><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-button
+                    >
+                  </div>
+                </div>
+              </sl-card>
+            </div>
+          </sl-tab-panel>
+
+          <!-- Relation (Relation Options) -->
+          <sl-tab-panel name="relation">
+            <div class="rs-stack">
+              <sl-card aria-label="Relation">
+                <h2 slot="header" class="rs-heading">Relation</h2>
+                <div class="rs-grid rs-grid--fields">
+                  <sl-radio-group class="rs-span-6" label="Relation" value="exists">
+                    <sl-radio-button value="exists">Relation exists</sl-radio-button>
+                    <sl-radio-button value="not-exists">Relation does not exist</sl-radio-button>
+                  </sl-radio-group>
+                  <sl-select class="rs-span-6" label="Relation type" value="spm_trans_doc_relation">
+                    <sl-option value="spm_trans_doc_relation"
+                      >Transmittal &lt;-&gt; Document (spm_trans_doc_relation)</sl-option
+                    >
+                  </sl-select>
+                  <sl-select
+                    class="rs-span-6"
+                    label="Relation properties"
+                    placeholder="Select a property"
+                    clearable
+                  ></sl-select>
+                </div>
+              </sl-card>
+
+              <sl-card aria-label="Related to">
+                <h2 slot="header" class="rs-heading">Related to</h2>
+                <div class="rs-grid rs-grid--fields">
+                  <sl-select class="rs-span-6" label="Type" value="spm_transmittal">
+                    <sl-option value="spm_transmittal">Transmittal (spm_transmittal)</sl-option>
+                  </sl-select>
+                  <sl-input class="rs-span-6" label="Contains" clearable>
+                    <sl-icon slot="prefix" name="search"></sl-icon>
+                  </sl-input>
+
+                  <sl-select class="rs-span-2" label="Operator" value="and">
+                    <sl-option value="and">and</sl-option>
+                    <sl-option value="or">or</sl-option>
+                  </sl-select>
+                  <sl-select class="rs-span-3" label="Property" value="name">
+                    <sl-option value="name">Name</sl-option>
+                  </sl-select>
+                  <sl-select class="rs-span-3" label="Condition" value="contains">
+                    <sl-option value="contains">contains</sl-option>
+                  </sl-select>
+                  <sl-input class="rs-span-3" label="Value"></sl-input>
+                  <div class="rs-span-1 rs-cluster field-end">
+                    <sl-button size="small" variant="text"
+                      ><sl-icon slot="prefix" name="trash"></sl-icon>Remove</sl-button
+                    >
+                  </div>
+                  <div class="rs-span-12">
+                    <sl-button size="small" variant="text"
+                      ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Add another property</sl-button
+                    >
+                  </div>
+
+                  <sl-select class="rs-span-3" label="Date" value="modified">
+                    <sl-option value="modified">Modified</sl-option>
+                  </sl-select>
+                  <sl-select class="rs-span-3" label="Condition" value="eq">
+                    <sl-option value="eq">=</sl-option>
+                  </sl-select>
+                  <sl-input class="rs-span-3" type="date" label="Date value"></sl-input>
+                  <sl-select class="rs-span-3" label="Size" value="any">
+                    <sl-option value="any">Any size</sl-option>
+                  </sl-select>
+
+                  <sl-select class="rs-span-3" label="Linking" placeholder="Select a property" clearable></sl-select>
+                  <sl-select class="rs-span-4" label="Membership" value="incoming-admin">
+                    <sl-option value="incoming-admin">Incoming Transmittal: admin</sl-option>
+                  </sl-select>
+                  <sl-select class="rs-span-2" label="Condition" value="any">
+                    <sl-option value="any">Contains any</sl-option>
+                  </sl-select>
+                  <sl-select class="rs-span-2" label="Members" multiple placeholder="No members" clearable></sl-select>
+                  <div class="rs-span-1 rs-cluster field-end">
+                    <sl-button size="small" variant="text"
+                      ><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-button
+                    >
+                  </div>
+                </div>
+              </sl-card>
+            </div>
+          </sl-tab-panel>
+
+          <!-- Progress (Progress Options): enabled by the legacy "Progress Search" checkbox -->
+          <sl-tab-panel name="progress">
+            <div class="rs-stack">
+              <sl-card aria-label="Progress">
+                <div slot="header" class="rs-cluster rs-cluster--between">
+                  <h2 class="rs-heading">Progress</h2>
+                  <sl-switch size="small" checked>Progress search</sl-switch>
+                </div>
+                <div class="rs-grid rs-grid--fields">
+                  <sl-select class="rs-span-3" label="Client progress" value="equals">
+                    <sl-option value="equals">Equals</sl-option>
+                    <sl-option value="greater">Greater than</sl-option>
+                    <sl-option value="less">Less than</sl-option>
+                  </sl-select>
+                  <sl-input class="rs-span-2" type="number" label="Value (%)"></sl-input>
+                  <sl-select class="rs-span-2" label="Then" value="and">
+                    <sl-option value="and">and</sl-option>
+                    <sl-option value="or">or</sl-option>
+                  </sl-select>
+                  <span class="rs-span-5"></span>
+
+                  <sl-select class="rs-span-3" label="Project progress" value="equals">
+                    <sl-option value="equals">Equals</sl-option>
+                    <sl-option value="greater">Greater than</sl-option>
+                    <sl-option value="less">Less than</sl-option>
+                  </sl-select>
+                  <sl-input class="rs-span-2" type="number" label="Value (%)"></sl-input>
+                  <sl-select class="rs-span-2" label="Then" value="and">
+                    <sl-option value="and">and</sl-option>
+                    <sl-option value="or">or</sl-option>
+                  </sl-select>
+                  <span class="rs-span-5"></span>
+
+                  <sl-select class="rs-span-3" label="Weight" value="equals">
+                    <sl-option value="equals">Equals</sl-option>
+                    <sl-option value="greater">Greater than</sl-option>
+                    <sl-option value="less">Less than</sl-option>
+                  </sl-select>
+                  <sl-input class="rs-span-2" type="number" label="Value"></sl-input>
+                </div>
+              </sl-card>
+
+              <sl-card aria-label="Milestones">
+                <h2 slot="header" class="rs-heading">Milestones</h2>
+                <div class="rs-stack">
+                  <sl-radio-group label="State" value="any">
+                    <sl-radio-button value="any">Any milestone</sl-radio-button>
+                    <sl-radio-button value="gained">Any gained milestone</sl-radio-button>
+                    <sl-radio-button value="recent">Most recently gained milestone</sl-radio-button>
+                    <sl-radio-button value="future">Any future milestone</sl-radio-button>
+                  </sl-radio-group>
+                  <div class="rs-stack rs-stack--tight" aria-label="With conditions">
+                    <span class="rs-subheading">With conditions</span>
+                    <div class="rs-cluster">
+                      <sl-button size="small" variant="text"
+                        ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Actual date constraint</sl-button
+                      >
+                      <sl-button size="small" variant="text"
+                        ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Forecast date constraint</sl-button
+                      >
+                      <sl-button size="small" variant="text"
+                        ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Planned date constraint</sl-button
+                      >
+                      <sl-button size="small" variant="text"
+                        ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Milestone description condition</sl-button
+                      >
+                    </div>
+                  </div>
+                </div>
+              </sl-card>
+            </div>
+          </sl-tab-panel>
+
+          <sl-tab-panel name="result">
+            <sl-card aria-label="Result">
+              <sl-empty-state
+                title-text="Result"
+                description="Content of this tab not shown in the legacy screenshots."
+              >
+                <sl-icon slot="icon" name="grid"></sl-icon>
+              </sl-empty-state>
+            </sl-card>
+          </sl-tab-panel>
+        </sl-tab-group>
+      </main>
+    </div>
+  </body>
+</html>

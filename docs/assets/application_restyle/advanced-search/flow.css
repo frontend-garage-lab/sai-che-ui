@@ -1,0 +1,13 @@
+/* advanced-search — layout only. Inline controls (remove row, fulltext) sit on the field baseline. */
+.field-end {
+  align-self: end;
+  min-height: var(--sl-input-height-medium);
+  align-items: center;
+}
+
+/* Tab content spans the whole page width. */
+sl-tab-panel > sl-card,
+sl-tab-panel > .rs-stack > sl-card {
+  display: block;
+  width: 100%;
+}
