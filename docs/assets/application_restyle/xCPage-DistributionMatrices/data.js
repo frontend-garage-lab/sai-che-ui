@@ -185,6 +185,7 @@ export const distributionColumns = [
     cell: ({ row }) =>
       html`<sl-table
         class="rs-nested-table"
+        size="small"
         label="Recipients of ${row.original.name}"
         .columns=${recipientColumns}
         .data=${row.original.recipients}

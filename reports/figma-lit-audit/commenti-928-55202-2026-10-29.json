@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1985617965",
+    "node": "928:55203",
+    "offset": {
+      "x": 2487,
+      "y": 306
+    },
+    "autore": "D'Andria, Giuseppe",
+    "risolto": false,
+    "testo": "Aggiungere more \"filters\"",
+    "risposte": []
+  },
+  {
+    "id": "1985240597",
+    "node": "928:55203",
+    "offset": {
+      "x": 2656,
+      "y": 877
+    },
+    "autore": "Boffelli, Anselmo",
+    "risolto": false,
+    "testo": "eh qui considera che nell'as-is sono delle mini tabelle super dense di righe e dati, ma questo componente base tabella ha misure e padding molto larghi.",
+    "risposte": []
+  },
+  {
+    "id": "1985236563",
+    "node": "928:55203",
+    "offset": {
+      "x": 2084,
+      "y": 464
+    },
+    "autore": "Boffelli, Anselmo",
+    "risolto": false,
+    "testo": "Qui il componente va rivisto nel DS, avevo aggiunto qualche commento su quanto detto da Filippo",
+    "risposte": []
+  },
+  {
+    "id": "1985234434",
+    "node": "928:55203",
+    "offset": {
+      "x": 2298,
+      "y": 231
+    },
+    "autore": "Boffelli, Anselmo",
+    "risolto": false,
+    "testo": "Via le tab, diventano opzioni della sidebar, sotto la macro-categoria \"Distribution Matrices\"",
+    "risposte": []
+  }
+]

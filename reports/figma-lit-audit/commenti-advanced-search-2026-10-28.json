@@ -1,0 +1,305 @@
+[
+  {
+    "id": "1985259292",
+    "frame": "2-Edit",
+    "node": "885:53601",
+    "offset": {
+      "x": 1508,
+      "y": 486
+    },
+    "autore": "Conte, Domenico",
+    "testo": "rinominare questa label e pulsanti da \"revisions\" a \"versions\"",
+    "risposte": []
+  },
+  {
+    "id": "1985258357",
+    "frame": "2-Edit",
+    "node": "885:53601",
+    "offset": {
+      "x": 2441,
+      "y": 431
+    },
+    "autore": "Conte, Domenico",
+    "testo": "da rimuovere anche questa checkbox",
+    "risposte": []
+  },
+  {
+    "id": "1985249251",
+    "frame": "2-Edit",
+    "node": "885:53601",
+    "offset": {
+      "x": 2323,
+      "y": 419
+    },
+    "autore": "Conte, Domenico",
+    "testo": "Va capito come riposizionarlo, bisogna comunicare chiaramente all'utente che queste opzioni si applicano a tutti i campi di sotto.",
+    "risposte": [
+      {
+        "autore": "Boffelli, Anselmo",
+        "testo": "Inoltre si perde il concetto di Revisione e si parla solo di \"Versioni\""
+      },
+      {
+        "autore": "Boffelli, Anselmo",
+        "testo": "In realtá tutta questa parte di opzioni puó essere spostata sotto il \"Type\" (Vedi allegato)"
+      }
+    ]
+  },
+  {
+    "id": "1985236404",
+    "frame": "2d-Result",
+    "node": "893:55283",
+    "offset": {
+      "x": 1907,
+      "y": 300
+    },
+    "autore": "Conte, Domenico",
+    "testo": "Manca la sezione dove l'utente seleziona le colonne da mostrare nel risultato",
+    "risposte": [
+      {
+        "autore": "Boffelli, Anselmo",
+        "testo": "O una versione che contempli una selezione da destra a sinistra"
+      },
+      {
+        "autore": "Conte, Domenico",
+        "testo": "ecco @D'Andria, Giuseppe, ma puoi sempre far riferimento alla cartella screenshots se ti servono più dettagli."
+      },
+      {
+        "autore": "D'Andria, Giuseppe",
+        "testo": "Abbiamo uno screenshot @Conte, Domenico"
+      }
+    ]
+  },
+  {
+    "id": "1985232968",
+    "frame": "2-Edit",
+    "node": "885:53601",
+    "offset": {
+      "x": 1696,
+      "y": 154
+    },
+    "autore": "Conte, Domenico",
+    "testo": "Dove viene definita che una search è Public o Privata nell'edit?",
+    "risposte": [
+      {
+        "autore": "Boffelli, Anselmo",
+        "testo": "Mi accodo al commento di Domenico con un possibile esempio di soluzione durante la creazione / modifica di una search (vedi allegato)"
+      }
+    ]
+  },
+  {
+    "id": "1985229497",
+    "frame": "1-AdvancedSearch",
+    "node": "879:53336",
+    "offset": {
+      "x": 2230,
+      "y": 278
+    },
+    "autore": "Conte, Domenico",
+    "testo": "Da rimuovere anche qui locations",
+    "risposte": []
+  },
+  {
+    "id": "1985225690",
+    "frame": "2-Edit",
+    "node": "885:53601",
+    "offset": {
+      "x": 2228,
+      "y": 430
+    },
+    "autore": "Conte, Domenico",
+    "testo": "La checkbox enable full text è da rimuovere",
+    "risposte": []
+  },
+  {
+    "id": "1985224724",
+    "frame": "2-Edit",
+    "node": "885:53601",
+    "offset": {
+      "x": 2394,
+      "y": 355
+    },
+    "autore": "Conte, Domenico",
+    "testo": "La sezione locations non è più necessaria",
+    "risposte": []
+  },
+  {
+    "id": "1985205433",
+    "frame": "2b-Relation",
+    "node": "893:53915",
+    "offset": {
+      "x": 2487,
+      "y": 361
+    },
+    "autore": "Boffelli, Anselmo",
+    "testo": "via il nome tecnico",
+    "risposte": []
+  },
+  {
+    "id": "1985205028",
+    "frame": "2b-Relation",
+    "node": "893:53915",
+    "offset": {
+      "x": 1635,
+      "y": 601
+    },
+    "autore": "Boffelli, Anselmo",
+    "testo": "anche qui, via il nome tecnico, questa non sará multivalore ma single value",
+    "risposte": []
+  },
+  {
+    "id": "1985204052",
+    "frame": "2-Edit",
+    "node": "885:53601",
+    "offset": {
+      "x": 1618,
+      "y": 360
+    },
+    "autore": "Boffelli, Anselmo",
+    "testo": "Rimuoviamo il nome tecnico (spm_job_doc), lasciamo sempre e solo la label",
+    "risposte": []
+  },
+  {
+    "id": "1985200478",
+    "frame": "2c-Progress",
+    "node": "893:54603",
+    "offset": {
+      "x": 2843,
+      "y": 275
+    },
+    "autore": "Boffelli, Anselmo",
+    "testo": "Colpa mia che ti ho girato uno screenshot tagliato male: dato che hai incluso queste aree filtro come dei Tab ti direi di lasciarli sempre disponibili e quindi il toggle non serve a mio avviso.",
+    "risposte": []
+  },
+  {
+    "id": "1985190108",
+    "frame": "2b-Relation",
+    "node": "893:53915",
+    "offset": {
+      "x": 1615,
+      "y": 681
+    },
+    "autore": "Boffelli, Anselmo",
+    "testo": "Uguale alle regole di cui sopra.",
+    "risposte": []
+  },
+  {
+    "id": "1985189687",
+    "frame": "2b-Relation",
+    "node": "893:53915",
+    "offset": {
+      "x": 1659,
+      "y": 797
+    },
+    "autore": "Boffelli, Anselmo",
+    "testo": "Stessa sorte di sopra per le Date",
+    "risposte": []
+  },
+  {
+    "id": "1985189054",
+    "frame": "2b-Relation",
+    "node": "893:53915",
+    "offset": {
+      "x": 1635,
+      "y": 883
+    },
+    "autore": "Boffelli, Anselmo",
+    "testo": "Stessa sorte di sopra per il linking",
+    "risposte": []
+  },
+  {
+    "id": "1985188216",
+    "frame": "2b-Relation",
+    "node": "893:53915",
+    "offset": {
+      "x": 2308,
+      "y": 597
+    },
+    "autore": "Boffelli, Anselmo",
+    "testo": "Rimuovere anche qui il contains",
+    "risposte": []
+  },
+  {
+    "id": "1985186557",
+    "frame": "2-Edit",
+    "node": "885:53601",
+    "offset": {
+      "x": 1599,
+      "y": 680
+    },
+    "autore": "Boffelli, Anselmo",
+    "testo": "Gli operator AND e OR secondo me possono diventare dei bottoni (vedi allegato), AND sul lato sinistro e OR su quello destro cosí da simulare una gerarchia visiva chiara (AND comanda sugli OR annidati).\nLa regola é:\n* un AND puó seguire un altro AND.\n* un OR puó partire solo se c'é un AND prima.\n* un OR puó concatenaris ad un altro OR.",
+    "risposte": []
+  },
+  {
+    "id": "1985177509",
+    "frame": "2-Edit",
+    "node": "885:53601",
+    "offset": {
+      "x": 1694,
+      "y": 1029
+    },
+    "autore": "Boffelli, Anselmo",
+    "testo": "Qui il campo Linking sembra legato alla membership ma in realtá sono separati, il filtro sul linking deve seguire qualcosa del genere (vedi allegato), di default nessun filtro, e compare solo il tasto + accanto a \"Linking\" per aggiungere filtri.\nLe opzioni della prima dropdown sono \"is Linked To\" e negativa \"Is not Linked to\".",
+    "risposte": []
+  },
+  {
+    "id": "1985169515",
+    "frame": "2-Edit",
+    "node": "885:53601",
+    "offset": {
+      "x": 1706,
+      "y": 806
+    },
+    "autore": "Boffelli, Anselmo",
+    "testo": "La sezione properties in alto deve contemplare anche i campi Date e modificare i valori di conditions in base alla tipologia di campo selezionato, la sezione date in basso é quindi ridondante.",
+    "risposte": []
+  },
+  {
+    "id": "1985167011",
+    "frame": "2-Edit",
+    "node": "885:53601",
+    "offset": {
+      "x": 1709,
+      "y": 728
+    },
+    "autore": "Boffelli, Anselmo",
+    "testo": "Rimuoviamo Open Group e Close Group, il sistema capirá autonomamente quando aprire e chiudere le parentesi.",
+    "risposte": []
+  },
+  {
+    "id": "1985164503",
+    "frame": "2-Edit",
+    "node": "885:53601",
+    "offset": {
+      "x": 2306,
+      "y": 516
+    },
+    "autore": "Boffelli, Anselmo",
+    "testo": "Rimuoviamo questa dropdown",
+    "risposte": []
+  },
+  {
+    "id": "1985164152",
+    "frame": "2-Edit",
+    "node": "885:53601",
+    "offset": {
+      "x": 1943,
+      "y": 439
+    },
+    "autore": "Boffelli, Anselmo",
+    "testo": "Togliamo questo input text e rimuoviamo opzione \"fulltext\"",
+    "risposte": []
+  },
+  {
+    "id": "1985163494",
+    "frame": "2-Edit",
+    "node": "885:53601",
+    "offset": {
+      "x": 1935,
+      "y": 356
+    },
+    "autore": "Boffelli, Anselmo",
+    "testo": "Questa dropdown é multivalore.",
+    "risposte": []
+  }
+]

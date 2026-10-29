@@ -165,10 +165,16 @@
                   <sl-icon slot="prefix" name="plus-lg"></sl-icon>
                   Create outgoing
                 </sl-button>
-                <sl-button size="small" disabled><sl-icon slot="prefix" name="files"></sl-icon>Create from existing</sl-button>
+                <sl-button size="small" disabled
+                  ><sl-icon slot="prefix" name="files"></sl-icon>Create from existing</sl-button
+                >
                 <sl-divider vertical></sl-divider>
-                <sl-button size="small" disabled><sl-icon slot="prefix" name="person-check"></sl-icon>Assign to me</sl-button>
-                <sl-button size="small" disabled><sl-icon slot="prefix" name="check2-all"></sl-icon>Complete assignment</sl-button>
+                <sl-button size="small" disabled
+                  ><sl-icon slot="prefix" name="person-check"></sl-icon>Assign to me</sl-button
+                >
+                <sl-button size="small" disabled
+                  ><sl-icon slot="prefix" name="check2-all"></sl-icon>Complete assignment</sl-button
+                >
                 <sl-divider vertical></sl-divider>
                 <sl-dropdown placement="bottom-start">
                   <sl-button slot="trigger" size="small" caret disabled>Actions</sl-button>
@@ -235,11 +241,13 @@
         <sl-select label="PO number" placeholder="Any" clearable></sl-select>
       </div>
       <sl-button slot="footer" variant="text">Clear</sl-button>
-      <sl-button slot="footer" variant="primary"><sl-icon slot="prefix" name="filter"></sl-icon>Apply filters</sl-button>
+      <sl-button slot="footer" variant="primary"
+        ><sl-icon slot="prefix" name="filter"></sl-icon>Apply filters</sl-button
+      >
     </sl-drawer>
 
     <!-- Create transmittal: 4-step wizard -->
-    <sl-dialog label="Create new transmittal" open style="--width: 80rem">
+    <sl-dialog label="Create new transmittal (New)" open style="--width: 80rem">
       <div class="rs-stack rs-stack--loose">
         <sl-stepper label="Create transmittal" current="0">
           <sl-step description="Type, template and details">Properties</sl-step>
@@ -247,112 +255,90 @@
           <sl-step description="Who receives it">Recipients</sl-step>
           <sl-step description="Roles and members">Membership</sl-step>
         </sl-stepper>
-        <div class="rs-grid rs-grid--fields">
-          <div class="rs-span-3">
-            <sl-radio-group label="Create from" value="new">
-              <sl-radio value="new">New</sl-radio>
-              <sl-radio value="existing">From existing</sl-radio>
-              <sl-radio value="virtual">From virtual binder</sl-radio>
-              <sl-radio value="clipboard">From clipboard</sl-radio>
-              <sl-radio value="selected">From selected</sl-radio>
-            </sl-radio-group>
-          </div>
-          <div class="rs-span-9 rs-stack rs-stack--loose">
-            <section class="rs-stack" aria-label="Type">
-              <h3 class="rs-subheading">Type</h3>
-              <div class="rs-grid rs-grid--fields">
-                <sl-select class="rs-span-6" label="Transmittal type" required value="outgoing">
-                  <sl-option value="outgoing">Outgoing transmittal</sl-option>
-                </sl-select>
-                <sl-select class="rs-span-6" label="Transmittal template" required value="outgoing-template">
-                  <sl-option value="outgoing-template">Transmittal Outgoing</sl-option>
-                </sl-select>
-              </div>
-            </section>
+        <div class="rs-stack rs-stack--loose">
+          <section class="rs-stack" aria-label="Type">
+            <h3 class="rs-subheading">Type</h3>
+            <div class="rs-grid rs-grid--fields">
+              <sl-select class="rs-span-6" label="Transmittal type" required value="outgoing">
+                <sl-option value="outgoing">Outgoing transmittal</sl-option>
+              </sl-select>
+              <sl-select class="rs-span-6" label="Transmittal template" required value="outgoing-template">
+                <sl-option value="outgoing-template">Transmittal Outgoing</sl-option>
+              </sl-select>
+            </div>
+          </section>
 
-            <section class="rs-stack" aria-label="Info">
-              <h3 class="rs-subheading">Info</h3>
-              <div class="rs-grid rs-grid--fields">
-                <sl-input class="rs-span-6" label="Name" required></sl-input>
-                <sl-input class="rs-span-6" label="Transmittal identification"></sl-input>
-                <sl-input class="rs-span-3" type="number" label="Sequence number" value="0"></sl-input>
-                <sl-select
-                  class="rs-span-5"
-                  label="External identification"
-                  placeholder="Select…"
-                  clearable
-                ></sl-select>
-                <sl-description-list class="rs-span-4" cols="1">
-                  <sl-description-list-item label="Project code">99_PAGE_AM</sl-description-list-item>
-                </sl-description-list>
-                <sl-input class="rs-span-6" label="Company project code"></sl-input>
-                <sl-select class="rs-span-6" label="PO number" placeholder="Select…" clearable required>
-                  <sl-option value="value13">value13</sl-option>
-                  <sl-option value="value14">value14</sl-option>
-                </sl-select>
-              </div>
-            </section>
+          <section class="rs-stack" aria-label="Info">
+            <h3 class="rs-subheading">Info</h3>
+            <div class="rs-grid rs-grid--fields">
+              <sl-input class="rs-span-6" label="Name" required></sl-input>
+              <sl-input class="rs-span-6" label="Transmittal identification"></sl-input>
+              <sl-input class="rs-span-6" type="number" label="Sequence number" value="0"></sl-input>
+              <sl-select class="rs-span-6" label="External identification" placeholder="Select…" clearable></sl-select>
+              <sl-input class="rs-span-6" label="Project code" value="99_PAGE_AM" readonly disabled></sl-input>
+              <sl-input class="rs-span-6" label="Company project code"></sl-input>
+              <sl-select class="rs-span-6" label="PO number" placeholder="Select…" clearable required>
+                <sl-option value="value13">value13</sl-option>
+                <sl-option value="value14">value14</sl-option>
+              </sl-select>
+            </div>
+          </section>
 
-            <section class="rs-stack" aria-label="Classification">
-              <h3 class="rs-subheading">Classification</h3>
-              <div class="rs-grid rs-grid--fields">
-                <sl-select class="rs-span-6" label="Discipline" placeholder="Select…" clearable>
-                  <sl-option value="civil">CIVIL &amp; ARCHITECTURAL</sl-option>
-                  <sl-option value="electrical">ELECTRICAL</sl-option>
-                  <sl-option value="mechanical">MECHANICAL</sl-option>
-                </sl-select>
-                <sl-description-list class="rs-span-6" cols="1">
-                  <sl-description-list-item label="Transmittal type">Outgoing transmittal</sl-description-list-item>
-                </sl-description-list>
-                <sl-select class="rs-span-6" label="Issuing reason" placeholder="Select…" clearable required>
-                  <sl-option value="final">FINAL ISSUE</sl-option>
-                  <sl-option value="ifq">ISSUE FOR ENQUIRY</sl-option>
-                </sl-select>
-                <sl-input class="rs-span-6" label="Title"></sl-input>
-              </div>
-            </section>
+          <section class="rs-stack" aria-label="Classification">
+            <h3 class="rs-subheading">Classification</h3>
+            <div class="rs-grid rs-grid--fields">
+              <sl-select class="rs-span-6" label="Discipline" placeholder="Select…" clearable>
+                <sl-option value="civil">CIVIL &amp; ARCHITECTURAL</sl-option>
+                <sl-option value="electrical">ELECTRICAL</sl-option>
+                <sl-option value="mechanical">MECHANICAL</sl-option>
+              </sl-select>
+              <sl-input class="rs-span-6" label="Transmittal type" value="Outgoing transmittal" readonly disabled></sl-input>
+              <sl-select class="rs-span-6" label="Issuing reason" placeholder="Select…" clearable required>
+                <sl-option value="final">FINAL ISSUE</sl-option>
+                <sl-option value="ifq">ISSUE FOR ENQUIRY</sl-option>
+              </sl-select>
+              <sl-input class="rs-span-6" label="Title"></sl-input>
+            </div>
+          </section>
 
-            <section class="rs-stack" aria-label="Routing">
-              <h3 class="rs-subheading">Routing</h3>
-              <div class="rs-grid rs-grid--fields">
-                <sl-description-list class="rs-span-6" cols="1">
-                  <sl-description-list-item label="Transmittal status"
-                    ><sl-status filled variant="neutral" size="small">Working</sl-status></sl-description-list-item
-                  >
-                </sl-description-list>
-                <sl-input class="rs-span-6" label="Transmittal category"></sl-input>
-                <sl-select class="rs-span-6" label="From company – department" placeholder="Select…" clearable required>
-                  <sl-option value="not-and">NOT &amp; AND</sl-option>
-                </sl-select>
-                <sl-input class="rs-span-6" label="Sender" required></sl-input>
-                <sl-select
-                  class="rs-span-12"
-                  label="To company – department"
-                  placeholder="Select…"
-                  clearable
-                  required
-                ></sl-select>
-              </div>
-            </section>
+          <section class="rs-stack" aria-label="Routing">
+            <h3 class="rs-subheading">Routing</h3>
+            <div class="rs-grid rs-grid--fields">
+              <sl-input class="rs-span-6" label="Transmittal status" value="Working" readonly disabled></sl-input>
+              <sl-input class="rs-span-6" label="Transmittal category"></sl-input>
+              <sl-select class="rs-span-6" label="From company – department" placeholder="Select…" clearable required>
+                <sl-option value="not-and">NOT &amp; AND</sl-option>
+              </sl-select>
+              <sl-input class="rs-span-6" label="Sender" required></sl-input>
+              <sl-select
+                class="rs-span-6"
+                label="To company – department"
+                placeholder="Select…"
+                clearable
+                required
+              ></sl-select>
+            </div>
+          </section>
 
-            <section class="rs-stack" aria-label="Dates and response">
-              <h3 class="rs-subheading">Dates and response</h3>
-              <div class="rs-grid rs-grid--fields">
-                <sl-input class="rs-span-4" type="date" label="Issue date"></sl-input>
-                <sl-input class="rs-span-2" type="time" label="Time"></sl-input>
-                <sl-input class="rs-span-4" type="date" label="Sent date"></sl-input>
-                <sl-input class="rs-span-2" type="time" label="Time"></sl-input>
-                <sl-checkbox class="rs-span-6" size="small">Requires response</sl-checkbox>
-                <sl-input class="rs-span-3" type="number" label="Days to respond" value="21"></sl-input>
-                <sl-input class="rs-span-3" type="date" label="Respond by date"></sl-input>
-                <sl-textarea class="rs-span-12" label="Note" rows="2"></sl-textarea>
-              </div>
-            </section>
-          </div>
+          <section class="rs-stack" aria-label="Dates and response">
+            <h3 class="rs-subheading">Dates and response</h3>
+            <div class="rs-grid rs-grid--fields">
+              <sl-input class="rs-span-4" type="date" label="Issue date"></sl-input>
+              <sl-input class="rs-span-2" type="time" label="Time"></sl-input>
+              <sl-input class="rs-span-4" type="date" label="Sent date"></sl-input>
+              <sl-input class="rs-span-2" type="time" label="Time"></sl-input>
+              <sl-checkbox class="rs-span-12" size="small">Requires response</sl-checkbox>
+              <sl-input class="rs-span-6" type="number" label="Days to respond" value="21"></sl-input>
+              <sl-input class="rs-span-6" type="date" label="Respond by date"></sl-input>
+              <sl-textarea class="rs-span-12" label="Note" rows="2"></sl-textarea>
+            </div>
+          </section>
         </div>
       </div>
       <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>
-      <sl-button slot="footer" variant="primary" disabled>Next: Documents<sl-icon slot="suffix" name="chevron-right"></sl-icon></sl-button>
+      <sl-button slot="footer" variant="primary" disabled
+        >Next: Documents<sl-icon slot="suffix" name="chevron-right"></sl-icon
+      ></sl-button>
     </sl-dialog>
 
     <script type="module">

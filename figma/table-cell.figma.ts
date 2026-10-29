@@ -18,7 +18,8 @@ const type = instance.getEnum('Type', {
 const text = instance.getString('Text');
 const meta1 = instance.getString('Meta 1');
 // `composite` is one cell holding any mix of status, badge and icon: the Content slot is rendered as is.
-// `quick-info` is the same slot preset with a label-less status dot and the chat icon.
+// `quick-info` is the same slot, preset with a label-less status dot and the chat icon; its preferred values are
+// Status, Badge, Tag and every icon, in any order (e.g. QMIS: bid status badge, documents pill, TE/CO/PM, attachment).
 const content = type === 'composite' || type === 'quick-info' ? instance.getSlot('Content') : '';
 
 // `Marker` flags the row with a coloured leading bar: it is the table's `rowVariant`, one colour per record.
@@ -42,18 +43,18 @@ const example =
   type === 'quick-info'
     ? figma.html`<!-- cell: ({ row }) => html\`<span style="display: inline-flex; align-items: center; gap: var(--sl-spacing-x-small);">${content}</span>\`${markerNote} -->`
     : type === 'composite'
-    ? figma.html`<!-- cell: ({ row }) => html\`${content}\`${markerNote} -->`
-    : type === 'document'
-      ? figma.html`<!-- cell: ({ row }) => html\`<strong>${text}</strong><br /><small>${meta1}</small>\`${markerNote} -->`
-      : type === 'status'
-        ? figma.html`<!-- cell: () => html\`<sl-status variant="neutral" size="small">…</sl-status>\`${markerNote} -->`
-        : type === 'tag'
-          ? figma.html`<!-- cell: ({ row }) => html\`<sl-tag size="small" variant="neutral">…</sl-tag>\`${markerNote} -->`
-          : type === 'checkbox'
-            ? figma.html`<!-- selection column: set selection="multiple" on <sl-table> -->`
-            : type === 'actions'
-              ? figma.html`<!-- actions column: { id: 'actions', meta: { actions: true }, cell: () => html\`<sl-menu>…</sl-menu>\` } -->`
-              : figma.html`<!-- cell: the column's accessorKey value${markerNote} -->`;
+      ? figma.html`<!-- cell: ({ row }) => html\`${content}\`${markerNote} -->`
+      : type === 'document'
+        ? figma.html`<!-- cell: ({ row }) => html\`<strong>${text}</strong><br /><small>${meta1}</small>\`${markerNote} -->`
+        : type === 'status'
+          ? figma.html`<!-- cell: () => html\`<sl-status variant="neutral" size="small">…</sl-status>\`${markerNote} -->`
+          : type === 'tag'
+            ? figma.html`<!-- cell: ({ row }) => html\`<sl-tag size="small" variant="neutral">…</sl-tag>\`${markerNote} -->`
+            : type === 'checkbox'
+              ? figma.html`<!-- selection column: set selection="multiple" on <sl-table> -->`
+              : type === 'actions'
+                ? figma.html`<!-- actions column: { id: 'actions', meta: { actions: true }, cell: () => html\`<sl-menu>…</sl-menu>\` } -->`
+                : figma.html`<!-- cell: the column's accessorKey value${markerNote} -->`;
 
 export default {
   example,

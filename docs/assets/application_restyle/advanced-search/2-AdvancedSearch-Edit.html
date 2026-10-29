@@ -3,8 +3,8 @@
   advanced-search · 2-AdvancedSearch-Edit — restyle of the "Advanced Search - Create New" dialog
   (Adv Search - page.png) expanded with Adv Search - Base Options.png, Relation Options.png and Progress Options.png.
   The legacy dialog becomes a full page because of the number of fields.
-  State: My last search opened; Job Document type, Name contains, Modified anytime, Current revision, Relation exists
-  (Transmittal <-> Document), Progress search on. Tabs: Object information (active) · Relation · Progress · Result.
+  State: My last search opened (private); Job Document type, Current versions; filters Name contains · AND Modified
+  after · OR Status equals; no linking filter; Relation exists (Transmittal <-> Document); 6 of 9 result columns; sorting from the result table headers. Tabs: Object information (active) · Relation · Progress · Result.
   Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/advanced-search/2-AdvancedSearch-Edit.html
 -->
 <html lang="en">
@@ -95,118 +95,195 @@
           </div>
           <div class="rs-cluster">
             <sl-button variant="text" href="./1-AdvancedSearch.html">Cancel</sl-button>
-            <sl-button><sl-icon slot="prefix" name="pencil"></sl-icon>Edit search properties</sl-button>
             <sl-button><sl-icon slot="prefix" name="floppy"></sl-icon>Save search</sl-button>
             <sl-button variant="primary"><sl-icon slot="prefix" name="play-fill"></sl-icon>Run</sl-button>
           </div>
         </div>
 
-        <sl-tab-group aria-label="Search sections"><span class="rs-inline"><sl-icon name="info-circle"></sl-icon>Object information</span></sl-tab>
-          <sl-tab slot="nav" panel="relation"><span class="rs-inline"><sl-icon name="link-45deg"></sl-icon>Relation</span></sl-tab>
-          <sl-tab slot="nav" panel="progress"><span class="rs-inline"><sl-icon name="bar-chart-steps"></sl-icon>Progress</span></sl-tab>
-          <sl-tab slot="nav" panel="result"><span class="rs-inline"><sl-icon name="table"></sl-icon>Result</span></sl-tab>
+        <sl-tab-group aria-label="Search sections">
+          <sl-tab slot="nav" panel="object"
+            ><span class="rs-inline"><sl-icon name="info-circle"></sl-icon>Object information</span></sl-tab
+          >
+          <sl-tab slot="nav" panel="relation"
+            ><span class="rs-inline"><sl-icon name="link-45deg"></sl-icon>Relation</span></sl-tab
+          >
+          <sl-tab slot="nav" panel="progress"
+            ><span class="rs-inline"><sl-icon name="bar-chart-steps"></sl-icon>Progress</span></sl-tab
+          >
+          <sl-tab slot="nav" panel="result"
+            ><span class="rs-inline"><sl-icon name="table"></sl-icon>Result</span></sl-tab
+          >
 
           <!-- Object information (Base Options + Criteria of the legacy dialog) -->
           <sl-tab-panel name="object" active>
             <div class="rs-stack">
+              <sl-card aria-label="Search">
+                <div class="rs-grid rs-grid--fields">
+                  <sl-input class="rs-span-6" label="Search name" required value="My last search"></sl-input>
+                  <div class="rs-span-6 rs-cluster field-end">
+                    <sl-checkbox>Public search</sl-checkbox>
+                  </div>
+                </div>
+              </sl-card>
+
               <sl-card aria-label="Scope">
                 <h2 slot="header" class="rs-heading">Scope</h2>
                 <div class="rs-grid rs-grid--fields">
-                  <sl-select class="rs-span-6" label="Type" required value="spm_job_doc">
-                    <sl-option value="spm_job_doc">Job Document (spm_job_doc)</sl-option>
+                  <sl-select class="rs-span-6" label="Type" required multiple clearable value="job-document">
+                    <sl-option value="job-document">Job Document</sl-option>
+                    <sl-option value="isometric-document">Isometric Document</sl-option>
+                    <sl-option value="reference-document">Reference Document</sl-option>
                   </sl-select>
-                  <div class="rs-span-6 rs-cluster rs-cluster--bottom">
-                    <sl-radio-group label="Locations" value="all">
-                      <sl-radio-button value="all">procpdms</sl-radio-button>
-                      <sl-radio-button value="current">Current location only: procpdms</sl-radio-button>
-                    </sl-radio-group>
-                    <sl-button size="small" variant="text"
-                      ><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-button
-                    >
-                  </div>
 
-                  <sl-input class="rs-span-6" label="Contains" clearable>
-                    <sl-icon slot="prefix" name="search"></sl-icon>
-                  </sl-input>
-                  <div class="rs-span-6 rs-cluster field-end">
-                    <sl-checkbox size="small">Enable fulltext</sl-checkbox>
-                    <sl-checkbox size="small">Case sensitive</sl-checkbox>
-                    <sl-checkbox size="small">All versions</sl-checkbox>
+                  <!-- Options of the whole search: under Type, side by side, and they apply to every criterion below -->
+                  <div class="rs-span-12 rs-stack rs-stack--tight">
+                    <div class="rs-cluster rs-cluster--bottom search-options">
+                      <sl-radio-group label="Versions" value="current">
+                        <sl-radio-button value="all">All versions</sl-radio-button>
+                        <sl-radio-button value="latest">Latest version</sl-radio-button>
+                        <sl-radio-button value="current">Current</sl-radio-button>
+                      </sl-radio-group>
+                      <div class="rs-cluster field-end">
+                        <sl-checkbox size="small">Case sensitive</sl-checkbox>
+                      </div>
+                    </div>
+                    <p class="rs-meta">
+                      Applies to all criteria below. Current is the current revision of the document.
+                    </p>
                   </div>
-
-                  <sl-radio-group class="rs-span-6" label="Revisions" value="current">
-                    <sl-radio-button value="all">All revisions</sl-radio-button>
-                    <sl-radio-button value="latest">Latest revision</sl-radio-button>
-                    <sl-radio-button value="current">Current</sl-radio-button>
-                  </sl-radio-group>
-                  <sl-select class="rs-span-3" label="Size" value="any">
-                    <sl-option value="any">Any size</sl-option>
-                  </sl-select>
                 </div>
               </sl-card>
 
               <sl-card aria-label="Properties">
                 <h2 slot="header" class="rs-heading">Properties</h2>
-                <div class="rs-grid rs-grid--fields">
-                  <sl-select class="rs-span-2" label="Operator" value="and">
-                    <sl-option value="and">and</sl-option>
-                    <sl-option value="or">or</sl-option>
-                  </sl-select>
-                  <sl-select class="rs-span-3" label="Property" value="name">
-                    <sl-option value="name">Name</sl-option>
-                  </sl-select>
-                  <sl-select class="rs-span-3" label="Condition" value="contains">
-                    <sl-option value="contains">contains</sl-option>
-                    <sl-option value="equals">equals</sl-option>
-                  </sl-select>
-                  <sl-input class="rs-span-3" label="Value"></sl-input>
-                  <div class="rs-span-1 rs-cluster field-end">
-                    <sl-button size="small" variant="text"
-                      ><sl-icon slot="prefix" name="trash"></sl-icon>Remove</sl-button
-                    >
-                  </div>
-                  <div class="rs-span-12 rs-cluster">
-                    <sl-button size="small" variant="text"
-                      ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Add another property</sl-button
-                    >
-                    <sl-button size="small" variant="text">Open group (</sl-button>
-                    <sl-button size="small" variant="text">Close group )</sl-button>
-                  </div>
-                </div>
-              </sl-card>
-
-              <sl-card aria-label="Date">
-                <h2 slot="header" class="rs-heading">Date</h2>
-                <div class="rs-grid rs-grid--fields">
-                  <sl-select class="rs-span-3" label="Date" value="modified">
-                    <sl-option value="modified">Modified</sl-option>
-                    <sl-option value="created">Created</sl-option>
-                  </sl-select>
-                  <sl-radio-group class="rs-span-3" label="Period" value="anytime">
-                    <sl-radio-button value="anytime">Preset</sl-radio-button>
-                    <sl-radio-button value="range">From – to</sl-radio-button>
+                <!-- AND / OR toggle at the start of each row: the first row can only be AND, an OR follows an AND or
+                     another OR; groups follow from the operators (no Open / Close group). Date properties are filtered
+                     here too: the Condition options and the Value field follow the type of the selected property. -->
+                <div class="filters">
+                  <sl-radio-group label="Operator" value="and">
+                    <sl-radio-button value="and">AND</sl-radio-button>
+                    <sl-radio-button value="or" disabled>OR</sl-radio-button>
                   </sl-radio-group>
-                  <sl-select class="rs-span-2" label="Preset" value="anytime">
-                    <sl-option value="anytime">Anytime</sl-option>
+                  <sl-select label="Property" value="name">
+                    <sl-option value="name">Name</sl-option>
+                    <sl-option value="modified">Modified (date)</sl-option>
+                    <sl-option value="status">Status</sl-option>
                   </sl-select>
-                  <sl-input class="rs-span-2" type="date" label="From" disabled></sl-input>
-                  <sl-input class="rs-span-2" type="date" label="To" disabled></sl-input>
+                  <sl-select label="Condition" value="contains">
+                    <sl-option value="contains">Contains</sl-option>
+                    <sl-option value="equals">Equals</sl-option>
+                    <sl-option value="starts">Starts with</sl-option>
+                  </sl-select>
+                  <sl-input label="Value" value="ACME-"></sl-input>
+                  <div class="rs-cluster rs-cluster--nowrap filters__actions">
+                    <sl-icon-button name="plus-lg" label="Add a filter below"></sl-icon-button>
+                    <sl-icon-button name="dash" label="Remove this filter"></sl-icon-button>
+                  </div>
+                  <sl-radio-group value="and">
+                    <sl-radio-button value="and">AND</sl-radio-button>
+                    <sl-radio-button value="or">OR</sl-radio-button>
+                  </sl-radio-group>
+                  <sl-select value="modified">
+                    <sl-option value="name">Name</sl-option>
+                    <sl-option value="modified">Modified (date)</sl-option>
+                    <sl-option value="status">Status</sl-option>
+                  </sl-select>
+                  <sl-select value="after">
+                    <sl-option value="on">On</sl-option>
+                    <sl-option value="after">After</sl-option>
+                    <sl-option value="before">Before</sl-option>
+                    <sl-option value="between">Between</sl-option>
+                  </sl-select>
+                  <sl-input type="date" value="2026-10-01"></sl-input>
+                  <div class="rs-cluster rs-cluster--nowrap filters__actions">
+                    <sl-icon-button name="plus-lg" label="Add a filter below"></sl-icon-button>
+                    <sl-icon-button name="dash" label="Remove this filter"></sl-icon-button>
+                  </div>
+                  <sl-radio-group value="or">
+                    <sl-radio-button value="and">AND</sl-radio-button>
+                    <sl-radio-button value="or">OR</sl-radio-button>
+                  </sl-radio-group>
+                  <sl-select value="status">
+                    <sl-option value="name">Name</sl-option>
+                    <sl-option value="modified">Modified (date)</sl-option>
+                    <sl-option value="status">Status</sl-option>
+                  </sl-select>
+                  <sl-select value="equals">
+                    <sl-option value="equals">Equals</sl-option>
+                    <sl-option value="not-equals">Not equals</sl-option>
+                  </sl-select>
+                  <sl-select value="approved">
+                    <sl-option value="approved">Approved</sl-option>
+                  </sl-select>
+                  <div class="rs-cluster rs-cluster--nowrap filters__actions">
+                    <sl-icon-button name="plus-lg" label="Add a filter below"></sl-icon-button>
+                    <sl-icon-button name="dash" label="Remove this filter"></sl-icon-button>
+                  </div>
                 </div>
               </sl-card>
 
-              <sl-card aria-label="Linking and membership">
-                <h2 slot="header" class="rs-heading">Linking and membership</h2>
-                <div class="rs-grid rs-grid--fields">
-                  <sl-select class="rs-span-3" label="Linking" placeholder="Select a property" clearable></sl-select>
-                  <sl-select class="rs-span-4" label="Membership" value="approve-performer">
+              <sl-card aria-label="Linking">
+                <!-- Separate from Membership. No linking filter by default: the + next to the heading adds the first row,
+                     each row adds (+) or removes (−) its own. -->
+                <div slot="header" class="rs-cluster">
+                  <h2 class="rs-heading">Linking</h2>
+                  <sl-icon-button name="plus-lg" label="Add linking filter"></sl-icon-button>
+                </div>
+                <div class="linking">
+                  <sl-select label="Condition" value="linked">
+                    <sl-option value="linked">Is linked to</sl-option>
+                    <sl-option value="not-linked">Is not linked to</sl-option>
+                  </sl-select>
+                  <sl-select label="Linked to" value="HBS" placeholder="Select…">
+                    <sl-option value="HBS">HBS</sl-option>
+                    <sl-option value="PBS">PBS</sl-option>
+                    <sl-option value="WBS">WBS</sl-option>
+                  </sl-select>
+                  <div class="rs-cluster rs-cluster--nowrap filters__actions">
+                    <sl-icon-button name="plus-lg" label="Add a linking filter below"></sl-icon-button>
+                    <sl-icon-button name="dash" label="Remove this linking filter"></sl-icon-button>
+                  </div>
+                  <sl-select value="linked">
+                    <sl-option value="linked">Is linked to</sl-option>
+                    <sl-option value="not-linked">Is not linked to</sl-option>
+                  </sl-select>
+                  <sl-select value="PBS" placeholder="Select…">
+                    <sl-option value="HBS">HBS</sl-option>
+                    <sl-option value="PBS">PBS</sl-option>
+                    <sl-option value="WBS">WBS</sl-option>
+                  </sl-select>
+                  <div class="rs-cluster rs-cluster--nowrap filters__actions">
+                    <sl-icon-button name="plus-lg" label="Add a linking filter below"></sl-icon-button>
+                    <sl-icon-button name="dash" label="Remove this linking filter"></sl-icon-button>
+                  </div>
+                  <sl-select value="not-linked">
+                    <sl-option value="linked">Is linked to</sl-option>
+                    <sl-option value="not-linked">Is not linked to</sl-option>
+                  </sl-select>
+                  <sl-select value="WBS" placeholder="Select…">
+                    <sl-option value="HBS">HBS</sl-option>
+                    <sl-option value="PBS">PBS</sl-option>
+                    <sl-option value="WBS">WBS</sl-option>
+                  </sl-select>
+                  <div class="rs-cluster rs-cluster--nowrap filters__actions">
+                    <sl-icon-button name="plus-lg" label="Add a linking filter below"></sl-icon-button>
+                    <sl-icon-button name="dash" label="Remove this linking filter"></sl-icon-button>
+                  </div>
+                </div>
+              </sl-card>
+
+              <sl-card aria-label="Membership">
+                <h2 slot="header" class="rs-heading">Membership</h2>
+                <div class="membership">
+                  <sl-select label="Membership" value="approve-performer">
                     <sl-option value="approve-performer">External Job Document - Drawing: approve_performer</sl-option>
                   </sl-select>
-                  <sl-select class="rs-span-2" label="Condition" value="any">
+                  <sl-select label="Condition" value="any">
                     <sl-option value="any">Contains any</sl-option>
                     <sl-option value="all">Contains all</sl-option>
                   </sl-select>
-                  <sl-select class="rs-span-2" label="Members" multiple placeholder="No members" clearable></sl-select>
-                  <div class="rs-span-1 rs-cluster field-end">
+                  <sl-select label="Members" multiple placeholder="No members" clearable></sl-select>
+                  <div class="rs-cluster field-end">
                     <sl-button size="small" variant="text"
                       ><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-button
                     >
@@ -226,10 +303,8 @@
                     <sl-radio-button value="exists">Relation exists</sl-radio-button>
                     <sl-radio-button value="not-exists">Relation does not exist</sl-radio-button>
                   </sl-radio-group>
-                  <sl-select class="rs-span-6" label="Relation type" value="spm_trans_doc_relation">
-                    <sl-option value="spm_trans_doc_relation"
-                      >Transmittal &lt;-&gt; Document (spm_trans_doc_relation)</sl-option
-                    >
+                  <sl-select class="rs-span-6" label="Relation type" value="transmittal-document">
+                    <sl-option value="transmittal-document">Transmittal &lt;-&gt; Document</sl-option>
                   </sl-select>
                   <sl-select
                     class="rs-span-6"
@@ -243,103 +318,162 @@
               <sl-card aria-label="Related to">
                 <h2 slot="header" class="rs-heading">Related to</h2>
                 <div class="rs-grid rs-grid--fields">
-                  <sl-select class="rs-span-6" label="Type" value="spm_transmittal">
-                    <sl-option value="spm_transmittal">Transmittal (spm_transmittal)</sl-option>
+                  <sl-select class="rs-span-6" label="Type" value="transmittal">
+                    <sl-option value="transmittal">Transmittal</sl-option>
                   </sl-select>
-                  <sl-input class="rs-span-6" label="Contains" clearable>
-                    <sl-icon slot="prefix" name="search"></sl-icon>
-                  </sl-input>
+                  <span class="rs-span-6"></span>
 
-                  <sl-select class="rs-span-2" label="Operator" value="and">
-                    <sl-option value="and">and</sl-option>
-                    <sl-option value="or">or</sl-option>
-                  </sl-select>
-                  <sl-select class="rs-span-3" label="Property" value="name">
-                    <sl-option value="name">Name</sl-option>
-                  </sl-select>
-                  <sl-select class="rs-span-3" label="Condition" value="contains">
-                    <sl-option value="contains">contains</sl-option>
-                  </sl-select>
-                  <sl-input class="rs-span-3" label="Value"></sl-input>
-                  <div class="rs-span-1 rs-cluster field-end">
-                    <sl-button size="small" variant="text"
-                      ><sl-icon slot="prefix" name="trash"></sl-icon>Remove</sl-button
-                    >
-                  </div>
-                  <div class="rs-span-12">
-                    <sl-button size="small" variant="text"
-                      ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Add another property</sl-button
-                    >
-                  </div>
-
-                  <sl-select class="rs-span-3" label="Date" value="modified">
-                    <sl-option value="modified">Modified</sl-option>
-                  </sl-select>
-                  <sl-select class="rs-span-3" label="Condition" value="eq">
-                    <sl-option value="eq">=</sl-option>
-                  </sl-select>
-                  <sl-input class="rs-span-3" type="date" label="Date value"></sl-input>
-                  <sl-select class="rs-span-3" label="Size" value="any">
-                    <sl-option value="any">Any size</sl-option>
-                  </sl-select>
-
-                  <sl-select class="rs-span-3" label="Linking" placeholder="Select a property" clearable></sl-select>
-                  <sl-select class="rs-span-4" label="Membership" value="incoming-admin">
-                    <sl-option value="incoming-admin">Incoming Transmittal: admin</sl-option>
-                  </sl-select>
-                  <sl-select class="rs-span-2" label="Condition" value="any">
-                    <sl-option value="any">Contains any</sl-option>
-                  </sl-select>
-                  <sl-select class="rs-span-2" label="Members" multiple placeholder="No members" clearable></sl-select>
-                  <div class="rs-span-1 rs-cluster field-end">
-                    <sl-button size="small" variant="text"
-                      ><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-button
-                    >
+                  <div class="rs-span-12 filters">
+                    <sl-radio-group label="Operator" value="and">
+                      <sl-radio-button value="and">AND</sl-radio-button>
+                      <sl-radio-button value="or" disabled>OR</sl-radio-button>
+                    </sl-radio-group>
+                    <sl-select label="Property" value="name">
+                      <sl-option value="name">Name</sl-option>
+                      <sl-option value="modified">Modified (date)</sl-option>
+                    </sl-select>
+                    <sl-select label="Condition" value="contains">
+                      <sl-option value="contains">Contains</sl-option>
+                      <sl-option value="equals">Equals</sl-option>
+                      <sl-option value="starts">Starts with</sl-option>
+                    </sl-select>
+                    <sl-input label="Value" value="ACME-"></sl-input>
+                    <div class="rs-cluster rs-cluster--nowrap filters__actions">
+                      <sl-icon-button name="plus-lg" label="Add a filter below"></sl-icon-button>
+                      <sl-icon-button name="dash" label="Remove this filter"></sl-icon-button>
+                    </div>
+                    <sl-radio-group value="and">
+                      <sl-radio-button value="and">AND</sl-radio-button>
+                      <sl-radio-button value="or">OR</sl-radio-button>
+                    </sl-radio-group>
+                    <sl-select value="modified">
+                      <sl-option value="name">Name</sl-option>
+                      <sl-option value="modified">Modified (date)</sl-option>
+                    </sl-select>
+                    <sl-select value="after">
+                      <sl-option value="on">On</sl-option>
+                      <sl-option value="after">After</sl-option>
+                      <sl-option value="before">Before</sl-option>
+                      <sl-option value="between">Between</sl-option>
+                    </sl-select>
+                    <sl-input type="date" value="2026-10-01"></sl-input>
+                    <div class="rs-cluster rs-cluster--nowrap filters__actions">
+                      <sl-icon-button name="plus-lg" label="Add a filter below"></sl-icon-button>
+                      <sl-icon-button name="dash" label="Remove this filter"></sl-icon-button>
+                    </div>
+                    <div class="rs-cluster filters__full">
+                      <h3 class="rs-subheading">Linking</h3>
+                      <sl-icon-button name="plus-lg" label="Add linking filter"></sl-icon-button>
+                    </div>
+                    <sl-select class="filters__wide" value="linked">
+                      <sl-option value="linked">Is linked to</sl-option>
+                      <sl-option value="not-linked">Is not linked to</sl-option>
+                    </sl-select>
+                    <sl-select value="HBS" placeholder="Select…">
+                      <sl-option value="HBS">HBS</sl-option>
+                      <sl-option value="PBS">PBS</sl-option>
+                      <sl-option value="WBS">WBS</sl-option>
+                    </sl-select>
+                    <div class="rs-cluster rs-cluster--nowrap filters__actions filters__rest">
+                      <sl-icon-button name="plus-lg" label="Add a linking filter below"></sl-icon-button>
+                      <sl-icon-button name="dash" label="Remove this linking filter"></sl-icon-button>
+                    </div>
+                    <sl-select class="filters__wide" value="not-linked">
+                      <sl-option value="linked">Is linked to</sl-option>
+                      <sl-option value="not-linked">Is not linked to</sl-option>
+                    </sl-select>
+                    <sl-select value="PBS" placeholder="Select…">
+                      <sl-option value="HBS">HBS</sl-option>
+                      <sl-option value="PBS">PBS</sl-option>
+                      <sl-option value="WBS">WBS</sl-option>
+                    </sl-select>
+                    <div class="rs-cluster rs-cluster--nowrap filters__actions filters__rest">
+                      <sl-icon-button name="plus-lg" label="Add a linking filter below"></sl-icon-button>
+                      <sl-icon-button name="dash" label="Remove this linking filter"></sl-icon-button>
+                    </div>
+                    <sl-select class="filters__wide" label="Membership" value="incoming-admin">
+                      <sl-option value="incoming-admin">Incoming Transmittal: admin</sl-option>
+                    </sl-select>
+                    <sl-select label="Condition" value="any">
+                      <sl-option value="any">Contains any</sl-option>
+                      <sl-option value="all">Contains all</sl-option>
+                    </sl-select>
+                    <sl-select label="Members" multiple placeholder="No members" clearable></sl-select>
+                    <div class="rs-cluster field-end">
+                      <sl-button size="small" variant="text"
+                        ><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-button
+                      >
+                    </div>
                   </div>
                 </div>
               </sl-card>
             </div>
           </sl-tab-panel>
 
-          <!-- Progress (Progress Options): enabled by the legacy "Progress Search" checkbox -->
+          <!-- Progress (Progress Options): always available as a tab, no "Progress search" toggle -->
           <sl-tab-panel name="progress">
             <div class="rs-stack">
               <sl-card aria-label="Progress">
-                <div slot="header" class="rs-cluster rs-cluster--between">
-                  <h2 class="rs-heading">Progress</h2>
-                  <sl-switch size="small" checked>Progress search</sl-switch>
-                </div>
-                <div class="rs-grid rs-grid--fields">
-                  <sl-select class="rs-span-3" label="Client progress" value="equals">
+                <h2 slot="header" class="rs-heading">Progress</h2>
+                <!-- Same AND / OR rows as Properties: one row per progress criterion. -->
+                <div class="filters">
+                  <sl-radio-group label="Operator" value="and">
+                    <sl-radio-button value="and">AND</sl-radio-button>
+                    <sl-radio-button value="or" disabled>OR</sl-radio-button>
+                  </sl-radio-group>
+                  <sl-select label="Property" value="client">
+                    <sl-option value="client">Client progress (%)</sl-option>
+                    <sl-option value="project">Project progress (%)</sl-option>
+                    <sl-option value="weight">Weight</sl-option>
+                  </sl-select>
+                  <sl-select label="Condition" value="greater">
                     <sl-option value="equals">Equals</sl-option>
                     <sl-option value="greater">Greater than</sl-option>
                     <sl-option value="less">Less than</sl-option>
                   </sl-select>
-                  <sl-input class="rs-span-2" type="number" label="Value (%)"></sl-input>
-                  <sl-select class="rs-span-2" label="Then" value="and">
-                    <sl-option value="and">and</sl-option>
-                    <sl-option value="or">or</sl-option>
+                  <sl-input label="Value" type="number" value="50"></sl-input>
+                  <div class="rs-cluster rs-cluster--nowrap filters__actions">
+                    <sl-icon-button name="plus-lg" label="Add a filter below"></sl-icon-button>
+                    <sl-icon-button name="dash" label="Remove this filter"></sl-icon-button>
+                  </div>
+                  <sl-radio-group value="and">
+                    <sl-radio-button value="and">AND</sl-radio-button>
+                    <sl-radio-button value="or">OR</sl-radio-button>
+                  </sl-radio-group>
+                  <sl-select value="project">
+                    <sl-option value="client">Client progress (%)</sl-option>
+                    <sl-option value="project">Project progress (%)</sl-option>
+                    <sl-option value="weight">Weight</sl-option>
                   </sl-select>
-                  <span class="rs-span-5"></span>
-
-                  <sl-select class="rs-span-3" label="Project progress" value="equals">
+                  <sl-select value="less">
                     <sl-option value="equals">Equals</sl-option>
                     <sl-option value="greater">Greater than</sl-option>
                     <sl-option value="less">Less than</sl-option>
                   </sl-select>
-                  <sl-input class="rs-span-2" type="number" label="Value (%)"></sl-input>
-                  <sl-select class="rs-span-2" label="Then" value="and">
-                    <sl-option value="and">and</sl-option>
-                    <sl-option value="or">or</sl-option>
+                  <sl-input type="number" value="80"></sl-input>
+                  <div class="rs-cluster rs-cluster--nowrap filters__actions">
+                    <sl-icon-button name="plus-lg" label="Add a filter below"></sl-icon-button>
+                    <sl-icon-button name="dash" label="Remove this filter"></sl-icon-button>
+                  </div>
+                  <sl-radio-group value="or">
+                    <sl-radio-button value="and">AND</sl-radio-button>
+                    <sl-radio-button value="or">OR</sl-radio-button>
+                  </sl-radio-group>
+                  <sl-select value="weight">
+                    <sl-option value="client">Client progress (%)</sl-option>
+                    <sl-option value="project">Project progress (%)</sl-option>
+                    <sl-option value="weight">Weight</sl-option>
                   </sl-select>
-                  <span class="rs-span-5"></span>
-
-                  <sl-select class="rs-span-3" label="Weight" value="equals">
+                  <sl-select value="equals">
                     <sl-option value="equals">Equals</sl-option>
                     <sl-option value="greater">Greater than</sl-option>
                     <sl-option value="less">Less than</sl-option>
                   </sl-select>
-                  <sl-input class="rs-span-2" type="number" label="Value"></sl-input>
+                  <sl-input type="number" value="1"></sl-input>
+                  <div class="rs-cluster rs-cluster--nowrap filters__actions">
+                    <sl-icon-button name="plus-lg" label="Add a filter below"></sl-icon-button>
+                    <sl-icon-button name="dash" label="Remove this filter"></sl-icon-button>
+                  </div>
                 </div>
               </sl-card>
 
@@ -353,21 +487,68 @@
                     <sl-radio-button value="future">Any future milestone</sl-radio-button>
                   </sl-radio-group>
                   <div class="rs-stack rs-stack--tight" aria-label="With conditions">
+                    <!-- Each condition is an accordion: open it to set the constraint, Remove clears it. -->
                     <span class="rs-subheading">With conditions</span>
-                    <div class="rs-cluster">
-                      <sl-button size="small" variant="text"
-                        ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Actual date constraint</sl-button
-                      >
-                      <sl-button size="small" variant="text"
-                        ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Forecast date constraint</sl-button
-                      >
-                      <sl-button size="small" variant="text"
-                        ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Planned date constraint</sl-button
-                      >
-                      <sl-button size="small" variant="text"
-                        ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Milestone description condition</sl-button
-                      >
-                    </div>
+                    <sl-details summary="Actual date" open>
+                      <div class="milestone-condition">
+                        <sl-select label="Condition" value="after">
+                          <sl-option value="on">On</sl-option>
+                          <sl-option value="after">After</sl-option>
+                          <sl-option value="before">Before</sl-option>
+                        </sl-select>
+                        <sl-input label="Date" type="date" value="2026-10-01"></sl-input>
+                        <sl-input label="Time" type="time" step="1" value="23:59:59"></sl-input>
+                        <div class="rs-cluster field-end">
+                          <sl-button size="small" variant="text"
+                            ><sl-icon slot="prefix" name="trash"></sl-icon>Remove</sl-button
+                          >
+                        </div>
+                      </div>
+                    </sl-details>
+                    <sl-details summary="Forecast date">
+                      <div class="milestone-condition">
+                        <sl-select label="Condition" value="after">
+                          <sl-option value="on">On</sl-option>
+                          <sl-option value="after">After</sl-option>
+                          <sl-option value="before">Before</sl-option>
+                        </sl-select>
+                        <sl-input label="Date" type="date" value=""></sl-input>
+                        <sl-input label="Time" type="time" step="1" value="23:59:59"></sl-input>
+                        <div class="rs-cluster field-end">
+                          <sl-button size="small" variant="text"
+                            ><sl-icon slot="prefix" name="trash"></sl-icon>Remove</sl-button
+                          >
+                        </div>
+                      </div>
+                    </sl-details>
+                    <sl-details summary="Planned date">
+                      <div class="milestone-condition">
+                        <sl-select label="Condition" value="after">
+                          <sl-option value="on">On</sl-option>
+                          <sl-option value="after">After</sl-option>
+                          <sl-option value="before">Before</sl-option>
+                        </sl-select>
+                        <sl-input label="Date" type="date" value=""></sl-input>
+                        <sl-input label="Time" type="time" step="1" value="23:59:59"></sl-input>
+                        <div class="rs-cluster field-end">
+                          <sl-button size="small" variant="text"
+                            ><sl-icon slot="prefix" name="trash"></sl-icon>Remove</sl-button
+                          >
+                        </div>
+                      </div>
+                    </sl-details>
+                    <sl-details summary="Milestone description">
+                      <div class="milestone-condition milestone-condition--description">
+                        <sl-select label="Milestone description" value="initial-drafting">
+                          <sl-option value="initial-drafting">INITIAL DRAFTING</sl-option>
+                        </sl-select>
+                        <div class="rs-cluster field-end">
+                          <sl-button size="small" variant="text"
+                            ><sl-icon slot="prefix" name="trash"></sl-icon>Remove</sl-button
+                          >
+                        </div>
+                      </div>
+                    </sl-details>
                   </div>
                 </div>
               </sl-card>
@@ -375,17 +556,81 @@
           </sl-tab-panel>
 
           <sl-tab-panel name="result">
-            <sl-card aria-label="Result">
-              <sl-empty-state
-                title-text="Result"
-                description="Content of this tab not shown in the legacy screenshots."
-              >
-                <sl-icon slot="icon" name="grid"></sl-icon>
-              </sl-empty-state>
+            <!-- Columns of the result table: transfer between Available and Selected (same pattern as Relate
+                 documents), order of Selected = order of the columns; Sort by and Sort direction set the default sorting. -->
+            <sl-card aria-label="Result columns">
+              <h2 slot="header" class="rs-heading">Result columns</h2>
+              <div class="rs-stack">
+                <div class="rs-transfer">
+                  <sl-table
+                    class="available-columns"
+                    selection="multiple"
+                    sticky-header
+                    label="Available columns"
+                    style="--max-height: 18rem"
+                  ></sl-table>
+                  <div class="rs-transfer__actions" role="group" aria-label="Move columns">
+                    <sl-tooltip content="Add selected"
+                      ><sl-icon-button name="chevron-right" label="Add selected" variant="primary"></sl-icon-button
+                    ></sl-tooltip>
+                    <sl-tooltip content="Remove selected"
+                      ><sl-icon-button name="chevron-left" label="Remove selected" variant="neutral"></sl-icon-button
+                    ></sl-tooltip>
+                    <sl-tooltip content="Remove all"
+                      ><sl-icon-button name="chevron-double-left" label="Remove all" variant="danger"></sl-icon-button
+                    ></sl-tooltip>
+                    <sl-divider></sl-divider>
+                    <sl-tooltip content="Move up"
+                      ><sl-icon-button name="arrow-up" label="Move selected column up"></sl-icon-button
+                    ></sl-tooltip>
+                    <sl-tooltip content="Move down"
+                      ><sl-icon-button name="arrow-down" label="Move selected column down"></sl-icon-button
+                    ></sl-tooltip>
+                  </div>
+                  <sl-table
+                    class="selected-columns"
+                    selection="multiple"
+                    sticky-header
+                    label="Selected columns"
+                    style="--max-height: 18rem"
+                  >
+                    <sl-empty-state
+                      slot="empty"
+                      title-text="No columns selected"
+                      description="Select columns on the left and add them."
+                    >
+                      <sl-icon slot="icon" name="table"></sl-icon>
+                    </sl-empty-state>
+                  </sl-table>
+                  <!-- Default sorting of the result: Sort by under Available, Sort direction under Selected. -->
+                  <sl-select label="Sort by" value="name">
+                    <sl-option value="name">Name</sl-option>
+                    <sl-option value="title">Title</sl-option>
+                    <sl-option value="type">Type</sl-option>
+                    <sl-option value="version">Version</sl-option>
+                    <sl-option value="status">Status</sl-option>
+                    <sl-option value="modified">Modified</sl-option>
+                  </sl-select>
+                  <sl-select class="result-sort-direction" label="Sort direction" value="asc">
+                    <sl-option value="asc">Ascending</sl-option>
+                    <sl-option value="desc">Descending</sl-option>
+                  </sl-select>
+                </div>
+              </div>
             </sl-card>
           </sl-tab-panel>
         </sl-tab-group>
       </main>
     </div>
+
+    <script type="module">
+      import * as flow from './data.js';
+
+      await flow.mountTable('.available-columns', {
+        columns: flow.availableColumnColumns,
+        data: flow.availableColumns
+      });
+      await flow.mountTable('.selected-columns', { columns: flow.selectedColumnColumns, data: flow.selectedColumns });
+    </script>
   </body>
 </html>

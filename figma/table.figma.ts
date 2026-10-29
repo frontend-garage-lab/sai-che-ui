@@ -130,6 +130,9 @@ const firstRow = instance.findInstance('Table Row');
 const stripedCell = firstCell.type === 'INSTANCE' && firstCell.getBoolean('Striped');
 const stripedRow = firstRow.type === 'INSTANCE' && firstRow.getBoolean('Striped');
 const striped = stripedCell || stripedRow ? ' striped' : '';
+// `size` lives on the cells too: Size=small marks a dense table (e.g. nested in another table's cell).
+const small = firstCell.type === 'INSTANCE' && firstCell.getEnum('Size', { medium: false, small: true });
+const size = small ? ' size="small"' : '';
 const pagination = showPagination ? instance.findInstance('Pagination') : undefined;
 const pageSize =
   pagination && pagination.type === 'INSTANCE'
@@ -142,7 +145,7 @@ const stickyActions = described.some(column => column.kind === 'actions' && colu
 export default {
   example: figma.html`${properties}
 
-<sl-table .columns=\${${columnsVar}} .data=\${${dataVar}}${rowVariantBinding}${selection}${striped}${paginate}${sortAttributes}${stickyActions} sticky-header>${
+<sl-table .columns=\${${columnsVar}} .data=\${${dataVar}}${rowVariantBinding}${size}${selection}${striped}${paginate}${sortAttributes}${stickyActions} sticky-header>${
     toolbar
       ? toolbarIsComponent
         ? figma.html`\n  ${toolbar}`

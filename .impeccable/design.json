@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-27T00:00:00Z",
+  "generatedAt": "2026-10-28T00:00:00Z",
   "title": "Design System: Saipem DS",
   "extensions": {
     "colorMeta": {
@@ -193,7 +193,8 @@
       "Do compose screens only from sl-* components and documented variants",
       "Do take spacing only from tokens",
       "Do keep every legacy datum and action",
-      "Do limit motion to state feedback (150/250ms)"
+      "Do limit motion to state feedback (150/250ms)",
+      "Do use only icons from the DS icon set (Bootstrap names); add missing ones to the DS first"
     ],
     "donts": [
       "Don't use semantic colour to distinguish buttons",

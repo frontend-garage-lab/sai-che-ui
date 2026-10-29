@@ -175,6 +175,12 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
   /** Draws alternating rows with a tinted background. */
   @property({ type: Boolean, reflect: true }) striped = false;
 
+  /**
+   * The density of the header and body cells. Use `small` for dense tables nested in another table's cell or in a
+   * narrow panel.
+   */
+  @property({ reflect: true }) size: 'small' | 'medium' = 'medium';
+
   /** Keeps the header visible while the table's rows scroll. Requires the table to have a constrained height. */
   @property({ type: Boolean, attribute: 'sticky-header', reflect: true }) stickyHeader = false;
 

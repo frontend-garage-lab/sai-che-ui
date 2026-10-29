@@ -114,3 +114,9 @@ Doc senza pagina Figma (utility, non visuali — nessuna pagina prevista): anima
 
 - 2026-10-21 — Icon Button fatto (gap G1, G2). Button e Icon Button tradotti in inglese, box PROVA rimossi.
 - 2026-10-21 — Button completato (vedi riga). Code Connect: `figma/button.figma.ts` → set `1081:6712`; file `button-*.figma.ts` legacy eliminati.
+- Table Cell (2026-10-29, approvato): slot `Content#875:106` con preferred values Status, Badge, Tag + 113 Icon/* (116),
+  descrizione, `allowPreferredValuesOnly=false`; key `ecee9a4f…` e id `867:2425` invariati. CC: solo commento in
+  `figma/table-cell.figma.ts`. In attesa di publish libreria (per QMIS-BidModule).
+- Sidebar Item (2026-10-29, approvato): nuova VARIANT `Collapsed` (false/true); 6 varianti rinominate `Collapsed=false`
+  (id invariati), 3 nuove `Prefix=true, Collapsed=true` 44×36 solo icona (`1440:506` default, `1440:513` hover,
+  `1440:520` current con indicatore); key `ffadd7dc…` invariata. CC invariato (collapsed lo imposta sl-sidebar).

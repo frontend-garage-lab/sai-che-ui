@@ -2,10 +2,10 @@
  * xCPage-DistributionMatrices — layout rules specific to this flow. Shared rules live in ../_shared/restyle.css.
  */
 
-/* Above the workspace: header, breadcrumb, title, area tabs and the filters card (taller than in other flows, so the
+/* Above the workspace: header, breadcrumb, title and the filters card (taller than in other flows, so the
    shared 28rem minimum would push the page past a 1000px viewport) */
 .rs-workspace {
-  --rs-workspace-offset: 37.25rem;
+  --rs-workspace-offset: 33.25rem; /* -4rem: area tabs removed (2026-10-29, estimated) */
   --rs-workspace-height: max(24rem, calc(100vh - var(--rs-workspace-offset)));
 }
 
@@ -16,6 +16,6 @@
 }
 
 /* The Preparation area filters card has one row less: its workspace starts 45px higher */
-sl-tab-panel[name='preparation'] .rs-workspace {
-  --rs-workspace-offset: 34.4375rem;
+main[aria-label='Preparation area'] .rs-workspace {
+  --rs-workspace-offset: 30.4375rem;
 }

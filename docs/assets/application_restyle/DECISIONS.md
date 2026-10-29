@@ -159,3 +159,96 @@ signature_qrcode`, rev. A1, VDR-20240415); reviewer Aiello Ciro, Cazzaniga Alice
 
 - **Campo di ricerca nelle toolbar (2026-10-28):** il campo è flessibile (`flex: 1 1 20rem; min-width: 10rem`), mai a
   larghezza fissa, così azioni e Config entrano sempre; in Figma l'Input della toolbar è `FILL` con larghezza minima.
+
+## advanced-search — Figma review comments (2026-10-28)
+
+- Labels only, never technical names (`spm_*`). Locations, fulltext, Contains, Size and "Edit search properties" removed.
+- Search name + Public search live in a card at the top of Object information.
+- Versions (All versions · Latest version · Current) and Case sensitive sit under Type and apply to every criterion
+  below (help text); the "All versions" checkbox is gone because the selector covers it.
+- Filter rows: `sl-radio-group` AND | OR at the start, then Property · Condition · Value, then + / − icon buttons.
+  The first row can only be AND; an OR follows an AND or another OR. No Open / Close group. Dates are properties:
+  Condition and Value follow the property type, no separate Date block.
+- Linking is separate from Membership: no filter by default, + next to the heading adds one (Is linked to / Is not
+  linked to).
+- Progress is always available as a tab (no toggle) and uses the same AND / OR rows (Client progress · Project
+  progress · Weight) instead of the legacy "Then and/or". Result lists the result columns with the `.rs-table-config`
+  list (check to show, drag to reorder), without the popover surface (superseded below).
+- Update (2026-10-28, legacy Columns tab + Boffelli's attachment): Result uses the `.rs-transfer` pattern —
+  Available columns · > < << · ↑ ↓ (order of Selected = column order) · Selected columns; Sort by and Sort
+  direction dropped: sorting happens on the result table headers, as in every other table. The legacy Facets tab is
+  not carried over.
+- Update (2026-10-28): filter rows use their own grid (`.filters` in `advanced-search/flow.css`: Operator and
+  Condition at content width, Property 2fr, Value 3fr, + / −) instead of the 12-column grid, so there is no gap after
+  AND | OR. Condition is an `sl-radio-group` too; its options follow the property type (text: Contains · Equals ·
+  Starts with; date: On · After · Before · Between; list: Equals · Not equals; number: Equals · Greater than · Less
+  than).
+- Update (2026-10-28): Membership Condition is an `sl-radio-group` (Contains any · Contains all). In Related to,
+  Linking and Membership sit in the same `.filters` grid as the rows above (Membership spans Operator + Property), so
+  Condition and Members line up with Condition and Value; the Membership card of Object information uses the same
+  proportions (`.membership`).
+- Update (2026-10-28, client confirmation): Condition goes back to `sl-select` in every filter row and in Membership
+  (options still follow the property type). Only the AND / OR operator stays a toggle. Grids: `.filters` = auto ·
+  3fr · 2fr · 4fr · auto, `.membership` = 3fr · 2fr · 4fr · auto. This supersedes the "Condition is an
+  `sl-radio-group`" notes above.
+
+## xCPage-CreateTransmittal — Figma review comments (2026-10-29)
+
+- Properties step: the "Create from" radio group is removed; the mode goes into the dialog title, "Create new
+  transmittal (New)" (same title on every wizard step). The form takes the full dialog width.
+- System-filled values (Project code, Transmittal type, Transmittal status) are `sl-input readonly disabled` (readonly alone looks editable), not description
+  lists, so they line up with the editable fields.
+- The Properties form always stays on two columns (`rs-span-6`); Sequence number · External identification · Project
+  code no longer split 3 · 5 · 4.
+- To company – department is half width like every other field. Dates and response: Issue date · Time | Sent date ·
+  Time, then Requires response on its own row, then Days to respond | Respond by date, then Note.
+
+## advanced-search — follow-up (2026-10-29)
+
+- Linking (Object information and Related to) shows its filter rows: Condition (Is linked to · Is not linked to) · Linked to (HBS ·
+  PBS · WBS) · + / −, grid `.linking` on the Membership columns. Still no filter by default: the + next to the
+  heading adds the first row.
+- Milestones › With conditions: Actual date, Forecast date, Planned date and Milestone description are `sl-details`
+  accordions; opened they show Condition (On · After · Before) · Date · Time (or the description select) and a Remove
+  text button. The legacy "and" between conditions is not carried over.
+
+## QMIS-BidModule (2026-10-29)
+
+- Shell QMIS: the legacy top menu (Bid, Project Data, Audit, NCR, Training, Configuration, User Settings, Advanced
+  Export, Help) becomes `sl-sidebar` items with an icon, no groups; approver profiles see only Bid, Advanced export,
+  Help, as in the legacy. Header without the project select (QMIS has none); account = legacy user name.
+- Bid filters: Full-text (span 4, help "Dates as mm/dd/yy") + Bid status, Business unit, Approval status, Project
+  type; the other 8 in "More filters (8)". Advanced query / Include CRM / My tasks are checkboxes in the filter row.
+- Quick info of a bid: `sl-badge` square = bid status, `pill` = documents status, `neutral pill` TE / CO / PM =
+  approvals reached, `link-45deg` = attachments. Letters and meaning from the legacy Legend (also a dialog, 2-Legend).
+- Legacy "Actions…" submenu of the row menu → `sl-menu-label` "Approval" group in the same menu (static, no nested
+  menu); Edit / Delete disabled for approvers. The legacy opens it with a right click on the row: in the restyle it
+  opens only from the ⋮ button of the row (actions column), never from a right click (user, 2026-10-29).
+- Long record form (bid): sections with `.rs-subheading` (General · Client and project · Organization · Activity and
+  dates · Bid team), sections in `.rs-stack` (16px) and heading → fields `.rs-stack--tight`; two parallel processes (Technical / Commercial) side by side 6/6 with their `sl-status`.
+- Add / View / Edit bid: `sl-dialog --width: 72rem` with the legacy tabs; View = `sl-description-list`, header summary
+  (Source, Approval status, Last changed, User) in View/Edit. "Import Document For Bid" = sub-view of the same dialog
+  ("Back to attachments" + "Import documents (n)").
+- Approve / Reject: footer Cancel · Reject (`danger outline`) · Approve (`primary`), no `success` buttons.
+- Detail panel spacing: groups in `.rs-stack` (16px), each group `.rs-stack--tight` (heading + content); an
+  `sl-divider` before a list section (Attachments), as in the MyTask detail panels; never `.rs-stack--loose` (36px)
+  inside a panel or dialog: too tall (user, 2026-10-29).
+- Actions on a single attachment (Download, Remove): in the row ⋮ menu, not in the toolbar; the toolbar keeps only
+  the section title and a `sl-button size="small"` "Refresh" with `arrow-clockwise` icon, not an icon-only button
+  (user, 2026-10-29).
+- Update (2026-10-29, review comment): Result brings back the default sorting inside the transfer grid: Sort by
+  (options = result columns) under Available columns, Sort direction (fixed: Ascending `asc` · Descending `desc`) under
+  Selected columns. Supersedes "Sort by and Sort direction dropped" above.
+
+## xCPage-DistributionMatrices — Figma review comments (2026-10-29)
+
+- No more Distribution matrices / Preparation area tabs: they are sidebar items of the "Distribution Matrices" group
+  (replaces "Configuration"). Each page shows only its area; breadcrumb Home › Distribution Matrices › area, and the
+  Preparation area pages have their own title.
+- Filters card: "More filters" text button in the header, as in Transmittal. Every filter stays visible; the drawer is
+  empty for now (empty state), ready for secondary filters.
+- Valid types: `max-options-visible="2"`, so the "+N" counter appears after two tags.
+- Multi-selects stay on one line through `max-options-visible` sized to the field (1 up to span 4, 2 up to span 8,
+  3 full width), no DS change.
+- Recipients table nested in a distribution row: `sl-table size="small"` (new DS size, 2026-10-29); the page-level
+  tables keep the default `medium`. In Figma: Table Column and Table Cell `Size=small`.

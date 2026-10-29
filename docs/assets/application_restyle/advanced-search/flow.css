@@ -11,3 +11,71 @@ sl-tab-panel > .rs-stack > sl-card {
   display: block;
   width: 100%;
 }
+
+/* Filter rows (Properties, Related to, Progress): Operator · Property · Condition · Value · + / −. One grid for every
+   row so the columns line up; the AND / OR toggle takes its content width, Property · Condition · Value share the
+   rest 3 : 2 : 4. */
+.filters {
+  display: grid;
+  grid-template-columns: auto minmax(0, 3fr) minmax(0, 2fr) minmax(0, 4fr) auto;
+  gap: var(--rs-field-gap);
+  align-items: end;
+}
+
+.filters__actions {
+  min-height: var(--sl-input-height-medium);
+  align-items: center;
+}
+
+/* Versions and Case sensitive are two form controls side by side: field gap, not button gap. */
+.search-options {
+  gap: var(--rs-field-gap);
+}
+
+/* Membership row: same proportions as the filter rows (Membership = Property, Members = Value). */
+.membership {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr) minmax(0, 4fr) auto;
+  gap: var(--rs-field-gap);
+  align-items: end;
+}
+
+/* Linking heading and the Membership row inside the filter grid of Related to: same columns as the rows above. */
+.filters__full {
+  grid-column: 1 / -1;
+}
+
+.filters__wide {
+  grid-column: 1 / 3;
+}
+
+/* Linking filters: Condition (Is linked to / Is not linked to) · Linked to · + / −, on the first two Membership
+   columns (3fr · 2fr) so the two cards line up; the last column stays empty. */
+.linking {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr) auto minmax(0, 4fr);
+  gap: var(--rs-field-gap);
+  align-items: end;
+}
+
+/* Milestone conditions inside each accordion: Condition · Date · Time · Remove. */
+.milestone-condition {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) minmax(0, 2fr) auto;
+  gap: var(--rs-field-gap);
+  align-items: end;
+}
+
+.milestone-condition--description {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+/* Linking rows in Related to: Condition spans Operator + Property, Linked to sits under Condition, + / − follow. */
+.filters__rest {
+  grid-column: 4 / -1;
+}
+
+/* Result: Sort direction sits under Selected columns, in the third track of the transfer grid. */
+.result-sort-direction {
+  grid-column: 3;
+}

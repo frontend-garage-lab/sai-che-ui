@@ -8,6 +8,8 @@ const checked = instance.getEnum('State', { unchecked: false, checked: true, dis
 const disabled = instance.getEnum('State', { unchecked: false, checked: false, disabled: true });
 const pill = instance.getEnum('Pill', { true: true, false: false });
 const size = instance.getEnum('Size', { small: 'small', medium: 'medium', large: 'large' });
+// Position (alone · first · middle · last) is not mapped: in code sl-radio-group's sl-button-group sets it on each
+// button (data-sl-button-group__button--first/inner/last), there is no attribute.
 const labelLayer = instance.findText('label');
 const label = labelLayer.type === 'TEXT' ? labelLayer.textContent : 'Option';
 const value = label.toLowerCase().replace(/\s+/g, '-');

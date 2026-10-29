@@ -176,7 +176,8 @@ from large size jumps.
 - **Label / Meta** (400, 12px, 1.4): secondary metadata under the primary identifier (`.rs-meta`, Caption).
 
 ### Named Rules
-**The Identifier-First Rule.** The readable document identifier (name or code + revision) comes first and in bold.
+**The Identifier-First Rule.** The readable document identifier (name or code + revision) comes first, in the
+Subheading weight (500, the `semibold` token; never 600 or 700).
 Secondary metadata goes beneath it in Meta. A technical ID is never the first thing a user reads.
 
 ## Layout
@@ -225,6 +226,11 @@ Refined and restrained. State is expressed by colour and border, not by movement
   **neutral** (neutral-50 background), because teal is reserved for the primary action and for selection.
 - **Text:** a bare label for tertiary actions. Distinguish secondary actions with `default` and `text`, never with
   colour.
+- **Label:** 500 (`--sl-font-weight-semibold`) at every size; small 12px, medium 14px, large 16px.
+- **Icons:** prefix, suffix and caret icons are 1em (12, 14, 16px). With a prefix the button starts with x-small
+  (8px, small) or small (12px, medium and large) padding and the same gap before the label; the label keeps its own
+  padding (12, 16, 20px) on the side without an icon. Suffix and caret mirror this at the end. Buttons and tabs carry
+  the icon given by the icon map in `DECISIONS.md`; Cancel, Reset and Clear stay without one.
 - **Focus:** a 2px solid teal ring at 2px offset.
 
 ### Cards / Containers (`sl-card`, `sl-detail-panel`)
@@ -237,10 +243,20 @@ Refined and restrained. State is expressed by colour and border, not by movement
   of 28, 36 or 44px.
 - **Labels** always sit above the field. A placeholder is never a label.
 - **Focus:** a primary-500 border with the teal focus ring. **Disabled:** a neutral-100 background and a
-  neutral-300 border.
+  neutral-300 border. **Read-only** looks like the default field.
+- **Help text** sits under the field: 12px, 1.5 line height, neutral-600, with a 2x-small (4px) gap.
+- **Multiple select:** the selected values are removable `sl-tag`s of the select's size that wrap onto new lines
+  (gap 3x-small for small, 2x-small for medium and large, 4px block padding); the field grows with them and the
+  placeholder hides. `max-options-visible` collapses the rest into a "+N" tag.
+- **Trailing controls:** the clear button (`x-circle-fill`) and the expand chevron are 1em; the clear button sits
+  after the input spacing (8, 12, 16px), the chevron after small (12px).
+- **File drop** (`sl-file-drop`): label above, an optional `hint` inside the zone under the instructions, and
+  `help-text` under the zone like any field. **Uploaded files** (`sl-file-upload-item`): filename 14px/500,
+  meta 12px, both at 1.5 line height (59px tall).
 
 ### Tables (`sl-table`)
-- The identifier column comes first. Dates do not truncate, and long text truncates with the full value available.
+- The identifier column comes first, as a two-line cell: the identifier in Subheading (500) and its metadata in
+  Meta beneath. Dates do not truncate, and long text truncates with the full value available.
 - The selected row uses a 3px inset teal marker (primary-600) and the Teal Mist background (Teal Wash on hover).
   Row variants (`rowVariant`) reuse the same edge in their semantic colour, and selection takes priority. Statuses use `sl-status` or `sl-badge` with a
   label.
@@ -257,6 +273,8 @@ Refined and restrained. State is expressed by colour and border, not by movement
 - **Do** take spacing only from `--sl-spacing-*` (through `--rs-*` roles) and text only from the typography classes.
 - **Do** keep every datum and action of the legacy screen: regroup, rename or move to overflow, never delete.
 - **Do** use motion only as state feedback, with the components' own animations and the `--sl-transition-*` tokens.
+- **Do** use only icons that exist in the DS icon set (Bootstrap Icons names, Figma `Icon/<name>`). A missing icon is
+  added to the DS first, never replaced by an SVG or a look-alike.
 
 ### Don't:
 - **Don't** use semantic colours to tell buttons apart, or put more than one primary in a region.

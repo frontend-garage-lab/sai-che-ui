@@ -541,6 +541,57 @@ neighbouring [detail panel](/components/detail-panel). The container needs a def
 `sticky-header` only has an effect when the table's height is constrained, e.g. with the `--max-height` custom property.
 :::
 
+### Sizes
+
+Set `size="small"` for a dense table: smaller text and tighter header and body cells. Use it for a table nested in
+another table's cell, where each row holds a small matrix of data, and keep the default `medium` for page-level tables.
+
+```html:preview
+<sl-table class="sized-table"></sl-table>
+
+<script type="module">
+  import { html } from 'https://cdn.jsdelivr.net/npm/lit@3/+esm';
+
+  const table = document.querySelector('.sized-table');
+
+  const recipientColumns = [
+    { id: 'name', accessorKey: 'name', header: 'Name' },
+    { id: 'email', accessorKey: 'email', header: 'Email' },
+    { id: 'reason', accessorKey: 'reason', header: 'Reason', meta: { width: '5rem' } }
+  ];
+
+  table.columns = [
+    { id: 'distribution', accessorKey: 'distribution', header: 'Distribution', meta: { width: '8rem' } },
+    {
+      id: 'recipients',
+      header: 'Recipients',
+      cell: ({ row }) =>
+        html`<sl-table
+          size="small"
+          label="Recipients of ${row.original.distribution}"
+          .columns=${recipientColumns}
+          .data=${row.original.recipients}
+          style="flex: 1 1 auto; min-width: 0;"
+        ></sl-table>`
+    }
+  ];
+
+  table.data = [
+    {
+      distribution: '1.0010',
+      recipients: [
+        { name: 'Cazzaniga Alice', email: 'Alice.Cazzaniga@saipem.com', reason: 'Z' },
+        { name: 'Aiello Ciro', email: 'Aiello.Ciro.Guest@saipem.com', reason: 'Z' }
+      ]
+    },
+    {
+      distribution: '1.0020',
+      recipients: [{ name: 'Mario Rossi', email: 'Mario.Rossi@saipem.com', reason: 'A' }]
+    }
+  ];
+</script>
+```
+
 ### Sticky Row Actions
 
 Add the `sticky-actions` attribute to keep the row action column (the ⋮ menu of a column with `meta.actions`) pinned to the end side while a wide table scrolls horizontally. The pinned cells take the row's background, so hover, selection and striping stay consistent. It is opt-in: tables that fit their container don't need it.

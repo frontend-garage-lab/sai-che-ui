@@ -1,0 +1,41 @@
+[
+  {
+    "id": "1981660489",
+    "frame": "3-PropertyCompilate",
+    "node": "771:45379",
+    "offset": {
+      "x": 1976,
+      "y": 851
+    },
+    "autore": "D'Andria, Giuseppe",
+    "risolto": false,
+    "testo": "Rendere questi campi read-only e diventano input",
+    "risposte": []
+  },
+  {
+    "id": "1981657325",
+    "frame": "3-PropertyCompilate",
+    "node": "771:45379",
+    "offset": {
+      "x": 2291,
+      "y": 349
+    },
+    "autore": "D'Andria, Giuseppe",
+    "risolto": false,
+    "testo": "Restare sempre su due colonne",
+    "risposte": []
+  },
+  {
+    "id": "1981649145",
+    "frame": "2-Property",
+    "node": "771:45258",
+    "offset": {
+      "x": 1665,
+      "y": 261
+    },
+    "autore": "D'Andria, Giuseppe",
+    "risolto": false,
+    "testo": "Da rimuovere Create from e aggiungiamo al titolo (new)",
+    "risposte": []
+  }
+]

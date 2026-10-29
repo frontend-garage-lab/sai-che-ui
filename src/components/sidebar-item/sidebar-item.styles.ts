@@ -91,13 +91,10 @@ export default css`
     color: var(--sl-color-primary-700);
   }
 
-  /* Collapsed: icon-only items are centred, text-only items are hidden */
-  :host([collapsed]) {
+  /* Collapsed: icon-only items are centred, text-only items are hidden. Done on the inner link because
+     :host(:has(...)) is not supported by every browser. */
+  .sidebar-item--collapsed:not(.sidebar-item--has-prefix) {
     display: none;
-  }
-
-  :host([collapsed]:has([slot='prefix'])) {
-    display: block;
   }
 
   .sidebar-item--collapsed {

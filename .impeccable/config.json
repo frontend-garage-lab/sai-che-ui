@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-10-29T10:03:14.212Z",
+        "reason": "Saipem DS token --sl-font-sans in src/themes/light.css; restyle pages must use DS tokens only (CLAUDE.md)"
+      }
+    ]
+  }
+}

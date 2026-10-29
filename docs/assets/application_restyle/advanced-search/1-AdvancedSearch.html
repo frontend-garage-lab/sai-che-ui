@@ -111,17 +111,21 @@
               </sl-button>
             </div>
           </div>
-          <sl-description-list cols="4">
-            <sl-description-list-item label="Type">Job Document (spm_job_doc)</sl-description-list-item>
+          <sl-description-list cols="3">
+            <sl-description-list-item label="Type">Job Document</sl-description-list-item>
             <sl-description-list-item label="Criteria">Name contains · Modified anytime</sl-description-list-item>
-            <sl-description-list-item label="Location">procpdms</sl-description-list-item>
             <sl-description-list-item label="Last run">26-Oct-2026 09:59</sl-description-list-item>
           </sl-description-list>
         </sl-card>
 
         <!-- Saved searches -->
-        <sl-tab-group aria-label="Saved searches"><span class="rs-inline"><sl-icon name="bookmark"></sl-icon>My searches</span></sl-tab>
-          <sl-tab slot="nav" panel="public"><span class="rs-inline"><sl-icon name="globe"></sl-icon>Public searches</span></sl-tab>
+        <sl-tab-group aria-label="Saved searches">
+          <sl-tab slot="nav" panel="mine"
+            ><span class="rs-inline"><sl-icon name="bookmark"></sl-icon>My searches</span></sl-tab
+          >
+          <sl-tab slot="nav" panel="public"
+            ><span class="rs-inline"><sl-icon name="globe"></sl-icon>Public searches</span></sl-tab
+          >
 
           <sl-tab-panel name="mine" active>
             <sl-table class="my-searches" sticky-header label="My searches">

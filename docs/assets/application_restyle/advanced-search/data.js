@@ -43,7 +43,7 @@ export const mySearches = [
   { name: 'External drawings · approve performer', lastRun: '24-Oct-2026 15:12' },
   { name: 'Transmittals with incoming documents', lastRun: '21-Oct-2026 11:40' },
   { name: 'Documents with client progress below 50%', lastRun: '17-Oct-2026 08:25' },
-  { name: 'Current revisions · procpdms', lastRun: '09-Oct-2026 17:03' }
+  { name: 'Job documents · current version', lastRun: '09-Oct-2026 17:03' }
 ];
 
 export const publicSearches = [
@@ -52,3 +52,14 @@ export const publicSearches = [
   { name: 'Training certificates expiring', lastRun: '20-Oct-2026 09:05' },
   { name: 'Milestones gained last week', lastRun: '15-Oct-2026 16:30' }
 ];
+
+/** Result tab: columns of the result table (Available ↔ Selected transfer). */
+const columnList = header => [{ id: 'column', accessorKey: 'column', header, meta: { width: 'minmax(0, 1fr)' } }];
+
+export const availableColumnColumns = columnList('Available columns');
+
+export const selectedColumnColumns = columnList('Selected columns');
+
+export const selectedColumns = ['Name', 'Title', 'Type', 'Version', 'Status', 'Modified'].map(column => ({ column }));
+
+export const availableColumns = ['Owner', 'Client progress', 'Project progress'].map(column => ({ column }));

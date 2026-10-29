@@ -363,4 +363,14 @@ export default css`
   .table__page-size sl-select {
     width: 6rem;
   }
+
+  /* Small: dense header and body cells, e.g. a table nested in another table's cell */
+  :host([size='small']) .table {
+    font-size: var(--sl-font-size-x-small);
+  }
+
+  :host([size='small']) .table__column,
+  :host([size='small']) .table__cell {
+    padding: var(--sl-spacing-3x-small) var(--sl-spacing-x-small);
+  }
 `;
