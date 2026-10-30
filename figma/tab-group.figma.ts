@@ -10,10 +10,28 @@ const placement = instance.getEnum('Placement', { top: 'top', bottom: 'bottom', 
 // Code Connect template, interpolated individually (not .map().join()).
 // The scroll-control Icon Buttons (layers "scroll-button--start/--end") are part of sl-tab-group itself, not tabs.
 const tabs = instance.findConnectedInstances(node => !node.name.startsWith('scroll-button'));
-const tab1 = tabs[0] && tabs[0].type === 'INSTANCE' ? tabs[0].executeTemplate().example : '';
-const tab2 = tabs[1] && tabs[1].type === 'INSTANCE' ? tabs[1].executeTemplate().example : '';
-const tab3 = tabs[2] && tabs[2].type === 'INSTANCE' ? tabs[2].executeTemplate().example : '';
-const tab4 = tabs[3] && tabs[3].type === 'INSTANCE' ? tabs[3].executeTemplate().example : '';
+// Seven Tab instances live in Nav: tabs 5–7 are shown by the `Tab 5` / `Tab 6` / `Tab 7` booleans (off by default),
+// so a tab is rendered only when its boolean is on.
+const extra = [
+  true,
+  true,
+  true,
+  true,
+  instance.getBoolean('Tab 5'),
+  instance.getBoolean('Tab 6'),
+  instance.getBoolean('Tab 7')
+];
+const tabAt = (index: number) => {
+  const tab = tabs[index];
+  return extra[index] && tab && tab.type === 'INSTANCE' ? tab.executeTemplate().example : '';
+};
+const tab1 = tabAt(0);
+const tab2 = tabAt(1);
+const tab3 = tabAt(2);
+const tab4 = tabAt(3);
+const tab5 = tabAt(4);
+const tab6 = tabAt(5);
+const tab7 = tabAt(6);
 
 // One <sl-tab-panel> per <sl-tab>: the panel name is the slug of the tab label, the same value the Tab mapping
 // writes in its `panel` attribute. The panel content is the page's own, so only the shell is emitted.
@@ -28,6 +46,9 @@ const panel1 = panelFor(tabs[0]);
 const panel2 = panelFor(tabs[1]);
 const panel3 = panelFor(tabs[2]);
 const panel4 = panelFor(tabs[3]);
+const panel5 = extra[4] ? panelFor(tabs[4]) : '';
+const panel6 = extra[5] ? panelFor(tabs[5]) : '';
+const panel7 = extra[6] ? panelFor(tabs[6]) : '';
 
 export default {
   example: figma.html`<sl-tab-group placement="${placement}">
@@ -35,11 +56,17 @@ export default {
   ${tab2}
   ${tab3}
   ${tab4}
+  ${tab5}
+  ${tab6}
+  ${tab7}
 
   ${panel1}
   ${panel2}
   ${panel3}
   ${panel4}
+  ${panel5}
+  ${panel6}
+  ${panel7}
 </sl-tab-group>`,
   imports: ["import 'src/components/tab-group/tab-group.js'", "import 'src/components/tab-panel/tab-panel.js'"],
   id: 'tab-group',

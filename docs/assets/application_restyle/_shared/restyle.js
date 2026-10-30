@@ -21,6 +21,7 @@ export const STATUS_VARIANT = {
   Working: 'neutral',
   Aborted: 'neutral',
   Draft: 'neutral',
+  Superseded: 'neutral',
   Published: 'success',
   Active: 'primary',
   Acquired: 'accent',

@@ -20,6 +20,10 @@ export default css`
     color: var(--sl-color-success-600);
   }
 
+  :host([variant='warning']) {
+    color: var(--sl-color-warning-600);
+  }
+
   :host([variant='danger']) {
     color: var(--sl-color-danger-600);
   }

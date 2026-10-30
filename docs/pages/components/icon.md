@@ -106,8 +106,8 @@ const App = () => (
 
 ### Variants
 
-Use `variant` to colour an icon with a design token instead of a hard-coded colour: `neutral`, `accent`, `success` or
-`danger`. Without a variant the icon still inherits the current text colour. Pair the colour with a different shape
+Use `variant` to colour an icon with a design token instead of a hard-coded colour: `neutral`, `accent`, `success`,
+`warning` or `danger`. Without a variant the icon still inherits the current text colour. Pair the colour with a different shape
 (outline vs. filled) so it is never the only cue, e.g. a speech bubble that turns from `chat` to `chat-fill` once a
 comment is uploaded.
 
@@ -116,6 +116,7 @@ comment is uploaded.
   <sl-icon name="square" variant="neutral" label="Not accepted yet"></sl-icon>
   <sl-icon name="check-square-fill" variant="accent" label="Accepted"></sl-icon>
   <sl-icon name="chat-fill" variant="success" label="Comment uploaded"></sl-icon>
+  <sl-icon name="exclamation-triangle" variant="warning" label="Expiring"></sl-icon>
   <sl-icon name="exclamation-lg" variant="danger" label="Notified"></sl-icon>
 </div>
 ```
@@ -130,6 +131,7 @@ const App = () => (
     <SlIcon name="square" variant="neutral" label="Not accepted yet" />
     <SlIcon name="check-square-fill" variant="accent" label="Accepted" />
     <SlIcon name="chat-fill" variant="success" label="Comment uploaded" />
+    <SlIcon name="exclamation-triangle" variant="warning" label="Expiring" />
     <SlIcon name="exclamation-lg" variant="danger" label="Notified" />
   </div>
 );

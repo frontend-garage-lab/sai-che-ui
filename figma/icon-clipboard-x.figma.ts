@@ -9,6 +9,7 @@ const variant = instance.getEnum('Variant', {
   neutral: 'neutral',
   accent: 'accent',
   success: 'success',
+  warning: 'warning',
   danger: 'danger'
 });
 

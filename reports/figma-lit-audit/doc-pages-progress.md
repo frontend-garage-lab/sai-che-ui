@@ -120,3 +120,30 @@ Doc senza pagina Figma (utility, non visuali — nessuna pagina prevista): anima
 - Sidebar Item (2026-10-29, approvato): nuova VARIANT `Collapsed` (false/true); 6 varianti rinominate `Collapsed=false`
   (id invariati), 3 nuove `Prefix=true, Collapsed=true` 44×36 solo icona (`1440:506` default, `1440:513` hover,
   `1440:520` current con indicatore); key `ffadd7dc…` invariata. CC invariato (collapsed lo imposta sl-sidebar).
+- Tab Group (2026-10-29, approvato): 3 Tab in più (5–7) nel `Nav` di ogni variante, nascoste di default; key
+  `d0ba5870…` e id `354:74` invariati. CC `figma/tab-group.figma.ts`: 7 tab / 7 panel (helper `tabAt`). Da verificare
+  in Dev Mode che le tab nascoste non compaiano nello snippet. In attesa di publish libreria + CC.
+- Tab Group (2026-10-29, seguito): BOOLEAN `Tab 5#1455:0`, `Tab 6#1455:5`, `Tab 7#1455:10` (default false) sulla
+  visibilità delle tab 5–7 (le tab nascoste senza proprietà non sono raggiungibili nelle istanze). CC legge i booleani.
+- 2026-10-30 — Dialog (pagina `31:20`, frame `1165:44`): Variants già in matrice (set `54:21` con 10 varianti ed
+  etichette Success/Warning/Danger presenti). Aggiunti: card esempio `Example: Variants` `1469:244` (prima della
+  griglia, 1360 px) con 3 istanze Warning `1469:279` / Success `1469:309` (solo Close) / Danger `1469:339` (Delete
+  bid = Button danger), testi da `dialog.md`; riga Playground `Prop: Variant` `1469:369`; chip header "1 set · 10
+  variants"; frase del set aggiornata (Variant × Header × Footer). Master non toccati.
+- 2026-10-30 — Table (pagina `31:15`, frame `1176:2910`): card `Example: Sizes` `1469:2751` in coda agli esempi.
+  Tabella esterna `1469:5273` (Distribution / Recipients, medium; celle Recipients `Type=composite`) con due Table
+  `Size=small` annidate nello slot Content (Name/Email/Reason, dati di `table.md`). Righe esterne portate a 74/53 px
+  (FIXED) per contenere le tabelle annidate. Le sezioni Variants di Table Cell/Column citavano già `Size`.
+  Problema API: dopo aver clonato più volte la stessa istanza Table con slot, `getNodeByIdAsync`/`children` del
+  plugin restituivano un nodo "aliasato" (l'esterna letta come copia di quella small) mentre `get_metadata` e lo
+  screenshot erano corretti; risolto lavorando con gli id completi `I…` presi da `get_metadata`.
+  Non fatto: esempio "Quick info with badges" (nuovo in `table.md`, non richiesto).
+- 2026-10-30 — Table, correzioni (approvate): (1) `Example: Sizes`: rimosse le 8 Table Cell nascoste ereditate dal clone
+  (2 nella tabella esterna `1469:5273`, 3+3 nelle Table small annidate), aspetto invariato, verificato con
+  `get_metadata`. (2) `Example: Status icons and alignment` `1176:3571`: la cella Amount `$86.50`
+  (`…1323:2525;871:573;1178:2493`) era in HUG (18 px): riportata a FIXED all'altezza del master (41), righe allineate.
+  (3) Nuova card `Example: Quick info with badges` `1472:2435` subito dopo "Quick info cell": Table `1472:2533`
+  (Toolbar/Pagination off), colonna Quick info (224 px) con 2 Table Cell `Type=quick-info` (Badge O warning quadrato,
+  A success pill, TE neutral pill, Icon/link-45deg) e colonna Bid number (B-2026-0142, B-2026-0157); didascalie da
+  `table.md`. Master non toccati. Restano celle nascoste ereditate nelle colonne di "Status icons and alignment" e
+  "Quick info cell" (non richiesto).

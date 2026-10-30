@@ -378,6 +378,44 @@ row with an `x-small` gap and centred items so the dot and the icon share one ce
 </script>
 ```
 
+### Quick info with badges
+
+A quick-info cell can also be made of badges: the bid status as a square `sl-badge`, the document state and the
+approvals as `pill` badges, followed by an `sl-icon`. Put the meaning of each code in `title`. In Figma the Content slot
+of the Table Cell `Type=quick-info` proposes Status, Badge, Tag and every icon as preferred values, in any order.
+
+```html:preview
+<sl-table class="quick-info-badges-table"></sl-table>
+
+<script type="module">
+  import { html } from 'https://cdn.jsdelivr.net/npm/lit@3/+esm';
+  // sl-badge and sl-icon are rendered inside sl-table's own shadow DOM, where the autoloader can't see them.
+  import '/dist/components/badge/badge.js';
+  import '/dist/components/icon/icon.js';
+
+  const table = document.querySelector('.quick-info-badges-table');
+
+  table.columns = [
+    {
+      id: 'info',
+      header: 'Quick info',
+      meta: { width: '14rem' },
+      cell: () => html`
+        <span style="display: inline-flex; align-items: center; gap: var(--sl-spacing-2x-small);">
+          <sl-badge variant="warning" title="Bid status: Open">O</sl-badge>
+          <sl-badge variant="success" pill title="Documents: Approved">A</sl-badge>
+          <sl-badge variant="neutral" pill title="Technical evaluation">TE</sl-badge>
+          <sl-icon name="link-45deg" title="Attachments"></sl-icon>
+        </span>
+      `
+    },
+    { id: 'number', accessorKey: 'number', header: 'Bid number' }
+  ];
+
+  table.data = [{ number: 'B-2026-0142' }, { number: 'B-2026-0157' }];
+</script>
+```
+
 ### Marker
 
 Return a colour from `rowVariant` to flag a record with a coloured leading edge, independent of selection — useful

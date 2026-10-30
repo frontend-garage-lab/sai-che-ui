@@ -13,9 +13,16 @@ import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import Modal from '../../internal/modal.js';
 import ShoelaceElement from '../../internal/shoelace-element.js';
+import SlIcon from '../icon/icon.component.js';
 import SlIconButton from '../icon-button/icon-button.component.js';
 import styles from './dialog.styles.js';
 import type { CSSResultGroup } from 'lit';
+
+const statusIcons = {
+  success: 'check2-circle',
+  warning: 'exclamation-triangle',
+  danger: 'exclamation-octagon'
+} as const;
 
 /**
  * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
@@ -23,6 +30,7 @@ import type { CSSResultGroup } from 'lit';
  * @status stable
  * @since 2.0
  *
+ * @dependency sl-icon
  * @dependency sl-icon-button
  *
  * @slot - The dialog's main content.
@@ -47,6 +55,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart header - The dialog's header. This element wraps the title and header actions.
  * @csspart header-actions - Optional actions to add to the header. Works best with `<sl-icon-button>`.
  * @csspart title - The dialog's title.
+ * @csspart status-icon - The status icon shown before the title when `variant` is not `default`.
  * @csspart close-button - The close button, an `<sl-icon-button>`.
  * @csspart close-button__base - The close button's exported `base` part.
  * @csspart body - The dialog's body.
@@ -70,6 +79,7 @@ import type { CSSResultGroup } from 'lit';
 export default class SlDialog extends ShoelaceElement {
   static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = {
+    'sl-icon': SlIcon,
     'sl-icon-button': SlIconButton
   };
 
@@ -100,6 +110,12 @@ export default class SlDialog extends ShoelaceElement {
    * accessible way for users to dismiss the dialog.
    */
   @property({ attribute: 'no-header', type: Boolean, reflect: true }) noHeader = false;
+
+  /**
+   * The dialog's status. `success`, `warning` and `danger` show a matching icon before the title, for confirmations
+   * and outcomes; `default` shows none. The footer buttons are not changed: pick their variants in the `footer` slot.
+   */
+  @property({ reflect: true }) variant: 'default' | 'success' | 'warning' | 'danger' = 'default';
 
   firstUpdated() {
     this.dialog.hidden = !this.open;
@@ -275,7 +291,10 @@ export default class SlDialog extends ShoelaceElement {
         class=${classMap({
           dialog: true,
           'dialog--open': this.open,
-          'dialog--has-footer': this.hasSlotController.test('footer')
+          'dialog--has-footer': this.hasSlotController.test('footer'),
+          'dialog--success': this.variant === 'success',
+          'dialog--warning': this.variant === 'warning',
+          'dialog--danger': this.variant === 'danger'
         })}
       >
         <div part="overlay" class="dialog__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
@@ -293,6 +312,14 @@ export default class SlDialog extends ShoelaceElement {
           ${!this.noHeader
             ? html`
                 <header part="header" class="dialog__header">
+                  ${this.variant !== 'default'
+                    ? html`<sl-icon
+                        part="status-icon"
+                        class="dialog__status-icon"
+                        name=${statusIcons[this.variant]}
+                        aria-hidden="true"
+                      ></sl-icon>`
+                    : ''}
                   <h2 part="title" class="dialog__title" id="title">
                     <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
                   </h2>

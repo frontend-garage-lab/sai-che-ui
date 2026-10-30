@@ -15,6 +15,9 @@ function text(...layerNames: string[]) {
 
 const hasHeader = instance.getEnum('Header', { true: true, false: false });
 const hasFooter = instance.getEnum('Footer', { true: true, false: false });
+// `Variant` drives the status icon before the title; it only exists with `Header=true`, and Default emits nothing.
+const variant = instance.getEnum('Variant', { Default: '', Success: 'success', Warning: 'warning', Danger: 'danger' });
+const variantAttr = hasHeader && variant ? ` variant="${variant}"` : '';
 // The footer is the `Footer Content` slot: whatever Buttons it holds become the dialog's footer.
 // `getSlot` alone only shows a collapsed `<Slot />` placeholder for the slot node, which has no Code Connect to open:
 // the connected instances placed directly in the slot are rendered through their own templates instead, interpolated
@@ -62,7 +65,7 @@ const body = bodyInstances.length
 
 // No `open` attribute: showing the dialog is behaviour (`dialog.show()`), not a design state, and every docs example omits it.
 export default {
-  example: figma.html`<sl-dialog${hasHeader ? ` label="${text('Dialog title')}"` : ' no-header'}>
+  example: figma.html`<sl-dialog${hasHeader ? ` label="${text('Dialog title')}"` : ' no-header'}${variantAttr}>
   ${headerActionsCode ? figma.html`<span slot="header-actions">${headerActionsCode}</span>\n  ` : ''}${body}${footer}
 </sl-dialog>`,
   imports: [

@@ -50,6 +50,45 @@ const App = () => {
 
 ## Examples
 
+### Variants
+
+Use the `variant` attribute to mark a confirmation or an outcome. `success`, `warning` and `danger` show a status icon
+before the title; `default` shows none. The footer buttons keep their own variants: a destructive confirmation uses a
+`danger` primary action.
+
+```html:preview
+<div class="dialog-variants">
+  <sl-dialog label="Return to working" variant="warning">
+    Do you want to return 2026-BID-000003 to the Working state?
+    <sl-button slot="footer">Cancel</sl-button>
+    <sl-button slot="footer" variant="primary">Return to working</sl-button>
+  </sl-dialog>
+  <sl-dialog label="Bid deleted" variant="success">
+    2026-BID-000003 has been deleted.
+    <sl-button slot="footer" variant="primary">Close</sl-button>
+  </sl-dialog>
+  <sl-dialog label="Delete bid" variant="danger">
+    2026-BID-000003 and its attachments will be deleted. This cannot be undone.
+    <sl-button slot="footer">Cancel</sl-button>
+    <sl-button slot="footer" variant="danger">Delete bid</sl-button>
+  </sl-dialog>
+
+  <sl-button data-variant="warning">Warning</sl-button>
+  <sl-button data-variant="success">Success</sl-button>
+  <sl-button data-variant="danger">Danger</sl-button>
+</div>
+
+<script>
+  const container = document.querySelector('.dialog-variants');
+
+  container.querySelectorAll('sl-button[data-variant]').forEach(button => {
+    const dialog = container.querySelector(`sl-dialog[variant="${button.dataset.variant}"]`);
+    button.addEventListener('click', () => dialog.show());
+    dialog.querySelectorAll('sl-button[slot="footer"]').forEach(b => b.addEventListener('click', () => dialog.hide()));
+  });
+</script>
+```
+
 ### Custom Width
 
 Use the `--width` custom property to set the dialog's width.

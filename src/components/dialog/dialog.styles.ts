@@ -56,6 +56,26 @@ export default css`
     display: flex;
   }
 
+  .dialog__status-icon {
+    flex: 0 0 auto;
+    align-self: center;
+    font-size: var(--sl-font-size-x-large);
+    margin-inline-start: var(--header-spacing);
+    margin-inline-end: calc(-1 * var(--header-spacing) + var(--sl-spacing-small));
+  }
+
+  .dialog--success .dialog__status-icon {
+    color: var(--sl-color-success-600);
+  }
+
+  .dialog--warning .dialog__status-icon {
+    color: var(--sl-color-warning-600);
+  }
+
+  .dialog--danger .dialog__status-icon {
+    color: var(--sl-color-danger-600);
+  }
+
   .dialog__title {
     flex: 1 1 auto;
     min-width: 0;

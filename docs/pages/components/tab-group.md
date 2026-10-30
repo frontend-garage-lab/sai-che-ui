@@ -727,3 +727,10 @@ const App = () => (
   </SlTabGroup>
 );
 ```
+
+## Figma
+
+:::tip
+The Figma Tab Group master holds up to 7 tabs. Tabs 5–7 are turned on with the booleans `Tab 5`, `Tab 6` and
+`Tab 7` (off by default); Code Connect emits a tab and its panel only when its boolean is on.
+:::

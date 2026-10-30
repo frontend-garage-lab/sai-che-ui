@@ -5,7 +5,7 @@
 /* Above the workspace: header, breadcrumb, title and the filters card (taller than in other flows, so the
    shared 28rem minimum would push the page past a 1000px viewport) */
 .rs-workspace {
-  --rs-workspace-offset: 33.25rem; /* -4rem: area tabs removed (2026-10-29, estimated) */
+  --rs-workspace-offset: 33.25rem; /* -4rem: area tabs removed (2026-10-29, measured: workspace 505 → 973px at 1600×1000) */
   --rs-workspace-height: max(24rem, calc(100vh - var(--rs-workspace-offset)));
 }
 

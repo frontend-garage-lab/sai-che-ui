@@ -41,3 +41,19 @@ errors of the Add form; Force approval.
 - Approval details and Send for approval: Technical and Commercial side by side (6/6), each with its status.
 - Details panel of a selected bid: title + bid number · client, key data, Approval (documents, owners, technical,
   commercial as `sl-status`), Attachments with counter.
+
+## Revision 3 (2026-10-30): screens 19–23
+
+- 19-ReturnToWorking, 20-ForceApproval: confirmations as `sl-dialog variant="warning"` (new DS variant, DECISIONS
+  "Dialog di conferma / esito"); Yes/No and Ok/Cancel → Cancel + verb ("Return to working", "Force approval").
+- 21-CreateNewRevision: bid number as description list, required "Revision reason" `sl-textarea`; OK → "Create revision".
+- 22/23: same View dialog as screen 9 (revision 02, Working) with the Approval history (`sl-switch` "All revisions" in
+  the table toolbar) and Revision history (`selection="single"`, "View revision", pagination) tabs. Revision status
+  "Superseded" added to `STATUS_VARIANT` as neutral.
+- Action types in sentence case; values truncated in the legacy kept with "…".
+
+### Open questions
+
+- Screens 19–20 name 2026-BID-000003 in the dialog text, but the approval history (screen 22) records Return to
+  working and Force approval on 2026-BID-000004: the pages use 2026-BID-000004. To confirm.
+- After Force approval, Technical / Commercial show "—" (skipped): no legacy screen shows the panel in that state.

@@ -145,7 +145,7 @@ const recipientColumns = [
     id: 'name',
     accessorKey: 'name',
     header: 'Name',
-    meta: { width: 'minmax(10rem, 1fr)' },
+    meta: { width: 'minmax(8rem, 1fr)' },
     cell: ({ row }) =>
       html`<span class="rs-inline"
         >${row.original.external ? html`<sl-icon name="building" title="External user"></sl-icon>` : ''}${row.original
@@ -156,11 +156,11 @@ const recipientColumns = [
     id: 'email',
     accessorKey: 'email',
     header: 'Email',
-    meta: { width: 'minmax(16rem, 1.5fr)', nowrap: true },
+    meta: { width: 'minmax(12rem, 1.5fr)', nowrap: true },
     cell: ({ row }) => html`<span title=${row.original.email}>${row.original.email}</span>`
   },
-  { id: 'reason', accessorKey: 'reason', header: 'Reason', meta: { width: '6rem', align: 'center' } },
-  { id: 'method', accessorKey: 'method', header: 'Method', meta: { width: '8rem', nowrap: true } }
+  { id: 'reason', accessorKey: 'reason', header: 'Reason', meta: { width: '4rem', align: 'center' } },
+  { id: 'method', accessorKey: 'method', header: 'Method', meta: { width: '6rem', nowrap: true } }
 ];
 
 export const distributionColumns = [
@@ -181,7 +181,7 @@ export const distributionColumns = [
   {
     id: 'recipients',
     header: 'Recipients',
-    meta: { width: 'minmax(42rem, 1fr)' },
+    meta: { width: 'minmax(32rem, 1fr)' },
     cell: ({ row }) =>
       html`<sl-table
         class="rs-nested-table"

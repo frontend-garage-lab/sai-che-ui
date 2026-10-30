@@ -6,6 +6,8 @@
 
 import { html } from 'https://cdn.jsdelivr.net/npm/lit@3/+esm';
 
+import { revisionTag, statusTag } from '../_shared/restyle.js';
+
 export * from '../_shared/restyle.js';
 
 // ------------------------------------------------------------------ Legend (Legend display dialog)
@@ -170,6 +172,10 @@ export const bids = adminRows;
 export const bidsCreated = [created('W', []), ...adminRows];
 /** user_qmis_admin, both approvals done (screen 18). */
 export const bidsApproved = [created('A', ['TE', 'CO']), ...adminRows];
+/** user_qmis_admin, bid shared with the proposal manager (screen 19). */
+export const bidsShared = [created('A', ['TE', 'CO', 'PM']), ...adminRows];
+/** user_qmis_admin, bid force-approved and shared again (screen 21). */
+export const bidsForced = [created('A', ['PM']), ...adminRows];
 
 const testRow = bid(
   'O',
@@ -415,3 +421,59 @@ export const approvalAttachmentColumns = [
 ];
 export const technicalAttachments = [{ name: 'TechnicalAttachment.docx', title: '—', type: '—', status: '—' }];
 export const commercialAttachments = [{ name: 'CommercialAttachment.docx', title: '—', type: '—', status: '—' }];
+
+// ------------------------------------------------------------------ View bid: approval and revision history
+
+/** Approval history of 2026-BID-000004 (screen 22): the last row is cut in the legacy screenshot. */
+export const approvalHistoryColumns = [
+  col('number', 'Bid number', '10rem'),
+  {
+    id: 'revision',
+    header: 'Revision code',
+    meta: { width: '10rem' },
+    cell: ({ row }) => revisionTag(row.original.revision)
+  },
+  col('date', 'Action date', '11rem'),
+  col('action', 'Action type', 'minmax(14rem, 1fr)'),
+  col('user', 'User name', '12rem'),
+  col('notes', 'Action notes', 'minmax(12rem, 1fr)')
+];
+const history = (date, action, notes = '—', user = 'user_qmis_admin') => ({
+  number: '2026-BID-000004',
+  revision: '01',
+  date: `15-Oct-2026 ${date}`,
+  action,
+  user,
+  notes
+});
+export const approvalHistory = [
+  history('10:12 am', 'Shared to proposal manager', 'No issuing notes'),
+  history('10:12 am', 'Force approval'),
+  history('10:11 am', 'Return to working'),
+  history('10:11 am', 'Shared to proposal manager', 'Sharing with PM for review'),
+  history('10:08 am', 'Commercial approval: Appro…', 'Attachment is fine, approved', 'user_qmis_bid_comm_appro…'),
+  history('10:07 am', 'Sent for commercial appro…', 'Attachment version fixed, review ar…')
+];
+
+/** Revision history of 2026-BID-000004 (screens 23): revision 02 created in screen 21. */
+export const revisionHistoryColumns = [
+  {
+    id: 'status',
+    header: 'Revision status',
+    meta: { width: '10rem' },
+    cell: ({ row }) => statusTag(row.original.status)
+  },
+  {
+    id: 'revision',
+    header: 'Revision code',
+    meta: { width: '10rem' },
+    cell: ({ row }) => revisionTag(row.original.revision)
+  },
+  col('date', 'Revision date', '9rem'),
+  col('reason', 'Revision reason', 'minmax(12rem, 1fr)'),
+  col('user', 'Revision user', '12rem')
+];
+export const revisionHistory = [
+  { status: 'Current', revision: '02', date: '15-Oct-2026', reason: 'Revision for demo', user: 'user_qmis_admin' },
+  { status: 'Superseded', revision: '01', date: '15-Oct-2026', reason: 'FIRST REVISION', user: 'user_qmis_admin' }
+];
