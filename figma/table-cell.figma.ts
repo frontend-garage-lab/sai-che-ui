@@ -17,7 +17,8 @@ const type = instance.getEnum('Type', {
 });
 const text = instance.getString('Text');
 const meta1 = instance.getString('Meta 1');
-// `composite` is one cell holding any mix of status, badge and icon: the Content slot is rendered as is.
+// `composite` is one cell holding any mix of text and components: the Content slot is rendered as is. Its default
+// content is the QMIS attachment Version code: text "1.0" + Tag success small "Current".
 // `quick-info` is the same slot, preset with a label-less status dot and the chat icon; its preferred values are
 // Status, Badge, Tag and every icon, in any order (e.g. QMIS: bid status badge, documents pill, TE/CO/PM, attachment).
 const content = type === 'composite' || type === 'quick-info' ? instance.getSlot('Content') : '';

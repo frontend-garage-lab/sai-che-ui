@@ -15,6 +15,7 @@ function text(...layerNames: string[]) {
 
 const size = instance.getEnum('Size', { small: 'small', medium: 'medium', large: 'large' });
 const disabled = instance.getEnum('State', { default: false, hover: false, focus: false, disabled: true });
+const status = instance.getEnum('Status', { default: '', success: 'success', warning: 'warning', danger: 'danger' });
 const pill = instance.getBoolean('Pill');
 const filled = instance.getBoolean('Filled');
 const clearable = instance.getBoolean('Clearable');
@@ -43,7 +44,7 @@ if (suffix && suffix.type === 'INSTANCE') {
 const placeholder = text('Placeholder text');
 
 export default {
-  example: figma.html`<sl-input size="${size}"${label ? ` label="${label}"` : ''}${placeholder ? ` placeholder="${placeholder}"` : ''}${helpText ? ` help-text="${helpText}"` : ''}${pill ? ' pill' : ''}${filled ? ' filled' : ''}${clearable ? ' clearable' : ''}${passwordToggle ? ' type="password" password-toggle' : ''}${required ? ' required' : ''}${disabled ? ' disabled' : ''}>${prefixCode ? figma.html`<span slot="prefix">${prefixCode}</span>` : ''}${suffixCode ? figma.html`<span slot="suffix">${suffixCode}</span>` : ''}</sl-input>`,
+  example: figma.html`<sl-input size="${size}"${label ? ` label="${label}"` : ''}${placeholder ? ` placeholder="${placeholder}"` : ''}${helpText ? ` help-text="${helpText}"` : ''}${status ? ` status="${status}"` : ''}${pill ? ' pill' : ''}${filled ? ' filled' : ''}${clearable ? ' clearable' : ''}${passwordToggle ? ' type="password" password-toggle' : ''}${required ? ' required' : ''}${disabled ? ' disabled' : ''}>${prefixCode ? figma.html`<span slot="prefix">${prefixCode}</span>` : ''}${suffixCode ? figma.html`<span slot="suffix">${suffixCode}</span>` : ''}</sl-input>`,
   imports: ["import 'src/components/input/input.js'"],
   id: 'input',
   metadata: { nestable: true }

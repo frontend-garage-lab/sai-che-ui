@@ -99,6 +99,9 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
   /** Draws a filled input. */
   @property({ type: Boolean, reflect: true }) filled = false;
 
+  /** Draws the input with a validation status. Colors the border, focus ring, and help text. */
+  @property({ reflect: true }) status: 'success' | 'warning' | 'danger' | '' = '';
+
   /** Draws a pill-style input with rounded edges. */
   @property({ type: Boolean, reflect: true }) pill = false;
 

@@ -1,0 +1,29 @@
+/*
+ * DACS-Toolbar — layout rules specific to the navigation proposals. Shared rules live in ../_shared/restyle.css.
+ */
+
+/* Above the workspace: header, breadcrumb, title and the view tabs */
+.p1 .rs-workspace,
+.p3 .rs-workspace {
+  --rs-workspace-offset: 17rem;
+}
+
+/* P2 also has the context selectors card */
+.p2 .rs-workspace {
+  --rs-workspace-offset: 26rem;
+}
+
+/* Proposal "file avatar" (P1 and P2, under review): document cell = large neutral file icon + name and references,
+   like .rs-file in the review comments. The icon is centred on the text lines. */
+.rs-doc-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--sl-spacing-small);
+  min-width: 0;
+}
+
+.rs-doc-cell__icon {
+  flex: none;
+  font-size: var(--sl-font-size-x-large);
+  color: var(--sl-color-neutral-700);
+}

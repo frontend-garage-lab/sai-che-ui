@@ -558,8 +558,10 @@ sl-status.rs-status-dot::part(label) {
   color: var(--sl-color-neutral-400);
 }
 
-/* Table toolbar: the divider separates the end-side actions from Config; labels never wrap. */
-[slot='toolbar'] > sl-divider[vertical] {
+/* Table toolbar: the divider separates the end-side actions from Config; labels never wrap. A two-row toolbar (actions,
+   then active filters) keeps the same dividers in its first row. */
+[slot='toolbar'] > sl-divider[vertical],
+[slot='toolbar'] > .rs-cluster > sl-divider[vertical] {
   height: 1.5rem;
   margin-inline: var(--sl-spacing-2x-small);
 }

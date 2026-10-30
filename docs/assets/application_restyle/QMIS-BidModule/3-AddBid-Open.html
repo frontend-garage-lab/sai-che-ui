@@ -278,10 +278,23 @@
                 <h3 class="rs-subheading">Client and project</h3>
                 <div class="rs-grid rs-grid--fields">
                   <div class="rs-span-6 rs-stack rs-stack--tight">
-                    <sl-select class="rs-span-12" label="Client" required clearable></sl-select>
+                    <sl-select
+                      class="rs-span-12"
+                      label="Client"
+                      required
+                      status="danger"
+                      help-text="This field is required."
+                      clearable
+                    ></sl-select>
                     <sl-switch size="small" checked>Client from CRM</sl-switch>
                   </div>
-                  <sl-input class="rs-span-6" label="Project name" required></sl-input>
+                  <sl-input
+                    class="rs-span-6"
+                    label="Project name"
+                    required
+                    status="danger"
+                    help-text="This field is required."
+                  ></sl-input>
                   <sl-select class="rs-span-3" label="Project type" clearable></sl-select>
                   <sl-select class="rs-span-3" label="Project country" clearable></sl-select>
                   <sl-select class="rs-span-3" label="Geographical area" clearable></sl-select>
@@ -291,9 +304,23 @@
               <div class="rs-stack rs-stack--tight">
                 <h3 class="rs-subheading">Organization</h3>
                 <div class="rs-grid rs-grid--fields">
-                  <sl-select class="rs-span-4" label="Business unit" required clearable></sl-select>
+                  <sl-select
+                    class="rs-span-4"
+                    label="Business unit"
+                    required
+                    status="danger"
+                    help-text="This field is required."
+                    clearable
+                  ></sl-select>
                   <sl-select class="rs-span-4" label="Product line" clearable></sl-select>
-                  <sl-select class="rs-span-4" label="Saipem bidding entity" required clearable></sl-select>
+                  <sl-select
+                    class="rs-span-4"
+                    label="Saipem bidding entity"
+                    required
+                    status="danger"
+                    help-text="This field is required."
+                    clearable
+                  ></sl-select>
                   <sl-select class="rs-span-6" label="Legal entity" clearable></sl-select>
                   <sl-select class="rs-span-6" label="Leading company" clearable></sl-select>
                 </div>
@@ -301,7 +328,14 @@
               <div class="rs-stack rs-stack--tight">
                 <h3 class="rs-subheading">Activity and dates</h3>
                 <div class="rs-grid rs-grid--fields">
-                  <sl-select class="rs-span-6" label="Activity type" required clearable></sl-select>
+                  <sl-select
+                    class="rs-span-6"
+                    label="Activity type"
+                    required
+                    status="danger"
+                    help-text="This field is required."
+                    clearable
+                  ></sl-select>
                   <sl-select class="rs-span-6" label="Contract payment type" clearable></sl-select>
                   <sl-input class="rs-span-4" label="Bid open date" value="2026-10-15" required type="date"></sl-input>
                   <sl-input class="rs-span-4" label="Technical submission to client" type="date"></sl-input>

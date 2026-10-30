@@ -35,6 +35,31 @@ export default css`
     color: var(--sl-input-required-content-color);
   }
 
+  /* Validation status */
+  :host([status='success']) {
+    --sl-input-border-color: var(--sl-color-success-600);
+    --sl-input-border-color-hover: var(--sl-color-success-700);
+    --sl-input-border-color-focus: var(--sl-color-success-600);
+    --sl-input-focus-ring-color: color-mix(in srgb, var(--sl-color-success-500), transparent 60%);
+    --sl-input-help-text-color: var(--sl-color-success-700);
+  }
+
+  :host([status='warning']) {
+    --sl-input-border-color: var(--sl-color-warning-600);
+    --sl-input-border-color-hover: var(--sl-color-warning-700);
+    --sl-input-border-color-focus: var(--sl-color-warning-600);
+    --sl-input-focus-ring-color: color-mix(in srgb, var(--sl-color-warning-500), transparent 60%);
+    --sl-input-help-text-color: var(--sl-color-warning-700);
+  }
+
+  :host([status='danger']) {
+    --sl-input-border-color: var(--sl-color-danger-600);
+    --sl-input-border-color-hover: var(--sl-color-danger-700);
+    --sl-input-border-color-focus: var(--sl-color-danger-600);
+    --sl-input-focus-ring-color: color-mix(in srgb, var(--sl-color-danger-500), transparent 60%);
+    --sl-input-help-text-color: var(--sl-color-danger-700);
+  }
+
   /* Help text */
   .form-control--has-help-text .form-control__help-text {
     display: block;

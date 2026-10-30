@@ -1,0 +1,223 @@
+<!doctype html>
+<!--
+  DACS-Toolbar · P2-SelettoriContesto — layout proposal for application_screenshot/DACS - Toolbar/1-DocList-Toolbar.png
+  State: Proposal 2 · context selectors. Site / Project / Area / Folder as four selects in a card above the list (cascading); the breadcrumb only shows the result. test2.pdf selected, Revisions tab in the detail panel. Document cells use the "file avatar" proposal (file icon before the name, no Quick info column).
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/DACS-Toolbar/P2-SelettoriContesto.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DACS · Context selectors</title>
+    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
+    <link rel="stylesheet" href="../_shared/restyle.css" />
+    <link rel="stylesheet" href="./flow.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <script>
+      // Reload when esbuild rebuilds after a change in src/
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
+  </head>
+
+  <body class="sl-theme-light">
+    <sl-header>
+      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+      <span slot="logo">DACS</span>
+
+      <sl-header-item current>Document Center</sl-header-item>
+      <sl-header-item>Binders Workspace</sl-header-item>
+      <sl-header-item>
+        New
+        <sl-menu slot="menu">
+          <sl-menu-item><sl-icon slot="prefix" name="file-earmark-plus"></sl-icon>Document</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="file-earmark"></sl-icon>Placeholder</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+      <sl-header-item>
+        Import
+        <sl-menu slot="menu">
+          <sl-menu-item><sl-icon slot="prefix" name="upload"></sl-icon>Import new docs</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="cloud-arrow-up"></sl-icon>Bulk upload docs</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+      <sl-header-item>
+        Content
+        <sl-menu slot="menu">
+          <sl-menu-item><sl-icon slot="prefix" name="file-earmark-text"></sl-icon>Bulk load templates</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+
+      <sl-select slot="actions" size="small" value="nea-yard-uat" style="width: 12rem" aria-label="Repository">
+        <sl-icon slot="prefix" name="archive"></sl-icon>
+        <sl-option value="nea-yard-uat">NEA YARD UAT</sl-option>
+      </sl-select>
+      <sl-header-item slot="actions">
+        <sl-avatar initials="TA" label="test_dc_admin"></sl-avatar>
+        test_dc_admin
+        <sl-menu slot="menu">
+          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="info-circle"></sl-icon>About</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+    </sl-header>
+
+    <main class="rs-page rs-page--fill p2" aria-label="Document Center">
+      <sl-breadcrumb aria-label="Breadcrumb">
+        <sl-breadcrumb-item href="#">Yard Projects</sl-breadcrumb-item>
+        <sl-breadcrumb-item href="#">Central</sl-breadcrumb-item>
+        <sl-breadcrumb-item href="#">000001 - Yard Training</sl-breadcrumb-item>
+        <sl-breadcrumb-item href="#">Document Management</sl-breadcrumb-item>
+        <sl-breadcrumb-item href="#">Shop Drawings</sl-breadcrumb-item>
+        <sl-breadcrumb-item>AS - ANODE SLED</sl-breadcrumb-item>
+      </sl-breadcrumb>
+
+      <div class="rs-page-header">
+        <div class="rs-page-header__text">
+          <h1 class="rs-title">AS - ANODE SLED</h1>
+          <span class="rs-meta">Shop Drawings · 146 documents</span>
+        </div>
+        <div class="rs-cluster">
+          <sl-button variant="text"
+            ><sl-icon slot="prefix" name="clock-history"></sl-icon>Restore my last search</sl-button
+          >
+          <sl-button variant="text"><sl-icon slot="prefix" name="funnel"></sl-icon>Advanced search</sl-button>
+          <sl-dropdown placement="bottom-end">
+            <sl-button slot="trigger" caret><sl-icon slot="prefix" name="list-ul"></sl-icon>View: Browser</sl-button>
+            <sl-menu>
+              <sl-menu-item type="checkbox" checked>Browser</sl-menu-item>
+              <sl-menu-item type="checkbox">STD Columns</sl-menu-item>
+              <sl-menu-item type="checkbox">Design Docs</sl-menu-item>
+              <sl-menu-item type="checkbox">Shop Drawings</sl-menu-item>
+            </sl-menu>
+          </sl-dropdown>
+        </div>
+      </div>
+      <sl-card aria-label="Folder">
+        <form class="rs-grid rs-grid--fields">
+          <sl-select class="rs-span-2 rs-span-md-6" label="Site" value="central">
+            <sl-option value="ambriz">Ambriz</sl-option><sl-option value="arbatax">Arbatax</sl-option
+            ><sl-option value="central">Central</sl-option><sl-option value="dammam">Dammam</sl-option
+            ><sl-option value="karimun">Karimun</sl-option><sl-option value="nigeria">Nigeria</sl-option>
+          </sl-select>
+          <sl-select class="rs-span-3 rs-span-md-6" label="Project" value="000001">
+            <sl-option value="000001">000001 - Yard Training</sl-option>
+          </sl-select>
+          <sl-select class="rs-span-3 rs-span-md-6" label="Area" value="dm">
+            <sl-option value="cm">Completion Management</sl-option>
+            <sl-option value="dm">Document Management</sl-option>
+          </sl-select>
+          <sl-select class="rs-span-4 rs-span-md-6" label="Folder" value="as">
+            <sl-option value="sd">Shop Drawings</sl-option>
+            <sl-option value="as">Shop Drawings › AS - ANODE SLED</sl-option>
+          </sl-select>
+        </form>
+      </sl-card>
+      <div class="rs-workspace">
+        <section class="rs-workspace__main rs-span-8 rs-span-lg-7" aria-label="Documents">
+          <sl-tab-group aria-label="Document views">
+            <sl-tab slot="nav" panel="doc-list" active>Doc List</sl-tab>
+            <sl-tab slot="nav" panel="my-tasks">My Tasks</sl-tab>
+            <sl-tab slot="nav" panel="favorites">My Favorites</sl-tab>
+            <sl-tab slot="nav" panel="selected">Selected Docs</sl-tab>
+            <sl-tab slot="nav" panel="templates">Bulk Load Templates</sl-tab>
+          </sl-tab-group>
+          <sl-table
+            selection="multiple"
+            class="doc-list"
+            fill
+            sticky-header
+            sticky-actions
+            paginate
+            page-size="25"
+            label="Doc List"
+          >
+            <div
+              slot="toolbar"
+              class="rs-cluster rs-cluster--nowrap rs-grow"
+              role="toolbar"
+              aria-label="Document actions"
+            >
+              <sl-button size="small" variant="primary"
+                ><sl-icon slot="prefix" name="upload"></sl-icon>Import new docs</sl-button
+              >
+              <sl-button size="small"><sl-icon slot="prefix" name="pencil"></sl-icon>Modify selected</sl-button>
+              <sl-button size="small"><sl-icon slot="prefix" name="send"></sl-icon>IVA promote / demote</sl-button>
+              <sl-button size="small"><sl-icon slot="prefix" name="folder"></sl-icon>Add to binder</sl-button>
+              <sl-divider vertical></sl-divider>
+              <sl-dropdown placement="bottom-start">
+                <sl-button slot="trigger" size="small" caret>More</sl-button>
+                <sl-menu>
+                  <sl-menu-item
+                    ><sl-icon slot="prefix" name="diagram-3"></sl-icon>Add WBS &amp; plan shop dwgs</sl-menu-item
+                  >
+                  <sl-menu-item><sl-icon slot="prefix" name="file-earmark-plus"></sl-icon>New placeholder</sl-menu-item>
+                  <sl-divider></sl-divider>
+                  <sl-menu-item><sl-icon slot="prefix" name="cloud-arrow-up"></sl-icon>Bulk upload docs</sl-menu-item>
+                  <sl-menu-item><sl-icon slot="prefix" name="download"></sl-icon>Bulk export</sl-menu-item>
+                  <sl-menu-item
+                    ><sl-icon slot="prefix" name="box-arrow-up-right"></sl-icon>Transmit docs (Box)</sl-menu-item
+                  >
+                </sl-menu>
+              </sl-dropdown>
+              <span class="rs-spacer"></span>
+              <sl-dropdown placement="bottom-end" hoist data-table-options>
+                <sl-button slot="trigger" size="small" caret
+                  ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                >
+              </sl-dropdown>
+            </div>
+            <sl-empty-state
+              slot="empty"
+              title-text="No documents"
+              description="Import documents or choose another folder."
+            >
+              <sl-icon slot="icon" name="folder"></sl-icon>
+            </sl-empty-state>
+          </sl-table>
+        </section>
+
+        <sl-detail-panel contained class="rs-span-4 rs-span-lg-5" aria-label="Document details">
+          <span slot="label">test2.pdf</span>
+          <span slot="meta">Shop Drawing · 2558</span>
+          <sl-tab-group>
+            <sl-tab slot="nav" panel="revisions" active>Revisions</sl-tab>
+            <sl-tab slot="nav" panel="comments">Comments</sl-tab>
+            <sl-tab slot="nav" panel="locations">Locations</sl-tab>
+            <sl-tab slot="nav" panel="attachments">Attachments</sl-tab>
+            <sl-tab slot="nav" panel="preview">PDF preview</sl-tab>
+            <sl-tab-panel name="revisions" active>
+              <div class="rs-inset">
+                <sl-table class="revision-list" label="Revisions">
+                  <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow">
+                    <span class="rs-spacer"></span>
+                    <sl-dropdown placement="bottom-end" hoist data-table-options>
+                      <sl-button slot="trigger" size="small" caret
+                        ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                      >
+                    </sl-dropdown>
+                  </div>
+                </sl-table>
+              </div>
+            </sl-tab-panel>
+            <sl-tab-panel name="comments"></sl-tab-panel>
+            <sl-tab-panel name="locations"></sl-tab-panel>
+            <sl-tab-panel name="attachments"></sl-tab-panel>
+            <sl-tab-panel name="preview"></sl-tab-panel>
+          </sl-tab-group>
+        </sl-detail-panel>
+      </div>
+    </main>
+
+    <script type="module">
+      import * as flow from './data.js';
+
+      await flow.mountTable('.revision-list', { columns: flow.revisionColumnsFileAvatar, data: flow.revisions });
+      await flow.mountTable('.doc-list', { columns: flow.docColumnsFileAvatar, data: flow.docs, isSelected: flow.isSelectedDoc });
+    </script>
+  </body>
+</html>

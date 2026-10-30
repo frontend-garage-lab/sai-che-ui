@@ -167,6 +167,9 @@ export default class SlSelect extends ShoelaceElement implements ShoelaceFormCon
   /** Draws a filled select. */
   @property({ type: Boolean, reflect: true }) filled = false;
 
+  /** Draws the select with a validation status. Colors the border, focus ring, and help text. */
+  @property({ reflect: true }) status: 'success' | 'warning' | 'danger' | '' = '';
+
   /** Draws a pill-style select with rounded edges. */
   @property({ type: Boolean, reflect: true }) pill = false;
 

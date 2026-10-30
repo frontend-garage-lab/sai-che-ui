@@ -362,6 +362,12 @@
             <sl-table class="approval-history" size="small" label="Approval history">
               <div slot="toolbar" class="rs-cluster rs-grow">
                 <sl-switch size="small" checked>All revisions</sl-switch>
+                <span class="rs-spacer"></span>
+                <sl-dropdown placement="bottom-end" hoist data-table-options>
+                  <sl-button slot="trigger" size="small" caret
+                    ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                  >
+                </sl-dropdown>
               </div>
             </sl-table>
           </sl-tab-panel>
@@ -369,6 +375,12 @@
             <sl-table class="revision-history" selection="single" paginate page-size="10" label="Revision history">
               <div slot="toolbar" class="rs-cluster rs-grow">
                 <sl-button size="small"><sl-icon slot="prefix" name="eye"></sl-icon>View revision</sl-button>
+                <span class="rs-spacer"></span>
+                <sl-dropdown placement="bottom-end" hoist data-table-options>
+                  <sl-button slot="trigger" size="small" caret
+                    ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                  >
+                </sl-dropdown>
               </div>
             </sl-table>
           </sl-tab-panel>

@@ -188,6 +188,33 @@ const App = () => (
 );
 ```
 
+### Status
+
+Use the `status` attribute to show the outcome of a validation on a select. It colors the border, the focus ring, and the help text. Use `danger` for errors.
+
+```html:preview
+<sl-select label="Success" help-text="Looks good." status="success"><sl-option value="1">Option 1</sl-option></sl-select>
+<br />
+<sl-select label="Warning" help-text="Double-check this value." status="warning"><sl-option value="1">Option 1</sl-option></sl-select>
+<br />
+<sl-select label="Error" help-text="This field is required." status="danger"><sl-option value="1">Option 1</sl-option></sl-select>
+```
+
+```jsx:react
+import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlOption from '@shoelace-style/shoelace/dist/react/option';
+
+const App = () => (
+  <>
+    <SlSelect label="Success" help-text="Looks good." status="success"><SlOption value="1">Option 1</SlOption></SlSelect>
+    <br />
+    <SlSelect label="Warning" help-text="Double-check this value." status="warning"><SlOption value="1">Option 1</SlOption></SlSelect>
+    <br />
+    <SlSelect label="Error" help-text="This field is required." status="danger"><SlOption value="1">Option 1</SlOption></SlSelect>
+  </>
+);
+```
+
 ### Disabled
 
 Use the `disabled` attribute to disable a select.

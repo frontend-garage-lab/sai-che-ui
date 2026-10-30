@@ -91,6 +91,32 @@ import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
 const App = () => <SlTextarea placeholder="Type something" filled />;
 ```
 
+### Status
+
+Use the `status` attribute to show the outcome of a validation on a textarea. It colors the border, the focus ring, and the help text. Use `danger` for errors.
+
+```html:preview
+<sl-textarea label="Success" help-text="Looks good." status="success"></sl-textarea>
+<br />
+<sl-textarea label="Warning" help-text="Double-check this value." status="warning"></sl-textarea>
+<br />
+<sl-textarea label="Error" help-text="This field is required." status="danger"></sl-textarea>
+```
+
+```jsx:react
+import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
+
+const App = () => (
+  <>
+    <SlTextarea label="Success" help-text="Looks good." status="success" />
+    <br />
+    <SlTextarea label="Warning" help-text="Double-check this value." status="warning" />
+    <br />
+    <SlTextarea label="Error" help-text="This field is required." status="danger" />
+  </>
+);
+```
+
 ### Disabled
 
 Use the `disabled` attribute to disable a textarea.

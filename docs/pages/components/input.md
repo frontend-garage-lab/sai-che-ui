@@ -107,6 +107,32 @@ import SlInput from '@shoelace-style/shoelace/dist/react/input';
 const App = () => <SlInput placeholder="Type something" filled />;
 ```
 
+### Status
+
+Use the `status` attribute to show the outcome of a validation on an input. It colors the border, the focus ring, and the help text. Use `danger` for errors.
+
+```html:preview
+<sl-input label="Success" help-text="Looks good." status="success"></sl-input>
+<br />
+<sl-input label="Warning" help-text="Double-check this value." status="warning"></sl-input>
+<br />
+<sl-input label="Error" help-text="This field is required." status="danger"></sl-input>
+```
+
+```jsx:react
+import SlInput from '@shoelace-style/shoelace/dist/react/input';
+
+const App = () => (
+  <>
+    <SlInput label="Success" help-text="Looks good." status="success" />
+    <br />
+    <SlInput label="Warning" help-text="Double-check this value." status="warning" />
+    <br />
+    <SlInput label="Error" help-text="This field is required." status="danger" />
+  </>
+);
+```
+
 ### Disabled
 
 Use the `disabled` attribute to disable an input.

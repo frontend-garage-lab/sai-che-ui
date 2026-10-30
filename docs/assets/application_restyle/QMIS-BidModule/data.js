@@ -477,3 +477,70 @@ export const revisionHistory = [
   { status: 'Current', revision: '02', date: '15-Oct-2026', reason: 'Revision for demo', user: 'user_qmis_admin' },
   { status: 'Superseded', revision: '01', date: '15-Oct-2026', reason: 'FIRST REVISION', user: 'user_qmis_admin' }
 ];
+
+// ------------------------------------------------------------------ Send mail notice (screens 24–25)
+
+const personCol = (id, header) => col(id, header, 'minmax(10rem, 1fr)');
+export const recipientColumns = [personCol('name', 'User name'), personCol('email', 'Email address')];
+/** Available users: names truncated in the legacy are kept as shown. */
+export const availableRecipients = [
+  { name: 'Account Service (SA…', email: 'SAXT01431@saipem.com' },
+  { name: 'Boffelli Anselmo (Ans…', email: 'Anselmo.Boffelli.Guest@saipem.com' },
+  { name: 'Candura Andrea (And…', email: 'Andrea.candura@it.ey.com' },
+  { name: 'Castro Tomas (Tomas…', email: 'Tomas.Castro.Guest@saipem.com' },
+  { name: 'Ceccolini Simone (Si…', email: 'Simone.Ceccolini@saipem.com' },
+  { name: 'Dangelo Alessandro', email: 'Alessandro.Dangelo@saipem.com' },
+  { name: 'Dango Tamunotonye (…', email: 'Tamunotonye.Dango@saipem.com' }
+];
+export const selectedRecipients = [
+  { name: 'Aakula JyothirLatha (…', email: 'ACNXAA002503@xa.saipem.com' },
+  { name: 'Amit Kumar Mandal (…', email: 'Mandal.AmitKumar.Guest@saipem.com' }
+];
+
+// ------------------------------------------------------------------ Advanced query (screens 27–28)
+
+/** List after the bid was deleted (screen 27): rows in the legacy order, the three new ones transcribed. */
+export const bidsAdvanced = [
+  adminRows[0],
+  adminRows.find(row => row.number === '2023-BID-000118'),
+  adminRows.find(row => row.number === '2023-BID-000119'),
+  bid(
+    'O',
+    'A',
+    ['TE', 'CO', 'PM'],
+    'Drilling',
+    'QWERTY',
+    'Activity Type - Jul 27 - Ed…',
+    'GLOBAL PETROPROJEC…',
+    '2026-BID-000002',
+    '16-Mar-2026'
+  ),
+  bid('O', 'W', [], 'Drilling', 'wert', 'AT_17', 'HO - Bucharest - EC', '2026-BID-000001', '06-Mar-2026'),
+  bid(
+    'O',
+    'A',
+    ['TE', 'CO'],
+    'Offshore',
+    'test 31072025',
+    'AT_17',
+    "DENUKE SOCIETA' CONS…",
+    '2025-BID-000057',
+    '31-Jul-2025'
+  )
+].filter(Boolean);
+/** Business unit Drilling + Product line Downstream Refining & Petrochemicals (screen 28). */
+export const bidsFiltered = [
+  bid(
+    'O',
+    'W',
+    [],
+    'Drilling',
+    '300424',
+    'TestActivity',
+    'ANDROMEDA CONSULT…',
+    '2024-BID-000004',
+    '30-Apr-2024',
+    '—',
+    'ABB POWER SYSTEMS'
+  )
+];

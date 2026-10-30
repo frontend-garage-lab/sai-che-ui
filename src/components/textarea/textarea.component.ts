@@ -63,6 +63,9 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
   /** Draws a filled textarea. */
   @property({ type: Boolean, reflect: true }) filled = false;
 
+  /** Draws the textarea with a validation status. Colors the border, focus ring, and help text. */
+  @property({ reflect: true }) status: 'success' | 'warning' | 'danger' | '' = '';
+
   /** The textarea's label. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
 

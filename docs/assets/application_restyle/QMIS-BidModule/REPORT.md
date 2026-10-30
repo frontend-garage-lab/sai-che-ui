@@ -57,3 +57,23 @@ errors of the Add form; Force approval.
 - Screens 19–20 name 2026-BID-000003 in the dialog text, but the approval history (screen 22) records Return to
   working and Force approval on 2026-BID-000004: the pages use 2026-BID-000004. To confirm.
 - After Force approval, Technical / Commercial show "—" (skipped): no legacy screen shows the panel in that state.
+
+## Revision 4 (2026-10-30): screens 24–28
+
+- 24-SendMailNotice (More › Send notice): `sl-dialog` 48rem; "Apply distribution item", Mail sender (required),
+  Mail subject, Mail body; recipients table with Add recipients / Remove and empty state; footer Cancel + Send
+  (disabled without recipients).
+- 25-SendMailNotice-AddRecipients: the legacy second dialog becomes a sub-view of the same dialog (DECISIONS
+  "Scelta in un dialog che nel legacy apre un secondo dialog"), `.rs-transfer` Users · > < << · Recipients, footer
+  "Back to mail notice" + "Add 2 recipients".
+- 26-DeleteBid: `sl-dialog variant="danger"`, "Delete all revisions" checkbox, primary `danger` "Delete bid".
+- 27/28-AdvancedQuery (revised twice after user review): the legacy Advanced query checkbox becomes an "Advanced
+  query" button next to "More filters" in the Filters card; it opens its own drawer (separate from More filters)
+  with one collapsible section per facet, checkbox + count, "Show n more", Clear + Apply filters. Applied facets are
+  removable `sl-tag` + "Remove all" on a second toolbar row; the list is full width (DECISIONS "Faccette").
+
+### Open questions
+
+- Mail body: the legacy has a rich-text editor (font, bold, colours, lists). The DS has no rich-text component: here
+  it is a plain `sl-textarea`. To confirm, or to design a DS component.
+- Screen 27 list: three rows not in the earlier screens (QWERTY, wert, test 31072025) transcribed; hidden values "—".

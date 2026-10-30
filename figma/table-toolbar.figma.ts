@@ -6,7 +6,8 @@ const instance = figma.selectedInstance;
 
 // The Table Toolbar is the content of the table's `toolbar` slot: the Actions slot holds Buttons, Icon Buttons and
 // Dividers, each rendered through its own Code Connect template and interpolated individually (not .map().join()),
-// as the Dropdown and Tab Group mappings do. `getSlot('Actions')` would only show a collapsed `Actions` placeholder.
+// as the Dropdown and Tab Group mappings do. Default content (2026-10-30): Add · View · Edit · Divider · More ·
+// Divider · Delete · Spacer · Export · Config (9 connected instances; the Spacer frame has no template). `getSlot('Actions')` would only show a collapsed `Actions` placeholder.
 const actions = instance.findConnectedInstances(node => ['Button', 'Icon Button', 'Divider'].includes(node.name));
 const render = (index: number) =>
   actions[index] && actions[index].type === 'INSTANCE' ? actions[index].executeTemplate().example : '';
@@ -18,6 +19,8 @@ const action5 = render(4);
 const action6 = render(5);
 const action7 = render(6);
 const action8 = render(7);
+const action9 = render(8);
+const action10 = render(9);
 const showSummary = instance.getBoolean('Show Summary');
 const summary = showSummary ? instance.getString('Summary') : '';
 
@@ -31,6 +34,8 @@ export default {
   ${action6}
   ${action7}
   ${action8}
+  ${action9}
+  ${action10}
   ${summary ? figma.html`<span style="margin-inline-start: auto;">${summary}</span>` : ''}
 </div>`,
   imports: [

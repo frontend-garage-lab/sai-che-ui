@@ -357,7 +357,8 @@ const CELL_CLASSES = [
   '.rs-subheading',
   '.rs-meta',
   '.rs-truncate',
-  '.rs-status-dot'
+  '.rs-status-dot',
+  '.rs-doc-cell'
 ];
 
 function adoptCellStyles(table) {

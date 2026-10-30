@@ -15,6 +15,7 @@ function text(...layerNames: string[]) {
 
 const size = instance.getEnum('Size', { small: 'small', medium: 'medium', large: 'large' });
 const disabled = instance.getEnum('State', { default: false, hover: false, focus: false, disabled: true });
+const status = instance.getEnum('Status', { default: '', success: 'success', warning: 'warning', danger: 'danger' });
 const filled = instance.getBoolean('Filled');
 const pill = instance.getBoolean('Pill');
 const clearable = instance.getBoolean('Clearable');
@@ -43,7 +44,7 @@ const suffix = iconSlot('Show Suffix', 'Suffix', 'suffix');
 const placeholder = text('Select an option');
 
 export default {
-  example: figma.html`<sl-select size="${size}"${label ? ` label="${label}"` : ''}${placeholder ? ` placeholder="${placeholder}"` : ''}${helpText ? ` help-text="${helpText}"` : ''}${filled ? ' filled' : ''}${pill ? ' pill' : ''}${clearable ? ' clearable' : ''}${multiple ? ' multiple' : ''}${open ? ' open' : ''}${required ? ' required' : ''}${disabled ? ' disabled' : ''}>${prefix}${suffix}
+  example: figma.html`<sl-select size="${size}"${label ? ` label="${label}"` : ''}${placeholder ? ` placeholder="${placeholder}"` : ''}${helpText ? ` help-text="${helpText}"` : ''}${status ? ` status="${status}"` : ''}${filled ? ' filled' : ''}${pill ? ' pill' : ''}${clearable ? ' clearable' : ''}${multiple ? ' multiple' : ''}${open ? ' open' : ''}${required ? ' required' : ''}${disabled ? ' disabled' : ''}>${prefix}${suffix}
   <!-- sl-option elements -->
 </sl-select>`,
   imports: ["import 'src/components/select/select.js'"],
