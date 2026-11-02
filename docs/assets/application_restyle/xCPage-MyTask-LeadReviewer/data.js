@@ -7,7 +7,7 @@
  */
 
 import { html } from 'https://cdn.jsdelivr.net/npm/lit@3/+esm';
-import { documentCell, revisionInfoAction, revisionQuickInfo, revisionTag, statusTag } from '../_shared/restyle.js';
+import { documentCell, documentRowCell, revisionInfoAction, revisionTag, statusTag } from '../_shared/restyle.js';
 
 export * from '../_shared/restyle.js';
 
@@ -246,15 +246,9 @@ export const revisions = [
 
 export const revisionColumns = [
   {
-    id: 'info',
-    header: '',
-    meta: { width: '4rem' },
-    cell: revisionQuickInfo
-  },
-  {
     id: 'document',
     header: 'Document',
-    cell: ({ row }) => documentCell(row.original.document, row.original.din, row.original.title)
+    cell: documentRowCell
   },
   {
     id: 'code',

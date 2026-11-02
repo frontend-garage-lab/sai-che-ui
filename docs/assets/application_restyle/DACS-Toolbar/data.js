@@ -6,7 +6,7 @@
 
 import { html } from 'https://cdn.jsdelivr.net/npm/lit@3/+esm';
 
-import { documentCell, revisionFileIcon, revisionTag, statusTag } from '../_shared/restyle.js';
+import { documentFileCell, revisionTag, statusTag } from '../_shared/restyle.js';
 
 export * from '../_shared/restyle.js';
 
@@ -93,15 +93,15 @@ const docMenu = () => html`
   </sl-menu>
 `;
 
-/** Document cell: name + only the references the legacy shows (no "—" meta lines). */
-const docCell = record => documentCell(record.name, ...[record.din, record.title].filter(v => v && v !== '—'));
+/** Shared document cell (DECISIONS "Cella documento con file"): file icon, name, references without "—" lines. */
+const docCell = record =>
+  documentFileCell(record.format, record.name, ...[record.din, record.title].filter(v => v && v !== '—'));
 
 const docStatus = ({ row }) =>
   html`<sl-status filled size="small" variant=${DOC_STATUS[row.original.status]}>${row.original.status}</sl-status>`;
 
 /** Same structure as the Documents table of the other flows (documentColumns in _shared/restyle.js). */
 export const docColumns = [
-  { id: 'info', header: 'Quick info', meta: { width: '5.5rem' }, cell: revisionFileIcon },
   {
     id: 'document',
     accessorKey: 'name',
@@ -110,28 +110,17 @@ export const docColumns = [
     meta: { width: 'minmax(16rem, 1fr)' },
     cell: ({ row }) => docCell(row.original)
   },
-  { id: 'status', header: 'Status', meta: { width: '11rem' }, cell: docStatus },
-  { id: 'version', accessorKey: 'version', header: 'Ver.', meta: { width: '5rem' } },
+  {
+    id: 'status',
+    accessorKey: 'status',
+    header: 'Status',
+    enableSorting: true,
+    meta: { width: '11rem' },
+    cell: docStatus
+  },
+  { id: 'version', accessorKey: 'version', header: 'Ver.', enableSorting: true, meta: { width: '5rem' } },
   { id: 'actions', meta: { actions: true }, cell: docMenu }
 ];
-
-/** File type of a document (same names and labels as the Quick info icon of the other flows). */
-const FILE_TYPE = { pdf: { name: 'file-earmark-pdf', label: 'PDF' } };
-
-/** Proposal "file avatar": the file icon leads the document cell instead of sitting in a Quick info column. */
-const docAvatarCell = record => {
-  const file = FILE_TYPE[record.format];
-  return html`<span class="rs-doc-cell"
-    >${file ? html`<sl-icon class="rs-doc-cell__icon" name=${file.name} label=${file.label}></sl-icon>` : ''}${docCell(
-      record
-    )}</span
-  >`;
-};
-
-const withFileAvatar = columns =>
-  columns
-    .filter(column => column.id !== 'info')
-    .map(column => (column.id === 'document' ? { ...column, cell: ({ row }) => docAvatarCell(row.original) } : column));
 
 // ------------------------------------------------------------------ Detail panel › Revisions (4-DocProperties.png)
 
@@ -141,15 +130,18 @@ export const revisions = [
 
 /** Same structure as documentRevisionColumns of the other flows. */
 export const revisionColumns = [
-  { id: 'info', header: '', meta: { width: '4rem' }, cell: revisionFileIcon },
   {
     id: 'document',
+    accessorKey: 'name',
     header: 'Document',
+    enableSorting: true,
     cell: ({ row }) => docCell(row.original)
   },
   {
     id: 'status',
+    accessorKey: 'status',
     header: 'Revision status',
+    enableSorting: true,
     meta: { width: '8rem' },
     cell: ({ row }) => statusTag(row.original.status)
   },
@@ -157,13 +149,14 @@ export const revisionColumns = [
     id: 'code',
     accessorKey: 'code',
     header: 'Rev.',
+    enableSorting: true,
     meta: { width: '4rem' },
     cell: ({ row }) => revisionTag(row.original.code)
   },
-  { id: 'version', accessorKey: 'version', header: 'Ver.', meta: { width: '5rem' } },
+  { id: 'version', accessorKey: 'version', header: 'Ver.', enableSorting: true, meta: { width: '5rem' } },
   { id: 'actions', meta: { actions: true }, cell: docMenu }
 ];
 
-/** Proposal "file avatar" (P1, P2): same columns without Quick info, the file icon leads the document cell. */
-export const docColumnsFileAvatar = withFileAvatar(docColumns);
-export const revisionColumnsFileAvatar = withFileAvatar(revisionColumns);
+/** Aliases kept for the pages that adopted the shared document cell first (P1, P2). */
+export const docColumnsFileAvatar = docColumns;
+export const revisionColumnsFileAvatar = revisionColumns;

@@ -130,6 +130,27 @@ const documentInfo = ({ row }) => {
   `;
 };
 
+/**
+ * Document cell with the native file first, for the tables of a detail panel (DECISIONS "Cella documento con file"): neutral file icon (x-large), then
+ * the identifier and its meta lines as in documentCell. A missing file (format "none") keeps the text aligned.
+ */
+export function documentFileCell(format, name, ...meta) {
+  const file = FILE_ICON[format ?? 'pdf'];
+  return html`<span class="rs-doc-cell"
+    >${file
+      ? html`<sl-icon class="rs-doc-cell__icon" name=${file.name} label=${file.title}></sl-icon>`
+      : html`<span class="rs-doc-cell__icon"></span>`}${documentCell(name, ...meta)}</span
+  >`;
+}
+
+/** documentFileCell for a row with `format`, `document`, `din`, `title` ("—" meta lines are dropped). */
+export const documentRowCell = ({ row }) =>
+  documentFileCell(
+    row.original.format,
+    row.original.document,
+    ...[row.original.din, row.original.title].filter(line => line && line !== '—')
+  );
+
 /** Revision state of a document: Current (was the green flag) or Working (was the dark flag). */
 const revisionState = record => ((record.revisionStatus ?? record.status) === 'Current' ? 'Current' : 'Working');
 
@@ -215,12 +236,12 @@ export const documentRevisionsOf = row => [
 
 export const documentRevisions = documentRevisionsOf(documents[1]);
 
+/** Detail panel table: no Quick info column, the file leads the Document cell; the checked-out lock shows on the main Documents row. */
 export const documentRevisionColumns = [
-  { id: 'info', header: '', meta: { width: '4rem' }, cell: documentInfo },
   {
     id: 'document',
     header: 'Document',
-    cell: ({ row }) => documentCell(row.original.document, row.original.din, row.original.title)
+    cell: documentRowCell
   },
   {
     id: 'status',

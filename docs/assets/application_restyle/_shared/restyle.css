@@ -296,6 +296,22 @@ body {
   min-width: 0;
 }
 
+/* Document cell with the native file first (see documentFileCell() in _shared/restyle.js): neutral x-large file icon
+   centred on the identifier + meta lines. An empty icon box keeps rows without a file aligned. */
+.rs-doc-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--sl-spacing-small);
+  min-width: 0;
+}
+
+.rs-doc-cell__icon {
+  flex: none;
+  width: 1em;
+  font-size: var(--sl-font-size-x-large);
+  color: var(--sl-color-neutral-700);
+}
+
 /* One line with ellipsis — always pair with a `title` holding the full text */
 .rs-truncate {
   overflow: hidden;

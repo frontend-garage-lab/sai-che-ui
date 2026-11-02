@@ -21,6 +21,16 @@ const meta1 = instance.getString('Meta 1');
 // content is the QMIS attachment Version code: text "1.0" + Tag success small "Current".
 // `quick-info` is the same slot, preset with a label-less status dot and the chat icon; its preferred values are
 // Status, Badge, Tag and every icon, in any order (e.g. QMIS: bid status badge, documents pill, TE/CO/PM, attachment).
+// `File icon` on a `document` cell: the native file leads the name (detail-panel tables and DACS, DECISIONS "Cella
+// documento con file"). `File type` swaps the icon; its component set name gives the format.
+const fileIcon = type === 'document' && instance.getBoolean('File icon');
+const fileSwap = fileIcon ? instance.getInstanceSwap('File type') : undefined;
+const fileType =
+  fileSwap && fileSwap.type === 'INSTANCE' && /word/.test(fileSwap.name)
+    ? 'docx'
+    : fileSwap && fileSwap.type === 'INSTANCE' && /text/.test(fileSwap.name)
+      ? 'text'
+      : 'pdf';
 const content = type === 'composite' || type === 'quick-info' ? instance.getSlot('Content') : '';
 
 // `Marker` flags the row with a coloured leading bar: it is the table's `rowVariant`, one colour per record.
@@ -45,17 +55,19 @@ const example =
     ? figma.html`<!-- cell: ({ row }) => html\`<span style="display: inline-flex; align-items: center; gap: var(--sl-spacing-x-small);">${content}</span>\`${markerNote} -->`
     : type === 'composite'
       ? figma.html`<!-- cell: ({ row }) => html\`${content}\`${markerNote} -->`
-      : type === 'document'
-        ? figma.html`<!-- cell: ({ row }) => html\`<strong>${text}</strong><br /><small>${meta1}</small>\`${markerNote} -->`
-        : type === 'status'
-          ? figma.html`<!-- cell: () => html\`<sl-status variant="neutral" size="small">…</sl-status>\`${markerNote} -->`
-          : type === 'tag'
-            ? figma.html`<!-- cell: ({ row }) => html\`<sl-tag size="small" variant="neutral">…</sl-tag>\`${markerNote} -->`
-            : type === 'checkbox'
-              ? figma.html`<!-- selection column: set selection="multiple" on <sl-table> -->`
-              : type === 'actions'
-                ? figma.html`<!-- actions column: { id: 'actions', meta: { actions: true }, cell: () => html\`<sl-menu>…</sl-menu>\` } -->`
-                : figma.html`<!-- cell: the column's accessorKey value${markerNote} -->`;
+      : type === 'document' && fileIcon
+        ? figma.html`<!-- cell: ({ row }) => documentFileCell('${fileType}', '${text}', '${meta1}') (_shared/restyle.js: file icon before name + meta, no Quick info column)${markerNote} -->`
+        : type === 'document'
+          ? figma.html`<!-- cell: ({ row }) => html\`<strong>${text}</strong><br /><small>${meta1}</small>\`${markerNote} -->`
+          : type === 'status'
+            ? figma.html`<!-- cell: () => html\`<sl-status variant="neutral" size="small">…</sl-status>\`${markerNote} -->`
+            : type === 'tag'
+              ? figma.html`<!-- cell: ({ row }) => html\`<sl-tag size="small" variant="neutral">…</sl-tag>\`${markerNote} -->`
+              : type === 'checkbox'
+                ? figma.html`<!-- selection column: set selection="multiple" on <sl-table> -->`
+                : type === 'actions'
+                  ? figma.html`<!-- actions column: { id: 'actions', meta: { actions: true }, cell: () => html\`<sl-menu>…</sl-menu>\` } -->`
+                  : figma.html`<!-- cell: the column's accessorKey value${markerNote} -->`;
 
 export default {
   example,

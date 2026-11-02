@@ -10,7 +10,7 @@ import {
   documentCell,
   documentColumns,
   openDocumentInfo,
-  revisionQuickInfo,
+  documentRowCell,
   revisionTag,
   statusTag
 } from '../_shared/restyle.js';
@@ -156,15 +156,9 @@ const revisionMenu = () => html`
 
 export const revisionColumns = [
   {
-    id: 'info',
-    header: '',
-    meta: { width: '4rem' },
-    cell: revisionQuickInfo
-  },
-  {
     id: 'document',
     header: 'Document',
-    cell: ({ row }) => documentCell(row.original.document, row.original.din, row.original.title)
+    cell: documentRowCell
   },
   {
     id: 'status',
