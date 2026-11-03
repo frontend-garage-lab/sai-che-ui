@@ -313,25 +313,29 @@
           ></sl-description-list-item>
         </sl-description-list>
 
-        <div class="rs-grid">
-          <section class="rs-span-6 rs-stack" aria-label="Old user">
-            <h3 class="rs-subheading">Old user</h3>
-            <sl-radio-group label="Find the user in" size="small" value="manual">
-              <sl-radio-button value="directory">Project users</sl-radio-button>
-              <sl-radio-button value="manual">Manual input</sl-radio-button>
-            </sl-radio-group>
-            <sl-input label="Name" required placeholder="User name"></sl-input>
-            <sl-input type="email" label="Email" required placeholder="name@company.com"></sl-input>
-          </section>
-          <section class="rs-span-6 rs-stack" aria-label="New user">
-            <h3 class="rs-subheading">New user</h3>
-            <sl-select label="New user name" required clearable value="alice">
-              <sl-option value="alice">Cazzaniga Alice</sl-option>
-              <sl-option value="ciro">Aiello Ciro</sl-option>
-            </sl-select>
-            <sl-input label="Name" readonly value="Cazzaniga Alice"></sl-input>
-            <sl-input label="Email" readonly value="Alice.Cazzaniga@saipem.com"></sl-input>
-          </section>
+        <div class="rs-grid rs-grid--stretch">
+          <sl-card class="rs-span-6" aria-label="Old user">
+            <h3 slot="header" class="rs-heading">Old user</h3>
+            <div class="rs-stack">
+              <sl-radio-group label="Find the user in" size="small" value="manual">
+                <sl-radio-button value="directory">Project users</sl-radio-button>
+                <sl-radio-button value="manual">Manual input</sl-radio-button>
+              </sl-radio-group>
+              <sl-input label="Name" required placeholder="User name"></sl-input>
+              <sl-input type="email" label="Email" required placeholder="name@company.com"></sl-input>
+            </div>
+          </sl-card>
+          <sl-card class="rs-span-6" aria-label="New user">
+            <h3 slot="header" class="rs-heading">New user</h3>
+            <div class="rs-stack">
+              <sl-select label="New user name" required clearable value="alice">
+                <sl-option value="alice">Cazzaniga Alice</sl-option>
+                <sl-option value="ciro">Aiello Ciro</sl-option>
+              </sl-select>
+              <sl-input label="Name" readonly value="Cazzaniga Alice"></sl-input>
+              <sl-input label="Email" readonly value="Alice.Cazzaniga@saipem.com"></sl-input>
+            </div>
+          </sl-card>
         </div>
       </div>
       <sl-button slot="footer">Cancel</sl-button>

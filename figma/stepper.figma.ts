@@ -4,7 +4,7 @@
 import figma from 'figma';
 const instance = figma.selectedInstance;
 
-// The Stepper is a row of real "Step" instances; render each one through its own Code Connect template,
+// The Stepper is a row of real "Step" instances in its `Steps` slot (any number, up to 7 are read here); render each one through its own Code Connect template,
 // interpolated individually (not .map().join()), as the Tab Group, Dropdown and Stat Group mappings do.
 const steps = instance.findConnectedInstances(() => true);
 const step1 = steps[0] && steps[0].type === 'INSTANCE' ? steps[0].executeTemplate().example : '';
@@ -13,6 +13,7 @@ const step3 = steps[2] && steps[2].type === 'INSTANCE' ? steps[2].executeTemplat
 const step4 = steps[3] && steps[3].type === 'INSTANCE' ? steps[3].executeTemplate().example : '';
 const step5 = steps[4] && steps[4].type === 'INSTANCE' ? steps[4].executeTemplate().example : '';
 const step6 = steps[5] && steps[5].type === 'INSTANCE' ? steps[5].executeTemplate().example : '';
+const step7 = steps[6] && steps[6].type === 'INSTANCE' ? steps[6].executeTemplate().example : '';
 
 // `current` is the zero-based index of the step in State=current; the steps before it are complete. When no step is
 // current (every step complete) it equals the number of steps, which shows the whole process as complete.
@@ -33,6 +34,7 @@ export default {
   ${step4}
   ${step5}
   ${step6}
+  ${step7}
 </sl-stepper>`,
   imports: ["import 'src/components/stepper/stepper.js'", "import 'src/components/step/step.js'"],
   id: 'stepper',

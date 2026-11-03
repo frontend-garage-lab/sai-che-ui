@@ -85,7 +85,6 @@
       <main class="rs-page rs-page--fill" aria-label="Bids">
         <sl-breadcrumb aria-label="Breadcrumb">
           <sl-breadcrumb-item href="#">Home</sl-breadcrumb-item>
-          <sl-breadcrumb-item>Bid</sl-breadcrumb-item>
           <sl-breadcrumb-item>Bids</sl-breadcrumb-item>
         </sl-breadcrumb>
 
@@ -241,66 +240,60 @@
 
     <!-- Add bid -->
     <sl-dialog style="--width: 72rem" label="Add bid" open>
-      <div class="rs-stack">
-        <sl-tab-group>
-          <sl-tab slot="nav" panel="open">Open</sl-tab>
-          <sl-tab slot="nav" panel="development">Development</sl-tab>
-          <sl-tab slot="nav" panel="post">Post</sl-tab>
-          <sl-tab slot="nav" panel="attachments">Attachments</sl-tab>
-          <sl-tab slot="nav" panel="approval" active>Approval details</sl-tab>
-
-          <sl-tab-panel name="open"></sl-tab-panel>
-          <sl-tab-panel name="development"></sl-tab-panel>
-          <sl-tab-panel name="post"></sl-tab-panel>
-          <sl-tab-panel name="attachments"></sl-tab-panel>
-          <sl-tab-panel name="approval" active>
-            <div class="rs-stack">
-              <div class="rs-grid rs-grid--fields">
-                <sl-input class="rs-span-4" type="date" label="Approved date"></sl-input>
-                <sl-input class="rs-span-2" type="time" label="Time"></sl-input>
-                <sl-select class="rs-span-6" label="Owners" value="admin" multiple required clearable>
-                  <sl-option value="admin">user_qmis_admin</sl-option>
-                </sl-select>
+      <div class="rs-stack rs-stack--loose">
+        <sl-stepper label="Add bid" current="4">
+          <sl-step>Open</sl-step>
+          <sl-step>Development</sl-step>
+          <sl-step>Post</sl-step>
+          <sl-step>Attachments</sl-step>
+          <sl-step>Approval details</sl-step>
+        </sl-stepper>
+        <div class="rs-stack">
+          <div class="rs-grid rs-grid--fields">
+            <sl-input class="rs-span-4" type="date" label="Approved date"></sl-input>
+            <sl-input class="rs-span-2" type="time" label="Time"></sl-input>
+            <sl-select class="rs-span-6" label="Owners" value="admin" multiple required clearable>
+              <sl-option value="admin">user_qmis_admin</sl-option>
+            </sl-select>
+          </div>
+          <div class="rs-grid">
+            <div class="rs-span-6 rs-stack">
+              <div class="rs-cluster rs-cluster--between">
+                <h3 class="rs-subheading">Technical</h3>
+                <sl-status filled size="small" variant="neutral">Not requested</sl-status>
               </div>
-              <div class="rs-grid">
-                <div class="rs-span-6 rs-stack">
-                  <div class="rs-cluster rs-cluster--between">
-                    <h3 class="rs-subheading">Technical</h3>
-                    <sl-status filled size="small" variant="neutral">Not requested</sl-status>
-                  </div>
-                  <div class="rs-grid rs-grid--fields">
-                    <sl-select class="rs-span-12" label="Issued by" clearable></sl-select>
-                    <sl-input class="rs-span-8" type="date" label="Issuing date"></sl-input>
-                    <sl-input class="rs-span-4" type="time" label="Time"></sl-input>
-                    <sl-textarea class="rs-span-12" label="Issuing notes" rows="3"></sl-textarea>
-                    <sl-select class="rs-span-12" label="Approver" clearable></sl-select>
-                    <sl-input class="rs-span-8" type="date" label="Approver date"></sl-input>
-                    <sl-input class="rs-span-4" type="time" label="Time"></sl-input>
-                    <sl-textarea class="rs-span-12" label="Approver notes" rows="3"></sl-textarea>
-                  </div>
-                </div>
-                <div class="rs-span-6 rs-stack">
-                  <div class="rs-cluster rs-cluster--between">
-                    <h3 class="rs-subheading">Commercial</h3>
-                    <sl-status filled size="small" variant="neutral">Not requested</sl-status>
-                  </div>
-                  <div class="rs-grid rs-grid--fields">
-                    <sl-select class="rs-span-12" label="Issued by" clearable></sl-select>
-                    <sl-input class="rs-span-8" type="date" label="Issuing date"></sl-input>
-                    <sl-input class="rs-span-4" type="time" label="Time"></sl-input>
-                    <sl-textarea class="rs-span-12" label="Issuing notes" rows="3"></sl-textarea>
-                    <sl-select class="rs-span-12" label="Approver" clearable></sl-select>
-                    <sl-input class="rs-span-8" type="date" label="Approver date"></sl-input>
-                    <sl-input class="rs-span-4" type="time" label="Time"></sl-input>
-                    <sl-textarea class="rs-span-12" label="Approver notes" rows="3"></sl-textarea>
-                  </div>
-                </div>
+              <div class="rs-grid rs-grid--fields">
+                <sl-select class="rs-span-12" label="Issued by" clearable></sl-select>
+                <sl-input class="rs-span-8" type="date" label="Issuing date"></sl-input>
+                <sl-input class="rs-span-4" type="time" label="Time"></sl-input>
+                <sl-textarea class="rs-span-12" label="Issuing notes" rows="3"></sl-textarea>
+                <sl-select class="rs-span-12" label="Approver" clearable></sl-select>
+                <sl-input class="rs-span-8" type="date" label="Approver date"></sl-input>
+                <sl-input class="rs-span-4" type="time" label="Time"></sl-input>
+                <sl-textarea class="rs-span-12" label="Approver notes" rows="3"></sl-textarea>
               </div>
             </div>
-          </sl-tab-panel>
-        </sl-tab-group>
+            <div class="rs-span-6 rs-stack">
+              <div class="rs-cluster rs-cluster--between">
+                <h3 class="rs-subheading">Commercial</h3>
+                <sl-status filled size="small" variant="neutral">Not requested</sl-status>
+              </div>
+              <div class="rs-grid rs-grid--fields">
+                <sl-select class="rs-span-12" label="Issued by" clearable></sl-select>
+                <sl-input class="rs-span-8" type="date" label="Issuing date"></sl-input>
+                <sl-input class="rs-span-4" type="time" label="Time"></sl-input>
+                <sl-textarea class="rs-span-12" label="Issuing notes" rows="3"></sl-textarea>
+                <sl-select class="rs-span-12" label="Approver" clearable></sl-select>
+                <sl-input class="rs-span-8" type="date" label="Approver date"></sl-input>
+                <sl-input class="rs-span-4" type="time" label="Time"></sl-input>
+                <sl-textarea class="rs-span-12" label="Approver notes" rows="3"></sl-textarea>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <sl-button slot="footer">Cancel</sl-button>
+      <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>
+      <sl-button slot="footer"><sl-icon slot="prefix" name="chevron-left"></sl-icon>Back</sl-button>
       <sl-button slot="footer" variant="primary"><sl-icon slot="prefix" name="floppy"></sl-icon>Save bid</sl-button>
     </sl-dialog>
 

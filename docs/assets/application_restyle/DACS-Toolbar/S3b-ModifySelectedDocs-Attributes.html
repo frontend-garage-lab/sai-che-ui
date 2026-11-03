@@ -1,0 +1,262 @@
+<!doctype html>
+<!--
+  DACS-Toolbar · S3b-ModifySelectedDocs-Attributes — restyle of the scrolled "Update Selected Documents" dialog (Free-text, Date, True/False sections) on the shell of DMS-MyWork/2-SelectedDocs.html (Selected docs active in the OLD)
+  State: "Modify selected doc" dialog open on test2.pdf. Checked: Free-text (Greenlight Notes = "Testing this doc"), Date (attribute not chosen yet, value disabled), True/False (Confidential = Yes). Document status and Picklist unchecked.
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/DACS-Toolbar/S3b-ModifySelectedDocs-Attributes.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DACS · Modify selected doc</title>
+    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
+    <link rel="stylesheet" href="../_shared/restyle.css" />
+    <link rel="stylesheet" href="./flow.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <script>
+      // Reload when esbuild rebuilds after a change in src/
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
+  </head>
+
+  <body class="sl-theme-light">
+    <sl-header>
+      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+      <span slot="logo"></span>
+
+      <sl-select slot="actions" size="small" value="000001" style="width: 16rem">
+        <sl-option value="000001">000001 · Digital Collaboration</sl-option>
+      </sl-select>
+      <sl-header-item slot="actions">
+        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+        Mario Rossi
+        <sl-menu slot="menu">
+          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+    </sl-header>
+
+    <div class="rs-shell">
+      <sl-sidebar label="Project navigation" collapsed>
+        <sl-sidebar-group label="Documenti di progetto" count="70">
+          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+          <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Procurement (SAP)" count="71">
+          <sl-icon slot="icon" name="cart"></sl-icon>
+          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Comunicazione" count="47">
+          <sl-icon slot="icon" name="envelope"></sl-icon>
+          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Tasks" count="55">
+          <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+          <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="My work" count="7">
+          <sl-icon slot="icon" name="person-fill"></sl-icon>
+          <sl-sidebar-item href="../DMS-MyWork/1-MyFavorites.html" count="5">My favorites</sl-sidebar-item>
+          <sl-sidebar-item href="../DMS-MyWork/2-SelectedDocs.html" count="2" current>Selected docs</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Downloads" count="3">
+          <sl-icon slot="icon" name="download"></sl-icon>
+          <sl-sidebar-item href="../DMS-Downloads/1-Downloads.html" count="3">My downloads</sl-sidebar-item>
+        </sl-sidebar-group>
+      </sl-sidebar>
+
+      <main class="rs-page rs-page--fill" aria-label="Selected docs">
+        <sl-breadcrumb aria-label="Breadcrumb">
+          <sl-breadcrumb-item href="../DMS-Home/1-Home.html">Home</sl-breadcrumb-item>
+          <sl-breadcrumb-item>My work</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Selected docs</sl-breadcrumb-item>
+        </sl-breadcrumb>
+
+        <div class="rs-page-header">
+          <div class="rs-page-header__text">
+            <h1 class="rs-title">Selected docs</h1>
+            <p class="rs-meta">Documents you collected to act on them together</p>
+          </div>
+        </div>
+
+        <sl-table
+          class="selected-list"
+          fill
+          selection="multiple"
+          sticky-header
+          paginate
+          page-size="25"
+          label="Selected documents"
+        >
+          <div
+            slot="toolbar"
+            class="rs-cluster rs-cluster--nowrap rs-grow"
+            role="toolbar"
+            aria-label="Selected document actions"
+          >
+            <sl-button size="small"><sl-icon slot="prefix" name="pencil"></sl-icon>Modify selected doc</sl-button>
+            <sl-button size="small"><sl-icon slot="prefix" name="send"></sl-icon>IVA promote / demote</sl-button>
+            <sl-button size="small"
+              ><sl-icon slot="prefix" name="diagram-3"></sl-icon>Add WBS &amp; plan shop dwgs</sl-button
+            >
+            <sl-button size="small"><sl-icon slot="prefix" name="box-arrow-up-right"></sl-icon>Transmit docs</sl-button>
+            <span class="rs-spacer"></span>
+            <sl-dropdown placement="bottom-end" hoist data-table-options>
+              <sl-button slot="trigger" size="small" caret
+                ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+              >
+            </sl-dropdown>
+          </div>
+
+          <sl-empty-state
+            slot="empty"
+            title-text="No selected documents"
+            description="Select documents from the document list to collect them here."
+          >
+            <sl-icon slot="icon" name="folder"></sl-icon>
+          </sl-empty-state>
+        </sl-table>
+      </main>
+    </div>
+
+    <!-- Modify selected doc (legacy "Change state … (1/1)" › Update Selected Documents) -->
+    <sl-dialog style="--width: 48rem" label="Modify selected doc" open>
+      <div class="rs-stack rs-stack--loose">
+        <sl-description-list cols="3">
+          <sl-description-list-item label="Document">test2.pdf</sl-description-list-item>
+          <sl-description-list-item label="Document identification">2558</sl-description-list-item>
+          <sl-description-list-item label="Status"
+            ><sl-status filled size="small" variant="success">Verified</sl-status></sl-description-list-item
+          >
+        </sl-description-list>
+        <div class="rs-stack">
+          <h3 class="rs-subheading">What to modify</h3>
+          <div class="rs-stack rs-stack--tight">
+            <sl-checkbox value="status" help-text="Move the document to another state">Document status</sl-checkbox>
+            <div class="rs-stack rs-stack--tight" data-category="status" hidden>
+              <div class="rs-grid rs-grid--fields">
+                <sl-select class="rs-span-6" label="New document status" value="issued" required>
+                  <sl-option value="draft">Draft</sl-option>
+                  <sl-option value="issued">Issued</sl-option>
+                  <sl-option value="verified">Verified</sl-option>
+                  <sl-option value="approved">Approved</sl-option>
+                </sl-select>
+              </div>
+            </div>
+          </div>
+          <sl-divider></sl-divider>
+          <div class="rs-stack rs-stack--tight">
+            <sl-checkbox value="picklist" help-text="Attributes with a list of values">Picklist attributes</sl-checkbox>
+            <div class="rs-stack rs-stack--tight" data-category="picklist" hidden>
+              <div class="attribute-row">
+                <sl-select label="Attribute" placeholder="Select an attribute"></sl-select>
+                <sl-select label="Value" placeholder="Select a value" disabled></sl-select>
+                <div class="rs-cluster rs-cluster--nowrap attribute-row__actions">
+                  <sl-icon-button name="plus-lg" label="Add an attribute below"></sl-icon-button>
+                  <sl-icon-button name="dash" label="Remove this attribute"></sl-icon-button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <sl-divider></sl-divider>
+          <div class="rs-stack rs-stack--tight">
+            <sl-checkbox checked value="free-text" help-text="Attributes with a text value"
+              >Free-text attributes</sl-checkbox
+            >
+            <div class="rs-stack rs-stack--tight" data-category="free-text">
+              <div class="attribute-row">
+                <sl-select label="Attribute" value="greenlight-notes">
+                  <sl-option value="greenlight-notes">Greenlight Notes</sl-option>
+                </sl-select>
+                <sl-input label="Value" value="Testing this doc"></sl-input>
+                <div class="rs-cluster rs-cluster--nowrap attribute-row__actions">
+                  <sl-icon-button name="plus-lg" label="Add an attribute below"></sl-icon-button>
+                  <sl-icon-button name="dash" label="Remove this attribute"></sl-icon-button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <sl-divider></sl-divider>
+          <div class="rs-stack rs-stack--tight">
+            <sl-checkbox checked value="date" help-text="Attributes with a date">Date attributes</sl-checkbox>
+            <div class="rs-stack rs-stack--tight" data-category="date">
+              <div class="attribute-row">
+                <sl-select label="Attribute" placeholder="Select an attribute"></sl-select>
+                <sl-input type="date" label="Value" disabled></sl-input>
+                <div class="rs-cluster rs-cluster--nowrap attribute-row__actions">
+                  <sl-icon-button name="plus-lg" label="Add an attribute below"></sl-icon-button>
+                  <sl-icon-button name="dash" label="Remove this attribute"></sl-icon-button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <sl-divider></sl-divider>
+          <div class="rs-stack rs-stack--tight">
+            <sl-checkbox value="true-false" help-text="Attributes with a yes / no value" checked
+              >True/False attributes</sl-checkbox
+            >
+            <div class="rs-stack rs-stack--tight" data-category="true-false">
+              <div class="attribute-row">
+                <sl-select label="Attribute" value="confidential">
+                  <sl-option value="confidential">Confidential</sl-option>
+                </sl-select>
+                <sl-radio-group label="Value" value="yes">
+                  <sl-radio-button value="yes">Yes</sl-radio-button>
+                  <sl-radio-button value="no">No</sl-radio-button>
+                </sl-radio-group>
+                <div class="rs-cluster rs-cluster--nowrap attribute-row__actions">
+                  <sl-icon-button name="plus-lg" label="Add an attribute below"></sl-icon-button>
+                  <sl-icon-button name="dash" label="Remove this attribute"></sl-icon-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <sl-button slot="footer">Cancel</sl-button>
+      <sl-button slot="footer" variant="primary"
+        ><sl-icon slot="prefix" name="pencil"></sl-icon>Update document</sl-button
+      >
+    </sl-dialog>
+
+    <script type="module">
+      import * as flow from './data.js';
+
+      // Each checked category shows its section of the dialog (legacy: "Uncheck to hide a category")
+      document.querySelectorAll('sl-dialog sl-checkbox[value]').forEach(box =>
+        box.addEventListener('sl-change', () => {
+          document.querySelector(`[data-category="${box.value}"]`).hidden = !box.checked;
+        })
+      );
+
+      const table = await flow.mountTable('.selected-list', { columns: flow.shellColumns, data: flow.shellDocs });
+      table.setSelection(flow.shellDocs.filter(flow.isShellTicked));
+    </script>
+  </body>
+</html>

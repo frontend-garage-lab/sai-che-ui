@@ -1,0 +1,9 @@
+/*
+ * DMS-MyWork — layout rules specific to this flow. Shared rules live in ../_shared/restyle.css.
+ */
+
+/* Full-height page: only the table (last section) gives up height and scrolls inside.
+   Breadcrumb and headings keep their own height, otherwise they get clipped. */
+.rs-page--fill > :not(:last-child) {
+  flex: none;
+}

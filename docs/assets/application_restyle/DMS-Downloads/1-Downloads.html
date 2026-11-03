@@ -1,0 +1,198 @@
+<!doctype html>
+<!--
+  DMS-Downloads · 1-Downloads — new page (no legacy screenshot): files produced by background jobs.
+  State: My downloads, Status filter with a value (Processing + Ready) as a simulated selection, table not filtered (all 9 jobs), two ready files ticked (Download selected and Delete active).
+  Pattern taken from export lists on the web (Google Takeout, Chrome downloads): one row per job with status, size, expiry
+  and actions that follow the state. Built only with sai-che-ui components (see REPORT.md in this folder).
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/DMS-Downloads/1-Downloads.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>xCPage · Downloads</title>
+    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
+    <link rel="stylesheet" href="../_shared/restyle.css" />
+    <link rel="stylesheet" href="./flow.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <script>
+      // Reload when esbuild rebuilds after a change in src/
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
+  </head>
+
+  <body class="sl-theme-light">
+    <sl-header>
+      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+      <span slot="logo"></span>
+
+      <sl-select slot="actions" size="small" value="99-page-am" style="width: 16rem">
+        <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
+      </sl-select>
+      <sl-header-item slot="actions">
+        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+        Mario Rossi
+        <sl-menu slot="menu">
+          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+    </sl-header>
+
+    <div class="rs-shell">
+      <sl-sidebar label="Project navigation" collapsed>
+        <sl-sidebar-group label="Documenti di progetto" count="70">
+          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+          <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Procurement (SAP)" count="71">
+          <sl-icon slot="icon" name="cart"></sl-icon>
+          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Comunicazione" count="47">
+          <sl-icon slot="icon" name="envelope"></sl-icon>
+          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Tasks" count="55">
+          <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+          <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Downloads" count="3">
+          <sl-icon slot="icon" name="download"></sl-icon>
+          <sl-sidebar-item href="1-Downloads.html" count="3" current>My downloads</sl-sidebar-item>
+        </sl-sidebar-group>
+      </sl-sidebar>
+
+      <main class="rs-page rs-page--fill" aria-label="Downloads">
+        <sl-breadcrumb aria-label="Breadcrumb">
+          <sl-breadcrumb-item href="../DMS-Home/1-Home.html">Home</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Downloads</sl-breadcrumb-item>
+        </sl-breadcrumb>
+
+        <div class="rs-page-header">
+          <div class="rs-page-header__text">
+            <h1 class="rs-title">Downloads</h1>
+            <p class="rs-meta">Files generated in the background from your exports and bulk downloads</p>
+          </div>
+        </div>
+
+        <sl-alert variant="primary" open aria-label="Retention">
+          <sl-icon slot="icon" name="info-circle"></sl-icon>
+          Generated files stay available for 7 days, then they expire. You can leave this page: jobs keep running and a
+          notification tells you when a file is ready.
+        </sl-alert>
+
+        <!-- Filters -->
+        <sl-card aria-label="Filters">
+          <div slot="header" class="rs-cluster rs-cluster--between">
+            <h2 class="rs-heading rs-inline"><sl-icon name="filter"></sl-icon>Filters</h2>
+          </div>
+
+          <form class="rs-grid rs-grid--fields">
+            <sl-input
+              class="rs-span-6 rs-span-md-12"
+              type="search"
+              label="Search"
+              placeholder="File name or job description"
+              clearable
+            >
+              <sl-icon slot="prefix" name="search"></sl-icon>
+            </sl-input>
+            <sl-select
+              class="rs-span-3 rs-span-md-6"
+              label="Status"
+              placeholder="Any"
+              multiple
+              clearable
+              max-options-visible="1"
+              value="processing ready"
+            >
+              <sl-option value="queued">Queued</sl-option>
+              <sl-option value="processing">Processing</sl-option>
+              <sl-option value="ready">Ready</sl-option>
+              <sl-option value="failed">Failed</sl-option>
+              <sl-option value="expired">Expired</sl-option>
+            </sl-select>
+            <sl-input class="rs-span-3 rs-span-md-6" type="date" label="Requested on or after"></sl-input>
+
+            <div class="rs-span-12 rs-cluster rs-cluster--end">
+              <sl-button type="reset" variant="text">Clear filters</sl-button>
+              <sl-button type="submit" variant="primary"
+                ><sl-icon slot="prefix" name="search"></sl-icon>Search</sl-button
+              >
+            </div>
+          </form>
+        </sl-card>
+
+        <sl-table
+          class="download-list"
+          fill
+          selection="multiple"
+          sticky-header
+          paginate
+          page-size="25"
+          label="Download list"
+        >
+          <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow">
+            <sl-button size="small" variant="primary"
+              ><sl-icon slot="prefix" name="download"></sl-icon>Download selected</sl-button
+            >
+            <sl-divider vertical></sl-divider>
+            <sl-button size="small" variant="danger" outline
+              ><sl-icon slot="prefix" name="trash"></sl-icon>Delete</sl-button
+            >
+            <span class="rs-spacer"></span>
+            <sl-button size="small"><sl-icon slot="prefix" name="arrow-clockwise"></sl-icon>Refresh</sl-button>
+            <sl-dropdown placement="bottom-end" hoist data-table-options>
+              <sl-button slot="trigger" size="small" caret
+                ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+              >
+            </sl-dropdown>
+          </div>
+
+          <sl-empty-state
+            slot="empty"
+            title-text="No downloads yet"
+            description="Files you export or download in bulk appear here when the job is done."
+          >
+            <sl-icon slot="icon" name="download"></sl-icon>
+          </sl-empty-state>
+        </sl-table>
+      </main>
+    </div>
+
+    <script type="module">
+      import * as flow from './data.js';
+
+      const table = await flow.mountTable('.download-list', {
+        columns: flow.downloadColumns,
+        data: flow.downloads
+      });
+      table.setSelection(flow.downloads.filter(flow.isTicked));
+    </script>
+  </body>
+</html>

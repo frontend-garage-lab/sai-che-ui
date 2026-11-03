@@ -85,7 +85,6 @@
       <main class="rs-page rs-page--fill" aria-label="Bids">
         <sl-breadcrumb aria-label="Breadcrumb">
           <sl-breadcrumb-item href="#">Home</sl-breadcrumb-item>
-          <sl-breadcrumb-item>Bid</sl-breadcrumb-item>
           <sl-breadcrumb-item>Bids</sl-breadcrumb-item>
         </sl-breadcrumb>
 
@@ -279,7 +278,7 @@
 
     <!-- Edit bid 2026-BID-000004 -->
     <sl-dialog style="--width: 72rem" label="Edit bid 2026-BID-000004" open>
-      <div class="rs-stack">
+      <div class="rs-stack rs-stack--loose">
         <sl-description-list cols="4">
           <sl-description-list-item label="Source">QMIS</sl-description-list-item>
           <sl-description-list-item label="Approval status"
@@ -288,101 +287,93 @@
           <sl-description-list-item label="Last changed">15-Oct-2026</sl-description-list-item>
           <sl-description-list-item label="User">user_qmis_admin</sl-description-list-item>
         </sl-description-list>
-        <sl-tab-group>
-          <sl-tab slot="nav" panel="open" active>Open</sl-tab>
-          <sl-tab slot="nav" panel="development">Development</sl-tab>
-          <sl-tab slot="nav" panel="post">Post</sl-tab>
-          <sl-tab slot="nav" panel="attachments">Attachments</sl-tab>
-          <sl-tab slot="nav" panel="approval">Approval details</sl-tab>
-          <sl-tab slot="nav" panel="approval-history">Approval history</sl-tab>
-          <sl-tab slot="nav" panel="revision-history">Revision history</sl-tab>
-
-          <sl-tab-panel name="open" active>
-            <div class="rs-stack">
-              <div class="rs-stack rs-stack--tight">
-                <h3 class="rs-subheading">General</h3>
-                <div class="rs-grid rs-grid--fields">
-                  <sl-input
-                    class="rs-span-3"
-                    label="Internal bid number"
-                    value="2026-BID-000004"
-                    required
-                    readonly
-                  ></sl-input>
-                  <sl-input class="rs-span-3" label="Revision code" value="01" readonly></sl-input>
-                  <sl-input class="rs-span-6" label="Revision reason" value="FIRST REVISION"></sl-input>
-                  <sl-input class="rs-span-6" label="Bid title"></sl-input>
-                  <sl-select class="rs-span-6" label="Bid status" value="v" required clearable>
-                    <sl-option value="v">Ongoing</sl-option>
-                  </sl-select>
-                </div>
+        <sl-stepper label="Edit bid 2026-BID-000004" current="0">
+          <sl-step>Open</sl-step>
+          <sl-step>Development</sl-step>
+          <sl-step>Post</sl-step>
+          <sl-step>Attachments</sl-step>
+          <sl-step>Approval details</sl-step>
+          <sl-step>Approval history</sl-step>
+          <sl-step>Revision history</sl-step>
+        </sl-stepper>
+        <div class="rs-stack">
+          <div class="rs-stack rs-stack--tight">
+            <h3 class="rs-subheading">General</h3>
+            <div class="rs-grid rs-grid--fields">
+              <sl-input
+                class="rs-span-6"
+                label="Internal bid number"
+                value="2026-BID-000004"
+                required
+                readonly
+              ></sl-input>
+              <sl-input class="rs-span-6" label="Revision code" value="01" readonly></sl-input>
+              <sl-input class="rs-span-6" label="Revision reason" value="FIRST REVISION"></sl-input>
+              <sl-input class="rs-span-6" label="Bid title"></sl-input>
+              <sl-select class="rs-span-6" label="Bid status" value="v" required clearable>
+                <sl-option value="v">Ongoing</sl-option>
+              </sl-select>
+            </div>
+          </div>
+          <div class="rs-stack rs-stack--tight">
+            <h3 class="rs-subheading">Client and project</h3>
+            <div class="rs-grid rs-grid--fields">
+              <div class="rs-span-6 rs-stack rs-stack--tight">
+                <sl-select class="rs-span-12" label="Client" value="v" required clearable>
+                  <sl-option value="v">ABB POWER SYSTEMS</sl-option>
+                </sl-select>
+                <sl-switch size="small" checked>Client from CRM</sl-switch>
               </div>
-              <div class="rs-stack rs-stack--tight">
-                <h3 class="rs-subheading">Client and project</h3>
-                <div class="rs-grid rs-grid--fields">
-                  <div class="rs-span-6 rs-stack rs-stack--tight">
-                    <sl-select class="rs-span-12" label="Client" value="v" required clearable>
-                      <sl-option value="v">ABB POWER SYSTEMS</sl-option>
-                    </sl-select>
-                    <sl-switch size="small" checked>Client from CRM</sl-switch>
-                  </div>
-                  <sl-input class="rs-span-6" label="Project name" value="Saipem DEMO" required></sl-input>
-                  <sl-select class="rs-span-3" label="Project type" clearable></sl-select>
-                  <sl-select class="rs-span-3" label="Project country" clearable></sl-select>
-                  <sl-select class="rs-span-3" label="Geographical area" clearable></sl-select>
-                  <sl-select class="rs-span-3" label="Project value size" clearable></sl-select>
-                </div>
-              </div>
-              <div class="rs-stack rs-stack--tight">
-                <h3 class="rs-subheading">Organization</h3>
-                <div class="rs-grid rs-grid--fields">
-                  <sl-select class="rs-span-4" label="Business unit" value="v" required clearable>
-                    <sl-option value="v">Robotics&amp;Ind. Sol.</sl-option>
-                  </sl-select>
-                  <sl-select class="rs-span-4" label="Product line" value="v" clearable>
-                    <sl-option value="v">Maintenance, Modifications and Operations</sl-option>
-                  </sl-select>
-                  <sl-select class="rs-span-4" label="Saipem bidding entity" value="v" required clearable>
-                    <sl-option value="v">HO - Bucharest - EC</sl-option>
-                  </sl-select>
-                  <sl-select class="rs-span-6" label="Legal entity" clearable></sl-select>
-                  <sl-select class="rs-span-6" label="Leading company" clearable></sl-select>
-                </div>
-              </div>
-              <div class="rs-stack rs-stack--tight">
-                <h3 class="rs-subheading">Activity and dates</h3>
-                <div class="rs-grid rs-grid--fields">
-                  <sl-select class="rs-span-6" label="Activity type" value="v" required clearable>
-                    <sl-option value="v">Activity Type - Jul 27 - Edited</sl-option>
-                  </sl-select>
-                  <sl-select class="rs-span-6" label="Contract payment type" clearable></sl-select>
-                  <sl-input class="rs-span-4" label="Bid open date" value="2026-10-15" required type="date"></sl-input>
-                  <sl-input class="rs-span-4" label="Technical submission to client" type="date"></sl-input>
-                  <sl-input class="rs-span-4" label="Commercial submission to client" type="date"></sl-input>
-                </div>
-              </div>
-              <div class="rs-stack rs-stack--tight">
-                <h3 class="rs-subheading">Bid team</h3>
-                <div class="rs-grid rs-grid--fields">
-                  <sl-input class="rs-span-4" label="Bid quality responsible"></sl-input>
-                  <sl-input class="rs-span-4" label="Bid quality team"></sl-input>
-                  <div class="rs-span-4 rs-cluster rs-cluster--nowrap bid-user-field">
-                    <sl-input class="rs-grow" label="Proposal manager" readonly></sl-input>
-                    <sl-button><sl-icon slot="prefix" name="person-fill"></sl-icon>Choose user</sl-button>
-                  </div>
-                </div>
+              <sl-input class="rs-span-6" label="Project name" value="Saipem DEMO" required></sl-input>
+              <sl-select class="rs-span-6" label="Project type" clearable></sl-select>
+              <sl-select class="rs-span-6" label="Project country" clearable></sl-select>
+              <sl-select class="rs-span-6" label="Geographical area" clearable></sl-select>
+              <sl-select class="rs-span-6" label="Project value size" clearable></sl-select>
+            </div>
+          </div>
+          <div class="rs-stack rs-stack--tight">
+            <h3 class="rs-subheading">Organization</h3>
+            <div class="rs-grid rs-grid--fields">
+              <sl-select class="rs-span-6" label="Business unit" value="v" required clearable>
+                <sl-option value="v">Robotics&amp;Ind. Sol.</sl-option>
+              </sl-select>
+              <sl-select class="rs-span-6" label="Product line" value="v" clearable>
+                <sl-option value="v">Maintenance, Modifications and Operations</sl-option>
+              </sl-select>
+              <sl-select class="rs-span-6" label="Saipem bidding entity" value="v" required clearable>
+                <sl-option value="v">HO - Bucharest - EC</sl-option>
+              </sl-select>
+              <sl-select class="rs-span-6" label="Legal entity" clearable></sl-select>
+              <sl-select class="rs-span-6" label="Leading company" clearable></sl-select>
+            </div>
+          </div>
+          <div class="rs-stack rs-stack--tight">
+            <h3 class="rs-subheading">Activity and dates</h3>
+            <div class="rs-grid rs-grid--fields">
+              <sl-select class="rs-span-6" label="Activity type" value="v" required clearable>
+                <sl-option value="v">Activity Type - Jul 27 - Edited</sl-option>
+              </sl-select>
+              <sl-select class="rs-span-6" label="Contract payment type" clearable></sl-select>
+              <sl-input class="rs-span-6" label="Bid open date" value="2026-10-15" required type="date"></sl-input>
+              <sl-input class="rs-span-6" label="Technical submission to client" type="date"></sl-input>
+              <sl-input class="rs-span-6" label="Commercial submission to client" type="date"></sl-input>
+            </div>
+          </div>
+          <div class="rs-stack rs-stack--tight">
+            <h3 class="rs-subheading">Bid team</h3>
+            <div class="rs-grid rs-grid--fields">
+              <sl-input class="rs-span-6" label="Bid quality responsible"></sl-input>
+              <sl-input class="rs-span-6" label="Bid quality team"></sl-input>
+              <div class="rs-span-6 rs-cluster rs-cluster--nowrap bid-user-field">
+                <sl-input class="rs-grow" label="Proposal manager" readonly></sl-input>
+                <sl-button><sl-icon slot="prefix" name="person-fill"></sl-icon>Choose user</sl-button>
               </div>
             </div>
-          </sl-tab-panel>
-          <sl-tab-panel name="development"></sl-tab-panel>
-          <sl-tab-panel name="post"></sl-tab-panel>
-          <sl-tab-panel name="attachments"></sl-tab-panel>
-          <sl-tab-panel name="approval"></sl-tab-panel>
-          <sl-tab-panel name="approval-history"></sl-tab-panel>
-          <sl-tab-panel name="revision-history"></sl-tab-panel>
-        </sl-tab-group>
+          </div>
+        </div>
       </div>
-      <sl-button slot="footer">Cancel</sl-button>
+      <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>
+      <sl-button slot="footer">Next: Development<sl-icon slot="suffix" name="chevron-right"></sl-icon></sl-button>
       <sl-button slot="footer" variant="primary"><sl-icon slot="prefix" name="floppy"></sl-icon>Save bid</sl-button>
     </sl-dialog>
 

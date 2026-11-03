@@ -74,8 +74,3 @@ sl-tab-panel > .rs-stack > sl-card {
 .filters__rest {
   grid-column: 4 / -1;
 }
-
-/* Result: Sort direction sits under Selected columns, in the third track of the transfer grid. */
-.result-sort-direction {
-  grid-column: 3;
-}

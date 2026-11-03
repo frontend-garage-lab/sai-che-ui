@@ -18,6 +18,15 @@ approvers approve from their task list; the owner shares the approved bid with t
 - Proposal manager select + search button → read-only input + "Choose user".
 - "Send Mail" → "Send email".
 
+## Add bid / Edit bid as a stepper
+
+The sections of the bid form (Open, Development, Post, Attachments, Approval details; Edit bid adds Approval history and
+Revision history) are an `sl-stepper` at the top of the dialog instead of tabs (2026-11-02). Footer: Cancel
+(`.rs-footer-start`), Back, "Next: <step>" and Save bid, which stays available at every step because the legacy form
+can be saved from any tab. The stepper is not `linear`: completed steps can be reopened, upcoming ones only through
+Next. View bid and the other pages keep their tabs. 5-AddBid-ImportDocument is a sub-view of Attachments: the stepper
+stays on Attachments.
+
 ## New elements outside the DS
 
 None.

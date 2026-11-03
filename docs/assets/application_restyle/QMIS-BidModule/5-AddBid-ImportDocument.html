@@ -85,7 +85,6 @@
       <main class="rs-page rs-page--fill" aria-label="Bids">
         <sl-breadcrumb aria-label="Breadcrumb">
           <sl-breadcrumb-item href="#">Home</sl-breadcrumb-item>
-          <sl-breadcrumb-item>Bid</sl-breadcrumb-item>
           <sl-breadcrumb-item>Bids</sl-breadcrumb-item>
         </sl-breadcrumb>
 
@@ -241,7 +240,14 @@
 
     <!-- Add bid › Import documents: sub-view of the same dialog (legacy "Import Document For Bid" on top of Add) -->
     <sl-dialog style="--width: 72rem" label="Add bid" open>
-      <div class="rs-stack">
+      <div class="rs-stack rs-stack--loose">
+        <sl-stepper label="Add bid" current="3">
+          <sl-step>Open</sl-step>
+          <sl-step>Development</sl-step>
+          <sl-step>Post</sl-step>
+          <sl-step>Attachments</sl-step>
+          <sl-step>Approval details</sl-step>
+        </sl-stepper>
         <h2 class="rs-heading">Import documents</h2>
         <div class="rs-grid">
           <div class="rs-span-5 rs-stack">

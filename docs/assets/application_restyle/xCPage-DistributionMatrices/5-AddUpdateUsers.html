@@ -303,7 +303,7 @@
 
         <section class="rs-grid rs-grid--fields" aria-label="Settings">
           <sl-radio-group
-            class="rs-span-6"
+            class="rs-span-12"
             label="Mode"
             value="insert-update"
             help-text="Adds the user where it is missing; where it is already there, updates its reason and delivery method."
@@ -312,12 +312,12 @@
             <sl-radio-button value="insert">Insert only</sl-radio-button>
             <sl-radio-button value="update">Update only</sl-radio-button>
           </sl-radio-group>
-          <sl-select class="rs-span-3" label="Reason" required value="z">
+          <sl-select class="rs-span-6" label="Reason" required value="z">
             <sl-option value="n">N – For notification</sl-option>
             <sl-option value="a">A – For approval</sl-option>
             <sl-option value="z">Z – For information</sl-option>
           </sl-select>
-          <sl-select class="rs-span-3" label="Delivery method" required value="email-link">
+          <sl-select class="rs-span-6" label="Delivery method" required value="email-link">
             <sl-option value="email-attachment">Email Attachment</sl-option>
             <sl-option value="email-link">Email Link</sl-option>
             <sl-option value="hard-copy">Hard Copy</sl-option>

@@ -7,6 +7,7 @@
 import { html } from 'https://cdn.jsdelivr.net/npm/lit@3/+esm';
 
 import { documentFileCell, revisionTag, statusTag } from '../_shared/restyle.js';
+import { selectedColumns, selectedDocMenu } from '../DMS-MyWork/data.js';
 
 export * from '../_shared/restyle.js';
 
@@ -72,26 +73,13 @@ export const docs = [
   doc('testingdoc_1312_0', '2.0', 'Approved')
 ];
 
+/** Selected Docs tab (2-SelectedDocs.png): the user's collected documents. */
+export const selectedDocs = docs.filter(d => ['000001-LT-4B-P-ITR-Rev00', 'test2.pdf'].includes(d.name));
+
 export const isSelectedDoc = row => row.name === 'test2.pdf';
 
-const docMenu = () => html`
-  <sl-menu>
-    <sl-menu-item><sl-icon slot="prefix" name="printer"></sl-icon>Print without watermark</sl-menu-item>
-    <sl-divider></sl-divider>
-    <sl-menu-item><sl-icon slot="prefix" name="x-lg"></sl-icon>Remove from selection</sl-menu-item>
-    <sl-menu-item><sl-icon slot="prefix" name="link-45deg"></sl-icon>Copy link for transmittal</sl-menu-item>
-    <sl-menu-item><sl-icon slot="prefix" name="star"></sl-icon>Add to favorites</sl-menu-item>
-    <sl-menu-item><sl-icon slot="prefix" name="lock"></sl-icon>Turn off confidential</sl-menu-item>
-    <sl-divider></sl-divider>
-    <sl-menu-item><sl-icon slot="prefix" name="geo-alt"></sl-icon>Locate</sl-menu-item>
-    <sl-menu-item><sl-icon slot="prefix" name="envelope"></sl-icon>Send mail</sl-menu-item>
-    <sl-divider></sl-divider>
-    <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Admin actions</sl-menu-item>
-    <sl-menu-item><sl-icon slot="prefix" name="three-dots"></sl-icon>Actions</sl-menu-item>
-    <sl-divider></sl-divider>
-    <sl-menu-item><sl-icon slot="prefix" name="info-circle"></sl-icon>Properties</sl-menu-item>
-  </sl-menu>
-`;
+/** Row menu (⋮): same as the Selected docs page of DMS-MyWork. */
+const docMenu = selectedDocMenu;
 
 /** Shared document cell (DECISIONS "Cella documento con file"): file icon, name, references without "—" lines. */
 const docCell = record =>
@@ -160,3 +148,33 @@ export const revisionColumns = [
 /** Aliases kept for the pages that adopted the shared document cell first (P1, P2). */
 export const docColumnsFileAvatar = docColumns;
 export const revisionColumnsFileAvatar = revisionColumns;
+
+// ------------------------------------------------------------------ Shell of DMS-MyWork/2-SelectedDocs.html
+
+/**
+ * The screens of the OLD with Selected Docs active (2, 3, 5, 6, 7, 14) use the shell of DMS-MyWork/2-SelectedDocs.html:
+ * same header, sidebar, title, toolbar and columns. Only the data is the one of the OLD (2 documents, on screen order).
+ */
+const shellRow = (record, meta) => ({
+  document: record.name,
+  meta,
+  type: 'Shop Drawing',
+  revision: record.version,
+  status: record.status,
+  project: '000001'
+});
+
+export const shellDocs = [shellRow(docs[1], [docs[1].din, docs[1].title]), shellRow(docs[0], [docs[0].din])];
+
+/** Pages with one document selected (test2.pdf); S6 selects both. */
+export const isShellTicked = row => row.document === 'test2.pdf';
+export const isShellAllTicked = () => true;
+
+/** Columns of the shell; the OLD has the document version and its own status flags. */
+export const shellColumns = selectedColumns.map(column => {
+  if (column.id === 'revision') {
+    return { ...column, header: 'Ver.', cell: ({ row }) => row.original.revision };
+  }
+  if (column.id === 'status') return { ...column, cell: docStatus };
+  return column;
+});

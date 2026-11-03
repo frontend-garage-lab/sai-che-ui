@@ -1,0 +1,228 @@
+<!doctype html>
+<!--
+  DACS-Toolbar · S11-NewPlaceholder-CreationProfile — restyle of application_screenshot/DACS - Toolbar/11-new-placeholder-1.png and 12-new-placeholder-2.png (identical) on the P2 base (context selectors, Doc List)
+  State: "New placeholder" wizard, step 1 Fill creation profile: profile Document Management - Job Document Creation, class Design Document.
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/DACS-Toolbar/S11-NewPlaceholder-CreationProfile.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DACS · New placeholder · Creation profile</title>
+    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
+    <link rel="stylesheet" href="../_shared/restyle.css" />
+    <link rel="stylesheet" href="./flow.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <script>
+      // Reload when esbuild rebuilds after a change in src/
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
+  </head>
+
+  <body class="sl-theme-light">
+    <sl-header>
+      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+      <span slot="logo"></span>
+
+      <sl-select slot="actions" size="small" value="000001" style="width: 16rem">
+        <sl-option value="000001">000001 - Yard Training</sl-option>
+      </sl-select>
+      <sl-header-item slot="actions">
+        <sl-avatar initials="TA" label="test_dc_admin"></sl-avatar>
+        test_dc_admin
+        <sl-menu slot="menu">
+          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+    </sl-header>
+
+    <div class="rs-shell">
+      <sl-sidebar label="Project navigation" collapsed>
+        <sl-sidebar-group label="Documenti di progetto" count="70">
+          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+          <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Procurement (SAP)" count="71">
+          <sl-icon slot="icon" name="cart"></sl-icon>
+          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Comunicazione" count="47">
+          <sl-icon slot="icon" name="envelope"></sl-icon>
+          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Tasks" count="55">
+          <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+          <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Document Center">
+          <sl-icon slot="icon" name="archive"></sl-icon>
+          <sl-sidebar-item href="#" current>Document Center</sl-sidebar-item>
+          <sl-sidebar-item href="#">Binders Workspace</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="New &amp; import">
+          <sl-icon slot="icon" name="upload"></sl-icon>
+          <sl-sidebar-item href="#">New · Document</sl-sidebar-item>
+          <sl-sidebar-item href="#">New · Placeholder</sl-sidebar-item>
+          <sl-sidebar-item href="#">Import · Import new docs</sl-sidebar-item>
+          <sl-sidebar-item href="#">Import · Bulk upload docs</sl-sidebar-item>
+          <sl-sidebar-item href="#">Content · Bulk load templates</sl-sidebar-item>
+        </sl-sidebar-group>
+      </sl-sidebar>
+
+      <main class="rs-page rs-page--fill p2" aria-label="Document Center">
+        <sl-breadcrumb aria-label="Breadcrumb">
+          <sl-breadcrumb-item href="../DMS-Home/1-Home.html">Home</sl-breadcrumb-item>
+          <sl-breadcrumb-item href="#">Document Center</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Shop Drawings</sl-breadcrumb-item>
+        </sl-breadcrumb>
+
+        <div class="rs-page-header">
+          <div class="rs-page-header__text">
+            <h1 class="rs-title">Shop Drawings</h1>
+            <span class="rs-meta">Shop Drawings · 146 documents</span>
+          </div>
+        </div>
+        <sl-card aria-label="Folder">
+          <form class="rs-grid rs-grid--fields">
+            <sl-select class="rs-span-2 rs-span-md-6" label="Site" value="central">
+              <sl-option value="ambriz">Ambriz</sl-option><sl-option value="arbatax">Arbatax</sl-option
+              ><sl-option value="central">Central</sl-option><sl-option value="dammam">Dammam</sl-option
+              ><sl-option value="karimun">Karimun</sl-option><sl-option value="nigeria">Nigeria</sl-option>
+            </sl-select>
+            <sl-select class="rs-span-3 rs-span-md-6" label="Area" value="dm">
+              <sl-option value="cm">Completion Management</sl-option>
+              <sl-option value="dm">Document Management</sl-option>
+            </sl-select>
+            <sl-select class="rs-span-4 rs-span-md-6" label="Folder" value="as">
+              <sl-option value="sd">Shop Drawings</sl-option>
+              <sl-option value="as">Shop Drawings › AS - ANODE SLED</sl-option>
+            </sl-select>
+          </form>
+        </sl-card>
+        <div class="rs-workspace">
+          <section class="rs-workspace__main rs-span-8 rs-span-lg-7" aria-label="Documents">
+            <sl-table
+              selection="multiple"
+              class="doc-list"
+              fill
+              sticky-header
+              sticky-actions
+              paginate
+              page-size="25"
+              label="Doc List"
+            >
+              <div
+                slot="toolbar"
+                class="rs-cluster rs-cluster--nowrap rs-grow"
+                role="toolbar"
+                aria-label="Document actions"
+              >
+                <sl-button size="small" variant="primary"
+                  ><sl-icon slot="prefix" name="upload"></sl-icon>Import new docs</sl-button
+                >
+                <sl-button size="small"
+                  ><sl-icon slot="prefix" name="file-earmark-plus"></sl-icon>New placeholder</sl-button
+                >
+                <span class="rs-spacer"></span>
+                <sl-dropdown placement="bottom-end" hoist data-table-options>
+                  <sl-button slot="trigger" size="small" caret
+                    ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                  >
+                </sl-dropdown>
+              </div>
+              <sl-empty-state
+                slot="empty"
+                title-text="No documents"
+                description="Import documents or choose another folder."
+              >
+                <sl-icon slot="icon" name="folder"></sl-icon>
+              </sl-empty-state>
+            </sl-table>
+          </section>
+
+          <sl-detail-panel contained class="rs-span-4 rs-span-lg-5" aria-label="Document details">
+            <span slot="label">test2.pdf</span>
+            <span slot="meta">Shop Drawing · 2558</span>
+            <sl-tab-group>
+              <sl-tab slot="nav" panel="revisions" active>Revisions</sl-tab>
+              <sl-tab slot="nav" panel="comments">Comments</sl-tab>
+              <sl-tab slot="nav" panel="locations">Locations</sl-tab>
+              <sl-tab slot="nav" panel="attachments">Attachments</sl-tab>
+              <sl-tab-panel name="revisions" active>
+                <div class="rs-inset">
+                  <sl-table class="revision-list" label="Revisions"></sl-table>
+                </div>
+              </sl-tab-panel>
+              <sl-tab-panel name="comments"></sl-tab-panel>
+              <sl-tab-panel name="locations"></sl-tab-panel>
+              <sl-tab-panel name="attachments"></sl-tab-panel>
+            </sl-tab-group>
+          </sl-detail-panel>
+        </div>
+      </main>
+    </div>
+
+    <!-- New placeholder (legacy "New Content" wizard with side step list) -->
+    <sl-dialog label="New placeholder" open style="--width: 80rem">
+      <div class="rs-stack rs-stack--loose">
+        <sl-stepper label="New placeholder" current="0">
+          <sl-step description="Profile and class">Fill creation profile</sl-step>
+          <sl-step description="Document metadata">Edit properties</sl-step>
+          <sl-step description="Starting template">Choose template</sl-step>
+          <sl-step description="Related documents">Linked document</sl-step>
+          <sl-step description="Start a workflow" disabled>Workflow</sl-step>
+        </sl-stepper>
+        <div class="rs-grid rs-grid--fields">
+          <sl-select class="rs-span-6" label="Creation profile" value="dm-job" required>
+            <sl-option value="dm-job">Document Management - Job Document Creation</sl-option>
+          </sl-select>
+          <sl-select class="rs-span-6" label="Document class" value="design" required>
+            <sl-option value="design">Design Document</sl-option>
+            <sl-option value="shop">Shop Drawing</sl-option>
+          </sl-select>
+        </div>
+      </div>
+      <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>
+      <sl-button slot="footer" variant="primary"
+        >Next: Edit properties<sl-icon slot="suffix" name="chevron-right"></sl-icon
+      ></sl-button>
+    </sl-dialog>
+
+    <script type="module">
+      import * as flow from './data.js';
+
+      await flow.mountTable('.revision-list', { columns: flow.revisionColumnsFileAvatar, data: flow.revisions });
+      await flow.mountTable('.doc-list', {
+        columns: flow.docColumnsFileAvatar,
+        data: flow.docs,
+        isSelected: flow.isSelectedDoc
+      });
+    </script>
+  </body>
+</html>

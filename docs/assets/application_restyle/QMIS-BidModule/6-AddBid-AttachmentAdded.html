@@ -85,7 +85,6 @@
       <main class="rs-page rs-page--fill" aria-label="Bids">
         <sl-breadcrumb aria-label="Breadcrumb">
           <sl-breadcrumb-item href="#">Home</sl-breadcrumb-item>
-          <sl-breadcrumb-item>Bid</sl-breadcrumb-item>
           <sl-breadcrumb-item>Bids</sl-breadcrumb-item>
         </sl-breadcrumb>
 
@@ -241,57 +240,52 @@
 
     <!-- Add bid -->
     <sl-dialog style="--width: 72rem" label="Add bid" open>
-      <div class="rs-stack">
-        <sl-tab-group>
-          <sl-tab slot="nav" panel="open">Open</sl-tab>
-          <sl-tab slot="nav" panel="development">Development</sl-tab>
-          <sl-tab slot="nav" panel="post">Post</sl-tab>
-          <sl-tab slot="nav" panel="attachments" active>Attachments</sl-tab>
-          <sl-tab slot="nav" panel="approval">Approval details</sl-tab>
-
-          <sl-tab-panel name="open"></sl-tab-panel>
-          <sl-tab-panel name="development"></sl-tab-panel>
-          <sl-tab-panel name="post"></sl-tab-panel>
-          <sl-tab-panel name="attachments" active>
-            <div class="rs-stack">
-              <sl-alert variant="primary" open>
-                <sl-icon slot="icon" name="info-circle"></sl-icon>
-                Technical and commercial documents start in <strong>Working</strong> status; the status date is the date
-                of the latest change. Documents classified as <strong>Other</strong> need no approval and have no
-                status. While a document waits for approval it cannot be edited, re-imported or deleted.
-              </sl-alert>
-              <sl-table class="attachment-list" selection="single" paginate page-size="10" label="Attachments">
-                <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow">
-                  <sl-button size="small" variant="primary" href="./5-AddBid-ImportDocument.html"
-                    ><sl-icon slot="prefix" name="upload"></sl-icon>Add</sl-button
-                  >
-                  <sl-button size="small"><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-button>
-                  <sl-button size="small"><sl-icon slot="prefix" name="download"></sl-icon>Download</sl-button>
-                  <sl-divider vertical></sl-divider>
-                  <sl-button size="small" variant="danger" outline
-                    ><sl-icon slot="prefix" name="trash"></sl-icon>Delete</sl-button
-                  >
-                  <span class="rs-spacer"></span>
-                  <sl-dropdown placement="bottom-end" hoist data-table-options>
-                    <sl-button slot="trigger" size="small" caret
-                      ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
-                    >
-                  </sl-dropdown>
-                </div>
-                <sl-empty-state
-                  slot="empty"
-                  title-text="No attachments"
-                  description="Add the technical, commercial and other documents of the bid."
+      <div class="rs-stack rs-stack--loose">
+        <sl-stepper label="Add bid" current="3">
+          <sl-step>Open</sl-step>
+          <sl-step>Development</sl-step>
+          <sl-step>Post</sl-step>
+          <sl-step>Attachments</sl-step>
+          <sl-step>Approval details</sl-step>
+        </sl-stepper>
+        <div class="rs-stack">
+          <sl-alert variant="primary" open>
+            <sl-icon slot="icon" name="info-circle"></sl-icon>
+            Technical and commercial documents start in <strong>Working</strong> status; the status date is the date of
+            the latest change. Documents classified as <strong>Other</strong> need no approval and have no status. While
+            a document waits for approval it cannot be edited, re-imported or deleted.
+          </sl-alert>
+          <sl-table class="attachment-list" selection="single" paginate page-size="10" label="Attachments">
+            <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow">
+              <sl-button size="small" variant="primary" href="./5-AddBid-ImportDocument.html"
+                ><sl-icon slot="prefix" name="upload"></sl-icon>Add</sl-button
+              >
+              <sl-button size="small"><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-button>
+              <sl-button size="small"><sl-icon slot="prefix" name="download"></sl-icon>Download</sl-button>
+              <sl-divider vertical></sl-divider>
+              <sl-button size="small" variant="danger" outline
+                ><sl-icon slot="prefix" name="trash"></sl-icon>Delete</sl-button
+              >
+              <span class="rs-spacer"></span>
+              <sl-dropdown placement="bottom-end" hoist data-table-options>
+                <sl-button slot="trigger" size="small" caret
+                  ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
                 >
-                  <sl-icon slot="icon" name="link-45deg"></sl-icon>
-                </sl-empty-state>
-              </sl-table>
+              </sl-dropdown>
             </div>
-          </sl-tab-panel>
-          <sl-tab-panel name="approval"></sl-tab-panel>
-        </sl-tab-group>
+            <sl-empty-state
+              slot="empty"
+              title-text="No attachments"
+              description="Add the technical, commercial and other documents of the bid."
+            >
+              <sl-icon slot="icon" name="link-45deg"></sl-icon>
+            </sl-empty-state>
+          </sl-table>
+        </div>
       </div>
-      <sl-button slot="footer">Cancel</sl-button>
+      <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>
+      <sl-button slot="footer"><sl-icon slot="prefix" name="chevron-left"></sl-icon>Back</sl-button>
+      <sl-button slot="footer">Next: Approval details<sl-icon slot="suffix" name="chevron-right"></sl-icon></sl-button>
       <sl-button slot="footer" variant="primary"><sl-icon slot="prefix" name="floppy"></sl-icon>Save bid</sl-button>
     </sl-dialog>
 

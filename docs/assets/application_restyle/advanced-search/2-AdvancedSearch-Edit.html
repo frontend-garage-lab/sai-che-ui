@@ -557,7 +557,7 @@
 
           <sl-tab-panel name="result">
             <!-- Columns of the result table: transfer between Available and Selected (same pattern as Relate
-                 documents), order of Selected = order of the columns; Sort by and Sort direction set the default sorting. -->
+                 documents), order of Selected = order of the columns; the Sorting section below sets the default sorting of the query. -->
             <sl-card aria-label="Result columns">
               <h2 slot="header" class="rs-heading">Result columns</h2>
               <div class="rs-stack">
@@ -602,19 +602,25 @@
                       <sl-icon slot="icon" name="table"></sl-icon>
                     </sl-empty-state>
                   </sl-table>
-                  <!-- Default sorting of the result: Sort by under Available, Sort direction under Selected. -->
-                  <sl-select label="Sort by" value="name">
-                    <sl-option value="name">Name</sl-option>
-                    <sl-option value="title">Title</sl-option>
-                    <sl-option value="type">Type</sl-option>
-                    <sl-option value="version">Version</sl-option>
-                    <sl-option value="status">Status</sl-option>
-                    <sl-option value="modified">Modified</sl-option>
-                  </sl-select>
-                  <sl-select class="result-sort-direction" label="Sort direction" value="asc">
-                    <sl-option value="asc">Ascending</sl-option>
-                    <sl-option value="desc">Descending</sl-option>
-                  </sl-select>
+                </div>
+                <sl-divider></sl-divider>
+                <!-- Default sorting of the result, applied to the query: independent of the columns selected above. -->
+                <div class="rs-stack rs-stack--tight">
+                  <h3 class="rs-subheading">Sorting</h3>
+                  <div class="rs-grid rs-grid--fields">
+                    <sl-select class="rs-span-6" label="Sort by" value="name">
+                      <sl-option value="name">Name</sl-option>
+                      <sl-option value="title">Title</sl-option>
+                      <sl-option value="type">Type</sl-option>
+                      <sl-option value="version">Version</sl-option>
+                      <sl-option value="status">Status</sl-option>
+                      <sl-option value="modified">Modified</sl-option>
+                    </sl-select>
+                    <sl-select class="rs-span-6" label="Sort direction" value="asc">
+                      <sl-option value="asc">Ascending</sl-option>
+                      <sl-option value="desc">Descending</sl-option>
+                    </sl-select>
+                  </div>
                 </div>
               </div>
             </sl-card>

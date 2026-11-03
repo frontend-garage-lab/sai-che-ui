@@ -39,7 +39,18 @@ export const STATUS_VARIANT = {
   Expired: 'danger',
   Refused: 'danger',
   Missing: 'danger',
-  Notified: 'accent'
+  Notified: 'accent',
+  // Background jobs (DMS-Downloads): queued = not started, processing = in progress, ready = done, failed = blocked
+  Queued: 'neutral',
+  Processing: 'primary',
+  Ready: 'success',
+  Failed: 'danger',
+  // Preparation area templates: New = just created (in progress, not yet published), Existing = already in the list
+  New: 'primary',
+  Existing: 'neutral',
+  // Saved documents (DMS-MyWork): issued to a subcontractor = in progress, archived = inactive
+  'Issued To Subco': 'primary',
+  Archived: 'neutral'
 };
 
 /** A state as the app shows it: filled status, colour from the catalog. */
@@ -115,7 +126,9 @@ export const isSelectedDocument = isDocument('Documenz297');
 const FILE_ICON = {
   pdf: { name: 'file-earmark-pdf', title: 'Native file: PDF' },
   text: { name: 'file-earmark-text', title: 'Native file: text' },
-  docx: { name: 'file-earmark-word', title: 'Native file: Word' }
+  docx: { name: 'file-earmark-word', title: 'Native file: Word' },
+  xlsx: { name: 'file-earmark-excel', title: 'File: Excel' },
+  zip: { name: 'file-earmark-zip', title: 'File: ZIP archive' }
 };
 
 /** Quick info: checked-out lock and the icon of the native file, if any. The current revision is a state (Status column). */

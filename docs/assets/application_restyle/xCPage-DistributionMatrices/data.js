@@ -195,26 +195,41 @@ export const distributionColumns = [
 
 // ------------------------------------------------------------------ Tab Preparation Area
 
-const template = (name, generatedOn, validTypes, { isNew = false, failed = false } = {}) => ({
+const template = (name, generatedOn, validTypes, { isNew = false, failed = false, locked = false } = {}) => ({
   name,
   generatedOn,
   owner: 'user_test1',
   validTypes,
   isNew,
-  failed
+  failed,
+  locked
 });
 
 export const templates = [
-  template('Test_RITM0081563_updated_2', '2-Oct-2026', ['General Distribution Process', 'Review Distribution Process']),
-  template('test_040325_2', '14-Oct-2025', ['Outgoing Transmittal']),
-  template('test_conditions_columns_3', '6-Aug-2025', [
-    'Incoming Transmittal',
-    'ARN Outgoing Transmittal',
-    'Vendor Incoming Transmittal',
-    'Outgoing Transmittal',
-    'ENGINEERING OUTGOING TRANSMITTAL'
-  ]),
-  template('test_conditions_1501113324', '6-Aug-2025', ['Incoming Transmittal', 'Outgoing Transmittal']),
+  template(
+    'Test_RITM0081563_updated_2',
+    '2-Oct-2026',
+    ['General Distribution Process', 'Review Distribution Process'],
+    {
+      locked: true
+    }
+  ),
+  template('test_040325_2', '14-Oct-2025', ['Outgoing Transmittal'], { locked: true }),
+  template(
+    'test_conditions_columns_3',
+    '6-Aug-2025',
+    [
+      'Incoming Transmittal',
+      'ARN Outgoing Transmittal',
+      'Vendor Incoming Transmittal',
+      'Outgoing Transmittal',
+      'ENGINEERING OUTGOING TRANSMITTAL'
+    ],
+    { locked: true }
+  ),
+  template('test_conditions_1501113324', '6-Aug-2025', ['Incoming Transmittal', 'Outgoing Transmittal'], {
+    locked: true
+  }),
   template('test_external', '20-Jun-2025', ['Outgoing Transmittal'], { isNew: true }),
   template(
     'test_distribution_matrix_02',
@@ -245,12 +260,14 @@ export const templateColumns = [
   {
     id: 'info',
     header: 'Quick info',
-    meta: { width: '7rem' },
+    meta: { width: '6rem' },
     cell: ({ row }) =>
       html`<span class="rs-quick-info">
         <sl-icon name="file-earmark-excel" title="Excel template"></sl-icon>
-        ${row.original.isNew ? html`<sl-badge variant="success" pill title="Just created">NEW</sl-badge>` : ''}
-        ${row.original.failed ? html`<sl-badge variant="danger" pill title="Validation failed">!</sl-badge>` : ''}
+        ${row.original.locked ? html`<sl-icon name="lock" title="Locked"></sl-icon>` : ''}
+        ${row.original.failed
+          ? html`<sl-icon variant="danger" name="exclamation-lg" title="Validation failed"></sl-icon>`
+          : ''}
       </span>`
   },
   {
@@ -261,6 +278,12 @@ export const templateColumns = [
     meta: { width: 'minmax(12rem, 1fr)' },
     cell: ({ row }) =>
       html`<span class="rs-subheading rs-truncate" title=${row.original.name}>${row.original.name}</span>`
+  },
+  {
+    id: 'status',
+    header: 'Status',
+    meta: { width: '6.5rem' },
+    cell: ({ row }) => statusTag(row.original.isNew ? 'New' : 'Existing')
   },
   {
     id: 'generatedOn',

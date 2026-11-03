@@ -307,17 +307,19 @@
           <sl-description-list-item label="Distribution matrices">032154_Test_DM Upload</sl-description-list-item>
         </sl-description-list>
 
-        <section class="rs-stack" aria-label="User to remove">
-          <h3 class="rs-subheading">User to remove</h3>
-          <sl-radio-group label="Find the user in" size="small" value="manual">
-            <sl-radio-button value="directory">Project users</sl-radio-button>
-            <sl-radio-button value="manual">Manual input</sl-radio-button>
-          </sl-radio-group>
-          <div class="rs-grid rs-grid--fields">
-            <sl-input class="rs-span-6" label="Name" required placeholder="User name"></sl-input>
-            <sl-input class="rs-span-6" type="email" label="Email" required placeholder="name@company.com"></sl-input>
+        <sl-card aria-label="User to remove">
+          <h3 slot="header" class="rs-heading">User to remove</h3>
+          <div class="rs-stack">
+            <sl-radio-group label="Find the user in" size="small" value="manual">
+              <sl-radio-button value="directory">Project users</sl-radio-button>
+              <sl-radio-button value="manual">Manual input</sl-radio-button>
+            </sl-radio-group>
+            <div class="rs-grid rs-grid--fields">
+              <sl-input class="rs-span-6" label="Name" required placeholder="User name"></sl-input>
+              <sl-input class="rs-span-6" type="email" label="Email" required placeholder="name@company.com"></sl-input>
+            </div>
           </div>
-        </section>
+        </sl-card>
       </div>
       <sl-button slot="footer">Cancel</sl-button>
       <sl-button slot="footer" variant="danger" disabled
