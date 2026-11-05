@@ -542,15 +542,15 @@ export default css`
    * Button spacing
    */
 
-  .button--has-label.button--small .button__label {
+  .button--has-label.button--small:not(.button--circle) .button__label {
     padding: 0 var(--sl-spacing-small);
   }
 
-  .button--has-label.button--medium .button__label {
+  .button--has-label.button--medium:not(.button--circle) .button__label {
     padding: 0 var(--sl-spacing-medium);
   }
 
-  .button--has-label.button--large .button__label {
+  .button--has-label.button--large:not(.button--circle) .button__label {
     padding: 0 var(--sl-spacing-large);
   }
 
