@@ -1,0 +1,28 @@
+<!doctype html>
+<!--
+  {{FLUSSO}} / {{N-NOME}}
+  State: {{descrizione dello stato riprodotto, es. "lista con filtro compilato, riga 2 selezionata"}}
+  Sorgente: {{screenshot_dir}}/{{FLUSSO}}/{{N-NOME}}.png
+-->
+<html lang="{{lingua}}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{Titolo pagina}}</title>
+    <!-- Tema e componenti del DS: usa gli stessi import delle demo del progetto -->
+    <link rel="stylesheet" href="{{percorso tema DS}}" />
+    <script type="module" src="{{percorso bundle componenti DS}}"></script>
+    <!-- Layout condiviso (classi di griglia, spaziature, tipografia legate ai token) -->
+    <link rel="stylesheet" href="../_shared/layout.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <main aria-label="{{Nome pagina}}">
+      <!-- Regioni con aria-label: diventano i nomi dei frame in Figma -->
+    </main>
+    <script type="module">
+      // Stato statico della schermata: dati mock, selezioni, overlay aperti
+      // import { ... } from './data.js';
+    </script>
+  </body>
+</html>

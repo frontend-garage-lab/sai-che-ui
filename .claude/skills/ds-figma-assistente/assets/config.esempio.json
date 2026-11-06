@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "progetto": {
+    "nome": "Nome del progetto"
+  },
+  "codice": {
+    "componenti_dir": "src/components",
+    "prefisso_tag": "ds-",
+    "manifest": "dist/custom-elements.json",
+    "doc_componenti": "docs/pages/components",
+    "comando_build": "npm run build"
+  },
+  "code_connect": {
+    "dir": "figma",
+    "config": "figma.config.json",
+    "validazione": ["npx tsc -p figma", "npx figma connect parse"],
+    "publish": "npx figma connect publish"
+  },
+  "figma": {
+    "ds_url": "https://www.figma.com/design/DS_FILE_KEY/design-system",
+    "progetto_url": "https://www.figma.com/design/PROJECT_FILE_KEY/progetto",
+    "progetto_pagina_id": "0:1",
+    "pagina_doc_riferimento": null,
+    "library_key": null
+  },
+  "anteprima": {
+    "base_url": "http://localhost:4100",
+    "comando_avvio": "node scripts/serve-demo.js",
+    "docs_url": "http://localhost:4000"
+  },
+  "percorsi": {
+    "screenshot_dir": "screenshots",
+    "html_dir": "docs/assets/restyle",
+    "report_dir": "reports/ds-figma",
+    "registro_pagine": "reports/ds-figma/registro-pagine.json"
+  },
+  "riferimenti_progetto": [],
+  "preferenze": {
+    "lingua_contenuti": "en",
+    "playwright_autorizzato": false,
+    "viewport_html": "1600x1000"
+  }
+}
