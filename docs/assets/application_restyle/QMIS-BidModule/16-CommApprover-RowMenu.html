@@ -245,12 +245,24 @@
                 <div class="rs-stack rs-stack--tight">
                   <div class="rs-cluster rs-cluster--between">
                     <h3 class="rs-subheading">Attachments</h3>
-                    <span class="rs-meta">2</span>
+                    <span class="rs-meta">6</span>
                   </div>
-                  <div class="rs-stack rs-stack--tight">
-                    <span class="rs-inline"><sl-icon name="file-earmark-word"></sl-icon>TechnicalAttachment.docx</span>
-                    <span class="rs-inline"><sl-icon name="file-earmark-word"></sl-icon>CommercialAttachment.docx</span>
-                  </div>
+                  <sl-table class="attachment-panel" label="Attachments">
+                    <div
+                      slot="toolbar"
+                      class="rs-cluster rs-cluster--nowrap rs-grow"
+                      role="toolbar"
+                      aria-label="Attachment actions"
+                    >
+                      <sl-switch size="small">Current versions</sl-switch>
+                      <span class="rs-spacer"></span>
+                      <sl-dropdown placement="bottom-end" hoist data-table-options>
+                        <sl-button slot="trigger" size="small" caret
+                          ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                        >
+                      </sl-dropdown>
+                    </div>
+                  </sl-table>
                 </div>
               </div>
             </div>
@@ -290,6 +302,10 @@
         isSelected: flow.isNewBid
       });
       await flow.openRowMenu('.bid-list', 0);
+      await flow.mountTable('.attachment-panel', {
+        columns: flow.attachmentPanelColumns,
+        data: flow.bidPanelAttachments
+      });
     </script>
   </body>
 </html>

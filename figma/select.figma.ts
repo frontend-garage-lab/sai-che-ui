@@ -41,11 +41,13 @@ function iconSlot(showProp: string, swapProp: string, slot: string) {
 const prefix = iconSlot('Show Prefix', 'Prefix', 'prefix');
 const suffix = iconSlot('Show Suffix', 'Suffix', 'suffix');
 
-const placeholder = text('Select an option');
+const placeholder = instance.getBoolean('Show Placeholder') ? text('Select an option') : '';
+// Selected value (layer "Value", shown with Show Value): rendered as the value of a matching sl-option.
+const value = instance.getBoolean('Show Value') ? instance.getString('Value') : '';
 
 export default {
-  example: figma.html`<sl-select size="${size}"${label ? ` label="${label}"` : ''}${placeholder ? ` placeholder="${placeholder}"` : ''}${helpText ? ` help-text="${helpText}"` : ''}${status ? ` status="${status}"` : ''}${filled ? ' filled' : ''}${pill ? ' pill' : ''}${clearable ? ' clearable' : ''}${multiple ? ' multiple' : ''}${open ? ' open' : ''}${required ? ' required' : ''}${disabled ? ' disabled' : ''}>${prefix}${suffix}
-  <!-- sl-option elements -->
+  example: figma.html`<sl-select size="${size}"${label ? ` label="${label}"` : ''}${placeholder ? ` placeholder="${placeholder}"` : ''}${helpText ? ` help-text="${helpText}"` : ''}${status ? ` status="${status}"` : ''}${filled ? ' filled' : ''}${pill ? ' pill' : ''}${clearable ? ' clearable' : ''}${multiple ? ' multiple' : ''}${open ? ' open' : ''}${required ? ' required' : ''}${disabled ? ' disabled' : ''}${value ? ' value="1"' : ''}>${prefix}${suffix}
+  ${value ? figma.html`<sl-option value="1">${value}</sl-option>` : '<!-- sl-option elements -->'}
 </sl-select>`,
   imports: ["import 'src/components/select/select.js'"],
   id: 'select',

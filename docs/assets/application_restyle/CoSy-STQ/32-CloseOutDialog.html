@@ -1,0 +1,238 @@
+<!doctype html>
+<!--
+  CoSy-STQ · 32-CloseOutDialog — restyle of application_screenshot/CoSy STQ/32-CloseOutDialog.png
+  Change state: Site Technical Query close-out by contractor.
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/CoSy-STQ/32-CloseOutDialog.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CoSy · Site Technical Queries</title>
+    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
+    <link rel="stylesheet" href="../_shared/restyle.css" />
+    <link rel="stylesheet" href="./flow.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <script>
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
+  </head>
+
+  <body class="sl-theme-light">
+    <sl-header>
+      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+      <span slot="logo"></span>
+      <sl-header-item slot="actions">
+        <sl-avatar initials="UC" label="user_cosy_admin"></sl-avatar>
+        user_cosy_admin
+        <sl-menu slot="menu">
+          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+    </sl-header>
+
+    <div class="rs-shell">
+      <sl-sidebar label="Project navigation" collapsed>
+        <sl-sidebar-group label="Documenti di progetto" count="70">
+          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+          <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Procurement (SAP)" count="71">
+          <sl-icon slot="icon" name="cart"></sl-icon>
+          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Comunicazione" count="47">
+          <sl-icon slot="icon" name="envelope"></sl-icon>
+          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
+          <sl-sidebar-item href="#" current>Site Technical Queries</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Tasks" count="55">
+          <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+          <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Document Center">
+          <sl-icon slot="icon" name="archive"></sl-icon>
+          <sl-sidebar-item href="#">Document Center</sl-sidebar-item>
+          <sl-sidebar-item href="#">Binders Workspace</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="New &amp; import">
+          <sl-icon slot="icon" name="upload"></sl-icon>
+          <sl-sidebar-item href="#">New · Document</sl-sidebar-item>
+          <sl-sidebar-item href="#">New · Placeholder</sl-sidebar-item>
+          <sl-sidebar-item href="#">Import · Import new docs</sl-sidebar-item>
+          <sl-sidebar-item href="#">Import · Bulk upload docs</sl-sidebar-item>
+          <sl-sidebar-item href="#">Content · Bulk load templates</sl-sidebar-item>
+        </sl-sidebar-group>
+      </sl-sidebar>
+
+      <main class="rs-page rs-page--fill" aria-label="Site Technical Queries">
+        <sl-breadcrumb aria-label="Breadcrumb">
+          <sl-breadcrumb-item href="#">Default workspace</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Projects</sl-breadcrumb-item>
+        </sl-breadcrumb>
+
+        <div class="rs-page-header">
+          <div class="rs-page-header__text">
+            <h1 class="rs-title">Site Technical Queries</h1>
+            <span class="rs-meta">000001 - Test Project · 3 versions</span>
+          </div>
+        </div>
+
+        <sl-card aria-label="Filters">
+          <form class="rs-grid rs-grid--fields">
+            <sl-select
+              class="rs-span-4 rs-span-md-6"
+              label="Project"
+              value="000001"
+              placeholder="Select a project"
+              clearable
+            >
+              <sl-option value="000001">000001 - Test Project</sl-option>
+              <sl-option value="000123">000123 - TESTING MOVE FOLDER</sl-option>
+              <sl-option value="032142">032142 - RABIGH Saudi Arabia</sl-option>
+              <sl-option value="032154">032154 - Dangote</sl-option>
+              <sl-option value="032174">032174 - JAZAN IGCC - SARU UNIT - PACKAGE 1</sl-option>
+              <sl-option value="032235">032235 - Mozambique LNG Project</sl-option>
+              <sl-option value="032331_00">032331_00 - FPSO KUTEI - YARD 00 (HULL)</sl-option>
+              <sl-option value="067156">067156 - EPC Digital Platform</sl-option>
+              <sl-option value="240832">240832 Jazan - IGCC PKG2</sl-option>
+              <sl-option value="514001">514001 - BONNY NLNG T7</sl-option>
+              <sl-option value="870310">870310 - TANGGUH_1</sl-option>
+              <sl-option value="99_PAGE_AM">99_PAGE_AM</sl-option>
+              <sl-option value="H02587">H02587 - Khurais Plants Restoration Project</sl-option>
+              <sl-option value="H02755">H02755 - HAWIYAH HGP EXPANSION</sl-option>
+            </sl-select>
+            <sl-select
+              class="rs-span-4 rs-span-md-6"
+              label="Discipline"
+              value="AUT"
+              placeholder="All disciplines"
+              clearable
+            >
+              <sl-option value="AUT">AUT - Automation</sl-option>
+              <sl-option value="INL">INL - Insulation</sl-option>
+            </sl-select>
+            <sl-select
+              class="rs-span-4 rs-span-md-6"
+              label="Subcontractor"
+              value="TESTSUBCO"
+              placeholder="All subcontractors"
+              clearable
+            >
+              <sl-option value="TESTSUBCO">TESTSUBCO</sl-option>
+            </sl-select>
+          </form>
+        </sl-card>
+
+        <sl-table class="stq-list" fill sticky-header label="Site Technical Queries">
+          <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow" role="toolbar" aria-label="STQ actions">
+            <sl-dropdown>
+              <sl-button slot="trigger" size="small" variant="primary" caret
+                ><sl-icon slot="prefix" name="upload"></sl-icon>Import</sl-button
+              >
+              <sl-menu>
+                <sl-menu-item>Site Technical Query…</sl-menu-item>
+              </sl-menu>
+            </sl-dropdown>
+            <span class="rs-spacer"></span>
+            <sl-dropdown placement="bottom-end" hoist data-table-options>
+              <sl-button slot="trigger" size="small" caret
+                ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+              >
+            </sl-dropdown>
+          </div>
+          <sl-empty-state
+            slot="empty"
+            title-text="No Site Technical Queries"
+            description="No STQ matches the selected filters."
+          >
+            <sl-icon slot="icon" name="folder"></sl-icon>
+          </sl-empty-state>
+        </sl-table>
+      </main>
+    </div>
+
+    <sl-dialog label="Close out STQ-TS-AUT-8325_01" open style="--width: 64rem">
+      <div class="rs-stack rs-stack--loose">
+        <sl-description-list cols="2">
+          <sl-description-list-item label="STQ No.">STQ-TS-AUT-8325_01</sl-description-list-item>
+        </sl-description-list>
+        <section class="rs-stack" aria-label="Options">
+          <h3 class="rs-subheading">Options</h3>
+          <div class="rs-grid rs-grid--fields">
+            <sl-checkbox class="rs-span-6">Transmittal creation in PAGE (close-out)</sl-checkbox>
+          </div>
+        </section>
+        <section class="rs-stack" aria-label="Close out by Subco">
+          <h3 class="rs-subheading">Close out by Subco</h3>
+          <div class="rs-grid rs-grid--fields">
+            <sl-input class="rs-span-6" label="DS name"></sl-input>
+            <sl-input class="rs-span-6" label="DS date" type="date"></sl-input>
+            <sl-input class="rs-span-6" label="QA/QC name"></sl-input>
+            <sl-input class="rs-span-6" label="QA/QC date" type="date"></sl-input>
+          </div>
+        </section>
+        <section class="rs-stack" aria-label="Transmittal in from Subco for close-out">
+          <h3 class="rs-subheading">Transmittal in from Subco for close-out</h3>
+          <div class="rs-grid rs-grid--fields">
+            <sl-input class="rs-span-6" label="Number"></sl-input>
+            <sl-input class="rs-span-6" label="Date" type="date"></sl-input>
+          </div>
+        </section>
+        <section class="rs-stack" aria-label="Close out by Contractor">
+          <h3 class="rs-subheading">Close out by Contractor</h3>
+          <div class="rs-grid rs-grid--fields">
+            <sl-input class="rs-span-6" label="DS name"></sl-input>
+            <sl-input class="rs-span-6" label="DS date" type="date"></sl-input>
+            <sl-input class="rs-span-6" label="QA/QC name"></sl-input>
+            <sl-input class="rs-span-6" label="QA/QC date" type="date"></sl-input>
+          </div>
+        </section>
+        <section class="rs-stack" aria-label="Transmittal out to Subco for close-out">
+          <h3 class="rs-subheading">Transmittal out to Subco for close-out</h3>
+          <div class="rs-grid rs-grid--fields">
+            <sl-input class="rs-span-6" label="Number"></sl-input>
+            <sl-input class="rs-span-6" label="Date" type="date"></sl-input>
+          </div>
+        </section>
+      </div>
+      <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>
+      <sl-button slot="footer" variant="primary">Close out</sl-button>
+    </sl-dialog>
+    <script type="module">
+      import * as flow from './data.js';
+
+      await flow.mountTable('.stq-list', {
+        columns: flow.stqColumns,
+        data: flow.stqRows('Issued to Subco'),
+        isSelected: flow.isLatest('STQ-TS-AUT-8325_01')
+      });
+    </script>
+  </body>
+</html>

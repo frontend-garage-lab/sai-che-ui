@@ -544,3 +544,34 @@ export const bidsFiltered = [
     'ABB POWER SYSTEMS'
   )
 ];
+
+/** Attachments of the bid in the detail panel (legacy Attachments panel, screenshot 16). */
+export const bidPanelAttachments = [
+  {
+    name: 'MS Word Attachment.docx',
+    format: 'docx',
+    title: 'Other1',
+    version: '1.0',
+    current: true,
+    cls: 'Commercial'
+  },
+  { name: 'PDF Attachment.pdf', format: 'pdf', title: 'Other2', version: '1.0', current: true, cls: 'Other' },
+  {
+    name: 'MS Excel Attachment.xlsx',
+    format: 'xlsx',
+    title: 'NewAttachmentToTest…',
+    version: '1.0',
+    current: true,
+    cls: 'Other'
+  },
+  { name: 'PDF Attachment.pdf', format: 'pdf', title: 'Commercial1', version: '2.0', current: true, cls: 'Commercial' },
+  { name: 'PDF Attachment.pdf', format: 'pdf', title: 'Technical1', version: '2.0', current: true, cls: 'Technical' },
+  {
+    name: 'MS Word Attachment.docx',
+    format: 'docx',
+    title: 'New Commercial Attac…',
+    version: '2.0',
+    current: true,
+    cls: 'Technical'
+  }
+];

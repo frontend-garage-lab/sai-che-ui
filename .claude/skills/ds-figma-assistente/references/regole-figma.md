@@ -233,3 +233,13 @@ il fill `IMAGE`.
 - `setProperties` su un `Step` cambia gli id dell'`Stepper`: non riusare l'id tra una chiamata e l'altra, ritrovalo dal dialog con `findOne(n => n.type === "INSTANCE" && n.name === "Stepper")`.
 - Ordine: prima `State`, poi `Show Description` / `Show Connector` (false sull'ultimo) / `Error`, per ultimi i testi.
 - Sostituire un Tab Group con un contenuto: `clone()` del frame del pannello (finisce in pagina), `appendChild` nel frame `Wizard` dentro lo slot `Body`, poi `remove()` del Tab Group; il footer si costruisce clonando il Button `Cancel` (non ha spaziatore: i bottoni sono tutti a destra).
+
+## Cloni in blocco e valori dei campi (aggiunto 2026-11-06, CoSy-STQ)
+
+- Clonare N wrapper e modificarli nella **stessa** chiamata fallisce (`findOne` restituisce `null` dentro gli slot dei cloni): prima una chiamata che clona tutti i wrapper e restituisce gli id, poi una seconda che li adatta.
+- Dopo `setProperties` su un'istanza, un nodo rinominato nella stessa chiamata può non essere più trovabile per nome: ritrova i figli per **posizione** (`row.children[i]`) partendo dal contenitore, e rinomina per ultimo.
+- Select/Input con valore (dal 2026-11-06): `Show Placeholder` spento, `Show Value` acceso e il testo nella proprietà `Value` (layer `Value`, colore `neutral/700` = `--sl-input-color`). Nella Select `Show Placeholder` nasconde tutto il frame `Display`: il valore sta nel frame gemello `Value display`. Non scrivere più il valore nel layer del placeholder.
+- Textarea in un form HUG: il frame `field` è FILL e collassa a 1px; dai all'istanza un'altezza FIXED (es. 107 per `rows="3"`).
+- Tabella in un contenitore HUG (es. Attachments nel Detail Panel): `layoutSizingVertical = "FIXED"` con l'altezza toolbar + header + righe, altrimenti collassa.
+- Tab Group con più di 4 tab: le proprietà booleane `Tab 5/6/7` aggiungono le tab (non serve un gap DS).
+- Clonare una variante per aggiungere un asse **perde** i `componentPropertyReferences` delle istanze annidate (es. l'INSTANCE_SWAP dell'icona): dopo il clone ricollegali (`ic.componentPropertyReferences = { mainComponent: '<Prop>#id' }`) e prova lo swap su un'istanza temporanea.

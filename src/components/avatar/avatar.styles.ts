@@ -76,4 +76,35 @@ export default css`
     object-fit: cover;
     overflow: hidden;
   }
+
+  /* Tinted variants: light background, foreground in the variant colour */
+  :host([variant='primary']) .avatar {
+    background-color: var(--sl-color-primary-100);
+    color: var(--sl-color-primary-700);
+  }
+
+  :host([variant='accent']) .avatar {
+    background-color: var(--sl-color-accent-100);
+    color: var(--sl-color-accent-700);
+  }
+
+  :host([variant='success']) .avatar {
+    background-color: var(--sl-color-success-100);
+    color: var(--sl-color-success-700);
+  }
+
+  :host([variant='neutral']) .avatar {
+    background-color: var(--sl-color-neutral-100);
+    color: var(--sl-color-neutral-600);
+  }
+
+  :host([variant='warning']) .avatar {
+    background-color: var(--sl-color-warning-100);
+    color: var(--sl-color-warning-700);
+  }
+
+  :host([variant='danger']) .avatar {
+    background-color: var(--sl-color-danger-100);
+    color: var(--sl-color-danger-700);
+  }
 `;

@@ -19,6 +19,17 @@ const App = () => <SlAvatar label="User avatar" />;
 
 ## Examples
 
+### Variants
+
+Use `variant` for a tinted avatar — a light background with the icon or initials in the variant colour — for example
+the icon tile of a work-area card.
+
+```html:preview
+<sl-avatar shape="rounded" variant="primary" label="Project Management"><sl-icon slot="icon" name="briefcase"></sl-icon></sl-avatar>
+<sl-avatar shape="rounded" variant="neutral" label="Equipment Database"><sl-icon slot="icon" name="gear"></sl-icon></sl-avatar>
+<sl-avatar variant="success" initials="UC" label="user_cosy_admin"></sl-avatar>
+```
+
 ### Images
 
 To use an image for the avatar, set the `image` and `label` attributes. This will take priority and be shown over initials and icons.
