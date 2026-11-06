@@ -621,17 +621,7 @@ export const attachmentPanelColumns = [
     cell: ({ row }) => documentFileCell(row.original.format, row.original.name)
   },
   { id: 'title', accessorKey: 'title', header: 'Title', meta: { width: '6rem', nowrap: true } },
-  {
-    id: 'version',
-    header: 'Version',
-    meta: { width: '7rem', nowrap: true },
-    cell: ({ row }) =>
-      html`<span class="rs-inline"
-        >${row.original.version}${row.original.current
-          ? html`<sl-tag size="small" variant="success">Current</sl-tag>`
-          : ''}</span
-      >`
-  },
+  { id: 'version', accessorKey: 'version', header: 'Ver.', meta: { width: '4.5rem', nowrap: true } },
   { id: 'cls', accessorKey: 'cls', header: 'Class', meta: { width: '5.5rem', nowrap: true } },
   { id: 'actions', meta: { actions: true }, cell: () => panelFileMenu }
 ];
@@ -642,17 +632,17 @@ const panelFileMenu = html`<sl-menu>
 </sl-menu>`;
 
 /**
- * Versions of a record in a detail panel, same table as the attachments: Name · Version code (+ "Current") ·
- * Approval status · ⋮ (Download). Rows: { name, format, version, current, status }.
+ * Versions of a record in a detail panel, same table as the attachments: Name · Ver. · Revision status
+ * (Current / Superseded, sl-status) · ⋮ (Download). Rows: { name, format, version, revisionStatus }.
  */
 export const versionPanelColumns = [
   attachmentPanelColumns[0],
   attachmentPanelColumns[2],
   {
-    id: 'status',
-    header: 'Approval status',
-    meta: { width: '10.5rem', nowrap: true },
-    cell: ({ row }) => statusTag(row.original.status)
+    id: 'revisionStatus',
+    header: 'Revision status',
+    meta: { width: '9rem', nowrap: true },
+    cell: ({ row }) => statusTag(row.original.revisionStatus)
   },
   attachmentPanelColumns[4]
 ];

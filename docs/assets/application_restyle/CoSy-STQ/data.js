@@ -173,7 +173,7 @@ export const stqAttachments = [
 ];
 
 /** Versions of STQ-TS-AUT-8325_01 shown in the detail panel (latest first). */
-export const stqVersions = latestStatus => [
-  { name: 'STQ-TS-AUT-8325_01', format: 'pdf', version: '0.2', current: true, status: latestStatus },
-  { name: 'STQ-TS-AUT-8325_01', format: 'pdf', version: '0.1', current: false, status: 'Draft' }
+export const stqVersions = () => [
+  { name: 'STQ-TS-AUT-8325_01', format: 'pdf', version: '0.2', revisionStatus: 'Current' },
+  { name: 'STQ-TS-AUT-8325_01', format: 'pdf', version: '0.1', revisionStatus: 'Superseded' }
 ];

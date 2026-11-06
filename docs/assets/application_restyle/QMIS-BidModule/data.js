@@ -370,15 +370,7 @@ export const commApproverColumns = columns({
 const attachmentColumns = [
   col('name', 'Name', 'minmax(12rem, 1fr)'),
   col('title', 'Title', '8rem'),
-  {
-    id: 'version',
-    header: 'Version code',
-    meta: { width: '9rem' },
-    cell: ({ row }) =>
-      html`<span class="rs-inline"
-        >${row.original.version}<sl-tag size="small" variant="success">Current</sl-tag></span
-      >`
-  },
+  col('version', 'Version code', '9rem'),
   col('cls', 'Class', '8rem'),
   col('type', 'Type', '7rem'),
   {
@@ -575,3 +567,10 @@ export const bidPanelAttachments = [
     cls: 'Technical'
   }
 ];
+
+/** Attachments of the bid in the detail panel, from the files each screen lists (unknown values are "—"). */
+const PANEL_FILES = {
+  'CommercialAttachment.docx': { title: '—', version: '1.0', cls: 'Commercial' },
+  'TechnicalAttachment.docx': { title: '—', version: '—', cls: '—' }
+};
+export const panelAttachmentsOf = (...names) => names.map(name => ({ name, format: 'docx', ...PANEL_FILES[name] }));
