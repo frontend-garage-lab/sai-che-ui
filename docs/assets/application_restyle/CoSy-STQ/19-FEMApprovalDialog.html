@@ -183,8 +183,8 @@
         <sl-description-list cols="2">
           <sl-description-list-item label="STQ No.">STQ-TS-AUT-8325_01</sl-description-list-item>
         </sl-description-list>
-        <section class="rs-stack" aria-label="Impact">
-          <h3 class="rs-subheading">Impact</h3>
+        <sl-card aria-label="Impact">
+          <h3 slot="header" class="rs-heading">Impact</h3>
           <div class="rs-grid rs-grid--fields">
             <sl-select class="rs-span-6" label="Cost impact by contractor" value="no" required
               ><sl-option value="yes">Yes</sl-option><sl-option value="no">No</sl-option></sl-select
@@ -193,34 +193,34 @@
               ><sl-option value="yes">Yes</sl-option><sl-option value="no">No</sl-option></sl-select
             >
           </div>
-        </section>
-        <section class="rs-stack" aria-label="Field Engineering Manager">
-          <h3 class="rs-subheading">Field Engineering Manager</h3>
+        </sl-card>
+        <sl-card aria-label="Field Engineering Manager">
+          <h3 slot="header" class="rs-heading">Field Engineering Manager</h3>
           <div class="rs-grid rs-grid--fields">
             <sl-select class="rs-span-6" label="Name" value="u" required
               ><sl-option value="u">user_cosy_admin</sl-option></sl-select
             >
             <sl-textarea class="rs-span-12" label="Notes" rows="2"></sl-textarea>
           </div>
-        </section>
-        <section class="rs-stack" aria-label="Prepared by Field Specialist Engineer">
-          <h3 class="rs-subheading">Prepared by Field Specialist Engineer</h3>
+        </sl-card>
+        <sl-card aria-label="Prepared by Field Specialist Engineer">
+          <h3 slot="header" class="rs-heading">Prepared by Field Specialist Engineer</h3>
           <div class="rs-grid rs-grid--fields">
             <sl-select class="rs-span-6" label="Name" value="u" disabled
               ><sl-option value="u">user_cosy_admin</sl-option></sl-select
             >
             <sl-input class="rs-span-6" label="Date" type="date" value="2026-10-29" disabled></sl-input>
           </div>
-        </section>
-        <section class="rs-stack" aria-label="Verifier">
-          <h3 class="rs-subheading">Verifier</h3>
+        </sl-card>
+        <sl-card aria-label="Verifier">
+          <h3 slot="header" class="rs-heading">Verifier</h3>
           <div class="rs-grid rs-grid--fields">
             <sl-select class="rs-span-6" label="Name" value="u" disabled
               ><sl-option value="u">user_cosy_admin</sl-option></sl-select
             >
             <sl-input class="rs-span-6" label="Date" type="date" value="2026-10-29" disabled></sl-input>
           </div>
-        </section>
+        </sl-card>
       </div>
       <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>
       <sl-button slot="footer" variant="primary">Approve STQ</sl-button>

@@ -184,9 +184,9 @@
           <sl-tab slot="nav" panel="close-out">Close out</sl-tab>
           <sl-tab slot="nav" panel="transmission">Transmission details</sl-tab>
           <sl-tab-panel name="info" active>
-            <div class="rs-stack rs-stack--loose">
-              <section class="rs-stack" aria-label="Identification">
-                <h3 class="rs-subheading">Identification</h3>
+            <div class="rs-stack">
+              <sl-card aria-label="Identification">
+                <h3 slot="header" class="rs-heading">Identification</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-input class="rs-span-6" label="STQ No." value="testD123.pdf" required></sl-input>
                   <sl-select class="rs-span-6" label="Project" value="000001" required
@@ -196,9 +196,9 @@
                   <sl-input class="rs-span-6" label="Subject"></sl-input>
                   <sl-input class="rs-span-6" label="Original filename" value="testD123.pdf" readonly></sl-input>
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Revision">
-                <h3 class="rs-subheading">Revision</h3>
+              </sl-card>
+              <sl-card aria-label="Revision">
+                <h3 slot="header" class="rs-heading">Revision</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-input class="rs-span-3" label="Revision code" value="00" required></sl-input>
                   <sl-select class="rs-span-3" label="Revision status" value="current">
@@ -211,9 +211,9 @@
                     value="2026-10-29T15:17:11"
                   ></sl-input>
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Classification">
-                <h3 class="rs-subheading">Classification</h3>
+              </sl-card>
+              <sl-card aria-label="Classification">
+                <h3 slot="header" class="rs-heading">Classification</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-select class="rs-span-6" label="Discipline" value="INL" required
                     ><sl-option value="INL">INL - Insulation</sl-option></sl-select
@@ -229,13 +229,13 @@
                     ><sl-option value="8400">8400</sl-option></sl-select
                   >
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Response">
-                <h3 class="rs-subheading">Response</h3>
+              </sl-card>
+              <sl-card aria-label="Response">
+                <h3 slot="header" class="rs-heading">Response</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-textarea class="rs-span-12" label="Contractor response" rows="3"></sl-textarea>
                 </div>
-              </section>
+              </sl-card>
             </div>
           </sl-tab-panel>
           <sl-tab-panel name="from-subcontractor"></sl-tab-panel>

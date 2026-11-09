@@ -161,8 +161,8 @@
             ><sl-status filled size="small" variant="neutral">Draft</sl-status></sl-description-list-item
           >
         </sl-description-list>
-        <section class="rs-stack" aria-label="Organizations">
-          <h3 class="rs-subheading">Organizations</h3>
+        <sl-card aria-label="Organizations">
+          <h3 slot="header" class="rs-heading">Organizations</h3>
           <div class="rs-grid rs-grid--fields">
             <sl-select class="rs-span-12" label="Project" value="v" required
               ><sl-option value="v">000001 - Yard Training (Central)</sl-option></sl-select
@@ -180,16 +180,16 @@
               ><sl-option value="v">ts</sl-option></sl-select
             >
           </div>
-        </section>
-        <section class="rs-stack" aria-label="Details">
-          <h3 class="rs-subheading">Details</h3>
+        </sl-card>
+        <sl-card aria-label="Details">
+          <h3 slot="header" class="rs-heading">Details</h3>
           <div class="rs-grid rs-grid--fields">
             <sl-select class="rs-span-6" label="Discipline" placeholder="Select…" clearable></sl-select>
             <sl-select class="rs-span-6" label="Issuing reason" placeholder="Select…" clearable></sl-select>
             <sl-input class="rs-span-12" label="Title"></sl-input>
             <sl-textarea class="rs-span-12" label="Notes" rows="3"></sl-textarea>
           </div>
-        </section>
+        </sl-card>
       </div>
       <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>
       <sl-button slot="footer"><sl-icon slot="prefix" name="chevron-left"></sl-icon>Back</sl-button>

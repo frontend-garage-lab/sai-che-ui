@@ -207,9 +207,9 @@
           <sl-tab slot="nav" panel="info-2">Info 2</sl-tab>
           <sl-tab slot="nav" panel="folder-links">Folder links</sl-tab>
           <sl-tab-panel name="info-1" active>
-            <div class="rs-stack rs-stack--loose">
-              <section class="rs-stack" aria-label="Identification">
-                <h3 class="rs-subheading">Identification</h3>
+            <div class="rs-stack">
+              <sl-card aria-label="Identification">
+                <h3 slot="header" class="rs-heading">Identification</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-input class="rs-span-6" label="Document name" value="TestDoc.pdf" required></sl-input>
                   <sl-input class="rs-span-6" label="Document identification number" value="test" required></sl-input>
@@ -219,24 +219,26 @@
                   >
                   <sl-input class="rs-span-12" label="Title"></sl-input>
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Revision">
-                <h3 class="rs-subheading">Revision</h3>
-                <sl-alert variant="warning" open>
-                  <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
-                  You are importing a Current revision.
-                </sl-alert>
-                <div class="rs-grid rs-grid--fields">
-                  <sl-input class="rs-span-3" label="Revision code" value="00" required></sl-input>
-                  <sl-select class="rs-span-3" label="Revision status" value="current" required>
-                    <sl-option value="current">Current</sl-option><sl-option value="superseded">Superseded</sl-option>
-                  </sl-select>
-                  <sl-input class="rs-span-6" label="Revision causal"></sl-input>
-                  <sl-input class="rs-span-6" label="Design dwg sub-rev"></sl-input>
+              </sl-card>
+              <sl-card aria-label="Revision">
+                <h3 slot="header" class="rs-heading">Revision</h3>
+                <div class="rs-stack">
+                  <sl-alert variant="warning" open>
+                    <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
+                    You are importing a Current revision.
+                  </sl-alert>
+                  <div class="rs-grid rs-grid--fields">
+                    <sl-input class="rs-span-3" label="Revision code" value="00" required></sl-input>
+                    <sl-select class="rs-span-3" label="Revision status" value="current" required>
+                      <sl-option value="current">Current</sl-option><sl-option value="superseded">Superseded</sl-option>
+                    </sl-select>
+                    <sl-input class="rs-span-6" label="Revision causal"></sl-input>
+                    <sl-input class="rs-span-6" label="Design dwg sub-rev"></sl-input>
+                  </div>
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Status">
-                <h3 class="rs-subheading">Status</h3>
+              </sl-card>
+              <sl-card aria-label="Status">
+                <h3 slot="header" class="rs-heading">Status</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-select class="rs-span-6" label="Document status" value="v"
                     ><sl-option value="v">Approved</sl-option></sl-select
@@ -245,9 +247,9 @@
                     <sl-option value="yes">Yes</sl-option><sl-option value="no">No</sl-option>
                   </sl-select>
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Classification">
-                <h3 class="rs-subheading">Classification</h3>
+              </sl-card>
+              <sl-card aria-label="Classification">
+                <h3 slot="header" class="rs-heading">Classification</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-select class="rs-span-6" label="Document type" value="v" required
                     ><sl-option value="v">CA - CALCULATION</sl-option></sl-select
@@ -263,7 +265,7 @@
                   <sl-select class="rs-span-6" label="Item" placeholder="Select…" clearable></sl-select>
                   <sl-textarea class="rs-span-12" label="References" rows="3"></sl-textarea>
                 </div>
-              </section>
+              </sl-card>
             </div>
           </sl-tab-panel>
           <sl-tab-panel name="info-2"></sl-tab-panel>

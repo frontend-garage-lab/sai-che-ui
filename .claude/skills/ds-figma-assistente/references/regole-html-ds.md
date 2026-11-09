@@ -25,16 +25,16 @@ text style). Le regole specifiche del progetto (mappature, pattern di pagina, sc
    `for n in <icone usate>; do [ -f <code_connect.dir>/icon-$n.figma.ts ] || echo "MANCA $n"; done`. Un'icona
    mancante scoperta solo nel flusso 3 blocca la pagina in `partial` e costa un publish in più (2026-10-30:
    `arrow-left` e `funnel` in QMIS 25, 27, 28).
-8b. **`sl-table size="small"` solo per una tabella annidata nella cella di un'altra tabella** (DECISIONS "Sotto-tabella
+   8b. **`sl-table size="small"` solo per una tabella annidata nella cella di un'altra tabella** (DECISIONS "Sotto-tabella
    in una cella"). Le tabelle di pagina, di dialog e di tab, cronologie comprese, usano la size normale anche quando
    sono strette o con molte colonne (errore segnalato dall'utente il 2026-10-30, QMIS 22).
-8c. **Config in ogni tabella con più colonne**: toolbar con `.rs-spacer` + `sl-dropdown data-table-options` (Config)
+   8c. **Config in ogni tabella con più colonne**: toolbar con `.rs-spacer` + `sl-dropdown data-table-options` (Config)
    in fondo a destra, anche se la tabella non ha altre azioni e anche nei dialog e nei tab. Verificalo prima di
    consegnare: ogni `sl-table` senza `data-table-options` è un errore (DECISIONS "Ordine dei pulsanti nella toolbar";
    2026-10-30, 11 tabelle QMIS senza Config).
    **Eccezione:** le tabelle dentro un `sl-detail-panel` (es. tab Revisions del dettaglio) non hanno toolbar né Config
    (segnalato dall'utente il 2026-10-30, DACS-Toolbar).
-8d. **Celle documento uniformi agli altri flussi** (DECISIONS "Cella documento con file", scelta dell'utente
+   8d. **Celle documento uniformi agli altri flussi** (DECISIONS "Cella documento con file", scelta dell'utente
    2026-10-30): nelle **liste principali** la struttura è quella di `documentColumns` (Quick info con l'icona del file
    nativo + `documentCell`); nelle **tabelle dei pannelli di dettaglio** (tab Revisions) e nel flusso DACS-Toolbar la
    cella è `documentRowCell` / `documentFileCell` (icona del file prima del nome, senza Quick info). Mai ridefinire
@@ -47,19 +47,24 @@ text style). Le regole specifiche del progetto (mappature, pattern di pagina, sc
     `scrollTop > 0` dopo il caricamento (uno `scrollIntoView` scorre anche gli antenati e nasconde breadcrumb e
     titolo): misura `scrollHeight`/`clientHeight` di `main` prima di dichiarare la pagina pronta per Figma.
 11. **Regioni nominate** con `aria-label` e una classe semantica.
+    11b. **Sezioni di un form lungo**: quando un form (pagina o dialog) è diviso in più sezioni con titolo e ha molti
+    campi (soglia nelle decisioni del progetto), ogni sezione è un componente card del DS con il titolo nell'header,
+    non un titolo libero su fondo neutro. I form brevi, a sezione unica o in sola lettura usano il sottotitolo semplice.
+    Card dentro un dialog sono ammesse solo in questo caso (decisione dell'utente 2026-11-09). Quando la regola
+    cambia, applicala a **tutte** le pagine che la soddisfano e aggiorna il frame Figma di ognuna (flusso 3).
 12. I contenitori senza componente Figma (es. menu dentro un dropdown, pannello di una tab) sono ammessi se sono
     contenuti nello snippet del genitore.
 
 ## Cosa conta come "nuovo elemento" (da segnalare sempre)
 
-| Caso | Esempio | Cosa scrivere nel report |
-| --- | --- | --- |
-| Superficie non DS | box con fondo o bordo | perché la card non basta; proposta di variante o componente |
-| Override `::part` | badge con colore non previsto | variante da aggiungere |
-| Composizione ricorrente | dual list, document viewer | proposta di pattern o componente composto |
-| Icona mancante | `funnel`, `inbox` | nome ideale + icona usata al suo posto |
-| Componente senza Code Connect usato come elemento principale | — | richiesta di template Code Connect |
-| Testo con stile non coperto | etichetta tabellare 11px | proposta di text style o token |
+| Caso                                                         | Esempio                       | Cosa scrivere nel report                                    |
+| ------------------------------------------------------------ | ----------------------------- | ----------------------------------------------------------- |
+| Superficie non DS                                            | box con fondo o bordo         | perché la card non basta; proposta di variante o componente |
+| Override `::part`                                            | badge con colore non previsto | variante da aggiungere                                      |
+| Composizione ricorrente                                      | dual list, document viewer    | proposta di pattern o componente composto                   |
+| Icona mancante                                               | `funnel`, `inbox`             | nome ideale + icona usata al suo posto                      |
+| Componente senza Code Connect usato come elemento principale | —                             | richiesta di template Code Connect                          |
+| Testo con stile non coperto                                  | etichetta tabellare 11px      | proposta di text style o token                              |
 
 ## Principi di design (applicativi enterprise)
 

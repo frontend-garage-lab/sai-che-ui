@@ -162,9 +162,9 @@
           <sl-tab slot="nav" panel="info-2">Info 2</sl-tab>
           <sl-tab slot="nav" panel="folder-links">Folder links</sl-tab>
           <sl-tab-panel name="info-1" active>
-            <div class="rs-stack rs-stack--loose">
-              <section class="rs-stack" aria-label="Identification">
-                <h3 class="rs-subheading">Identification</h3>
+            <div class="rs-stack">
+              <sl-card aria-label="Identification">
+                <h3 slot="header" class="rs-heading">Identification</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-input class="rs-span-6" label="Document name" value="test2.pdf" readonly></sl-input>
                   <sl-input class="rs-span-6" label="Document identification number" value="2558" readonly></sl-input>
@@ -172,9 +172,9 @@
                   <sl-input class="rs-span-6" label="Project" value="000001" readonly></sl-input>
                   <sl-input class="rs-span-12" label="Title"></sl-input>
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Revision">
-                <h3 class="rs-subheading">Revision</h3>
+              </sl-card>
+              <sl-card aria-label="Revision">
+                <h3 slot="header" class="rs-heading">Revision</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-input class="rs-span-3" label="Revision code" value="A1"></sl-input>
                   <sl-select class="rs-span-3" label="Revision status" value="current"
@@ -183,18 +183,18 @@
                   >
                   <sl-input class="rs-span-6" label="Design dwg sub-rev"></sl-input>
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Status">
-                <h3 class="rs-subheading">Status</h3>
+              </sl-card>
+              <sl-card aria-label="Status">
+                <h3 slot="header" class="rs-heading">Status</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-input class="rs-span-6" label="Document status" value="Approved" readonly></sl-input>
                   <sl-select class="rs-span-6" label="Confidential" value="yes"
                     ><sl-option value="yes">Yes</sl-option><sl-option value="no">No</sl-option></sl-select
                   >
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Classification">
-                <h3 class="rs-subheading">Classification</h3>
+              </sl-card>
+              <sl-card aria-label="Classification">
+                <h3 slot="header" class="rs-heading">Classification</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-select class="rs-span-6" label="Document type" placeholder="Select…" clearable></sl-select>
                   <sl-select class="rs-span-6" label="Discipline" placeholder="Select…" clearable></sl-select>
@@ -206,9 +206,9 @@
                   ></sl-select>
                   <sl-select class="rs-span-6" label="Product type" placeholder="Select…" clearable></sl-select>
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Shop drawings">
-                <h3 class="rs-subheading">Shop drawings</h3>
+              </sl-card>
+              <sl-card aria-label="Shop drawings">
+                <h3 slot="header" class="rs-heading">Shop drawings</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-select class="rs-span-6" label="WBS fabrication activity" value="v"
                     ><sl-option value="v">admingroup-Test0607</sl-option></sl-select
@@ -220,17 +220,17 @@
                   <sl-select class="rs-span-6" label="Workable" placeholder="Select…" clearable></sl-select>
                   <sl-input class="rs-span-12" label="Notes" value="Testing this doc"></sl-input>
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Planning">
-                <h3 class="rs-subheading">Planning</h3>
+              </sl-card>
+              <sl-card aria-label="Planning">
+                <h3 slot="header" class="rs-heading">Planning</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-input class="rs-span-4" label="SD planned date" type="date"></sl-input>
                   <sl-input class="rs-span-4" label="SD forecast date" type="date"></sl-input>
                   <sl-input class="rs-span-4" label="Actual SD end date" type="date"></sl-input>
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Binders">
-                <h3 class="rs-subheading">Binders</h3>
+              </sl-card>
+              <sl-card aria-label="Binders">
+                <h3 slot="header" class="rs-heading">Binders</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-select
                     class="rs-span-12"
@@ -240,7 +240,7 @@
                     clearable
                   ></sl-select>
                 </div>
-              </section>
+              </sl-card>
             </div>
           </sl-tab-panel>
           <sl-tab-panel name="info-2"></sl-tab-panel>

@@ -257,19 +257,21 @@
         </sl-stepper>
         <div class="rs-stack rs-stack--loose">
           <div class="rs-grid rs-grid--fields">
-            <section class="rs-span-6 rs-stack rs-stack--tight" aria-label="SharePoint delivery filters">
-              <h3 class="rs-subheading">SharePoint delivery filters</h3>
-              <sl-checkbox size="small">Contents of job document revision</sl-checkbox>
-              <sl-checkbox size="small">Comments included in the transmittal</sl-checkbox>
-              <sl-checkbox size="small">Renditions associated to the job document</sl-checkbox>
-              <sl-checkbox size="small">All files associated to the document revision</sl-checkbox>
-            </section>
-            <section class="rs-span-6 rs-stack rs-stack--tight" aria-label="Email attachment options">
-              <h3 class="rs-subheading">Email attachment options</h3>
+            <sl-card class="rs-span-6" aria-label="SharePoint delivery filters">
+              <h3 slot="header" class="rs-heading">SharePoint delivery filters</h3>
+              <div class="rs-stack rs-stack--tight">
+                <sl-checkbox size="small">Contents of job document revision</sl-checkbox>
+                <sl-checkbox size="small">Comments included in the transmittal</sl-checkbox>
+                <sl-checkbox size="small">Renditions associated to the job document</sl-checkbox>
+                <sl-checkbox size="small">All files associated to the document revision</sl-checkbox>
+              </div>
+            </sl-card>
+            <sl-card class="rs-span-6" aria-label="Email attachment options">
+              <h3 slot="header" class="rs-heading">Email attachment options</h3>
               <sl-checkbox size="small" checked
                 >Do not include document content files, if any, in email attachments</sl-checkbox
               >
-            </section>
+            </sl-card>
           </div>
 
           <sl-table

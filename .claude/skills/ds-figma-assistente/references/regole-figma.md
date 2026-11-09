@@ -243,3 +243,24 @@ il fill `IMAGE`.
 - Tabella in un contenitore HUG (es. Attachments nel Detail Panel): `layoutSizingVertical = "FIXED"` con l'altezza toolbar + header + righe, altrimenti collassa.
 - Tab Group con più di 4 tab: le proprietà booleane `Tab 5/6/7` aggiungono le tab (non serve un gap DS).
 - Clonare una variante per aggiungere un asse **perde** i `componentPropertyReferences` delle istanze annidate (es. l'INSTANCE_SWAP dell'icona): dopo il clone ricollegali (`ic.componentPropertyReferences = { mainComponent: '<Prop>#id' }`) e prova lo swap su un'istanza temporanea.
+
+## Avvolgere contenuti esistenti in un componente (aggiunto 2026-11-09, sezioni di form → Card)
+
+Caso tipico: una pagina già fatta cambia layout (es. le sezioni di un form diventano card) e va aggiornata in-place.
+
+- **Un nodo dentro lo slot di un'istanza non si sposta in un'altra istanza**: `appendChild` lo ricrea con un id nuovo
+  e la riga dopo fallisce con "node does not exist" (la chiamata viene annullata per intero). Procedura: inserire
+  l'istanza nuova con `insertChild(idx, …)` (`idx` con `findIndex` per id: `indexOf` restituisce −1 sui nodi annidati
+  in istanza), **rileggerla** da `parent.children[idx]`, **clonare** il contenuto nello slot, rimuovere l'originale
+  ritrovandolo per nome/struttura. Ogni id va riletto dopo ogni spostamento.
+- **Il clone eredita il sizing del vecchio contesto**: dentro lo slot del nuovo componente impostare
+  `layoutSizingHorizontal = "FILL"` e `layoutSizingVertical = "HUG"` (un FILL verticale in uno slot HUG collassa a
+  pochi pixel).
+- **Il padding del nuovo contenitore riduce la larghezza**: i figli `FIXED` calcolati sulla griglia a colonne vanno
+  ricalcolati (span = `round((w+gap)/(colVecchia+gap))`, nuova w = `span·colNuova + (span−1)·gap`). Cercare le righe
+  in cui la somma dei figli supera la larghezza e i figli isolati fuori griglia; restituire span prima/dopo.
+- **I contenitori HUG crescono** (un dialog si allunga e il footer esce dal frame): applicare il limite dell'HTML
+  (`max-height` → altezza FIXED + corpo FILL con clip) e ricentrare.
+- Elementi affiancati in una grid HTML (stessa altezza per `align-items: stretch`): `layoutSizingVertical = "FILL"`.
+- Prima scansione read-only su tutte le pagine coinvolte (titoli dall'HTML → nodo in Figma); le sezioni non trovate di
+  solito sono fuori dallo stato disegnato (tab non attiva, parte tagliata dallo scroll): non vanno aggiunte.

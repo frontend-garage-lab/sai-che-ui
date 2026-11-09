@@ -257,9 +257,9 @@
             </sl-select>
           </div>
           <div class="rs-grid">
-            <div class="rs-span-6 rs-stack">
-              <div class="rs-cluster rs-cluster--between">
-                <h3 class="rs-subheading">Technical</h3>
+            <sl-card class="rs-span-6" aria-label="Technical">
+              <div slot="header" class="rs-cluster rs-cluster--between">
+                <h3 class="rs-heading">Technical</h3>
                 <sl-status filled size="small" variant="neutral">Not requested</sl-status>
               </div>
               <div class="rs-grid rs-grid--fields">
@@ -272,10 +272,10 @@
                 <sl-input class="rs-span-4" type="time" label="Time"></sl-input>
                 <sl-textarea class="rs-span-12" label="Approver notes" rows="3"></sl-textarea>
               </div>
-            </div>
-            <div class="rs-span-6 rs-stack">
-              <div class="rs-cluster rs-cluster--between">
-                <h3 class="rs-subheading">Commercial</h3>
+            </sl-card>
+            <sl-card class="rs-span-6" aria-label="Commercial">
+              <div slot="header" class="rs-cluster rs-cluster--between">
+                <h3 class="rs-heading">Commercial</h3>
                 <sl-status filled size="small" variant="neutral">Not requested</sl-status>
               </div>
               <div class="rs-grid rs-grid--fields">
@@ -288,7 +288,7 @@
                 <sl-input class="rs-span-4" type="time" label="Time"></sl-input>
                 <sl-textarea class="rs-span-12" label="Approver notes" rows="3"></sl-textarea>
               </div>
-            </div>
+            </sl-card>
           </div>
         </div>
       </div>

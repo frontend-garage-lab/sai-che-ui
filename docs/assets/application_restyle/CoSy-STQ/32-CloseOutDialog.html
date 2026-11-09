@@ -183,44 +183,44 @@
         <sl-description-list cols="2">
           <sl-description-list-item label="STQ No.">STQ-TS-AUT-8325_01</sl-description-list-item>
         </sl-description-list>
-        <section class="rs-stack" aria-label="Options">
-          <h3 class="rs-subheading">Options</h3>
+        <sl-card aria-label="Options">
+          <h3 slot="header" class="rs-heading">Options</h3>
           <div class="rs-grid rs-grid--fields">
             <sl-checkbox class="rs-span-6">Transmittal creation in PAGE (close-out)</sl-checkbox>
           </div>
-        </section>
-        <section class="rs-stack" aria-label="Close out by Subco">
-          <h3 class="rs-subheading">Close out by Subco</h3>
+        </sl-card>
+        <sl-card aria-label="Close out by Subco">
+          <h3 slot="header" class="rs-heading">Close out by Subco</h3>
           <div class="rs-grid rs-grid--fields">
             <sl-input class="rs-span-6" label="DS name"></sl-input>
             <sl-input class="rs-span-6" label="DS date" type="date"></sl-input>
             <sl-input class="rs-span-6" label="QA/QC name"></sl-input>
             <sl-input class="rs-span-6" label="QA/QC date" type="date"></sl-input>
           </div>
-        </section>
-        <section class="rs-stack" aria-label="Transmittal in from Subco for close-out">
-          <h3 class="rs-subheading">Transmittal in from Subco for close-out</h3>
+        </sl-card>
+        <sl-card aria-label="Transmittal in from Subco for close-out">
+          <h3 slot="header" class="rs-heading">Transmittal in from Subco for close-out</h3>
           <div class="rs-grid rs-grid--fields">
             <sl-input class="rs-span-6" label="Number"></sl-input>
             <sl-input class="rs-span-6" label="Date" type="date"></sl-input>
           </div>
-        </section>
-        <section class="rs-stack" aria-label="Close out by Contractor">
-          <h3 class="rs-subheading">Close out by Contractor</h3>
+        </sl-card>
+        <sl-card aria-label="Close out by Contractor">
+          <h3 slot="header" class="rs-heading">Close out by Contractor</h3>
           <div class="rs-grid rs-grid--fields">
             <sl-input class="rs-span-6" label="DS name"></sl-input>
             <sl-input class="rs-span-6" label="DS date" type="date"></sl-input>
             <sl-input class="rs-span-6" label="QA/QC name"></sl-input>
             <sl-input class="rs-span-6" label="QA/QC date" type="date"></sl-input>
           </div>
-        </section>
-        <section class="rs-stack" aria-label="Transmittal out to Subco for close-out">
-          <h3 class="rs-subheading">Transmittal out to Subco for close-out</h3>
+        </sl-card>
+        <sl-card aria-label="Transmittal out to Subco for close-out">
+          <h3 slot="header" class="rs-heading">Transmittal out to Subco for close-out</h3>
           <div class="rs-grid rs-grid--fields">
             <sl-input class="rs-span-6" label="Number"></sl-input>
             <sl-input class="rs-span-6" label="Date" type="date"></sl-input>
           </div>
-        </section>
+        </sl-card>
       </div>
       <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>
       <sl-button slot="footer" variant="primary">Close out</sl-button>

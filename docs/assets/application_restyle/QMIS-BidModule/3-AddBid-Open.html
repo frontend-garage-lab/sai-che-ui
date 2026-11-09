@@ -254,8 +254,8 @@
             Fill in the required fields to save the bid: Client, Activity type, Business unit, Project name, Saipem
             bidding entity.
           </sl-alert>
-          <div class="rs-stack rs-stack--tight">
-            <h3 class="rs-subheading">General</h3>
+          <sl-card aria-label="General">
+            <h3 slot="header" class="rs-heading">General</h3>
             <div class="rs-grid rs-grid--fields">
               <sl-input
                 class="rs-span-6"
@@ -271,9 +271,9 @@
                 <sl-option value="v">Ongoing</sl-option>
               </sl-select>
             </div>
-          </div>
-          <div class="rs-stack rs-stack--tight">
-            <h3 class="rs-subheading">Client and project</h3>
+          </sl-card>
+          <sl-card aria-label="Client and project">
+            <h3 slot="header" class="rs-heading">Client and project</h3>
             <div class="rs-grid rs-grid--fields">
               <div class="rs-span-6 rs-stack rs-stack--tight">
                 <sl-select
@@ -298,9 +298,9 @@
               <sl-select class="rs-span-6" label="Geographical area" clearable></sl-select>
               <sl-select class="rs-span-6" label="Project value size" clearable></sl-select>
             </div>
-          </div>
-          <div class="rs-stack rs-stack--tight">
-            <h3 class="rs-subheading">Organization</h3>
+          </sl-card>
+          <sl-card aria-label="Organization">
+            <h3 slot="header" class="rs-heading">Organization</h3>
             <div class="rs-grid rs-grid--fields">
               <sl-select
                 class="rs-span-6"
@@ -322,9 +322,9 @@
               <sl-select class="rs-span-6" label="Legal entity" clearable></sl-select>
               <sl-select class="rs-span-6" label="Leading company" clearable></sl-select>
             </div>
-          </div>
-          <div class="rs-stack rs-stack--tight">
-            <h3 class="rs-subheading">Activity and dates</h3>
+          </sl-card>
+          <sl-card aria-label="Activity and dates">
+            <h3 slot="header" class="rs-heading">Activity and dates</h3>
             <div class="rs-grid rs-grid--fields">
               <sl-select
                 class="rs-span-6"
@@ -339,9 +339,9 @@
               <sl-input class="rs-span-6" label="Technical submission to client" type="date"></sl-input>
               <sl-input class="rs-span-6" label="Commercial submission to client" type="date"></sl-input>
             </div>
-          </div>
-          <div class="rs-stack rs-stack--tight">
-            <h3 class="rs-subheading">Bid team</h3>
+          </sl-card>
+          <sl-card aria-label="Bid team">
+            <h3 slot="header" class="rs-heading">Bid team</h3>
             <div class="rs-grid rs-grid--fields">
               <sl-input class="rs-span-6" label="Bid quality responsible"></sl-input>
               <sl-input class="rs-span-6" label="Bid quality team"></sl-input>
@@ -350,7 +350,7 @@
                 <sl-button><sl-icon slot="prefix" name="person-fill"></sl-icon>Choose user</sl-button>
               </div>
             </div>
-          </div>
+          </sl-card>
         </div>
       </div>
       <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>

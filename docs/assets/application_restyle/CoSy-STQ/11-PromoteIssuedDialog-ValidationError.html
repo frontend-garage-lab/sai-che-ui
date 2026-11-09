@@ -189,9 +189,9 @@
           <sl-tab slot="nav" panel="from-subcontractor">From subcontractor</sl-tab>
           <sl-tab slot="nav" panel="approval" active>Approval</sl-tab>
           <sl-tab-panel name="info">
-            <div class="rs-stack rs-stack--loose">
-              <section class="rs-stack" aria-label="Revision">
-                <h3 class="rs-subheading">Revision</h3>
+            <div class="rs-stack">
+              <sl-card aria-label="Revision">
+                <h3 slot="header" class="rs-heading">Revision</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-select class="rs-span-6" label="Project" value="000001"
                     ><sl-option value="000001">000001 - Test Project</sl-option></sl-select
@@ -208,9 +208,9 @@
                     required
                   ></sl-textarea>
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Impact">
-                <h3 class="rs-subheading">Impact</h3>
+              </sl-card>
+              <sl-card aria-label="Impact">
+                <h3 slot="header" class="rs-heading">Impact</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-select class="rs-span-12" label="Reason" value="fabrication" required
                     ><sl-option value="fabrication">Fabrication Mistake</sl-option></sl-select
@@ -231,7 +231,7 @@
                     ><sl-option value="yes">Yes</sl-option><sl-option value="no">No</sl-option></sl-select
                   >
                 </div>
-              </section>
+              </sl-card>
             </div>
           </sl-tab-panel>
           <sl-tab-panel name="from-subcontractor"></sl-tab-panel>
@@ -242,8 +242,8 @@
                 <strong>Validation error</strong><br />
                 Property "Name" is required. Property "Date" is required. Property "Name" is required.
               </sl-alert>
-              <section class="rs-stack" aria-label="Field Specialist Engineer">
-                <h3 class="rs-subheading">Field Specialist Engineer</h3>
+              <sl-card aria-label="Field Specialist Engineer">
+                <h3 slot="header" class="rs-heading">Field Specialist Engineer</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-select
                     class="rs-span-6"
@@ -263,9 +263,9 @@
                   ></sl-input>
                   <sl-textarea class="rs-span-12" label="Notes" rows="2"></sl-textarea>
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Verifier">
-                <h3 class="rs-subheading">Verifier</h3>
+              </sl-card>
+              <sl-card aria-label="Verifier">
+                <h3 slot="header" class="rs-heading">Verifier</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-select
                     class="rs-span-6"
@@ -276,9 +276,9 @@
                     help-text="This field is required."
                   ></sl-select>
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Approvers">
-                <h3 class="rs-subheading">Approvers</h3>
+              </sl-card>
+              <sl-card aria-label="Approvers">
+                <h3 slot="header" class="rs-heading">Approvers</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-select class="rs-span-6" label="FEM approvers" value="u" multiple required
                     ><sl-option value="u">user_cosy_writer</sl-option></sl-select
@@ -287,7 +287,7 @@
                     ><sl-option value="u">Meghana Dasari (Dasari.Meghana.Guest@s…</sl-option></sl-select
                   >
                 </div>
-              </section>
+              </sl-card>
             </div>
           </sl-tab-panel>
         </sl-tab-group>

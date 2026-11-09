@@ -255,9 +255,9 @@
           <sl-step description="Who receives it">Recipients</sl-step>
           <sl-step description="Roles and members">Membership</sl-step>
         </sl-stepper>
-        <div class="rs-stack rs-stack--loose">
-          <section class="rs-stack" aria-label="Type">
-            <h3 class="rs-subheading">Type</h3>
+        <div class="rs-stack">
+          <sl-card aria-label="Type">
+            <h3 slot="header" class="rs-heading">Type</h3>
             <div class="rs-grid rs-grid--fields">
               <sl-select class="rs-span-6" label="Transmittal type" required value="outgoing">
                 <sl-option value="outgoing">Outgoing transmittal</sl-option>
@@ -266,10 +266,10 @@
                 <sl-option value="outgoing-template">Transmittal Outgoing</sl-option>
               </sl-select>
             </div>
-          </section>
+          </sl-card>
 
-          <section class="rs-stack" aria-label="Info">
-            <h3 class="rs-subheading">Info</h3>
+          <sl-card aria-label="Info">
+            <h3 slot="header" class="rs-heading">Info</h3>
             <div class="rs-grid rs-grid--fields">
               <sl-input class="rs-span-6" label="Name" required></sl-input>
               <sl-input class="rs-span-6" label="Transmittal identification"></sl-input>
@@ -282,17 +282,23 @@
                 <sl-option value="value14">value14</sl-option>
               </sl-select>
             </div>
-          </section>
+          </sl-card>
 
-          <section class="rs-stack" aria-label="Classification">
-            <h3 class="rs-subheading">Classification</h3>
+          <sl-card aria-label="Classification">
+            <h3 slot="header" class="rs-heading">Classification</h3>
             <div class="rs-grid rs-grid--fields">
               <sl-select class="rs-span-6" label="Discipline" placeholder="Select…" clearable value="civil">
                 <sl-option value="civil">CIVIL &amp; ARCHITECTURAL</sl-option>
                 <sl-option value="electrical">ELECTRICAL</sl-option>
                 <sl-option value="mechanical">MECHANICAL</sl-option>
               </sl-select>
-              <sl-input class="rs-span-6" label="Transmittal type" value="Outgoing transmittal" readonly disabled></sl-input>
+              <sl-input
+                class="rs-span-6"
+                label="Transmittal type"
+                value="Outgoing transmittal"
+                readonly
+                disabled
+              ></sl-input>
               <sl-select
                 class="rs-span-6"
                 label="Issuing reason"
@@ -306,10 +312,10 @@
               </sl-select>
               <sl-input class="rs-span-6" label="Title"></sl-input>
             </div>
-          </section>
+          </sl-card>
 
-          <section class="rs-stack" aria-label="Routing">
-            <h3 class="rs-subheading">Routing</h3>
+          <sl-card aria-label="Routing">
+            <h3 slot="header" class="rs-heading">Routing</h3>
             <div class="rs-grid rs-grid--fields">
               <sl-input class="rs-span-6" label="Transmittal status" value="Working" readonly disabled></sl-input>
               <sl-input class="rs-span-6" label="Transmittal category"></sl-input>
@@ -332,10 +338,10 @@
                 required
               ></sl-select>
             </div>
-          </section>
+          </sl-card>
 
-          <section class="rs-stack" aria-label="Dates and response">
-            <h3 class="rs-subheading">Dates and response</h3>
+          <sl-card aria-label="Dates and response">
+            <h3 slot="header" class="rs-heading">Dates and response</h3>
             <div class="rs-grid rs-grid--fields">
               <sl-input class="rs-span-4" type="date" label="Issue date"></sl-input>
               <sl-input class="rs-span-2" type="time" label="Time"></sl-input>
@@ -346,7 +352,7 @@
               <sl-input class="rs-span-6" type="date" label="Respond by date"></sl-input>
               <sl-textarea class="rs-span-12" label="Note" rows="2"></sl-textarea>
             </div>
-          </section>
+          </sl-card>
         </div>
       </div>
       <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>

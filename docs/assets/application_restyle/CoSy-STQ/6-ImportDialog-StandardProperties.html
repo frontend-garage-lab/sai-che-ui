@@ -188,9 +188,9 @@
             >Site Technical Query · Standard import</sl-description-list-item
           >
         </sl-description-list>
-        <div class="rs-stack rs-stack--loose">
-          <section class="rs-stack" aria-label="Revision">
-            <h3 class="rs-subheading">Revision</h3>
+        <div class="rs-stack">
+          <sl-card aria-label="Revision">
+            <h3 slot="header" class="rs-heading">Revision</h3>
             <div class="rs-grid rs-grid--fields">
               <sl-input class="rs-span-6" label="Original filename" value="STQ-TS-AUT-8325_00.pdf" readonly></sl-input>
               <sl-input class="rs-span-3" label="Revision code" value="00" required></sl-input>
@@ -198,23 +198,23 @@
                 <sl-option value="current">Current</sl-option><sl-option value="superseded">Superseded</sl-option>
               </sl-select>
             </div>
-          </section>
-          <section class="rs-stack" aria-label="Transmittal in from subco">
-            <h3 class="rs-subheading">Transmittal in from subco</h3>
+          </sl-card>
+          <sl-card aria-label="Transmittal in from subco">
+            <h3 slot="header" class="rs-heading">Transmittal in from subco</h3>
             <div class="rs-grid rs-grid--fields">
               <sl-input class="rs-span-6" label="Number"></sl-input>
               <sl-input class="rs-span-6" label="Date" type="date"></sl-input>
             </div>
-          </section>
-          <section class="rs-stack" aria-label="Notes">
-            <h3 class="rs-subheading">Notes</h3>
+          </sl-card>
+          <sl-card aria-label="Notes">
+            <h3 slot="header" class="rs-heading">Notes</h3>
             <div class="rs-grid rs-grid--fields">
               <sl-textarea class="rs-span-12" label="Remarks" rows="3"></sl-textarea>
               <sl-select class="rs-span-6" label="Close out required" value="no">
                 <sl-option value="yes">Yes</sl-option><sl-option value="no">No</sl-option>
               </sl-select>
             </div>
-          </section>
+          </sl-card>
         </div>
       </div>
       <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>
