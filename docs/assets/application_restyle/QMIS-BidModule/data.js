@@ -370,15 +370,7 @@ export const commApproverColumns = columns({
 const attachmentColumns = [
   col('name', 'Name', 'minmax(12rem, 1fr)'),
   col('title', 'Title', '8rem'),
-  {
-    id: 'version',
-    header: 'Version code',
-    meta: { width: '9rem' },
-    cell: ({ row }) =>
-      html`<span class="rs-inline"
-        >${row.original.version}<sl-tag size="small" variant="success">Current</sl-tag></span
-      >`
-  },
+  col('version', 'Version code', '9rem'),
   col('cls', 'Class', '8rem'),
   col('type', 'Type', '7rem'),
   {
@@ -544,3 +536,41 @@ export const bidsFiltered = [
     'ABB POWER SYSTEMS'
   )
 ];
+
+/** Attachments of the bid in the detail panel (legacy Attachments panel, screenshot 16). */
+export const bidPanelAttachments = [
+  {
+    name: 'MS Word Attachment.docx',
+    format: 'docx',
+    title: 'Other1',
+    version: '1.0',
+    current: true,
+    cls: 'Commercial'
+  },
+  { name: 'PDF Attachment.pdf', format: 'pdf', title: 'Other2', version: '1.0', current: true, cls: 'Other' },
+  {
+    name: 'MS Excel Attachment.xlsx',
+    format: 'xlsx',
+    title: 'NewAttachmentToTest…',
+    version: '1.0',
+    current: true,
+    cls: 'Other'
+  },
+  { name: 'PDF Attachment.pdf', format: 'pdf', title: 'Commercial1', version: '2.0', current: true, cls: 'Commercial' },
+  { name: 'PDF Attachment.pdf', format: 'pdf', title: 'Technical1', version: '2.0', current: true, cls: 'Technical' },
+  {
+    name: 'MS Word Attachment.docx',
+    format: 'docx',
+    title: 'New Commercial Attac…',
+    version: '2.0',
+    current: true,
+    cls: 'Technical'
+  }
+];
+
+/** Attachments of the bid in the detail panel, from the files each screen lists (unknown values are "—"). */
+const PANEL_FILES = {
+  'CommercialAttachment.docx': { title: '—', version: '1.0', cls: 'Commercial' },
+  'TechnicalAttachment.docx': { title: '—', version: '—', cls: '—' }
+};
+export const panelAttachmentsOf = (...names) => names.map(name => ({ name, format: 'docx', ...PANEL_FILES[name] }));

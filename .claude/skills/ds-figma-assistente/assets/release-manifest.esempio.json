@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "release_id": "ds-YYYY-MM-DD-001",
+  "source_ds": {
+    "file_url": "https://www.figma.com/design/SOURCE_KEY/design-system",
+    "file_key": "SOURCE_KEY"
+  },
+  "consumer": {
+    "file_url": "https://www.figma.com/design/CONSUMER_KEY/project",
+    "file_key": "CONSUMER_KEY"
+  },
+  "scope_request_ids": ["REQ-001"],
+  "approved": {
+    "ds_fixes": false,
+    "library_release": false,
+    "consumer_adoption": false
+  },
+  "quality": {
+    "open_p0": 0,
+    "r01_provenance": "UNVERIFIED",
+    "r02_request_coverage": "UNVERIFIED",
+    "r03_component_quality": "UNVERIFIED",
+    "r04_compatibility": "UNVERIFIED"
+  },
+  "assets": [
+    {
+      "name": "Button",
+      "lit_tag": "ds-button",
+      "node_id": "123:456",
+      "component_key": "VERIFY_REAL_COMPONENT_KEY",
+      "change_type": "PATCH",
+      "gates": "UNVERIFIED",
+      "breaking": false,
+      "request_ids": ["REQ-001"]
+    }
+  ],
+  "publication": {
+    "status": "NOT_PUBLISHED",
+    "method": "Figma UI manual",
+    "confirmation": "UNVERIFIED"
+  },
+  "consumer_adoption": {
+    "status": "NOT_STARTED",
+    "verification": "UNVERIFIED"
+  }
+}

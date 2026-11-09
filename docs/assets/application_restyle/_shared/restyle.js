@@ -50,7 +50,15 @@ export const STATUS_VARIANT = {
   Existing: 'neutral',
   // Saved documents (DMS-MyWork): issued to a subcontractor = in progress, archived = inactive
   'Issued To Subco': 'primary',
-  Archived: 'neutral'
+  Archived: 'neutral',
+  // Site Technical Query workflow (CoSy-STQ): issued to a role = in progress, approved / ready = done
+  'Issued for verification': 'primary',
+  'Issued to FEM': 'primary',
+  'Issued to PM': 'primary',
+  'Issued to DS & QA/QC': 'primary',
+  'Approved by DS & QA/QC': 'success',
+  'Ready for issue': 'success',
+  'Issued to Subco': 'primary'
 };
 
 /** A state as the app shows it: filled status, colour from the catalog. */
@@ -598,3 +606,43 @@ export const revisionInfoAction = () =>
       @click=${openDocumentInfo}
     ></sl-icon-button
   ></sl-tooltip>`;
+
+// ------------------------------------------------------------------ Attachments table of a detail panel
+
+/**
+ * Attachments of a record, as in the legacy Attachments panel: Name (native file icon) · Title · Version code
+ * (+ "Current" tag) · Class. Rows: { name, format, title, version, current, cls }.
+ */
+export const attachmentPanelColumns = [
+  {
+    id: 'name',
+    header: 'Name',
+    meta: { width: 'minmax(8rem, 1fr)' },
+    cell: ({ row }) => documentFileCell(row.original.format, row.original.name)
+  },
+  { id: 'title', accessorKey: 'title', header: 'Title', meta: { width: '6rem', nowrap: true } },
+  { id: 'version', accessorKey: 'version', header: 'Ver.', meta: { width: '4.5rem', nowrap: true } },
+  { id: 'cls', accessorKey: 'cls', header: 'Class', meta: { width: '5.5rem', nowrap: true } },
+  { id: 'actions', meta: { actions: true }, cell: () => panelFileMenu }
+];
+
+/** Row menu (⋮) of the file tables of a detail panel: Download moved here from the toolbar. */
+const panelFileMenu = html`<sl-menu>
+  <sl-menu-item value="download"><sl-icon slot="prefix" name="download"></sl-icon>Download</sl-menu-item>
+</sl-menu>`;
+
+/**
+ * Versions of a record in a detail panel, same table as the attachments: Name · Ver. · Revision status
+ * (Current / Superseded, sl-status) · ⋮ (Download). Rows: { name, format, version, revisionStatus }.
+ */
+export const versionPanelColumns = [
+  attachmentPanelColumns[0],
+  attachmentPanelColumns[2],
+  {
+    id: 'revisionStatus',
+    header: 'Revision status',
+    meta: { width: '9rem', nowrap: true },
+    cell: ({ row }) => statusTag(row.original.revisionStatus)
+  },
+  attachmentPanelColumns[4]
+];

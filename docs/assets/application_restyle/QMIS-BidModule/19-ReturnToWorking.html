@@ -243,10 +243,22 @@
                     <h3 class="rs-subheading">Attachments</h3>
                     <span class="rs-meta">2</span>
                   </div>
-                  <div class="rs-stack rs-stack--tight">
-                    <span class="rs-inline"><sl-icon name="file-earmark-word"></sl-icon>TechnicalAttachment.docx</span>
-                    <span class="rs-inline"><sl-icon name="file-earmark-word"></sl-icon>CommercialAttachment.docx</span>
-                  </div>
+                  <sl-table class="attachment-panel" label="Attachments">
+                    <div
+                      slot="toolbar"
+                      class="rs-cluster rs-cluster--nowrap rs-grow"
+                      role="toolbar"
+                      aria-label="Attachment actions"
+                    >
+                      <sl-switch size="small">Current versions</sl-switch>
+                      <span class="rs-spacer"></span>
+                      <sl-dropdown placement="bottom-end" hoist data-table-options>
+                        <sl-button slot="trigger" size="small" caret
+                          ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                        >
+                      </sl-dropdown>
+                    </div>
+                  </sl-table>
                 </div>
               </div>
             </div>
@@ -293,6 +305,10 @@
         columns: flow.bidColumns,
         data: flow.bidsShared,
         isSelected: flow.isNewBid
+      });
+      await flow.mountTable('.attachment-panel', {
+        columns: flow.attachmentPanelColumns,
+        data: flow.panelAttachmentsOf('TechnicalAttachment.docx', 'CommercialAttachment.docx')
       });
     </script>
   </body>

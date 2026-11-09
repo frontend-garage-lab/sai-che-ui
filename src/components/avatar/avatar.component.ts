@@ -58,6 +58,12 @@ export default class SlAvatar extends ShoelaceElement {
   /** The shape of the avatar. */
   @property({ reflect: true }) shape: 'circle' | 'square' | 'rounded' = 'circle';
 
+  /**
+   * Tinted colour scheme: a light background with an icon or initials in the variant colour (e.g. the icon tile of a
+   * work-area card). Leave empty for the default solid neutral avatar.
+   */
+  @property({ reflect: true }) variant: 'primary' | 'accent' | 'success' | 'neutral' | 'warning' | 'danger' | '' = '';
+
   @watch('image')
   handleImageChange() {
     // Reset the error when a new image is provided

@@ -1,0 +1,12 @@
+{
+  "_doc": "Registro delle pagine portate in Figma. Chiave = '<Flusso>/<N-Nome>' (nome dello screenshot senza estensione). status: done = Figma uguale all'HTML; partial = costruita con differenze aperte (vedi open); to-verify = da riconfrontare con l'HTML.",
+  "pages": {
+    "Flusso-Esempio/1-Home": {
+      "wrapper": "123:456",
+      "status": "partial",
+      "reference": false,
+      "notes": "",
+      "open": ["Tabella: colonna Data 4px più stretta"]
+    }
+  }
+}
