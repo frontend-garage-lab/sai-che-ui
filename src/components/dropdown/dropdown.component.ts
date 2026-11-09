@@ -1,5 +1,4 @@
 import { animateTo, stopAnimations } from '../../internal/animate.js';
-import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { getDeepestActiveElement } from '../../internal/active-elements.js';
 import { getTabbableBoundary } from '../../internal/tabbable.js';
@@ -47,9 +46,9 @@ export default class SlDropdown extends ShoelaceElement {
   static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = { 'sl-popup': SlPopup };
 
-  @query('.dropdown') popup: SlPopup;
-  @query('.dropdown__trigger') trigger: HTMLSlotElement;
-  @query('.dropdown__panel') panel: HTMLSlotElement;
+  @query('.dropdown', true /* cache: this node is never re-created */) popup: SlPopup;
+  @query('.dropdown__trigger', true /* cache: this node is never re-created */) trigger: HTMLSlotElement;
+  @query('.dropdown__panel', true /* cache: this node is never re-created */) panel: HTMLSlotElement;
 
   private readonly localize = new LocalizeController(this);
   private closeWatcher: CloseWatcher | null;
@@ -434,10 +433,7 @@ export default class SlDropdown extends ShoelaceElement {
         auto-size="vertical"
         auto-size-padding="10"
         sync=${ifDefined(this.sync ? this.sync : undefined)}
-        class=${classMap({
-          dropdown: true,
-          'dropdown--open': this.open
-        })}
+        class="dropdown${this.open ? ' dropdown--open' : ''}"
       >
         <slot
           name="trigger"

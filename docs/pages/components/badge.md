@@ -15,6 +15,18 @@ import SlBadge from '@shoelace-style/shoelace/dist/react/badge';
 const App = () => <SlBadge>Badge</SlBadge>;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/badge/badge.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-badge-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-badge>Badge</sl-badge>`
+})
+export class BadgeExampleComponent {}
+```
+
 ## Examples
 
 ### Variants
@@ -41,6 +53,24 @@ const App = () => (
     <SlBadge variant="danger">Danger</SlBadge>
   </>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/badge/badge.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-badge-variants-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-badge variant="primary">Primary</sl-badge>
+    <sl-badge variant="success">Success</sl-badge>
+    <sl-badge variant="neutral">Neutral</sl-badge>
+    <sl-badge variant="warning">Warning</sl-badge>
+    <sl-badge variant="danger">Danger</sl-badge>
+  `
+})
+export class BadgeVariantsExampleComponent {}
 ```
 
 ### Pill Badges
@@ -77,6 +107,24 @@ const App = () => (
     </SlBadge>
   </>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/badge/badge.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-badge-pill-badges-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-badge variant="primary" pill>Primary</sl-badge>
+    <sl-badge variant="success" pill>Success</sl-badge>
+    <sl-badge variant="neutral" pill>Neutral</sl-badge>
+    <sl-badge variant="warning" pill>Warning</sl-badge>
+    <sl-badge variant="danger" pill>Danger</sl-badge>
+  `
+})
+export class BadgePillBadgesExampleComponent {}
 ```
 
 ### Pulsating Badges
@@ -133,6 +181,31 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/badge/badge.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-badge-pulsating-badges-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .badge-pulse sl-badge:not(:last-of-type) {
+        margin-right: 1rem;
+      }
+  `,
+  template: `
+    <div class="badge-pulse">
+      <sl-badge variant="primary" pill pulse>1</sl-badge>
+      <sl-badge variant="success" pill pulse>1</sl-badge>
+      <sl-badge variant="neutral" pill pulse>1</sl-badge>
+      <sl-badge variant="warning" pill pulse>1</sl-badge>
+      <sl-badge variant="danger" pill pulse>1</sl-badge>
+    </div>
+  `
+})
+export class BadgePulsatingBadgesExampleComponent {}
+```
+
 ### With Buttons
 
 One of the most common use cases for badges is attaching them to buttons. To make this easier, badges will be automatically positioned at the top-right when they're a child of a button.
@@ -152,6 +225,34 @@ One of the most common use cases for badges is attaching them to buttons. To mak
   Errors
   <sl-badge variant="danger" pill>6</sl-badge>
 </sl-button>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/badge/badge.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-badge-with-buttons-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-button>
+      Requests
+      <sl-badge pill>30</sl-badge>
+    </sl-button>
+
+    <sl-button style="margin-inline-start: 1rem;">
+      Warnings
+      <sl-badge variant="warning" pill>8</sl-badge>
+    </sl-button>
+
+    <sl-button style="margin-inline-start: 1rem;">
+      Errors
+      <sl-badge variant="danger" pill>6</sl-badge>
+    </sl-button>
+  `
+})
+export class BadgeWithButtonsExampleComponent {}
 ```
 
 {% raw %}
@@ -196,6 +297,27 @@ When including badges in menu items, use the `suffix` slot to make sure they're 
   <sl-menu-item>Comments <sl-badge slot="suffix" variant="neutral" pill>4</sl-badge></sl-menu-item>
   <sl-menu-item>Replies <sl-badge slot="suffix" variant="neutral" pill>12</sl-badge></sl-menu-item>
 </sl-menu>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/badge/badge.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-label/menu-label.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-badge-with-menu-items-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-menu style="max-width: 240px;">
+      <sl-menu-label>Messages</sl-menu-label>
+      <sl-menu-item>Comments <sl-badge slot="suffix" variant="neutral" pill>4</sl-badge></sl-menu-item>
+      <sl-menu-item>Replies <sl-badge slot="suffix" variant="neutral" pill>12</sl-badge></sl-menu-item>
+    </sl-menu>
+  `
+})
+export class BadgeWithMenuItemsExampleComponent {}
 ```
 
 {% raw %}

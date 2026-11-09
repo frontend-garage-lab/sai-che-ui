@@ -109,6 +109,61 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/skeleton/skeleton.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-skeleton-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .skeleton-overview header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .skeleton-overview header sl-skeleton:last-child {
+        flex: 0 0 auto;
+        width: 30%;
+      }
+
+      .skeleton-overview sl-skeleton {
+        margin-bottom: 1rem;
+      }
+
+      .skeleton-overview sl-skeleton:nth-child(1) {
+        float: left;
+        width: 3rem;
+        height: 3rem;
+        margin-right: 1rem;
+        vertical-align: middle;
+      }
+
+      .skeleton-overview sl-skeleton:nth-child(3) {
+        width: 95%;
+      }
+
+      .skeleton-overview sl-skeleton:nth-child(4) {
+        width: 80%;
+      }
+  `,
+  template: `
+    <div class="skeleton-overview">
+      <header>
+        <sl-skeleton></sl-skeleton>
+        <sl-skeleton></sl-skeleton>
+      </header>
+
+      <sl-skeleton></sl-skeleton>
+      <sl-skeleton></sl-skeleton>
+      <sl-skeleton></sl-skeleton>
+    </div>
+  `
+})
+export class SkeletonExampleComponent {}
+```
+
 ## Examples
 
 ### Effects
@@ -165,6 +220,38 @@ const App = () => (
     <style>{css}</style>
   </>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/skeleton/skeleton.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-skeleton-effects-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .skeleton-effects {
+        font-size: var(--sl-font-size-small);
+      }
+
+      .skeleton-effects sl-skeleton:not(:first-child) {
+        margin-top: 1rem;
+      }
+  `,
+  template: `
+    <div class="skeleton-effects">
+      <sl-skeleton effect="none"></sl-skeleton>
+      None
+
+      <sl-skeleton effect="sheen"></sl-skeleton>
+      Sheen
+
+      <sl-skeleton effect="pulse"></sl-skeleton>
+      Pulse
+    </div>
+  `
+})
+export class SkeletonEffectsExampleComponent {}
 ```
 
 ### Paragraphs
@@ -235,6 +322,43 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/skeleton/skeleton.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-skeleton-paragraphs-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .skeleton-paragraphs sl-skeleton {
+        margin-bottom: 1rem;
+      }
+
+      .skeleton-paragraphs sl-skeleton:nth-child(2) {
+        width: 95%;
+      }
+
+      .skeleton-paragraphs sl-skeleton:nth-child(4) {
+        width: 90%;
+      }
+
+      .skeleton-paragraphs sl-skeleton:last-child {
+        width: 50%;
+      }
+  `,
+  template: `
+    <div class="skeleton-paragraphs">
+      <sl-skeleton></sl-skeleton>
+      <sl-skeleton></sl-skeleton>
+      <sl-skeleton></sl-skeleton>
+      <sl-skeleton></sl-skeleton>
+      <sl-skeleton></sl-skeleton>
+    </div>
+  `
+})
+export class SkeletonParagraphsExampleComponent {}
+```
+
 ### Avatars
 
 Set a matching width and height to make a circle, square, or rounded avatar skeleton.
@@ -295,6 +419,40 @@ const App = () => (
     <style>{css}</style>
   </>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/skeleton/skeleton.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-skeleton-avatars-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .skeleton-avatars sl-skeleton {
+        display: inline-block;
+        width: 3rem;
+        height: 3rem;
+        margin-right: 0.5rem;
+      }
+
+      .skeleton-avatars sl-skeleton:nth-child(1) {
+        --border-radius: 0;
+      }
+
+      .skeleton-avatars sl-skeleton:nth-child(2) {
+        --border-radius: var(--sl-border-radius-medium);
+      }
+  `,
+  template: `
+    <div class="skeleton-avatars">
+      <sl-skeleton></sl-skeleton>
+      <sl-skeleton></sl-skeleton>
+      <sl-skeleton></sl-skeleton>
+    </div>
+  `
+})
+export class SkeletonAvatarsExampleComponent {}
 ```
 
 ### Custom Shapes
@@ -412,12 +570,91 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/skeleton/skeleton.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-skeleton-custom-shapes-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .skeleton-shapes sl-skeleton {
+        display: inline-flex;
+        width: 50px;
+        height: 50px;
+      }
+
+      .skeleton-shapes .square::part(indicator) {
+        --border-radius: var(--sl-border-radius-medium);
+      }
+
+      .skeleton-shapes .circle::part(indicator) {
+        --border-radius: var(--sl-border-radius-circle);
+      }
+
+      .skeleton-shapes .triangle::part(indicator) {
+        --border-radius: 0;
+        clip-path: polygon(50% 0, 0 100%, 100% 100%);
+      }
+
+      .skeleton-shapes .cross::part(indicator) {
+        --border-radius: 0;
+        clip-path: polygon(
+          20% 0%,
+          0% 20%,
+          30% 50%,
+          0% 80%,
+          20% 100%,
+          50% 70%,
+          80% 100%,
+          100% 80%,
+          70% 50%,
+          100% 20%,
+          80% 0%,
+          50% 30%
+        );
+      }
+
+      .skeleton-shapes .comment::part(indicator) {
+        --border-radius: 0;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+      }
+
+      .skeleton-shapes sl-skeleton:not(:last-child) {
+        margin-right: 0.5rem;
+      }
+  `,
+  template: `
+    <div class="skeleton-shapes">
+      <sl-skeleton class="square"></sl-skeleton>
+      <sl-skeleton class="circle"></sl-skeleton>
+      <sl-skeleton class="triangle"></sl-skeleton>
+      <sl-skeleton class="cross"></sl-skeleton>
+      <sl-skeleton class="comment"></sl-skeleton>
+    </div>
+  `
+})
+export class SkeletonCustomShapesExampleComponent {}
+```
+
 ### Custom Colors
 
 Set the `--color` and `--sheen-color` custom properties to adjust the skeleton's color.
 
 ```html:preview
 <sl-skeleton effect="sheen" style="--color: tomato; --sheen-color: #ffb094;"></sl-skeleton>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/skeleton/skeleton.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-skeleton-custom-colors-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-skeleton effect="sheen" style="--color: tomato; --sheen-color: #ffb094;"></sl-skeleton>`
+})
+export class SkeletonCustomColorsExampleComponent {}
 ```
 
 {% raw %}

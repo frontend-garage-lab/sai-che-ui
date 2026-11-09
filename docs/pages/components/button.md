@@ -15,6 +15,18 @@ import SlButton from '@shoelace-style/shoelace/dist/react/button';
 const App = () => <SlButton>Button</SlButton>;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-button-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-button>Button</sl-button>`
+})
+export class ButtonExampleComponent {}
+```
+
 ## Choosing a variant
 
 The variant tells the user how much an action weighs, not what kind of action it is. Pick it by the button's role in
@@ -38,6 +50,23 @@ its area (a toolbar, a dialog footer, a panel):
 <sl-tooltip content="Accept the task first">
   <span tabindex="0"><sl-button disabled>Complete</sl-button></span>
 </sl-tooltip>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-button-choosing-a-variant-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tooltip content="Accept the task first">
+      <span tabindex="0"><sl-button disabled>Complete</sl-button></span>
+    </sl-tooltip>
+  `
+})
+export class ButtonChoosingAVariantExampleComponent {}
 ```
 
 - Don't use `success` for actions: green is the colour of a completed [status](/components/status), and a green button
@@ -73,6 +102,25 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-button-variants-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-button variant="default">Default</sl-button>
+    <sl-button variant="primary">Primary</sl-button>
+    <sl-button variant="success">Success</sl-button>
+    <sl-button variant="neutral">Neutral</sl-button>
+    <sl-button variant="warning">Warning</sl-button>
+    <sl-button variant="danger">Danger</sl-button>
+  `
+})
+export class ButtonVariantsExampleComponent {}
+```
+
 ### Sizes
 
 Use the `size` attribute to change a button's size.
@@ -93,6 +141,22 @@ const App = () => (
     <SlButton size="large">Large</SlButton>
   </>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-button-sizes-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-button size="small">Small</sl-button>
+    <sl-button size="medium">Medium</sl-button>
+    <sl-button size="large">Large</sl-button>
+  `
+})
+export class ButtonSizesExampleComponent {}
 ```
 
 ### Outline Buttons
@@ -135,6 +199,25 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-button-outline-buttons-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-button variant="default" outline>Default</sl-button>
+    <sl-button variant="primary" outline>Primary</sl-button>
+    <sl-button variant="success" outline>Success</sl-button>
+    <sl-button variant="neutral" outline>Neutral</sl-button>
+    <sl-button variant="warning" outline>Warning</sl-button>
+    <sl-button variant="danger" outline>Danger</sl-button>
+  `
+})
+export class ButtonOutlineButtonsExampleComponent {}
+```
+
 ### Pill Buttons
 
 Use the `pill` attribute to give buttons rounded edges.
@@ -161,6 +244,22 @@ const App = () => (
     </SlButton>
   </>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-button-pill-buttons-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-button size="small" pill>Small</sl-button>
+    <sl-button size="medium" pill>Medium</sl-button>
+    <sl-button size="large" pill>Large</sl-button>
+  `
+})
+export class ButtonPillButtonsExampleComponent {}
 ```
 
 ### Circle Buttons
@@ -200,6 +299,31 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-button-circle-buttons-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-button variant="default" size="small" circle>
+      <sl-icon name="gear" label="Settings"></sl-icon>
+    </sl-button>
+
+    <sl-button variant="default" size="medium" circle>
+      <sl-icon name="gear" label="Settings"></sl-icon>
+    </sl-button>
+
+    <sl-button variant="default" size="large" circle>
+      <sl-icon name="gear" label="Settings"></sl-icon>
+    </sl-button>
+  `
+})
+export class ButtonCircleButtonsExampleComponent {}
+```
+
 ### Text Buttons
 
 Use the `text` variant to create text buttons that share the same size as regular buttons but don't have backgrounds or borders.
@@ -226,6 +350,22 @@ const App = () => (
     </SlButton>
   </>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-button-text-buttons-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-button variant="text" size="small">Text</sl-button>
+    <sl-button variant="text" size="medium">Text</sl-button>
+    <sl-button variant="text" size="large">Text</sl-button>
+  `
+})
+export class ButtonTextButtonsExampleComponent {}
 ```
 
 ### Link Buttons
@@ -258,6 +398,23 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-button-link-buttons-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-button href="https://example.com/">Link</sl-button>
+    <sl-button href="https://example.com/" target="_blank">New Window</sl-button>
+    <sl-button href="/assets/images/wordmark.svg" download="shoelace.svg">Download</sl-button>
+    <sl-button href="https://example.com/" disabled>Disabled</sl-button>
+  `
+})
+export class ButtonLinkButtonsExampleComponent {}
+```
+
 :::tip
 When a `target` is set, the link will receive `rel="noreferrer noopener"` for [security reasons](https://mathiasbynens.github.io/rel-noopener/).
 :::
@@ -270,6 +427,22 @@ As expected, buttons can be given a custom width by passing inline styles to the
 <sl-button variant="default" size="small" style="width: 100%; margin-bottom: 1rem;">Small</sl-button>
 <sl-button variant="default" size="medium" style="width: 100%; margin-bottom: 1rem;">Medium</sl-button>
 <sl-button variant="default" size="large" style="width: 100%;">Large</sl-button>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-button-setting-a-custom-width-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-button variant="default" size="small" style="width: 100%; margin-bottom: 1rem;">Small</sl-button>
+    <sl-button variant="default" size="medium" style="width: 100%; margin-bottom: 1rem;">Medium</sl-button>
+    <sl-button variant="default" size="large" style="width: 100%;">Large</sl-button>
+  `
+})
+export class ButtonSettingACustomWidthExampleComponent {}
 ```
 
 {% raw %}
@@ -415,6 +588,71 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-button-prefix-and-suffix-icons-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-button variant="default" size="small">
+      <sl-icon slot="prefix" name="gear"></sl-icon>
+      Settings
+    </sl-button>
+
+    <sl-button variant="default" size="small">
+      <sl-icon slot="suffix" name="arrow-counterclockwise"></sl-icon>
+      Refresh
+    </sl-button>
+
+    <sl-button variant="default" size="small">
+      <sl-icon slot="prefix" name="link-45deg"></sl-icon>
+      <sl-icon slot="suffix" name="box-arrow-up-right"></sl-icon>
+      Open
+    </sl-button>
+
+    <br /><br />
+
+    <sl-button variant="default">
+      <sl-icon slot="prefix" name="gear"></sl-icon>
+      Settings
+    </sl-button>
+
+    <sl-button variant="default">
+      <sl-icon slot="suffix" name="arrow-counterclockwise"></sl-icon>
+      Refresh
+    </sl-button>
+
+    <sl-button variant="default">
+      <sl-icon slot="prefix" name="link-45deg"></sl-icon>
+      <sl-icon slot="suffix" name="box-arrow-up-right"></sl-icon>
+      Open
+    </sl-button>
+
+    <br /><br />
+
+    <sl-button variant="default" size="large">
+      <sl-icon slot="prefix" name="gear"></sl-icon>
+      Settings
+    </sl-button>
+
+    <sl-button variant="default" size="large">
+      <sl-icon slot="suffix" name="arrow-counterclockwise"></sl-icon>
+      Refresh
+    </sl-button>
+
+    <sl-button variant="default" size="large">
+      <sl-icon slot="prefix" name="link-45deg"></sl-icon>
+      <sl-icon slot="suffix" name="box-arrow-up-right"></sl-icon>
+      Open
+    </sl-button>
+  `
+})
+export class ButtonPrefixAndSuffixIconsExampleComponent {}
+```
+
 ### Caret
 
 Use the `caret` attribute to add a dropdown indicator when a button will trigger a dropdown, menu, or popover.
@@ -441,6 +679,22 @@ const App = () => (
     </SlButton>
   </>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-button-caret-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-button size="small" caret>Small</sl-button>
+    <sl-button size="medium" caret>Medium</sl-button>
+    <sl-button size="large" caret>Large</sl-button>
+  `
+})
+export class ButtonCaretExampleComponent {}
 ```
 
 ### Loading
@@ -481,6 +735,25 @@ const App = () => (
     </SlButton>
   </>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-button-loading-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-button variant="default" loading>Default</sl-button>
+    <sl-button variant="primary" loading>Primary</sl-button>
+    <sl-button variant="success" loading>Success</sl-button>
+    <sl-button variant="neutral" loading>Neutral</sl-button>
+    <sl-button variant="warning" loading>Warning</sl-button>
+    <sl-button variant="danger" loading>Danger</sl-button>
+  `
+})
+export class ButtonLoadingExampleComponent {}
 ```
 
 ### Disabled
@@ -528,6 +801,25 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-button-disabled-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-button variant="default" disabled>Default</sl-button>
+    <sl-button variant="primary" disabled>Primary</sl-button>
+    <sl-button variant="success" disabled>Success</sl-button>
+    <sl-button variant="neutral" disabled>Neutral</sl-button>
+    <sl-button variant="warning" disabled>Warning</sl-button>
+    <sl-button variant="danger" disabled>Danger</sl-button>
+  `
+})
+export class ButtonDisabledExampleComponent {}
+```
+
 ### Styling Buttons
 
 This example demonstrates how to style buttons using a custom class. This is the recommended approach if you need to add additional variations. To customize an existing variation, modify the selector to target the button's `variant` attribute instead of a class (e.g. `sl-button[variant="primary"]`).
@@ -570,4 +862,51 @@ This example demonstrates how to style buttons using a custom class. This is the
     outline-offset: 4px;
   }
 </style>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-button-styling-buttons-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    sl-button.pink::part(base) {
+        /* Set design tokens for height and border width */
+        --sl-input-height-medium: 48px;
+        --sl-input-border-width: 4px;
+
+        border-radius: 0;
+        background-color: #ff1493;
+        border-top-color: #ff7ac1;
+        border-left-color: #ff7ac1;
+        border-bottom-color: #ad005c;
+        border-right-color: #ad005c;
+        color: white;
+        font-size: 1.125rem;
+        box-shadow: 0 2px 10px #0002;
+        transition: var(--sl-transition-medium) transform ease, var(--sl-transition-medium) border ease;
+      }
+
+      sl-button.pink::part(base):hover {
+        transform: scale(1.05) rotate(-1deg);
+      }
+
+      sl-button.pink::part(base):active {
+        border-top-color: #ad005c;
+        border-right-color: #ff7ac1;
+        border-bottom-color: #ff7ac1;
+        border-left-color: #ad005c;
+        transform: scale(1.05) rotate(-1deg) translateY(2px);
+      }
+
+      sl-button.pink::part(base):focus-visible {
+        outline: dashed 2px deeppink;
+        outline-offset: 4px;
+      }
+  `,
+  template: `<sl-button class="pink">Pink Button</sl-button>`
+})
+export class ButtonStylingButtonsExampleComponent {}
 ```

@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { property } from 'lit/decorators.js';
@@ -52,27 +51,9 @@ export default class SlTag extends ShoelaceElement {
     return html`
       <span
         part="base"
-        class=${classMap({
-          tag: true,
-
-          // Types
-          'tag--primary': this.variant === 'primary',
-          'tag--accent': this.variant === 'accent',
-          'tag--success': this.variant === 'success',
-          'tag--neutral': this.variant === 'neutral',
-          'tag--warning': this.variant === 'warning',
-          'tag--danger': this.variant === 'danger',
-          'tag--text': this.variant === 'text',
-
-          // Sizes
-          'tag--small': this.size === 'small',
-          'tag--medium': this.size === 'medium',
-          'tag--large': this.size === 'large',
-
-          // Modifiers
-          'tag--pill': this.pill,
-          'tag--removable': this.removable
-        })}
+        class="tag tag--${this.variant} tag--${this.size}${this.pill ? ' tag--pill' : ''}${this.removable
+          ? ' tag--removable'
+          : ''}"
       >
         <slot part="content" class="tag__content"></slot>
 

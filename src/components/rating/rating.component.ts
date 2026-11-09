@@ -1,5 +1,4 @@
 import { clamp } from '../../internal/math.js';
-import { classMap } from 'lit/directives/class-map.js';
 import { eventOptions, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -38,10 +37,13 @@ export default class SlRating extends ShoelaceElement {
 
   private readonly localize = new LocalizeController(this);
 
-  @query('.rating') rating: HTMLElement;
+  @query('.rating', true /* cache: this node is never re-created */) rating: HTMLElement;
 
   @state() private hoverValue = 0;
   @state() private isHovering = false;
+
+  private cachedRect: DOMRect | null = null;
+  private rectInvalidationFrame = 0;
 
   /** A label that describes the rating to assistive devices. */
   @property() label = '';
@@ -71,6 +73,11 @@ export default class SlRating extends ShoelaceElement {
    */
   @property() getSymbol: (value: number) => string = () => '<sl-icon name="star-fill" library="system"></sl-icon>';
 
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.releaseRatingRect();
+  }
+
   private getValueFromMousePosition(event: MouseEvent) {
     return this.getValueFromXCoordinate(event.clientX);
   }
@@ -79,9 +86,38 @@ export default class SlRating extends ShoelaceElement {
     return this.getValueFromXCoordinate(event.touches[0].clientX);
   }
 
+  /**
+   * Hover and touch move fire many times within a single frame. Measuring the control on every one of them forces the
+   * browser to recompute layout each time, so the measurement is reused for the rest of the frame and dropped
+   * afterwards. Layout cannot change within a frame, so the reused value is always current.
+   */
+  private getRatingRect() {
+    if (this.cachedRect === null) {
+      this.cachedRect = this.rating.getBoundingClientRect();
+
+      if (this.rectInvalidationFrame === 0) {
+        this.rectInvalidationFrame = requestAnimationFrame(() => {
+          this.rectInvalidationFrame = 0;
+          this.cachedRect = null;
+        });
+      }
+    }
+
+    return this.cachedRect;
+  }
+
+  private releaseRatingRect() {
+    if (this.rectInvalidationFrame !== 0) {
+      cancelAnimationFrame(this.rectInvalidationFrame);
+      this.rectInvalidationFrame = 0;
+    }
+
+    this.cachedRect = null;
+  }
+
   private getValueFromXCoordinate(coordinate: number) {
     const isRtl = this.localize.dir() === 'rtl';
-    const { left, right, width } = this.rating.getBoundingClientRect();
+    const { left, right, width } = this.getRatingRect();
     const value = isRtl
       ? this.roundToPrecision(((right - coordinate) / width) * this.max, this.precision)
       : this.roundToPrecision(((coordinate - left) / width) * this.max, this.precision);
@@ -154,6 +190,7 @@ export default class SlRating extends ShoelaceElement {
 
   private handleMouseLeave() {
     this.isHovering = false;
+    this.releaseRatingRect();
   }
 
   private handleTouchStart(event: TouchEvent) {
@@ -171,6 +208,7 @@ export default class SlRating extends ShoelaceElement {
 
   private handleTouchEnd(event: TouchEvent) {
     this.isHovering = false;
+    this.releaseRatingRect();
     this.setValue(this.hoverValue);
     this.emit('sl-change');
 
@@ -227,12 +265,9 @@ export default class SlRating extends ShoelaceElement {
     return html`
       <div
         part="base"
-        class=${classMap({
-          rating: true,
-          'rating--readonly': this.readonly,
-          'rating--disabled': this.disabled,
-          'rating--rtl': isRtl
-        })}
+        class="rating${this.readonly ? ' rating--readonly' : ''}${this.disabled ? ' rating--disabled' : ''}${isRtl
+          ? ' rating--rtl'
+          : ''}"
         role="slider"
         aria-label=${this.label}
         aria-disabled=${this.disabled ? 'true' : 'false'}
@@ -258,11 +293,10 @@ export default class SlRating extends ShoelaceElement {
               // extra mouseenter will reinstate it if they happen to mouse over an adjacent symbol.
               return html`
                 <span
-                  class=${classMap({
-                    rating__symbol: true,
-                    'rating__partial-symbol-container': true,
-                    'rating__symbol--hover': this.isHovering && Math.ceil(displayValue) === index + 1
-                  })}
+                  class="rating__symbol rating__partial-symbol-container${this.isHovering &&
+                  Math.ceil(displayValue) === index + 1
+                    ? ' rating__symbol--hover'
+                    : ''}"
                   role="presentation"
                 >
                   <div
@@ -290,11 +324,9 @@ export default class SlRating extends ShoelaceElement {
 
             return html`
               <span
-                class=${classMap({
-                  rating__symbol: true,
-                  'rating__symbol--hover': this.isHovering && Math.ceil(displayValue) === index + 1,
-                  'rating__symbol--active': displayValue >= index + 1
-                })}
+                class="rating__symbol${this.isHovering && Math.ceil(displayValue) === index + 1
+                  ? ' rating__symbol--hover'
+                  : ''}${displayValue >= index + 1 ? ' rating__symbol--active' : ''}"
                 role="presentation"
               >
                 ${unsafeHTML(this.getSymbol(index + 1))}

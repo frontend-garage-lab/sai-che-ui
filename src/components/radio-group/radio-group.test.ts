@@ -485,7 +485,7 @@ describe('when the value changes', () => {
    * auto-defines all of our components up front. This should be tested if we ever split
    * to non-auto-defining components and not auto-defining for tests.
    */
-  it.skip('should sync up radios and radio buttons if defined after radio group', async () => {
+  it('should sync up radios and radio buttons if defined after radio group', async () => {
     // customElements.define("sl-radio-group", SlRadioGroup)
     //
     // const radioGroup = await fixture<SlRadioGroup>(html`

@@ -15,6 +15,18 @@ import SlSwitch from '@shoelace-style/shoelace/dist/react/switch';
 const App = () => <SlSwitch>Switch</SlSwitch>;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/switch/switch.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-switch-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-switch>Switch</sl-switch>`
+})
+export class SwitchExampleComponent {}
+```
+
 :::tip
 This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
 :::
@@ -35,6 +47,18 @@ import SlSwitch from '@shoelace-style/shoelace/dist/react/switch';
 const App = () => <SlSwitch checked>Checked</SlSwitch>;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/switch/switch.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-switch-checked-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-switch checked>Checked</sl-switch>`
+})
+export class SwitchCheckedExampleComponent {}
+```
+
 ### Disabled
 
 Use the `disabled` attribute to disable the switch.
@@ -47,6 +71,18 @@ Use the `disabled` attribute to disable the switch.
 import SlSwitch from '@shoelace-style/shoelace/dist/react/switch';
 
 const App = () => <SlSwitch disabled>Disabled</SlSwitch>;
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/switch/switch.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-switch-disabled-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-switch disabled>Disabled</sl-switch>`
+})
+export class SwitchDisabledExampleComponent {}
 ```
 
 ### Sizes
@@ -75,6 +111,24 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/switch/switch.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-switch-sizes-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-switch size="small">Small</sl-switch>
+    <br />
+    <sl-switch size="medium">Medium</sl-switch>
+    <br />
+    <sl-switch size="large">Large</sl-switch>
+  `
+})
+export class SwitchSizesExampleComponent {}
+```
+
 ### Help Text
 
 Add descriptive help text to a switch with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
@@ -89,12 +143,36 @@ import SlSwitch from '@shoelace-style/shoelace/dist/react/checkbox';
 const App = () => <SlSwitch help-text="What should the user know about the switch?">Label</SlSwitch>;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/switch/switch.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-switch-help-text-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-switch help-text="What should the user know about the switch?">Label</sl-switch>`
+})
+export class SwitchHelpTextExampleComponent {}
+```
+
 ### Custom Styles
 
 Use the available custom properties to change how the switch is styled.
 
 ```html:preview
 <sl-switch style="--width: 80px; --height: 40px; --thumb-size: 36px;">Really big</sl-switch>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/switch/switch.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-switch-custom-styles-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-switch style="--width: 80px; --height: 40px; --thumb-size: 36px;">Really big</sl-switch>`
+})
+export class SwitchCustomStylesExampleComponent {}
 ```
 
 {% raw %}

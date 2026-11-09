@@ -30,6 +30,26 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb/breadcrumb.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-breadcrumb-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-breadcrumb>
+      <sl-breadcrumb-item>Catalog</sl-breadcrumb-item>
+      <sl-breadcrumb-item>Clothing</sl-breadcrumb-item>
+      <sl-breadcrumb-item>Women's</sl-breadcrumb-item>
+      <sl-breadcrumb-item>Shirts &amp; Tops</sl-breadcrumb-item>
+    </sl-breadcrumb>
+  `
+})
+export class BreadcrumbExampleComponent {}
+```
+
 ## Examples
 
 ### Breadcrumb Links
@@ -65,6 +85,29 @@ const App = () => (
     <SlBreadcrumbItem href="https://example.com/home/services/digital/web-design">Web Design</SlBreadcrumbItem>
   </SlBreadcrumb>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb/breadcrumb.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-breadcrumb-breadcrumb-links-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-breadcrumb>
+      <sl-breadcrumb-item href="https://example.com/home">Homepage</sl-breadcrumb-item>
+
+      <sl-breadcrumb-item href="https://example.com/home/services">Our Services</sl-breadcrumb-item>
+
+      <sl-breadcrumb-item href="https://example.com/home/services/digital">Digital Media</sl-breadcrumb-item>
+
+      <sl-breadcrumb-item href="https://example.com/home/services/digital/web-design">Web Design</sl-breadcrumb-item>
+    </sl-breadcrumb>
+  `
+})
+export class BreadcrumbBreadcrumbLinksExampleComponent {}
 ```
 
 ### Custom Separators
@@ -133,6 +176,45 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb/breadcrumb.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-breadcrumb-custom-separators-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-breadcrumb>
+      <sl-icon name="dot" slot="separator"></sl-icon>
+      <sl-breadcrumb-item>First</sl-breadcrumb-item>
+      <sl-breadcrumb-item>Second</sl-breadcrumb-item>
+      <sl-breadcrumb-item>Third</sl-breadcrumb-item>
+    </sl-breadcrumb>
+
+    <br />
+
+    <sl-breadcrumb>
+      <sl-icon name="arrow-right" slot="separator"></sl-icon>
+      <sl-breadcrumb-item>First</sl-breadcrumb-item>
+      <sl-breadcrumb-item>Second</sl-breadcrumb-item>
+      <sl-breadcrumb-item>Third</sl-breadcrumb-item>
+    </sl-breadcrumb>
+
+    <br />
+
+    <sl-breadcrumb>
+      <span slot="separator">/</span>
+      <sl-breadcrumb-item>First</sl-breadcrumb-item>
+      <sl-breadcrumb-item>Second</sl-breadcrumb-item>
+      <sl-breadcrumb-item>Third</sl-breadcrumb-item>
+    </sl-breadcrumb>
+  `
+})
+export class BreadcrumbCustomSeparatorsExampleComponent {}
+```
+
 ### Prefixes
 
 Use the `prefix` slot to add content before any breadcrumb item.
@@ -165,6 +247,29 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb/breadcrumb.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-breadcrumb-prefixes-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-breadcrumb>
+      <sl-breadcrumb-item>
+        <sl-icon slot="prefix" name="house"></sl-icon>
+        Home
+      </sl-breadcrumb-item>
+      <sl-breadcrumb-item>Articles</sl-breadcrumb-item>
+      <sl-breadcrumb-item>Traveling</sl-breadcrumb-item>
+    </sl-breadcrumb>
+  `
+})
+export class BreadcrumbPrefixesExampleComponent {}
+```
+
 ### Suffixes
 
 Use the `suffix` slot to add content after any breadcrumb item.
@@ -195,6 +300,29 @@ const App = () => (
     </SlBreadcrumbItem>
   </SlBreadcrumb>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb/breadcrumb.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-breadcrumb-suffixes-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-breadcrumb>
+      <sl-breadcrumb-item>Documents</sl-breadcrumb-item>
+      <sl-breadcrumb-item>Policies</sl-breadcrumb-item>
+      <sl-breadcrumb-item>
+        Security
+        <sl-icon slot="suffix" name="shield-lock"></sl-icon>
+      </sl-breadcrumb-item>
+    </sl-breadcrumb>
+  `
+})
+export class BreadcrumbSuffixesExampleComponent {}
 ```
 
 ### With Dropdowns
@@ -255,6 +383,42 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb/breadcrumb.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-breadcrumb-with-dropdowns-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-breadcrumb>
+      <sl-breadcrumb-item>Homepage</sl-breadcrumb-item>
+      <sl-breadcrumb-item>
+        <sl-dropdown>
+          <sl-button slot="trigger" size="small" circle>
+            <sl-icon label="More options" name="three-dots"></sl-icon>
+          </sl-button>
+          <sl-menu>
+            <sl-menu-item type="checkbox" checked>Web Design</sl-menu-item>
+            <sl-menu-item type="checkbox">Web Development</sl-menu-item>
+            <sl-menu-item type="checkbox">Marketing</sl-menu-item>
+          </sl-menu>
+        </sl-dropdown>
+      </sl-breadcrumb-item>
+      <sl-breadcrumb-item>Our Services</sl-breadcrumb-item>
+      <sl-breadcrumb-item>Digital Media</sl-breadcrumb-item>
+    </sl-breadcrumb>
+  `
+})
+export class BreadcrumbWithDropdownsExampleComponent {}
+```
+
 Alternatively, you can place dropdown menus in a prefix or suffix slot.
 
 ```html:preview
@@ -311,4 +475,41 @@ const App = () => (
     </SlBreadcrumbItem>
   </SlBreadcrumb>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb/breadcrumb.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-breadcrumb-with-dropdowns-2-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-breadcrumb>
+      <sl-breadcrumb-item>Homepage</sl-breadcrumb-item>
+      <sl-breadcrumb-item>Our Services</sl-breadcrumb-item>
+      <sl-breadcrumb-item>Digital Media</sl-breadcrumb-item>
+      <sl-breadcrumb-item>
+        Web Design
+        <sl-dropdown slot="suffix">
+          <sl-button slot="trigger" size="small" circle>
+            <sl-icon label="More options" name="three-dots"></sl-icon>
+          </sl-button>
+          <sl-menu>
+            <sl-menu-item type="checkbox" checked>Web Design</sl-menu-item>
+            <sl-menu-item type="checkbox">Web Development</sl-menu-item>
+            <sl-menu-item type="checkbox">Marketing</sl-menu-item>
+          </sl-menu>
+        </sl-dropdown>
+      </sl-breadcrumb-item>
+    </sl-breadcrumb>
+  `
+})
+export class BreadcrumbWithDropdowns2ExampleComponent {}
 ```

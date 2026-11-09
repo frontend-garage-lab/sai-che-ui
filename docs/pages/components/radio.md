@@ -28,6 +28,25 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio/radio.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-radio-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-radio-group label="Select an option" name="a" value="1">
+      <sl-radio value="1">Option 1</sl-radio>
+      <sl-radio value="2">Option 2</sl-radio>
+      <sl-radio value="3">Option 3</sl-radio>
+    </sl-radio-group>
+  `
+})
+export class RadioExampleComponent {}
+```
+
 :::tip
 This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
 :::
@@ -59,6 +78,25 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio/radio.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-radio-initial-value-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-radio-group label="Select an option" name="a" value="3">
+      <sl-radio value="1">Option 1</sl-radio>
+      <sl-radio value="2">Option 2</sl-radio>
+      <sl-radio value="3">Option 3</sl-radio>
+    </sl-radio-group>
+  `
+})
+export class RadioInitialValueExampleComponent {}
+```
+
 ### Disabled
 
 Use the `disabled` attribute to disable a radio.
@@ -84,6 +122,25 @@ const App = () => (
     <SlRadio value="3">Option 3</SlRadio>
   </SlRadioGroup>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio/radio.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-radio-disabled-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-radio-group label="Select an option" name="a" value="1">
+      <sl-radio value="1">Option 1</sl-radio>
+      <sl-radio value="2" disabled>Option 2</sl-radio>
+      <sl-radio value="3">Option 3</sl-radio>
+    </sl-radio-group>
+  `
+})
+export class RadioDisabledExampleComponent {}
 ```
 
 ## Sizes

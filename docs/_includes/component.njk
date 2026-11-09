@@ -56,6 +56,7 @@
     <sl-tab slot="nav" panel="import">Import</sl-tab>
     <sl-tab slot="nav" panel="bundler">Bundler</sl-tab>
     <sl-tab slot="nav" panel="react">React</sl-tab>
+    <sl-tab slot="nav" panel="angular">Angular</sl-tab>
 
     <sl-tab-panel name="script">
       <p>
@@ -85,6 +86,28 @@
         To import this component as a <a href="/frameworks/react">React component</a>:
       </p>
       <pre><code class="language-js">import {{ component.name }} from '@shoelace-style/shoelace/{{ meta.npmdir }}/react/{{ component.tagNameWithoutPrefix }}';</code></pre>
+    </sl-tab-panel>
+
+    <sl-tab-panel name="angular">
+      <p>
+        <a href="{{ rootUrl('/frameworks/angular') }}">Angular</a> consumes the custom element directly. Import it once,
+        in the standalone component that uses it or in a shared entry point, and add
+        <code>CUSTOM_ELEMENTS_SCHEMA</code> to the component that renders the tag:
+      </p>
+      <pre><code class="language-ts">import '@shoelace-style/shoelace/{{ meta.npmdir }}/{{ component.path }}';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `&lt;{{ component.tagName }}&gt;&lt;/{{ component.tagName }}&gt;`
+})
+export class ExampleComponent {}</code></pre>
+      <p>
+        The <code>{{ component.name }}</code> type is available for <code>viewChild</code> queries:
+      </p>
+      <pre><code class="language-ts">import type {{ component.name }} from '@shoelace-style/shoelace/{{ meta.npmdir }}/components/{{ component.tagNameWithoutPrefix }}/{{ component.tagNameWithoutPrefix }}.component.js';</code></pre>
     </sl-tab-panel>
   </sl-tab-group>
 

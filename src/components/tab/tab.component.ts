@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { property, query } from 'lit/decorators.js';
@@ -92,13 +91,9 @@ export default class SlTab extends ShoelaceElement {
     return html`
       <div
         part="base"
-        class=${classMap({
-          tab: true,
-          'tab--active': this.active,
-          'tab--closable': this.closable,
-          'tab--disabled': this.disabled,
-          'tab--card': this.card
-        })}
+        class="tab${this.active ? ' tab--active' : ''}${this.closable ? ' tab--closable' : ''}${this.disabled
+          ? ' tab--disabled'
+          : ''}${this.card ? ' tab--card' : ''}"
       >
         <slot></slot>
         ${this.closable

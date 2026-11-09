@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { property } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -77,16 +76,7 @@ export default class SlFileUploadItem extends ShoelaceElement {
 
   render() {
     return html`
-      <div
-        part="base"
-        class=${classMap({
-          'file-upload-item': true,
-          'file-upload-item--waiting': this.state === 'waiting',
-          'file-upload-item--uploading': this.state === 'uploading',
-          'file-upload-item--uploaded': this.state === 'uploaded',
-          'file-upload-item--failed': this.state === 'failed'
-        })}
-      >
+      <div part="base" class="file-upload-item file-upload-item--${this.state}">
         <span part="icon" class="file-upload-item__icon">
           ${this.state === 'uploading'
             ? html`<sl-spinner></sl-spinner>`

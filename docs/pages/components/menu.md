@@ -19,6 +19,30 @@ You can use [menu items](/components/menu-item), [menu labels](/components/menu-
 </sl-menu>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-menu-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-menu style="max-width: 200px;">
+      <sl-menu-item value="undo">Undo</sl-menu-item>
+      <sl-menu-item value="redo">Redo</sl-menu-item>
+      <sl-divider></sl-divider>
+      <sl-menu-item value="cut">Cut</sl-menu-item>
+      <sl-menu-item value="copy">Copy</sl-menu-item>
+      <sl-menu-item value="paste">Paste</sl-menu-item>
+      <sl-menu-item value="delete">Delete</sl-menu-item>
+    </sl-menu>
+  `
+})
+export class MenuExampleComponent {}
+```
+
 {% raw %}
 
 ```jsx:react
@@ -80,6 +104,30 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-menu-in-dropdowns-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-dropdown>
+      <sl-button slot="trigger" caret>Edit</sl-button>
+      <sl-menu>
+        <sl-menu-item value="cut">Cut</sl-menu-item>
+        <sl-menu-item value="copy">Copy</sl-menu-item>
+        <sl-menu-item value="paste">Paste</sl-menu-item>
+      </sl-menu>
+    </sl-dropdown>
+  `
+})
+export class MenuInDropdownsExampleComponent {}
+```
+
 ### Submenus
 
 To create a submenu, nest an `<sl-menu slot="submenu">` in any [menu item](/components/menu-item).
@@ -110,6 +158,46 @@ To create a submenu, nest an `<sl-menu slot="submenu">` in any [menu item](/comp
     </sl-menu>
   </sl-menu-item>
 </sl-menu>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-menu-submenus-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-menu style="max-width: 200px;">
+      <sl-menu-item value="undo">Undo</sl-menu-item>
+      <sl-menu-item value="redo">Redo</sl-menu-item>
+      <sl-divider></sl-divider>
+      <sl-menu-item value="cut">Cut</sl-menu-item>
+      <sl-menu-item value="copy">Copy</sl-menu-item>
+      <sl-menu-item value="paste">Paste</sl-menu-item>
+      <sl-divider></sl-divider>
+      <sl-menu-item>
+        Find
+        <sl-menu slot="submenu">
+          <sl-menu-item value="find">Find…</sl-menu-item>
+          <sl-menu-item value="find-previous">Find Next</sl-menu-item>
+          <sl-menu-item value="find-next">Find Previous</sl-menu-item>
+        </sl-menu>
+      </sl-menu-item>
+      <sl-menu-item>
+        Transformations
+        <sl-menu slot="submenu">
+          <sl-menu-item value="uppercase">Make uppercase</sl-menu-item>
+          <sl-menu-item value="lowercase">Make lowercase</sl-menu-item>
+          <sl-menu-item value="capitalize">Capitalize</sl-menu-item>
+        </sl-menu>
+      </sl-menu-item>
+    </sl-menu>
+  `
+})
+export class MenuSubmenusExampleComponent {}
 ```
 
 {% raw %}

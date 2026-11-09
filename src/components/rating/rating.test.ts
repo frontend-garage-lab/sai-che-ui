@@ -19,7 +19,7 @@ describe('<sl-rating>', () => {
     expect(base.getAttribute('aria-valuemin')).to.equal('0');
     expect(base.getAttribute('aria-valuemax')).to.equal('5');
     expect(base.getAttribute('tabindex')).to.equal('0');
-    expect(base.getAttribute('class')).to.equal(' rating ');
+    expect(base.getAttribute('class')).to.equal('rating');
   });
 
   it('should be readonly with the readonly attribute', async () => {
@@ -27,7 +27,7 @@ describe('<sl-rating>', () => {
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
 
     expect(base.getAttribute('aria-readonly')).to.equal('true');
-    expect(base.getAttribute('class')).to.equal(' rating rating--readonly ');
+    expect(base.getAttribute('class')).to.equal('rating rating--readonly');
   });
 
   it('should be disabled with the disabled attribute', async () => {
@@ -35,7 +35,7 @@ describe('<sl-rating>', () => {
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
 
     expect(base.getAttribute('aria-disabled')).to.equal('true');
-    expect(base.getAttribute('class')).to.equal(' rating rating--disabled ');
+    expect(base.getAttribute('class')).to.equal('rating rating--disabled');
   });
 
   it('should set max value by attribute', async () => {

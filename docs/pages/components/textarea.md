@@ -15,6 +15,18 @@ import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
 const App = () => <SlTextarea />;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-textarea-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-textarea></sl-textarea>`
+})
+export class TextareaExampleComponent {}
+```
+
 :::tip
 This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
 :::
@@ -35,6 +47,18 @@ import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
 const App = () => <SlTextarea label="Comments" />;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-textarea-labels-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-textarea label="Comments"></sl-textarea>`
+})
+export class TextareaLabelsExampleComponent {}
+```
+
 ### Help Text
 
 Add descriptive help text to a textarea with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
@@ -47,6 +71,18 @@ Add descriptive help text to a textarea with the `help-text` attribute. For help
 import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
 
 const App = () => <SlTextarea label="Feedback" help-text="Please tell us what you think." />;
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-textarea-help-text-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-textarea label="Feedback" help-text="Please tell us what you think."> </sl-textarea>`
+})
+export class TextareaHelpTextExampleComponent {}
 ```
 
 ### Rows
@@ -63,6 +99,18 @@ import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
 const App = () => <SlTextarea rows={2} />;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-textarea-rows-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-textarea rows="2"></sl-textarea>`
+})
+export class TextareaRowsExampleComponent {}
+```
+
 ### Placeholders
 
 Use the `placeholder` attribute to add a placeholder.
@@ -77,6 +125,18 @@ import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
 const App = () => <SlTextarea placeholder="Type something" />;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-textarea-placeholders-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-textarea placeholder="Type something"></sl-textarea>`
+})
+export class TextareaPlaceholdersExampleComponent {}
+```
+
 ### Filled Textareas
 
 Add the `filled` attribute to draw a filled textarea.
@@ -89,6 +149,18 @@ Add the `filled` attribute to draw a filled textarea.
 import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
 
 const App = () => <SlTextarea placeholder="Type something" filled />;
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-textarea-filled-textareas-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-textarea placeholder="Type something" filled></sl-textarea>`
+})
+export class TextareaFilledTextareasExampleComponent {}
 ```
 
 ### Status
@@ -117,6 +189,24 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-textarea-status-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-textarea label="Success" help-text="Looks good." status="success"></sl-textarea>
+    <br />
+    <sl-textarea label="Warning" help-text="Double-check this value." status="warning"></sl-textarea>
+    <br />
+    <sl-textarea label="Error" help-text="This field is required." status="danger"></sl-textarea>
+  `
+})
+export class TextareaStatusExampleComponent {}
+```
+
 ### Disabled
 
 Use the `disabled` attribute to disable a textarea.
@@ -129,6 +219,18 @@ Use the `disabled` attribute to disable a textarea.
 import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
 
 const App = () => <SlTextarea placeholder="Textarea" disabled />;
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-textarea-disabled-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-textarea placeholder="Textarea" disabled></sl-textarea>`
+})
+export class TextareaDisabledExampleComponent {}
 ```
 
 ### Sizes
@@ -157,6 +259,24 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-textarea-sizes-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-textarea placeholder="Small" size="small"></sl-textarea>
+    <br />
+    <sl-textarea placeholder="Medium" size="medium"></sl-textarea>
+    <br />
+    <sl-textarea placeholder="Large" size="large"></sl-textarea>
+  `
+})
+export class TextareaSizesExampleComponent {}
+```
+
 ### Prevent Resizing
 
 By default, textareas can be resized vertically by the user. To prevent resizing, set the `resize` attribute to `none`.
@@ -171,6 +291,18 @@ import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
 const App = () => <SlTextarea resize="none" />;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-textarea-prevent-resizing-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-textarea resize="none"></sl-textarea>`
+})
+export class TextareaPreventResizingExampleComponent {}
+```
+
 ### Expand with Content
 
 Textareas will automatically resize to expand to fit their content when `resize` is set to `auto`.
@@ -183,4 +315,16 @@ Textareas will automatically resize to expand to fit their content when `resize`
 import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
 
 const App = () => <SlTextarea resize="auto" />;
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-textarea-expand-with-content-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-textarea resize="auto"></sl-textarea>`
+})
+export class TextareaExpandWithContentExampleComponent {}
 ```

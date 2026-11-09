@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
@@ -95,15 +94,9 @@ export default class SlRadio extends ShoelaceElement {
     return html`
       <span
         part="base"
-        class=${classMap({
-          radio: true,
-          'radio--checked': this.checked,
-          'radio--disabled': this.disabled,
-          'radio--focused': this.hasFocus,
-          'radio--small': this.size === 'small',
-          'radio--medium': this.size === 'medium',
-          'radio--large': this.size === 'large'
-        })}
+        class="radio radio--${this.size}${this.checked ? ' radio--checked' : ''}${this.disabled
+          ? ' radio--disabled'
+          : ''}${this.hasFocus ? ' radio--focused' : ''}"
       >
         <span part="${`control${this.checked ? ' control--checked' : ''}`}" class="radio__control">
           ${this.checked

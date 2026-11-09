@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { defaultValue } from '../../internal/default-value.js';
 import { FormControlController } from '../../internal/form.js';
 import { HasSlotController } from '../../internal/slot.js';
@@ -45,8 +44,9 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private resizeObserver: ResizeObserver;
 
-  @query('.textarea__control') input: HTMLTextAreaElement;
-  @query('.textarea__size-adjuster') sizeAdjuster: HTMLTextAreaElement;
+  @query('.textarea__control', true /* cache: this node is never re-created */) input: HTMLTextAreaElement;
+  @query('.textarea__size-adjuster', true /* cache: this node is never re-created */)
+  sizeAdjuster: HTMLTextAreaElement;
 
   @state() private hasFocus = false;
   @property() title = ''; // make reactive to pass through
@@ -313,14 +313,9 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
     return html`
       <div
         part="form-control"
-        class=${classMap({
-          'form-control': true,
-          'form-control--small': this.size === 'small',
-          'form-control--medium': this.size === 'medium',
-          'form-control--large': this.size === 'large',
-          'form-control--has-label': hasLabel,
-          'form-control--has-help-text': hasHelpText
-        })}
+        class="form-control form-control--${this.size}${hasLabel ? ' form-control--has-label' : ''}${hasHelpText
+          ? ' form-control--has-help-text'
+          : ''}"
       >
         <label
           part="form-control-label"
@@ -334,20 +329,15 @@ export default class SlTextarea extends ShoelaceElement implements ShoelaceFormC
         <div part="form-control-input" class="form-control-input">
           <div
             part="base"
-            class=${classMap({
-              textarea: true,
-              'textarea--small': this.size === 'small',
-              'textarea--medium': this.size === 'medium',
-              'textarea--large': this.size === 'large',
-              'textarea--standard': !this.filled,
-              'textarea--filled': this.filled,
-              'textarea--disabled': this.disabled,
-              'textarea--focused': this.hasFocus,
-              'textarea--empty': !this.value,
-              'textarea--resize-none': this.resize === 'none',
-              'textarea--resize-vertical': this.resize === 'vertical',
-              'textarea--resize-auto': this.resize === 'auto'
-            })}
+            class="textarea textarea--${this.size}${this.filled ? ' textarea--filled' : ' textarea--standard'}${this
+              .disabled
+              ? ' textarea--disabled'
+              : ''}${this.hasFocus ? ' textarea--focused' : ''}${!this.value ? ' textarea--empty' : ''}${this.resize ===
+            'none'
+              ? ' textarea--resize-none'
+              : ''}${this.resize === 'vertical' ? ' textarea--resize-vertical' : ''}${this.resize === 'auto'
+              ? ' textarea--resize-auto'
+              : ''}"
           >
             <textarea
               part="textarea"

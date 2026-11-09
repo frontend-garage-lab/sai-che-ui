@@ -11,7 +11,7 @@ describe('<sl-skeleton>', () => {
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
     const indicator = el.shadowRoot!.querySelector<HTMLElement>('[part~="indicator"]')!;
 
-    expect(base.getAttribute('class')).to.equal(' skeleton ');
+    expect(base.getAttribute('class')).to.equal('skeleton');
     expect(indicator.getAttribute('class')).to.equal('skeleton__indicator');
   });
 
@@ -20,7 +20,7 @@ describe('<sl-skeleton>', () => {
 
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
 
-    expect(base.getAttribute('class')).to.equal(' skeleton skeleton--pulse ');
+    expect(base.getAttribute('class')).to.equal('skeleton skeleton--pulse');
   });
 
   it('should set sheen effect by attribute', async () => {
@@ -28,6 +28,6 @@ describe('<sl-skeleton>', () => {
 
     const base = el.shadowRoot!.querySelector<HTMLElement>('[part~="base"]')!;
 
-    expect(base.getAttribute('class')).to.equal(' skeleton skeleton--sheen ');
+    expect(base.getAttribute('class')).to.equal('skeleton skeleton--sheen');
   });
 });

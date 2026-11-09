@@ -1,5 +1,4 @@
 import { animateTo, stopAnimations } from '../../internal/animate.js';
-import { classMap } from 'lit/directives/class-map.js';
 import { FormControlController } from '../../internal/form.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { HasSlotController } from '../../internal/slot.js';
@@ -86,11 +85,11 @@ export default class SlSelect extends ShoelaceElement implements ShoelaceFormCon
   private typeToSelectTimeout: number;
   private closeWatcher: CloseWatcher | null;
 
-  @query('.select') popup: SlPopup;
-  @query('.select__combobox') combobox: HTMLSlotElement;
-  @query('.select__display-input') displayInput: HTMLInputElement;
-  @query('.select__value-input') valueInput: HTMLInputElement;
-  @query('.select__listbox') listbox: HTMLSlotElement;
+  @query('.select', true /* cache: this node is never re-created */) popup: SlPopup;
+  @query('.select__combobox', true /* cache: this node is never re-created */) combobox: HTMLSlotElement;
+  @query('.select__display-input', true /* cache: this node is never re-created */) displayInput: HTMLInputElement;
+  @query('.select__value-input', true /* cache: this node is never re-created */) valueInput: HTMLInputElement;
+  @query('.select__listbox', true /* cache: this node is never re-created */) listbox: HTMLSlotElement;
 
   @state() private hasFocus = false;
   @state() displayLabel = '';
@@ -811,14 +810,9 @@ export default class SlSelect extends ShoelaceElement implements ShoelaceFormCon
     return html`
       <div
         part="form-control"
-        class=${classMap({
-          'form-control': true,
-          'form-control--small': this.size === 'small',
-          'form-control--medium': this.size === 'medium',
-          'form-control--large': this.size === 'large',
-          'form-control--has-label': hasLabel,
-          'form-control--has-help-text': hasHelpText
-        })}
+        class="form-control form-control--${this.size}${hasLabel ? ' form-control--has-label' : ''}${hasHelpText
+          ? ' form-control--has-help-text'
+          : ''}"
       >
         <label
           id="label"
@@ -832,22 +826,15 @@ export default class SlSelect extends ShoelaceElement implements ShoelaceFormCon
 
         <div part="form-control-input" class="form-control-input">
           <sl-popup
-            class=${classMap({
-              select: true,
-              'select--standard': true,
-              'select--filled': this.filled,
-              'select--pill': this.pill,
-              'select--open': this.open,
-              'select--disabled': this.disabled,
-              'select--multiple': this.multiple,
-              'select--focused': this.hasFocus,
-              'select--placeholder-visible': isPlaceholderVisible,
-              'select--top': this.placement === 'top',
-              'select--bottom': this.placement === 'bottom',
-              'select--small': this.size === 'small',
-              'select--medium': this.size === 'medium',
-              'select--large': this.size === 'large'
-            })}
+            class="select select--standard select--${this.size}${this.filled ? ' select--filled' : ''}${this.pill
+              ? ' select--pill'
+              : ''}${this.open ? ' select--open' : ''}${this.disabled ? ' select--disabled' : ''}${this.multiple
+              ? ' select--multiple'
+              : ''}${this.hasFocus ? ' select--focused' : ''}${isPlaceholderVisible
+              ? ' select--placeholder-visible'
+              : ''}${this.placement === 'top' ? ' select--top' : ''}${this.placement === 'bottom'
+              ? ' select--bottom'
+              : ''}"
             placement=${this.placement}
             strategy=${this.hoist ? 'fixed' : 'absolute'}
             flip

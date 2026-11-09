@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { defaultValue } from '../../internal/default-value.js';
 import { FormControlController } from '../../internal/form.js';
 import { HasSlotController } from '../../internal/slot.js';
@@ -49,7 +48,7 @@ export default class SlSwitch extends ShoelaceElement implements ShoelaceFormCon
   });
   private readonly hasSlotController = new HasSlotController(this, 'help-text');
 
-  @query('input[type="checkbox"]') input: HTMLInputElement;
+  @query('input[type="checkbox"]', true /* cache: this node is never re-created */) input: HTMLInputElement;
 
   @state() private hasFocus = false;
   @property() title = ''; // make reactive to pass through
@@ -192,26 +191,12 @@ export default class SlSwitch extends ShoelaceElement implements ShoelaceFormCon
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
 
     return html`
-      <div
-        class=${classMap({
-          'form-control': true,
-          'form-control--small': this.size === 'small',
-          'form-control--medium': this.size === 'medium',
-          'form-control--large': this.size === 'large',
-          'form-control--has-help-text': hasHelpText
-        })}
-      >
+      <div class="form-control form-control--${this.size}${hasHelpText ? ' form-control--has-help-text' : ''}">
         <label
           part="base"
-          class=${classMap({
-            switch: true,
-            'switch--checked': this.checked,
-            'switch--disabled': this.disabled,
-            'switch--focused': this.hasFocus,
-            'switch--small': this.size === 'small',
-            'switch--medium': this.size === 'medium',
-            'switch--large': this.size === 'large'
-          })}
+          class="switch switch--${this.size}${this.checked ? ' switch--checked' : ''}${this.disabled
+            ? ' switch--disabled'
+            : ''}${this.hasFocus ? ' switch--focused' : ''}"
         >
           <input
             class="switch__input"

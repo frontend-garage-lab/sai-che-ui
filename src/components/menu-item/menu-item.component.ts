@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { getTextContent, HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -50,8 +49,8 @@ export default class SlMenuItem extends ShoelaceElement {
   private cachedTextLabel: string;
   private readonly localize = new LocalizeController(this);
 
-  @query('slot:not([name])') defaultSlot: HTMLSlotElement;
-  @query('.menu-item') menuItem: HTMLElement;
+  @query('slot:not([name])', true /* cache: this node is never re-created */) defaultSlot: HTMLSlotElement;
+  @query('.menu-item', true /* cache: this node is never re-created */) menuItem: HTMLElement;
 
   /** The type of menu item to render. To use `checked`, this value must be set to `checkbox`. */
   @property() type: 'normal' | 'checkbox' = 'normal';
@@ -162,15 +161,11 @@ export default class SlMenuItem extends ShoelaceElement {
       <div
         id="anchor"
         part="base"
-        class=${classMap({
-          'menu-item': true,
-          'menu-item--rtl': isRtl,
-          'menu-item--checked': this.checked,
-          'menu-item--disabled': this.disabled,
-          'menu-item--loading': this.loading,
-          'menu-item--has-submenu': this.isSubmenu(),
-          'menu-item--submenu-expanded': isSubmenuExpanded
-        })}
+        class="menu-item${isRtl ? ' menu-item--rtl' : ''}${this.checked ? ' menu-item--checked' : ''}${this.disabled
+          ? ' menu-item--disabled'
+          : ''}${this.loading ? ' menu-item--loading' : ''}${this.isSubmenu()
+          ? ' menu-item--has-submenu'
+          : ''}${isSubmenuExpanded ? ' menu-item--submenu-expanded' : ''}"
         ?aria-haspopup="${this.isSubmenu()}"
         ?aria-expanded="${isSubmenuExpanded ? true : false}"
       >

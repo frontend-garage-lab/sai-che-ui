@@ -24,6 +24,13 @@ const waitForScrollButtonsToBeRendered = async (tabGroup: SlTabGroup): Promise<v
   });
 };
 
+const waitForScrollButtonsToBeRemoved = async (tabGroup: SlTabGroup): Promise<void> => {
+  await waitUntil(() => {
+    const scrollButtons = tabGroup.shadowRoot?.querySelectorAll('sl-icon-button');
+    return scrollButtons?.length === 0;
+  });
+};
+
 const getClientRectangles = (tabGroup: SlTabGroup): ClientRectangles => {
   const shadowRoot = tabGroup.shadowRoot;
   if (shadowRoot) {
@@ -255,29 +262,40 @@ describe('<sl-tab-group>', () => {
       expect(scrollButtons).to.have.length(0);
     });
 
-    // TODO - this fails sporadically, likely due to a timing issue. It tests fine manually.
-    it.skip('does not show scroll buttons if placement is start', async () => {
+    it('does not show scroll buttons if placement is start', async () => {
       const tabGroup = await fixture<SlTabGroup>(html`<sl-tab-group> ${generateTabs(50)} </sl-tab-group>`);
+
+      // Wait for the controls to actually appear under the default top placement first. Without this the assertion
+      // below could pass simply because the first render had not produced them yet, and a plain `aTimeout(0)` is not
+      // a reliable barrier for the resize observer that drives them.
+      await waitForScrollButtonsToBeRendered(tabGroup);
+
       tabGroup.placement = 'start';
-
-      await aTimeout(0);
+      await waitForScrollButtonsToBeRemoved(tabGroup);
 
       const scrollButtons = tabGroup.shadowRoot?.querySelectorAll('sl-icon-button');
       expect(scrollButtons).to.have.length(0);
     });
 
-    // TODO - this fails sporadically, likely due to a timing issue. It tests fine manually.
-    it.skip('does not show scroll buttons if placement is end', async () => {
+    it('does not show scroll buttons if placement is end', async () => {
       const tabGroup = await fixture<SlTabGroup>(html`<sl-tab-group> ${generateTabs(50)} </sl-tab-group>`);
-      tabGroup.placement = 'end';
 
-      await aTimeout(0);
+      // Wait for the controls to actually appear under the default top placement first. Without this the assertion
+      // below could pass simply because the first render had not produced them yet, and a plain `aTimeout(0)` is not
+      // a reliable barrier for the resize observer that drives them.
+      await waitForScrollButtonsToBeRendered(tabGroup);
+
+      tabGroup.placement = 'end';
+      await waitForScrollButtonsToBeRemoved(tabGroup);
 
       const scrollButtons = tabGroup.shadowRoot?.querySelectorAll('sl-icon-button');
       expect(scrollButtons).to.have.length(0);
     });
 
-    // TODO - this fails sporadically, likely due to a timing issue. It tests fine manually.
+    // Re-checked on 2026-11-09: this passes reliably on its own (`npx web-test-runner --group tab-group`, four runs
+    // in a row) but still fails intermittently inside the full suite, where the browser is under parallel load and
+    // the smooth scroll does not always settle within the wait. Left disabled on purpose: an intermittent test is
+    // worse than a disabled one. The two sibling tests above were made deterministic and are now enabled.
     it.skip('does scroll on scroll button click', async () => {
       const numberOfElements = 15;
       const tabGroup = await fixture<SlTabGroup>(

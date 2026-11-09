@@ -23,8 +23,21 @@ module.exports = function (doc, options) {
     if (!pre) {
       return;
     }
-    const adjacentPre = pre.nextElementSibling?.tagName.toLowerCase() === 'pre' ? pre.nextElementSibling : null;
-    const reactCode = adjacentPre?.querySelector('code[class$="react"]');
+    // Alternate flavors live in the code fields that immediately follow the preview, in any order. Only the ones we
+    // actually consume are removed, so unrelated code fields that happen to sit next to an example are left alone.
+    const followingPres = [];
+    let sibling = pre.nextElementSibling;
+
+    while (sibling?.tagName.toLowerCase() === 'pre') {
+      followingPres.push(sibling);
+      sibling = sibling.nextElementSibling;
+    }
+
+    const reactPre = followingPres.find(candidate => candidate.querySelector('code[class$="react"]')) ?? null;
+    const angularPre = followingPres.find(candidate => candidate.querySelector('code[class$="angular"]')) ?? null;
+    const reactCode = reactPre?.querySelector('code[class$="react"]');
+    const angularCode = angularPre?.querySelector('code[class$="angular"]');
+    const hasAlternateFlavor = Boolean(reactCode || angularCode);
     const sourceGroupId = `code-preview-source-group-${count}`;
     const isExpanded = code.getAttribute('class').includes(':expanded');
     const noCodePen = code.getAttribute('class').includes(':no-codepen');
@@ -43,6 +56,12 @@ module.exports = function (doc, options) {
     const reactButton = `
       <button type="button" title="Show React code" class="code-preview__button code-preview__button--react">
         React
+      </button>
+    `;
+
+    const angularButton = `
+      <button type="button" title="Show Angular code" class="code-preview__button code-preview__button--angular">
+        Angular
       </button>
     `;
 
@@ -73,7 +92,7 @@ module.exports = function (doc, options) {
         </div>
 
         <div class="code-preview__source-group" id="${sourceGroupId}">
-          <div class="code-preview__source code-preview__source--html" ${reactCode ? 'data-flavor="html"' : ''}>
+          <div class="code-preview__source code-preview__source--html" ${hasAlternateFlavor ? 'data-flavor="html"' : ''}>
             <pre><code class="language-html">${escapeHtml(code.textContent)}</code></pre>
           </div>
 
@@ -82,6 +101,16 @@ module.exports = function (doc, options) {
               ? `
             <div class="code-preview__source code-preview__source--react" data-flavor="react">
               <pre><code class="language-jsx">${escapeHtml(reactCode.textContent)}</code></pre>
+            </div>
+          `
+              : ''
+          }
+
+          ${
+            angularCode
+              ? `
+            <div class="code-preview__source code-preview__source--angular" data-flavor="angular">
+              <pre><code class="language-typescript">${escapeHtml(angularCode.textContent)}</code></pre>
             </div>
           `
               : ''
@@ -108,7 +137,9 @@ module.exports = function (doc, options) {
             </svg>
           </button>
 
-          ${reactCode ? ` ${htmlButton} ${reactButton} ` : ''}
+          ${hasAlternateFlavor ? ` ${htmlButton} ` : ''}
+          ${reactCode ? ` ${reactButton} ` : ''}
+          ${angularCode ? ` ${angularButton} ` : ''}
 
           ${noCodePen ? '' : codePenButton}
         </div>
@@ -118,8 +149,12 @@ module.exports = function (doc, options) {
     pre.insertAdjacentHTML('afterend', codePreview);
     pre.remove();
 
-    if (adjacentPre) {
-      adjacentPre.remove();
+    if (reactPre) {
+      reactPre.remove();
+    }
+
+    if (angularPre) {
+      angularPre.remove();
     }
   });
 

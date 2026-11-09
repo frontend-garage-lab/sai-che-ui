@@ -15,6 +15,18 @@ import SlCheckbox from '@shoelace-style/shoelace/dist/react/checkbox';
 const App = () => <SlCheckbox>Checkbox</SlCheckbox>;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/checkbox/checkbox.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-checkbox-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-checkbox>Checkbox</sl-checkbox>`
+})
+export class CheckboxExampleComponent {}
+```
+
 :::tip
 This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
 :::
@@ -35,6 +47,18 @@ import SlCheckbox from '@shoelace-style/shoelace/dist/react/checkbox';
 const App = () => <SlCheckbox checked>Checked</SlCheckbox>;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/checkbox/checkbox.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-checkbox-checked-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-checkbox checked>Checked</sl-checkbox>`
+})
+export class CheckboxCheckedExampleComponent {}
+```
+
 ### Indeterminate
 
 Use the `indeterminate` attribute to make the checkbox indeterminate.
@@ -49,6 +73,18 @@ import SlCheckbox from '@shoelace-style/shoelace/dist/react/checkbox';
 const App = () => <SlCheckbox indeterminate>Indeterminate</SlCheckbox>;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/checkbox/checkbox.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-checkbox-indeterminate-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-checkbox indeterminate>Indeterminate</sl-checkbox>`
+})
+export class CheckboxIndeterminateExampleComponent {}
+```
+
 ### Disabled
 
 Use the `disabled` attribute to disable the checkbox.
@@ -61,6 +97,18 @@ Use the `disabled` attribute to disable the checkbox.
 import SlCheckbox from '@shoelace-style/shoelace/dist/react/checkbox';
 
 const App = () => <SlCheckbox disabled>Disabled</SlCheckbox>;
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/checkbox/checkbox.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-checkbox-disabled-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-checkbox disabled>Disabled</sl-checkbox>`
+})
+export class CheckboxDisabledExampleComponent {}
 ```
 
 ### Sizes
@@ -89,6 +137,24 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/checkbox/checkbox.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-checkbox-sizes-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-checkbox size="small">Small</sl-checkbox>
+    <br />
+    <sl-checkbox size="medium">Medium</sl-checkbox>
+    <br />
+    <sl-checkbox size="large">Large</sl-checkbox>
+  `
+})
+export class CheckboxSizesExampleComponent {}
+```
+
 ### Help Text
 
 Add descriptive help text to a switch with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
@@ -101,6 +167,18 @@ Add descriptive help text to a switch with the `help-text` attribute. For help t
 import SlCheckbox from '@shoelace-style/shoelace/dist/react/checkbox';
 
 const App = () => <SlCheckbox help-text="What should the user know about the switch?">Label</SlCheckbox>;
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/checkbox/checkbox.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-checkbox-help-text-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-checkbox help-text="What should the user know about the checkbox?">Label</sl-checkbox>`
+})
+export class CheckboxHelpTextExampleComponent {}
 ```
 
 ### Custom Validity
@@ -135,6 +213,49 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
     alert('All fields are valid!');
   });
 </script>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/checkbox/checkbox.js';
+import { afterNextRender, ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, viewChild } from '@angular/core';
+import type SlCheckbox from '@shoelace-style/shoelace/%NPMDIR%/components/checkbox/checkbox.component.js';
+
+const ERROR_MESSAGE = `Don't forget to check me!`;
+
+@Component({
+  selector: 'app-checkbox-custom-validity-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <form (submit)="onSubmit($event)">
+      <sl-checkbox #checkbox (sl-change)="syncValidity()">Check me</sl-checkbox>
+      <br />
+      <sl-button type="submit" variant="primary" style="margin-top: 1rem;">Submit</sl-button>
+    </form>
+  `
+})
+export class CheckboxCustomValidityExampleComponent {
+  private readonly checkbox = viewChild.required<ElementRef<SlCheckbox>>('checkbox');
+
+  constructor() {
+    // The element has to be upgraded and rendered before its validity can be set.
+    afterNextRender(async () => {
+      await this.checkbox().nativeElement.updateComplete;
+      this.syncValidity();
+    });
+  }
+
+  syncValidity() {
+    const checkbox = this.checkbox().nativeElement;
+    checkbox.setCustomValidity(checkbox.checked ? '' : ERROR_MESSAGE);
+  }
+
+  onSubmit(event: Event) {
+    event.preventDefault();
+    alert('All fields are valid!');
+  }
+}
 ```
 
 {% raw %}

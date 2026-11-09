@@ -24,6 +24,24 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-alert-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-alert open>
+      <sl-icon slot="icon" name="info-circle"></sl-icon>
+      This is a standard alert. You can customize its content and even the icon.
+    </sl-alert>
+  `
+})
+export class AlertExampleComponent {}
+```
+
 :::tip
 Alerts will not be visible if the `open` attribute is not present.
 :::
@@ -126,6 +144,57 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-alert-variants-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-alert variant="primary" open>
+      <sl-icon slot="icon" name="info-circle"></sl-icon>
+      <strong>This is super informative</strong><br />
+      You can tell by how pretty the alert is.
+    </sl-alert>
+
+    <br />
+
+    <sl-alert variant="success" open>
+      <sl-icon slot="icon" name="check2-circle"></sl-icon>
+      <strong>Your changes have been saved</strong><br />
+      You can safely exit the app now.
+    </sl-alert>
+
+    <br />
+
+    <sl-alert variant="neutral" open>
+      <sl-icon slot="icon" name="gear"></sl-icon>
+      <strong>Your settings have been updated</strong><br />
+      Settings will take effect on next login.
+    </sl-alert>
+
+    <br />
+
+    <sl-alert variant="warning" open>
+      <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
+      <strong>Your session has ended</strong><br />
+      Please login again to continue.
+    </sl-alert>
+
+    <br />
+
+    <sl-alert variant="danger" open>
+      <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+      <strong>Your account has been deleted</strong><br />
+      We're very sorry to see you go!
+    </sl-alert>
+  `
+})
+export class AlertVariantsExampleComponent {}
+```
+
 ### Closable
 
 Add the `closable` attribute to show a close button that will hide the alert.
@@ -166,6 +235,31 @@ const App = () => {
 };
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-alert-closable-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-alert variant="primary" [open]="open()" closable (sl-after-hide)="reopenLater()">
+      <sl-icon slot="icon" name="info-circle"></sl-icon>
+      You can close this alert any time!
+    </sl-alert>
+  `
+})
+export class AlertClosableExampleComponent {
+  readonly open = signal(true);
+
+  reopenLater() {
+    setTimeout(() => this.open.set(true), 2000);
+  }
+}
+```
+
 ### Without Icons
 
 Icons are optional. Simply omit the `icon` slot if you don't want them.
@@ -182,6 +276,18 @@ const App = () => (
     Nothing fancy here, just a simple alert.
   </SlAlert>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-alert-without-icons-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-alert variant="primary" open> Nothing fancy here, just a simple alert. </sl-alert>`
+})
+export class AlertWithoutIconsExampleComponent {}
 ```
 
 ### Duration
@@ -247,6 +353,40 @@ const App = () => {
 };
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, viewChild } from '@angular/core';
+import type SlAlert from '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.component.js';
+
+@Component({
+  selector: 'app-alert-duration-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    sl-alert {
+      margin-top: var(--sl-spacing-medium);
+    }
+  `,
+  template: `
+    <sl-button variant="primary" (click)="show()">Show Alert</sl-button>
+
+    <sl-alert #alert variant="primary" duration="3000" closable>
+      <sl-icon slot="icon" name="info-circle"></sl-icon>
+      This alert will automatically hide itself after three seconds, unless you interact with it.
+    </sl-alert>
+  `
+})
+export class AlertDurationExampleComponent {
+  private readonly alert = viewChild.required<ElementRef<SlAlert>>('alert');
+
+  show() {
+    void this.alert().nativeElement.show();
+  }
+}
+```
+
 ### Countdown
 
 Set the `countdown` attribute to display a loading bar that indicates the alert remaining time. This is useful for alerts with relatively long duration.
@@ -310,6 +450,40 @@ const App = () => {
 };
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, viewChild } from '@angular/core';
+import type SlAlert from '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.component.js';
+
+@Component({
+  selector: 'app-alert-countdown-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    sl-alert {
+      margin-top: var(--sl-spacing-medium);
+    }
+  `,
+  template: `
+    <sl-button variant="primary" (click)="show()">Show Alert</sl-button>
+
+    <sl-alert #alert variant="primary" duration="10000" countdown="rtl" closable>
+      <sl-icon slot="icon" name="info-circle"></sl-icon>
+      You're not stuck, the alert will close after a pretty long duration.
+    </sl-alert>
+  `
+})
+export class AlertCountdownExampleComponent {
+  private readonly alert = viewChild.required<ElementRef<SlAlert>>('alert');
+
+  show() {
+    void this.alert().nativeElement.show();
+  }
+}
+```
+
 ### As a toast notification
 
 The dashboard's four toast cases map onto `sl-alert` variants: `success`, `danger` for "error", `warning`, and
@@ -360,6 +534,57 @@ when `toast()` is called.
     button.addEventListener('click', () => alert.toast());
   });
 </script>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, viewChildren } from '@angular/core';
+import type SlAlert from '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.component.js';
+
+@Component({
+  selector: 'app-alert-toast-semantic-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-button variant="success" (click)="toast(0)">Success</sl-button>
+    <sl-button variant="danger" (click)="toast(1)">Error</sl-button>
+    <sl-button variant="warning" (click)="toast(2)">Warning</sl-button>
+    <sl-button variant="primary" (click)="toast(3)">Information</sl-button>
+
+    <sl-alert #alert variant="success" closable>
+      <sl-icon slot="icon" name="check2-circle"></sl-icon>
+      <strong>Contract renewed</strong><br />
+      The agreement was signed and distributed to all parties.
+    </sl-alert>
+
+    <sl-alert #alert variant="danger" closable>
+      <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+      <strong>Contract expired</strong><br />
+      This agreement lapsed without a signed renewal.
+    </sl-alert>
+
+    <sl-alert #alert variant="warning" closable>
+      <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
+      <strong>Contract expiring soon</strong><br />
+      Renew before the term ends to avoid a lapse.
+    </sl-alert>
+
+    <sl-alert #alert variant="primary" closable>
+      <sl-icon slot="icon" name="info-circle"></sl-icon>
+      <strong>Stakeholders notified</strong><br />
+      An email was sent to everyone on the distribution list.
+    </sl-alert>
+  `
+})
+export class AlertToastSemanticExampleComponent {
+  private readonly alerts = viewChildren<ElementRef<SlAlert>>('alert');
+
+  toast(index: number) {
+    void this.alerts()[index].nativeElement.toast();
+  }
+}
 ```
 
 ### Toast Notifications
@@ -497,6 +722,60 @@ const App = () => {
 };
 ```
 
+{% raw %}
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, viewChildren } from '@angular/core';
+import type SlAlert from '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.component.js';
+
+interface Toast {
+  variant: 'primary' | 'success' | 'neutral' | 'warning' | 'danger';
+  label: string;
+  icon: string;
+  title: string;
+  body: string;
+}
+
+@Component({
+  selector: 'app-alert-toast-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    @for (toast of toasts; track toast.variant) {
+      <sl-button [variant]="toast.variant" (click)="show($index)">{{ toast.label }}</sl-button>
+    }
+
+    @for (toast of toasts; track toast.variant) {
+      <sl-alert #alert [variant]="toast.variant" duration="3000" closable>
+        <sl-icon slot="icon" [name]="toast.icon"></sl-icon>
+        <strong>{{ toast.title }}</strong><br />
+        {{ toast.body }}
+      </sl-alert>
+    }
+  `
+})
+export class AlertToastExampleComponent {
+  private readonly alerts = viewChildren<ElementRef<SlAlert>>('alert');
+
+  readonly toasts: Toast[] = [
+    { variant: 'primary', label: 'Primary', icon: 'info-circle', title: 'This is super informative', body: 'You can tell by how pretty the alert is.' },
+    { variant: 'success', label: 'Success', icon: 'check2-circle', title: 'Your changes have been saved', body: 'You can safely exit the app now.' },
+    { variant: 'neutral', label: 'Neutral', icon: 'gear', title: 'Your settings have been updated', body: 'Settings will take effect on next login.' },
+    { variant: 'warning', label: 'Warning', icon: 'exclamation-triangle', title: 'Your session has ended', body: 'Please login again to continue.' },
+    { variant: 'danger', label: 'Danger', icon: 'exclamation-octagon', title: 'Your account has been deleted', body: `We're very sorry to see you go!` }
+  ];
+
+  show(index: number) {
+    void this.alerts()[index].nativeElement.toast();
+  }
+}
+```
+
+{% endraw %}
+
 ### Creating Toasts Imperatively
 
 For convenience, you can create a utility that emits toast notifications with a function call rather than composing them in your HTML. To do this, generate the alert with JavaScript, append it to the body, and call the `toast()` method as shown in the example below.
@@ -538,6 +817,51 @@ For convenience, you can create a utility that emits toast notifications with a 
     notify(`This is custom toast #${++count}`);
   });
 </script>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, Injectable, inject } from '@angular/core';
+import type SlAlert from '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.component.js';
+
+/** A thin service wrapper, so any component can raise a toast without reaching into the DOM itself. */
+@Injectable({ providedIn: 'root' })
+export class ToastService {
+  notify(message: string, variant = 'primary', icon = 'info-circle', duration = 3000) {
+    const alert = Object.assign(document.createElement('sl-alert'), {
+      variant,
+      closable: true,
+      duration
+    }) as SlAlert;
+
+    const iconElement = document.createElement('sl-icon');
+    iconElement.setAttribute('name', icon);
+    iconElement.setAttribute('slot', 'icon');
+
+    // Build the body with textContent instead of innerHTML, so the message can never inject markup.
+    alert.append(iconElement, document.createTextNode(message));
+    document.body.append(alert);
+
+    return alert.toast();
+  }
+}
+
+@Component({
+  selector: 'app-alert-toast-wrapper-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-button variant="primary" (click)="createToast()">Create Toast</sl-button>`
+})
+export class AlertToastWrapperExampleComponent {
+  private readonly toasts = inject(ToastService);
+  private count = 0;
+
+  createToast() {
+    void this.toasts.notify(`This is custom toast #${++this.count}`);
+  }
+}
 ```
 
 ### The Toast Stack

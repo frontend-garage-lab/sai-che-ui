@@ -1,5 +1,4 @@
 import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../internal/animate.js';
-import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { html } from 'lit';
 import { live } from 'lit/directives/live.js';
@@ -229,15 +228,11 @@ export default class SlTreeItem extends ShoelaceElement {
     return html`
       <div
         part="base"
-        class="${classMap({
-          'tree-item': true,
-          'tree-item--expanded': this.expanded,
-          'tree-item--selected': this.selected,
-          'tree-item--disabled': this.disabled,
-          'tree-item--leaf': this.isLeaf,
-          'tree-item--has-expand-button': showExpandButton,
-          'tree-item--rtl': this.localize.dir() === 'rtl'
-        })}"
+        class="tree-item${this.expanded ? ' tree-item--expanded' : ''}${this.selected
+          ? ' tree-item--selected'
+          : ''}${this.disabled ? ' tree-item--disabled' : ''}${this.isLeaf ? ' tree-item--leaf' : ''}${showExpandButton
+          ? ' tree-item--has-expand-button'
+          : ''}${this.localize.dir() === 'rtl' ? ' tree-item--rtl' : ''}"
       >
         <div
           class="tree-item__item"
@@ -253,10 +248,7 @@ export default class SlTreeItem extends ShoelaceElement {
 
           <div
             part="expand-button"
-            class=${classMap({
-              'tree-item__expand-button': true,
-              'tree-item__expand-button--visible': showExpandButton
-            })}
+            class="tree-item__expand-button${showExpandButton ? ' tree-item__expand-button--visible' : ''}"
             aria-hidden="true"
           >
             ${when(

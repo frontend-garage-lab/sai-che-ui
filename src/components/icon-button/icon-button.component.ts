@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { html, literal } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { property, query, state } from 'lit/decorators.js';
@@ -118,19 +117,7 @@ export default class SlIconButton extends ShoelaceElement {
     return html`
       <${tag}
         part="base"
-        class=${classMap({
-          'icon-button': true,
-          'icon-button--default': this.variant === 'default',
-          'icon-button--primary': this.variant === 'primary',
-          'icon-button--accent': this.variant === 'accent',
-          'icon-button--success': this.variant === 'success',
-          'icon-button--neutral': this.variant === 'neutral',
-          'icon-button--warning': this.variant === 'warning',
-          'icon-button--danger': this.variant === 'danger',
-          'icon-button--filled': this.filled,
-          'icon-button--disabled': !isLink && this.disabled,
-          'icon-button--focused': this.hasFocus
-        })}
+        class="icon-button icon-button--${this.variant}${this.filled ? ' icon-button--filled' : ''}${!isLink && this.disabled ? ' icon-button--disabled' : ''}${this.hasFocus ? ' icon-button--focused' : ''}"
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         type=${ifDefined(isLink ? undefined : 'button')}
         href=${ifDefined(isLink ? this.href : undefined)}

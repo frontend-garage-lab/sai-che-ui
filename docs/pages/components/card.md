@@ -87,6 +87,52 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/card/card.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-card-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .card-overview {
+        max-width: 300px;
+      }
+
+      .card-overview small {
+        color: var(--sl-color-neutral-500);
+      }
+
+      .card-overview [slot='footer'] {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+  `,
+  template: `
+    <sl-card class="card-overview">
+      <img
+        slot="image"
+        src="https://images.unsplash.com/photo-1559209172-0ff8f6d49ff7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
+        alt="A kitten sits patiently between a terracotta pot and decorative grasses."
+      />
+
+      <strong>Mittens</strong><br />
+      This kitten is as cute as he is playful. Bring him home today!<br />
+      <small>6 weeks old</small>
+
+      <div slot="footer">
+        <sl-button variant="primary" pill>More Info</sl-button>
+        <sl-rating></sl-rating>
+      </div>
+    </sl-card>
+  `
+})
+export class CardExampleComponent {}
+```
+
 ## Examples
 
 ### Basic Card
@@ -123,6 +169,27 @@ const App = () => (
     <style>{css}</style>
   </>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/card/card.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-card-basic-card-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .card-basic {
+        max-width: 300px;
+      }
+  `,
+  template: `
+    <sl-card class="card-basic">
+      This is just a basic card. No image, no header, and no footer. Just your content.
+    </sl-card>
+  `
+})
+export class CardBasicCardExampleComponent {}
 ```
 
 ### Card with Header
@@ -199,6 +266,47 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/card/card.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-card-card-with-header-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .card-header {
+        max-width: 300px;
+      }
+
+      .card-header [slot='header'] {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .card-header h3 {
+        margin: 0;
+      }
+
+      .card-header sl-icon-button {
+        font-size: var(--sl-font-size-medium);
+      }
+  `,
+  template: `
+    <sl-card class="card-header">
+      <div slot="header">
+        Header Title
+        <sl-icon-button name="gear" label="Settings"></sl-icon-button>
+      </div>
+
+      This card has a header. You can put all sorts of things in it!
+    </sl-card>
+  `
+})
+export class CardCardWithHeaderExampleComponent {}
+```
+
 ### Card with Footer
 
 Footers can be used to display actions, summaries, or other relevant content.
@@ -260,6 +368,40 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/card/card.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-card-card-with-footer-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .card-footer {
+        max-width: 300px;
+      }
+
+      .card-footer [slot='footer'] {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+  `,
+  template: `
+    <sl-card class="card-footer">
+      This card has a footer. You can put all sorts of things in it!
+
+      <div slot="footer">
+        <sl-rating></sl-rating>
+        <sl-button variant="primary">Preview</sl-button>
+      </div>
+    </sl-card>
+  `
+})
+export class CardCardWithFooterExampleComponent {}
+```
+
 ### Variants
 
 Set `variant` to color the card's top edge, e.g. to tell apart the work areas of an application. Use `--accent-width` to change its thickness.
@@ -281,6 +423,34 @@ Set `variant` to color the card's top edge, e.g. to tell apart the work areas of
     gap: var(--sl-spacing-medium);
   }
 </style>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/card/card.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-card-variants-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .card-variants {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sl-spacing-medium);
+      }
+  `,
+  template: `
+    <div class="card-variants">
+      <sl-card variant="primary">Primary</sl-card>
+      <sl-card variant="accent">Accent</sl-card>
+      <sl-card variant="success">Success</sl-card>
+      <sl-card variant="neutral">Neutral</sl-card>
+      <sl-card variant="warning">Warning</sl-card>
+      <sl-card variant="danger">Danger</sl-card>
+    </div>
+  `
+})
+export class CardVariantsExampleComponent {}
 ```
 
 ### Images
@@ -327,4 +497,30 @@ const App = () => (
     <style>{css}</style>
   </>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/card/card.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-card-images-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .card-image {
+        max-width: 300px;
+      }
+  `,
+  template: `
+    <sl-card class="card-image">
+      <img
+        slot="image"
+        src="https://images.unsplash.com/photo-1547191783-94d5f8f6d8b1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80"
+        alt="A kitten walks towards camera on top of pallet."
+      />
+      This is a kitten, but not just any kitten. This kitten likes walking along pallets.
+    </sl-card>
+  `
+})
+export class CardImagesExampleComponent {}
 ```

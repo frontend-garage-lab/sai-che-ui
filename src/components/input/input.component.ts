@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { defaultValue } from '../../internal/default-value.js';
 import { FormControlController } from '../../internal/form.js';
 import { HasSlotController } from '../../internal/slot.js';
@@ -60,7 +59,7 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private readonly localize = new LocalizeController(this);
 
-  @query('.input__control') input: HTMLInputElement;
+  @query('.input__control', true /* cache: this node is never re-created */) input: HTMLInputElement;
 
   @state() private hasFocus = false;
   @property() title = ''; // make reactive to pass through
@@ -422,14 +421,9 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
     return html`
       <div
         part="form-control"
-        class=${classMap({
-          'form-control': true,
-          'form-control--small': this.size === 'small',
-          'form-control--medium': this.size === 'medium',
-          'form-control--large': this.size === 'large',
-          'form-control--has-label': hasLabel,
-          'form-control--has-help-text': hasHelpText
-        })}
+        class="form-control form-control--${this.size}${hasLabel ? ' form-control--has-label' : ''}${hasHelpText
+          ? ' form-control--has-help-text'
+          : ''}"
       >
         <label
           part="form-control-label"
@@ -443,23 +437,11 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
         <div part="form-control-input" class="form-control-input">
           <div
             part="base"
-            class=${classMap({
-              input: true,
-
-              // Sizes
-              'input--small': this.size === 'small',
-              'input--medium': this.size === 'medium',
-              'input--large': this.size === 'large',
-
-              // States
-              'input--pill': this.pill,
-              'input--standard': !this.filled,
-              'input--filled': this.filled,
-              'input--disabled': this.disabled,
-              'input--focused': this.hasFocus,
-              'input--empty': !this.value,
-              'input--no-spin-buttons': this.noSpinButtons
-            })}
+            class="input input--${this.size}${this.filled ? ' input--filled' : ' input--standard'}${this.pill
+              ? ' input--pill'
+              : ''}${this.disabled ? ' input--disabled' : ''}${this.hasFocus ? ' input--focused' : ''}${!this.value
+              ? ' input--empty'
+              : ''}${this.noSpinButtons ? ' input--no-spin-buttons' : ''}"
           >
             <span part="prefix" class="input__prefix">
               <slot name="prefix"></slot>

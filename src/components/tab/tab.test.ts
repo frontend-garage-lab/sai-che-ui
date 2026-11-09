@@ -25,7 +25,7 @@ describe('<sl-tab>', () => {
     expect(el.getAttribute('aria-disabled')).to.equal('false');
     expect(el.getAttribute('aria-selected')).to.equal('false');
     expect(el.getAttribute('tabindex')).to.equal('0');
-    expect(base.getAttribute('class')).to.equal(' tab ');
+    expect(base.getAttribute('class')).to.equal('tab');
     expect(el.active).to.equal(false);
     expect(el.closable).to.equal(false);
     expect(el.disabled).to.equal(false);
@@ -38,7 +38,7 @@ describe('<sl-tab>', () => {
 
     expect(el.disabled).to.equal(true);
     expect(el.getAttribute('aria-disabled')).to.equal('true');
-    expect(base.getAttribute('class')).to.equal(' tab tab--disabled ');
+    expect(base.getAttribute('class')).to.equal('tab tab--disabled');
     expect(el.getAttribute('tabindex')).to.equal('-1');
   });
 
@@ -49,7 +49,7 @@ describe('<sl-tab>', () => {
 
     expect(el.active).to.equal(true);
     expect(el.getAttribute('aria-selected')).to.equal('true');
-    expect(base.getAttribute('class')).to.equal(' tab tab--active ');
+    expect(base.getAttribute('class')).to.equal('tab tab--active');
     expect(el.getAttribute('tabindex')).to.equal('0');
   });
 

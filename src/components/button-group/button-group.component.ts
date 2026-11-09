@@ -18,7 +18,7 @@ import type { CSSResultGroup } from 'lit';
 export default class SlButtonGroup extends ShoelaceElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
-  @query('slot') defaultSlot: HTMLSlotElement;
+  @query('slot', true /* cache: this node is never re-created */) defaultSlot: HTMLSlotElement;
 
   @state() disableRole = false;
 
@@ -49,17 +49,17 @@ export default class SlButtonGroup extends ShoelaceElement {
   }
 
   private handleSlotChange() {
-    const slottedElements = [...this.defaultSlot.assignedElements({ flatten: true })] as HTMLElement[];
+    const slottedElements = this.defaultSlot.assignedElements({ flatten: true }) as HTMLElement[];
+    const lastIndex = slottedElements.length - 1;
 
-    slottedElements.forEach(el => {
-      const index = slottedElements.indexOf(el);
+    slottedElements.forEach((el, index) => {
       const button = findButton(el);
 
       if (button) {
         button.toggleAttribute('data-sl-button-group__button', true);
         button.toggleAttribute('data-sl-button-group__button--first', index === 0);
-        button.toggleAttribute('data-sl-button-group__button--inner', index > 0 && index < slottedElements.length - 1);
-        button.toggleAttribute('data-sl-button-group__button--last', index === slottedElements.length - 1);
+        button.toggleAttribute('data-sl-button-group__button--inner', index > 0 && index < lastIndex);
+        button.toggleAttribute('data-sl-button-group__button--last', index === lastIndex);
         button.toggleAttribute(
           'data-sl-button-group__button--radio',
           button.tagName.toLowerCase() === 'sl-radio-button'

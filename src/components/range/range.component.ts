@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { defaultValue } from '../../internal/default-value.js';
 import { eventOptions, property, query, state } from 'lit/decorators.js';
 import { FormControlController } from '../../internal/form.js';
@@ -53,7 +52,7 @@ export default class SlRange extends ShoelaceElement implements ShoelaceFormCont
   private readonly localize = new LocalizeController(this);
   private resizeObserver: ResizeObserver;
 
-  @query('.range__control') input: HTMLInputElement;
+  @query('.range__control', true /* cache: this node is never re-created */) input: HTMLInputElement;
   @query('.range__tooltip') output: HTMLOutputElement | null;
 
   @state() private hasFocus = false;
@@ -283,12 +282,9 @@ export default class SlRange extends ShoelaceElement implements ShoelaceFormCont
     return html`
       <div
         part="form-control"
-        class=${classMap({
-          'form-control': true,
-          'form-control--medium': true, // range only has one size
-          'form-control--has-label': hasLabel,
-          'form-control--has-help-text': hasHelpText
-        })}
+        class="form-control form-control--medium${hasLabel ? ' form-control--has-label' : ''}${hasHelpText
+          ? ' form-control--has-help-text'
+          : ''}"
       >
         <label
           part="form-control-label"
@@ -302,15 +298,13 @@ export default class SlRange extends ShoelaceElement implements ShoelaceFormCont
         <div part="form-control-input" class="form-control-input">
           <div
             part="base"
-            class=${classMap({
-              range: true,
-              'range--disabled': this.disabled,
-              'range--focused': this.hasFocus,
-              'range--rtl': this.localize.dir() === 'rtl',
-              'range--tooltip-visible': this.hasTooltip,
-              'range--tooltip-top': this.tooltip === 'top',
-              'range--tooltip-bottom': this.tooltip === 'bottom'
-            })}
+            class="range${this.disabled ? ' range--disabled' : ''}${this.hasFocus
+              ? ' range--focused'
+              : ''}${this.localize.dir() === 'rtl' ? ' range--rtl' : ''}${this.hasTooltip
+              ? ' range--tooltip-visible'
+              : ''}${this.tooltip === 'top' ? ' range--tooltip-top' : ''}${this.tooltip === 'bottom'
+              ? ' range--tooltip-bottom'
+              : ''}"
             @mousedown=${this.handleThumbDragStart}
             @mouseup=${this.handleThumbDragEnd}
             @touchstart=${this.handleThumbDragStart}

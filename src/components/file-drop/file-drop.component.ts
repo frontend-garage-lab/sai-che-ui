@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
@@ -56,7 +55,7 @@ export default class SlFileDrop extends ShoelaceElement {
 
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
 
-  @query('.file-drop__input') private input: HTMLInputElement;
+  @query('.file-drop__input', true /* cache: this node is never re-created */) private input: HTMLInputElement;
 
   @state() private dragging = false;
 
@@ -215,12 +214,9 @@ export default class SlFileDrop extends ShoelaceElement {
     return html`
       <div
         part="form-control"
-        class=${classMap({
-          'form-control': true,
-          'form-control--medium': true,
-          'form-control--has-label': hasLabel,
-          'form-control--has-help-text': hasHelpText
-        })}
+        class="form-control form-control--medium${hasLabel ? ' form-control--has-label' : ''}${hasHelpText
+          ? ' form-control--has-help-text'
+          : ''}"
       >
         <div
           part="form-control-label"
@@ -234,11 +230,7 @@ export default class SlFileDrop extends ShoelaceElement {
         <button
           part="base"
           type="button"
-          class=${classMap({
-            'file-drop': true,
-            'file-drop--dragging': this.dragging,
-            'file-drop--disabled': this.disabled
-          })}
+          class="file-drop${this.dragging ? ' file-drop--dragging' : ''}${this.disabled ? ' file-drop--disabled' : ''}"
           ?disabled=${this.disabled}
           aria-labelledby=${hasLabel ? 'label instructions' : 'instructions'}
           aria-describedby="hint help-text"

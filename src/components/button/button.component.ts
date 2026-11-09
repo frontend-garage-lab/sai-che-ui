@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { FormControlController, validValidityState } from '../../internal/form.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html, literal } from 'lit/static-html.js';
@@ -270,32 +269,7 @@ export default class SlButton extends ShoelaceElement implements ShoelaceFormCon
     return html`
       <${tag}
         part="base"
-        class=${classMap({
-          button: true,
-          'button--default': this.variant === 'default',
-          'button--primary': this.variant === 'primary',
-          'button--accent': this.variant === 'accent',
-          'button--success': this.variant === 'success',
-          'button--neutral': this.variant === 'neutral',
-          'button--warning': this.variant === 'warning',
-          'button--danger': this.variant === 'danger',
-          'button--text': this.variant === 'text',
-          'button--small': this.size === 'small',
-          'button--medium': this.size === 'medium',
-          'button--large': this.size === 'large',
-          'button--caret': this.caret,
-          'button--circle': this.circle,
-          'button--disabled': this.disabled,
-          'button--focused': this.hasFocus,
-          'button--loading': this.loading,
-          'button--standard': !this.outline,
-          'button--outline': this.outline,
-          'button--pill': this.pill,
-          'button--rtl': this.localize.dir() === 'rtl',
-          'button--has-label': this.hasSlotController.test('[default]'),
-          'button--has-prefix': this.hasSlotController.test('prefix'),
-          'button--has-suffix': this.hasSlotController.test('suffix')
-        })}
+        class="button button--${this.variant} button--${this.size}${this.outline ? ' button--outline' : ' button--standard'}${this.caret ? ' button--caret' : ''}${this.circle ? ' button--circle' : ''}${this.disabled ? ' button--disabled' : ''}${this.hasFocus ? ' button--focused' : ''}${this.loading ? ' button--loading' : ''}${this.pill ? ' button--pill' : ''}${this.localize.dir() === 'rtl' ? ' button--rtl' : ''}${this.hasSlotController.test('[default]') ? ' button--has-label' : ''}${this.hasSlotController.test('prefix') ? ' button--has-prefix' : ''}${this.hasSlotController.test('suffix') ? ' button--has-suffix' : ''}"
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         type=${ifDefined(isLink ? undefined : this.type)}
         title=${this.title /* An empty title prevents browser validation tooltips from appearing on hover */}

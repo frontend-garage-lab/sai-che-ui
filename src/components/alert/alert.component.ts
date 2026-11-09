@@ -1,6 +1,5 @@
 import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { blurActiveElement } from '../../internal/closeActiveElement.js';
-import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
@@ -239,19 +238,11 @@ export default class SlAlert extends ShoelaceElement {
     return html`
       <div
         part="base"
-        class=${classMap({
-          alert: true,
-          'alert--open': this.open,
-          'alert--closable': this.closable,
-          'alert--has-countdown': !!this.countdown,
-          'alert--has-icon': this.hasSlotController.test('icon'),
-          'alert--primary': this.variant === 'primary',
-          'alert--accent': this.variant === 'accent',
-          'alert--success': this.variant === 'success',
-          'alert--neutral': this.variant === 'neutral',
-          'alert--warning': this.variant === 'warning',
-          'alert--danger': this.variant === 'danger'
-        })}
+        class="alert alert--${this.variant}${this.open ? ' alert--open' : ''}${this.closable
+          ? ' alert--closable'
+          : ''}${this.countdown ? ' alert--has-countdown' : ''}${this.hasSlotController.test('icon')
+          ? ' alert--has-icon'
+          : ''}"
         role="alert"
         aria-hidden=${this.open ? 'false' : 'true'}
         @mouseenter=${this.pauseAutoHide}
@@ -283,12 +274,7 @@ export default class SlAlert extends ShoelaceElement {
 
         ${this.countdown
           ? html`
-              <div
-                class=${classMap({
-                  alert__countdown: true,
-                  'alert__countdown--ltr': this.countdown === 'ltr'
-                })}
-              >
+              <div class="alert__countdown${this.countdown === 'ltr' ? ' alert__countdown--ltr' : ''}">
                 <div class="alert__countdown-elapsed"></div>
               </div>
             `

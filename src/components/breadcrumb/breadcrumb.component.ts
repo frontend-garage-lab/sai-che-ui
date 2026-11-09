@@ -28,8 +28,8 @@ export default class SlBreadcrumb extends ShoelaceElement {
   private readonly localize = new LocalizeController(this);
   private separatorDir = this.localize.dir();
 
-  @query('slot') defaultSlot: HTMLSlotElement;
-  @query('slot[name="separator"]') separatorSlot: HTMLSlotElement;
+  @query('slot', true /* cache: this node is never re-created */) defaultSlot: HTMLSlotElement;
+  @query('slot[name="separator"]', true /* cache: this node is never re-created */) separatorSlot: HTMLSlotElement;
 
   /**
    * The label to use for the breadcrumb control. This will not be shown on the screen, but it will be announced by
@@ -37,12 +37,11 @@ export default class SlBreadcrumb extends ShoelaceElement {
    */
   @property() label = '';
 
-  // Generates a clone of the separator element to use for each breadcrumb item
-  private getSeparator() {
-    const separator = this.separatorSlot.assignedElements({ flatten: true })[0] as HTMLElement;
-
+  // Generates a clone of the separator element to use for each breadcrumb item. The source element is looked up once
+  // per slot change and passed in, so the lookup doesn't repeat for every item in the list.
+  private getSeparator(source: HTMLElement) {
     // Clone it, remove ids, and slot it
-    const clone = separator.cloneNode(true) as HTMLElement;
+    const clone = source.cloneNode(true) as HTMLElement;
     [clone, ...clone.querySelectorAll('[id]')].forEach(el => el.removeAttribute('id'));
     clone.setAttribute('data-default', '');
     clone.slot = 'separator';
@@ -51,19 +50,27 @@ export default class SlBreadcrumb extends ShoelaceElement {
   }
 
   private handleSlotChange() {
-    const items = [...this.defaultSlot.assignedElements({ flatten: true })].filter(
-      item => item.tagName.toLowerCase() === 'sl-breadcrumb-item'
-    ) as SlBreadcrumbItem[];
+    const items = this.defaultSlot
+      .assignedElements({ flatten: true })
+      .filter(item => item.tagName.toLowerCase() === 'sl-breadcrumb-item') as SlBreadcrumbItem[];
+
+    if (items.length === 0) {
+      return;
+    }
+
+    // Look the source separator up once instead of once per item. Each item still gets its own clone, since a node
+    // can only live in one place in the DOM.
+    const separatorSource = this.separatorSlot.assignedElements({ flatten: true })[0] as HTMLElement;
 
     items.forEach((item, index) => {
       // Append separators to each item if they don't already have one
       const separator = item.querySelector('[slot="separator"]');
       if (separator === null) {
         // No separator exists, add one
-        item.append(this.getSeparator());
+        item.append(this.getSeparator(separatorSource));
       } else if (separator.hasAttribute('data-default')) {
         // A default separator exists, replace it
-        separator.replaceWith(this.getSeparator());
+        separator.replaceWith(this.getSeparator(separatorSource));
       } else {
         // The user provided a custom separator, leave it alone
       }

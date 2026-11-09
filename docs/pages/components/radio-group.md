@@ -26,6 +26,25 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio/radio.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-radio-group-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-radio-group label="Select an option" name="a" value="1">
+      <sl-radio value="1">Option 1</sl-radio>
+      <sl-radio value="2">Option 2</sl-radio>
+      <sl-radio value="3">Option 3</sl-radio>
+    </sl-radio-group>
+  `
+})
+export class RadioGroupExampleComponent {}
+```
+
 ## Examples
 
 ### Help Text
@@ -53,6 +72,25 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio/radio.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-radio-group-help-text-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-radio-group label="Select an option" help-text="Choose the most appropriate option." name="a" value="1">
+      <sl-radio value="1">Option 1</sl-radio>
+      <sl-radio value="2">Option 2</sl-radio>
+      <sl-radio value="3">Option 3</sl-radio>
+    </sl-radio-group>
+  `
+})
+export class RadioGroupHelpTextExampleComponent {}
+```
+
 ### Radio Buttons
 
 [Radio buttons](/components/radio-button) offer an alternate way to display radio controls. In this case, an internal [button group](/components/button-group) is used to group the buttons into a single, cohesive control.
@@ -76,6 +114,25 @@ const App = () => (
     <SlRadioButton value="3">Option 3</SlRadioButton>
   </SlRadioGroup>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-button/radio-button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-radio-group-radio-buttons-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-radio-group label="Select an option" help-text="Select an option that makes you proud." name="a" value="1">
+      <sl-radio-button value="1">Option 1</sl-radio-button>
+      <sl-radio-button value="2">Option 2</sl-radio-button>
+      <sl-radio-button value="3">Option 3</sl-radio-button>
+    </sl-radio-group>
+  `
+})
+export class RadioGroupRadioButtonsExampleComponent {}
 ```
 
 ### Disabling Options
@@ -103,6 +160,25 @@ const App = () => (
     <SlRadio value="3">Option 3</SlRadio>
   </SlRadioGroup>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio/radio.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-radio-group-disabling-options-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-radio-group label="Select an option" name="a" value="1">
+      <sl-radio value="1">Option 1</sl-radio>
+      <sl-radio value="2" disabled>Option 2</sl-radio>
+      <sl-radio value="3">Option 3</sl-radio>
+    </sl-radio-group>
+  `
+})
+export class RadioGroupDisablingOptionsExampleComponent {}
 ```
 
 ### Sizing Options
@@ -214,6 +290,36 @@ const App = () => {
 };
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio/radio.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-radio-group-validation-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <form (submit)="onSubmit($event)">
+      <sl-radio-group label="Select an option" name="a" required>
+        <sl-radio value="1">Option 1</sl-radio>
+        <sl-radio value="2">Option 2</sl-radio>
+        <sl-radio value="3">Option 3</sl-radio>
+      </sl-radio-group>
+      <br />
+      <sl-button type="submit" variant="primary">Submit</sl-button>
+    </form>
+  `
+})
+export class RadioGroupValidationExampleComponent {
+  onSubmit(event: Event) {
+    event.preventDefault();
+    alert('All fields are valid!');
+  }
+}
+```
+
 ### Custom Validity
 
 Use the `setCustomValidity()` method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string.
@@ -290,4 +396,48 @@ const App = () => {
     </form>
   );
 };
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio/radio.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import { afterNextRender, ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, viewChild } from '@angular/core';
+import type SlRadioGroup from '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.component.js';
+
+const ERROR_MESSAGE = 'You must choose the last option';
+
+@Component({
+  selector: 'app-radio-group-custom-validity-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <form (submit)="onSubmit($event)" (sl-change)="syncValidity()">
+      <sl-radio-group #group label="Select an option" name="a" value="1">
+        <sl-radio value="1">Not me</sl-radio>
+        <sl-radio value="2">Me neither</sl-radio>
+        <sl-radio value="3">Choose me</sl-radio>
+      </sl-radio-group>
+      <br />
+      <sl-button type="submit" variant="primary">Submit</sl-button>
+    </form>
+  `
+})
+export class RadioGroupCustomValidityExampleComponent {
+  private readonly group = viewChild.required<ElementRef<SlRadioGroup>>('group');
+
+  constructor() {
+    afterNextRender(() => this.syncValidity());
+  }
+
+  syncValidity() {
+    const group = this.group().nativeElement;
+    group.setCustomValidity(group.value === '3' ? '' : ERROR_MESSAGE);
+  }
+
+  onSubmit(event: Event) {
+    event.preventDefault();
+    alert('All fields are valid!');
+  }
+}
 ```

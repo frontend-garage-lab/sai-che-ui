@@ -22,11 +22,13 @@ export default css`
     transition: var(--sl-transition-x-fast) color;
   }
 
-  .copy-button--success .copy-button__button {
+  /* These used to be descendant rules on the wrapper (.copy-button--success .copy-button__button). The wrapper is
+     now the tooltip, which is only created on first interaction, so the feedback state lives on the button itself. */
+  .copy-button__button--success {
     color: var(--success-color);
   }
 
-  .copy-button--error .copy-button__button {
+  .copy-button__button--error {
     color: var(--error-color);
   }
 

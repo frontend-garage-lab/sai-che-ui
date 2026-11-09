@@ -12,6 +12,18 @@ files are available in the `files` property and are listed under the zone.
 <sl-file-drop label="Attachments" hint="PDF, DOCX or DWG, up to 20 MB" multiple></sl-file-drop>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/file-drop/file-drop.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-file-drop-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-file-drop label="Attachments" hint="PDF, DOCX or DWG, up to 20 MB" multiple></sl-file-drop>`
+})
+export class FileDropExampleComponent {}
+```
+
 ## Examples
 
 ### Accepting files
@@ -52,6 +64,56 @@ ones and why. Show the reasons to the user, e.g. in an [alert](/components/alert
 </script>
 ```
 
+{% raw %}
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/file-drop/file-drop.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, signal, viewChild } from '@angular/core';
+import type SlAlert from '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.component.js';
+
+const REASONS: Record<string, string> = {
+  type: 'file type not allowed',
+  size: 'larger than 1 MB',
+  count: 'too many files'
+};
+
+@Component({
+  selector: 'app-file-drop-rules-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-file-drop
+      label="Attachments"
+      hint="PDF or DOCX, up to 1 MB, at most 3 files"
+      accept=".pdf,.docx"
+      max-file-size="1048576"
+      max-files="3"
+      multiple
+      (sl-file-reject)="onReject($event)"
+    ></sl-file-drop>
+
+    <sl-alert #alert variant="danger" closable style="margin-top: 1rem;">
+      <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+      <span>{{ message() }}</span>
+    </sl-alert>
+  `
+})
+export class FileDropRulesExampleComponent {
+  private readonly alert = viewChild.required<ElementRef<SlAlert>>('alert');
+  readonly message = signal('');
+
+  onReject(event: Event) {
+    const { rejections } = (event as CustomEvent<{ rejections: { file: File; reason: string }[] }>).detail;
+    this.message.set(rejections.map(({ file, reason }) => `${file.name}: ${REASONS[reason]}`).join(' · '));
+    void this.alert().nativeElement.show();
+  }
+}
+```
+
+{% endraw %}
+
 ### Single file
 
 Without `multiple`, each new file replaces the previous one. Use it for things like importing the signed version of a
@@ -59,6 +121,18 @@ letter.
 
 ```html:preview
 <sl-file-drop label="Signed version" hint="PDF only" accept=".pdf,application/pdf"></sl-file-drop>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/file-drop/file-drop.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-file-drop-single-file-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-file-drop label="Signed version" hint="PDF only" accept=".pdf,application/pdf"></sl-file-drop>`
+})
+export class FileDropSingleFileExampleComponent {}
 ```
 
 ### Uploading
@@ -92,6 +166,49 @@ has finished.
 </script>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/file-drop/file-drop.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, signal, viewChild } from '@angular/core';
+import type SlFileDrop from '@shoelace-style/shoelace/%NPMDIR%/components/file-drop/file-drop.component.js';
+
+@Component({
+  selector: 'app-file-drop-upload-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-file-drop #drop label="Attachments" multiple (sl-change)="syncButton()"></sl-file-drop>
+    <sl-button
+      variant="primary"
+      style="margin-top: 1rem;"
+      [disabled]="!hasFiles()"
+      [loading]="uploading()"
+      (click)="upload()"
+    >
+      Upload
+    </sl-button>
+  `
+})
+export class FileDropUploadExampleComponent {
+  private readonly drop = viewChild.required<ElementRef<SlFileDrop>>('drop');
+  readonly hasFiles = signal(false);
+  readonly uploading = signal(false);
+
+  syncButton() {
+    this.hasFiles.set(this.drop().nativeElement.files.length > 0);
+  }
+
+  async upload() {
+    this.uploading.set(true);
+    // Replace with your upload, e.g. a fetch() with a FormData body
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    this.uploading.set(false);
+    this.drop().nativeElement.clear();
+    this.hasFiles.set(false);
+  }
+}
+```
+
 ### Localization
 
 Use the `instructions` slot to translate the text inside the zone, and `remove-label` for the remove buttons.
@@ -102,8 +219,38 @@ Use the `instructions` slot to translate the text inside the zone, and `remove-l
 </sl-file-drop>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/file-drop/file-drop.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-file-drop-localization-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-file-drop label="Allegati" hint="PDF o DOCX, massimo 20 MB" remove-label="Rimuovi" multiple>
+      <span slot="instructions"><strong>Sfoglia</strong> o trascina qui i file</span>
+    </sl-file-drop>
+  `
+})
+export class FileDropLocalizationExampleComponent {}
+```
+
 ### Disabled
 
 ```html:preview
 <sl-file-drop label="Attachments" hint="Check in the document to add attachments" disabled></sl-file-drop>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/file-drop/file-drop.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-file-drop-disabled-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-file-drop label="Attachments" hint="Check in the document to add attachments" disabled></sl-file-drop>
+  `
+})
+export class FileDropDisabledExampleComponent {}
 ```

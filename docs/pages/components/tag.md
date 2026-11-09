@@ -27,6 +27,24 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/tag/tag.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tag-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tag variant="primary">Primary</sl-tag>
+    <sl-tag variant="success">Success</sl-tag>
+    <sl-tag variant="neutral">Neutral</sl-tag>
+    <sl-tag variant="warning">Warning</sl-tag>
+    <sl-tag variant="danger">Danger</sl-tag>
+  `
+})
+export class TagExampleComponent {}
+```
+
 :::tip
 A tag labels a record (a category, an applied filter, the current revision in a description list). For a value that
 changes through the workflow, such as a task's progress, use a [status](/components/status) instead — with `filled`
@@ -57,6 +75,22 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/tag/tag.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tag-sizes-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tag size="small">Small</sl-tag>
+    <sl-tag size="medium">Medium</sl-tag>
+    <sl-tag size="large">Large</sl-tag>
+  `
+})
+export class TagSizesExampleComponent {}
+```
+
 ### Pill
 
 Use the `pill` attribute to give tags rounded edges.
@@ -83,6 +117,22 @@ const App = () => (
     </SlTag>
   </>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/tag/tag.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tag-pill-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tag size="small" pill>Small</sl-tag>
+    <sl-tag size="medium" pill>Medium</sl-tag>
+    <sl-tag size="large" pill>Large</sl-tag>
+  `
+})
+export class TagPillExampleComponent {}
 ```
 
 ### Removable
@@ -149,4 +199,34 @@ const App = () => {
     </>
   );
 };
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/tag/tag.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tag-removable-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    sl-tag {
+      transition: var(--sl-transition-medium) opacity;
+    }
+  `,
+  template: `
+    <div (sl-remove)="onRemove($event)">
+      <sl-tag size="small" removable>Small</sl-tag>
+      <sl-tag size="medium" removable>Medium</sl-tag>
+      <sl-tag size="large" removable>Large</sl-tag>
+    </div>
+  `
+})
+export class TagRemovableExampleComponent {
+  onRemove(event: Event) {
+    const tag = event.target as HTMLElement;
+    tag.style.opacity = '0';
+    setTimeout(() => (tag.style.opacity = '1'), 2000);
+  }
+}
 ```

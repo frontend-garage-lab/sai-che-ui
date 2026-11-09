@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { property } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -32,17 +31,7 @@ export default class SlBadge extends ShoelaceElement {
     return html`
       <span
         part="base"
-        class=${classMap({
-          badge: true,
-          'badge--primary': this.variant === 'primary',
-          'badge--accent': this.variant === 'accent',
-          'badge--success': this.variant === 'success',
-          'badge--neutral': this.variant === 'neutral',
-          'badge--warning': this.variant === 'warning',
-          'badge--danger': this.variant === 'danger',
-          'badge--pill': this.pill,
-          'badge--pulse': this.pulse
-        })}
+        class="badge badge--${this.variant}${this.pill ? ' badge--pill' : ''}${this.pulse ? ' badge--pulse' : ''}"
         role="status"
       >
         <slot></slot>

@@ -1,5 +1,4 @@
 import '../../internal/scrollend-polyfill.js';
-import { classMap } from 'lit/directives/class-map.js';
 import { eventOptions, property, query, state } from 'lit/decorators.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -54,10 +53,10 @@ export default class SlTabGroup extends ShoelaceElement {
   private panels: SlTabPanel[] = [];
   private readonly localize = new LocalizeController(this);
 
-  @query('.tab-group') tabGroup: HTMLElement;
-  @query('.tab-group__body') body: HTMLSlotElement;
-  @query('.tab-group__nav') nav: HTMLElement;
-  @query('.tab-group__indicator') indicator: HTMLElement;
+  @query('.tab-group', true /* cache: this node is never re-created */) tabGroup: HTMLElement;
+  @query('.tab-group__body', true /* cache: this node is never re-created */) body: HTMLSlotElement;
+  @query('.tab-group__nav', true /* cache: this node is never re-created */) nav: HTMLElement;
+  @query('.tab-group__indicator', true /* cache: this node is never re-created */) indicator: HTMLElement;
 
   @state() private hasScrollControls = false;
 
@@ -88,8 +87,13 @@ export default class SlTabGroup extends ShoelaceElement {
     super.connectedCallback();
 
     this.resizeObserver = new ResizeObserver(() => {
-      this.repositionIndicator();
+      // Order matters here. `updateScrollControls` only reads layout and flips reactive state, which Lit applies
+      // asynchronously, while `repositionIndicator` reads layout and then writes the indicator's inline styles
+      // synchronously. Reading first and writing afterwards avoids invalidating the layout and immediately forcing
+      // the browser to recompute it, which happened on every frame of a window resize. Both calls observe the same
+      // pre-update DOM in either order, so the values they read are unchanged.
       this.updateScrollControls();
+      this.repositionIndicator();
     });
 
     this.mutationObserver = new MutationObserver(mutations => {
@@ -474,15 +478,10 @@ export default class SlTabGroup extends ShoelaceElement {
     return html`
       <div
         part="base"
-        class=${classMap({
-          'tab-group': true,
-          'tab-group--top': this.placement === 'top',
-          'tab-group--bottom': this.placement === 'bottom',
-          'tab-group--start': this.placement === 'start',
-          'tab-group--end': this.placement === 'end',
-          'tab-group--rtl': this.localize.dir() === 'rtl',
-          'tab-group--has-scroll-controls': this.hasScrollControls
-        })}
+        class="tab-group tab-group--${this.placement}${this.localize.dir() === 'rtl' ? ' tab-group--rtl' : ''}${this
+          .hasScrollControls
+          ? ' tab-group--has-scroll-controls'
+          : ''}"
         @click=${this.handleClick}
         @keydown=${this.handleKeyDown}
       >
@@ -492,11 +491,9 @@ export default class SlTabGroup extends ShoelaceElement {
                 <sl-icon-button
                   part="scroll-button scroll-button--start"
                   exportparts="base:scroll-button__base"
-                  class=${classMap({
-                    'tab-group__scroll-button': true,
-                    'tab-group__scroll-button--start': true,
-                    'tab-group__scroll-button--start--hidden': this.shouldHideScrollStartButton
-                  })}
+                  class="tab-group__scroll-button tab-group__scroll-button--start${this.shouldHideScrollStartButton
+                    ? ' tab-group__scroll-button--start--hidden'
+                    : ''}"
                   name=${isRtl ? 'chevron-right' : 'chevron-left'}
                   library="system"
                   tabindex="-1"
@@ -521,11 +518,9 @@ export default class SlTabGroup extends ShoelaceElement {
                 <sl-icon-button
                   part="scroll-button scroll-button--end"
                   exportparts="base:scroll-button__base"
-                  class=${classMap({
-                    'tab-group__scroll-button': true,
-                    'tab-group__scroll-button--end': true,
-                    'tab-group__scroll-button--end--hidden': this.shouldHideScrollEndButton
-                  })}
+                  class="tab-group__scroll-button tab-group__scroll-button--end${this.shouldHideScrollEndButton
+                    ? ' tab-group__scroll-button--end--hidden'
+                    : ''}"
                   name=${isRtl ? 'chevron-left' : 'chevron-right'}
                   library="system"
                   tabindex="-1"

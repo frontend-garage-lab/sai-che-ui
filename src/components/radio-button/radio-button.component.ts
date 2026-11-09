@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -34,7 +33,7 @@ export default class SlRadioButton extends ShoelaceElement {
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix');
 
-  @query('.button') input: HTMLInputElement;
+  @query('.button', true /* cache: this node is never re-created */) input: HTMLInputElement;
   @query('.hidden-input') hiddenInput: HTMLInputElement;
 
   @state() protected hasFocus = false;
@@ -107,21 +106,15 @@ export default class SlRadioButton extends ShoelaceElement {
           part="${`button${this.checked ? ' button--checked' : ''}`}"
           role="radio"
           aria-checked="${this.checked}"
-          class=${classMap({
-            button: true,
-            'button--default': true,
-            'button--small': this.size === 'small',
-            'button--medium': this.size === 'medium',
-            'button--large': this.size === 'large',
-            'button--checked': this.checked,
-            'button--disabled': this.disabled,
-            'button--focused': this.hasFocus,
-            'button--outline': true,
-            'button--pill': this.pill,
-            'button--has-label': this.hasSlotController.test('[default]'),
-            'button--has-prefix': this.hasSlotController.test('prefix'),
-            'button--has-suffix': this.hasSlotController.test('suffix')
-          })}
+          class="button button--default button--outline button--${this.size}${this.checked
+            ? ' button--checked'
+            : ''}${this.disabled ? ' button--disabled' : ''}${this.hasFocus ? ' button--focused' : ''}${this.pill
+            ? ' button--pill'
+            : ''}${this.hasSlotController.test('[default]') ? ' button--has-label' : ''}${this.hasSlotController.test(
+            'prefix'
+          )
+            ? ' button--has-prefix'
+            : ''}${this.hasSlotController.test('suffix') ? ' button--has-suffix' : ''}"
           aria-disabled=${this.disabled}
           type="button"
           value=${ifDefined(this.value)}

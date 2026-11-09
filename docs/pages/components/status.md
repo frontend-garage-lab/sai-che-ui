@@ -13,6 +13,18 @@ blocks.
 <sl-status variant="neutral">Working</sl-status>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/status/status.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-status-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-status variant="neutral">Working</sl-status>`
+})
+export class StatusExampleComponent {}
+```
+
 ## Examples
 
 ### Variants
@@ -28,6 +40,27 @@ Set `variant` to match the meaning of the state.
   <sl-status variant="danger">Danger</sl-status>
   <sl-status variant="accent">Accent</sl-status>
 </div>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/status/status.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-status-variants-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+      <sl-status variant="neutral">Neutral</sl-status>
+      <sl-status variant="primary">Primary</sl-status>
+      <sl-status variant="success">Success</sl-status>
+      <sl-status variant="warning">Warning</sl-status>
+      <sl-status variant="danger">Danger</sl-status>
+      <sl-status variant="accent">Accent</sl-status>
+    </div>
+  `
+})
+export class StatusVariantsExampleComponent {}
 ```
 
 ### Correspondence lifecycle
@@ -72,6 +105,49 @@ Map each lifecycle state to one variant and use the same mapping everywhere: tab
 </sl-table>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/status/status.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/table/table.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/table-cell/table-cell.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/table-column/table-column.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/table-row/table-row.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-status-correspondence-lifecycle-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-table>
+      <sl-table-column slot="columns" key="protocol" width="14rem">Protocol Number</sl-table-column>
+      <sl-table-column slot="columns" key="subject">Subject</sl-table-column>
+      <sl-table-column slot="columns" key="status" width="10rem">Status</sl-table-column>
+
+      <sl-table-row value="1">
+        <sl-table-cell>MZ-CCX-L-RDW-100021</sl-table-cell>
+        <sl-table-cell>KOM for electrical works</sl-table-cell>
+        <sl-table-cell><sl-status variant="neutral">Working</sl-status></sl-table-cell>
+      </sl-table-row>
+      <sl-table-row value="2">
+        <sl-table-cell>MZ-CCX-L-ISO-10001</sl-table-cell>
+        <sl-table-cell>Insurance certificates</sl-table-cell>
+        <sl-table-cell><sl-status variant="primary">Signed</sl-status></sl-table-cell>
+      </sl-table-row>
+      <sl-table-row value="3">
+        <sl-table-cell>MZ-CCX-M-RDW-10002</sl-table-cell>
+        <sl-table-cell>Minutes of meeting</sl-table-cell>
+        <sl-table-cell><sl-status variant="success">Distributed</sl-status></sl-table-cell>
+      </sl-table-row>
+      <sl-table-row value="4">
+        <sl-table-cell>ATB-SPM-LET-CIV-0019</sl-table-cell>
+        <sl-table-cell>Client correspondence</sl-table-cell>
+        <sl-table-cell><sl-status variant="warning">Staging</sl-status></sl-table-cell>
+      </sl-table-row>
+    </sl-table>
+  `
+})
+export class StatusCorrespondenceLifecycleExampleComponent {}
+```
+
 ### Filled
 
 Add `filled` when the state must stand out at a glance, e.g. in a short table of reviewers or in a detail panel. The
@@ -86,6 +162,26 @@ default in long columns of states, where coloured blocks would compete with the 
   <sl-status filled size="small" variant="danger">Refused</sl-status>
   <sl-status filled size="small" variant="primary">Notified</sl-status>
 </div>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/status/status.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-status-filled-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+      <sl-status filled size="small" variant="neutral">Not acquired</sl-status>
+      <sl-status filled size="small" variant="warning">Acquired</sl-status>
+      <sl-status filled size="small" variant="success">Completed</sl-status>
+      <sl-status filled size="small" variant="danger">Refused</sl-status>
+      <sl-status filled size="small" variant="primary">Notified</sl-status>
+    </div>
+  `
+})
+export class StatusFilledExampleComponent {}
 ```
 
 ### Status or tag?
@@ -104,6 +200,18 @@ for users who prefer reduced motion.
 <sl-status variant="primary" pulse>Distributing…</sl-status>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/status/status.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-status-ongoing-states-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-status variant="primary" pulse>Distributing…</sl-status>`
+})
+export class StatusOngoingStatesExampleComponent {}
+```
+
 ### Sizes
 
 Use `size="small"` in dense lists and detail panels.
@@ -113,4 +221,21 @@ Use `size="small"` in dense lists and detail panels.
   <sl-status size="small" variant="success">Distributed</sl-status>
   <sl-status variant="success">Distributed</sl-status>
 </div>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/status/status.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-status-sizes-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <div style="display: flex; gap: 1.5rem; align-items: center;">
+      <sl-status size="small" variant="success">Distributed</sl-status>
+      <sl-status variant="success">Distributed</sl-status>
+    </div>
+  `
+})
+export class StatusSizesExampleComponent {}
 ```

@@ -49,6 +49,32 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tab-group-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tab-group>
+      <sl-tab slot="nav" panel="general">General</sl-tab>
+      <sl-tab slot="nav" panel="custom">Custom</sl-tab>
+      <sl-tab slot="nav" panel="advanced">Advanced</sl-tab>
+      <sl-tab slot="nav" panel="disabled" disabled>Disabled</sl-tab>
+
+      <sl-tab-panel name="general">This is the general tab panel.</sl-tab-panel>
+      <sl-tab-panel name="custom">This is the custom tab panel.</sl-tab-panel>
+      <sl-tab-panel name="advanced">This is the advanced tab panel.</sl-tab-panel>
+      <sl-tab-panel name="disabled">This is a disabled tab panel.</sl-tab-panel>
+    </sl-tab-group>
+  `
+})
+export class TabGroupExampleComponent {}
+```
+
 ## Examples
 
 ### Tabs on Bottom
@@ -97,6 +123,32 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tab-group-tabs-on-bottom-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tab-group placement="bottom">
+      <sl-tab slot="nav" panel="general">General</sl-tab>
+      <sl-tab slot="nav" panel="custom">Custom</sl-tab>
+      <sl-tab slot="nav" panel="advanced">Advanced</sl-tab>
+      <sl-tab slot="nav" panel="disabled" disabled>Disabled</sl-tab>
+
+      <sl-tab-panel name="general">This is the general tab panel.</sl-tab-panel>
+      <sl-tab-panel name="custom">This is the custom tab panel.</sl-tab-panel>
+      <sl-tab-panel name="advanced">This is the advanced tab panel.</sl-tab-panel>
+      <sl-tab-panel name="disabled">This is a disabled tab panel.</sl-tab-panel>
+    </sl-tab-group>
+  `
+})
+export class TabGroupTabsOnBottomExampleComponent {}
+```
+
 ### Tabs on Start
 
 Tabs can be shown on the starting side by setting `placement` to `start`.
@@ -143,6 +195,32 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tab-group-tabs-on-start-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tab-group placement="start">
+      <sl-tab slot="nav" panel="general">General</sl-tab>
+      <sl-tab slot="nav" panel="custom">Custom</sl-tab>
+      <sl-tab slot="nav" panel="advanced">Advanced</sl-tab>
+      <sl-tab slot="nav" panel="disabled" disabled>Disabled</sl-tab>
+
+      <sl-tab-panel name="general">This is the general tab panel.</sl-tab-panel>
+      <sl-tab-panel name="custom">This is the custom tab panel.</sl-tab-panel>
+      <sl-tab-panel name="advanced">This is the advanced tab panel.</sl-tab-panel>
+      <sl-tab-panel name="disabled">This is a disabled tab panel.</sl-tab-panel>
+    </sl-tab-group>
+  `
+})
+export class TabGroupTabsOnStartExampleComponent {}
+```
+
 ### Tabs on End
 
 Tabs can be shown on the ending side by setting `placement` to `end`.
@@ -187,6 +265,32 @@ const App = () => (
     <SlTabPanel name="disabled">This is a disabled tab panel.</SlTabPanel>
   </SlTabGroup>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tab-group-tabs-on-end-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tab-group placement="end">
+      <sl-tab slot="nav" panel="general">General</sl-tab>
+      <sl-tab slot="nav" panel="custom">Custom</sl-tab>
+      <sl-tab slot="nav" panel="advanced">Advanced</sl-tab>
+      <sl-tab slot="nav" panel="disabled" disabled>Disabled</sl-tab>
+
+      <sl-tab-panel name="general">This is the general tab panel.</sl-tab-panel>
+      <sl-tab-panel name="custom">This is the custom tab panel.</sl-tab-panel>
+      <sl-tab-panel name="advanced">This is the advanced tab panel.</sl-tab-panel>
+      <sl-tab-panel name="disabled">This is a disabled tab panel.</sl-tab-panel>
+    </sl-tab-group>
+  `
+})
+export class TabGroupTabsOnEndExampleComponent {}
 ```
 
 ### Closable Tabs
@@ -268,6 +372,67 @@ const App = () => {
   );
 };
 ```
+
+{% raw %}
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, signal, viewChild } from '@angular/core';
+import type SlTabGroup from '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.component.js';
+
+interface Tab {
+  name: string;
+  label: string;
+  body: string;
+}
+
+@Component({
+  selector: 'app-tabs-closable-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tab-group #group (sl-close)="close($event)">
+      <sl-tab slot="nav" panel="general">General</sl-tab>
+      @for (tab of tabs(); track tab.name) {
+        <sl-tab slot="nav" [panel]="tab.name" closable>{{ tab.label }}</sl-tab>
+      }
+
+      <sl-tab-panel name="general">This is the general tab panel.</sl-tab-panel>
+      @for (tab of tabs(); track tab.name) {
+        <sl-tab-panel [name]="tab.name">{{ tab.body }}</sl-tab-panel>
+      }
+    </sl-tab-group>
+  `
+})
+export class TabsClosableExampleComponent {
+  private readonly group = viewChild.required<ElementRef<SlTabGroup>>('group');
+
+  readonly tabs = signal<Tab[]>([
+    { name: 'closable-1', label: 'Closable 1', body: 'This is the first closable tab panel.' },
+    { name: 'closable-2', label: 'Closable 2', body: 'This is the second closable tab panel.' },
+    { name: 'closable-3', label: 'Closable 3', body: 'This is the third closable tab panel.' }
+  ]);
+
+  close(event: Event) {
+    const tab = event.target as HTMLElement & { panel: string; active: boolean };
+    const index = this.tabs().findIndex(candidate => candidate.name === tab.panel);
+
+    if (index === -1) return;
+
+    // Move to the previous tab before removing the active one, otherwise no panel would be shown.
+    if (tab.active) {
+      const previous = this.tabs()[index - 1];
+      this.group().nativeElement.show(previous ? previous.name : 'general');
+    }
+
+    this.tabs.update(list => list.filter(candidate => candidate.name !== tab.panel));
+  }
+}
+```
+
+{% endraw %}
 
 ### Scrolling Tabs
 
@@ -409,6 +574,64 @@ const App = () => (
     <SlTabPanel name="tab-20">Tab panel 20</SlTabPanel>
   </SlTabGroup>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tab-group-scrolling-tabs-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tab-group>
+      <sl-tab slot="nav" panel="tab-1">Tab 1</sl-tab>
+      <sl-tab slot="nav" panel="tab-2">Tab 2</sl-tab>
+      <sl-tab slot="nav" panel="tab-3">Tab 3</sl-tab>
+      <sl-tab slot="nav" panel="tab-4">Tab 4</sl-tab>
+      <sl-tab slot="nav" panel="tab-5">Tab 5</sl-tab>
+      <sl-tab slot="nav" panel="tab-6">Tab 6</sl-tab>
+      <sl-tab slot="nav" panel="tab-7">Tab 7</sl-tab>
+      <sl-tab slot="nav" panel="tab-8">Tab 8</sl-tab>
+      <sl-tab slot="nav" panel="tab-9">Tab 9</sl-tab>
+      <sl-tab slot="nav" panel="tab-10">Tab 10</sl-tab>
+      <sl-tab slot="nav" panel="tab-11">Tab 11</sl-tab>
+      <sl-tab slot="nav" panel="tab-12">Tab 12</sl-tab>
+      <sl-tab slot="nav" panel="tab-13">Tab 13</sl-tab>
+      <sl-tab slot="nav" panel="tab-14">Tab 14</sl-tab>
+      <sl-tab slot="nav" panel="tab-15">Tab 15</sl-tab>
+      <sl-tab slot="nav" panel="tab-16">Tab 16</sl-tab>
+      <sl-tab slot="nav" panel="tab-17">Tab 17</sl-tab>
+      <sl-tab slot="nav" panel="tab-18">Tab 18</sl-tab>
+      <sl-tab slot="nav" panel="tab-19">Tab 19</sl-tab>
+      <sl-tab slot="nav" panel="tab-20">Tab 20</sl-tab>
+
+      <sl-tab-panel name="tab-1">Tab panel 1</sl-tab-panel>
+      <sl-tab-panel name="tab-2">Tab panel 2</sl-tab-panel>
+      <sl-tab-panel name="tab-3">Tab panel 3</sl-tab-panel>
+      <sl-tab-panel name="tab-4">Tab panel 4</sl-tab-panel>
+      <sl-tab-panel name="tab-5">Tab panel 5</sl-tab-panel>
+      <sl-tab-panel name="tab-6">Tab panel 6</sl-tab-panel>
+      <sl-tab-panel name="tab-7">Tab panel 7</sl-tab-panel>
+      <sl-tab-panel name="tab-8">Tab panel 8</sl-tab-panel>
+      <sl-tab-panel name="tab-9">Tab panel 9</sl-tab-panel>
+      <sl-tab-panel name="tab-10">Tab panel 10</sl-tab-panel>
+      <sl-tab-panel name="tab-11">Tab panel 11</sl-tab-panel>
+      <sl-tab-panel name="tab-12">Tab panel 12</sl-tab-panel>
+      <sl-tab-panel name="tab-13">Tab panel 13</sl-tab-panel>
+      <sl-tab-panel name="tab-14">Tab panel 14</sl-tab-panel>
+      <sl-tab-panel name="tab-15">Tab panel 15</sl-tab-panel>
+      <sl-tab-panel name="tab-16">Tab panel 16</sl-tab-panel>
+      <sl-tab-panel name="tab-17">Tab panel 17</sl-tab-panel>
+      <sl-tab-panel name="tab-18">Tab panel 18</sl-tab-panel>
+      <sl-tab-panel name="tab-19">Tab panel 19</sl-tab-panel>
+      <sl-tab-panel name="tab-20">Tab panel 20</sl-tab-panel>
+    </sl-tab-group>
+  `
+})
+export class TabGroupScrollingTabsExampleComponent {}
 ```
 
 ### Fixed scroll controls
@@ -553,6 +776,64 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tab-group-fixed-scroll-controls-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tab-group fixed-scroll-controls>
+      <sl-tab slot="nav" panel="tab-1">Tab 1</sl-tab>
+      <sl-tab slot="nav" panel="tab-2">Tab 2</sl-tab>
+      <sl-tab slot="nav" panel="tab-3">Tab 3</sl-tab>
+      <sl-tab slot="nav" panel="tab-4">Tab 4</sl-tab>
+      <sl-tab slot="nav" panel="tab-5">Tab 5</sl-tab>
+      <sl-tab slot="nav" panel="tab-6">Tab 6</sl-tab>
+      <sl-tab slot="nav" panel="tab-7">Tab 7</sl-tab>
+      <sl-tab slot="nav" panel="tab-8">Tab 8</sl-tab>
+      <sl-tab slot="nav" panel="tab-9">Tab 9</sl-tab>
+      <sl-tab slot="nav" panel="tab-10">Tab 10</sl-tab>
+      <sl-tab slot="nav" panel="tab-11">Tab 11</sl-tab>
+      <sl-tab slot="nav" panel="tab-12">Tab 12</sl-tab>
+      <sl-tab slot="nav" panel="tab-13">Tab 13</sl-tab>
+      <sl-tab slot="nav" panel="tab-14">Tab 14</sl-tab>
+      <sl-tab slot="nav" panel="tab-15">Tab 15</sl-tab>
+      <sl-tab slot="nav" panel="tab-16">Tab 16</sl-tab>
+      <sl-tab slot="nav" panel="tab-17">Tab 17</sl-tab>
+      <sl-tab slot="nav" panel="tab-18">Tab 18</sl-tab>
+      <sl-tab slot="nav" panel="tab-19">Tab 19</sl-tab>
+      <sl-tab slot="nav" panel="tab-20">Tab 20</sl-tab>
+
+      <sl-tab-panel name="tab-1">Tab panel 1</sl-tab-panel>
+      <sl-tab-panel name="tab-2">Tab panel 2</sl-tab-panel>
+      <sl-tab-panel name="tab-3">Tab panel 3</sl-tab-panel>
+      <sl-tab-panel name="tab-4">Tab panel 4</sl-tab-panel>
+      <sl-tab-panel name="tab-5">Tab panel 5</sl-tab-panel>
+      <sl-tab-panel name="tab-6">Tab panel 6</sl-tab-panel>
+      <sl-tab-panel name="tab-7">Tab panel 7</sl-tab-panel>
+      <sl-tab-panel name="tab-8">Tab panel 8</sl-tab-panel>
+      <sl-tab-panel name="tab-9">Tab panel 9</sl-tab-panel>
+      <sl-tab-panel name="tab-10">Tab panel 10</sl-tab-panel>
+      <sl-tab-panel name="tab-11">Tab panel 11</sl-tab-panel>
+      <sl-tab-panel name="tab-12">Tab panel 12</sl-tab-panel>
+      <sl-tab-panel name="tab-13">Tab panel 13</sl-tab-panel>
+      <sl-tab-panel name="tab-14">Tab panel 14</sl-tab-panel>
+      <sl-tab-panel name="tab-15">Tab panel 15</sl-tab-panel>
+      <sl-tab-panel name="tab-16">Tab panel 16</sl-tab-panel>
+      <sl-tab-panel name="tab-17">Tab panel 17</sl-tab-panel>
+      <sl-tab-panel name="tab-18">Tab panel 18</sl-tab-panel>
+      <sl-tab-panel name="tab-19">Tab panel 19</sl-tab-panel>
+      <sl-tab-panel name="tab-20">Tab panel 20</sl-tab-panel>
+    </sl-tab-group>
+  `
+})
+export class TabGroupFixedScrollControlsExampleComponent {}
+```
+
 ### Tabs with Icons
 
 Add a leading `<sl-icon>` inside a tab's default slot to pair it with a label. The active tab indicator is drawn automatically by `<sl-tab-group>` and needs no extra markup per tab.
@@ -604,6 +885,40 @@ const App = () => (
     <SlTabPanel name="revisions">This is the revisions tab panel.</SlTabPanel>
   </SlTabGroup>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tab-group-tabs-with-icons-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tab-group>
+      <sl-tab slot="nav" panel="comments" active>
+        <sl-icon name="chat"></sl-icon>
+        Review Comments
+      </sl-tab>
+      <sl-tab slot="nav" panel="dashboard">
+        <sl-icon name="grid"></sl-icon>
+        Dashboard
+      </sl-tab>
+      <sl-tab slot="nav" panel="revisions">
+        <sl-icon name="clock-history"></sl-icon>
+        Revisions
+      </sl-tab>
+
+      <sl-tab-panel name="comments">This is the review comments tab panel.</sl-tab-panel>
+      <sl-tab-panel name="dashboard">This is the dashboard tab panel.</sl-tab-panel>
+      <sl-tab-panel name="revisions">This is the revisions tab panel.</sl-tab-panel>
+    </sl-tab-group>
+  `
+})
+export class TabGroupTabsWithIconsExampleComponent {}
 ```
 
 ### Card Tabs with Counters
@@ -682,6 +997,63 @@ const App = () => (
 );
 ```
 
+{% raw %}
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/badge/badge.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+interface CardTab {
+  name: string;
+  label: string;
+  count: number;
+  body: string;
+}
+
+@Component({
+  selector: 'app-tabs-card-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    sl-tab-group::part(tabs) {
+      gap: var(--sl-spacing-small);
+    }
+  `,
+  template: `
+    <sl-tab-group style="--track-width: 0;" (sl-tab-show)="activate($event)">
+      @for (tab of tabs; track tab.name) {
+        <sl-tab slot="nav" [panel]="tab.name" card [active]="tab.name === active()">
+          {{ tab.label }}
+          <sl-badge [variant]="tab.name === active() ? 'primary' : 'neutral'" pill>{{ tab.count }}</sl-badge>
+        </sl-tab>
+      }
+
+      @for (tab of tabs; track tab.name) {
+        <sl-tab-panel [name]="tab.name">{{ tab.body }}</sl-tab-panel>
+      }
+    </sl-tab-group>
+  `
+})
+export class TabsCardExampleComponent {
+  readonly active = signal('review');
+
+  readonly tabs: CardTab[] = [
+    { name: 'pva', label: 'PVA', count: 22, body: 'This is the PVA tab panel.' },
+    { name: 'consolidation', label: 'Consolidation', count: 22, body: 'This is the consolidation tab panel.' },
+    { name: 'review', label: 'Review', count: 11, body: 'This is the review tab panel.' }
+  ];
+
+  activate(event: Event) {
+    this.active.set((event as CustomEvent<{ name: string }>).detail.name);
+  }
+}
+```
+
+{% endraw %}
+
 ### Manual Activation
 
 When focused, keyboard users can press [[Left]] or [[Right]] to select the desired tab. By default, the corresponding tab panel will be shown immediately (automatic activation). You can change this behavior by setting `activation="manual"` which will require the user to press [[Space]] or [[Enter]] before showing the tab panel (manual activation).
@@ -726,6 +1098,32 @@ const App = () => (
     <SlTabPanel name="disabled">This is a disabled tab panel.</SlTabPanel>
   </SlTabGroup>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tab-group-manual-activation-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tab-group activation="manual">
+      <sl-tab slot="nav" panel="general">General</sl-tab>
+      <sl-tab slot="nav" panel="custom">Custom</sl-tab>
+      <sl-tab slot="nav" panel="advanced">Advanced</sl-tab>
+      <sl-tab slot="nav" panel="disabled" disabled>Disabled</sl-tab>
+
+      <sl-tab-panel name="general">This is the general tab panel.</sl-tab-panel>
+      <sl-tab-panel name="custom">This is the custom tab panel.</sl-tab-panel>
+      <sl-tab-panel name="advanced">This is the advanced tab panel.</sl-tab-panel>
+      <sl-tab-panel name="disabled">This is a disabled tab panel.</sl-tab-panel>
+    </sl-tab-group>
+  `
+})
+export class TabGroupManualActivationExampleComponent {}
 ```
 
 ## Figma

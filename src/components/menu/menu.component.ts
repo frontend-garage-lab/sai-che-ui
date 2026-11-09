@@ -23,7 +23,7 @@ export interface MenuSelectEventDetail {
 export default class SlMenu extends ShoelaceElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
-  @query('slot') defaultSlot: HTMLSlotElement;
+  @query('slot', true /* cache: this node is never re-created */) defaultSlot: HTMLSlotElement;
 
   connectedCallback() {
     super.connectedCallback();
@@ -124,7 +124,7 @@ export default class SlMenu extends ShoelaceElement {
 
   /** @internal Gets all slotted menu items, ignoring dividers, headers, and other elements. */
   getAllItems() {
-    return [...this.defaultSlot.assignedElements({ flatten: true })].filter((el: HTMLElement) => {
+    return (this.defaultSlot.assignedElements({ flatten: true }) as HTMLElement[]).filter((el: HTMLElement) => {
       if (el.inert || !this.isMenuItem(el)) {
         return false;
       }

@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import {
   customErrorValidityState,
   FormControlController,
@@ -52,8 +51,9 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
   private customValidityMessage = '';
   private validationTimeout: number;
 
-  @query('slot:not([name])') defaultSlot: HTMLSlotElement;
-  @query('.radio-group__validation-input') validationInput: HTMLInputElement;
+  @query('slot:not([name])', true /* cache: this node is never re-created */) defaultSlot: HTMLSlotElement;
+  @query('.radio-group__validation-input', true /* cache: this node is never re-created */)
+  validationInput: HTMLInputElement;
 
   @state() private hasButtonGroup = false;
   @state() private errorMessage = '';
@@ -151,7 +151,9 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
       return;
     }
 
-    const radios = this.getAllRadios().filter(radio => !radio.disabled);
+    // Query the DOM once: both the full set and the enabled-only subset are needed below.
+    const allRadios = this.getAllRadios();
+    const radios = allRadios.filter(radio => !radio.disabled);
     const checkedRadio = radios.find(radio => radio.checked) ?? radios[0];
     const incr = event.key === ' ' ? 0 : ['ArrowUp', 'ArrowLeft'].includes(event.key) ? -1 : 1;
     const oldValue = this.value;
@@ -165,7 +167,7 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
       index = 0;
     }
 
-    this.getAllRadios().forEach(radio => {
+    allRadios.forEach(radio => {
       radio.checked = false;
 
       if (!this.hasButtonGroup) {
@@ -344,15 +346,9 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
     return html`
       <fieldset
         part="form-control"
-        class=${classMap({
-          'form-control': true,
-          'form-control--small': this.size === 'small',
-          'form-control--medium': this.size === 'medium',
-          'form-control--large': this.size === 'large',
-          'form-control--radio-group': true,
-          'form-control--has-label': hasLabel,
-          'form-control--has-help-text': hasHelpText
-        })}
+        class="form-control form-control--radio-group form-control--${this.size}${hasLabel
+          ? ' form-control--has-label'
+          : ''}${hasHelpText ? ' form-control--has-help-text' : ''}"
         role="radiogroup"
         aria-labelledby="label"
         aria-describedby="help-text"

@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { defaultValue } from '../../internal/default-value.js';
 import { FormControlController } from '../../internal/form.js';
 import { HasSlotController } from '../../internal/slot.js';
@@ -52,7 +51,7 @@ export default class SlCheckbox extends ShoelaceElement implements ShoelaceFormC
   });
   private readonly hasSlotController = new HasSlotController(this, 'help-text');
 
-  @query('input[type="checkbox"]') input: HTMLInputElement;
+  @query('input[type="checkbox"]', true /* cache: this node is never re-created */) input: HTMLInputElement;
 
   @state() private hasFocus = false;
 
@@ -196,27 +195,12 @@ export default class SlCheckbox extends ShoelaceElement implements ShoelaceFormC
     // https://bugs.chromium.org/p/chromium/issues/detail?id=1413733
     //
     return html`
-      <div
-        class=${classMap({
-          'form-control': true,
-          'form-control--small': this.size === 'small',
-          'form-control--medium': this.size === 'medium',
-          'form-control--large': this.size === 'large',
-          'form-control--has-help-text': hasHelpText
-        })}
-      >
+      <div class="form-control form-control--${this.size}${hasHelpText ? ' form-control--has-help-text' : ''}">
         <label
           part="base"
-          class=${classMap({
-            checkbox: true,
-            'checkbox--checked': this.checked,
-            'checkbox--disabled': this.disabled,
-            'checkbox--focused': this.hasFocus,
-            'checkbox--indeterminate': this.indeterminate,
-            'checkbox--small': this.size === 'small',
-            'checkbox--medium': this.size === 'medium',
-            'checkbox--large': this.size === 'large'
-          })}
+          class="checkbox checkbox--${this.size}${this.checked ? ' checkbox--checked' : ''}${this.disabled
+            ? ' checkbox--disabled'
+            : ''}${this.hasFocus ? ' checkbox--focused' : ''}${this.indeterminate ? ' checkbox--indeterminate' : ''}"
         >
           <input
             class="checkbox__input"

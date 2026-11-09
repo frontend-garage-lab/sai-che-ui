@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { property } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -29,11 +28,9 @@ export default class SlSkeleton extends ShoelaceElement {
     return html`
       <div
         part="base"
-        class=${classMap({
-          skeleton: true,
-          'skeleton--pulse': this.effect === 'pulse',
-          'skeleton--sheen': this.effect === 'sheen'
-        })}
+        class="skeleton${this.effect === 'pulse' ? ' skeleton--pulse' : ''}${this.effect === 'sheen'
+          ? ' skeleton--sheen'
+          : ''}"
       >
         <div part="indicator" class="skeleton__indicator"></div>
       </div>

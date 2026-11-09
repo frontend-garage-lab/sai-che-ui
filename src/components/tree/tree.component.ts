@@ -134,29 +134,35 @@ export default class SlTree extends ShoelaceElement {
     return null;
   }
 
+  /**
+   * Which custom expand/collapse icons the user has slotted in. This looks across the whole subtree, so it is resolved
+   * once per batch of items instead of once per item.
+   */
+  private getSlottedIconStatuses(): ('expand' | 'collapse')[] {
+    return (['expand', 'collapse'] as const).filter(status => !!this.querySelector(`[slot="${status}-icon"]`));
+  }
+
   // Initializes new items by setting the `selectable` property and the expanded/collapsed icons if any
-  private initTreeItem = (item: SlTreeItem) => {
+  private initTreeItem = (item: SlTreeItem, iconStatuses: ('expand' | 'collapse')[]) => {
     item.selectable = this.selection === 'multiple';
 
-    ['expand', 'collapse']
-      .filter(status => !!this.querySelector(`[slot="${status}-icon"]`))
-      .forEach((status: 'expand' | 'collapse') => {
-        const existingIcon = item.querySelector(`[slot="${status}-icon"]`);
+    iconStatuses.forEach((status: 'expand' | 'collapse') => {
+      const existingIcon = item.querySelector(`[slot="${status}-icon"]`);
 
-        const expandButtonIcon = this.getExpandButtonIcon(status);
+      const expandButtonIcon = this.getExpandButtonIcon(status);
 
-        if (!expandButtonIcon) return;
+      if (!expandButtonIcon) return;
 
-        if (existingIcon === null) {
-          // No separator exists, add one
-          item.append(expandButtonIcon);
-        } else if (existingIcon.hasAttribute('data-default')) {
-          // A default separator exists, replace it
-          existingIcon.replaceWith(expandButtonIcon);
-        } else {
-          // The user provided a custom icon, leave it alone
-        }
-      });
+      if (existingIcon === null) {
+        // No separator exists, add one
+        item.append(expandButtonIcon);
+      } else if (existingIcon.hasAttribute('data-default')) {
+        // A default separator exists, replace it
+        existingIcon.replaceWith(expandButtonIcon);
+      } else {
+        // The user provided a custom icon, leave it alone
+      }
+    });
   };
 
   private handleTreeChanged = (mutations: MutationRecord[]) => {
@@ -164,7 +170,10 @@ export default class SlTree extends ShoelaceElement {
       const addedNodes: SlTreeItem[] = [...mutation.addedNodes].filter(SlTreeItem.isTreeItem) as SlTreeItem[];
       const removedNodes = [...mutation.removedNodes].filter(SlTreeItem.isTreeItem) as SlTreeItem[];
 
-      addedNodes.forEach(this.initTreeItem);
+      if (addedNodes.length > 0) {
+        const iconStatuses = this.getSlottedIconStatuses();
+        addedNodes.forEach(item => this.initTreeItem(item, iconStatuses));
+      }
 
       if (this.lastFocusedItem && removedNodes.includes(this.lastFocusedItem)) {
         this.lastFocusedItem = null;
@@ -344,7 +353,13 @@ export default class SlTree extends ShoelaceElement {
 
   private handleSlotChange() {
     const items = this.getAllTreeItems();
-    items.forEach(this.initTreeItem);
+
+    if (items.length === 0) {
+      return;
+    }
+
+    const iconStatuses = this.getSlottedIconStatuses();
+    items.forEach(item => this.initTreeItem(item, iconStatuses));
   }
 
   @watch('selection')

@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { property } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -42,19 +41,9 @@ export default class SlStatus extends ShoelaceElement {
     return html`
       <span
         part="base"
-        class=${classMap({
-          status: true,
-          'status--primary': this.variant === 'primary',
-          'status--accent': this.variant === 'accent',
-          'status--success': this.variant === 'success',
-          'status--neutral': this.variant === 'neutral',
-          'status--warning': this.variant === 'warning',
-          'status--danger': this.variant === 'danger',
-          'status--small': this.size === 'small',
-          'status--medium': this.size === 'medium',
-          'status--filled': this.filled,
-          'status--pulse': this.pulse
-        })}
+        class="status status--${this.variant} status--${this.size}${this.filled ? ' status--filled' : ''}${this.pulse
+          ? ' status--pulse'
+          : ''}"
       >
         <span part="indicator" class="status__indicator"></span>
         <span part="label" class="status__label"><slot></slot></span>

@@ -1247,12 +1247,14 @@ html.sidebar-open #menu-toggle {
   }
 
   .flavor-html .code-preview__source--html,
-  .flavor-react .code-preview__source--react {
+  .flavor-react .code-preview__source--react,
+  .flavor-angular .code-preview__source--angular {
     display: block !important;
   }
 
   .flavor-html .code-preview__source--html > pre,
-  .flavor-react .code-preview__source--react > pre {
+  .flavor-react .code-preview__source--react > pre,
+  .flavor-angular .code-preview__source--angular > pre {
     border: none;
   }
 

@@ -15,6 +15,18 @@ import SlRange from '@shoelace-style/shoelace/dist/react/range';
 const App = () => <SlRange />;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-range-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-range></sl-range>`
+})
+export class RangeExampleComponent {}
+```
+
 :::tip
 This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
 :::
@@ -35,6 +47,18 @@ import SlRange from '@shoelace-style/shoelace/dist/react/range';
 const App = () => <SlRange label="Volume" min={0} max={100} />;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-range-labels-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-range label="Volume" min="0" max="100"></sl-range>`
+})
+export class RangeLabelsExampleComponent {}
+```
+
 ### Help Text
 
 Add descriptive help text to a range with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
@@ -47,6 +71,20 @@ Add descriptive help text to a range with the `help-text` attribute. For help te
 import SlRange from '@shoelace-style/shoelace/dist/react/range';
 
 const App = () => <SlRange label="Volume" help-text="Controls the volume of the current song." min={0} max={100} />;
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-range-help-text-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-range label="Volume" help-text="Controls the volume of the current song." min="0" max="100"></sl-range>
+  `
+})
+export class RangeHelpTextExampleComponent {}
 ```
 
 ### Min, Max, and Step
@@ -63,6 +101,18 @@ import SlRange from '@shoelace-style/shoelace/dist/react/range';
 const App = () => <SlRange min={0} max={10} step={1} />;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-range-min-max-and-step-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-range min="0" max="10" step="1"></sl-range>`
+})
+export class RangeMinMaxAndStepExampleComponent {}
+```
+
 ### Disabled
 
 Use the `disabled` attribute to disable a slider.
@@ -75,6 +125,18 @@ Use the `disabled` attribute to disable a slider.
 import SlRange from '@shoelace-style/shoelace/dist/react/range';
 
 const App = () => <SlRange disabled />;
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-range-disabled-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-range disabled></sl-range>`
+})
+export class RangeDisabledExampleComponent {}
 ```
 
 ### Tooltip Placement
@@ -91,6 +153,18 @@ import SlRange from '@shoelace-style/shoelace/dist/react/range';
 const App = () => <SlRange tooltip="bottom" />;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-range-tooltip-placement-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-range tooltip="bottom"></sl-range>`
+})
+export class RangeTooltipPlacementExampleComponent {}
+```
+
 ### Disable the Tooltip
 
 To disable the tooltip, set `tooltip` to `none`.
@@ -105,6 +179,18 @@ import SlRange from '@shoelace-style/shoelace/dist/react/range';
 const App = () => <SlRange tooltip="none" />;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-range-disable-the-tooltip-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-range tooltip="none"></sl-range>`
+})
+export class RangeDisableTheTooltipExampleComponent {}
+```
+
 ### Custom Track Colors
 
 You can customize the active and inactive portions of the track using the `--track-color-active` and `--track-color-inactive` custom properties.
@@ -116,6 +202,25 @@ You can customize the active and inactive portions of the track using the `--tra
   --track-color-inactive: var(--sl-color-primary-100);
 "
 ></sl-range>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-range-custom-track-colors-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-range
+      style="
+      --track-color-active: var(--sl-color-primary-600);
+      --track-color-inactive: var(--sl-color-primary-100);
+    "
+    ></sl-range>
+  `
+})
+export class RangeCustomTrackColorsExampleComponent {}
 ```
 
 {% raw %}
@@ -149,6 +254,28 @@ You can customize the initial offset of the active track using the `--track-acti
   --track-active-offset: 50%;
 "
 ></sl-range>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-range-custom-track-offset-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-range
+      min="-100"
+      max="100"
+      style="
+      --track-color-active: var(--sl-color-primary-600);
+      --track-color-inactive: var(--sl-color-primary-100);
+      --track-active-offset: 50%;
+    "
+    ></sl-range>
+  `
+})
+export class RangeCustomTrackOffsetExampleComponent {}
 ```
 
 {% raw %}
@@ -188,4 +315,20 @@ You can change the tooltip's content by setting the `tooltipFormatter` property 
 import SlRange from '@shoelace-style/shoelace/dist/react/range';
 
 const App = () => <SlRange min={0} max={100} step={1} tooltipFormatter={value => `Total - ${value}%`} />;
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-range-custom-formatter-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  // `tooltipFormatter` is a function, so it has to go through property binding.
+  template: `<sl-range min="0" max="100" step="1" [tooltipFormatter]="formatTooltip"></sl-range>`
+})
+export class RangeCustomFormatterExampleComponent {
+  readonly formatTooltip = (value: number) => `Total - ${value}%`;
+}
 ```

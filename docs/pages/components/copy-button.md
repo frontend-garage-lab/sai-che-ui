@@ -17,6 +17,18 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/copy-button/copy-button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-copy-button-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-copy-button value="Shoelace rocks!"></sl-copy-button>`
+})
+export class CopyButtonExampleComponent {}
+```
+
 ## Examples
 
 ### Custom Labels
@@ -45,6 +57,25 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/copy-button/copy-button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-copy-button-custom-labels-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-copy-button
+      value="Custom labels are easy"
+      copy-label="Click to copy"
+      success-label="You did it!"
+      error-label="Whoops, your browser doesn't support this!"
+    ></sl-copy-button>
+  `
+})
+export class CopyButtonCustomLabelsExampleComponent {}
+```
+
 ### Custom Icons
 
 Use the `copy-icon`, `success-icon`, and `error-icon` slots to customize the icons that get displayed for each state. You can use [`<sl-icon>`](/components/icon) or your own images.
@@ -70,6 +101,25 @@ const App = () => (
     </SlCopyButton>
   </>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/copy-button/copy-button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-copy-button-custom-icons-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-copy-button value="Copied from a custom button">
+      <sl-icon slot="copy-icon" name="clipboard"></sl-icon>
+      <sl-icon slot="success-icon" name="clipboard-check"></sl-icon>
+      <sl-icon slot="error-icon" name="clipboard-x"></sl-icon>
+    </sl-copy-button>
+  `
+})
+export class CopyButtonCustomIconsExampleComponent {}
 ```
 
 ### Copying Values From Other Elements
@@ -123,6 +173,35 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/copy-button/copy-button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-copy-button-copying-values-from-other-elements-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <!-- Copies the span's textContent -->
+    <span id="my-phone">+1 (234) 456-7890</span>
+    <sl-copy-button from="my-phone"></sl-copy-button>
+
+    <br><br>
+
+    <!-- Copies the input's "value" property -->
+    <sl-input id="my-input" type="text" value="User input" style="display: inline-block; max-width: 300px;"></sl-input>
+    <sl-copy-button from="my-input.value"></sl-copy-button>
+
+    <br><br>
+
+    <!-- Copies the link's "href" attribute -->
+    <a id="my-link" href="https://shoelace.style/">Shoelace Website</a>
+    <sl-copy-button from="my-link[href]"></sl-copy-button>
+  `
+})
+export class CopyButtonCopyingValuesFromOtherElementsExampleComponent {}
+```
+
 ### Handling Errors
 
 A copy error will occur if the value is an empty string, if the `from` attribute points to an id that doesn't exist, or if the browser rejects the operation for any reason. When this happens, the `sl-error` event will be emitted.
@@ -141,6 +220,18 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/copy-button/copy-button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-copy-button-handling-errors-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-copy-button from="i-do-not-exist"></sl-copy-button>`
+})
+export class CopyButtonHandlingErrorsExampleComponent {}
+```
+
 ### Disabled
 
 Copy buttons can be disabled by adding the `disabled` attribute.
@@ -157,6 +248,18 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/copy-button/copy-button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-copy-button-disabled-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-copy-button value="You can't copy me" disabled></sl-copy-button>`
+})
+export class CopyButtonDisabledExampleComponent {}
+```
+
 ### Changing Feedback Duration
 
 A success indicator is briefly shown after copying. You can customize the length of time the indicator is shown using the `feedback-duration` attribute.
@@ -171,6 +274,18 @@ import { SlCopyButton } from '@shoelace-style/shoelace/dist/react/copy-button';
 const App = () => (
   <SlCopyButton value="Shoelace rocks!" feedback-duration={250} />
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/copy-button/copy-button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-copy-button-changing-feedback-duration-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-copy-button value="Shoelace rocks!" feedback-duration="250"></sl-copy-button>`
+})
+export class CopyButtonChangingFeedbackDurationExampleComponent {}
 ```
 
 ### Custom Styles
@@ -255,4 +370,52 @@ const App = () => (
     <style>{css}</style>
   </>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/copy-button/copy-button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-copy-button-custom-styles-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .custom-styles {
+        --success-color: white;
+        --error-color: white;
+        color: white;
+      }
+
+      .custom-styles::part(button) {
+        background-color: #ff1493;
+        border: solid 4px #ff7ac1;
+        border-right-color: #ad005c;
+        border-bottom-color: #ad005c;
+        border-radius: 0;
+        transition: 100ms scale ease-in-out, 100ms translate ease-in-out;
+      }
+
+      .custom-styles::part(button):hover {
+        scale: 1.1;
+      }
+
+      .custom-styles::part(button):active {
+        translate: 0 2px;
+      }
+
+      .custom-styles::part(button):focus-visible {
+        outline: dashed 2px deeppink;
+        outline-offset: 4px;
+      }
+  `,
+  template: `
+    <sl-copy-button value="I'm so stylish" class="custom-styles">
+      <sl-icon slot="copy-icon" name="asterisk"></sl-icon>
+      <sl-icon slot="success-icon" name="check-lg"></sl-icon>
+      <sl-icon slot="error-icon" name="x-lg"></sl-icon>
+    </sl-copy-button>
+  `
+})
+export class CopyButtonCustomStylesExampleComponent {}
 ```

@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { property } from 'lit/decorators.js';
@@ -42,19 +41,11 @@ export default class SlCard extends ShoelaceElement {
     return html`
       <div
         part="base"
-        class=${classMap({
-          card: true,
-          'card--accented': !!this.variant,
-          'card--primary': this.variant === 'primary',
-          'card--accent': this.variant === 'accent',
-          'card--success': this.variant === 'success',
-          'card--neutral': this.variant === 'neutral',
-          'card--warning': this.variant === 'warning',
-          'card--danger': this.variant === 'danger',
-          'card--has-footer': this.hasSlotController.test('footer'),
-          'card--has-image': this.hasSlotController.test('image'),
-          'card--has-header': this.hasSlotController.test('header')
-        })}
+        class="card${this.variant ? ` card--accented card--${this.variant}` : ''}${this.hasSlotController.test('footer')
+          ? ' card--has-footer'
+          : ''}${this.hasSlotController.test('image') ? ' card--has-image' : ''}${this.hasSlotController.test('header')
+          ? ' card--has-header'
+          : ''}"
       >
         <slot name="image" part="image" class="card__image"></slot>
         <slot name="header" part="header" class="card__header"></slot>

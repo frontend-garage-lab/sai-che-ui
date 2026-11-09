@@ -68,6 +68,44 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-dropdown-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-dropdown>
+      <sl-button slot="trigger" caret>Dropdown</sl-button>
+      <sl-menu>
+        <sl-menu-item>Dropdown Item 1</sl-menu-item>
+        <sl-menu-item>Dropdown Item 2</sl-menu-item>
+        <sl-menu-item>Dropdown Item 3</sl-menu-item>
+        <sl-divider></sl-divider>
+        <sl-menu-item type="checkbox" checked>Checkbox</sl-menu-item>
+        <sl-menu-item disabled>Disabled</sl-menu-item>
+        <sl-divider></sl-divider>
+        <sl-menu-item>
+          Prefix
+          <sl-icon slot="prefix" name="gift"></sl-icon>
+        </sl-menu-item>
+        <sl-menu-item>
+          Suffix Icon
+          <sl-icon slot="suffix" name="heart"></sl-icon>
+        </sl-menu-item>
+      </sl-menu>
+    </sl-dropdown>
+  `
+})
+export class DropdownExampleComponent {}
+```
+
 ## Examples
 
 ### Getting the Selected Item
@@ -122,6 +160,37 @@ const App = () => {
     </SlDropdown>
   );
 };
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import type SlMenuItem from '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.component.js';
+
+@Component({
+  selector: 'app-dropdown-selection-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-dropdown (sl-select)="onSelect($event)">
+      <sl-button slot="trigger" caret>Edit</sl-button>
+      <sl-menu>
+        <sl-menu-item value="cut">Cut</sl-menu-item>
+        <sl-menu-item value="copy">Copy</sl-menu-item>
+        <sl-menu-item value="paste">Paste</sl-menu-item>
+      </sl-menu>
+    </sl-dropdown>
+  `
+})
+export class DropdownSelectionExampleComponent {
+  onSelect(event: Event) {
+    const { item } = (event as CustomEvent<{ item: SlMenuItem }>).detail;
+    console.log(item.value);
+  }
+}
 ```
 
 Alternatively, you can listen for the `click` event on individual menu items. Note that, using this approach, disabled menu items will still emit a `click` event.
@@ -184,6 +253,35 @@ const App = () => {
 };
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-dropdown-selection-alt-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-dropdown>
+      <sl-button slot="trigger" caret>Edit</sl-button>
+      <sl-menu>
+        <sl-menu-item value="cut" (click)="log('cut')">Cut</sl-menu-item>
+        <sl-menu-item value="copy" (click)="log('copy')">Copy</sl-menu-item>
+        <sl-menu-item value="paste" (click)="log('paste')">Paste</sl-menu-item>
+      </sl-menu>
+    </sl-dropdown>
+  `
+})
+export class DropdownSelectionAltExampleComponent {
+  log(action: string) {
+    console.log(action);
+  }
+}
+```
+
 ### Placement
 
 The preferred placement of the dropdown can be set with the `placement` attribute. Note that the actual position may vary to ensure the panel remains in the viewport.
@@ -224,6 +322,34 @@ const App = () => (
     </SlMenu>
   </SlDropdown>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-dropdown-placement-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-dropdown placement="top-start">
+      <sl-button slot="trigger" caret>Edit</sl-button>
+      <sl-menu>
+        <sl-menu-item>Cut</sl-menu-item>
+        <sl-menu-item>Copy</sl-menu-item>
+        <sl-menu-item>Paste</sl-menu-item>
+        <sl-divider></sl-divider>
+        <sl-menu-item>Find</sl-menu-item>
+        <sl-menu-item>Replace</sl-menu-item>
+      </sl-menu>
+    </sl-dropdown>
+  `
+})
+export class DropdownPlacementExampleComponent {}
 ```
 
 ### Distance
@@ -268,6 +394,34 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-dropdown-distance-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-dropdown distance="30">
+      <sl-button slot="trigger" caret>Edit</sl-button>
+      <sl-menu>
+        <sl-menu-item>Cut</sl-menu-item>
+        <sl-menu-item>Copy</sl-menu-item>
+        <sl-menu-item>Paste</sl-menu-item>
+        <sl-divider></sl-divider>
+        <sl-menu-item>Find</sl-menu-item>
+        <sl-menu-item>Replace</sl-menu-item>
+      </sl-menu>
+    </sl-dropdown>
+  `
+})
+export class DropdownDistanceExampleComponent {}
+```
+
 ### Skidding
 
 The offset of the panel along the trigger can be customized using the `skidding` attribute. This value is specified in pixels.
@@ -308,6 +462,34 @@ const App = () => (
     </SlMenu>
   </SlDropdown>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-dropdown-skidding-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-dropdown skidding="30">
+      <sl-button slot="trigger" caret>Edit</sl-button>
+      <sl-menu>
+        <sl-menu-item>Cut</sl-menu-item>
+        <sl-menu-item>Copy</sl-menu-item>
+        <sl-menu-item>Paste</sl-menu-item>
+        <sl-divider></sl-divider>
+        <sl-menu-item>Find</sl-menu-item>
+        <sl-menu-item>Replace</sl-menu-item>
+      </sl-menu>
+    </sl-dropdown>
+  `
+})
+export class DropdownSkiddingExampleComponent {}
 ```
 
 ### Submenus
@@ -396,6 +578,52 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-dropdown-submenus-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-dropdown>
+      <sl-button slot="trigger" caret>Edit</sl-button>
+
+      <sl-menu style="max-width: 200px;">
+        <sl-menu-item value="undo">Undo</sl-menu-item>
+        <sl-menu-item value="redo">Redo</sl-menu-item>
+        <sl-divider></sl-divider>
+        <sl-menu-item value="cut">Cut</sl-menu-item>
+        <sl-menu-item value="copy">Copy</sl-menu-item>
+        <sl-menu-item value="paste">Paste</sl-menu-item>
+        <sl-divider></sl-divider>
+        <sl-menu-item>
+          Find
+          <sl-menu slot="submenu">
+            <sl-menu-item value="find">Find…</sl-menu-item>
+            <sl-menu-item value="find-previous">Find Next</sl-menu-item>
+            <sl-menu-item value="find-next">Find Previous</sl-menu-item>
+          </sl-menu>
+        </sl-menu-item>
+        <sl-menu-item>
+          Transformations
+          <sl-menu slot="submenu">
+            <sl-menu-item value="uppercase">Make uppercase</sl-menu-item>
+            <sl-menu-item value="lowercase">Make lowercase</sl-menu-item>
+            <sl-menu-item value="capitalize">Capitalize</sl-menu-item>
+          </sl-menu>
+        </sl-menu-item>
+      </sl-menu>
+    </sl-dropdown>
+  `
+})
+export class DropdownSubmenusExampleComponent {}
+```
+
 :::warning
 As a UX best practice, avoid using more than one level of submenu when possible.
 :::
@@ -479,4 +707,47 @@ const App = () => (
     <style>{css}</style>
   </>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-dropdown-hoisting-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .dropdown-hoist {
+        position: relative;
+        border: solid 2px var(--sl-panel-border-color);
+        padding: var(--sl-spacing-medium);
+        overflow: hidden;
+      }
+  `,
+  template: `
+    <div class="dropdown-hoist">
+      <sl-dropdown>
+        <sl-button slot="trigger" caret>No Hoist</sl-button>
+        <sl-menu>
+          <sl-menu-item>Item 1</sl-menu-item>
+          <sl-menu-item>Item 2</sl-menu-item>
+          <sl-menu-item>Item 3</sl-menu-item>
+        </sl-menu>
+      </sl-dropdown>
+
+      <sl-dropdown hoist>
+        <sl-button slot="trigger" caret>Hoist</sl-button>
+        <sl-menu>
+          <sl-menu-item>Item 1</sl-menu-item>
+          <sl-menu-item>Item 2</sl-menu-item>
+          <sl-menu-item>Item 3</sl-menu-item>
+        </sl-menu>
+      </sl-dropdown>
+    </div>
+  `
+})
+export class DropdownHoistingExampleComponent {}
 ```

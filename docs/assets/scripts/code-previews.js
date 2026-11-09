@@ -39,28 +39,25 @@
     return sessionStorage.getItem('flavor') || 'html';
   }
 
+  const flavors = ['html', 'react', 'angular'];
+
   function setFlavor(newFlavor) {
-    flavor = ['html', 'react'].includes(newFlavor) ? newFlavor : 'html';
+    flavor = flavors.includes(newFlavor) ? newFlavor : 'html';
     sessionStorage.setItem('flavor', flavor);
 
     // Set the flavor class on the body
-    document.documentElement.classList.toggle('flavor-html', flavor === 'html');
-    document.documentElement.classList.toggle('flavor-react', flavor === 'react');
+    flavors.forEach(name => {
+      document.documentElement.classList.toggle(`flavor-${name}`, flavor === name);
+    });
   }
 
   function syncFlavor() {
     setFlavor(getFlavor());
 
-    document.querySelectorAll('.code-preview__button--html').forEach(preview => {
-      if (flavor === 'html') {
-        preview.classList.add('code-preview__button--selected');
-      }
-    });
-
-    document.querySelectorAll('.code-preview__button--react').forEach(preview => {
-      if (flavor === 'react') {
-        preview.classList.add('code-preview__button--selected');
-      }
+    flavors.forEach(name => {
+      document.querySelectorAll(`.code-preview__button--${name}`).forEach(preview => {
+        preview.classList.toggle('code-preview__button--selected', flavor === name);
+      });
     });
   }
 
@@ -122,13 +119,10 @@
     const button = event.target.closest('.code-preview__button');
     const codeBlock = button?.closest('.code-preview');
 
-    if (button?.classList.contains('code-preview__button--html')) {
-      // Show HTML
-      setFlavor('html');
-      toggleSource(codeBlock, true);
-    } else if (button?.classList.contains('code-preview__button--react')) {
-      // Show React
-      setFlavor('react');
+    const pickedFlavor = flavors.find(name => button?.classList.contains(`code-preview__button--${name}`));
+
+    if (pickedFlavor) {
+      setFlavor(pickedFlavor);
       toggleSource(codeBlock, true);
     } else if (button?.classList.contains('code-preview__toggle')) {
       // Toggle source
@@ -139,14 +133,12 @@
 
     // Update flavor buttons
     [...document.querySelectorAll('.code-preview')].forEach(cb => {
-      cb.querySelector('.code-preview__button--html')?.classList.toggle(
-        'code-preview__button--selected',
-        flavor === 'html'
-      );
-      cb.querySelector('.code-preview__button--react')?.classList.toggle(
-        'code-preview__button--selected',
-        flavor === 'react'
-      );
+      flavors.forEach(name => {
+        cb.querySelector(`.code-preview__button--${name}`)?.classList.toggle(
+          'code-preview__button--selected',
+          flavor === name
+        );
+      });
     });
   });
 
@@ -165,6 +157,7 @@
       const codeBlock = button.closest('.code-preview');
       const htmlExample = codeBlock.querySelector('.code-preview__source--html > pre > code')?.textContent;
       const reactExample = codeBlock.querySelector('.code-preview__source--react > pre > code')?.textContent;
+      // Angular examples need a build step, so the pen always falls back to the plain HTML version for them.
       const isReact = flavor === 'react' && typeof reactExample === 'string';
       const theme = document.documentElement.classList.contains('sl-theme-dark') ? 'dark' : 'light';
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;

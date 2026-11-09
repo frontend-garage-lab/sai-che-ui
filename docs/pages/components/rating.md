@@ -15,6 +15,18 @@ import SlRating from '@shoelace-style/shoelace/dist/react/rating';
 const App = () => <SlRating label="Rating" />;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-rating-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-rating label="Rating"></sl-rating>`
+})
+export class RatingExampleComponent {}
+```
+
 ## Examples
 
 ### Labels
@@ -31,6 +43,18 @@ import SlRating from '@shoelace-style/shoelace/dist/react/rating';
 const App = () => <SlRating label="Rate this component" />;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-rating-labels-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-rating label="Rate this component"></sl-rating>`
+})
+export class RatingLabelsExampleComponent {}
+```
+
 ### Maximum Value
 
 Ratings are 0-5 by default. To change the maximum possible value, use the `max` attribute.
@@ -43,6 +67,18 @@ Ratings are 0-5 by default. To change the maximum possible value, use the `max` 
 import SlRating from '@shoelace-style/shoelace/dist/react/rating';
 
 const App = () => <SlRating label="Rating" max={3} />;
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-rating-maximum-value-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-rating label="Rating" max="3"></sl-rating>`
+})
+export class RatingMaximumValueExampleComponent {}
 ```
 
 ### Precision
@@ -59,12 +95,36 @@ import SlRating from '@shoelace-style/shoelace/dist/react/rating';
 const App = () => <SlRating label="Rating" precision={0.5} value={2.5} />;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-rating-precision-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-rating label="Rating" precision="0.5" value="2.5"></sl-rating>`
+})
+export class RatingPrecisionExampleComponent {}
+```
+
 ### Symbol Sizes
 
 Set the `--symbol-size` custom property to adjust the size.
 
 ```html:preview
 <sl-rating label="Rating" style="--symbol-size: 2rem;"></sl-rating>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-rating-symbol-sizes-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-rating label="Rating" style="--symbol-size: 2rem;"></sl-rating>`
+})
+export class RatingSymbolSizesExampleComponent {}
 ```
 
 {% raw %}
@@ -91,6 +151,18 @@ import SlRating from '@shoelace-style/shoelace/dist/react/rating';
 const App = () => <SlRating label="Rating" readonly value={3} />;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-rating-readonly-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-rating label="Rating" readonly value="3"></sl-rating>`
+})
+export class RatingReadonlyExampleComponent {}
+```
+
 ### Disabled
 
 Use the `disable` attribute to disable the rating.
@@ -103,6 +175,18 @@ Use the `disable` attribute to disable the rating.
 import SlRating from '@shoelace-style/shoelace/dist/react/rating';
 
 const App = () => <SlRating label="Rating" disabled value={3} />;
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-rating-disabled-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-rating label="Rating" disabled value="3"></sl-rating>`
+})
+export class RatingDisabledExampleComponent {}
 ```
 
 ### Detecting Hover
@@ -198,6 +282,51 @@ const App = () => {
 };
 ```
 
+{% raw %}
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+const TERMS = ['No rating', 'Terrible', 'Bad', 'OK', 'Good', 'Excellent'];
+
+@Component({
+  selector: 'app-rating-detect-hover-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    span {
+      position: relative;
+      top: -4px;
+      left: 8px;
+      border-radius: var(--sl-border-radius-small);
+      background: var(--sl-color-neutral-900);
+      color: var(--sl-color-neutral-0);
+      text-align: center;
+      padding: 4px 6px;
+    }
+
+    span:empty {
+      display: none;
+    }
+  `,
+  template: `
+    <sl-rating label="Rating" (sl-hover)="onHover($event)"></sl-rating>
+    <span>{{ term() }}</span>
+  `
+})
+export class RatingDetectHoverExampleComponent {
+  readonly term = signal('');
+
+  onHover(event: Event) {
+    const { phase, value } = (event as CustomEvent<{ phase: string; value: number }>).detail;
+    this.term.set(phase === 'end' ? '' : (TERMS[value] ?? ''));
+  }
+}
+```
+
+{% endraw %}
+
 ### Custom Icons
 
 You can provide custom icons by passing a function to the `getSymbol` property.
@@ -209,6 +338,24 @@ You can provide custom icons by passing a function to the `getSymbol` property.
   const rating = document.querySelector('.rating-hearts');
   rating.getSymbol = () => '<sl-icon name="heart-fill"></sl-icon>';
 </script>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-rating-hearts-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  // `getSymbol` is a function, so it has to go through property binding.
+  template: `
+    <sl-rating label="Rating" [getSymbol]="heart" style="--symbol-color-active: #ff4136;"></sl-rating>
+  `
+})
+export class RatingHeartsExampleComponent {
+  readonly heart = () => '<sl-icon name="heart-fill"></sl-icon>';
+}
 ```
 
 {% raw %}
@@ -253,4 +400,21 @@ function getSymbol(value) {
 }
 
 const App = () => <SlRating label="Rating" getSymbol={getSymbol} />;
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+const ICONS = ['emoji-angry', 'emoji-frown', 'emoji-expressionless', 'emoji-smile', 'emoji-laughing'];
+
+@Component({
+  selector: 'app-rating-emojis-example',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-rating label="Rating" [getSymbol]="emoji"></sl-rating>`
+})
+export class RatingEmojisExampleComponent {
+  readonly emoji = (value: number) => `<sl-icon name="${ICONS[value - 1]}"></sl-icon>`;
+}
 ```

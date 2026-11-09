@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { property } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
@@ -45,14 +44,6 @@ export default class SlTabPanel extends ShoelaceElement {
   }
 
   render() {
-    return html`
-      <slot
-        part="base"
-        class=${classMap({
-          'tab-panel': true,
-          'tab-panel--active': this.active
-        })}
-      ></slot>
-    `;
+    return html` <slot part="base" class="tab-panel${this.active ? ' tab-panel--active' : ''}"></slot> `;
   }
 }

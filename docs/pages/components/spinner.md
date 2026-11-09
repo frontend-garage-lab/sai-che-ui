@@ -15,6 +15,18 @@ import SlSpinner from '@shoelace-style/shoelace/dist/react/spinner';
 const App = () => <SlSpinner />;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/spinner/spinner.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-spinner-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-spinner></sl-spinner>`
+})
+export class SpinnerExampleComponent {}
+```
+
 ## Examples
 
 ### Size
@@ -25,6 +37,22 @@ Spinners are sized based on the current font size. To change their size, set the
 <sl-spinner></sl-spinner>
 <sl-spinner style="font-size: 2rem;"></sl-spinner>
 <sl-spinner style="font-size: 3rem;"></sl-spinner>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/spinner/spinner.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-spinner-size-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-spinner></sl-spinner>
+    <sl-spinner style="font-size: 2rem;"></sl-spinner>
+    <sl-spinner style="font-size: 3rem;"></sl-spinner>
+  `
+})
+export class SpinnerSizeExampleComponent {}
 ```
 
 {% raw %}
@@ -51,6 +79,18 @@ The width of the spinner's track can be changed by setting the `--track-width` c
 <sl-spinner style="font-size: 50px; --track-width: 10px;"></sl-spinner>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/spinner/spinner.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-spinner-track-width-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-spinner style="font-size: 50px; --track-width: 10px;"></sl-spinner>`
+})
+export class SpinnerTrackWidthExampleComponent {}
+```
+
 {% raw %}
 
 ```jsx:react
@@ -74,6 +114,18 @@ The spinner's colors can be changed by setting the `--indicator-color` and `--tr
 
 ```html:preview
 <sl-spinner style="font-size: 3rem; --indicator-color: deeppink; --track-color: pink;"></sl-spinner>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/spinner/spinner.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-spinner-color-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-spinner style="font-size: 3rem; --indicator-color: deeppink; --track-color: pink;"></sl-spinner>`
+})
+export class SpinnerColorExampleComponent {}
 ```
 
 {% raw %}

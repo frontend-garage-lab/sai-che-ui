@@ -32,6 +32,28 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-select-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-select>
+      <sl-option value="option-1">Option 1</sl-option>
+      <sl-option value="option-2">Option 2</sl-option>
+      <sl-option value="option-3">Option 3</sl-option>
+      <sl-option value="option-4">Option 4</sl-option>
+      <sl-option value="option-5">Option 5</sl-option>
+      <sl-option value="option-6">Option 6</sl-option>
+    </sl-select>
+  `
+})
+export class SelectExampleComponent {}
+```
+
 :::tip
 This component works with standard `<form>` elements. Please refer to the section on [form controls](/getting-started/form-controls) to learn more about form submission and client-side validation.
 :::
@@ -63,6 +85,25 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-select-labels-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-select label="Select one">
+      <sl-option value="option-1">Option 1</sl-option>
+      <sl-option value="option-2">Option 2</sl-option>
+      <sl-option value="option-3">Option 3</sl-option>
+    </sl-select>
+  `
+})
+export class SelectLabelsExampleComponent {}
+```
+
 ### Help Text
 
 Add descriptive help text to a select with the `help-text` attribute. For help texts that contain HTML, use the `help-text` slot instead.
@@ -86,6 +127,25 @@ const App = () => (
     <SlOption value="3">Advanced</SlOption>
   </SlSelect>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-select-help-text-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-select label="Experience" help-text="Please tell us your skill level.">
+      <sl-option value="1">Novice</sl-option>
+      <sl-option value="2">Intermediate</sl-option>
+      <sl-option value="3">Advanced</sl-option>
+    </sl-select>
+  `
+})
+export class SelectHelpTextExampleComponent {}
 ```
 
 ### Placeholders
@@ -113,6 +173,25 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-select-placeholders-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-select placeholder="Select one">
+      <sl-option value="option-1">Option 1</sl-option>
+      <sl-option value="option-2">Option 2</sl-option>
+      <sl-option value="option-3">Option 3</sl-option>
+    </sl-select>
+  `
+})
+export class SelectPlaceholdersExampleComponent {}
+```
+
 ### Clearable
 
 Use the `clearable` attribute to make the control clearable. The clear button only appears when an option is selected.
@@ -136,6 +215,25 @@ const App = () => (
     <SlOption value="option-3">Option 3</SlOption>
   </SlSelect>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-select-clearable-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-select clearable value="option-1">
+      <sl-option value="option-1">Option 1</sl-option>
+      <sl-option value="option-2">Option 2</sl-option>
+      <sl-option value="option-3">Option 3</sl-option>
+    </sl-select>
+  `
+})
+export class SelectClearableExampleComponent {}
 ```
 
 ### Filled Selects
@@ -163,6 +261,25 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-select-filled-selects-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-select filled>
+      <sl-option value="option-1">Option 1</sl-option>
+      <sl-option value="option-2">Option 2</sl-option>
+      <sl-option value="option-3">Option 3</sl-option>
+    </sl-select>
+  `
+})
+export class SelectFilledSelectsExampleComponent {}
+```
+
 ### Pill
 
 Use the `pill` attribute to give selects rounded edges.
@@ -186,6 +303,25 @@ const App = () => (
     <SlOption value="option-3">Option 3</SlOption>
   </SlSelect>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-select-pill-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-select pill>
+      <sl-option value="option-1">Option 1</sl-option>
+      <sl-option value="option-2">Option 2</sl-option>
+      <sl-option value="option-3">Option 3</sl-option>
+    </sl-select>
+  `
+})
+export class SelectPillExampleComponent {}
 ```
 
 ### Status
@@ -215,6 +351,25 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-select-status-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-select label="Success" help-text="Looks good." status="success"><sl-option value="1">Option 1</sl-option></sl-select>
+    <br />
+    <sl-select label="Warning" help-text="Double-check this value." status="warning"><sl-option value="1">Option 1</sl-option></sl-select>
+    <br />
+    <sl-select label="Error" help-text="This field is required." status="danger"><sl-option value="1">Option 1</sl-option></sl-select>
+  `
+})
+export class SelectStatusExampleComponent {}
+```
+
 ### Disabled
 
 Use the `disabled` attribute to disable a select.
@@ -238,6 +393,25 @@ const App = () => (
     <SlOption value="option-3">Option 3</SlOption>
   </SlSelect>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-select-disabled-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-select placeholder="Disabled" disabled>
+      <sl-option value="option-1">Option 1</sl-option>
+      <sl-option value="option-2">Option 2</sl-option>
+      <sl-option value="option-3">Option 3</sl-option>
+    </sl-select>
+  `
+})
+export class SelectDisabledExampleComponent {}
 ```
 
 ### Multiple
@@ -269,6 +443,28 @@ const App = () => (
     <SlOption value="option-6">Option 6</SlOption>
   </SlSelect>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-select-multiple-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-select label="Select a Few" value="option-1 option-2 option-3" multiple clearable>
+      <sl-option value="option-1">Option 1</sl-option>
+      <sl-option value="option-2">Option 2</sl-option>
+      <sl-option value="option-3">Option 3</sl-option>
+      <sl-option value="option-4">Option 4</sl-option>
+      <sl-option value="option-5">Option 5</sl-option>
+      <sl-option value="option-6">Option 6</sl-option>
+    </sl-select>
+  `
+})
+export class SelectMultipleExampleComponent {}
 ```
 
 :::tip
@@ -304,6 +500,26 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-select-setting-initial-values-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-select value="option-1 option-2" multiple clearable>
+      <sl-option value="option-1">Option 1</sl-option>
+      <sl-option value="option-2">Option 2</sl-option>
+      <sl-option value="option-3">Option 3</sl-option>
+      <sl-option value="option-4">Option 4</sl-option>
+    </sl-select>
+  `
+})
+export class SelectSettingInitialValuesExampleComponent {}
+```
+
 ### Grouping Options
 
 Use `<sl-divider>` to group listbox items visually. You can also use `<small>` to provide labels, but they won't be announced by most assistive devices.
@@ -336,6 +552,32 @@ const App = () => (
     <SlOption value="option-6">Option 6</SlOption>
   </SlSelect>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-select-grouping-options-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-select>
+      <small>Section 1</small>
+      <sl-option value="option-1">Option 1</sl-option>
+      <sl-option value="option-2">Option 2</sl-option>
+      <sl-option value="option-3">Option 3</sl-option>
+      <sl-divider></sl-divider>
+      <small>Section 2</small>
+      <sl-option value="option-4">Option 4</sl-option>
+      <sl-option value="option-5">Option 5</sl-option>
+      <sl-option value="option-6">Option 6</sl-option>
+    </sl-select>
+  `
+})
+export class SelectGroupingOptionsExampleComponent {}
 ```
 
 ### Sizes
@@ -397,6 +639,41 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-select-sizes-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-select placeholder="Small" size="small">
+      <sl-option value="option-1">Option 1</sl-option>
+      <sl-option value="option-2">Option 2</sl-option>
+      <sl-option value="option-3">Option 3</sl-option>
+    </sl-select>
+
+    <br />
+
+    <sl-select placeholder="Medium" size="medium">
+      <sl-option value="option-1">Option 1</sl-option>
+      <sl-option value="option-2">Option 2</sl-option>
+      <sl-option value="option-3">Option 3</sl-option>
+    </sl-select>
+
+    <br />
+
+    <sl-select placeholder="Large" size="large">
+      <sl-option value="option-1">Option 1</sl-option>
+      <sl-option value="option-2">Option 2</sl-option>
+      <sl-option value="option-3">Option 3</sl-option>
+    </sl-select>
+  `
+})
+export class SelectSizesExampleComponent {}
+```
+
 ### Placement
 
 The preferred placement of the select's listbox can be set with the `placement` attribute. Note that the actual position may vary to ensure the panel remains in the viewport. Valid placements are `top` and `bottom`.
@@ -420,6 +697,25 @@ const App = () => (
     <SlOption value="option-3">Option 3</SlOption>
   </SlDropdown>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-select-placement-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-select placement="top">
+      <sl-option value="option-1">Option 1</sl-option>
+      <sl-option value="option-2">Option 2</sl-option>
+      <sl-option value="option-3">Option 3</sl-option>
+    </sl-select>
+  `
+})
+export class SelectPlacementExampleComponent {}
 ```
 
 ### Prefix & Suffix
@@ -483,6 +779,45 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/badge/badge.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-select-prefix-suffix-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-select placeholder="Small" size="small" clearable>
+      <sl-icon name="house" slot="prefix"></sl-icon>
+      <sl-badge slot="suffix">New</sl-badge>
+      <sl-option value="option-1">Option 1</sl-option>
+      <sl-option value="option-2">Option 2</sl-option>
+      <sl-option value="option-3">Option 3</sl-option>
+    </sl-select>
+    <br />
+    <sl-select placeholder="Medium" size="medium" clearable>
+      <sl-icon name="house" slot="prefix"></sl-icon>
+      <sl-badge slot="suffix">New</sl-badge>
+      <sl-option value="option-1">Option 1</sl-option>
+      <sl-option value="option-2">Option 2</sl-option>
+      <sl-option value="option-3">Option 3</sl-option>
+    </sl-select>
+    <br />
+    <sl-select placeholder="Large" size="large" clearable>
+      <sl-icon name="house" slot="prefix"></sl-icon>
+      <sl-badge slot="suffix">New</sl-badge>
+      <sl-option value="option-1">Option 1</sl-option>
+      <sl-option value="option-2">Option 2</sl-option>
+      <sl-option value="option-3">Option 3</sl-option>
+    </sl-select>
+  `
+})
+export class SelectPrefixSuffixExampleComponent {}
+```
+
 ### Custom Tags
 
 When multiple options can be selected, you can provide custom tags by passing a function to the `getTag` property. Your function can return a string of HTML, a <a href="https://lit.dev/docs/templates/overview/">Lit Template</a>, or an [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement). The `getTag()` function will be called for each option. The first argument is an `<sl-option>` element and the second argument is the tag's index (its position in the tag list).
@@ -527,6 +862,59 @@ Remember that custom tags are rendered in a shadow root. To style them, you can 
     `;
   };
 </script>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tag/tag.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-select-custom-tags-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-select
+      placeholder="Select one"
+      value="email phone"
+      multiple
+      clearable
+      class="custom-tag"
+    >
+      <sl-option value="email">
+        <sl-icon slot="prefix" name="envelope"></sl-icon>
+        Email
+      </sl-option>
+      <sl-option value="phone">
+        <sl-icon slot="prefix" name="telephone"></sl-icon>
+        Phone
+      </sl-option>
+      <sl-option value="chat">
+        <sl-icon slot="prefix" name="chat-dots"></sl-icon>
+        Chat
+      </sl-option>
+    </sl-select>
+
+    <script type="module">
+      const select = document.querySelector('.custom-tag');
+
+      select.getTag = (option, index) => {
+        // Use the same icon used in the <sl-option>
+        const name = option.querySelector('sl-icon[slot="prefix"]').name;
+
+        // You can return a string, a Lit Template, or an HTMLElement here
+        return \`
+          <sl-tag removable>
+            <sl-icon name="\${name}" style="padding-inline-end: .5rem;"></sl-icon>
+            \${option.getTextLabel()}
+          </sl-tag>
+        \`;
+      };
+    </script>
+  `
+})
+export class SelectCustomTagsExampleComponent {}
 ```
 
 ### Lazy loading options
@@ -630,6 +1018,107 @@ This can be hard to conceptualize, so heres a fairly large example showing how l
   container.addEventListener("click", addFooOption)
   container.addEventListener("submit", handleLazySubmit)
 </script>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-select-lazy-loading-options-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <form id="lazy-options-example">
+      <div>
+        <sl-select name="select-1" value="foo" label="Single select (with existing options)">
+          <sl-option value="bar">Bar</sl-option>
+          <sl-option value="baz">Baz</sl-option>
+        </sl-select>
+        <br>
+        <sl-button type="button">Add "foo" option</sl-button>
+      </div>
+
+      <br>
+
+      <div>
+        <sl-select name="select-2" value="foo" label="Single select (with no existing options)">
+        </sl-select>
+        <br>
+        <sl-button type="button">Add "foo" option</sl-button>
+      </div>
+
+      <br>
+
+      <div>
+        <sl-select name="select-3" value="foo bar baz" multiple label="Multiple Select (with existing options)">
+          <sl-option value="bar">Bar</sl-option>
+          <sl-option value="baz">Baz</sl-option>
+        </sl-select>
+        <br>
+        <sl-button type="button">Add "foo" option</sl-button>
+      </div>
+
+      <br>
+
+      <div>
+        <sl-select name="select-4" value="foo" multiple label="Multiple Select (with no existing options)">
+        </sl-select>
+        <br>
+        <sl-button type="button">Add "foo" option</sl-button>
+      </div>
+
+      <br><br>
+
+      <div style="display: flex; gap: 16px;">
+        <sl-button type="reset">Reset</sl-button>
+        <sl-button type="submit" variant="brand">Show FormData</sl-button>
+      </div>
+
+      <br>
+
+      <pre hidden><code id="lazy-options-example-form-data"></code></pre>
+
+      <br>
+    </form>
+
+    <script type="module">
+      function addFooOption(e) {
+        const addFooButton = e.target.closest("sl-button[type='button']")
+        if (!addFooButton) {
+          return
+        }
+        const select = addFooButton.parentElement.querySelector("sl-select")
+        if (select.querySelector("sl-option[value='foo']")) {
+          // Foo already exists. no-op.
+          return
+        }
+        const option = document.createElement("sl-option")
+        option.setAttribute("value", "foo")
+        option.innerText = "Foo"
+        select.append(option)
+      }
+      function handleLazySubmit (event) {
+        event.preventDefault()
+        const formData = new FormData(event.target)
+        const codeElement = document.querySelector("#lazy-options-example-form-data")
+        const obj = {}
+        for (const key of formData.keys()) {
+          const val = formData.getAll(key).length > 1 ? formData.getAll(key) : formData.get(key)
+          obj[key] = val
+        }
+        codeElement.textContent = JSON.stringify(obj, null, 2)
+        const preElement = codeElement.parentElement
+        preElement.removeAttribute("hidden")
+      }
+      const container = document.querySelector("#lazy-options-example")
+      container.addEventListener("click", addFooOption)
+      container.addEventListener("submit", handleLazySubmit)
+    </script>
+  `
+})
+export class SelectLazyLoadingOptionsExampleComponent {}
 ```
 
 :::warning

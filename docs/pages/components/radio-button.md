@@ -28,6 +28,25 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-button/radio-button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-radio-button-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-radio-group label="Select an option" name="a" value="1">
+      <sl-radio-button value="1">Option 1</sl-radio-button>
+      <sl-radio-button value="2">Option 2</sl-radio-button>
+      <sl-radio-button value="3">Option 3</sl-radio-button>
+    </sl-radio-group>
+  `
+})
+export class RadioButtonExampleComponent {}
+```
+
 ## Examples
 
 ### Checked States
@@ -55,6 +74,25 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-button/radio-button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-radio-button-checked-states-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-radio-group label="Select an option" name="a" value="1">
+      <sl-radio-button value="1">Option 1</sl-radio-button>
+      <sl-radio-button value="2">Option 2</sl-radio-button>
+      <sl-radio-button value="3">Option 3</sl-radio-button>
+    </sl-radio-group>
+  `
+})
+export class RadioButtonCheckedStatesExampleComponent {}
+```
+
 ### Disabled
 
 Use the `disabled` attribute to disable a radio button.
@@ -80,6 +118,25 @@ const App = () => (
     <SlRadioButton value="3">Option 3</SlRadioButton>
   </SlRadioGroup>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-button/radio-button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-radio-button-disabled-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-radio-group label="Select an option" name="a" value="1">
+      <sl-radio-button value="1">Option 1</sl-radio-button>
+      <sl-radio-button value="2" disabled>Option 2</sl-radio-button>
+      <sl-radio-button value="3">Option 3</sl-radio-button>
+    </sl-radio-group>
+  `
+})
+export class RadioButtonDisabledExampleComponent {}
 ```
 
 ### Sizes
@@ -139,6 +196,41 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-button/radio-button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-radio-button-sizes-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-radio-group size="small" label="Select an option" name="a" value="1">
+      <sl-radio-button value="1">Option 1</sl-radio-button>
+      <sl-radio-button value="2">Option 2</sl-radio-button>
+      <sl-radio-button value="3">Option 3</sl-radio-button>
+    </sl-radio-group>
+
+    <br />
+
+    <sl-radio-group size="medium" label="Select an option" name="a" value="1">
+      <sl-radio-button value="1">Option 1</sl-radio-button>
+      <sl-radio-button value="2">Option 2</sl-radio-button>
+      <sl-radio-button value="3">Option 3</sl-radio-button>
+    </sl-radio-group>
+
+    <br />
+
+    <sl-radio-group size="large" label="Select an option" name="a" value="1">
+      <sl-radio-button value="1">Option 1</sl-radio-button>
+      <sl-radio-button value="2">Option 2</sl-radio-button>
+      <sl-radio-button value="3">Option 3</sl-radio-button>
+    </sl-radio-group>
+  `
+})
+export class RadioButtonSizesExampleComponent {}
+```
+
 ### Pill Buttons
 
 Use the `pill` attribute to give radio buttons rounded edges.
@@ -196,6 +288,41 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-button/radio-button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-radio-button-pill-buttons-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-radio-group size="small" label="Select an option" name="a" value="1">
+      <sl-radio-button pill value="1">Option 1</sl-radio-button>
+      <sl-radio-button pill value="2">Option 2</sl-radio-button>
+      <sl-radio-button pill value="3">Option 3</sl-radio-button>
+    </sl-radio-group>
+
+    <br />
+
+    <sl-radio-group size="medium" label="Select an option" name="a" value="1">
+      <sl-radio-button pill value="1">Option 1</sl-radio-button>
+      <sl-radio-button pill value="2">Option 2</sl-radio-button>
+      <sl-radio-button pill value="3">Option 3</sl-radio-button>
+    </sl-radio-group>
+
+    <br />
+
+    <sl-radio-group size="large" label="Select an option" name="a" value="1">
+      <sl-radio-button pill value="1">Option 1</sl-radio-button>
+      <sl-radio-button pill value="2">Option 2</sl-radio-button>
+      <sl-radio-button pill value="3">Option 3</sl-radio-button>
+    </sl-radio-group>
+  `
+})
+export class RadioButtonPillButtonsExampleComponent {}
+```
+
 ### Prefix and Suffix Icons
 
 Use the `prefix` and `suffix` slots to add icons.
@@ -244,6 +371,38 @@ const App = () => (
     </SlRadioButton>
   </SlRadioGroup>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-button/radio-button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-radio-button-prefix-and-suffix-icons-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-radio-group label="Select an option" name="a" value="1">
+      <sl-radio-button value="1">
+        <sl-icon slot="prefix" name="archive"></sl-icon>
+        Option 1
+      </sl-radio-button>
+
+      <sl-radio-button value="2">
+        <sl-icon slot="suffix" name="bag"></sl-icon>
+        Option 2
+      </sl-radio-button>
+
+      <sl-radio-button value="3">
+        <sl-icon slot="prefix" name="gift"></sl-icon>
+        <sl-icon slot="suffix" name="cart"></sl-icon>
+        Option 3
+      </sl-radio-button>
+    </sl-radio-group>
+  `
+})
+export class RadioButtonPrefixAndSuffixIconsExampleComponent {}
 ```
 
 ### Buttons with Icons
@@ -302,4 +461,40 @@ const App = () => (
     </SlRadioButton>
   </SlRadioGroup>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-button/radio-button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-radio-button-buttons-with-icons-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-radio-group label="Select an option" name="a" value="neutral">
+      <sl-radio-button value="angry">
+        <sl-icon name="emoji-angry" label="Angry"></sl-icon>
+      </sl-radio-button>
+
+      <sl-radio-button value="sad">
+        <sl-icon name="emoji-frown" label="Sad"></sl-icon>
+      </sl-radio-button>
+
+      <sl-radio-button value="neutral">
+        <sl-icon name="emoji-neutral" label="Neutral"></sl-icon>
+      </sl-radio-button>
+
+      <sl-radio-button value="happy">
+        <sl-icon name="emoji-smile" label="Happy"></sl-icon>
+      </sl-radio-button>
+
+      <sl-radio-button value="laughing">
+        <sl-icon name="emoji-laughing" label="Laughing"></sl-icon>
+      </sl-radio-button>
+    </sl-radio-group>
+  `
+})
+export class RadioButtonButtonsWithIconsExampleComponent {}
 ```

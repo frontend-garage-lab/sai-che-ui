@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -53,10 +52,16 @@ export default class SlCopyButton extends ShoelaceElement {
   @query('slot[name="copy-icon"]') copyIcon: HTMLSlotElement;
   @query('slot[name="success-icon"]') successIcon: HTMLSlotElement;
   @query('slot[name="error-icon"]') errorIcon: HTMLSlotElement;
-  @query('sl-tooltip') tooltip: SlTooltip;
+  @query('.copy-button__button') button: HTMLButtonElement;
+  @query('sl-tooltip') tooltip: SlTooltip | null;
 
   @state() isCopying = false;
   @state() status: 'rest' | 'success' | 'error' = 'rest';
+  @state() private tooltipReady = false;
+  @state() private feedbackIconsReady = false;
+
+  /** Set when the tooltip was asked for while the feedback animation was running, so it can be honoured later. */
+  private tooltipRequested = false;
 
   /** The text value to copy. */
   @property() value = '';
@@ -93,6 +98,59 @@ export default class SlCopyButton extends ShoelaceElement {
    * scenarios.
    */
   @property({ type: Boolean }) hoist = false;
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.addEventListener('pointerenter', this.handleFirstInteraction);
+    this.addEventListener('focusin', this.handleFirstInteraction);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener('pointerenter', this.handleFirstInteraction);
+    this.removeEventListener('focusin', this.handleFirstInteraction);
+  }
+
+  private handleFirstInteraction = () => {
+    void this.createTooltip();
+  };
+
+  /**
+   * The tooltip, and the popup it contains, is by far the most expensive part of this component and is useless until
+   * the user actually interacts with the button. It is created on the first hover or focus instead of on every
+   * instance, which is what makes the difference in lists and tables that render many copy buttons at once.
+   */
+  private async createTooltip() {
+    if (this.tooltipReady) {
+      return;
+    }
+
+    // Creating the tooltip re-creates the button and the icon slots, so it must never happen while the feedback
+    // animation is running: that would orphan the animation and lose the icons' visibility state. The request is
+    // remembered and honoured as soon as the component is back at rest.
+    if (this.isCopying || this.status !== 'rest') {
+      this.tooltipRequested = true;
+      return;
+    }
+
+    this.tooltipRequested = false;
+    const hadFocus = this.shadowRoot?.activeElement === this.button;
+    const wasHovered = this.matches(':hover');
+
+    this.tooltipReady = true;
+    await this.updateComplete;
+
+    if (hadFocus) {
+      this.button?.focus();
+    }
+
+    // The hover or focus that triggered this has already been dispatched, so the freshly created tooltip never saw
+    // it. Opening it here makes the first interaction behave exactly like every later one, and keeps the tooltip's
+    // live region announcing the label to assistive technology on the very first focus.
+    if (wasHovered || hadFocus) {
+      void this.tooltip?.show();
+    }
+  }
 
   private async handleCopy() {
     if (this.disabled || this.isCopying) {
@@ -163,6 +221,10 @@ export default class SlCopyButton extends ShoelaceElement {
   }
 
   private async showStatus(status: 'success' | 'error') {
+    // The success and error icons are only needed once a copy has actually happened. Until then they would be two
+    // extra custom elements per button that nobody can see, which adds up in lists and tables.
+    this.feedbackIconsReady = true;
+
     const copyLabel = this.copyLabel || this.localize.term('copy');
     const successLabel = this.successLabel || this.localize.term('copied');
     const errorLabel = this.errorLabel || this.localize.term('error');
@@ -170,10 +232,16 @@ export default class SlCopyButton extends ShoelaceElement {
     const showAnimation = getAnimation(this, 'copy.in', { dir: 'ltr' });
     const hideAnimation = getAnimation(this, 'copy.out', { dir: 'ltr' });
 
-    this.tooltip.content = status === 'success' ? successLabel : errorLabel;
+    if (this.tooltip) {
+      this.tooltip.content = status === 'success' ? successLabel : errorLabel;
+    }
 
     // Show the feedback icon
     await this.copyIcon.animate(hideAnimation.keyframes, hideAnimation.options).finished;
+
+    // Make sure the feedback icon has been rendered before it is revealed and animated.
+    await this.updateComplete;
+
     this.copyIcon.hidden = true;
     this.status = status;
     iconToShow.hidden = false;
@@ -187,21 +255,51 @@ export default class SlCopyButton extends ShoelaceElement {
       this.copyIcon.hidden = false;
       await this.copyIcon.animate(showAnimation.keyframes, showAnimation.options).finished;
 
-      this.tooltip.content = copyLabel;
+      if (this.tooltip) {
+        this.tooltip.content = copyLabel;
+      }
+
       this.isCopying = false;
+
+      // If the tooltip was asked for while the animation was running, it is safe to create it now.
+      if (this.tooltipRequested) {
+        void this.createTooltip();
+      }
     }, this.feedbackDuration);
   }
 
   render() {
     const copyLabel = this.copyLabel || this.localize.term('copy');
+    const button = html`
+      <button
+        class="copy-button__button${this.status === 'success' ? ' copy-button__button--success' : ''}${this.status ===
+        'error'
+          ? ' copy-button__button--error'
+          : ''}"
+        part="button"
+        type="button"
+        ?disabled=${this.disabled}
+        @click=${this.handleCopy}
+      >
+        <slot part="copy-icon" name="copy-icon">
+          <sl-icon library="system" name="copy"></sl-icon>
+        </slot>
+        <slot part="success-icon" name="success-icon" hidden>
+          ${this.feedbackIconsReady ? html`<sl-icon library="system" name="check"></sl-icon>` : ''}
+        </slot>
+        <slot part="error-icon" name="error-icon" hidden>
+          ${this.feedbackIconsReady ? html`<sl-icon library="system" name="x-lg"></sl-icon>` : ''}
+        </slot>
+      </button>
+    `;
+
+    if (!this.tooltipReady) {
+      return button;
+    }
 
     return html`
       <sl-tooltip
-        class=${classMap({
-          'copy-button': true,
-          'copy-button--success': this.status === 'success',
-          'copy-button--error': this.status === 'error'
-        })}
+        class="copy-button"
         content=${copyLabel}
         placement=${this.tooltipPlacement}
         ?disabled=${this.disabled}
@@ -213,23 +311,7 @@ export default class SlCopyButton extends ShoelaceElement {
           body:tooltip__body
         "
       >
-        <button
-          class="copy-button__button"
-          part="button"
-          type="button"
-          ?disabled=${this.disabled}
-          @click=${this.handleCopy}
-        >
-          <slot part="copy-icon" name="copy-icon">
-            <sl-icon library="system" name="copy"></sl-icon>
-          </slot>
-          <slot part="success-icon" name="success-icon" hidden>
-            <sl-icon library="system" name="check"></sl-icon>
-          </slot>
-          <slot part="error-icon" name="error-icon" hidden>
-            <sl-icon library="system" name="x-lg"></sl-icon>
-          </slot>
-        </button>
+        ${button}
       </sl-tooltip>
     `;
   }

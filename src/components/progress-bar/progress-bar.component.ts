@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -43,11 +42,9 @@ export default class SlProgressBar extends ShoelaceElement {
     return html`
       <div
         part="base"
-        class=${classMap({
-          'progress-bar': true,
-          'progress-bar--indeterminate': this.indeterminate,
-          'progress-bar--rtl': this.localize.dir() === 'rtl'
-        })}
+        class="progress-bar${this.indeterminate ? ' progress-bar--indeterminate' : ''}${this.localize.dir() === 'rtl'
+          ? ' progress-bar--rtl'
+          : ''}"
         role="progressbar"
         title=${ifDefined(this.title)}
         aria-label=${this.label.length > 0 ? this.label : this.localize.term('progress')}

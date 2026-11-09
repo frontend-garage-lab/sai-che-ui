@@ -101,7 +101,8 @@
 }
 
 .code-preview__button--html,
-.code-preview__button--react {
+.code-preview__button--react,
+.code-preview__button--angular {
   width: 70px;
   display: flex;
   place-items: center;
@@ -163,11 +164,15 @@
   transform: rotate(180deg);
 }
 
-/* We can apply data-flavor="html|react" to any element on the page to toggle it when the flavor changes */
+/* We can apply data-flavor="html|react|angular" to any element on the page to toggle it when the flavor changes */
 .flavor-html [data-flavor]:not([data-flavor='html']) {
   display: none;
 }
 
 .flavor-react [data-flavor]:not([data-flavor='react']) {
+  display: none;
+}
+
+.flavor-angular [data-flavor]:not([data-flavor='angular']) {
   display: none;
 }
