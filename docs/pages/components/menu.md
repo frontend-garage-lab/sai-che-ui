@@ -80,6 +80,38 @@ const App = () => (
 );
 ```
 
+### With a Search Field
+
+A text field can be placed at the top of the menu to narrow a long list. Space, enter, home and end stay in the field,
+and <kbd>↓</kbd> moves the focus from the field to the first item. The field gets its own spacing from the menu edge. Filtering the items is up to you.
+
+```html:preview
+<sl-dropdown class="menu-search">
+  <sl-button slot="trigger" caret>032325 · Bioraffineria Di Livorno EPC</sl-button>
+  <sl-menu>
+    <sl-input size="small" placeholder="Search code or project" clearable>
+      <sl-icon slot="prefix" name="search"></sl-icon>
+    </sl-input>
+    <sl-divider></sl-divider>
+    <sl-menu-label>My projects</sl-menu-label>
+    <sl-menu-item value="032325">Bioraffineria Di Livorno EPC<span slot="suffix">032325</span></sl-menu-item>
+    <sl-menu-item value="032239">Berri Project<span slot="suffix">032239</span></sl-menu-item>
+    <sl-menu-item value="023144">Neptun Deep Project<span slot="suffix">023144</span></sl-menu-item>
+    <sl-menu-item value="F10412">–<span slot="suffix">F10412</span></sl-menu-item>
+  </sl-menu>
+</sl-dropdown>
+
+<script>
+  const searchMenu = document.querySelector('.menu-search');
+  searchMenu.querySelector('sl-input').addEventListener('sl-input', event => {
+    const term = event.target.value.toLowerCase();
+    searchMenu.querySelectorAll('sl-menu-item').forEach(item => {
+      item.hidden = !item.textContent.toLowerCase().includes(term);
+    });
+  });
+</script>
+```
+
 ### Submenus
 
 To create a submenu, nest an `<sl-menu slot="submenu">` in any [menu item](/components/menu-item).

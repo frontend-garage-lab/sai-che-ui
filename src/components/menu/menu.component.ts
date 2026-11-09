@@ -54,7 +54,28 @@ export default class SlMenu extends ShoelaceElement {
     this.emit('sl-select', { detail: { item } });
   }
 
+  /** True when the key comes from a text field placed inside the menu (e.g. a search input above the items). */
+  private isFromTextField(event: KeyboardEvent) {
+    return event.composedPath().some((el: Element) => {
+      const tag = el?.tagName?.toLowerCase();
+      return tag === 'input' || tag === 'textarea' || Boolean((el as HTMLElement)?.isContentEditable);
+    });
+  }
+
   private handleKeyDown(event: KeyboardEvent) {
+    // Let text fields inside the menu (e.g. a search input) keep space, enter, home and end; ArrowDown still moves the
+    // focus from the field to the first item.
+    if (this.isFromTextField(event)) {
+      if (event.key !== 'ArrowDown') return;
+      const first = this.getAllItems()[0];
+      if (first) {
+        event.preventDefault();
+        this.setCurrentItem(first);
+        first.focus();
+      }
+      return;
+    }
+
     // Make a selection when pressing enter or space
     if (event.key === 'Enter' || event.key === ' ') {
       const item = this.getCurrentItem();

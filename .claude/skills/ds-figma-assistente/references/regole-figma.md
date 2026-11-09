@@ -264,3 +264,6 @@ Caso tipico: una pagina già fatta cambia layout (es. le sezioni di un form dive
 - Elementi affiancati in una grid HTML (stessa altezza per `align-items: stretch`): `layoutSizingVertical = "FILL"`.
 - Prima scansione read-only su tutte le pagine coinvolte (titoli dall'HTML → nodo in Figma); le sezioni non trovate di
   solito sono fuori dallo stato disegnato (tab non attiva, parte tagliata dallo scroll): non vanno aggiunte.
+
+- **Mai `clone()` di un sotto-layer di un'istanza preso da un altro frame** (es. la colonna `Selection` della tabella di S2) per inserirlo in uno SLOT di un'altra istanza: la struttura risulta corretta, ma nel render della pagina intera la copia esce vuota o fuori posto, e lo screenshot del solo nodo può sembrare giusto. Crea invece un'istanza nuova dalla variante del master (`(await old.getMainComponentAsync()).parent` → variante giusta → `createInstance()`) e poi imposta le proprietà (2026-11-09, segnalato dall'utente sulla Clipboard).
+- Dopo una modifica dentro una tabella o un altro slot, verifica sempre con lo screenshot del **frame intero della pagina**, non solo del nodo modificato: i due render possono non coincidere.

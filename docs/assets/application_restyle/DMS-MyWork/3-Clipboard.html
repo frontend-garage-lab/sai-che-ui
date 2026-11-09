@@ -1,0 +1,282 @@
+<!doctype html>
+<!--
+  DMS-MyWork · 3-Clipboard — from the Figma frame 1-Clipboard (file B 1366:89503), aligned with the functional analysis §4.3.2.
+  State: Clipboard with 5 collected documents, the first one ticked and open in the detail panel (Properties tab, Info expanded); last column = ⋮ row menu (View, Edit); table not sorted.
+  Built only with sai-che-ui components (see REPORT.md in this folder).
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/DMS-MyWork/2-SelectedDocs.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>xCPage · Clipboard</title>
+    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
+    <link rel="stylesheet" href="../_shared/restyle.css" />
+    <link rel="stylesheet" href="./flow.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <script>
+      // Reload when esbuild rebuilds after a change in src/
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
+  </head>
+
+  <body class="sl-theme-light">
+    <sl-header>
+      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+      <span slot="logo"></span>
+
+      <sl-header-item slot="actions" class="project-selector">
+        000001 · Digital Collaboration
+        <sl-menu slot="menu" aria-label="Project" style="width: 28rem">
+          <sl-input size="small" placeholder="Search code or project" clearable aria-label="Search projects">
+            <sl-icon slot="prefix" name="search"></sl-icon>
+          </sl-input>
+          <sl-divider></sl-divider>
+          <sl-menu-label>My projects</sl-menu-label>
+          <sl-menu-item type="checkbox" value="000001" checked title="Digital Collaboration"
+            >Digital Collaboration<span slot="suffix" class="rs-meta">000001</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032325" title="Bioraffineria Di Livorno EPC"
+            >Bioraffineria Di Livorno EPC<span slot="suffix" class="rs-meta">032325</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032239" title="Berri Project"
+            >Berri Project<span slot="suffix" class="rs-meta">032239</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="023144" title="Neptun Deep Project"
+            >Neptun Deep Project<span slot="suffix" class="rs-meta">023144</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032197" title="Natural Gas Storage Plant"
+            >Natural Gas Storage Plant<span slot="suffix" class="rs-meta">032197</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="F10412" title="–"
+            >–<span slot="suffix" class="rs-meta">F10412</span></sl-menu-item
+          >
+        </sl-menu>
+      </sl-header-item>
+      <sl-header-item slot="actions">
+        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+        Mario Rossi
+        <sl-menu slot="menu">
+          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+    </sl-header>
+
+    <div class="rs-shell">
+      <sl-sidebar label="Project navigation" collapsed>
+        <sl-sidebar-group label="My work" count="9">
+          <sl-icon slot="icon" name="person-fill"></sl-icon>
+          <sl-sidebar-item href="4-Dashboard.html">Dashboard</sl-sidebar-item>
+          <sl-sidebar-item href="../DMS-MyWork/3-Clipboard.html" count="5" current>Clipboard</sl-sidebar-item>
+          <sl-sidebar-item href="../DMS-MyWork/2-SelectedDocs.html" count="4">Selected docs</sl-sidebar-item>
+          <sl-sidebar-item href="6-Preferences.html">Preferences</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Projects">
+          <sl-icon slot="icon" name="grid"></sl-icon>
+          <sl-sidebar-item href="../DMS-Home/5-ProjectDiscovery.html">Project discovery</sl-sidebar-item>
+        </sl-sidebar-group>
+        <sl-sidebar-group label="Documenti di progetto" count="70">
+          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+          <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Procurement (SAP)" count="71">
+          <sl-icon slot="icon" name="cart"></sl-icon>
+          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Comunicazione" count="47">
+          <sl-icon slot="icon" name="envelope"></sl-icon>
+          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Tasks" count="55">
+          <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+          <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Downloads" count="3">
+          <sl-icon slot="icon" name="download"></sl-icon>
+          <sl-sidebar-item href="../DMS-Downloads/1-Downloads.html" count="3">My downloads</sl-sidebar-item>
+        </sl-sidebar-group>
+      </sl-sidebar>
+
+      <main class="rs-page rs-page--fill" aria-label="Clipboard">
+        <sl-breadcrumb aria-label="Breadcrumb">
+          <sl-breadcrumb-item href="../DMS-Home/1-Home.html">Home</sl-breadcrumb-item>
+          <sl-breadcrumb-item>My work</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Clipboard</sl-breadcrumb-item>
+        </sl-breadcrumb>
+
+        <div class="rs-page-header">
+          <div class="rs-page-header__text">
+            <h1 class="rs-title">Clipboard</h1>
+            <p class="rs-meta">
+              Documents collected from different searches to act on them together. The Clipboard is kept for the current
+              session only.
+            </p>
+          </div>
+        </div>
+
+        <div class="rs-workspace">
+          <section class="rs-workspace__main rs-span-6" aria-label="Clipboard documents">
+            <sl-table
+              class="clipboard-list"
+              fill
+              selection="multiple"
+              sticky-header
+              paginate
+              page-size="25"
+              label="Clipboard documents"
+            >
+              <div
+                slot="toolbar"
+                class="rs-cluster rs-cluster--nowrap rs-grow"
+                role="toolbar"
+                aria-label="Clipboard actions"
+              >
+                <sl-button variant="primary" size="small"
+                  ><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-button
+                >
+                <sl-dropdown placement="bottom-start">
+                  <sl-button slot="trigger" size="small" caret>More actions</sl-button>
+                  <sl-menu>
+                    <sl-menu-item><sl-icon slot="prefix" name="check2-circle"></sl-icon>Approve</sl-menu-item>
+                    <sl-menu-item><sl-icon slot="prefix" name="arrow-up-circle"></sl-icon>Promote</sl-menu-item>
+                    <sl-menu-item><sl-icon slot="prefix" name="arrow-down-circle"></sl-icon>Demote</sl-menu-item>
+                    <sl-divider></sl-divider>
+                    <sl-menu-item><sl-icon slot="prefix" name="x-lg"></sl-icon>Remove from Clipboard</sl-menu-item>
+                    <sl-menu-item><sl-icon slot="prefix" name="trash"></sl-icon>Clear Clipboard</sl-menu-item>
+                  </sl-menu>
+                </sl-dropdown>
+                <span class="rs-spacer"></span>
+                <sl-dropdown placement="bottom-end">
+                  <sl-button slot="trigger" size="small" caret
+                    ><sl-icon slot="prefix" name="download"></sl-icon>Export</sl-button
+                  >
+                  <sl-menu>
+                    <sl-menu-item
+                      ><sl-icon slot="prefix" name="file-earmark-excel"></sl-icon>Export to Excel</sl-menu-item
+                    >
+                    <sl-menu-item><sl-icon slot="prefix" name="clock-history"></sl-icon>View last report</sl-menu-item>
+                  </sl-menu>
+                </sl-dropdown>
+                <sl-dropdown placement="bottom-end" hoist data-table-options>
+                  <sl-button slot="trigger" size="small" caret
+                    ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                  >
+                </sl-dropdown>
+              </div>
+
+              <sl-empty-state
+                slot="empty"
+                title-text="The Clipboard is empty"
+                description="Use Add to Clipboard on documents in lists and search results to collect them here."
+              >
+                <sl-icon slot="icon" name="clipboard"></sl-icon>
+              </sl-empty-state>
+            </sl-table>
+          </section>
+
+          <sl-detail-panel contained class="rs-span-6" aria-label="Document details">
+            <span slot="label" class="rs-inline">000001-YD-ST-1007</span>
+            <span slot="meta">Yard Document – Utilities area</span>
+
+            <sl-tab-group>
+              <sl-tab slot="nav" panel="properties" active
+                ><span class="rs-inline"><sl-icon name="info-circle"></sl-icon>Properties</span></sl-tab
+              >
+              <sl-tab slot="nav" panel="revisions"
+                ><span class="rs-inline"><sl-icon name="clock-history"></sl-icon>Revisions</span></sl-tab
+              >
+              <sl-tab slot="nav" panel="progress"
+                ><span class="rs-inline"><sl-icon name="bar-chart-steps"></sl-icon>Progress</span></sl-tab
+              >
+              <sl-tab slot="nav" panel="relations">Relations</sl-tab>
+              <sl-tab slot="nav" panel="history"
+                ><span class="rs-inline"><sl-icon name="clock-history"></sl-icon>Business history</span></sl-tab
+              >
+
+              <sl-tab-panel name="properties" active>
+                <div class="rs-inset rs-stack rs-stack--loose">
+                  <sl-description-list cols="2">
+                    <sl-description-list-item label="Name">rwar-1</sl-description-list-item>
+                    <sl-description-list-item label="DIN">rwar</sl-description-list-item>
+                    <sl-description-list-item label="Revision code"
+                      ><sl-tag size="small" variant="neutral">1</sl-tag></sl-description-list-item
+                    >
+                    <sl-description-list-item label="Title">rwar</sl-description-list-item>
+                    <sl-description-list-item label="Client answer">—</sl-description-list-item>
+                    <sl-description-list-item label="Issuing description">—</sl-description-list-item>
+                  </sl-description-list>
+
+                  <sl-details summary="Info" open>
+                    <div class="rs-stack">
+                      <h3 class="rs-subheading">Identification</h3>
+                      <sl-description-list cols="2">
+                        <sl-description-list-item label="SP code">—</sl-description-list-item>
+                        <sl-description-list-item label="Document type">Internal Job Document</sl-description-list-item>
+                        <sl-description-list-item label="Client document identification">—</sl-description-list-item>
+                        <sl-description-list-item label="Vendor document identification">—</sl-description-list-item>
+                      </sl-description-list>
+                      <sl-divider></sl-divider>
+                      <h3 class="rs-subheading">Status and ownership</h3>
+                      <sl-description-list cols="2">
+                        <sl-description-list-item label="Revision status">
+                          <sl-status filled variant="neutral" size="small">Working</sl-status>
+                        </sl-description-list-item>
+                        <sl-description-list-item label="Document status">
+                          <sl-status filled variant="success" size="small">Verified</sl-status>
+                        </sl-description-list-item>
+                        <sl-description-list-item label="Superseded by">—</sl-description-list-item>
+                        <sl-description-list-item label="Project code">99_PAGE_AM</sl-description-list-item>
+                        <sl-description-list-item label="Company project code">—</sl-description-list-item>
+                        <sl-description-list-item label="PO number">—</sl-description-list-item>
+                      </sl-description-list>
+                    </div>
+                  </sl-details>
+                </div>
+              </sl-tab-panel>
+              <sl-tab-panel name="revisions"></sl-tab-panel>
+              <sl-tab-panel name="progress"></sl-tab-panel>
+              <sl-tab-panel name="relations"></sl-tab-panel>
+              <sl-tab-panel name="history"></sl-tab-panel>
+            </sl-tab-group>
+          </sl-detail-panel>
+        </div>
+      </main>
+    </div>
+
+    <script type="module">
+      import * as flow from './data.js';
+
+      await flow.mountTable('.clipboard-list', {
+        columns: flow.clipboardColumns,
+        data: flow.clipboardDocs,
+        isSelected: flow.isOpenInPanel
+      });
+    </script>
+  </body>
+</html>

@@ -58,7 +58,11 @@ export const STATUS_VARIANT = {
   'Issued to DS & QA/QC': 'primary',
   'Approved by DS & QA/QC': 'success',
   'Ready for issue': 'success',
-  'Issued to Subco': 'primary'
+  'Issued to Subco': 'primary',
+  // Dashboard of the personal workspace (DMS-MyWork): items waiting for an action are in progress
+  Consolidated: 'primary',
+  Opened: 'primary',
+  'Issued To CM/SM': 'primary'
 };
 
 /** A state as the app shows it: filled status, colour from the catalog. */
@@ -421,12 +425,16 @@ function adoptCellStyles(table) {
 }
 
 /**
- * Table configuration (the "Config" button at the end of a table toolbar, `[data-table-options]`): show / hide columns
+ * Table configuration (the "Config" button at the end of a table toolbar, `[data-table-options]`, or of an action bar
+ * outside the table, `[data-table-options="<table id>"]`): show / hide columns
  * and change their order (arrows or drag and drop). Built from the table's own columns, so every list gets the same
  * panel. Columns without a header (quick info, row actions) keep their place at the edges.
  */
 function mountTableOptions(table) {
-  const dropdown = table.querySelector('[data-table-options]');
+  // Inside the table toolbar, or in an action bar outside the table that names it: data-table-options="<table id>".
+  const dropdown =
+    table.querySelector('[data-table-options]') ??
+    (table.id ? document.querySelector(`[data-table-options="${table.id}"]`) : null);
   if (!dropdown) return;
   const all = table.columns;
   const named = all.filter(column => typeof column.header === 'string' && column.header);

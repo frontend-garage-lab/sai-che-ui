@@ -93,3 +93,15 @@ text style). Le regole specifiche del progetto (mappature, pattern di pagina, sc
 - **Select multiple su una riga:** i tag di `sl-select multiple` non devono andare a capo. Imposta
   `max-options-visible` in base alla larghezza del campo (indicativamente 1 fino a `rs-span-4`, 2 fino a `rs-span-8`,
   3 a tutta larghezza): gli altri valori finiscono nel contatore "+N". In Figma: stessi tag visibili più il Tag "+N".
+
+- **Campo di ricerca di una lista o griglia (2026-11-09, segnalato dall'utente):** mai come campo piccolo senza etichetta
+  messo a caso nel page header. Per una tabella va nel suo slot `toolbar`. Per una griglia di card senza tabella:
+  intestazione a `rs-grid--fields`, titolo + sottotitolo con il conteggio a sinistra (`rs-span-8 rs-span-md-6`), `sl-input
+  type="search" label="Search"` a destra alla stessa altezza (`rs-span-4 rs-span-md-6`). Prima di inventare una posizione,
+  cerca come la stessa cosa è fatta nelle pagine esistenti e in `DECISIONS.md`.
+- **Spaziatura dentro `sl-card` (2026-11-09, segnalato dall'utente):** il body della card è `display: block`, senza gap.
+  Ogni blocco aggiunto al corpo (alert, testo, campi) va dentro una `rs-stack` (o accanto a un `sl-divider`, che ha i
+  suoi margini), mai come fratello diretto di una stack: altrimenti resta attaccato al blocco precedente.
+- **`sl-divider` tra due blocchi (2026-11-09, segnalato dall'utente):** il divider ha già i suoi margini. Non metterlo
+  dentro una `rs-stack` (tanto meno `--loose`): gap + margini raddoppiano lo spazio. Struttura giusta: blocco
+  (`rs-stack`) · `sl-divider` · blocco, come fratelli diretti del corpo della card.

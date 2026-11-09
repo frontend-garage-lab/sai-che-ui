@@ -1,0 +1,239 @@
+<!doctype html>
+<!--
+  DMS-Home · 5-ProjectDiscovery — functional analysis §4.2 (navigation and working area model).
+  State: Project Management entered with no project selected (from 3-Home-NoProject): "Your projects" with the 6 projects the user is enabled to in this working area as cards (badge, code, name, client, Open working area); search empty; Project discovery current in the sidebar. Card info beyond code, name and client is [TO BE DISCUSSED] in the analysis.
+  Built only with sai-che-ui components and the shared rs-* layout classes, no page-specific CSS.
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/DMS-Home/5-ProjectDiscovery.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DMS · Project discovery</title>
+    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
+    <link rel="stylesheet" href="../_shared/restyle.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <script>
+      // Reload when esbuild rebuilds after a change in src/
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
+  </head>
+
+  <body class="sl-theme-light">
+    <sl-header>
+      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+      <span slot="logo"></span>
+
+      <sl-header-item slot="actions" class="project-selector">
+        Select a project
+        <sl-menu slot="menu" aria-label="Project" style="width: 28rem">
+          <sl-input size="small" placeholder="Search code or project" clearable aria-label="Search projects">
+            <sl-icon slot="prefix" name="search"></sl-icon>
+          </sl-input>
+          <sl-divider></sl-divider>
+          <sl-menu-label>My projects</sl-menu-label>
+          <sl-menu-item type="checkbox" value="000001" title="Digital Collaboration"
+            >Digital Collaboration<span slot="suffix" class="rs-meta">000001</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032325" title="Bioraffineria Di Livorno EPC"
+            >Bioraffineria Di Livorno EPC<span slot="suffix" class="rs-meta">032325</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032239" title="Berri Project"
+            >Berri Project<span slot="suffix" class="rs-meta">032239</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="023144" title="Neptun Deep Project"
+            >Neptun Deep Project<span slot="suffix" class="rs-meta">023144</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032197" title="Natural Gas Storage Plant"
+            >Natural Gas Storage Plant<span slot="suffix" class="rs-meta">032197</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="F10412" title="–"
+            >–<span slot="suffix" class="rs-meta">F10412</span></sl-menu-item
+          >
+        </sl-menu>
+      </sl-header-item>
+      <sl-header-item slot="actions">
+        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+        Mario Rossi
+        <sl-menu slot="menu">
+          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+    </sl-header>
+
+    <div class="rs-shell">
+      <sl-sidebar label="Project navigation" collapsed>
+        <sl-sidebar-group label="My work" count="9">
+          <sl-icon slot="icon" name="person-fill"></sl-icon>
+          <sl-sidebar-item href="../DMS-MyWork/4-Dashboard.html">Dashboard</sl-sidebar-item>
+          <sl-sidebar-item href="../DMS-MyWork/3-Clipboard.html" count="5">Clipboard</sl-sidebar-item>
+          <sl-sidebar-item href="../DMS-MyWork/2-SelectedDocs.html" count="4">Selected docs</sl-sidebar-item>
+          <sl-sidebar-item href="../DMS-MyWork/6-Preferences.html">Preferences</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Projects">
+          <sl-icon slot="icon" name="grid"></sl-icon>
+          <sl-sidebar-item href="../DMS-Home/5-ProjectDiscovery.html" current>Project discovery</sl-sidebar-item>
+        </sl-sidebar-group>
+        <sl-sidebar-group label="Documenti di progetto" count="70">
+          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+          <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Procurement (SAP)" count="71">
+          <sl-icon slot="icon" name="cart"></sl-icon>
+          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Comunicazione" count="47">
+          <sl-icon slot="icon" name="envelope"></sl-icon>
+          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Tasks" count="55">
+          <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+          <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Downloads" count="3">
+          <sl-icon slot="icon" name="download"></sl-icon>
+          <sl-sidebar-item href="../DMS-Downloads/1-Downloads.html" count="3">My downloads</sl-sidebar-item>
+        </sl-sidebar-group>
+      </sl-sidebar>
+
+      <main class="rs-page rs-stack rs-stack--loose" aria-label="Project discovery">
+        <sl-breadcrumb aria-label="Breadcrumb">
+          <sl-breadcrumb-item href="1-Home.html">Home</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Project Management</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Project discovery</sl-breadcrumb-item>
+        </sl-breadcrumb>
+
+        <div class="rs-grid rs-grid--fields">
+          <div class="rs-page-header__text rs-span-8 rs-span-md-6">
+            <h1 class="rs-title">Your projects</h1>
+            <p class="rs-meta">6 projects you can work on in Project Management</p>
+          </div>
+          <form class="rs-span-4 rs-span-md-6" role="search">
+            <sl-input type="search" label="Search" placeholder="Project code, name or client" clearable>
+              <sl-icon slot="prefix" name="search"></sl-icon>
+            </sl-input>
+          </form>
+        </div>
+
+        <section class="rs-grid rs-grid--stretch" aria-label="Your projects">
+          <sl-card class="rs-span-4 rs-span-md-6">
+            <div class="rs-stack">
+              <sl-avatar shape="rounded" variant="primary" initials="91" label="Project 022791"></sl-avatar>
+              <div class="rs-stack rs-stack--tight">
+                <span class="rs-meta">022791</span>
+                <h2 class="rs-heading">Offset Installation System</h2>
+                <p class="rs-body">North Sea Energy</p>
+              </div>
+            </div>
+            <div slot="footer" class="rs-cluster rs-cluster--end">
+              <sl-button variant="text" size="small" href="#"
+                >Open working area<sl-icon slot="suffix" name="arrow-right"></sl-icon
+              ></sl-button>
+            </div>
+          </sl-card>
+          <sl-card class="rs-span-4 rs-span-md-6">
+            <div class="rs-stack">
+              <sl-avatar shape="rounded" variant="success" initials="04" label="Project 023104"></sl-avatar>
+              <div class="rs-stack rs-stack--tight">
+                <span class="rs-meta">023104</span>
+                <h2 class="rs-heading">Baltic Pipeline Expansion</h2>
+                <p class="rs-body">Baltic Gas Alliance</p>
+              </div>
+            </div>
+            <div slot="footer" class="rs-cluster rs-cluster--end">
+              <sl-button variant="text" size="small" href="#"
+                >Open working area<sl-icon slot="suffix" name="arrow-right"></sl-icon
+              ></sl-button>
+            </div>
+          </sl-card>
+          <sl-card class="rs-span-4 rs-span-md-6">
+            <div class="rs-stack">
+              <sl-avatar shape="rounded" variant="accent" initials="89" label="Project 021889"></sl-avatar>
+              <div class="rs-stack rs-stack--tight">
+                <span class="rs-meta">021889</span>
+                <h2 class="rs-heading">LNG Terminal Revamp</h2>
+                <p class="rs-body">MedPort LNG</p>
+              </div>
+            </div>
+            <div slot="footer" class="rs-cluster rs-cluster--end">
+              <sl-button variant="text" size="small" href="#"
+                >Open working area<sl-icon slot="suffix" name="arrow-right"></sl-icon
+              ></sl-button>
+            </div>
+          </sl-card>
+          <sl-card class="rs-span-4 rs-span-md-6">
+            <div class="rs-stack">
+              <sl-avatar shape="rounded" variant="primary" initials="25" label="Project 032325"></sl-avatar>
+              <div class="rs-stack rs-stack--tight">
+                <span class="rs-meta">032325</span>
+                <h2 class="rs-heading">Bioraffineria Di Livorno EPC</h2>
+                <p class="rs-body">Eni Sustainable Mobility</p>
+              </div>
+            </div>
+            <div slot="footer" class="rs-cluster rs-cluster--end">
+              <sl-button variant="text" size="small" href="#"
+                >Open working area<sl-icon slot="suffix" name="arrow-right"></sl-icon
+              ></sl-button>
+            </div>
+          </sl-card>
+          <sl-card class="rs-span-4 rs-span-md-6">
+            <div class="rs-stack">
+              <sl-avatar shape="rounded" variant="warning" initials="39" label="Project 032239"></sl-avatar>
+              <div class="rs-stack rs-stack--tight">
+                <span class="rs-meta">032239</span>
+                <h2 class="rs-heading">Berri Project</h2>
+                <p class="rs-body">Saudi Aramco</p>
+              </div>
+            </div>
+            <div slot="footer" class="rs-cluster rs-cluster--end">
+              <sl-button variant="text" size="small" href="#"
+                >Open working area<sl-icon slot="suffix" name="arrow-right"></sl-icon
+              ></sl-button>
+            </div>
+          </sl-card>
+          <sl-card class="rs-span-4 rs-span-md-6">
+            <div class="rs-stack">
+              <sl-avatar shape="rounded" variant="success" initials="44" label="Project 023144"></sl-avatar>
+              <div class="rs-stack rs-stack--tight">
+                <span class="rs-meta">023144</span>
+                <h2 class="rs-heading">Neptun Deep Project</h2>
+                <p class="rs-body">OMV Petrom</p>
+              </div>
+            </div>
+            <div slot="footer" class="rs-cluster rs-cluster--end">
+              <sl-button variant="text" size="small" href="#"
+                >Open working area<sl-icon slot="suffix" name="arrow-right"></sl-icon
+              ></sl-button>
+            </div>
+          </sl-card>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

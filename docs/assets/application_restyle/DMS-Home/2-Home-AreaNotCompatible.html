@@ -1,0 +1,170 @@
+<!doctype html>
+<!--
+  DMS-Home · 2-Home-AreaNotCompatible — functional analysis §4.2 (navigation and working area model).
+  State: project F10412 selected: Quality Management is not compatible with it, so its card is disabled (neutral icon, quick access and Open disabled) with a warning; Project Management stays available.
+  Built only with sai-che-ui components and the shared rs-* layout classes, no page-specific CSS.
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/DMS-Home/2-Home-AreaNotCompatible.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DMS · Home · area not compatible</title>
+    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
+    <link rel="stylesheet" href="../_shared/restyle.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <script>
+      // Reload when esbuild rebuilds after a change in src/
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
+  </head>
+
+  <body class="sl-theme-light">
+    <sl-header>
+      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+      <span slot="logo"></span>
+
+      <sl-header-item slot="actions" class="project-selector">
+        F10412 · –
+        <sl-menu slot="menu" aria-label="Project" style="width: 28rem">
+          <sl-input size="small" placeholder="Search code or project" clearable aria-label="Search projects">
+            <sl-icon slot="prefix" name="search"></sl-icon>
+          </sl-input>
+          <sl-divider></sl-divider>
+          <sl-menu-label>My projects</sl-menu-label>
+          <sl-menu-item type="checkbox" value="000001" title="Digital Collaboration"
+            >Digital Collaboration<span slot="suffix" class="rs-meta">000001</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032325" title="Bioraffineria Di Livorno EPC"
+            >Bioraffineria Di Livorno EPC<span slot="suffix" class="rs-meta">032325</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032239" title="Berri Project"
+            >Berri Project<span slot="suffix" class="rs-meta">032239</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="023144" title="Neptun Deep Project"
+            >Neptun Deep Project<span slot="suffix" class="rs-meta">023144</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032197" title="Natural Gas Storage Plant"
+            >Natural Gas Storage Plant<span slot="suffix" class="rs-meta">032197</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="F10412" checked title="–"
+            >–<span slot="suffix" class="rs-meta">F10412</span></sl-menu-item
+          >
+        </sl-menu>
+      </sl-header-item>
+      <sl-header-item slot="actions">
+        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+        Mario Rossi
+        <sl-menu slot="menu">
+          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+    </sl-header>
+
+    <main class="rs-page rs-stack rs-stack--loose" aria-label="Document Management System">
+      <div class="rs-page-header">
+        <div class="rs-page-header__text">
+          <h1 class="rs-title">Document Management System</h1>
+          <p class="rs-body">Select a working area. Current project: <strong>F10412 · –</strong></p>
+        </div>
+      </div>
+
+      <section class="rs-grid rs-grid--stretch" aria-label="Working areas">
+        <sl-card class="rs-span-3 rs-span-md-6">
+          <div class="rs-stack">
+            <sl-avatar shape="rounded" variant="primary" label="Project Management"
+              ><sl-icon slot="icon" name="briefcase"></sl-icon
+            ></sl-avatar>
+            <h2 class="rs-heading">Project Management</h2>
+            <p class="rs-body">
+              Project documents, procurement, site processes, completion and communications. The document types
+              available depend on the selected project.
+            </p>
+          </div>
+          <sl-divider></sl-divider>
+          <div class="rs-stack rs-stack--tight">
+            <h3 class="rs-subheading">Quick access</h3>
+            <sl-menu aria-label="Quick access to Project Management">
+              <sl-menu-item><sl-icon slot="prefix" name="check2-circle"></sl-icon>Tasks</sl-menu-item>
+              <sl-menu-item><sl-icon slot="prefix" name="file-earmark-text"></sl-icon>Job Document</sl-menu-item>
+              <sl-menu-item
+                ><sl-icon slot="prefix" name="file-earmark-text"></sl-icon>Field Design Change (FDC)</sl-menu-item
+              >
+              <sl-menu-item><sl-icon slot="prefix" name="file-earmark-text"></sl-icon>Correspondence</sl-menu-item>
+            </sl-menu>
+          </div>
+          <div slot="footer" class="rs-cluster rs-cluster--between">
+            <span class="rs-meta">18 document types in the project</span>
+            <sl-button variant="primary" size="small" href="#"
+              >Open<sl-icon slot="suffix" name="arrow-right"></sl-icon
+            ></sl-button>
+          </div>
+        </sl-card>
+        <sl-card class="rs-span-3 rs-span-md-6">
+          <div class="rs-stack">
+            <sl-avatar shape="rounded" variant="neutral" label="Quality Management"
+              ><sl-icon slot="icon" name="shield-check"></sl-icon
+            ></sl-avatar>
+            <h2 class="rs-heading">Quality Management</h2>
+            <p class="rs-body">
+              Non-Conformity Reports and actions, audits, BID management, quality documents and training.
+            </p>
+            <sl-alert variant="warning" open>
+              <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
+              Quality Management is not available for project F10412 · –. Select a compatible project to open it.
+            </sl-alert>
+          </div>
+          <sl-divider></sl-divider>
+          <div class="rs-stack rs-stack--tight">
+            <h3 class="rs-subheading">Quick access</h3>
+            <sl-menu aria-label="Quick access to Quality Management">
+              <sl-menu-item disabled><sl-icon slot="prefix" name="check2-circle"></sl-icon>Tasks</sl-menu-item>
+              <sl-menu-item disabled
+                ><sl-icon slot="prefix" name="file-earmark-text"></sl-icon>NCR Document</sl-menu-item
+              >
+              <sl-menu-item disabled
+                ><sl-icon slot="prefix" name="file-earmark-text"></sl-icon>Audit Report</sl-menu-item
+              >
+              <sl-menu-item disabled
+                ><sl-icon slot="prefix" name="file-earmark-text"></sl-icon>Bid document</sl-menu-item
+              >
+            </sl-menu>
+          </div>
+          <div slot="footer" class="rs-cluster rs-cluster--between">
+            <span class="rs-meta">Not available for this project</span>
+            <sl-button size="small" disabled>Open<sl-icon slot="suffix" name="arrow-right"></sl-icon></sl-button>
+          </div>
+        </sl-card>
+        <sl-card class="rs-span-3 rs-span-md-6">
+          <div class="rs-stack">
+            <sl-avatar shape="rounded" variant="neutral" label="Equipment Database"
+              ><sl-icon slot="icon" name="gear"></sl-icon
+            ></sl-avatar>
+            <h2 class="rs-heading">Equipment Database</h2>
+            <p class="rs-body">Database of project equipment.</p>
+          </div>
+          <div slot="footer" class="rs-cluster">
+            <sl-tag size="small" variant="neutral">To be defined</sl-tag>
+          </div>
+        </sl-card>
+        <sl-card class="rs-span-3 rs-span-md-6">
+          <div class="rs-stack">
+            <sl-avatar shape="rounded" variant="neutral" label="Project Data Repository"
+              ><sl-icon slot="icon" name="archive"></sl-icon
+            ></sl-avatar>
+            <h2 class="rs-heading">Project Data Repository</h2>
+            <p class="rs-body">Repository of project data.</p>
+          </div>
+          <div slot="footer" class="rs-cluster">
+            <sl-tag size="small" variant="neutral">To be defined</sl-tag>
+          </div>
+        </sl-card>
+      </section>
+    </main>
+  </body>
+</html>

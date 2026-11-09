@@ -16,4 +16,9 @@ export default css`
   ::slotted(sl-divider) {
     --spacing: var(--sl-spacing-x-small);
   }
+
+  /* A search field at the top of the menu sits off the edge, aligned with the items' highlight */
+  ::slotted(sl-input) {
+    margin: var(--sl-spacing-x-small);
+  }
 `;
