@@ -105,31 +105,16 @@
         </div>
 
         <sl-card aria-label="Filters">
+          <div slot="header" class="rs-cluster rs-cluster--between">
+            <h2 class="rs-heading rs-inline"><sl-icon name="filter"></sl-icon>Filters</h2>
+            <sl-button class="more-filters" size="small" variant="text">
+              <sl-icon slot="prefix" name="plus-lg"></sl-icon>
+              More filters (6)
+            </sl-button>
+          </div>
           <form class="rs-grid rs-grid--fields">
             <sl-select
-              class="rs-span-4 rs-span-md-6"
-              label="Project"
-              value="000001"
-              placeholder="Select a project"
-              clearable
-            >
-              <sl-option value="000001">000001 - Test Project</sl-option>
-              <sl-option value="000123">000123 - TESTING MOVE FOLDER</sl-option>
-              <sl-option value="032142">032142 - RABIGH Saudi Arabia</sl-option>
-              <sl-option value="032154">032154 - Dangote</sl-option>
-              <sl-option value="032174">032174 - JAZAN IGCC - SARU UNIT - PACKAGE 1</sl-option>
-              <sl-option value="032235">032235 - Mozambique LNG Project</sl-option>
-              <sl-option value="032331_00">032331_00 - FPSO KUTEI - YARD 00 (HULL)</sl-option>
-              <sl-option value="067156">067156 - EPC Digital Platform</sl-option>
-              <sl-option value="240832">240832 Jazan - IGCC PKG2</sl-option>
-              <sl-option value="514001">514001 - BONNY NLNG T7</sl-option>
-              <sl-option value="870310">870310 - TANGGUH_1</sl-option>
-              <sl-option value="99_PAGE_AM">99_PAGE_AM</sl-option>
-              <sl-option value="H02587">H02587 - Khurais Plants Restoration Project</sl-option>
-              <sl-option value="H02755">H02755 - HAWIYAH HGP EXPANSION</sl-option>
-            </sl-select>
-            <sl-select
-              class="rs-span-4 rs-span-md-6"
+              class="rs-span-3 rs-span-md-6"
               label="Discipline"
               value="AUT"
               placeholder="All disciplines"
@@ -139,7 +124,13 @@
               <sl-option value="INL">INL - Insulation</sl-option>
             </sl-select>
             <sl-select
-              class="rs-span-4 rs-span-md-6"
+              class="rs-span-3 rs-span-md-6"
+              label="Contract number"
+              placeholder="All contracts"
+              clearable
+            ></sl-select>
+            <sl-select
+              class="rs-span-3 rs-span-md-6"
               label="Subcontractor"
               value="TESTSUBCO"
               placeholder="All subcontractors"
@@ -147,6 +138,13 @@
             >
               <sl-option value="TESTSUBCO">TESTSUBCO</sl-option>
             </sl-select>
+            <sl-select
+              class="rs-span-3 rs-span-md-6"
+              label="Unit"
+              placeholder="All units"
+              multiple
+              clearable
+            ></sl-select>
           </form>
         </sl-card>
 
@@ -233,6 +231,38 @@
         data: flow.stqRows('Issued to Subco'),
         isSelected: flow.isLatest('STQ-TS-AUT-8325_01')
       });
+    </script>
+    <!-- More filters (closed in this state): STQ properties -->
+    <sl-drawer label="More filters" placement="end">
+      <div class="rs-stack">
+        <sl-input label="STQ No." placeholder="Any" clearable></sl-input>
+        <sl-input label="Subject" placeholder="Any" clearable></sl-input>
+        <sl-input label="Title" placeholder="Any" clearable></sl-input>
+        <sl-select label="Approval status" placeholder="Any" clearable>
+          <sl-option value="draft">Draft</sl-option>
+          <sl-option value="issued-for-verification">Issued for verification</sl-option>
+          <sl-option value="issued-to-fem">Issued to FEM</sl-option>
+          <sl-option value="issued-to-pm">Issued to PM</sl-option>
+          <sl-option value="issued-to-ds-qaqc">Issued to DS &amp; QA/QC</sl-option>
+          <sl-option value="approved-by-ds-qaqc">Approved by DS &amp; QA/QC</sl-option>
+          <sl-option value="ready-for-issue">Ready for issue</sl-option>
+          <sl-option value="issued-to-subco">Issued to Subco</sl-option>
+          <sl-option value="closed">Closed</sl-option>
+        </sl-select>
+        <sl-select label="Revision status" placeholder="Any" clearable>
+          <sl-option value="current">Current</sl-option>
+          <sl-option value="superseded">Superseded</sl-option>
+        </sl-select>
+        <sl-input type="date" label="STQ date"></sl-input>
+      </div>
+      <sl-button slot="footer" variant="text">Clear</sl-button>
+      <sl-button slot="footer" variant="primary"
+        ><sl-icon slot="prefix" name="filter"></sl-icon>Apply filters</sl-button
+      >
+    </sl-drawer>
+    <script type="module">
+      const moreFilters = document.querySelector('sl-drawer[label="More filters"]');
+      document.querySelector('.more-filters').addEventListener('click', () => moreFilters.show());
     </script>
   </body>
 </html>

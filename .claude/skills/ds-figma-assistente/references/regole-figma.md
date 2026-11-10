@@ -70,7 +70,8 @@ return wrappers.map(w => {
 - Un frame con altezza FIXED può comunque crescere quando ci metti contenuto più alto (es. pagina con scroll nell'HTML): dopo la costruzione rifai `resize(1600, 1000)` sul frame NEW e controlla l'altezza della colonna `NEW` del wrapper (label + 12 + 1000 = 1029).
 - Dopo aver svuotato `Header Actions` o spento l'icona di una **Card**, la linea sotto l'header può restare corta (layout non ricalcolato) anche se le misure sono giuste: porta il frame header e il testo `Card header` a `FIXED`, `resize`, poi di nuovo `FILL`. Confronta i pixel dello screenshot, non le misure.
 - Select `Multiple=true` (dal 2026-10-28): i tag sono istanze **Tag** nello slot `Tags` (svuotalo e metti un Tag removable per valore, size uguale al Select); con valori spegni `Show Placeholder`. Multi-select vuoto: `Multiple=true`, slot `Tags` vuoto, `Show Placeholder=true`.
-- Il master **Table** ha le Table Column direttamente nello slot `Rows` (nessun frame `Columns`: quello presente in alcune pagine è stato aggiunto a mano). La variante colonna `Kind=actions` esiste solo con `Align=center`.
+- Il master **Table** ha le Table Column direttamente nello slot `Rows` (nessun frame `Columns`: quello presente in alcune pagine è stato aggiunto a mano). La variante colonna `Kind=actions` esiste solo con `Align=center`. La colonna ⋮ (`Kind=actions`) va sempre con `Sticky=true`, come `sticky-actions` nell'HTML (utente, 2026-11-10).
+- **Avatar ridimensionati**: mai fare `resize` di un Avatar per cambiarne la misura (il testo resta alla misura della variante e esce dal cerchio: 125 header con `Size=medium` a 24 px, segnalato dall'utente 2026-11-10). Si cambia la variante `Size` (24 px = `small`, es. account dell'Header). Dopo aver costruito un header, controlla che nessun Avatar abbia `fontSize` > 60% della larghezza.
 - Variabili e stili dalla libreria: `figma.variables.importVariableByKeyAsync`, `importStyleByKeyAsync`, poi
   `setBoundVariable`. Mai valori fissi.
 - Icone: solo componenti icona del DS, importati per key (`importComponentByKeyAsync`). Mai `createNodeFromSvg` nel
@@ -96,6 +97,9 @@ return wrappers.map(w => {
 - Spostare un wrapper in una SECTION cambia gli id dei nodi interni: ritrovali per nome partendo dal wrapper.
 
 ## Ricette sul master (file DS, solo dopo approvazione)
+
+- **Ogni proprietà deve restare usata.** Se sposti un binding (es. `visible`) da una proprietà a un'altra, la vecchia resta senza riferimenti e il publish la blocca ("Invalid assets · Unused properties"). Prima di chiudere un fix, controlla che ogni proprietà non-VARIANT del set compaia in `componentPropertyReferences` di almeno un nodo.
+- **Un auto-layout non si restringe se i figli sono nascosti o lo slot è vuoto**: conserva l'ultima misura. Per far sparire un gruppo, nascondi il nodo **esterno**, non quello interno.
 
 1. Leggi il codice del componente (sorgente + stili) per sapere come gestisce davvero il caso.
 2. Baseline: id, key, `componentPropertyDefinitions` del set.

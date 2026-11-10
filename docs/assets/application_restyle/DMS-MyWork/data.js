@@ -230,11 +230,24 @@ const statusColumn = {
   cell: ({ row }) => statusTag(row.original.status)
 };
 
+/** Row menu (⋮) of a task waiting for the user: run the pending action, open the document, see its properties. */
+export const waitingMenu = ({ row }) => html`
+  <sl-menu>
+    <sl-menu-item value="action"
+      ><sl-icon slot="prefix" name="check2-circle"></sl-icon>${row.original.action}</sl-menu-item
+    >
+    <sl-menu-item value="view"><sl-icon slot="prefix" name="eye"></sl-icon>View document</sl-menu-item>
+    <sl-divider></sl-divider>
+    <sl-menu-item value="properties"><sl-icon slot="prefix" name="info-circle"></sl-icon>Properties</sl-menu-item>
+  </sl-menu>
+`;
+
 /** Columns are fixed by the working area configuration: no Config, no sorting. */
 export const waitingColumns = [
   objectColumn,
   statusColumn,
-  { id: 'action', accessorKey: 'action', header: 'Your action', meta: { width: '11rem', nowrap: true } }
+  { id: 'action', accessorKey: 'action', header: 'Your action', meta: { width: '11rem', nowrap: true } },
+  { id: 'actions', meta: { actions: true }, cell: waitingMenu }
 ];
 
 /** Quick actions of a checked-out document (subject to permissions): Check in · Cancel check-out. */

@@ -524,6 +524,8 @@ export async function mountTable(selector, { columns, data, isSelected, rowDisab
   await table.updateComplete;
   adoptCellStyles(table);
   table.columns = columns;
+  // Row menu (⋮) always pinned to the end side when the table scrolls horizontally (user, 2026-11-10).
+  if (columns?.some(column => column.meta?.actions)) table.stickyActions = true;
   table.data = data;
   if (rowDisabled) table.rowDisabled = rowDisabled;
   if (rowVariant) table.rowVariant = rowVariant;
