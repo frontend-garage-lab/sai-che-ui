@@ -105,3 +105,7 @@ text style). Le regole specifiche del progetto (mappature, pattern di pagina, sc
 - **`sl-divider` tra due blocchi (2026-11-09, segnalato dall'utente):** il divider ha già i suoi margini. Non metterlo
   dentro una `rs-stack` (tanto meno `--loose`): gap + margini raddoppiano lo spazio. Struttura giusta: blocco
   (`rs-stack`) · `sl-divider` · blocco, come fratelli diretti del corpo della card.
+- **Icone solo del DS (2026-11-10):** il lint non controlla i nomi di `sl-icon`. Prima di chiudere una pagina verifica che
+  ogni `name` usato abbia il suo template `figma/icon-<nome>.figma.ts`; se manca, l'icona non esiste in Figma: scegline una
+  esistente oppure aggiungila al DS (set con le 6 varianti di colore, vettore dallo SVG di bootstrap-icons) prima del
+  flusso 3.

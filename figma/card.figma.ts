@@ -24,8 +24,14 @@ if (headerIcon && headerIcon.type === 'INSTANCE') {
 }
 // Header Actions slot: content on the right of the header (e.g. a text button), inside the same header slot.
 const headerActions = hasHeader ? instance.getSlot('Header Actions') : null;
+// Optional secondary line under the title (Show Header Meta + Header Meta): in code the header slot holds both texts.
+const showHeaderMeta = hasHeader ? instance.getBoolean('Show Header Meta') : false;
+const headerMeta = showHeaderMeta ? instance.getString('Header Meta') : '';
+const headerTitle = headerMeta
+  ? figma.html`<div class="rs-stack rs-stack--tight"><h2 class="rs-subheading">${text('Card header')}</h2><p class="rs-meta">${headerMeta}</p></div>`
+  : text('Card header');
 const header = hasHeader
-  ? figma.html`\n  <div slot="header">${headerIconCode ? headerIconCode : ''}${text('Card header')}${headerActions ? headerActions : ''}</div>`
+  ? figma.html`\n  <div slot="header">${headerIconCode ? headerIconCode : ''}${headerTitle}${headerActions ? headerActions : ''}</div>`
   : '';
 // Footer Content slot: footer markup (e.g. a subheading and a menu), only variants with a footer have it.
 const footerContent = hasFooter ? instance.getSlot('Footer Content') : null;

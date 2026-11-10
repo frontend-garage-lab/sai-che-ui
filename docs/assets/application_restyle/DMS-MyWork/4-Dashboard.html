@@ -194,7 +194,11 @@
         <section class="rs-stack" aria-label="Your documents by group">
           <div class="rs-cluster rs-cluster--between">
             <h2 class="rs-subheading">Your documents by group</h2>
-            <span class="rs-meta">Open = draft, in progress or rejected · Tasks = actions assigned to you</span>
+            <sl-legend>
+              <sl-icon slot="icon" name="info-circle"></sl-icon>
+              <sl-legend-item term="Open">draft, in progress or rejected</sl-legend-item>
+              <sl-legend-item term="Tasks">actions assigned to you</sl-legend-item>
+            </sl-legend>
           </div>
           <div class="rs-grid rs-grid--stretch">
             <sl-card class="rs-span-4 rs-span-md-6">

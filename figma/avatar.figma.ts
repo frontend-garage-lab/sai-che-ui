@@ -21,7 +21,11 @@ const type = instance.getEnum('Type', { initials: 'initials', icon: 'icon' });
 const variant = instance.getEnum('Variant', {
   default: '',
   primary: ' variant="primary"',
-  neutral: ' variant="neutral"'
+  neutral: ' variant="neutral"',
+  accent: ' variant="accent"',
+  success: ' variant="success"',
+  warning: ' variant="warning"',
+  danger: ' variant="danger"'
 });
 // Without initials sl-avatar shows the `icon` slot, person-fill by default (same as the Figma default).
 const icon = instance.getInstanceSwap('Icon');

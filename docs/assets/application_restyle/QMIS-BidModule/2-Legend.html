@@ -241,34 +241,31 @@
     <!-- Legend: the Quick info badges, in the order they appear in a row -->
     <sl-dialog label="Legend" open>
       <div class="rs-stack">
-        <div class="rs-stack rs-stack--tight">
-          <h3 class="rs-subheading">Bid status</h3>
-          <div class="rs-cluster">
-            <span class="rs-inline"><sl-badge variant="warning">O</sl-badge>Ongoing</span>
-            <span class="rs-inline"><sl-badge variant="success">S</sl-badge>Submitted</span>
-            <span class="rs-inline"><sl-badge variant="primary">A</sl-badge>Awarded</span>
-            <span class="rs-inline"><sl-badge variant="accent">OH</sl-badge>On hold</span>
-            <span class="rs-inline"><sl-badge variant="danger">L</sl-badge>Lost</span>
-            <span class="rs-inline"><sl-badge variant="neutral">C</sl-badge>Cancelled</span>
-          </div>
-        </div>
-        <div class="rs-stack rs-stack--tight">
-          <h3 class="rs-subheading">Bid documents status</h3>
-          <div class="rs-cluster">
-            <span class="rs-inline"><sl-badge variant="warning" pill>W</sl-badge>Working</span>
-            <span class="rs-inline"><sl-badge variant="neutral" pill>I</sl-badge>Issued</span>
-            <span class="rs-inline"><sl-badge variant="success" pill>A</sl-badge>Approved</span>
-            <span class="rs-inline"><sl-badge variant="danger" pill>R</sl-badge>Rejected</span>
-          </div>
-        </div>
-        <div class="rs-stack rs-stack--tight">
-          <h3 class="rs-subheading">Bid approval</h3>
-          <div class="rs-cluster">
-            <span class="rs-inline"><sl-badge variant="neutral" pill>TE</sl-badge>Technical docs approved</span>
-            <span class="rs-inline"><sl-badge variant="neutral" pill>CO</sl-badge>Commercial docs approved</span>
-            <span class="rs-inline"><sl-badge variant="neutral" pill>PM</sl-badge>Bid docs shared with proposal</span>
-          </div>
-        </div>
+        <sl-legend label="Bid status" layout="list" columns="2">
+          <sl-legend-item><sl-badge slot="marker" variant="warning">O</sl-badge>Ongoing</sl-legend-item>
+          <sl-legend-item><sl-badge slot="marker" variant="success">S</sl-badge>Submitted</sl-legend-item>
+          <sl-legend-item><sl-badge slot="marker" variant="primary">A</sl-badge>Awarded</sl-legend-item>
+          <sl-legend-item><sl-badge slot="marker" variant="accent">OH</sl-badge>On hold</sl-legend-item>
+          <sl-legend-item><sl-badge slot="marker" variant="danger">L</sl-badge>Lost</sl-legend-item>
+          <sl-legend-item><sl-badge slot="marker" variant="neutral">C</sl-badge>Cancelled</sl-legend-item>
+        </sl-legend>
+        <sl-legend label="Bid documents status" layout="list" columns="2">
+          <sl-legend-item><sl-badge slot="marker" variant="warning" pill>W</sl-badge>Working</sl-legend-item>
+          <sl-legend-item><sl-badge slot="marker" variant="neutral" pill>I</sl-badge>Issued</sl-legend-item>
+          <sl-legend-item><sl-badge slot="marker" variant="success" pill>A</sl-badge>Approved</sl-legend-item>
+          <sl-legend-item><sl-badge slot="marker" variant="danger" pill>R</sl-badge>Rejected</sl-legend-item>
+        </sl-legend>
+        <sl-legend label="Bid approval" layout="list">
+          <sl-legend-item
+            ><sl-badge slot="marker" variant="neutral" pill>TE</sl-badge>Technical docs approved</sl-legend-item
+          >
+          <sl-legend-item
+            ><sl-badge slot="marker" variant="neutral" pill>CO</sl-badge>Commercial docs approved</sl-legend-item
+          >
+          <sl-legend-item
+            ><sl-badge slot="marker" variant="neutral" pill>PM</sl-badge>Bid docs shared with proposal</sl-legend-item
+          >
+        </sl-legend>
       </div>
       <sl-button slot="footer" variant="primary" href="./1-BidList.html">Close</sl-button>
     </sl-dialog>

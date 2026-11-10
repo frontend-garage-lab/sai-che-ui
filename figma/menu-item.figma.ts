@@ -34,8 +34,12 @@ if (suffix && suffix.type === 'INSTANCE') {
   suffixCode = suffix.executeTemplate().example;
 }
 
+// Text after the label, e.g. the code of a project in the header project selector.
+const showSuffixText = instance.getBoolean('Show Suffix Text');
+const suffixText = showSuffixText ? instance.getString('Suffix Text') : '';
+
 export default {
-  example: figma.html`<sl-menu-item${checked ? ' type="checkbox" checked' : ''}${disabled ? ' disabled' : ''}${loading ? ' loading' : ''}>${prefixCode ? figma.html`<span slot="prefix">${prefixCode}</span>` : ''}${instance.getString('Label')}${suffixCode ? figma.html`<span slot="suffix">${suffixCode}</span>` : ''}</sl-menu-item>`,
+  example: figma.html`<sl-menu-item${checked ? ' type="checkbox" checked' : ''}${disabled ? ' disabled' : ''}${loading ? ' loading' : ''}>${prefixCode ? figma.html`<span slot="prefix">${prefixCode}</span>` : ''}${instance.getString('Label')}${suffixCode ? figma.html`<span slot="suffix">${suffixCode}</span>` : ''}${suffixText ? figma.html`<span slot="suffix">${suffixText}</span>` : ''}</sl-menu-item>`,
   imports: ["import 'src/components/menu-item/menu-item.js'"],
   id: 'menu-item',
   metadata: { nestable: true }
