@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { property } from 'lit/decorators.js';
@@ -84,10 +83,11 @@ export default class SlStepper extends ShoelaceElement {
 
   private syncSteps() {
     const steps = this.getSteps();
+    const lastIndex = steps.length - 1;
 
     steps.forEach((step, index) => {
       step.index = index;
-      step.last = index === steps.length - 1;
+      step.last = index === lastIndex;
       step.orientation = this.orientation;
       step.state = index < this.current ? 'complete' : index === this.current ? 'current' : 'upcoming';
       step.interactive = !this.linear && !step.disabled && index < this.current;
@@ -113,11 +113,7 @@ export default class SlStepper extends ShoelaceElement {
     return html`
       <div
         part="base"
-        class=${classMap({
-          stepper: true,
-          'stepper--horizontal': this.orientation === 'horizontal',
-          'stepper--vertical': this.orientation === 'vertical'
-        })}
+        class="stepper stepper--${this.orientation}"
         role="list"
         aria-label=${ifDefined(this.label || undefined)}
         @click=${this.handleClick}

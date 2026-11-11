@@ -48,6 +48,31 @@ const App = () => {
 };
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dialog/dialog.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-dialog-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-dialog label="Dialog" [open]="open()" (sl-after-hide)="open.set(false)">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      <sl-button slot="footer" variant="primary" (click)="open.set(false)">Close</sl-button>
+    </sl-dialog>
+
+    <sl-button (click)="open.set(true)">Open Dialog</sl-button>
+  `
+})
+export class DialogExampleComponent {
+  // Bind `open` rather than calling show()/hide(): the dialog also closes on its own (close button, overlay,
+  // Escape), so listen for sl-after-hide to keep the signal in step with the element.
+  readonly open = signal(false);
+}
+```
+
 ## Examples
 
 ### Variants
@@ -89,6 +114,54 @@ before the title; `default` shows none. The footer buttons keep their own varian
 </script>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dialog/dialog.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+type DialogVariant = 'warning' | 'success' | 'danger';
+
+@Component({
+  selector: 'app-dialog-variants-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-dialog
+      label="Return to working"
+      variant="warning"
+      [open]="openVariant() === 'warning'"
+      (sl-after-hide)="close()"
+    >
+      Do you want to return 2026-BID-000003 to the Working state?
+      <sl-button slot="footer" (click)="close()">Cancel</sl-button>
+      <sl-button slot="footer" variant="primary" (click)="close()">Return to working</sl-button>
+    </sl-dialog>
+
+    <sl-dialog label="Bid deleted" variant="success" [open]="openVariant() === 'success'" (sl-after-hide)="close()">
+      2026-BID-000003 has been deleted.
+      <sl-button slot="footer" variant="primary" (click)="close()">Close</sl-button>
+    </sl-dialog>
+
+    <sl-dialog label="Delete bid" variant="danger" [open]="openVariant() === 'danger'" (sl-after-hide)="close()">
+      2026-BID-000003 and its attachments will be deleted. This cannot be undone.
+      <sl-button slot="footer" (click)="close()">Cancel</sl-button>
+      <sl-button slot="footer" variant="danger" (click)="close()">Delete bid</sl-button>
+    </sl-dialog>
+
+    <sl-button (click)="openVariant.set('warning')">Warning</sl-button>
+    <sl-button (click)="openVariant.set('success')">Success</sl-button>
+    <sl-button (click)="openVariant.set('danger')">Danger</sl-button>
+  `
+})
+export class DialogVariantsExampleComponent {
+  readonly openVariant = signal<DialogVariant | null>(null);
+
+  close() {
+    this.openVariant.set(null);
+  }
+}
+```
+
 ### Custom Width
 
 Use the `--width` custom property to set the dialog's width.
@@ -109,6 +182,29 @@ Use the `--width` custom property to set the dialog's width.
   openButton.addEventListener('click', () => dialog.show());
   closeButton.addEventListener('click', () => dialog.hide());
 </script>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dialog/dialog.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-dialog-custom-width-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-dialog label="Dialog" style="--width: 50vw;" [open]="open()" (sl-after-hide)="open.set(false)">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      <sl-button slot="footer" variant="primary" (click)="open.set(false)">Close</sl-button>
+    </sl-dialog>
+
+    <sl-button (click)="open.set(true)">Open Dialog</sl-button>
+  `
+})
+export class DialogCustomWidthExampleComponent {
+  readonly open = signal(false);
+}
 ```
 
 {% raw %}
@@ -160,6 +256,31 @@ By design, a dialog's height will never exceed that of the viewport. As such, di
   openButton.addEventListener('click', () => dialog.show());
   closeButton.addEventListener('click', () => dialog.hide());
 </script>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dialog/dialog.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-dialog-scrolling-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-dialog label="Dialog" [open]="open()" (sl-after-hide)="open.set(false)">
+      <div style="height: 150vh; border: dashed 2px var(--sl-color-neutral-200); padding: 0 1rem;">
+        <p>Scroll down and give it a try! 👇</p>
+      </div>
+      <sl-button slot="footer" variant="primary" (click)="open.set(false)">Close</sl-button>
+    </sl-dialog>
+
+    <sl-button (click)="open.set(true)">Open Dialog</sl-button>
+  `
+})
+export class DialogScrollingExampleComponent {
+  readonly open = signal(false);
+}
 ```
 
 {% raw %}
@@ -253,6 +374,35 @@ const App = () => {
 };
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dialog/dialog.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-dialog-header-actions-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-dialog label="Dialog" [open]="open()" (sl-after-hide)="open.set(false)">
+      <sl-icon-button slot="header-actions" name="box-arrow-up-right" (click)="openInNewWindow()"></sl-icon-button>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      <sl-button slot="footer" variant="primary" (click)="open.set(false)">Close</sl-button>
+    </sl-dialog>
+
+    <sl-button (click)="open.set(true)">Open Dialog</sl-button>
+  `
+})
+export class DialogHeaderActionsExampleComponent {
+  readonly open = signal(false);
+
+  openInNewWindow() {
+    window.open(location.href);
+  }
+}
+```
+
 ### Preventing the Dialog from Closing
 
 By default, dialogs will close when the user clicks the close button, clicks the overlay, or presses the [[Escape]] key. In most cases, the default behavior is the best behavior in terms of UX. However, there are situations where this may be undesirable, such as when data loss will occur.
@@ -316,6 +466,43 @@ const App = () => {
 };
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dialog/dialog.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-dialog-preventing-the-dialog-from-closing-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-dialog
+      label="Dialog"
+      [open]="open()"
+      (sl-request-close)="handleRequestClose($event)"
+      (sl-after-hide)="open.set(false)"
+    >
+      This dialog will not close when you click on the overlay.
+      <sl-button slot="footer" variant="primary" (click)="open.set(false)">Close</sl-button>
+    </sl-dialog>
+
+    <sl-button (click)="open.set(true)">Open Dialog</sl-button>
+  `
+})
+export class DialogPreventingTheDialogFromClosingExampleComponent {
+  readonly open = signal(false);
+
+  // sl-request-close is cancelable: preventing it keeps the dialog open and plays the "deny" animation.
+  handleRequestClose(event: Event) {
+    const { source } = (event as CustomEvent<{ source: 'close-button' | 'keyboard' | 'overlay' }>).detail;
+
+    if (source === 'overlay') {
+      event.preventDefault();
+    }
+  }
+}
+```
+
 ### Customizing Initial Focus
 
 By default, the dialog's panel will gain focus when opened. This allows a subsequent tab press to focus on the first tabbable element in the dialog. If you want a different element to have focus, add the `autofocus` attribute to it as shown below.
@@ -361,6 +548,30 @@ const App = () => {
     </>
   );
 };
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/dialog/dialog.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-dialog-customizing-initial-focus-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-dialog label="Dialog" [open]="open()" (sl-after-hide)="open.set(false)">
+      <sl-input autofocus placeholder="I will have focus when the dialog is opened"></sl-input>
+      <sl-button slot="footer" variant="primary" (click)="open.set(false)">Close</sl-button>
+    </sl-dialog>
+
+    <sl-button (click)="open.set(true)">Open Dialog</sl-button>
+  `
+})
+export class DialogCustomizingInitialFocusExampleComponent {
+  readonly open = signal(false);
+}
 ```
 
 :::tip

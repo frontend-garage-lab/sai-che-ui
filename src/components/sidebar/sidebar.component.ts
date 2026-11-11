@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { property } from 'lit/decorators.js';
@@ -68,7 +67,7 @@ export default class SlSidebar extends ShoelaceElement {
 
   render() {
     return html`
-      <aside part="base" class=${classMap({ sidebar: true, 'sidebar--collapsed': this.collapsed })}>
+      <aside part="base" class="sidebar${this.collapsed ? ' sidebar--collapsed' : ''}">
         <div part="header" class="sidebar__header" ?hidden=${!this.hasSlotController.test('header')}>
           <slot name="header"></slot>
         </div>

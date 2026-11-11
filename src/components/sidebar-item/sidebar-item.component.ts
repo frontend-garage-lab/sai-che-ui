@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -53,11 +52,9 @@ export default class SlSidebarItem extends ShoelaceElement {
     return html`
       <a
         part="base"
-        class=${classMap({
-          'sidebar-item': true,
-          'sidebar-item--has-prefix': hasPrefix,
-          'sidebar-item--collapsed': this.collapsed
-        })}
+        class="sidebar-item${hasPrefix ? ' sidebar-item--has-prefix' : ''}${this.collapsed
+          ? ' sidebar-item--collapsed'
+          : ''}"
         href=${ifDefined(this.href)}
         target=${ifDefined(this.target)}
         aria-current=${ifDefined(this.current ? 'page' : undefined)}

@@ -55,6 +55,7 @@ describe('<sl-carousel>', () => {
   });
 
   describe('when `autoplay` attribute is provided', () => {
+    const autoplayInterval = 10;
     let clock: sinon.SinonFakeTimers;
 
     beforeEach(() => {
@@ -63,11 +64,10 @@ describe('<sl-carousel>', () => {
       });
     });
 
-    // TODO - this test is hanging the test runner, but autoplay was verified manually to work
-    it.skip('should scroll forwards every `autoplay-interval` milliseconds', async () => {
+    it('should scroll forwards every `autoplay-interval` milliseconds', async () => {
       // Arrange
       const el = await fixture<SlCarousel>(html`
-        <sl-carousel autoplay autoplay-interval="10">
+        <sl-carousel autoplay autoplay-interval="${autoplayInterval}">
           <sl-carousel-item>Node 1</sl-carousel-item>
           <sl-carousel-item>Node 2</sl-carousel-item>
           <sl-carousel-item>Node 3</sl-carousel-item>
@@ -78,8 +78,7 @@ describe('<sl-carousel>', () => {
       await el.updateComplete;
 
       // Act
-      clock.next();
-      clock.next();
+      await clock.tickAsync(autoplayInterval * 2 + 5);
 
       // Assert
       expect(el.next).to.have.been.calledTwice;
@@ -88,7 +87,7 @@ describe('<sl-carousel>', () => {
     it('should pause the autoplay while the user is interacting', async () => {
       // Arrange
       const el = await fixture<SlCarousel>(html`
-        <sl-carousel autoplay autoplay-interval="10">
+        <sl-carousel autoplay autoplay-interval="${autoplayInterval}">
           <sl-carousel-item>Node 1</sl-carousel-item>
           <sl-carousel-item>Node 2</sl-carousel-item>
           <sl-carousel-item>Node 3</sl-carousel-item>
@@ -101,8 +100,7 @@ describe('<sl-carousel>', () => {
       // Act
       el.dispatchEvent(new Event('mouseenter'));
       await el.updateComplete;
-      clock.next();
-      clock.next();
+      await clock.tickAsync(autoplayInterval * 2 + 5);
 
       // Assert
       expect(el.next).not.to.have.been.called;
@@ -111,7 +109,7 @@ describe('<sl-carousel>', () => {
     it('should not resume if the user is still interacting', async () => {
       // Arrange
       const el = await fixture<SlCarousel>(html`
-        <sl-carousel autoplay autoplay-interval="10">
+        <sl-carousel autoplay autoplay-interval="${autoplayInterval}">
           <sl-carousel-item>Node 1</sl-carousel-item>
           <sl-carousel-item>Node 2</sl-carousel-item>
           <sl-carousel-item>Node 3</sl-carousel-item>
@@ -129,8 +127,7 @@ describe('<sl-carousel>', () => {
       el.dispatchEvent(new Event('mouseleave'));
       await el.updateComplete;
 
-      clock.next();
-      clock.next();
+      await clock.tickAsync(autoplayInterval * 2 + 5);
 
       // Assert
       expect(el.next).not.to.have.been.called;
@@ -443,8 +440,13 @@ describe('<sl-carousel>', () => {
   });
 
   describe('when `mouse-dragging` attribute is provided', () => {
-    // TODO(alenaksu): skipping because failing in webkit, PointerEvent.movementX and PointerEvent.movementY seem to return incorrect values
-    it.skip('should be possible to drag the carousel using the mouse', async () => {
+    // The carousel reads `PointerEvent.movementX`/`movementY` to follow the pointer, and WebKit reports incorrect
+    // values for them on synthetic pointer events, so the carousel does not move by the expected amount there. The
+    // behaviour is real, not broken: this is a limitation of the test environment, so the test runs on every other
+    // engine instead of being disabled everywhere.
+    const isWebKit = /AppleWebKit/.test(navigator.userAgent) && !/Chrome|Chromium/.test(navigator.userAgent);
+
+    (isWebKit ? it.skip : it)('should be possible to drag the carousel using the mouse', async () => {
       // Arrange
       const el = await fixture<SlCarousel>(html`
         <sl-carousel mouse-dragging>

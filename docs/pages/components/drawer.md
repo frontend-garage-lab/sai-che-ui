@@ -48,6 +48,31 @@ const App = () => {
 };
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-drawer-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-drawer label="Drawer" [open]="open()" (sl-after-hide)="open.set(false)">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      <sl-button slot="footer" variant="primary" (click)="open.set(false)">Close</sl-button>
+    </sl-drawer>
+
+    <sl-button (click)="open.set(true)">Open Drawer</sl-button>
+  `
+})
+export class DrawerExampleComponent {
+  // Bind `open` rather than calling show()/hide(): the drawer also closes on its own (close button, overlay,
+  // Escape), so listen for sl-after-hide to keep the signal in step with the element.
+  readonly open = signal(false);
+}
+```
+
 ## Examples
 
 ### Slide in From Start
@@ -95,6 +120,29 @@ const App = () => {
 };
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-drawer-slide-in-from-start-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-drawer label="Drawer" placement="start" [open]="open()" (sl-after-hide)="open.set(false)">
+      This drawer slides in from the start.
+      <sl-button slot="footer" variant="primary" (click)="open.set(false)">Close</sl-button>
+    </sl-drawer>
+
+    <sl-button (click)="open.set(true)">Open Drawer</sl-button>
+  `
+})
+export class DrawerSlideInFromStartExampleComponent {
+  readonly open = signal(false);
+}
+```
+
 ### Slide in From Top
 
 To make the drawer slide in from the top, set the `placement` attribute to `top`.
@@ -138,6 +186,29 @@ const App = () => {
     </>
   );
 };
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-drawer-slide-in-from-top-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-drawer label="Drawer" placement="top" [open]="open()" (sl-after-hide)="open.set(false)">
+      This drawer slides in from the top.
+      <sl-button slot="footer" variant="primary" (click)="open.set(false)">Close</sl-button>
+    </sl-drawer>
+
+    <sl-button (click)="open.set(true)">Open Drawer</sl-button>
+  `
+})
+export class DrawerSlideInFromTopExampleComponent {
+  readonly open = signal(false);
+}
 ```
 
 ### Slide in From Bottom
@@ -185,6 +256,29 @@ const App = () => {
 };
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-drawer-slide-in-from-bottom-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-drawer label="Drawer" placement="bottom" [open]="open()" (sl-after-hide)="open.set(false)">
+      This drawer slides in from the bottom.
+      <sl-button slot="footer" variant="primary" (click)="open.set(false)">Close</sl-button>
+    </sl-drawer>
+
+    <sl-button (click)="open.set(true)">Open Drawer</sl-button>
+  `
+})
+export class DrawerSlideInFromBottomExampleComponent {
+  readonly open = signal(false);
+}
+```
+
 ### Contained to an Element
 
 By default, drawers slide out of their [containing block](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#Identifying_the_containing_block), which is usually the viewport. To make a drawer slide out of a parent element, add the `contained` attribute to the drawer and apply `position: relative` to its parent.
@@ -213,6 +307,43 @@ Unlike normal drawers, contained drawers are not modal. This means they do not s
   openButton.addEventListener('click', () => (drawer.open = !drawer.open));
   closeButton.addEventListener('click', () => drawer.hide());
 </script>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-drawer-contained-to-an-element-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <div
+      style="position: relative; border: solid 2px var(--sl-panel-border-color); height: 300px; padding: 1rem; margin-bottom: 1rem;"
+    >
+      The drawer will be contained to this box. This content won't shift or be affected in any way when the drawer
+      opens.
+
+      <sl-drawer
+        label="Drawer"
+        contained
+        style="--size: 50%;"
+        [open]="open()"
+        (sl-after-hide)="open.set(false)"
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <sl-button slot="footer" variant="primary" (click)="open.set(false)">Close</sl-button>
+      </sl-drawer>
+    </div>
+
+    <sl-button (click)="open.set(!open())">Toggle Drawer</sl-button>
+  `
+})
+export class DrawerContainedToAnElementExampleComponent {
+  // A contained drawer needs `position: relative` on the element it is contained by.
+  readonly open = signal(false);
+}
 ```
 
 {% raw %}
@@ -283,6 +414,29 @@ Use the `--size` custom property to set the drawer's size. This will be applied 
 </script>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-drawer-custom-size-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-drawer label="Drawer" style="--size: 50vw;" [open]="open()" (sl-after-hide)="open.set(false)">
+      This drawer is always 50% of the viewport.
+      <sl-button slot="footer" variant="primary" (click)="open.set(false)">Close</sl-button>
+    </sl-drawer>
+
+    <sl-button (click)="open.set(true)">Open Drawer</sl-button>
+  `
+})
+export class DrawerCustomSizeExampleComponent {
+  readonly open = signal(false);
+}
+```
+
 {% raw %}
 
 ```jsx:react
@@ -332,6 +486,31 @@ By design, a drawer's height will never exceed 100% of its container. As such, d
   openButton.addEventListener('click', () => drawer.show());
   closeButton.addEventListener('click', () => drawer.hide());
 </script>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-drawer-scrolling-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-drawer label="Drawer" [open]="open()" (sl-after-hide)="open.set(false)">
+      <div style="height: 150vh; border: dashed 2px var(--sl-color-neutral-200); padding: 0 1rem;">
+        <p>Scroll down and give it a try! 👇</p>
+      </div>
+      <sl-button slot="footer" variant="primary" (click)="open.set(false)">Close</sl-button>
+    </sl-drawer>
+
+    <sl-button (click)="open.set(true)">Open Drawer</sl-button>
+  `
+})
+export class DrawerScrollingExampleComponent {
+  readonly open = signal(false);
+}
 ```
 
 {% raw %}
@@ -419,6 +598,35 @@ const App = () => {
 };
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+
+@Component({
+  selector: 'app-drawer-header-actions-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-drawer label="Drawer" [open]="open()" (sl-after-hide)="open.set(false)">
+      <sl-icon-button slot="header-actions" name="box-arrow-up-right" (click)="openInNewWindow()"></sl-icon-button>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      <sl-button slot="footer" variant="primary" (click)="open.set(false)">Close</sl-button>
+    </sl-drawer>
+
+    <sl-button (click)="open.set(true)">Open Drawer</sl-button>
+  `
+})
+export class DrawerHeaderActionsExampleComponent {
+  readonly open = signal(false);
+
+  openInNewWindow() {
+    window.open(location.href);
+  }
+}
+```
+
 ### Preventing the Drawer from Closing
 
 By default, drawers will close when the user clicks the close button, clicks the overlay, or presses the [[Escape]] key. In most cases, the default behavior is the best behavior in terms of UX. However, there are situations where this may be undesirable, such as when data loss will occur.
@@ -482,6 +690,43 @@ const App = () => {
 };
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-drawer-preventing-the-drawer-from-closing-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-drawer
+      label="Drawer"
+      [open]="open()"
+      (sl-request-close)="handleRequestClose($event)"
+      (sl-after-hide)="open.set(false)"
+    >
+      This drawer will not close when you click on the overlay.
+      <sl-button slot="footer" variant="primary" (click)="open.set(false)">Close</sl-button>
+    </sl-drawer>
+
+    <sl-button (click)="open.set(true)">Open Drawer</sl-button>
+  `
+})
+export class DrawerPreventingTheDrawerFromClosingExampleComponent {
+  readonly open = signal(false);
+
+  // sl-request-close is cancelable: preventing it keeps the drawer open and plays the "deny" animation.
+  handleRequestClose(event: Event) {
+    const { source } = (event as CustomEvent<{ source: 'close-button' | 'keyboard' | 'overlay' }>).detail;
+
+    if (source === 'overlay') {
+      event.preventDefault();
+    }
+  }
+}
+```
+
 ### Customizing Initial Focus
 
 By default, the drawer's panel will gain focus when opened. This allows a subsequent tab press to focus on the first tabbable element in the drawer. If you want a different element to have focus, add the `autofocus` attribute to it as shown below.
@@ -527,6 +772,30 @@ const App = () => {
     </>
   );
 };
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+
+@Component({
+  selector: 'app-drawer-customizing-initial-focus-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-drawer label="Drawer" [open]="open()" (sl-after-hide)="open.set(false)">
+      <sl-input autofocus placeholder="I will have focus when the drawer is opened"></sl-input>
+      <sl-button slot="footer" variant="primary" (click)="open.set(false)">Close</sl-button>
+    </sl-drawer>
+
+    <sl-button (click)="open.set(true)">Open Drawer</sl-button>
+  `
+})
+export class DrawerCustomizingInitialFocusExampleComponent {
+  readonly open = signal(false);
+}
 ```
 
 :::tip

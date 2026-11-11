@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
@@ -103,18 +102,10 @@ export default class SlStep extends ShoelaceElement {
     return html`
       <div
         part="base"
-        class=${classMap({
-          step: true,
-          'step--complete': this.state === 'complete',
-          'step--current': this.state === 'current',
-          'step--upcoming': this.state === 'upcoming',
-          'step--error': this.error,
-          'step--disabled': this.disabled,
-          'step--interactive': this.interactive,
-          'step--last': this.last,
-          'step--horizontal': this.orientation === 'horizontal',
-          'step--vertical': this.orientation === 'vertical'
-        })}
+        class="step step--${this.state}${this.error ? ' step--error' : ''}${this.disabled
+          ? ' step--disabled'
+          : ''}${this.interactive ? ' step--interactive' : ''}${this.last ? ' step--last' : ''} step--${this
+          .orientation}"
       >
         ${this.interactive
           ? html`<button part="control" type="button" class="step__control">${content}</button>`

@@ -15,6 +15,18 @@ import SlDivider from '@shoelace-style/shoelace/dist/react/divider';
 const App = () => <SlDivider />;
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-divider-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-divider></sl-divider>`
+})
+export class DividerExampleComponent {}
+```
+
 ## Examples
 
 ### Width
@@ -23,6 +35,18 @@ Use the `--width` custom property to change the width of the divider.
 
 ```html:preview
 <sl-divider style="--width: 4px;"></sl-divider>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-divider-width-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-divider style="--width: 4px;"></sl-divider>`
+})
+export class DividerWidthExampleComponent {}
 ```
 
 {% raw %}
@@ -41,6 +65,18 @@ Use the `--color` custom property to change the color of the divider.
 
 ```html:preview
 <sl-divider style="--color: tomato;"></sl-divider>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-divider-color-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-divider style="--color: tomato;"></sl-divider>`
+})
+export class DividerColorExampleComponent {}
 ```
 
 {% raw %}
@@ -63,6 +99,24 @@ Use the `--spacing` custom property to change the amount of space between the di
   <sl-divider style="--spacing: 2rem;"></sl-divider>
   Below
 </div>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-divider-spacing-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <div style="text-align: center;">
+      Above
+      <sl-divider style="--spacing: 2rem;"></sl-divider>
+      Below
+    </div>
+  `
+})
+export class DividerSpacingExampleComponent {}
 ```
 
 {% raw %}
@@ -93,6 +147,26 @@ Add the `vertical` attribute to draw the divider in a vertical orientation. The 
   <sl-divider vertical></sl-divider>
   Last
 </div>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-divider-vertical-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <div style="display: flex; align-items: center; height: 2rem;">
+      First
+      <sl-divider vertical></sl-divider>
+      Middle
+      <sl-divider vertical></sl-divider>
+      Last
+    </div>
+  `
+})
+export class DividerVerticalExampleComponent {}
 ```
 
 {% raw %}
@@ -133,6 +207,30 @@ Use dividers in [menus](/components/menu) to visually group menu items.
   <sl-menu-item value="5">Option 5</sl-menu-item>
   <sl-menu-item value="6">Option 6</sl-menu-item>
 </sl-menu>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-divider-menu-dividers-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-menu style="max-width: 200px;">
+      <sl-menu-item value="1">Option 1</sl-menu-item>
+      <sl-menu-item value="2">Option 2</sl-menu-item>
+      <sl-menu-item value="3">Option 3</sl-menu-item>
+      <sl-divider></sl-divider>
+      <sl-menu-item value="4">Option 4</sl-menu-item>
+      <sl-menu-item value="5">Option 5</sl-menu-item>
+      <sl-menu-item value="6">Option 6</sl-menu-item>
+    </sl-menu>
+  `
+})
+export class DividerMenuDividersExampleComponent {}
 ```
 
 {% raw %}

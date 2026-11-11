@@ -1,5 +1,4 @@
 import { animateTo, shimKeyframesHeightAuto, stopAnimations } from '../../internal/animate.js';
-import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -48,9 +47,12 @@ export default class SlDetails extends ShoelaceElement {
 
   private readonly localize = new LocalizeController(this);
 
-  @query('.details') details: HTMLDetailsElement;
-  @query('.details__header') header: HTMLElement;
-  @query('.details__body') body: HTMLElement;
+  @query('.details', true /* cache: this node is always rendered and never re-created */) details: HTMLDetailsElement;
+  @query('.details__header', true /* cache: this node is always rendered and never re-created */) header: HTMLElement;
+  @query('.details__body', true /* cache: this node is always rendered and never re-created */) body: HTMLElement;
+  // Deliberately not cached: no element in this component's template carries that class, so the query always
+  // resolves to null. Caching it would make Lit memoize the null permanently, hiding the problem if the template
+  // ever gains the element. See `radio-button.hiddenInput` for the same situation.
   @query('.details__expand-icon-slot') expandIconSlot: HTMLSlotElement;
 
   detailsObserver: MutationObserver;
@@ -192,12 +194,9 @@ export default class SlDetails extends ShoelaceElement {
     return html`
       <details
         part="base"
-        class=${classMap({
-          details: true,
-          'details--open': this.open,
-          'details--disabled': this.disabled,
-          'details--rtl': isRtl
-        })}
+        class="details${this.open ? ' details--open' : ''}${this.disabled ? ' details--disabled' : ''}${isRtl
+          ? ' details--rtl'
+          : ''}"
       >
         <summary
           part="header"

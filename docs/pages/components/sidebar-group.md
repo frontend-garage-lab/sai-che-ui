@@ -16,3 +16,26 @@ Used inside [`sl-sidebar`](/components/sidebar). See the sidebar page for full e
   </sl-sidebar-group>
 </sl-sidebar>
 ```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar/sidebar.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar-group/sidebar-group.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar-item/sidebar-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-sidebar-group-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-sidebar no-toggle style="--width: 20rem; height: auto;">
+      <sl-sidebar-group label="Procurement (SAP)" count="71">
+        <sl-icon slot="icon" name="cart"></sl-icon>
+        <sl-sidebar-item href="#" count="13" current>Purchase Request</sl-sidebar-item>
+        <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+      </sl-sidebar-group>
+    </sl-sidebar>
+  `
+})
+export class SidebarGroupExampleComponent {}
+```

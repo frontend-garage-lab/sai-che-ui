@@ -1,6 +1,5 @@
 import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { blurActiveElement } from '../../internal/closeActiveElement.js';
-import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
@@ -89,9 +88,9 @@ export default class SlDialog extends ShoelaceElement {
   public modal = new Modal(this);
   private closeWatcher: CloseWatcher | null;
 
-  @query('.dialog') dialog: HTMLElement;
-  @query('.dialog__panel') panel: HTMLElement;
-  @query('.dialog__overlay') overlay: HTMLElement;
+  @query('.dialog', true /* cache: this node is always rendered and never re-created */) dialog: HTMLElement;
+  @query('.dialog__panel', true /* cache: this node is always rendered and never re-created */) panel: HTMLElement;
+  @query('.dialog__overlay', true /* cache: this node is always rendered and never re-created */) overlay: HTMLElement;
 
   /**
    * Indicates whether or not the dialog is open. You can toggle this attribute to show and hide the dialog, or you can
@@ -163,6 +162,10 @@ export default class SlDialog extends ShoelaceElement {
     this.closeWatcher?.destroy();
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
   }
+
+  private handleOverlayClick = () => this.requestClose('overlay');
+
+  private handleCloseButtonClick = () => this.requestClose('close-button');
 
   private handleDocumentKeyDown = (event: KeyboardEvent) => {
     if (event.key === 'Escape' && this.modal.isActive() && this.open) {
@@ -288,16 +291,11 @@ export default class SlDialog extends ShoelaceElement {
     return html`
       <div
         part="base"
-        class=${classMap({
-          dialog: true,
-          'dialog--open': this.open,
-          'dialog--has-footer': this.hasSlotController.test('footer'),
-          'dialog--success': this.variant === 'success',
-          'dialog--warning': this.variant === 'warning',
-          'dialog--danger': this.variant === 'danger'
-        })}
+        class="dialog${this.open ? ' dialog--open' : ''}${this.hasSlotController.test('footer')
+          ? ' dialog--has-footer'
+          : ''}${this.variant === 'default' ? '' : ` dialog--${this.variant}`}"
       >
-        <div part="overlay" class="dialog__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
+        <div part="overlay" class="dialog__overlay" @click=${this.handleOverlayClick} tabindex="-1"></div>
 
         <div
           part="panel"
@@ -332,7 +330,7 @@ export default class SlDialog extends ShoelaceElement {
                       name="x-lg"
                       label=${this.localize.term('close')}
                       library="system"
-                      @click="${() => this.requestClose('close-button')}"
+                      @click=${this.handleCloseButtonClick}
                     ></sl-icon-button>
                   </div>
                 </header>

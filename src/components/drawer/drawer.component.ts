@@ -1,6 +1,5 @@
 import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { blurActiveElement } from '../../internal/closeActiveElement.js';
-import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
@@ -85,9 +84,9 @@ export default class SlDrawer extends ShoelaceElement {
   public modal = new Modal(this);
   private closeWatcher: CloseWatcher | null;
 
-  @query('.drawer') drawer: HTMLElement;
-  @query('.drawer__panel') panel: HTMLElement;
-  @query('.drawer__overlay') overlay: HTMLElement;
+  @query('.drawer', true /* cache: this node is always rendered and never re-created */) drawer: HTMLElement;
+  @query('.drawer__panel', true /* cache: this node is always rendered and never re-created */) panel: HTMLElement;
+  @query('.drawer__overlay', true /* cache: this node is always rendered and never re-created */) overlay: HTMLElement;
 
   /**
    * Indicates whether or not the drawer is open. You can toggle this attribute to show and hide the drawer, or you can
@@ -166,6 +165,10 @@ export default class SlDrawer extends ShoelaceElement {
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
     this.closeWatcher?.destroy();
   }
+
+  private handleOverlayClick = () => this.requestClose('overlay');
+
+  private handleCloseButtonClick = () => this.requestClose('close-button');
 
   private handleDocumentKeyDown = (event: KeyboardEvent) => {
     // Contained drawers aren't modal and don't response to the escape key
@@ -318,20 +321,15 @@ export default class SlDrawer extends ShoelaceElement {
     return html`
       <div
         part="base"
-        class=${classMap({
-          drawer: true,
-          'drawer--open': this.open,
-          'drawer--top': this.placement === 'top',
-          'drawer--end': this.placement === 'end',
-          'drawer--bottom': this.placement === 'bottom',
-          'drawer--start': this.placement === 'start',
-          'drawer--contained': this.contained,
-          'drawer--fixed': !this.contained,
-          'drawer--rtl': this.localize.dir() === 'rtl',
-          'drawer--has-footer': this.hasSlotController.test('footer')
-        })}
+        class="drawer${this.open ? ' drawer--open' : ''} drawer--${this.placement}${this.contained
+          ? ' drawer--contained'
+          : ' drawer--fixed'}${this.localize.dir() === 'rtl' ? ' drawer--rtl' : ''}${this.hasSlotController.test(
+          'footer'
+        )
+          ? ' drawer--has-footer'
+          : ''}"
       >
-        <div part="overlay" class="drawer__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
+        <div part="overlay" class="drawer__overlay" @click=${this.handleOverlayClick} tabindex="-1"></div>
 
         <div
           part="panel"
@@ -359,7 +357,7 @@ export default class SlDrawer extends ShoelaceElement {
                       name="x-lg"
                       label=${this.localize.term('close')}
                       library="system"
-                      @click=${() => this.requestClose('close-button')}
+                      @click=${this.handleCloseButtonClick}
                     ></sl-icon-button>
                   </div>
                 </header>

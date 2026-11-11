@@ -53,6 +53,8 @@ export default class SlDetailPanel extends ShoelaceElement {
    */
   @property({ type: Boolean, reflect: true }) contained = false;
 
+  private handleCloseClick = () => this.requestClose();
+
   private requestClose() {
     const slRequestClose = this.emit('sl-request-close', {
       cancelable: true,
@@ -90,7 +92,7 @@ export default class SlDetailPanel extends ShoelaceElement {
             name="x-lg"
             label=${this.localize.term('close')}
             library="system"
-            @click=${() => this.requestClose()}
+            @click=${this.handleCloseClick}
           ></sl-icon-button>
         </header>
 

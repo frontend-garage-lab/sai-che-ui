@@ -5,7 +5,6 @@ import { html } from 'lit';
 import { isElementVisibleFromOverflow } from '../../internal/test/element-visible-overflow.js';
 import { queryByTestId } from '../../internal/test/data-testid-helpers.js';
 import { sendKeys } from '@web/test-runner-commands';
-import { waitForScrollingToEnd } from '../../internal/test/wait-for-scrolling.js';
 import type { HTMLTemplateResult } from 'lit';
 import type { SlTabShowEvent } from '../../events/sl-tab-show.js';
 import type SlTab from '../tab/tab.js';
@@ -292,11 +291,7 @@ describe('<sl-tab-group>', () => {
       expect(scrollButtons).to.have.length(0);
     });
 
-    // Re-checked on 2026-11-09: this passes reliably on its own (`npx web-test-runner --group tab-group`, four runs
-    // in a row) but still fails intermittently inside the full suite, where the browser is under parallel load and
-    // the smooth scroll does not always settle within the wait. Left disabled on purpose: an intermittent test is
-    // worse than a disabled one. The two sibling tests above were made deterministic and are now enabled.
-    it.skip('does scroll on scroll button click', async () => {
+    it('does scroll on scroll button click', async () => {
       const numberOfElements = 15;
       const tabGroup = await fixture<SlTabGroup>(
         html`<sl-tab-group> ${generateTabs(numberOfElements)} </sl-tab-group>`
@@ -310,19 +305,30 @@ describe('<sl-tab-group>', () => {
       expect(firstTab).not.to.be.null;
       const lastTab = tabGroup.querySelector(`[panel="tab-${numberOfElements - 1}"]`);
       expect(lastTab).not.to.be.null;
-      expect(isElementVisibleFromOverflow(tabGroup, firstTab!)).to.be.true;
-      expect(isElementVisibleFromOverflow(tabGroup, lastTab!)).to.be.false;
+      expect(isElementVisibleFromOverflow(tabGroup, firstTab!), 'the first tab should be visible before scrolling').to
+        .be.true;
+      expect(isElementVisibleFromOverflow(tabGroup, lastTab!), 'the last tab should be out of view before scrolling').to
+        .be.false;
 
       const scrollToRightButton = tabGroup.shadowRoot?.querySelector('sl-icon-button[part*="scroll-button--end"]');
       expect(scrollToRightButton).not.to.be.null;
+
       await clickOnElement(scrollToRightButton!);
 
+      // The click starts a smooth scroll whose duration depends on the browser and on how loaded the machine is.
+      // Waiting for a fixed number of animation frames (or for a single `scrollend`, which can also be left over
+      // from the initial `scrollIntoView`) is unreliable, so poll for the end state itself.
+      await waitUntil(
+        () => !isElementVisibleFromOverflow(tabGroup, firstTab!) && isElementVisibleFromOverflow(tabGroup, lastTab!),
+        'the tabs never scrolled to the end',
+        { timeout: 2000 }
+      );
       await elementUpdated(tabGroup);
-      await waitForScrollingToEnd(firstTab!);
-      await waitForScrollingToEnd(lastTab!);
 
-      expect(isElementVisibleFromOverflow(tabGroup, firstTab!)).to.be.false;
-      expect(isElementVisibleFromOverflow(tabGroup, lastTab!)).to.be.true;
+      expect(isElementVisibleFromOverflow(tabGroup, firstTab!), 'the first tab should be out of view after scrolling')
+        .to.be.false;
+      expect(isElementVisibleFromOverflow(tabGroup, lastTab!), 'the last tab should be visible after scrolling').to.be
+        .true;
     });
   });
 

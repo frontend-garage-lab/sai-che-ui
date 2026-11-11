@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -73,11 +72,9 @@ export default class SlSidebarGroup extends ShoelaceElement {
     return html`
       <div
         part="base"
-        class=${classMap({
-          'sidebar-group': true,
-          'sidebar-group--collapsed': this.collapsed,
-          'sidebar-group--current': this.hasCurrent
-        })}
+        class="sidebar-group${this.collapsed ? ' sidebar-group--collapsed' : ''}${this.hasCurrent
+          ? ' sidebar-group--current'
+          : ''}"
         role="group"
         aria-label=${this.label}
       >

@@ -19,8 +19,8 @@ export const waitForScrollingToEnd = (element: Element, timeoutInMs = 500): Prom
     function checkScrollingChanged() {
       if (element.scrollLeft !== lastLeft || element.scrollTop !== lastTop) {
         framesWithoutChange = 0;
-        lastLeft = window.scrollX;
-        lastTop = window.scrollY;
+        lastLeft = element.scrollLeft;
+        lastTop = element.scrollTop;
       } else {
         framesWithoutChange++;
         if (framesWithoutChange >= 20) {

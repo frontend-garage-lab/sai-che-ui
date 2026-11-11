@@ -253,8 +253,12 @@ describe('<sl-icon>', () => {
       expect(svg?.getAttribute('fill')).to.equal('currentColor');
     });
 
-    // TODO: <use> svg icons don't emit a "load" or "error" event...if we can figure out how to get the event to emit errors.
-    // Once we figure out how to emit errors / loading perhaps we can actually test this?
+    // Disabled on purpose, and not because the test is flaky: `sl-error` is documented as *not* being emitted for
+    // sprite sheet libraries (see the `@event sl-error` docs on the component), because the `<use>` element that
+    // renders them emits neither `load` nor `error`. Enabling this test requires implementing error detection for
+    // sprite sheets first - a change in behaviour and in the public docs, so it is tracked separately rather than
+    // as part of the test clean-up. The test above ("Should render nothing if the sprite hash is wrong") covers
+    // what can be observed today.
     it.skip("Should produce an error if the icon doesn't exist.", async () => {
       registerIconLibrary('sprite', {
         resolver(name) {

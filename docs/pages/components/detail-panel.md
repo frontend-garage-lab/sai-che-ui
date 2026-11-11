@@ -25,6 +25,27 @@ for extra header buttons, and a close button. The default slot holds the panel's
 </sl-detail-panel>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/detail-panel/detail-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-detail-panel-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-detail-panel style="height: 20rem; max-width: 24rem;">
+      <span slot="label">Statement of Work.pdf</span>
+      <span slot="meta">Revision 4 &middot; Expiring in 12 days</span>
+
+      <div style="padding: var(--sl-spacing-medium);">
+        This agreement was last reviewed on September 18, 2026 and is due for renewal.
+      </div>
+    </sl-detail-panel>
+  `
+})
+export class DetailPanelExampleComponent {}
+```
+
 ## Examples
 
 ### With tabs and a selection list
@@ -66,6 +87,65 @@ Combine the panel with [`sl-tab-group`](/components/tab-group) and a list of
 </script>
 ```
 
+{% raw %}
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/detail-panel/detail-panel.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/selectable-item/selectable-item.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-detail-panel-with-tabs-and-a-selection-list-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    @if (visible()) {
+      <sl-detail-panel style="height: 24rem; max-width: 28rem;" (sl-request-close)="visible.set(false)">
+        <span slot="label">Statement of Work.pdf</span>
+        <span slot="meta">Revision 4 &middot; Expiring in 12 days</span>
+
+        <sl-tab-group style="height: 100%;">
+          <sl-tab slot="nav" panel="documents">Related documents</sl-tab>
+          <sl-tab slot="nav" panel="history">History</sl-tab>
+
+          <sl-tab-panel name="documents">
+            <div style="display: flex; flex-direction: column; gap: 0.25rem; padding: var(--sl-spacing-medium);">
+              @for (doc of documents; track doc.value) {
+                <sl-selectable-item [value]="doc.value" [checked]="doc.value === selected()">
+                  {{ doc.name }}
+                  <span slot="meta">{{ doc.date }}</span>
+                </sl-selectable-item>
+              }
+            </div>
+          </sl-tab-panel>
+
+          <sl-tab-panel name="history">
+            <div style="padding: var(--sl-spacing-medium);">No changes recorded yet.</div>
+          </sl-tab-panel>
+        </sl-tab-group>
+      </sl-detail-panel>
+    }
+  `
+})
+export class DetailPanelWithTabsAndASelectionListExampleComponent {
+  readonly documents = [
+    { value: 'doc-1', name: 'Statement of Work.pdf', date: 'Oct 3, 2026' },
+    { value: 'doc-2', name: 'Amendment 1.pdf', date: 'Sep 18, 2026' }
+  ];
+
+  readonly selected = signal('doc-1');
+
+  // The panel hides itself when the close request is not prevented. Driving it from a signal instead keeps
+  // Angular as the single owner of what is on screen.
+  readonly visible = signal(true);
+}
+```
+
+{% endraw %}
+
 ### With header actions
 
 Add `<sl-icon-button>` elements to the `actions` slot for extra header buttons, e.g. to add or edit the item. They're
@@ -82,6 +162,28 @@ shown before the close button.
 </sl-detail-panel>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/detail-panel/detail-panel.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-detail-panel-with-header-actions-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-detail-panel style="height: 12rem; max-width: 24rem;">
+      <span slot="label">Details</span>
+
+      <sl-icon-button slot="actions" name="plus-lg" library="system" label="Add"></sl-icon-button>
+      <sl-icon-button slot="actions" name="pencil" library="system" label="Edit"></sl-icon-button>
+
+      <div style="padding: var(--sl-spacing-medium);">Panel content</div>
+    </sl-detail-panel>
+  `
+})
+export class DetailPanelWithHeaderActionsExampleComponent {}
+```
+
 ### Contained
 
 Set `contained` to draw the panel as a self-contained block, with an outline on every side and rounded corners like
@@ -95,6 +197,25 @@ it off for a sidebar attached to the edge of the page.
 
   <div style="padding: var(--sl-spacing-medium);">Panel content</div>
 </sl-detail-panel>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/detail-panel/detail-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-detail-panel-contained-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-detail-panel contained style="height: 12rem; max-width: 24rem;">
+      <span slot="label">Statement of Work.pdf</span>
+      <span slot="meta">Revision 4</span>
+
+      <div style="padding: var(--sl-spacing-medium);">Panel content</div>
+    </sl-detail-panel>
+  `
+})
+export class DetailPanelContainedExampleComponent {}
 ```
 
 ### Listening for the close request
@@ -116,6 +237,31 @@ closing requires confirming unsaved changes first.
     alert('Save or discard your changes before closing.');
   });
 </script>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/detail-panel/detail-panel.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-detail-panel-listening-for-the-close-request-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-detail-panel style="height: 12rem; max-width: 24rem;" (sl-request-close)="handleRequestClose($event)">
+      <span slot="label">Amendment 1.pdf</span>
+      <span slot="meta">Unsaved changes</span>
+      <div style="padding: var(--sl-spacing-medium);">Closing this panel will discard your unsaved edits.</div>
+    </sl-detail-panel>
+  `
+})
+export class DetailPanelListeningForTheCloseRequestExampleComponent {
+  // sl-request-close is cancelable: preventing it stops the panel from hiding itself.
+  handleRequestClose(event: Event) {
+    event.preventDefault();
+    alert('Save or discard your changes before closing.');
+  }
+}
 ```
 
 [component-metadata:sl-detail-panel]

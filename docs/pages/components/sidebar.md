@@ -41,6 +41,51 @@ collapsed state; when collapsed only the group icons (and item prefix icons) rem
 </div>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar/sidebar.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar-group/sidebar-group.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar-item/sidebar-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-sidebar-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <div style="height: 720px; display: flex;">
+      <sl-sidebar>
+        <sl-sidebar-group label="Documenti di progetto" count="70">
+          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+          <sl-sidebar-item href="#" count="6" current>Job Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Procurement (SAP)" count="71">
+          <sl-icon slot="icon" name="cart"></sl-icon>
+          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Comunicazione" count="47">
+          <sl-icon slot="icon" name="send"></sl-icon>
+          <sl-sidebar-item href="#" count="5">Transmittal</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+        </sl-sidebar-group>
+      </sl-sidebar>
+    </div>
+  `
+})
+export class SidebarExampleComponent {}
+```
+
 ## Examples
 
 ### Collapsed
@@ -80,6 +125,51 @@ user's choice.
 </div>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar/sidebar.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar-group/sidebar-group.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar-item/sidebar-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-sidebar-collapsed-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <div style="height: 720px; display: flex;">
+      <sl-sidebar collapsed>
+        <sl-sidebar-group label="Documenti di progetto" count="70">
+          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+          <sl-sidebar-item href="#" count="6" current>Job Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Procurement (SAP)" count="71">
+          <sl-icon slot="icon" name="cart"></sl-icon>
+          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Comunicazione" count="47">
+          <sl-icon slot="icon" name="send"></sl-icon>
+          <sl-sidebar-item href="#" count="5">Transmittal</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+        </sl-sidebar-group>
+      </sl-sidebar>
+    </div>
+  `
+})
+export class SidebarCollapsedExampleComponent {}
+```
+
 ### Items with icons
 
 Items with a `prefix` icon stay visible as icons when the sidebar is collapsed.
@@ -94,5 +184,30 @@ Items with a `prefix` icon stay visible as icons when the sidebar is collapsed.
     </sl-sidebar-group>
   </sl-sidebar>
 </div>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar/sidebar.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar-group/sidebar-group.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar-item/sidebar-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-sidebar-items-with-icons-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <div style="height: 260px; display: flex;">
+      <sl-sidebar style="--width: 16rem;">
+        <sl-sidebar-group label="Menu">
+          <sl-sidebar-item href="#" current><sl-icon slot="prefix" name="grid"></sl-icon>Dashboard</sl-sidebar-item>
+          <sl-sidebar-item href="#"><sl-icon slot="prefix" name="bar-chart"></sl-icon>Analysis</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="14"><sl-icon slot="prefix" name="bell"></sl-icon>Notifications</sl-sidebar-item>
+        </sl-sidebar-group>
+      </sl-sidebar>
+    </div>
+  `
+})
+export class SidebarItemsWithIconsExampleComponent {}
 ```
 
