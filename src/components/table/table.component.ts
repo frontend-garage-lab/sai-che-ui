@@ -241,10 +241,21 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
   willUpdate(changedProperties: PropertyValues<this>) {
     super.willUpdate(changedProperties);
 
-    const tracks = this.columns
-      .filter(column => !this.isActionsColumn(column))
-      .map(column => (column.meta as SlTableColumnMeta | undefined)?.width ?? 'minmax(0, 1fr)');
-    const hasActionsColumn = this.columns.some(column => this.isActionsColumn(column));
+    // One pass over the columns instead of a filter, a map and a some. `hasActionsColumn` is kept on the instance
+    // because the header row needs it too, and willUpdate always runs before render in the same update.
+    const tracks: string[] = [];
+    let hasActionsColumn = false;
+
+    for (const column of this.columns) {
+      if (this.isActionsColumn(column)) {
+        hasActionsColumn = true;
+      } else {
+        tracks.push((column.meta as SlTableColumnMeta | undefined)?.width ?? 'minmax(0, 1fr)');
+      }
+    }
+
+    this.hasActionsColumn = hasActionsColumn;
+
     const template = [
       this.selection === 'multiple' ? 'min-content' : '',
       ...tracks,
@@ -257,6 +268,9 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
     this.setAttribute('aria-rowcount', String(this.itemCount));
     this.setAttribute('aria-multiselectable', this.selection === 'multiple' ? 'true' : 'false');
   }
+
+  /** Whether any column is the action column. Recomputed in `willUpdate`, read by the header row. */
+  private hasActionsColumn = false;
 
   private isActionsColumn(column: SlTableColumnDef<TData>) {
     return Boolean((column.meta as SlTableColumnMeta | undefined)?.actions);
@@ -350,11 +364,12 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
 
   /** Navigates to the given page, clamped to the available pages, and emits `sl-table-page-change`. */
   goToPage(page: number) {
-    const next = Math.min(Math.max(1, Math.trunc(page)), this.pageCount);
+    const table = this.table;
+    const next = Math.min(Math.max(1, Math.trunc(page)), Math.max(1, table.getPageCount()));
 
     if (next === this.page) return;
 
-    this.table.setPageIndex(next - 1);
+    table.setPageIndex(next - 1);
   }
 
   //
@@ -402,8 +417,8 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
   // Event handlers
   //
 
-  private findRowId(event: Event): string | null {
-    for (const target of event.composedPath()) {
+  private findRowId(path: EventTarget[]): string | null {
+    for (const target of path) {
       if (!(target instanceof HTMLElement)) continue;
       if (target === this) break;
       if (target.dataset.rowId !== undefined) return target.dataset.rowId;
@@ -412,8 +427,8 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
     return null;
   }
 
-  private findColumnId(event: Event): string | null {
-    for (const target of event.composedPath()) {
+  private findColumnId(path: EventTarget[]): string | null {
+    for (const target of path) {
       if (!(target instanceof HTMLElement)) continue;
       if (target === this) break;
       if (target.dataset.columnId !== undefined) return target.dataset.columnId;
@@ -422,8 +437,8 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
     return null;
   }
 
-  private isInteractiveTarget(event: Event) {
-    return event.composedPath().some(target => {
+  private isInteractiveTarget(path: EventTarget[]) {
+    return path.some(target => {
       if (!(target instanceof Element)) return false;
       if (target.hasAttribute('data-row-id')) return false;
       return target.matches?.(interactiveSelector) ?? false;
@@ -431,16 +446,18 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
   }
 
   private handleClick = (event: MouseEvent) => {
-    const columnId = this.findColumnId(event);
+    const path = event.composedPath();
+    const columnId = this.findColumnId(path);
 
+    // `this.table` is expensive — see the comment on the getter — so each handler reads it at most once.
     if (columnId) {
       this.table.getColumn(columnId)?.getToggleSortingHandler()?.(event);
       return;
     }
 
-    if (this.selection === 'none' || this.isInteractiveTarget(event)) return;
+    if (this.selection === 'none' || this.isInteractiveTarget(path)) return;
 
-    const rowId = this.findRowId(event);
+    const rowId = this.findRowId(path);
 
     if (!rowId) return;
 
@@ -453,7 +470,7 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
   };
 
   private handleMenuSelect = (event: SlSelectEvent) => {
-    const rowId = this.findRowId(event);
+    const rowId = this.findRowId(event.composedPath());
 
     if (!rowId) return;
 
@@ -462,7 +479,7 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
   };
 
   private handleContextMenu = (event: MouseEvent) => {
-    const rowId = this.findRowId(event);
+    const rowId = this.findRowId(event.composedPath());
 
     if (!rowId) return;
 
@@ -479,6 +496,7 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
   };
 
   private handleKeyDown = (event: KeyboardEvent) => {
+    const path = event.composedPath();
     const table = this.table;
     const rows = table.getRowModel().rows;
 
@@ -490,7 +508,7 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
       return;
     }
 
-    const rowId = this.findRowId(event);
+    const rowId = this.findRowId(path);
 
     if (!rowId) return;
 
@@ -498,7 +516,7 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
     const index = rows.findIndex(row => row.id === activeRow.id);
 
     if ([' ', 'Enter'].includes(event.key)) {
-      if (this.selection === 'none' || !activeRow.getCanSelect() || this.isInteractiveTarget(event)) return;
+      if (this.selection === 'none' || !activeRow.getCanSelect() || this.isInteractiveTarget(path)) return;
 
       event.preventDefault();
       activeRow.getToggleSelectedHandler()(event);
@@ -512,7 +530,7 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
       End: rows.length - 1
     }[event.key];
 
-    if (nextIndex === undefined || this.isInteractiveTarget(event)) return;
+    if (nextIndex === undefined || this.isInteractiveTarget(path)) return;
 
     event.preventDefault();
     this.focusRow(rows[Math.min(Math.max(0, nextIndex), rows.length - 1)]);
@@ -567,7 +585,7 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
     const [headerGroup] = table.getHeaderGroups();
     const selectableRows = table.getRowModel().rows.filter(row => row.getCanSelect());
     const selectedCount = selectableRows.filter(row => row.getIsSelected()).length;
-    const hasActionsColumn = this.columns.some(column => this.isActionsColumn(column));
+    const hasActionsColumn = this.hasActionsColumn;
 
     return html`
       <div part="header" class="table__header" role="row">
@@ -666,8 +684,18 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
   }
 
   private renderBodyRow(row: Row<SlTableFeatures, TData>, focusableRowId: string | undefined) {
-    const cells = row.getAllCells();
-    const actionsCell = cells.find(cell => this.isActionsColumn(cell.column.columnDef));
+    // One pass over the cells: the original ran a find and a filter, so `isActionsColumn` was called twice per cell.
+    const dataCells: Cell<SlTableFeatures, TData, unknown>[] = [];
+    let actionsCell: Cell<SlTableFeatures, TData, unknown> | undefined;
+
+    for (const cell of row.getAllCells()) {
+      if (this.isActionsColumn(cell.column.columnDef)) {
+        actionsCell ??= cell;
+      } else {
+        dataCells.push(cell);
+      }
+    }
+
     const isFocusable = row.id === focusableRowId;
     const variant = this.rowVariant(row.original, row.index);
     const disabled = this.rowDisabled(row.original, row.index);
@@ -698,25 +726,30 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
               </div>
             `
           : ''}
-        ${cells.filter(cell => !this.isActionsColumn(cell.column.columnDef)).map(cell => this.renderCell(cell))}
-        ${actionsCell ? this.renderActionsCell(actionsCell) : ''}
+        ${dataCells.map(cell => this.renderCell(cell))} ${actionsCell ? this.renderActionsCell(actionsCell) : ''}
       </div>
     `;
   }
 
   render() {
     const table = this.table;
+    // The rows below are rendered unkeyed, on purpose. Keying them with repeat() and row.id was measured at 150 ms
+    // per sort of 500 rows against 26 ms for the plain map(), because Lit then moves 500 DOM subtrees instead of
+    // updating the bindings of the existing ones, and moving a row also drops keyboard focus. Do not "fix" this
+    // without measuring it again; see RECAP-refactor-angular-2026-11-13.md.
     const rows = table.getRowModel().rows;
     const isEmpty = rows.length === 0;
     const start = this.itemCount === 0 ? 0 : (this.page - 1) * this.pageSize + 1;
     const end = Math.min(this.page * this.pageSize, this.itemCount);
     const pageCount = Math.max(1, table.getPageCount());
 
-    const defaultFocusableRowId =
-      table.getSelectedRowModel().rows.find(selected => !this.rowDisabled(selected.original, selected.index))?.id ??
-      rows[0]?.id;
+    // The fallback is only computed when the focused row is gone: getSelectedRowModel() plus a find ran on every
+    // render even when `focusedRowId` was already valid.
     const focusableRowId =
-      this.focusedRowId && rows.some(row => row.id === this.focusedRowId) ? this.focusedRowId : defaultFocusableRowId;
+      this.focusedRowId && rows.some(row => row.id === this.focusedRowId)
+        ? this.focusedRowId
+        : (table.getSelectedRowModel().rows.find(selected => !this.rowDisabled(selected.original, selected.index))
+            ?.id ?? rows[0]?.id);
 
     return html`
       <div part="base" class="table">

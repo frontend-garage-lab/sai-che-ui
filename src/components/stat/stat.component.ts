@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { property, state } from 'lit/decorators.js';
@@ -58,13 +57,10 @@ export default class SlStat extends ShoelaceElement {
       </span>
     `;
 
-    const classes = classMap({
-      stat: true,
-      'stat--interactive': this.interactive,
-      'stat--selected': this.selected,
-      'stat--disabled': this.disabled,
-      [`stat--${this.variant}`]: !!this.variant
-    });
+    // `variant` is guarded because the empty string is a valid value and `stat--` matches no rule.
+    const classes = `stat${this.interactive ? ' stat--interactive' : ''}${this.selected ? ' stat--selected' : ''}${
+      this.disabled ? ' stat--disabled' : ''
+    }${this.variant ? ` stat--${this.variant}` : ''}`;
 
     return this.interactive
       ? html`

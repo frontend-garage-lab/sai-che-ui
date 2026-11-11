@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { property, query } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -32,7 +31,8 @@ export default class SlSelectableItem extends ShoelaceElement {
     'sl-checkbox': SlCheckbox
   };
 
-  @query('.selectable-item__checkbox') checkbox: SlCheckbox;
+  @query('.selectable-item__checkbox', true /* cache: this node is always rendered and never re-created */)
+  checkbox: SlCheckbox;
 
   /** The value the item reports when selected, e.g. a document id. */
   @property() value = '';
@@ -64,11 +64,9 @@ export default class SlSelectableItem extends ShoelaceElement {
     return html`
       <div
         part="base"
-        class=${classMap({
-          'selectable-item': true,
-          'selectable-item--checked': this.checked,
-          'selectable-item--disabled': this.disabled
-        })}
+        class="selectable-item${this.checked ? ' selectable-item--checked' : ''}${this.disabled
+          ? ' selectable-item--disabled'
+          : ''}"
         @click=${this.handleRowClick}
       >
         <sl-checkbox

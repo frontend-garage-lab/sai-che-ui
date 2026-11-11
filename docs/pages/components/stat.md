@@ -16,6 +16,24 @@ so a stat and the table cells it counts share one colour.
 </sl-stat>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/stat/stat.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-stat-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-stat count="1284" variant="success">
+      <sl-icon slot="prefix" name="check-circle"></sl-icon>
+      Distributed
+    </sl-stat>
+  `
+})
+export class StatExampleComponent {}
+```
+
 ## Examples
 
 ### As filters
@@ -37,6 +55,35 @@ Put stats in a [stat group](/components/stat-group) to turn them into quick filt
     Distributed
   </sl-stat>
 </sl-stat-group>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/stat/stat.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/stat-group/stat-group.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-stat-as-filters-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-stat-group label="Filter by status" value="working">
+      <sl-stat value="working" count="8" variant="neutral">
+        <sl-icon slot="prefix" name="clock"></sl-icon>
+        Working
+      </sl-stat>
+      <sl-stat value="signed" count="1" variant="primary">
+        <sl-icon slot="prefix" name="pencil"></sl-icon>
+        Signed
+      </sl-stat>
+      <sl-stat value="distributed" count="8" variant="success">
+        <sl-icon slot="prefix" name="check-circle"></sl-icon>
+        Distributed
+      </sl-stat>
+    </sl-stat-group>
+  `
+})
+export class StatAsFiltersExampleComponent {}
 ```
 
 ### KPI summary row
@@ -65,10 +112,55 @@ A dashboard summary, e.g. contract review/consolidation status, with one stat se
 </sl-stat-group>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/stat/stat.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/stat-group/stat-group.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-stat-kpi-summary-row-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-stat-group label="Filter by status" value="expiring">
+      <sl-stat value="safe" count="128" variant="success">
+        <sl-icon slot="prefix" name="shield-check"></sl-icon>
+        Safe
+      </sl-stat>
+      <sl-stat value="expiring" count="14" variant="warning">
+        <sl-icon slot="prefix" name="hourglass-split"></sl-icon>
+        Expiring
+      </sl-stat>
+      <sl-stat value="expired" count="3" variant="danger">
+        <sl-icon slot="prefix" name="exclamation-triangle"></sl-icon>
+        Expired
+      </sl-stat>
+      <sl-stat value="notified" count="9" variant="accent">
+        <sl-icon slot="prefix" name="bell"></sl-icon>
+        Notified
+      </sl-stat>
+    </sl-stat-group>
+  `
+})
+export class StatKpiSummaryRowExampleComponent {}
+```
+
 ### Without an icon
 
 The `prefix` slot is optional — the icon badge collapses when it's empty.
 
 ```html:preview
 <sl-stat count="3">Checked out</sl-stat>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/stat/stat.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-stat-without-an-icon-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `<sl-stat count="3">Checked out</sl-stat>`
+})
+export class StatWithoutAnIconExampleComponent {}
 ```

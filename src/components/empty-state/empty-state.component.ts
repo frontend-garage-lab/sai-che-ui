@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { property } from 'lit/decorators.js';
@@ -35,13 +34,7 @@ export default class SlEmptyState extends ShoelaceElement {
 
   render() {
     return html`
-      <div
-        part="base"
-        class=${classMap({
-          'empty-state': true,
-          'empty-state--has-action': this.hasSlotController.test('action')
-        })}
-      >
+      <div part="base" class="empty-state${this.hasSlotController.test('action') ? ' empty-state--has-action' : ''}">
         <span part="icon" class="empty-state__icon">
           <slot name="icon"></slot>
         </span>

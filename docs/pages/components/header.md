@@ -39,6 +39,50 @@ attribute, or set `href` for a plain link. Give an item a `menu` slot to turn it
 </sl-header>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/header/header.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/header-item/header-item.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-header-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-header logo-src="/assets/images/saipem-mark.png" logo-label="Saipem">
+      <sl-header-item>
+        Project Data
+        <sl-menu slot="menu">
+          <sl-menu-item>Documents</sl-menu-item>
+          <sl-menu-item>Reports</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+      <sl-header-item>
+        Configuration
+        <sl-menu slot="menu">
+          <sl-menu-item>Users</sl-menu-item>
+          <sl-menu-item>Permissions</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+      <sl-header-item href="#" current>Dashboard</sl-header-item>
+
+      <sl-select slot="actions" size="small" value="xcmm-demo" style="width: 14rem;">
+        <sl-option value="xcmm-demo">xCMM Demo</sl-option>
+        <sl-option value="fepco">FEPCO Project</sl-option>
+      </sl-select>
+      <sl-icon-button slot="actions" name="question-circle" label="Help"></sl-icon-button>
+      <sl-icon-button slot="actions" name="gear" label="Settings"></sl-icon-button>
+      <sl-icon-button slot="actions" name="box-arrow-right" label="Sign out"></sl-icon-button>
+    </sl-header>
+  `
+})
+export class HeaderExampleComponent {}
+```
+
 ## Examples
 
 ### With a logo image
@@ -51,6 +95,25 @@ Images and SVGs in the `logo` slot are sized to fit the header.
   <sl-header-item href="#">Incoming</sl-header-item>
   <sl-header-item href="#">Outgoing</sl-header-item>
 </sl-header>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/header/header.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/header-item/header-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-header-with-a-logo-image-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-header logo-src="/assets/images/saipem-mark.png" logo-label="Saipem">
+      <sl-header-item href="#" current>Home</sl-header-item>
+      <sl-header-item href="#">Incoming</sl-header-item>
+      <sl-header-item href="#">Outgoing</sl-header-item>
+    </sl-header>
+  `
+})
+export class HeaderWithALogoImageExampleComponent {}
 ```
 
 ### Account menu
@@ -74,6 +137,38 @@ next to the name.
 </sl-header>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/avatar/avatar.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/header/header.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/header-item/header-item.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-header-account-menu-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-header logo-src="/assets/images/saipem-mark.png" logo-label="Saipem">
+      <span slot="logo">DMS</span>
+
+      <sl-header-item slot="actions">
+        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+        Mario Rossi
+        <sl-menu slot="menu">
+          <sl-menu-item>Profile</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+    </sl-header>
+  `
+})
+export class HeaderAccountMenuExampleComponent {}
+```
+
 ### Plain links
 
 The default slot also accepts plain `<a>` elements, styled the same way as `sl-header-item`. Mark the current page
@@ -91,6 +186,28 @@ with `aria-current="page"`.
 </sl-header>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/header/header.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-header-plain-links-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-header>
+      <span slot="logo">xCMM</span>
+
+      <a href="#" aria-current="page">Home</a>
+      <a href="#">Incoming</a>
+      <a href="#">Outgoing</a>
+      <a href="#">Distribution History</a>
+      <a href="#">Search</a>
+    </sl-header>
+  `
+})
+export class HeaderPlainLinksExampleComponent {}
+```
+
 ### Customizing
 
 Use `--height`, `--background`, `--color` and `--accent-color` to adapt the header, e.g. for a test environment that
@@ -102,4 +219,23 @@ must not be mistaken for production.
   <sl-header-item href="#" current>Home</sl-header-item>
   <sl-header-item href="#">Incoming</sl-header-item>
 </sl-header>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/header/header.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/header-item/header-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-header-customizing-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-header style="--background: var(--sl-color-neutral-800); --accent-color: var(--sl-color-warning-500);">
+      <span slot="logo">xCMM · UAT</span>
+      <sl-header-item href="#" current>Home</sl-header-item>
+      <sl-header-item href="#">Incoming</sl-header-item>
+    </sl-header>
+  `
+})
+export class HeaderCustomizingExampleComponent {}
 ```

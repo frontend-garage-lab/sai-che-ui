@@ -1,5 +1,4 @@
 import { animateTo, parseDuration, stopAnimations } from '../../internal/animate.js';
-import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -48,9 +47,11 @@ export default class SlTooltip extends ShoelaceElement {
   private readonly localize = new LocalizeController(this);
   private closeWatcher: CloseWatcher | null;
 
+  // Deliberately not cached: nothing in this component reads it, so caching would only add a field. It is kept
+  // because it is part of the component's de facto public surface.
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
-  @query('.tooltip__body') body: HTMLElement;
-  @query('sl-popup') popup: SlPopup;
+  @query('.tooltip__body', true /* cache: this node is always rendered and never re-created */) body: HTMLElement;
+  @query('sl-popup', true /* cache: this node is always rendered and never re-created */) popup: SlPopup;
 
   /** The tooltip's content. If you need to display HTML, use the `content` slot instead. */
   @property() content = '';
@@ -268,10 +269,7 @@ export default class SlTooltip extends ShoelaceElement {
           popup:base__popup,
           arrow:base__arrow
         "
-        class=${classMap({
-          tooltip: true,
-          'tooltip--open': this.open
-        })}
+        class="tooltip${this.open ? ' tooltip--open' : ''}"
         placement=${this.placement}
         distance=${this.distance}
         skidding=${this.skidding}

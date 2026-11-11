@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -56,7 +55,7 @@ export default class SlHeaderItem extends ShoelaceElement {
             type="button"
             slot="trigger"
             part="base"
-            class=${classMap({ 'header-item': true, 'header-item--has-menu': true })}
+            class="header-item header-item--has-menu"
             aria-current=${ifDefined(this.current ? 'page' : undefined)}
           >
             <slot part="label" class="header-item__label"></slot>
@@ -70,7 +69,7 @@ export default class SlHeaderItem extends ShoelaceElement {
     return html`
       <a
         part="base"
-        class=${classMap({ 'header-item': true })}
+        class="header-item"
         href=${ifDefined(this.href)}
         target=${ifDefined(this.target)}
         aria-current=${ifDefined(this.current ? 'page' : undefined)}

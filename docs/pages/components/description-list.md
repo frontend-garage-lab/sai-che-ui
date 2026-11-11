@@ -16,6 +16,25 @@ Each [sl-description-list-item](#) is a label/value pair. Values can be plain te
 </sl-description-list>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/description-list/description-list.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/description-list-item/description-list-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-description-list-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-description-list>
+      <sl-description-list-item label="Revision Code">A1</sl-description-list-item>
+      <sl-description-list-item label="Second Revision Code">—</sl-description-list-item>
+      <sl-description-list-item label="Title">test_review_doc_0009</sl-description-list-item>
+    </sl-description-list>
+  `
+})
+export class DescriptionListExampleComponent {}
+```
+
 ## Examples
 
 ### Columns
@@ -33,6 +52,28 @@ Set `cols` to control how many items sit on a row before wrapping. Defaults to 2
 </sl-description-list>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/description-list/description-list.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/description-list-item/description-list-item.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-description-list-columns-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-description-list cols="3">
+      <sl-description-list-item label="Client Document Identification">test_review_doc_0009</sl-description-list-item>
+      <sl-description-list-item label="Vendor Document Identification">test_review_doc_0009</sl-description-list-item>
+      <sl-description-list-item label="Document Type">External Job Document</sl-description-list-item>
+      <sl-description-list-item label="Second Issuing Description">test_review_doc_0001</sl-description-list-item>
+      <sl-description-list-item label="Superseded By">—</sl-description-list-item>
+      <sl-description-list-item label="Document Status">Received</sl-description-list-item>
+    </sl-description-list>
+  `
+})
+export class DescriptionListColumnsExampleComponent {}
+```
+
 ### Rich values
 
 ```html:preview
@@ -42,4 +83,25 @@ Set `cols` to control how many items sit on a row before wrapping. Defaults to 2
     25-Jun-2026 <sl-tag size="small" variant="warning">Acquired</sl-tag>
   </sl-description-list-item>
 </sl-description-list>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/description-list/description-list.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/description-list-item/description-list-item.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tag/tag.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-description-list-rich-values-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-description-list>
+      <sl-description-list-item label="Created on">02-Oct-2026</sl-description-list-item>
+      <sl-description-list-item label="Expires on">
+        25-Jun-2026 <sl-tag size="small" variant="warning">Acquired</sl-tag>
+      </sl-description-list-item>
+    </sl-description-list>
+  `
+})
+export class DescriptionListRichValuesExampleComponent {}
 ```

@@ -1,4 +1,3 @@
-import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
@@ -75,45 +74,37 @@ export default class SlAvatar extends ShoelaceElement {
     this.emit('sl-error');
   }
 
-  render() {
-    const avatarWithImage = html`
-      <img
-        part="image"
-        class="avatar__image"
-        src="${this.image}"
-        loading="${this.loading}"
-        alt=""
-        @error="${this.handleImageLoadError}"
-      />
-    `;
-
-    let avatarWithoutImage = html``;
-
-    if (this.initials) {
-      avatarWithoutImage = html`<div part="initials" class="avatar__initials">${this.initials}</div>`;
-    } else {
-      avatarWithoutImage = html`
-        <div part="icon" class="avatar__icon" aria-hidden="true">
-          <slot name="icon">
-            <sl-icon name="person-fill" library="system"></sl-icon>
-          </slot>
-        </div>
+  private renderContent() {
+    if (this.image && !this.hasError) {
+      return html`
+        <img
+          part="image"
+          class="avatar__image"
+          src="${this.image}"
+          loading="${this.loading}"
+          alt=""
+          @error="${this.handleImageLoadError}"
+        />
       `;
     }
 
+    if (this.initials) {
+      return html`<div part="initials" class="avatar__initials">${this.initials}</div>`;
+    }
+
     return html`
-      <div
-        part="base"
-        class=${classMap({
-          avatar: true,
-          'avatar--circle': this.shape === 'circle',
-          'avatar--rounded': this.shape === 'rounded',
-          'avatar--square': this.shape === 'square'
-        })}
-        role="img"
-        aria-label=${this.label}
-      >
-        ${this.image && !this.hasError ? avatarWithImage : avatarWithoutImage}
+      <div part="icon" class="avatar__icon" aria-hidden="true">
+        <slot name="icon">
+          <sl-icon name="person-fill" library="system"></sl-icon>
+        </slot>
+      </div>
+    `;
+  }
+
+  render() {
+    return html`
+      <div part="base" class="avatar avatar--${this.shape}" role="img" aria-label=${this.label}>
+        ${this.renderContent()}
       </div>
     `;
   }

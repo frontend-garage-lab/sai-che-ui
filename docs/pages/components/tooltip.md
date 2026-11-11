@@ -26,6 +26,23 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tooltip-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tooltip content="This is a tooltip">
+      <sl-button>Hover Me</sl-button>
+    </sl-tooltip>
+  `
+})
+export class TooltipExampleComponent {}
+```
+
 ## Examples
 
 ### Placement
@@ -226,6 +243,109 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tooltip-placement-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .tooltip-placement-example {
+        width: 250px;
+        margin: 1rem;
+      }
+
+      .tooltip-placement-example-row:after {
+        content: '';
+        display: table;
+        clear: both;
+      }
+
+      .tooltip-placement-example sl-button {
+        float: left;
+        width: 2.5rem;
+        margin-right: 0.25rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .tooltip-placement-example-row:nth-child(1) sl-tooltip:first-child sl-button,
+      .tooltip-placement-example-row:nth-child(5) sl-tooltip:first-child sl-button {
+        margin-left: calc(40px + 0.25rem);
+      }
+
+      .tooltip-placement-example-row:nth-child(2) sl-tooltip:nth-child(2) sl-button,
+      .tooltip-placement-example-row:nth-child(3) sl-tooltip:nth-child(2) sl-button,
+      .tooltip-placement-example-row:nth-child(4) sl-tooltip:nth-child(2) sl-button {
+        margin-left: calc((40px * 3) + (0.25rem * 3));
+      }
+  `,
+  template: `
+    <div class="tooltip-placement-example">
+      <div class="tooltip-placement-example-row">
+        <sl-tooltip content="top-start" placement="top-start">
+          <sl-button></sl-button>
+        </sl-tooltip>
+
+        <sl-tooltip content="top" placement="top">
+          <sl-button></sl-button>
+        </sl-tooltip>
+
+        <sl-tooltip content="top-end" placement="top-end">
+          <sl-button></sl-button>
+        </sl-tooltip>
+      </div>
+
+      <div class="tooltip-placement-example-row">
+        <sl-tooltip content="left-start" placement="left-start">
+          <sl-button></sl-button>
+        </sl-tooltip>
+
+        <sl-tooltip content="right-start" placement="right-start">
+          <sl-button></sl-button>
+        </sl-tooltip>
+      </div>
+
+      <div class="tooltip-placement-example-row">
+        <sl-tooltip content="left" placement="left">
+          <sl-button></sl-button>
+        </sl-tooltip>
+
+        <sl-tooltip content="right" placement="right">
+          <sl-button></sl-button>
+        </sl-tooltip>
+      </div>
+
+      <div class="tooltip-placement-example-row">
+        <sl-tooltip content="left-end" placement="left-end">
+          <sl-button></sl-button>
+        </sl-tooltip>
+
+        <sl-tooltip content="right-end" placement="right-end">
+          <sl-button></sl-button>
+        </sl-tooltip>
+      </div>
+
+      <div class="tooltip-placement-example-row">
+        <sl-tooltip content="bottom-start" placement="bottom-start">
+          <sl-button></sl-button>
+        </sl-tooltip>
+
+        <sl-tooltip content="bottom" placement="bottom">
+          <sl-button></sl-button>
+        </sl-tooltip>
+
+        <sl-tooltip content="bottom-end" placement="bottom-end">
+          <sl-button></sl-button>
+        </sl-tooltip>
+      </div>
+    </div>
+  `
+})
+export class TooltipPlacementExampleComponent {}
+```
+
 ### Click Trigger
 
 Set the `trigger` attribute to `click` to toggle the tooltip on click instead of hover.
@@ -247,6 +367,23 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tooltip-click-trigger-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tooltip content="Click again to dismiss" trigger="click">
+      <sl-button>Click to Toggle</sl-button>
+    </sl-tooltip>
+  `
+})
+export class TooltipClickTriggerExampleComponent {}
+```
+
 ### Manual Trigger
 
 Tooltips can be controlled programmatically by setting the `trigger` attribute to `manual`. Use the `open` attribute to control when the tooltip is shown.
@@ -264,6 +401,31 @@ Tooltips can be controlled programmatically by setting the `trigger` attribute t
 
   toggle.addEventListener('click', () => (tooltip.open = !tooltip.open));
 </script>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/avatar/avatar.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-tooltip-manual-trigger-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <sl-button style="margin-right: 4rem;" (click)="open.set(!open())">Toggle Manually</sl-button>
+
+    <sl-tooltip content="This is an avatar" trigger="manual" [open]="open()">
+      <sl-avatar label="User"></sl-avatar>
+    </sl-tooltip>
+  `
+})
+export class TooltipManualTriggerExampleComponent {
+  // With trigger="manual" the tooltip never opens or closes on its own, so `open` is yours alone to drive and
+  // there is no sl-after-hide to listen for. With any other trigger, bind it and mirror the event back instead.
+  readonly open = signal(false);
+}
 ```
 
 {% raw %}
@@ -301,6 +463,23 @@ You can control the size of tooltip arrows by overriding the `--sl-tooltip-arrow
 <sl-tooltip content="This is a tooltip" style="--sl-tooltip-arrow-size: 0;">
   <sl-button>No Arrow</sl-button>
 </sl-tooltip>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tooltip-removing-arrows-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tooltip content="This is a tooltip" style="--sl-tooltip-arrow-size: 0;">
+      <sl-button>No Arrow</sl-button>
+    </sl-tooltip>
+  `
+})
+export class TooltipRemovingArrowsExampleComponent {}
 ```
 
 {% raw %}
@@ -359,6 +538,25 @@ const App = () => (
 );
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tooltip-html-in-tooltips-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tooltip>
+      <div slot="content">I'm not <strong>just</strong> a tooltip, I'm a <em>tooltip</em> with HTML!</div>
+
+      <sl-button>Hover me</sl-button>
+    </sl-tooltip>
+  `
+})
+export class TooltipHtmlInTooltipsExampleComponent {}
+```
+
 ### Setting a Maximum Width
 
 Use the `--max-width` custom property to change the width the tooltip can grow to before wrapping occurs.
@@ -367,6 +565,23 @@ Use the `--max-width` custom property to change the width the tooltip can grow t
 <sl-tooltip style="--max-width: 80px;" content="This tooltip will wrap after only 80 pixels.">
   <sl-button>Hover me</sl-button>
 </sl-tooltip>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tooltip-setting-a-maximum-width-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-tooltip style="--max-width: 80px;" content="This tooltip will wrap after only 80 pixels.">
+      <sl-button>Hover me</sl-button>
+    </sl-tooltip>
+  `
+})
+export class TooltipSettingAMaximumWidthExampleComponent {}
 ```
 
 {% raw %}
@@ -437,4 +652,35 @@ const App = () => (
     <style>{css}</style>
   </>
 );
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-tooltip-hoisting-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .tooltip-hoist {
+        position: relative;
+        border: solid 2px var(--sl-panel-border-color);
+        overflow: hidden;
+        padding: var(--sl-spacing-medium);
+      }
+  `,
+  template: `
+    <div class="tooltip-hoist">
+      <sl-tooltip content="This is a tooltip">
+        <sl-button>No Hoist</sl-button>
+      </sl-tooltip>
+
+      <sl-tooltip content="This is a tooltip" hoist>
+        <sl-button>Hoist</sl-button>
+      </sl-tooltip>
+    </div>
+  `
+})
+export class TooltipHoistingExampleComponent {}
 ```

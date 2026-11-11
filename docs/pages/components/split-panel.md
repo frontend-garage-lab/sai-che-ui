@@ -22,6 +22,33 @@ layout: component
 </sl-split-panel>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-split-panel-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-split-panel>
+      <div
+        slot="start"
+        style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      >
+        Start
+      </div>
+      <div
+        slot="end"
+        style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      >
+        End
+      </div>
+    </sl-split-panel>
+  `
+})
+export class SplitPanelExampleComponent {}
+```
+
 {% raw %}
 
 ```jsx:react
@@ -82,6 +109,33 @@ To set the initial position, use the `position` attribute. If no position is pro
 </sl-split-panel>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-split-panel-initial-position-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-split-panel position="75">
+      <div
+        slot="start"
+        style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      >
+        Start
+      </div>
+      <div
+        slot="end"
+        style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      >
+        End
+      </div>
+    </sl-split-panel>
+  `
+})
+export class SplitPanelInitialPositionExampleComponent {}
+```
+
 ### Initial Position in Pixels
 
 To set the initial position in pixels instead of a percentage, use the `position-in-pixels` attribute.
@@ -101,6 +155,33 @@ To set the initial position in pixels instead of a percentage, use the `position
     End
   </div>
 </sl-split-panel>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-split-panel-initial-position-in-pixels-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-split-panel position-in-pixels="150">
+      <div
+        slot="start"
+        style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      >
+        Start
+      </div>
+      <div
+        slot="end"
+        style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      >
+        End
+      </div>
+    </sl-split-panel>
+  `
+})
+export class SplitPanelInitialPositionInPixelsExampleComponent {}
 ```
 
 {% raw %}
@@ -159,6 +240,33 @@ Add the `vertical` attribute to render the split panel in a vertical orientation
     End
   </div>
 </sl-split-panel>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-split-panel-vertical-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-split-panel vertical style="height: 400px;">
+      <div
+        slot="start"
+        style="height: 100%; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      >
+        Start
+      </div>
+      <div
+        slot="end"
+        style="height: 100%; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      >
+        End
+      </div>
+    </sl-split-panel>
+  `
+})
+export class SplitPanelVerticalExampleComponent {}
 ```
 
 {% raw %}
@@ -251,6 +359,62 @@ For example, to snap the panel at `100px` and `50%`, use `snap="100px 50%"`.
 </style>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-split-panel-snapping-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .split-panel-snapping {
+        position: relative;
+      }
+
+      .split-panel-snapping-dots::before,
+      .split-panel-snapping-dots::after {
+        content: '';
+        position: absolute;
+        bottom: -12px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--sl-color-neutral-400);
+        transform: translateX(-3px);
+      }
+
+      .split-panel-snapping .split-panel-snapping-dots::before {
+        left: 100px;
+      }
+
+      .split-panel-snapping .split-panel-snapping-dots::after {
+        left: 50%;
+      }
+  `,
+  template: `
+    <div class="split-panel-snapping">
+      <sl-split-panel snap="100px 50%">
+        <div
+          slot="start"
+          style="height: 150px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+        >
+          Start
+        </div>
+        <div
+          slot="end"
+          style="height: 150px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+        >
+          End
+        </div>
+      </sl-split-panel>
+
+      <div class="split-panel-snapping-dots"></div>
+    </div>
+  `
+})
+export class SplitPanelSnappingExampleComponent {}
+```
+
 Or, if you want to snap the panel to every `100px` interval, as well as at 50% of the panel's size, you can use `snap="repeat(100px) 50%"`.
 
 ```html:preview
@@ -276,6 +440,40 @@ Or, if you want to snap the panel to every `100px` interval, as well as at 50% o
     position: relative;
   }
 </style>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-split-panel-snapping-2-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .split-panel-snapping-repeat {
+        position: relative;
+      }
+  `,
+  template: `
+    <div class="split-panel-snapping-repeat">
+      <sl-split-panel snap="repeat(100px) 50%">
+        <div
+          slot="start"
+          style="height: 150px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+        >
+          Start
+        </div>
+        <div
+          slot="end"
+          style="height: 150px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+        >
+          End
+        </div>
+      </sl-split-panel>
+    </div>
+  `
+})
+export class SplitPanelSnapping2ExampleComponent {}
 ```
 
 ### Using a Custom Snap Function
@@ -339,6 +537,58 @@ Note that the `snap-threshold` property will not automatically be applied if `sn
   const splitPanel = container.querySelector('sl-split-panel');
   splitPanel.snap = ({ pos, size }) => (pos < size / 2) ? 100 : (size - 100);
 </script>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import type { SnapFunctionParams } from '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.component.js';
+
+@Component({
+  selector: 'app-split-panel-using-a-custom-snap-function-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  styles: `
+    .split-panel-snapping-fn {
+      position: relative;
+    }
+
+    .split-panel-snapping-fn .split-panel-snapping-dots::before,
+    .split-panel-snapping-fn .split-panel-snapping-dots::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sl-color-neutral-400);
+      transform: translateX(-3px);
+    }
+
+    .split-panel-snapping-fn .split-panel-snapping-dots::before {
+      left: 100px;
+    }
+
+    .split-panel-snapping-fn .split-panel-snapping-dots::after {
+      left: calc(100% - 100px);
+    }
+  `,
+  template: `
+    <div class="split-panel-snapping-fn">
+      <sl-split-panel [snap]="snap">
+        <div slot="start" style="height: 150px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;">Start</div>
+        <div slot="end" style="height: 150px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;">End</div>
+      </sl-split-panel>
+
+      <div class="split-panel-snapping-dots"></div>
+    </div>
+  `
+})
+export class SplitPanelUsingACustomSnapFunctionExampleComponent {
+  // `snap` accepts either a string of positions or a function, so it has to be a property binding: an attribute
+  // could only ever carry the string form. Keep it as a field so the reference stays stable.
+  readonly snap = ({ pos, size }: SnapFunctionParams) => (pos < size / 2 ? 100 : size - 100);
+}
 ```
 
 {% raw %}
@@ -433,6 +683,33 @@ Add the `disabled` attribute to prevent the divider from being repositioned.
 </sl-split-panel>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-split-panel-disabled-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-split-panel disabled>
+      <div
+        slot="start"
+        style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      >
+        Start
+      </div>
+      <div
+        slot="end"
+        style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      >
+        End
+      </div>
+    </sl-split-panel>
+  `
+})
+export class SplitPanelDisabledExampleComponent {}
+```
+
 {% raw %}
 
 ```jsx:react
@@ -507,6 +784,47 @@ Try resizing the example below with each option and notice how the panels respon
 
   select.addEventListener('sl-change', () => (splitPanel.primary = select.value));
 </script>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
+
+@Component({
+  selector: 'app-split-panel-setting-the-primary-panel-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <div>
+      <sl-split-panel [attr.primary]="primary() || null">
+        <div slot="start" style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;">Start</div>
+        <div slot="end" style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;">End</div>
+      </sl-split-panel>
+
+      <sl-select
+        label="Primary Panel"
+        [value]="primary()"
+        style="max-width: 200px; margin-top: 1rem;"
+        (sl-change)="handleChange($event)"
+      >
+        <sl-option value="">None</sl-option>
+        <sl-option value="start">Start</sl-option>
+        <sl-option value="end">End</sl-option>
+      </sl-select>
+    </div>
+  `
+})
+export class SplitPanelSettingThePrimaryPanelExampleComponent {
+  readonly primary = signal('');
+
+  // `primary` has no default, so the empty choice has to remove the attribute rather than set it to "": binding
+  // `null` through [attr.] is what removes it.
+  handleChange(event: Event) {
+    this.primary.set((event.target as HTMLInputElement).value);
+  }
+}
 ```
 
 {% raw %}
@@ -589,6 +907,33 @@ This examples demonstrates how you can ensure both panels are at least 150px usi
 </sl-split-panel>
 ```
 
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-split-panel-min-max-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-split-panel style="--min: 150px; --max: calc(100% - 150px);">
+      <div
+        slot="start"
+        style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      >
+        Start
+      </div>
+      <div
+        slot="end"
+        style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      >
+        End
+      </div>
+    </sl-split-panel>
+  `
+})
+export class SplitPanelMinMaxExampleComponent {}
+```
+
 {% raw %}
 
 ```jsx:react
@@ -655,6 +1000,43 @@ Create complex layouts that can be repositioned independently by nesting split p
     </sl-split-panel>
   </div>
 </sl-split-panel>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-split-panel-nested-split-panels-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-split-panel>
+      <div
+        slot="start"
+        style="height: 400px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden"
+      >
+        Start
+      </div>
+      <div slot="end">
+        <sl-split-panel vertical style="height: 400px;">
+          <div
+            slot="start"
+            style="height: 100%; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden"
+          >
+            Top
+          </div>
+          <div
+            slot="end"
+            style="height: 100%; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden"
+          >
+            Bottom
+          </div>
+        </sl-split-panel>
+      </div>
+    </sl-split-panel>
+  `
+})
+export class SplitPanelNestedSplitPanelsExampleComponent {}
 ```
 
 {% raw %}
@@ -730,6 +1112,35 @@ You can target the `divider` part to apply CSS properties to the divider. To add
     End
   </div>
 </sl-split-panel>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-split-panel-customizing-the-divider-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  template: `
+    <sl-split-panel style="--divider-width: 20px;">
+      <sl-icon slot="divider" name="grip-vertical"></sl-icon>
+      <div
+        slot="start"
+        style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      >
+        Start
+      </div>
+      <div
+        slot="end"
+        style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+      >
+        End
+      </div>
+    </sl-split-panel>
+  `
+})
+export class SplitPanelCustomizingTheDividerExampleComponent {}
 ```
 
 {% raw %}
@@ -818,6 +1229,63 @@ Here's a more elaborate example that changes the divider's color and width and a
     color: var(--sl-color-neutral-0);
   }
 </style>
+```
+
+```ts:angular
+import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-split-panel-customizing-the-divider-2-example',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styles: `
+    .split-panel-divider sl-split-panel {
+        --divider-width: 2px;
+      }
+
+      .split-panel-divider sl-split-panel::part(divider) {
+        background-color: var(--sl-color-pink-600);
+      }
+
+      .split-panel-divider sl-icon {
+        position: absolute;
+        border-radius: var(--sl-border-radius-small);
+        background: var(--sl-color-pink-600);
+        color: var(--sl-color-neutral-0);
+        padding: 0.5rem 0.125rem;
+      }
+
+      .split-panel-divider sl-split-panel::part(divider):focus-visible {
+        background-color: var(--sl-color-primary-600);
+      }
+
+      .split-panel-divider sl-split-panel:focus-within sl-icon {
+        background-color: var(--sl-color-primary-600);
+        color: var(--sl-color-neutral-0);
+      }
+  `,
+  template: `
+    <div class="split-panel-divider">
+      <sl-split-panel>
+        <sl-icon slot="divider" name="grip-vertical"></sl-icon>
+        <div
+          slot="start"
+          style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+        >
+          Start
+        </div>
+        <div
+          slot="end"
+          style="height: 200px; background: var(--sl-color-neutral-50); display: flex; align-items: center; justify-content: center; overflow: hidden;"
+        >
+          End
+        </div>
+      </sl-split-panel>
+    </div>
+  `
+})
+export class SplitPanelCustomizingTheDivider2ExampleComponent {}
 ```
 
 {% raw %}
