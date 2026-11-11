@@ -99,11 +99,8 @@ Per rendere il pattern esplicito/documentato è stato comunque aggiunto:
 Il gap resta solo lato Figma:
 
 1. ~~Il componente `Tab` non ha un prop per l'icona~~ **Risolto lato Figma** (verificato 2026-10-13): `Tab` espone già
-   `Icon [BOOLEAN]` + `Icon Type [INSTANCE_SWAP]`. Resta **bloccato lato template**: `figma/tab.figma.ts` non legge
-   ancora questi due prop perché non esiste un'infrastruttura generica per mappare il nome di un'istanza icona Figma
-   (es. `Icon/chevron-down`) al nome icona Bootstrap usato nel codice (`chevron-down`) — lo stesso limite già
-   annotato più sotto per `sl-comment` (mapping errato che generava `name="gear"`). Da risolvere insieme, non
-   singolarmente per componente.
+   `Icon [BOOLEAN]` + `Icon Type [INSTANCE_SWAP]`. **Risolto lato template**: `figma/tab.figma.ts` legge già
+   `Icon Type`; il nome icona ora passa da `resolveIconName` (vedi nota "Mapping icona Figma → Bootstrap" più sotto).
 2. **`Tab Group`** nel file Figma non espone l'indicator attivo per singolo tab — nei mockup viene simulato con un
    bordo inferiore 2px disegnato a mano sul frame del singolo tab item, invece di essere una proprietà del componente
    Tab/Tab Group. Aggiungere la rappresentazione dell'indicator (es. variant `Active` con bordo inferiore) al componente
@@ -330,8 +327,8 @@ componente mancante segnalato — una riga di commento con avatar, autore, data,
 - Registrato in `src/shoelace.ts`; wrapper React e metadata rigenerati automaticamente dalla build.
 - Composizione fedele all'annotazione: slot `avatar` per `<sl-avatar>`, proprietà/slot `author` e `date` (la data è
   opzionale, mostrata solo se valorizzata), testo nello slot di default, slot `attachment` opzionale per un
-  `<sl-icon-button>` (nel frame Figma è un'icona PDF rossa — il mapping Code Connect del nodo generava erroneamente
-  `name="gear"`, da correggere quando si crea il template `figma/comment.figma.ts`).
+  `<sl-icon-button>` (nel frame Figma è un'icona PDF rossa — il Code Connect del nodo generava `name="gear"`: era il
+  fallback di `figma/icon-button.figma.ts` quando l'icona non è un'istanza; vedi nota "Mapping icona Figma → Bootstrap").
 
 Il gap resta tutto lato Figma — nessun componente "Review Comment" esiste nel file `Saipem-DS`:
 
@@ -850,3 +847,21 @@ Fatto nel codice: `figma/tree-item.figma.ts` emette gli item annidati dentro `<s
 
 Da fare: publish libreria e `npx figma connect publish` (modificato `tree-item`); in Dev Mode il Tree di esempio deve mostrare
 `<sl-tree-item expanded>03 HBS<sl-tree-item expanded>LEVEL1<sl-tree-item>ele1_1</sl-tree-item></sl-tree-item><sl-tree-item selected>KT HBS1</sl-tree-item></sl-tree-item>`.
+
+## Mapping icona Figma → Bootstrap (fix locale, da pubblicare)
+
+Bug: `sl-comment` (e `sl-icon-button`) generavano `name="gear"`. Causa: `figma/icon-button.figma.ts` restituiva `'gear'`
+quando la proprietà `Icon` non puntava a un'istanza (icona staccata/vettore, come l'icona PDF del frame `xCPage`); il
+template di `comment` esegue quello dell'Icon Button nello slot `attachment`.
+
+Fatto (solo file locali, **non pubblicato**): `resolveIconName` — nome da `Icon/<nome>`; se il layer è rinominato, da
+`name="…"` dello snippet dell'icona; altrimenti segnaposto `TODO-icon` (mai un'icona plausibile ma sbagliata). La logica
+sta in un solo helper, `figma/icon-name.ts`, importato con path relativo (il bundler di `figma connect` lo include nel
+template; non è un `.figma.ts`, quindi non viene pubblicato come template) da `icon-button`, `alert`, `tab`, `select`,
+`copy-button`. Prima gli ultimi quattro facevano solo `replace(/^Icon\//, '')` ed emettevano `name="icon"` con un layer
+rinominato. Verificato in locale che il bundler incorpori l'helper in tutti e cinque.
+
+Da fare:
+1. Verificare gli snippet su istanze reali (prima/dopo) e che `TODO-icon` compaia solo dove l'icona non è un'istanza.
+2. Nel nodo `xCPage` sostituire l'icona PDF con l'istanza `Icon/<nome>` del DS, se esiste nel set.
+3. Pubblicare con `npx figma connect publish` (`FIGMA_ACCESS_TOKEN`).

@@ -2,15 +2,15 @@
 // source=src/components/copy-button/copy-button.component.ts
 // component=SlCopyButton
 import figma from 'figma';
+import { resolveIconName } from './icon-name';
 const instance = figma.selectedInstance;
 
 const disabled = instance.getEnum('State', { default: false, success: false, error: false, disabled: true });
 
-// Icon components are named "Icon/<name>", matching the sl-icon `name` attribute.
 // Only icons that differ from the component defaults are emitted as slots.
 function iconSlot(prop: string, slot: string, defaultName: string) {
   const icon = instance.getInstanceSwap(prop);
-  const name = icon && icon.type === 'INSTANCE' ? icon.name.replace(/^Icon\//, '') : defaultName;
+  const name = icon && icon.type === 'INSTANCE' ? resolveIconName(icon) : defaultName;
   return name === defaultName ? '' : figma.html`<sl-icon slot="${slot}" name="${name}"></sl-icon>`;
 }
 

@@ -2,6 +2,7 @@
 // source=src/components/alert/alert.component.ts
 // component=SlAlert
 import figma from 'figma';
+import { resolveIconName } from './icon-name';
 const instance = figma.selectedInstance;
 
 // Text layers are named after their default content, which differs between variants.
@@ -27,7 +28,7 @@ const closable = instance.getBoolean('Closable');
 const showIcon = instance.getBoolean('Show Icon');
 const icons = showIcon ? instance.findConnectedInstances(node => node.name.startsWith('Icon/')) : [];
 const icon = icons[0];
-const iconName = icon && icon.type === 'INSTANCE' ? icon.name.replace(/^Icon\//, '') : '';
+const iconName = icon && icon.type === 'INSTANCE' ? resolveIconName(icon) : '';
 
 export default {
   example: figma.html`<sl-alert variant="${variant}" open${closable ? ' closable' : ''}>${iconName ? figma.html`<sl-icon slot="icon" name="${iconName}"></sl-icon>` : ''}${text('This is a standard alert. You can put any information you want here.')}</sl-alert>`,

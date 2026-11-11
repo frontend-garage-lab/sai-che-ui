@@ -2,6 +2,7 @@
 // source=src/components/tab/tab.component.ts
 // component=SlTab
 import figma from 'figma';
+import { resolveIconName } from './icon-name';
 const instance = figma.selectedInstance;
 
 // Text layers are named after their default content, which differs between variants.
@@ -22,7 +23,7 @@ const panel = label.toLowerCase().replace(/\s+/g, '-');
 
 const hasIcon = instance.getBoolean('Icon');
 const icon = hasIcon ? instance.getInstanceSwap('Icon Type') : null;
-const iconName = icon && icon.type === 'INSTANCE' ? icon.name.replace(/^Icon\//, '') : null;
+const iconName = icon && icon.type === 'INSTANCE' ? resolveIconName(icon) : null;
 const iconCode = iconName ? figma.html`<sl-icon name="${iconName}"></sl-icon>\n    ` : '';
 
 const hasCounter = instance.getBoolean('Counter');

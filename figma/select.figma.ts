@@ -2,6 +2,7 @@
 // source=src/components/select/select.component.ts
 // component=SlSelect
 import figma from 'figma';
+import { resolveIconName } from './icon-name';
 const instance = figma.selectedInstance;
 
 // Text layers are named after their default content, which differs between variants.
@@ -29,13 +30,13 @@ const label = showLabel ? text('label', 'Label') : '';
 const showHelpText = instance.getBoolean('Show Help Text');
 const helpText = showHelpText ? text('help-text', 'Help text') : '';
 
-// Prefix/suffix slots (icon components are named "Icon/<name>", matching sl-icon `name`).
+// Prefix/suffix slots.
 function iconSlot(showProp: string, swapProp: string, slot: string) {
   if (!instance.getBoolean(showProp)) return '';
   const icon = instance.getInstanceSwap(swapProp);
   return icon && icon.type === 'INSTANCE'
     ? figma.html`
-  <sl-icon slot="${slot}" name="${icon.name.replace(/^Icon\//, '')}"></sl-icon>`
+  <sl-icon slot="${slot}" name="${resolveIconName(icon)}"></sl-icon>`
     : '';
 }
 const prefix = iconSlot('Show Prefix', 'Prefix', 'prefix');

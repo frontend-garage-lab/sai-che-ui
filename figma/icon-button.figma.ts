@@ -2,6 +2,7 @@
 // source=src/components/icon-button/icon-button.component.ts
 // component=SlIconButton
 import figma from 'figma';
+import { MISSING_ICON_NAME, resolveIconName } from './icon-name';
 const instance = figma.selectedInstance;
 
 const variant = instance.getEnum('Variant', {
@@ -18,17 +19,9 @@ const filled = instance.getBoolean('Filled');
 // Size ↔ `size` attribute (theme tokens --sl-icon-button-font-size-*); medium = no attribute (inherits font-size).
 const size = instance.getEnum('Size', { small: 'small', medium: '', large: 'large', 'x-large': 'x-large' });
 
-// Icon component instances are named "Icon/<name>", matching the sl-icon `name` attribute directly.
 const icon = instance.getInstanceSwap('Icon');
-// Consumer files rename the swapped layer (e.g. "icon"): when it is not "Icon/<name>", the name is read from the icon's own
-// Code Connect snippet (`<sl-icon name="…">`).
-function resolveIconName() {
-  if (!icon || icon.type !== 'INSTANCE') return 'gear';
-  if (/^Icon\//.test(icon.name)) return icon.name.replace(/^Icon\//, '');
-  const match = /name=\\?"([a-z0-9-]+)\\?"/.exec(JSON.stringify(icon.executeTemplate().example));
-  return match ? match[1] : icon.name;
-}
-const iconName = resolveIconName();
+// A missing or detached icon (not an instance) has no name to read: placeholder, so it shows up in the snippet.
+const iconName = icon && icon.type === 'INSTANCE' ? resolveIconName(icon) : MISSING_ICON_NAME;
 // A layer renamed by the designer (e.g. "Add selected") is the accessible label; the default layer name keeps "Settings".
 const label = instance.name && instance.name !== 'Icon Button' ? instance.name : 'Settings';
 
