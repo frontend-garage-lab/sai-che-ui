@@ -1,0 +1,23 @@
+/*
+ * xCPage-BulkUpload — layout rules specific to this flow. Shared rules live in ../_shared/restyle.css.
+ */
+
+/* Above the workspace: header, breadcrumb, title and a two-row filters card */
+.rs-workspace {
+  --rs-workspace-offset: 30.4375rem;
+  --rs-workspace-height: max(24rem, calc(100vh - var(--rs-workspace-offset)));
+}
+
+/* Set matching rule: one row per condition — New value of · Operator · Existing value of · + / −, as the filter rows
+   of advanced-search (labels only on the first row; every row is ANDed, so no AND | OR selector). */
+.conditions {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 2fr) minmax(0, 4fr) auto;
+  gap: var(--rs-field-gap);
+  align-items: end;
+}
+
+.conditions__actions {
+  min-height: var(--sl-input-height-medium);
+  align-items: center;
+}

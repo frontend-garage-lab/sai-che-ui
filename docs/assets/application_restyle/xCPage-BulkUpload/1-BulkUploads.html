@@ -1,0 +1,333 @@
+<!doctype html>
+<!--
+  xCPage-BulkUpload · 1-BulkUploads — restyle of application_screenshot/xCPage - Bulk Upload/Bulk Upload Page - Full Page View.png, Bulk Upload Page - Main Page - Available Actions.png, Bulk Upload Page - Panel Detail - Properties Tab.png
+  State: test_iso_15 (Draft, Isometric) selected; detail panel on the Properties tab (Info, Upload settings, Summary).
+  Built only with sai-che-ui components (see REPORT.md in this folder for mapping and new elements).
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/xCPage-BulkUpload/1-BulkUploads.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>xCPage · Bulk uploads</title>
+    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
+    <link rel="stylesheet" href="../_shared/restyle.css" />
+    <link rel="stylesheet" href="./flow.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <script>
+      // Reload when esbuild rebuilds after a change in src/
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
+  </head>
+
+  <body class="sl-theme-light">
+    <sl-header>
+      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+      <span slot="logo"></span>
+
+      <sl-header-item slot="actions" class="project-selector">
+        000001 · Yard Training
+        <sl-menu slot="menu" aria-label="Project" style="width: 28rem">
+          <sl-input size="small" placeholder="Search code or project" clearable aria-label="Search projects">
+            <sl-icon slot="prefix" name="search"></sl-icon>
+          </sl-input>
+          <sl-divider></sl-divider>
+          <sl-menu-label>My projects</sl-menu-label>
+          <sl-menu-item type="checkbox" value="000001" checked title="Yard Training"
+            >Yard Training<span slot="suffix" class="rs-meta">000001</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032325" title="Bioraffineria Di Livorno EPC"
+            >Bioraffineria Di Livorno EPC<span slot="suffix" class="rs-meta">032325</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032239" title="Berri Project"
+            >Berri Project<span slot="suffix" class="rs-meta">032239</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="023144" title="Neptun Deep Project"
+            >Neptun Deep Project<span slot="suffix" class="rs-meta">023144</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032197" title="Natural Gas Storage Plant"
+            >Natural Gas Storage Plant<span slot="suffix" class="rs-meta">032197</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="F10412" title="–"
+            >–<span slot="suffix" class="rs-meta">F10412</span></sl-menu-item
+          >
+        </sl-menu>
+      </sl-header-item>
+      <sl-header-item slot="actions">
+        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+        Mario Rossi
+        <sl-menu slot="menu">
+          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+    </sl-header>
+
+    <div class="rs-shell">
+      <sl-sidebar label="Project navigation" collapsed>
+        <sl-sidebar-group label="Documenti di progetto" count="70">
+          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+          <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Procurement (SAP)" count="71">
+          <sl-icon slot="icon" name="cart"></sl-icon>
+          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Comunicazione" count="47">
+          <sl-icon slot="icon" name="envelope"></sl-icon>
+          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Tasks" count="55">
+          <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+          <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Distribution Matrices">
+          <sl-icon slot="icon" name="diagram-3"></sl-icon>
+          <sl-sidebar-item href="../xCPage-DistributionMatrices/1-DistributionMatrices.html"
+            >Distribution matrices</sl-sidebar-item
+          >
+          <sl-sidebar-item href="../xCPage-DistributionMatrices/2-CreateTemplate.html"
+            >Preparation area</sl-sidebar-item
+          >
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Configuration">
+          <sl-icon slot="icon" name="gear"></sl-icon>
+          <sl-sidebar-item href="1-BulkUploads.html" current>Bulk uploads</sl-sidebar-item>
+        </sl-sidebar-group>
+      </sl-sidebar>
+
+      <main class="rs-page rs-page--fill" aria-label="Bulk uploads">
+        <sl-breadcrumb aria-label="Breadcrumb">
+          <sl-breadcrumb-item href="../DMS-Home/1-Home.html">Home</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Configuration</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Bulk uploads</sl-breadcrumb-item>
+        </sl-breadcrumb>
+
+        <div class="rs-page-header">
+          <div class="rs-page-header__text">
+            <h1 class="rs-title">Bulk uploads</h1>
+            <p class="rs-meta">
+              Load documents from a spreadsheet and decide how each row matches the documents already in the project
+            </p>
+          </div>
+        </div>
+        <div class="rs-stack">
+          <sl-card aria-label="Filters">
+            <div slot="header" class="rs-cluster rs-cluster--between">
+              <h2 class="rs-heading rs-inline"><sl-icon name="filter"></sl-icon>Filters</h2>
+              <sl-button class="more-filters" size="small" variant="text">
+                <sl-icon slot="prefix" name="plus-lg"></sl-icon>
+                More filters
+              </sl-button>
+            </div>
+            <form class="rs-grid rs-grid--fields">
+              <sl-input class="rs-span-4" type="search" label="Bulk upload name" clearable>
+                <sl-icon slot="prefix" name="search"></sl-icon>
+              </sl-input>
+              <sl-select class="rs-span-2" label="State" placeholder="Any" clearable>
+                <sl-option value="draft">Draft</sl-option>
+                <sl-option value="validated">Validated</sl-option>
+                <sl-option value="scheduled">Scheduled</sl-option>
+                <sl-option value="processed">Processed</sl-option>
+              </sl-select>
+              <sl-select class="rs-span-2" label="Template" placeholder="Any" clearable>
+                <sl-option value="job">Job Document</sl-option>
+                <sl-option value="iso">Isometric Document</sl-option>
+              </sl-select>
+              <sl-input class="rs-span-2" type="date" label="Created on or after"></sl-input>
+              <sl-select class="rs-span-2" label="Created by" placeholder="Anyone" clearable>
+                <sl-option value="user_test1">user_test1</sl-option>
+                <sl-option value="user_test2">user_test2</sl-option>
+                <sl-option value="deangeli">De Angeli Filippo</sl-option>
+                <sl-option value="kuppili">Kuppili Sai Durga</sl-option>
+              </sl-select>
+              <div class="rs-span-12 rs-cluster rs-cluster--end">
+                <sl-button type="reset" variant="text">Reset</sl-button>
+                <sl-button type="submit" variant="primary"
+                  ><sl-icon slot="prefix" name="search"></sl-icon>Search</sl-button
+                >
+              </div>
+            </form>
+          </sl-card>
+
+          <div class="rs-workspace">
+            <section class="rs-workspace__main rs-span-7" aria-label="Bulk uploads list">
+              <sl-table
+                id="bulk-upload-table"
+                selection="single"
+                class="bulk-upload-list"
+                fill
+                sticky-header
+                paginate
+                page-size="25"
+                label="Bulk uploads"
+              >
+                <div
+                  slot="toolbar"
+                  class="rs-cluster rs-cluster--nowrap rs-grow"
+                  role="toolbar"
+                  aria-label="Bulk upload actions"
+                >
+                  <sl-button size="small" variant="primary"
+                    ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Create bulk upload</sl-button
+                  >
+                  <sl-button size="small"><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-button>
+                  <span class="rs-spacer"></span>
+                  <sl-dropdown placement="bottom-end" hoist data-table-options>
+                    <sl-button slot="trigger" size="small" caret
+                      ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                    >
+                  </sl-dropdown>
+                </div>
+                <sl-empty-state
+                  slot="empty"
+                  title-text="No bulk uploads"
+                  description="Change the filters, or create a bulk upload."
+                >
+                  <sl-icon slot="icon" name="search"></sl-icon>
+                </sl-empty-state>
+              </sl-table>
+            </section>
+
+            <sl-detail-panel contained class="rs-span-5" aria-label="Bulk upload properties">
+              <span slot="label">test_iso_15</span>
+              <span slot="meta">Isometric Bulk Upload · Created on 15-Jul-2026 08:34</span>
+              <sl-tab-group>
+                <sl-tab slot="nav" panel="properties" active
+                  ><span class="rs-inline"><sl-icon name="info-circle"></sl-icon>Properties</span></sl-tab
+                >
+                <sl-tab slot="nav" panel="rules"
+                  ><span class="rs-inline"><sl-icon name="diagram-3"></sl-icon>Matching rules</span></sl-tab
+                >
+
+                <sl-tab-panel name="properties" active>
+                  <div class="rs-inset rs-stack rs-stack--loose">
+                    <sl-description-list cols="2">
+                      <sl-description-list-item label="Bulk upload name">test_iso_15</sl-description-list-item>
+                      <sl-description-list-item label="State"
+                        ><sl-status filled variant="neutral" size="small">Draft</sl-status></sl-description-list-item
+                      >
+                      <sl-description-list-item label="Bulk upload type"
+                        >Isometric Bulk Upload</sl-description-list-item
+                      >
+                      <sl-description-list-item label="Created on">15-Jul-2026 08:34</sl-description-list-item>
+                      <sl-description-list-item label="Creator name">—</sl-description-list-item>
+                      <sl-description-list-item label="Document matching rules"
+                        >3 matching rules defined</sl-description-list-item
+                      >
+                    </sl-description-list>
+                    <div class="rs-stack rs-stack--tight">
+                      <sl-details summary="Upload settings" open>
+                        <sl-description-list cols="2">
+                          <sl-description-list-item label="Allowed document type"
+                            ><sl-tag size="small" variant="primary"
+                              >Isometric Document</sl-tag
+                            ></sl-description-list-item
+                          >
+                          <sl-description-list-item label="Allowed document template"
+                            ><sl-tag size="small" variant="primary"
+                              >Isometric Document</sl-tag
+                            ></sl-description-list-item
+                          >
+                          <sl-description-list-item label="Blank value">BLANK</sl-description-list-item>
+                          <sl-description-list-item label="Ignore value">ignore</sl-description-list-item>
+                          <sl-description-list-item label="Lock template settings">No</sl-description-list-item>
+                          <sl-description-list-item label="Scheduled to run at">Not scheduled</sl-description-list-item>
+                        </sl-description-list>
+                      </sl-details>
+                      <sl-details summary="Summary">
+                        <div class="rs-stack">
+                          <h3 class="rs-subheading">Processing</h3>
+                          <sl-description-list cols="2">
+                            <sl-description-list-item label="Times processed">0</sl-description-list-item>
+                            <sl-description-list-item label="Last process date">—</sl-description-list-item>
+                            <sl-description-list-item label="Last process successes">0</sl-description-list-item>
+                            <sl-description-list-item label="Last process failures">0</sl-description-list-item>
+                            <sl-description-list-item label="Last processed duration">—</sl-description-list-item>
+                            <sl-description-list-item label="Last processed by">—</sl-description-list-item>
+                          </sl-description-list>
+                          <sl-divider></sl-divider>
+                          <h3 class="rs-subheading">Validation</h3>
+                          <sl-description-list cols="2">
+                            <sl-description-list-item label="Times validated">0</sl-description-list-item>
+                            <sl-description-list-item label="Last validation date">—</sl-description-list-item>
+                            <sl-description-list-item label="Last validation successes">0</sl-description-list-item>
+                            <sl-description-list-item label="Last validation failures">0</sl-description-list-item>
+                            <sl-description-list-item label="Last validation by">—</sl-description-list-item>
+                          </sl-description-list>
+                        </div>
+                      </sl-details>
+                    </div>
+                  </div>
+                </sl-tab-panel>
+                <sl-tab-panel name="rules">
+                  <div class="rs-inset rs-stack rs-stack--tight">
+                    <div class="rs-inline">
+                      <h3 class="rs-subheading">Matching rules</h3>
+                      <span class="rs-meta">3</span>
+                    </div>
+                    <p class="rs-meta">
+                      Each row of the file is compared with the document already in the project: when all the conditions
+                      of a rule are true, its action is performed.
+                    </p>
+                    <sl-table class="panel-rule-list" label="Matching rules of test_iso_15"></sl-table>
+                  </div>
+                </sl-tab-panel>
+              </sl-tab-group>
+            </sl-detail-panel>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- More filters (closed): no secondary filters yet, the drawer is ready for them -->
+    <sl-drawer class="more-filters-drawer" label="More filters" placement="end">
+      <sl-empty-state title-text="No more filters" description="Secondary filters will appear here.">
+        <sl-icon slot="icon" name="filter"></sl-icon>
+      </sl-empty-state>
+      <sl-button slot="footer" variant="text">Clear</sl-button>
+      <sl-button slot="footer" variant="primary"
+        ><sl-icon slot="prefix" name="filter"></sl-icon>Apply filters</sl-button
+      >
+    </sl-drawer>
+
+    <script type="module">
+      document
+        .querySelector('.more-filters')
+        ?.addEventListener('click', () => document.querySelector('.more-filters-drawer').show());
+      import * as flow from './data.js';
+
+      await flow.mountTable('.bulk-upload-list', {
+        columns: flow.bulkUploadColumns,
+        data: flow.bulkUploads,
+        isSelected: flow.isSelectedBulkUpload
+      });
+      await flow.mountTable('.panel-rule-list', { columns: flow.ruleColumns, data: flow.isoRules });
+    </script>
+  </body>
+</html>

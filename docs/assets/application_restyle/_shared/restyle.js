@@ -62,7 +62,11 @@ export const STATUS_VARIANT = {
   // Dashboard of the personal workspace (DMS-MyWork): items waiting for an action are in progress
   Consolidated: 'primary',
   Opened: 'primary',
-  'Issued To CM/SM': 'primary'
+  'Issued To CM/SM': 'primary',
+  // Bulk uploads (xCPage-BulkUpload): validated = checked, waiting for processing; scheduled = run pending
+  Validated: 'primary',
+  Scheduled: 'warning',
+  Processed: 'success'
 };
 
 /** A state as the app shows it: filled status, colour from the catalog. */
@@ -184,7 +188,7 @@ const revisionState = record => ((record.revisionStatus ?? record.status) === 'C
  * the main table and on the revisions table, and it follows the record: Check out / Check in and Add to / Remove from
  * clipboard depending on the document's current state.
  */
-const documentMenu = ({ row }) => html`
+export const documentMenu = ({ row }) => html`
   <sl-menu>
     <sl-menu-item value="operations"><sl-icon slot="prefix" name="gear"></sl-icon>Operations</sl-menu-item>
     <sl-menu-item value="edit"><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-menu-item>

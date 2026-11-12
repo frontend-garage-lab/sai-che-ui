@@ -275,3 +275,25 @@ Caso tipico: una pagina già fatta cambia layout (es. le sezioni di un form dive
 - **Margini che nel codice collassano** (elementi block con margini verticali consecutivi, es. `sl-input` e `sl-divider` dentro `sl-menu`): in Figma padding e spaziature si sommano. Riproduci lo spazio reale misurato nel browser, togliendo uno dei due (es. `paddingBottom = 0` sul frame del campo).
 - **Prima di proporre una correzione al master per una differenza di testo** (dimensione, interlinea), confronta l'istanza con il master: spesso è un override locale ereditato da una pagina clonata. Conta quante istanze nel file hanno lo stesso scarto (es. testi `Meta` con `fontSize !== 14`): se è solo una, si corregge l'istanza, non il master (2026-11-10, Detail Panel della Clipboard).
 - **Non riassegnare a un INSTANCE_SWAP il componente che ha già** (es. `Icon` = la stessa icona di default del master): lo swap azzera gli override annidati, compreso il colore dell'icona impostato nel master. Imposta lo swap solo quando l'icona cambia (2026-11-10, Stat primary della Dashboard).
+
+## Slot di dimensione fissa (aggiunto 2026-11-12, Split Panel)
+
+- Larghezza, altezza e min-size di uno **SLOT** non si sovrascrivono nell'istanza (`resize` non ha effetto, `minWidth` dà "cannot be overridden in an instance"). Se la misura dello slot deve cambiare da istanza a istanza (es. posizione di uno split), nel master lo slot va in **HUG** (con un `minWidth` di riserva): la misura la dà il contenuto messo nell'istanza.
+- Nello slot `Items` della Description List invece `itemSpacing` si può sovrascrivere (8 = gap del codice tra le righe).
+- I figli nascosti con `visible = false` di un'istanza (es. la 4ª Tab del Tab Group) poi non si ritrovano più nei `children`: per mostrare una tab in più usa i booleani `Tab 5/6/7`.
+
+## Tabelle vuote, Tab Group clonati, multi-select (aggiunto 2026-11-12, xCPage-UserManagement)
+
+- **Tabella vuota con intestazioni** (empty state sotto le colonne, come `sl-table` senza righe): `Show Rows` resta
+  `true`, `Show Empty` = `true`; si rimuovono le celle visibili da ogni slot `Cells` (la cella template nascosta
+  resta), ogni colonna `resize(w, 40)`, il frame `Columns` in `HUG` e lo slot `Empty` in `FILL`. Con `Show Rows=false`
+  sparisce anche la riga delle intestazioni.
+- Dopo un `setProperties` sulla Table, `findOne('Columns').children` può risultare vuoto (lettura aliasata) mentre le
+  celle ci sono: rimuovi le celle per id completo preso da `get_metadata` (`I<table>;<slot Rows>;<colonna>;<slot Cells>`).
+- **Clonare un Tab Group** con tab nascoste via override perde quelle tab (non tornano visibili): per un Tab Group
+  con tab diverse crea un'istanza **fresca** del master, clona il contenuto del pannello nello slot `Panel` e metti
+  `FILL` sia sullo slot sia sul contenuto (altrimenti il pannello resta largo 378 px).
+- **Select `Multiple=true`**: con i Tag nello slot, `clear-group` ed `expand-group` restano attaccati ai tag invece che
+  al bordo destro. Metti `tags-group.layoutSizingHorizontal = "FILL"` sull'istanza.
+- Cella con icona + testo (es. nome utente con `person-fill`): `Table Cell` `Type=document` con `File type` (swap
+  dell'icona) e `Meta 1/2` vuoti; il layer `Reference` vuoto va nascosto, altrimenti il testo sale.

@@ -1,0 +1,372 @@
+<!doctype html>
+<!--
+  xCPage-Structures · 2-Structures-Properties — restyle of application_screenshot/xCPage - Structures/Structures Page - Folder Properties.png, Create Sub Folder Button.png
+  State: Test_EMC selected in the tree; Properties tab (summary + Info expanded, Save); Clipboard with nothing ticked.
+  Built only with sai-che-ui components (see REPORT.md in this folder for mapping and new elements).
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/xCPage-Structures/2-Structures-Properties.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>xCPage · Structures</title>
+    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
+    <link rel="stylesheet" href="../_shared/restyle.css" />
+    <link rel="stylesheet" href="./flow.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <script>
+      // Reload when esbuild rebuilds after a change in src/
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
+  </head>
+
+  <body class="sl-theme-light">
+    <sl-header>
+      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+      <span slot="logo"></span>
+
+      <sl-header-item slot="actions" class="project-selector">
+        99_PAGE_AM
+        <sl-menu slot="menu" aria-label="Project" style="width: 28rem">
+          <sl-input size="small" placeholder="Search code or project" clearable aria-label="Search projects">
+            <sl-icon slot="prefix" name="search"></sl-icon>
+          </sl-input>
+          <sl-divider></sl-divider>
+          <sl-menu-label>My projects</sl-menu-label>
+          <sl-menu-item type="checkbox" value="000001" checked title="Yard Training"
+            >Yard Training<span slot="suffix" class="rs-meta">000001</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032325" title="Bioraffineria Di Livorno EPC"
+            >Bioraffineria Di Livorno EPC<span slot="suffix" class="rs-meta">032325</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032239" title="Berri Project"
+            >Berri Project<span slot="suffix" class="rs-meta">032239</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="023144" title="Neptun Deep Project"
+            >Neptun Deep Project<span slot="suffix" class="rs-meta">023144</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032197" title="Natural Gas Storage Plant"
+            >Natural Gas Storage Plant<span slot="suffix" class="rs-meta">032197</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="F10412" title="–"
+            >–<span slot="suffix" class="rs-meta">F10412</span></sl-menu-item
+          >
+        </sl-menu>
+      </sl-header-item>
+      <sl-header-item slot="actions">
+        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+        Mario Rossi
+        <sl-menu slot="menu">
+          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+    </sl-header>
+
+    <div class="rs-shell">
+      <sl-sidebar label="Project navigation" collapsed>
+        <sl-sidebar-group label="Documenti di progetto" count="70">
+          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+          <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Procurement (SAP)" count="71">
+          <sl-icon slot="icon" name="cart"></sl-icon>
+          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Comunicazione" count="47">
+          <sl-icon slot="icon" name="envelope"></sl-icon>
+          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Tasks" count="55">
+          <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+          <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Project data">
+          <sl-icon slot="icon" name="folder"></sl-icon>
+          <sl-sidebar-item href="1-Structures.html" current>Structures</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Distribution Matrices">
+          <sl-icon slot="icon" name="diagram-3"></sl-icon>
+          <sl-sidebar-item href="../xCPage-DistributionMatrices/1-DistributionMatrices.html"
+            >Distribution matrices</sl-sidebar-item
+          >
+          <sl-sidebar-item href="../xCPage-DistributionMatrices/2-CreateTemplate.html"
+            >Preparation area</sl-sidebar-item
+          >
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Configuration">
+          <sl-icon slot="icon" name="gear"></sl-icon>
+          <sl-sidebar-item href="../xCPage-BulkUpload/1-BulkUploads.html">Bulk uploads</sl-sidebar-item>
+        </sl-sidebar-group>
+      </sl-sidebar>
+
+      <main class="rs-page rs-page--fill" aria-label="Structures">
+        <sl-breadcrumb aria-label="Breadcrumb">
+          <sl-breadcrumb-item href="../DMS-Home/1-Home.html">Home</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Project data</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Structures</sl-breadcrumb-item>
+        </sl-breadcrumb>
+        <div class="rs-page-header">
+          <div class="rs-page-header__text">
+            <h1 class="rs-title">Structures</h1>
+            <p class="rs-meta">
+              Browse the project breakdown structures, set what each node can contain and link documents to it
+            </p>
+          </div>
+        </div>
+        <div class="rs-stack">
+          <div class="rs-workspace structures-workspace">
+            <sl-card class="rs-fill structures-card" aria-label="Structures">
+              <sl-split-panel class="structures-split" position-in-pixels="344" primary="start">
+                <section slot="start" class="structure-pane" aria-label="Structures">
+                  <sl-tab-group class="structure-tabs">
+                    <sl-tab slot="nav" panel="wbs" active>01 WBS</sl-tab>
+                    <sl-tab slot="nav" panel="pbs">02 PBS</sl-tab>
+                    <sl-tab slot="nav" panel="hbs">03 HBS</sl-tab>
+                    <sl-tab slot="nav" panel="gbs">04 GBS</sl-tab>
+                    <sl-tab-panel name="wbs" active
+                      ><div class="rs-scroll tree-scroll">
+                        <sl-tree class="structure-tree" selection="single" aria-label="01 WBS"
+                          ><sl-tree-item lazy><sl-icon name="folder"></sl-icon>00</sl-tree-item
+                          ><sl-tree-item><sl-icon name="folder"></sl-icon>10</sl-tree-item
+                          ><sl-tree-item expanded
+                            ><sl-icon name="folder"></sl-icon>1000<sl-tree-item expanded
+                              ><sl-icon name="folder"></sl-icon>Test_Discipline<sl-tree-item expanded selected
+                                ><sl-icon name="folder"></sl-icon>Test_EMC<sl-tree-item
+                                  ><sl-icon name="folder"></sl-icon>Test_Activity_23June</sl-tree-item
+                                ></sl-tree-item
+                              ></sl-tree-item
+                            ></sl-tree-item
+                          ><sl-tree-item><sl-icon name="folder"></sl-icon>11</sl-tree-item
+                          ><sl-tree-item><sl-icon name="folder"></sl-icon>19</sl-tree-item
+                          ><sl-tree-item lazy><sl-icon name="folder"></sl-icon>A</sl-tree-item
+                          ><sl-tree-item lazy><sl-icon name="folder"></sl-icon>B</sl-tree-item
+                          ><sl-tree-item lazy><sl-icon name="folder"></sl-icon>B1</sl-tree-item
+                          ><sl-tree-item lazy><sl-icon name="folder"></sl-icon>FA</sl-tree-item
+                          ><sl-tree-item lazy><sl-icon name="folder"></sl-icon>KT1</sl-tree-item
+                          ><sl-tree-item><sl-icon name="folder"></sl-icon>KT2</sl-tree-item
+                          ><sl-tree-item><sl-icon name="folder"></sl-icon>MI</sl-tree-item
+                          ><sl-tree-item><sl-icon name="folder"></sl-icon>New Element</sl-tree-item></sl-tree
+                        >
+                      </div></sl-tab-panel
+                    >
+                    <sl-tab-panel name="pbs"></sl-tab-panel>
+                    <sl-tab-panel name="hbs"></sl-tab-panel>
+                    <sl-tab-panel name="gbs"></sl-tab-panel>
+                  </sl-tab-group>
+                </section>
+                <section slot="end" class="rs-stack node-pane" aria-label="Node details">
+                  <div class="rs-cluster rs-cluster--between">
+                    <div class="rs-stack rs-stack--tight">
+                      <div class="rs-inline">
+                        <h2 class="rs-heading">Test_EMC</h2>
+                        <sl-tag size="small" variant="primary">WBS EMC</sl-tag>
+                      </div>
+                      <p class="rs-meta">01 WBS › 1000 › Test_Discipline</p>
+                    </div>
+                    <sl-button size="small" variant="primary"
+                      ><sl-icon slot="prefix" name="plus-lg"></sl-icon>New child element</sl-button
+                    >
+                  </div>
+                  <sl-tab-group class="node-tabs"
+                    ><sl-tab slot="nav" panel="documents"
+                      ><span class="rs-inline"
+                        ><sl-icon name="files"></sl-icon>Documents<sl-badge pill variant="neutral">0</sl-badge></span
+                      ></sl-tab
+                    ><sl-tab slot="nav" panel="properties" active
+                      ><span class="rs-inline"><sl-icon name="info-circle"></sl-icon>Properties</span></sl-tab
+                    ><sl-tab slot="nav" panel="rules"
+                      ><span class="rs-inline"><sl-icon name="diagram-3"></sl-icon>Content rules</span></sl-tab
+                    >
+                    <sl-tab-panel name="properties" active>
+                      <div class="rs-stack rs-stack--loose">
+                        <sl-description-list cols="2">
+                          <sl-description-list-item label="Name">Test_EMC</sl-description-list-item>
+                          <sl-description-list-item label="Element type"
+                            ><sl-tag size="small" variant="primary">WBS EMC</sl-tag></sl-description-list-item
+                          >
+                          <sl-description-list-item label="Project code">99_PAGE_AM</sl-description-list-item>
+                          <sl-description-list-item label="Creator name">saxt0068</sl-description-list-item>
+                          <sl-description-list-item label="Created">24-Jun-2019 07:35</sl-description-list-item>
+                        </sl-description-list>
+                        <div class="rs-stack rs-stack--tight">
+                          <sl-details summary="Info" open
+                            ><div class="rs-grid rs-grid--fields">
+                              <sl-input class="rs-span-6" label="WBS node ID" required value="9100"></sl-input>
+                              <sl-select class="rs-span-6" label="Managing department" placeholder="Select…" clearable>
+                                <sl-option value="pipe">PIPE-PIPING</sl-option>
+                              </sl-select>
+                              <sl-input class="rs-span-12" label="Description" required value="Test"></sl-input>
+                              <sl-textarea class="rs-span-12" label="Remarks" rows="2"></sl-textarea></div
+                          ></sl-details>
+                        </div>
+                        <div class="rs-cluster rs-cluster--end">
+                          <sl-button variant="primary"><sl-icon slot="prefix" name="floppy"></sl-icon>Save</sl-button>
+                        </div>
+                      </div>
+                    </sl-tab-panel>
+                    <sl-tab-panel name="rules">
+                      <div class="rs-stack rs-stack--loose">
+                        <div class="rs-grid rs-grid--fields">
+                          <sl-checkbox
+                            class="rs-span-12"
+                            size="small"
+                            help-text="When on, the rules below come from the parent node and cannot be changed"
+                            >Inherit parent containment rules</sl-checkbox
+                          >
+                          <sl-select
+                            class="rs-span-6"
+                            label="Specific document types"
+                            placeholder="Any document type"
+                            multiple
+                            clearable
+                          ></sl-select>
+                          <sl-select
+                            class="rs-span-6"
+                            label="Specific sub-folder types"
+                            placeholder="Any sub-folder type"
+                            multiple
+                            clearable
+                            value="wbs-activity wbs-intermediate-emc"
+                            ><sl-option value="wbs-activity">WBS Activity</sl-option
+                            ><sl-option value="wbs-emc">WBS EMC</sl-option
+                            ><sl-option value="wbs-intermediate-discipline">WBS Intermediate Discipline</sl-option
+                            ><sl-option value="wbs-intermediate-emc">WBS Intermediate EMC</sl-option></sl-select
+                          >
+                          <sl-select
+                            class="rs-span-6"
+                            label="Configuration object types"
+                            placeholder="Not available here"
+                            multiple
+                            disabled
+                          ></sl-select>
+                          <span class="rs-span-6"></span>
+                          <sl-select
+                            class="rs-span-6"
+                            label="Stop create new documents for roles"
+                            placeholder="No role blocked"
+                            multiple
+                            clearable
+                            ><sl-option value="member">Member</sl-option><sl-option value="guest">Guest</sl-option
+                            ><sl-option value="admin">Admin</sl-option></sl-select
+                          >
+                          <sl-select
+                            class="rs-span-6"
+                            label="Stop create new folders for roles"
+                            placeholder="No role blocked"
+                            multiple
+                            clearable
+                            value="member guest"
+                            ><sl-option value="member">Member</sl-option><sl-option value="guest">Guest</sl-option
+                            ><sl-option value="admin">Admin</sl-option></sl-select
+                          >
+                        </div>
+                        <div class="rs-cluster rs-cluster--end">
+                          <sl-button variant="primary"><sl-icon slot="prefix" name="floppy"></sl-icon>Save</sl-button>
+                        </div>
+                      </div>
+                    </sl-tab-panel>
+                    <sl-tab-panel name="documents">
+                      <div class="rs-fill node-documents">
+                        <sl-table
+                          class="linked-list"
+                          selection="multiple"
+                          fill
+                          sticky-header
+                          label="Documents linked to Test_EMC"
+                        >
+                          <div
+                            slot="toolbar"
+                            class="rs-cluster rs-cluster--nowrap rs-grow"
+                            role="toolbar"
+                            aria-label="Document actions"
+                          >
+                            <sl-button size="small" disabled
+                              ><sl-icon slot="prefix" name="x-lg"></sl-icon>Unlink documents</sl-button
+                            >
+                            <span class="rs-spacer"></span>
+                            <sl-dropdown placement="bottom-end" hoist data-table-options>
+                              <sl-button slot="trigger" size="small" caret
+                                ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                              >
+                            </sl-dropdown>
+                          </div>
+                          <sl-empty-state
+                            slot="empty"
+                            title-text="No documents linked"
+                            description="Tick documents in the Clipboard, then use Link documents."
+                          >
+                            <sl-icon slot="icon" name="link-45deg"></sl-icon>
+                          </sl-empty-state>
+                        </sl-table>
+                      </div> </sl-tab-panel
+                  ></sl-tab-group>
+                </section>
+              </sl-split-panel>
+            </sl-card>
+            <sl-detail-panel contained class="clipboard-panel" aria-label="Clipboard">
+              <span slot="label">Clipboard</span>
+              <span slot="meta">5 documents to link to the selected folder</span>
+              <div class="rs-inset rs-fill clipboard-body">
+                <sl-table class="clipboard-list" selection="multiple" fill sticky-header label="Clipboard documents">
+                  <div
+                    slot="toolbar"
+                    class="rs-cluster rs-cluster--nowrap rs-grow"
+                    role="toolbar"
+                    aria-label="Clipboard actions"
+                  >
+                    <sl-button size="small" variant="primary" disabled
+                      ><sl-icon slot="prefix" name="link-45deg"></sl-icon>Link documents</sl-button
+                    >
+                  </div>
+                  <sl-empty-state
+                    slot="empty"
+                    title-text="The Clipboard is empty"
+                    description="Use Add to Clipboard on documents in lists and search results."
+                  >
+                    <sl-icon slot="icon" name="clipboard"></sl-icon>
+                  </sl-empty-state>
+                </sl-table>
+              </div>
+            </sl-detail-panel>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script type="module">
+      import * as flow from './data.js';
+      const clipboard = await flow.mountTable('.clipboard-list', {
+        columns: flow.clipboardColumns,
+        data: flow.clipboardDocuments
+      });
+      await flow.mountTable('.linked-list', { columns: flow.linkedColumns, data: [] });
+    </script>
+  </body>
+</html>
