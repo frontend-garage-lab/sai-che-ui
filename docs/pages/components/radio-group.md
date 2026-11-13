@@ -14,8 +14,8 @@ layout: component
 ```
 
 ```jsx:react
-import SlRadio from '@shoelace-style/shoelace/dist/react/radio';
-import SlRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
+import SlRadio from '@saipem/design-system/dist/react/radio';
+import SlRadioGroup from '@saipem/design-system/dist/react/radio-group';
 
 const App = () => (
   <SlRadioGroup label="Select an option" name="a" value="1">
@@ -27,8 +27,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio/radio.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import '@saipem/design-system/%NPMDIR%/components/radio/radio.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-group/radio-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -60,8 +60,8 @@ Add descriptive help text to a radio group with the `help-text` attribute. For h
 ```
 
 ```jsx:react
-import SlRadio from '@shoelace-style/shoelace/dist/react/radio';
-import SlRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
+import SlRadio from '@saipem/design-system/dist/react/radio';
+import SlRadioGroup from '@saipem/design-system/dist/react/radio-group';
 
 const App = () => (
   <SlRadioGroup label="Select an option" help-text="Choose the most appropriate option." name="a" value="1">
@@ -73,8 +73,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio/radio.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import '@saipem/design-system/%NPMDIR%/components/radio/radio.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-group/radio-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -104,8 +104,8 @@ export class RadioGroupHelpTextExampleComponent {}
 ```
 
 ```jsx:react
-import SlRadioButton from '@shoelace-style/shoelace/dist/react/radio-button';
-import SlRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
+import SlRadioButton from '@saipem/design-system/dist/react/radio-button';
+import SlRadioGroup from '@saipem/design-system/dist/react/radio-group';
 
 const App = () => (
   <SlRadioGroup label="Select an option" name="a" value="1">
@@ -117,8 +117,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-button/radio-button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-button/radio-button.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-group/radio-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -148,8 +148,8 @@ Radios and radio buttons can be disabled by adding the `disabled` attribute to t
 ```
 
 ```jsx:react
-import SlRadio from '@shoelace-style/shoelace/dist/react/radio';
-import SlRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
+import SlRadio from '@saipem/design-system/dist/react/radio';
+import SlRadioGroup from '@saipem/design-system/dist/react/radio-group';
 
 const App = () => (
   <SlRadioGroup label="Select an option" name="a" value="1">
@@ -163,8 +163,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio/radio.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import '@saipem/design-system/%NPMDIR%/components/radio/radio.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-group/radio-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -203,8 +203,8 @@ The size of [Radios](/components/radio) and [Radio Buttons](/components/radio-bu
 
 ```jsx react
 import { useState } from 'react';
-import SlRadio from '@shoelace-style/shoelace/dist/react/radio';
-import SlRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
+import SlRadio from '@saipem/design-system/dist/react/radio';
+import SlRadioGroup from '@saipem/design-system/dist/react/radio-group';
 
 const App = () => {
   const [size, setSize] = useState('medium');
@@ -258,10 +258,10 @@ Setting the `required` attribute to make selecting an option mandatory. If a val
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
-import SlRadio from '@shoelace-style/shoelace/dist/react/radio';
-import SlRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlIcon from '@saipem/design-system/dist/react/icon';
+import SlRadio from '@saipem/design-system/dist/react/radio';
+import SlRadioGroup from '@saipem/design-system/dist/react/radio-group';
 const App = () => {
   function handleSubmit(event) {
     event.preventDefault();
@@ -291,9 +291,9 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio/radio.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/radio/radio.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-group/radio-group.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -361,10 +361,10 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
 
 ```jsx:react
 import { useEffect, useRef } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
-import SlRadio from '@shoelace-style/shoelace/dist/react/radio';
-import SlRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlIcon from '@saipem/design-system/dist/react/icon';
+import SlRadio from '@saipem/design-system/dist/react/radio';
+import SlRadioGroup from '@saipem/design-system/dist/react/radio-group';
 const App = () => {
   const radioGroup = useRef(null);
   const errorMessage = 'You must choose this option';
@@ -399,11 +399,11 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio/radio.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/radio/radio.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-group/radio-group.js';
 import { afterNextRender, ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, viewChild } from '@angular/core';
-import type SlRadioGroup from '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.component.js';
+import type SlRadioGroup from '@saipem/design-system/%NPMDIR%/components/radio-group/radio-group.component.js';
 
 const ERROR_MESSAGE = 'You must choose the last option';
 

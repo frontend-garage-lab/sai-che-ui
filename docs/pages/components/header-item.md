@@ -24,10 +24,10 @@ mark the active page, or add a `menu` slot to turn the item into a dropdown.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/header/header.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/header-item/header-item.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/header/header.js';
+import '@saipem/design-system/%NPMDIR%/components/header-item/header-item.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -74,10 +74,10 @@ The item renders a chevron and opens the menu when clicked.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/header/header.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/header-item/header-item.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/header/header.js';
+import '@saipem/design-system/%NPMDIR%/components/header-item/header-item.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -114,8 +114,8 @@ Set the `current` attribute to mark the item for the page the user is on.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/header/header.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/header-item/header-item.js';
+import '@saipem/design-system/%NPMDIR%/components/header/header.js';
+import '@saipem/design-system/%NPMDIR%/components/header-item/header-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

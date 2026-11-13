@@ -16,8 +16,8 @@ Tooltips use `display: contents` so they won't interfere with how elements are p
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlTooltip from '@saipem/design-system/dist/react/tooltip';
 
 const App = () => (
   <SlTooltip content="This is a tooltip">
@@ -27,8 +27,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/tooltip/tooltip.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -143,8 +143,8 @@ Use the `placement` attribute to set the preferred placement of the tooltip.
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlTooltip from '@saipem/design-system/dist/react/tooltip';
 
 const css = `
   .tooltip-placement-example {
@@ -244,8 +244,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/tooltip/tooltip.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -357,8 +357,8 @@ Set the `trigger` attribute to `click` to toggle the tooltip on click instead of
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlTooltip from '@saipem/design-system/dist/react/tooltip';
 
 const App = () => (
   <SlTooltip content="Click again to dismiss" trigger="click">
@@ -368,8 +368,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/tooltip/tooltip.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -404,9 +404,9 @@ Tooltips can be controlled programmatically by setting the `trigger` attribute t
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/avatar/avatar.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import '@saipem/design-system/%NPMDIR%/components/avatar/avatar.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/tooltip/tooltip.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -432,9 +432,9 @@ export class TooltipManualTriggerExampleComponent {
 
 ```jsx:react
 import { useState } from 'react';
-import SlAvatar from '@shoelace-style/shoelace/dist/react/avatar';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
+import SlAvatar from '@saipem/design-system/dist/react/avatar';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlTooltip from '@saipem/design-system/dist/react/tooltip';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -466,8 +466,8 @@ You can control the size of tooltip arrows by overriding the `--sl-tooltip-arrow
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/tooltip/tooltip.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -485,8 +485,8 @@ export class TooltipRemovingArrowsExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlTooltip from '@saipem/design-system/dist/react/tooltip';
 
 const App = () => (
   <div style={{ '--sl-tooltip-arrow-size': '0' }}>
@@ -524,8 +524,8 @@ Use the `content` slot to create tooltips with HTML content. Tooltips are design
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlTooltip from '@saipem/design-system/dist/react/tooltip';
 
 const App = () => (
   <SlTooltip>
@@ -539,8 +539,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/tooltip/tooltip.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -568,8 +568,8 @@ Use the `--max-width` custom property to change the width the tooltip can grow t
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/tooltip/tooltip.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -587,8 +587,8 @@ export class TooltipSettingAMaximumWidthExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlTooltip from '@saipem/design-system/dist/react/tooltip';
 
 const App = () => (
   <SlTooltip style={{ '--max-width': '80px' }} content="This tooltip will wrap after only 80 pixels.">
@@ -625,8 +625,8 @@ Tooltips will be clipped if they're inside a container that has `overflow: auto|
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlTooltip from '@saipem/design-system/dist/react/tooltip';
 
 const css = `
   .tooltip-hoist {
@@ -655,8 +655,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/tooltip/tooltip.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

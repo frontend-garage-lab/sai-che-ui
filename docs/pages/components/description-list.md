@@ -17,8 +17,8 @@ Each [sl-description-list-item](#) is a label/value pair. Values can be plain te
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/description-list/description-list.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/description-list-item/description-list-item.js';
+import '@saipem/design-system/%NPMDIR%/components/description-list/description-list.js';
+import '@saipem/design-system/%NPMDIR%/components/description-list-item/description-list-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -53,8 +53,8 @@ Set `cols` to control how many items sit on a row before wrapping. Defaults to 2
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/description-list/description-list.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/description-list-item/description-list-item.js';
+import '@saipem/design-system/%NPMDIR%/components/description-list/description-list.js';
+import '@saipem/design-system/%NPMDIR%/components/description-list-item/description-list-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -86,9 +86,9 @@ export class DescriptionListColumnsExampleComponent {}
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/description-list/description-list.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/description-list-item/description-list-item.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tag/tag.js';
+import '@saipem/design-system/%NPMDIR%/components/description-list/description-list.js';
+import '@saipem/design-system/%NPMDIR%/components/description-list-item/description-list-item.js';
+import '@saipem/design-system/%NPMDIR%/components/tag/tag.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

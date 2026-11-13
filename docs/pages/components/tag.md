@@ -14,7 +14,7 @@ layout: component
 ```
 
 ```jsx:react
-import SlTag from '@shoelace-style/shoelace/dist/react/tag';
+import SlTag from '@saipem/design-system/dist/react/tag';
 
 const App = () => (
   <>
@@ -28,7 +28,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/tag/tag.js';
+import '@saipem/design-system/%NPMDIR%/components/tag/tag.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -64,7 +64,7 @@ Use the `size` attribute to change a tag's size.
 ```
 
 ```jsx:react
-import SlTag from '@shoelace-style/shoelace/dist/react/tag';
+import SlTag from '@saipem/design-system/dist/react/tag';
 
 const App = () => (
   <>
@@ -76,7 +76,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/tag/tag.js';
+import '@saipem/design-system/%NPMDIR%/components/tag/tag.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -102,7 +102,7 @@ Use the `pill` attribute to give tags rounded edges.
 ```
 
 ```jsx:react
-import SlTag from '@shoelace-style/shoelace/dist/react/tag';
+import SlTag from '@saipem/design-system/dist/react/tag';
 
 const App = () => (
   <>
@@ -120,7 +120,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/tag/tag.js';
+import '@saipem/design-system/%NPMDIR%/components/tag/tag.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -164,7 +164,7 @@ Use the `removable` attribute to add a remove button to the tag.
 ```
 
 ```jsx:react
-import SlTag from '@shoelace-style/shoelace/dist/react/tag';
+import SlTag from '@saipem/design-system/dist/react/tag';
 
 const css = `
   .tags-removable sl-tag {
@@ -202,7 +202,7 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/tag/tag.js';
+import '@saipem/design-system/%NPMDIR%/components/tag/tag.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

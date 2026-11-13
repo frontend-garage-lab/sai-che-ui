@@ -18,10 +18,10 @@ Used inside [`sl-sidebar`](/components/sidebar). See the sidebar page for full e
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar/sidebar.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar-group/sidebar-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar-item/sidebar-item.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/sidebar/sidebar.js';
+import '@saipem/design-system/%NPMDIR%/components/sidebar-group/sidebar-group.js';
+import '@saipem/design-system/%NPMDIR%/components/sidebar-item/sidebar-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -59,9 +59,9 @@ items without an icon are hidden. Give top-level items a prefix icon when the si
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar/sidebar.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar-item/sidebar-item.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/sidebar/sidebar.js';
+import '@saipem/design-system/%NPMDIR%/components/sidebar-item/sidebar-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

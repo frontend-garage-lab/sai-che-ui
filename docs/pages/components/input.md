@@ -10,13 +10,13 @@ layout: component
 ```
 
 ```jsx:react
-import SlInput from '@shoelace-style/shoelace/dist/react/input';
+import SlInput from '@saipem/design-system/dist/react/input';
 
 const App = () => <SlInput />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -42,14 +42,14 @@ Use the `label` attribute to give the input an accessible label. For labels that
 ```
 
 ```jsx:react
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
-import SlInput from '@shoelace-style/shoelace/dist/react/input';
+import SlIcon from '@saipem/design-system/dist/react/icon';
+import SlInput from '@saipem/design-system/dist/react/input';
 
 const App = () => <SlInput label="What is your name?" />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -69,14 +69,14 @@ Add descriptive help text to an input with the `help-text` attribute. For help t
 ```
 
 ```jsx:react
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
-import SlInput from '@shoelace-style/shoelace/dist/react/input';
+import SlIcon from '@saipem/design-system/dist/react/icon';
+import SlInput from '@saipem/design-system/dist/react/input';
 
 const App = () => <SlInput label="Nickname" help-text="What would you like people to call you?" />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -96,13 +96,13 @@ Use the `placeholder` attribute to add a placeholder.
 ```
 
 ```jsx:react
-import SlInput from '@shoelace-style/shoelace/dist/react/input';
+import SlInput from '@saipem/design-system/dist/react/input';
 
 const App = () => <SlInput placeholder="Type something" />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -122,13 +122,13 @@ Add the `clearable` attribute to add a clear button when the input has content.
 ```
 
 ```jsx:react
-import SlInput from '@shoelace-style/shoelace/dist/react/input';
+import SlInput from '@saipem/design-system/dist/react/input';
 
 const App = () => <SlInput placeholder="Clearable" clearable />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -148,13 +148,13 @@ Add the `password-toggle` attribute to add a toggle button that will show the pa
 ```
 
 ```jsx:react
-import SlInput from '@shoelace-style/shoelace/dist/react/input';
+import SlInput from '@saipem/design-system/dist/react/input';
 
 const App = () => <SlInput type="password" placeholder="Password Toggle" size="medium" password-toggle />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -174,13 +174,13 @@ Add the `filled` attribute to draw a filled input.
 ```
 
 ```jsx:react
-import SlInput from '@shoelace-style/shoelace/dist/react/input';
+import SlInput from '@saipem/design-system/dist/react/input';
 
 const App = () => <SlInput placeholder="Type something" filled />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -204,7 +204,7 @@ Use the `status` attribute to show the outcome of a validation on an input. It c
 ```
 
 ```jsx:react
-import SlInput from '@shoelace-style/shoelace/dist/react/input';
+import SlInput from '@saipem/design-system/dist/react/input';
 
 const App = () => (
   <>
@@ -218,7 +218,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -244,13 +244,13 @@ Use the `disabled` attribute to disable an input.
 ```
 
 ```jsx:react
-import SlInput from '@shoelace-style/shoelace/dist/react/input';
+import SlInput from '@saipem/design-system/dist/react/input';
 
 const App = () => <SlInput placeholder="Disabled" disabled />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -274,7 +274,7 @@ Use the `size` attribute to change an input's size.
 ```
 
 ```jsx:react
-import SlInput from '@shoelace-style/shoelace/dist/react/input';
+import SlInput from '@saipem/design-system/dist/react/input';
 
 const App = () => (
   <>
@@ -288,7 +288,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -318,7 +318,7 @@ Use the `pill` attribute to give inputs rounded edges.
 ```
 
 ```jsx:react
-import SlInput from '@shoelace-style/shoelace/dist/react/input';
+import SlInput from '@saipem/design-system/dist/react/input';
 
 const App = () => (
   <>
@@ -332,7 +332,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -362,7 +362,7 @@ The `type` attribute controls the type of input the browser renders.
 ```
 
 ```jsx:react
-import SlInput from '@shoelace-style/shoelace/dist/react/input';
+import SlInput from '@saipem/design-system/dist/react/input';
 
 const App = () => (
   <>
@@ -376,7 +376,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -415,8 +415,8 @@ Use the `prefix` and `suffix` slots to add icons.
 ```
 
 ```jsx:react
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
-import SlInput from '@shoelace-style/shoelace/dist/react/input';
+import SlIcon from '@saipem/design-system/dist/react/icon';
+import SlInput from '@saipem/design-system/dist/react/input';
 
 const App = () => (
   <>
@@ -439,8 +439,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -503,8 +503,8 @@ Use [CSS parts](#css-parts) to customize the way form controls are drawn. This e
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/textarea/textarea.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

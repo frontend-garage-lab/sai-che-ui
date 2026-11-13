@@ -13,8 +13,8 @@ layout: component
 ```
 
 ```jsx:react
-import SlAlert from '@shoelace-style/shoelace/dist/react/alert';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import SlAlert from '@saipem/design-system/dist/react/alert';
+import SlIcon from '@saipem/design-system/dist/react/icon';
 
 const App = () => (
   <SlAlert open>
@@ -25,8 +25,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/alert/alert.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -93,8 +93,8 @@ Set the `variant` attribute to change the alert's variant.
 ```
 
 ```jsx:react
-import SlAlert from '@shoelace-style/shoelace/dist/react/alert';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import SlAlert from '@saipem/design-system/dist/react/alert';
+import SlIcon from '@saipem/design-system/dist/react/icon';
 
 const App = () => (
   <>
@@ -145,8 +145,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/alert/alert.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -215,8 +215,8 @@ Add the `closable` attribute to show a close button that will hide the alert.
 
 ```jsx:react
 import { useState } from 'react';
-import SlAlert from '@shoelace-style/shoelace/dist/react/alert';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import SlAlert from '@saipem/design-system/dist/react/alert';
+import SlIcon from '@saipem/design-system/dist/react/icon';
 
 const App = () => {
   const [open, setOpen] = useState(true);
@@ -236,8 +236,8 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/alert/alert.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -269,7 +269,7 @@ Icons are optional. Simply omit the `icon` slot if you don't want them.
 ```
 
 ```jsx:react
-import SlAlert from '@shoelace-style/shoelace/dist/react/alert';
+import SlAlert from '@saipem/design-system/dist/react/alert';
 
 const App = () => (
   <SlAlert variant="primary" open>
@@ -279,7 +279,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
+import '@saipem/design-system/%NPMDIR%/components/alert/alert.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -321,9 +321,9 @@ Set the `duration` attribute to automatically hide an alert after a period of ti
 
 ```jsx:react
 import { useState } from 'react';
-import SlAlert from '@shoelace-style/shoelace/dist/react/alert';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import SlAlert from '@saipem/design-system/dist/react/alert';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlIcon from '@saipem/design-system/dist/react/icon';
 
 const css = `
   .alert-duration sl-alert {
@@ -354,11 +354,11 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/alert/alert.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, viewChild } from '@angular/core';
-import type SlAlert from '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.component.js';
+import type SlAlert from '@saipem/design-system/%NPMDIR%/components/alert/alert.component.js';
 
 @Component({
   selector: 'app-alert-duration-example',
@@ -418,9 +418,9 @@ Set the `countdown` attribute to display a loading bar that indicates the alert 
 
 ```jsx:react
 import { useState } from 'react';
-import SlAlert from '@shoelace-style/shoelace/dist/react/alert';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import SlAlert from '@saipem/design-system/dist/react/alert';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlIcon from '@saipem/design-system/dist/react/icon';
 
 const css = `
   .alert-countdown sl-alert {
@@ -451,11 +451,11 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/alert/alert.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, viewChild } from '@angular/core';
-import type SlAlert from '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.component.js';
+import type SlAlert from '@saipem/design-system/%NPMDIR%/components/alert/alert.component.js';
 
 @Component({
   selector: 'app-alert-countdown-example',
@@ -537,11 +537,11 @@ when `toast()` is called.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/alert/alert.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, viewChildren } from '@angular/core';
-import type SlAlert from '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.component.js';
+import type SlAlert from '@saipem/design-system/%NPMDIR%/components/alert/alert.component.js';
 
 @Component({
   selector: 'app-alert-toast-semantic-example',
@@ -646,9 +646,9 @@ You should always use the `closable` attribute so users can dismiss the notifica
 
 ```jsx:react
 import { useRef } from 'react';
-import SlAlert from '@shoelace-style/shoelace/dist/react/alert';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import SlAlert from '@saipem/design-system/dist/react/alert';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlIcon from '@saipem/design-system/dist/react/icon';
 
 function showToast(alert) {
   alert.toast();
@@ -725,11 +725,11 @@ const App = () => {
 {% raw %}
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/alert/alert.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, viewChildren } from '@angular/core';
-import type SlAlert from '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.component.js';
+import type SlAlert from '@saipem/design-system/%NPMDIR%/components/alert/alert.component.js';
 
 interface Toast {
   variant: 'primary' | 'success' | 'neutral' | 'warning' | 'danger';
@@ -820,11 +820,11 @@ For convenience, you can create a utility that emits toast notifications with a 
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/alert/alert.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, Injectable, inject } from '@angular/core';
-import type SlAlert from '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.component.js';
+import type SlAlert from '@saipem/design-system/%NPMDIR%/components/alert/alert.component.js';
 
 /** A thin service wrapper, so any component can raise a toast without reaching into the DOM itself. */
 @Injectable({ providedIn: 'root' })

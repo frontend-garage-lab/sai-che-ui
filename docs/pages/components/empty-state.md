@@ -17,9 +17,9 @@ comments. Set `title-text` and `description` for the message, use the `icon` slo
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/empty-state/empty-state.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/empty-state/empty-state.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -48,8 +48,8 @@ The `action` slot is optional — its container collapses when it's empty.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/empty-state/empty-state.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/empty-state/empty-state.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -73,7 +73,7 @@ The `icon` slot is also optional and collapses the same way.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/empty-state/empty-state.js';
+import '@saipem/design-system/%NPMDIR%/components/empty-state/empty-state.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

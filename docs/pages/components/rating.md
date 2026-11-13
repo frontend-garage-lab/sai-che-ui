@@ -10,13 +10,13 @@ layout: component
 ```
 
 ```jsx:react
-import SlRating from '@shoelace-style/shoelace/dist/react/rating';
+import SlRating from '@saipem/design-system/dist/react/rating';
 
 const App = () => <SlRating label="Rating" />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import '@saipem/design-system/%NPMDIR%/components/rating/rating.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -38,13 +38,13 @@ Ratings are commonly identified contextually, so labels aren't displayed. Howeve
 ```
 
 ```jsx:react
-import SlRating from '@shoelace-style/shoelace/dist/react/rating';
+import SlRating from '@saipem/design-system/dist/react/rating';
 
 const App = () => <SlRating label="Rate this component" />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import '@saipem/design-system/%NPMDIR%/components/rating/rating.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -64,13 +64,13 @@ Ratings are 0-5 by default. To change the maximum possible value, use the `max` 
 ```
 
 ```jsx:react
-import SlRating from '@shoelace-style/shoelace/dist/react/rating';
+import SlRating from '@saipem/design-system/dist/react/rating';
 
 const App = () => <SlRating label="Rating" max={3} />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import '@saipem/design-system/%NPMDIR%/components/rating/rating.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -90,13 +90,13 @@ Use the `precision` attribute to let users select fractional ratings.
 ```
 
 ```jsx:react
-import SlRating from '@shoelace-style/shoelace/dist/react/rating';
+import SlRating from '@saipem/design-system/dist/react/rating';
 
 const App = () => <SlRating label="Rating" precision={0.5} value={2.5} />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import '@saipem/design-system/%NPMDIR%/components/rating/rating.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -116,7 +116,7 @@ Set the `--symbol-size` custom property to adjust the size.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import '@saipem/design-system/%NPMDIR%/components/rating/rating.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -130,7 +130,7 @@ export class RatingSymbolSizesExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlRating from '@shoelace-style/shoelace/dist/react/rating';
+import SlRating from '@saipem/design-system/dist/react/rating';
 
 const App = () => <SlRating label="Rating" style={{ '--symbol-size': '2rem' }} />;
 ```
@@ -146,13 +146,13 @@ Use the `readonly` attribute to display a rating that users can't change.
 ```
 
 ```jsx:react
-import SlRating from '@shoelace-style/shoelace/dist/react/rating';
+import SlRating from '@saipem/design-system/dist/react/rating';
 
 const App = () => <SlRating label="Rating" readonly value={3} />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import '@saipem/design-system/%NPMDIR%/components/rating/rating.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -172,13 +172,13 @@ Use the `disable` attribute to disable the rating.
 ```
 
 ```jsx:react
-import SlRating from '@shoelace-style/shoelace/dist/react/rating';
+import SlRating from '@saipem/design-system/dist/react/rating';
 
 const App = () => <SlRating label="Rating" disabled value={3} />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import '@saipem/design-system/%NPMDIR%/components/rating/rating.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -236,7 +236,7 @@ The event has a payload with `phase` and `value` properties. The `phase` propert
 
 ```jsx:react
 import { useState } from 'react';
-import SlRating from '@shoelace-style/shoelace/dist/react/rating';
+import SlRating from '@saipem/design-system/dist/react/rating';
 
 const terms = ['No rating', 'Terrible', 'Bad', 'OK', 'Good', 'Excellent'];
 const css = `
@@ -285,7 +285,7 @@ const App = () => {
 {% raw %}
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import '@saipem/design-system/%NPMDIR%/components/rating/rating.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 const TERMS = ['No rating', 'Terrible', 'Bad', 'OK', 'Good', 'Excellent'];
@@ -341,7 +341,7 @@ You can provide custom icons by passing a function to the `getSymbol` property.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import '@saipem/design-system/%NPMDIR%/components/rating/rating.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -361,7 +361,7 @@ export class RatingHeartsExampleComponent {
 {% raw %}
 
 ```jsx:react
-import SlRating from '@shoelace-style/shoelace/dist/react/rating';
+import SlRating from '@saipem/design-system/dist/react/rating';
 
 const App = () => (
   <SlRating
@@ -392,7 +392,7 @@ You can also use the `getSymbol` property to render different icons based on val
 ```
 
 ```jsx:react
-import SlRating from '@shoelace-style/shoelace/dist/react/rating';
+import SlRating from '@saipem/design-system/dist/react/rating';
 
 function getSymbol(value) {
   const icons = ['emoji-angry', 'emoji-frown', 'emoji-expressionless', 'emoji-smile', 'emoji-laughing'];
@@ -403,7 +403,7 @@ const App = () => <SlRating label="Rating" getSymbol={getSymbol} />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import '@saipem/design-system/%NPMDIR%/components/rating/rating.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 const ICONS = ['emoji-angry', 'emoji-frown', 'emoji-expressionless', 'emoji-smile', 'emoji-laughing'];

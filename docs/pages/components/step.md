@@ -17,8 +17,8 @@ its `current` index. Put the label in the default slot and an optional one-line 
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/step/step.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/stepper/stepper.js';
+import '@saipem/design-system/%NPMDIR%/components/step/step.js';
+import '@saipem/design-system/%NPMDIR%/components/stepper/stepper.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

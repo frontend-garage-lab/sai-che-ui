@@ -10,13 +10,13 @@ layout: component
 ```
 
 ```jsx:react
-import SlSwitch from '@shoelace-style/shoelace/dist/react/switch';
+import SlSwitch from '@saipem/design-system/dist/react/switch';
 
 const App = () => <SlSwitch>Switch</SlSwitch>;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/switch/switch.js';
+import '@saipem/design-system/%NPMDIR%/components/switch/switch.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -42,13 +42,13 @@ Use the `checked` attribute to activate the switch.
 ```
 
 ```jsx:react
-import SlSwitch from '@shoelace-style/shoelace/dist/react/switch';
+import SlSwitch from '@saipem/design-system/dist/react/switch';
 
 const App = () => <SlSwitch checked>Checked</SlSwitch>;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/switch/switch.js';
+import '@saipem/design-system/%NPMDIR%/components/switch/switch.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -68,13 +68,13 @@ Use the `disabled` attribute to disable the switch.
 ```
 
 ```jsx:react
-import SlSwitch from '@shoelace-style/shoelace/dist/react/switch';
+import SlSwitch from '@saipem/design-system/dist/react/switch';
 
 const App = () => <SlSwitch disabled>Disabled</SlSwitch>;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/switch/switch.js';
+import '@saipem/design-system/%NPMDIR%/components/switch/switch.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -98,7 +98,7 @@ Use the `size` attribute to change a switch's size.
 ```
 
 ```jsx:react
-import SlSwitch from '@shoelace-style/shoelace/dist/react/switch';
+import SlSwitch from '@saipem/design-system/dist/react/switch';
 
 const App = () => (
   <>
@@ -112,7 +112,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/switch/switch.js';
+import '@saipem/design-system/%NPMDIR%/components/switch/switch.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -138,13 +138,13 @@ Add descriptive help text to a switch with the `help-text` attribute. For help t
 ```
 
 ```jsx:react
-import SlSwitch from '@shoelace-style/shoelace/dist/react/checkbox';
+import SlSwitch from '@saipem/design-system/dist/react/checkbox';
 
 const App = () => <SlSwitch help-text="What should the user know about the switch?">Label</SlSwitch>;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/switch/switch.js';
+import '@saipem/design-system/%NPMDIR%/components/switch/switch.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -164,7 +164,7 @@ Use the available custom properties to change how the switch is styled.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/switch/switch.js';
+import '@saipem/design-system/%NPMDIR%/components/switch/switch.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -178,7 +178,7 @@ export class SwitchCustomStylesExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlSwitch from '@shoelace-style/shoelace/dist/react/switch';
+import SlSwitch from '@saipem/design-system/dist/react/switch';
 
 const App = () => (
   <SlSwitch

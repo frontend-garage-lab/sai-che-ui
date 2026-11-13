@@ -13,7 +13,7 @@ files are available in the `files` property and are listed under the zone.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/file-drop/file-drop.js';
+import '@saipem/design-system/%NPMDIR%/components/file-drop/file-drop.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -67,11 +67,11 @@ ones and why. Show the reasons to the user, e.g. in an [alert](/components/alert
 {% raw %}
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/file-drop/file-drop.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/alert/alert.js';
+import '@saipem/design-system/%NPMDIR%/components/file-drop/file-drop.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, signal, viewChild } from '@angular/core';
-import type SlAlert from '@shoelace-style/shoelace/%NPMDIR%/components/alert/alert.component.js';
+import type SlAlert from '@saipem/design-system/%NPMDIR%/components/alert/alert.component.js';
 
 const REASONS: Record<string, string> = {
   type: 'file type not allowed',
@@ -124,7 +124,7 @@ letter.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/file-drop/file-drop.js';
+import '@saipem/design-system/%NPMDIR%/components/file-drop/file-drop.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -167,10 +167,10 @@ has finished.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/file-drop/file-drop.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/file-drop/file-drop.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, signal, viewChild } from '@angular/core';
-import type SlFileDrop from '@shoelace-style/shoelace/%NPMDIR%/components/file-drop/file-drop.component.js';
+import type SlFileDrop from '@saipem/design-system/%NPMDIR%/components/file-drop/file-drop.component.js';
 
 @Component({
   selector: 'app-file-drop-upload-example',
@@ -220,7 +220,7 @@ Use the `instructions` slot to translate the text inside the zone, and `remove-l
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/file-drop/file-drop.js';
+import '@saipem/design-system/%NPMDIR%/components/file-drop/file-drop.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -242,7 +242,7 @@ export class FileDropLocalizationExampleComponent {}
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/file-drop/file-drop.js';
+import '@saipem/design-system/%NPMDIR%/components/file-drop/file-drop.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

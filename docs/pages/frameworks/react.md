@@ -13,21 +13,21 @@ Shoelace offers a React version of every component to provide an idiomatic exper
 To add Shoelace to your React app, install the package from npm.
 
 ```bash
-npm install @shoelace-style/shoelace
+npm install @saipem/design-system
 ```
 
 Next, [include a theme](/getting-started/themes) and set the [base path](/getting-started/installation#setting-the-base-path) for icons and other assets. In this example, we'll import the light theme and use the CDN as a base path.
 
 ```jsx
 // App.jsx
-import '@shoelace-style/shoelace/%NPMDIR%/themes/light.css';
-import { setBasePath } from '@shoelace-style/shoelace/%NPMDIR%/utilities/base-path.js';
+import '@saipem/design-system/%NPMDIR%/themes/light.css';
+import { setBasePath } from '@saipem/design-system/%NPMDIR%/utilities/base-path.js';
 
-setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@%VERSION%/%CDNDIR%/');
+setBasePath('https://cdn.jsdelivr.net/npm/@saipem/design-system@%VERSION%/%CDNDIR%/');
 ```
 
 :::tip
-If you'd rather not use the CDN for assets, you can create a [build task](https://webpack.js.org/plugins/copy-webpack-plugin/) that copies `node_modules/@shoelace-style/shoelace/%NPMDIR%/assets` into your app's `public` directory. Then you can point the base path to that folder instead.
+If you'd rather not use the CDN for assets, you can create a [build task](https://webpack.js.org/plugins/copy-webpack-plugin/) that copies `node_modules/@saipem/design-system/%NPMDIR%/assets` into your app's `public` directory. Then you can point the base path to that folder instead.
 :::
 
 Now you can start using components!
@@ -43,7 +43,7 @@ Preact users facing type errors using components may benefit from setting "paths
 Every Shoelace component is available to import as a React component. Note that we're importing the `<SlButton>` _React component_ instead of the `<sl-button>` _custom element_ in the example below.
 
 ```jsx
-import SlButton from '@shoelace-style/shoelace/%NPMDIR%/react/button/index.js';
+import SlButton from '@saipem/design-system/%NPMDIR%/react/button/index.js';
 
 const MyComponent = () => <SlButton variant="primary">Click me</SlButton>;
 
@@ -55,14 +55,14 @@ export default MyComponent;
 Previously, it was recommended to import from a single entrypoint like so:
 
 ```jsx
-import { SlButton } from '@shoelace-style/shoelace/%NPMDIR%/react';
+import { SlButton } from '@saipem/design-system/%NPMDIR%/react';
 ```
 
 However, tree-shaking extra Shoelace components proved to be a challenge. As a result, we now recommend cherry-picking components you want to use, rather than importing from a single entrypoint.
 
 ```diff
-- import { SlButton } from '@shoelace-style/shoelace/%NPMDIR%/react';
-+ import SlButton from '@shoelace-style/shoelace/%NPMDIR%/react/button/index.js';
+- import { SlButton } from '@saipem/design-system/%NPMDIR%/react';
++ import SlButton from '@saipem/design-system/%NPMDIR%/react/button/index.js';
 ```
 
 You can find a copy + paste import for each component in the "importing" section of its documentation.
@@ -75,7 +75,7 @@ Here's how you can bind the input's value to a state variable.
 
 ```jsx
 import { useState } from 'react';
-import SlInput from '@shoelace-style/shoelace/%NPMDIR%/react/input/index.js';
+import SlInput from '@saipem/design-system/%NPMDIR%/react/input/index.js';
 
 function MyComponent() {
   const [value, setValue] = useState('');
@@ -90,8 +90,8 @@ If you're using TypeScript, it's important to note that `event.target` will be a
 
 ```tsx
 import { useState } from 'react';
-import SlInput from '@shoelace-style/shoelace/%NPMDIR%/react/input/index.js';
-import type SlInputElement from '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import SlInput from '@saipem/design-system/%NPMDIR%/react/input/index.js';
+import type SlInputElement from '@saipem/design-system/%NPMDIR%/components/input/input.js';
 
 function MyComponent() {
   const [value, setValue] = useState('');
@@ -106,8 +106,8 @@ You can also import the event type for use in your callbacks, shown below.
 
 ```tsx
 import { useCallback, useState } from 'react';
-import SlInput, { type SlInputEvent } from '@shoelace-style/shoelace/%NPMDIR%/react/input/index.js';
-import type SlInputElement from '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import SlInput, { type SlInputEvent } from '@saipem/design-system/%NPMDIR%/react/input/index.js';
+import type SlInputElement from '@saipem/design-system/%NPMDIR%/components/input/input.js';
 
 function MyComponent() {
   const [value, setValue] = useState('');

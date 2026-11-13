@@ -36,8 +36,8 @@ layout: component
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/tree/tree.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tree-item/tree-item.js';
+import '@saipem/design-system/%NPMDIR%/components/tree/tree.js';
+import '@saipem/design-system/%NPMDIR%/components/tree-item/tree-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -78,8 +78,8 @@ export class TreeExampleComponent {}
 
 <!-- prettier-ignore -->
 ```jsx:react
-import SlTree from '@shoelace-style/shoelace/dist/react/tree';
-import SlTreeItem from '@shoelace-style/shoelace/dist/react/tree-item';
+import SlTree from '@saipem/design-system/dist/react/tree';
+import SlTreeItem from '@saipem/design-system/dist/react/tree-item';
 
 const App = () => (
   <SlTree>
@@ -159,13 +159,13 @@ The `selection` attribute lets you change the selection behavior of the tree.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tree/tree.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tree-item/tree-item.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/tree/tree.js';
+import '@saipem/design-system/%NPMDIR%/components/tree-item/tree-item.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, signal, viewChild } from '@angular/core';
-import type SlSelect from '@shoelace-style/shoelace/%NPMDIR%/components/select/select.component.js';
-import type SlTree from '@shoelace-style/shoelace/%NPMDIR%/components/tree/tree.component.js';
+import type SlSelect from '@saipem/design-system/%NPMDIR%/components/select/select.component.js';
+import type SlTree from '@saipem/design-system/%NPMDIR%/components/tree/tree.component.js';
 
 @Component({
   selector: 'app-tree-selectable-example',
@@ -215,8 +215,8 @@ export class TreeSelectableExampleComponent {
 
 <!-- prettier-ignore -->
 ```jsx:react
-import SlTree from '@shoelace-style/shoelace/dist/react/tree';
-import SlTreeItem from '@shoelace-style/shoelace/dist/react/tree-item';
+import SlTree from '@saipem/design-system/dist/react/tree';
+import SlTreeItem from '@saipem/design-system/dist/react/tree-item';
 
 const App = () => {
   const [selection, setSelection] = useState('single');
@@ -292,8 +292,8 @@ Indent guides can be drawn by setting `--indent-guide-width`. You can also chang
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/tree/tree.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tree-item/tree-item.js';
+import '@saipem/design-system/%NPMDIR%/components/tree/tree.js';
+import '@saipem/design-system/%NPMDIR%/components/tree-item/tree-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -341,8 +341,8 @@ export class TreeShowingIndentGuidesExampleComponent {}
 
 <!-- prettier-ignore -->
 ```jsx:react
-import SlTree from '@shoelace-style/shoelace/dist/react/tree';
-import SlTreeItem from '@shoelace-style/shoelace/dist/react/tree-item';
+import SlTree from '@saipem/design-system/dist/react/tree';
+import SlTreeItem from '@saipem/design-system/dist/react/tree-item';
 
 const App = () => (
   <SlTree class="tree-with-lines" style={{ '--indent-guide-width': '1px' }}>
@@ -410,8 +410,8 @@ If you want to disable this behavior after the first load, simply remove the `la
 ```
 
 ```jsx:react
-import SlTree from '@shoelace-style/shoelace/dist/react/tree';
-import SlTreeItem from '@shoelace-style/shoelace/dist/react/tree-item';
+import SlTree from '@saipem/design-system/dist/react/tree';
+import SlTreeItem from '@saipem/design-system/dist/react/tree-item';
 
 const App = () => {
   const [childItems, setChildItems] = useState([]);
@@ -441,8 +441,8 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/tree/tree.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tree-item/tree-item.js';
+import '@saipem/design-system/%NPMDIR%/components/tree/tree.js';
+import '@saipem/design-system/%NPMDIR%/components/tree-item/tree-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -522,9 +522,9 @@ Use the `expand-icon` and `collapse-icon` slots to change the expand and collaps
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tree/tree.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tree-item/tree-item.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/tree/tree.js';
+import '@saipem/design-system/%NPMDIR%/components/tree-item/tree-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -574,8 +574,8 @@ export class TreeCustomizingTheExpandAndCollapseIconsExampleComponent {}
 
 <!-- prettier-ignore -->
 ```jsx:react
-import SlTree from '@shoelace-style/shoelace/dist/react/tree';
-import SlTreeItem from '@shoelace-style/shoelace/dist/react/tree-item';
+import SlTree from '@saipem/design-system/dist/react/tree';
+import SlTreeItem from '@saipem/design-system/dist/react/tree-item';
 
 const App = () => (
   <SlTree>
@@ -659,9 +659,9 @@ Decorative icons can be used before labels to provide hints for each node.
 ```
 
 ```jsx:react
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
-import SlTree from '@shoelace-style/shoelace/dist/react/tree';
-import SlTreeItem from '@shoelace-style/shoelace/dist/react/tree-item';
+import SlIcon from '@saipem/design-system/dist/react/icon';
+import SlTree from '@saipem/design-system/dist/react/tree';
+import SlTreeItem from '@saipem/design-system/dist/react/tree-item';
 
 const App = () => {
   return (
@@ -706,9 +706,9 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tree/tree.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tree-item/tree-item.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/tree/tree.js';
+import '@saipem/design-system/%NPMDIR%/components/tree-item/tree-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

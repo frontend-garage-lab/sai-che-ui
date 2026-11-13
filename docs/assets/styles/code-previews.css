@@ -114,11 +114,13 @@
   color: var(--sl-color-primary-600);
 }
 
+/* CodePen disabled, uncomment to re-enable.
 .code-preview__button--codepen {
   display: flex;
   place-items: center;
   width: 6rem;
 }
+*/
 
 .code-preview__button:first-of-type {
   border-bottom-left-radius: 3px;

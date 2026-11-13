@@ -13,7 +13,7 @@ Angular [plays nice](https://custom-elements-everywhere.com/#angular) with custo
 Install the package from npm.
 
 ```bash
-npm install @shoelace-style/shoelace
+npm install @saipem/design-system
 ```
 
 ### Load a theme
@@ -22,7 +22,7 @@ Add [a theme](/getting-started/themes) to the global stylesheet so the design to
 
 ```css
 /* src/styles.css */
-@import '@shoelace-style/shoelace/%NPMDIR%/themes/light.css';
+@import '@saipem/design-system/%NPMDIR%/themes/light.css';
 ```
 
 ### Set the base path
@@ -32,17 +32,17 @@ Icons and other assets are fetched at runtime, so the library needs to know wher
 ```ts
 // src/main.ts
 import { bootstrapApplication } from '@angular/platform-browser';
-import { setBasePath } from '@shoelace-style/shoelace/%NPMDIR%/utilities/base-path.js';
+import { setBasePath } from '@saipem/design-system/%NPMDIR%/utilities/base-path.js';
 import { AppComponent } from './app/app.component';
 import { appConfig } from './app/app.config';
 
-setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@%VERSION%/%CDNDIR%/');
+setBasePath('https://cdn.jsdelivr.net/npm/@saipem/design-system@%VERSION%/%CDNDIR%/');
 
 void bootstrapApplication(AppComponent, appConfig);
 ```
 
 :::tip
-To avoid the CDN, copy `node_modules/@shoelace-style/shoelace/%NPMDIR%/assets` into your `public` folder with a build step and point `setBasePath()` at that folder instead.
+To avoid the CDN, copy `node_modules/@saipem/design-system/%NPMDIR%/assets` into your `public` folder with a build step and point `setBasePath()` at that folder instead.
 :::
 
 ### Application config
@@ -68,8 +68,8 @@ export const appConfig: ApplicationConfig = {
 Import only the components you use. The import registers the custom element; there is no Angular wrapper to declare.
 
 ```ts
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 ```
 
 Put these imports in the standalone component that uses them, or in a single shared file imported once at startup. Importing twice is harmless: custom element registration is idempotent.
@@ -80,7 +80,7 @@ Angular validates template tags against known elements. Add `CUSTOM_ELEMENTS_SCH
 
 ```ts
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
 
 @Component({
   selector: 'app-greeting',
@@ -129,8 +129,8 @@ Shoelace components emit custom events prefixed with `sl-`. Bind them with ordin
 
 ```ts
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
-import type SlInput from '@shoelace-style/shoelace/%NPMDIR%/components/input/input.component.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
+import type SlInput from '@saipem/design-system/%NPMDIR%/components/input/input.component.js';
 
 @Component({
   selector: 'app-search',
@@ -170,8 +170,8 @@ Use a signal-based `viewChild` query and type it with the component class.
 
 ```ts
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, viewChild } from '@angular/core';
-import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
-import type SlDrawer from '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.component.js';
+import '@saipem/design-system/%NPMDIR%/components/drawer/drawer.js';
+import type SlDrawer from '@saipem/design-system/%NPMDIR%/components/drawer/drawer.component.js';
 
 @Component({
   selector: 'app-drawer-example',
@@ -273,7 +273,7 @@ Import the directive in the standalone component and both forms APIs behave norm
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ShoelaceValueAccessor } from './shoelace-value-accessor.directive';
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 
 @Component({
   selector: 'app-signup',
@@ -319,7 +319,7 @@ export class ClientOnlyComponent {
 
   constructor() {
     if (this.isBrowser) {
-      void import('@shoelace-style/shoelace/%NPMDIR%/components/button/button.js');
+      void import('@saipem/design-system/%NPMDIR%/components/button/button.js');
     }
   }
 }

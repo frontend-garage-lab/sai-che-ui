@@ -34,8 +34,8 @@ filter, unless the group is `required`. Stats are toggle buttons, so screen read
 {% raw %}
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/stat/stat.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/stat-group/stat-group.js';
+import '@saipem/design-system/%NPMDIR%/components/stat/stat.js';
+import '@saipem/design-system/%NPMDIR%/components/stat-group/stat-group.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -97,9 +97,9 @@ A dashboard summary row of four stats, with one selected as the active filter.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/stat/stat.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/stat-group/stat-group.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/stat/stat.js';
+import '@saipem/design-system/%NPMDIR%/components/stat-group/stat-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -141,8 +141,8 @@ Add `required` when there's always exactly one view, e.g. switching between inco
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/stat/stat.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/stat-group/stat-group.js';
+import '@saipem/design-system/%NPMDIR%/components/stat/stat.js';
+import '@saipem/design-system/%NPMDIR%/components/stat-group/stat-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

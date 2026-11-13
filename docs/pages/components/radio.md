@@ -16,8 +16,8 @@ Radios are designed to be used with [radio groups](/components/radio-group).
 ```
 
 ```jsx:react
-import SlRadio from '@shoelace-style/shoelace/dist/react/radio';
-import SlRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
+import SlRadio from '@saipem/design-system/dist/react/radio';
+import SlRadioGroup from '@saipem/design-system/dist/react/radio-group';
 
 const App = () => (
   <SlRadioGroup label="Select an option" name="a" value="1">
@@ -29,8 +29,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio/radio.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import '@saipem/design-system/%NPMDIR%/components/radio/radio.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-group/radio-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -66,8 +66,8 @@ To set the initial value and checked state, use the `value` attribute on the con
 ```
 
 ```jsx:react
-import SlRadio from '@shoelace-style/shoelace/dist/react/radio';
-import SlRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
+import SlRadio from '@saipem/design-system/dist/react/radio';
+import SlRadioGroup from '@saipem/design-system/dist/react/radio-group';
 
 const App = () => (
   <SlRadioGroup label="Select an option" name="a" value="3">
@@ -79,8 +79,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio/radio.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import '@saipem/design-system/%NPMDIR%/components/radio/radio.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-group/radio-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -110,8 +110,8 @@ Use the `disabled` attribute to disable a radio.
 ```
 
 ```jsx:react
-import SlRadio from '@shoelace-style/shoelace/dist/react/radio';
-import SlRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
+import SlRadio from '@saipem/design-system/dist/react/radio';
+import SlRadioGroup from '@saipem/design-system/dist/react/radio-group';
 
 const App = () => (
   <SlRadioGroup label="Select an option" name="a" value="1">
@@ -125,8 +125,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio/radio.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import '@saipem/design-system/%NPMDIR%/components/radio/radio.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-group/radio-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -172,7 +172,7 @@ Add the `size` attribute to the [Radio Group](/components/radio-group) to change
 ```
 
 ```jsx react
-import SlRadio from '@shoelace-style/shoelace/dist/react/radio';
+import SlRadio from '@saipem/design-system/dist/react/radio';
 
 const App = () => (
   <>

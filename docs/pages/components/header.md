@@ -40,13 +40,13 @@ attribute, or set `href` for a plain link. Give an item a `menu` slot to turn it
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/header/header.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/header-item/header-item.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/header/header.js';
+import '@saipem/design-system/%NPMDIR%/components/header-item/header-item.js';
+import '@saipem/design-system/%NPMDIR%/components/icon-button/icon-button.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -98,8 +98,8 @@ Images and SVGs in the `logo` slot are sized to fit the header.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/header/header.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/header-item/header-item.js';
+import '@saipem/design-system/%NPMDIR%/components/header/header.js';
+import '@saipem/design-system/%NPMDIR%/components/header-item/header-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -138,13 +138,13 @@ next to the name.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/avatar/avatar.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/header/header.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/header-item/header-item.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/avatar/avatar.js';
+import '@saipem/design-system/%NPMDIR%/components/divider/divider.js';
+import '@saipem/design-system/%NPMDIR%/components/header/header.js';
+import '@saipem/design-system/%NPMDIR%/components/header-item/header-item.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -187,7 +187,7 @@ with `aria-current="page"`.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/header/header.js';
+import '@saipem/design-system/%NPMDIR%/components/header/header.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -222,8 +222,8 @@ must not be mistaken for production.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/header/header.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/header-item/header-item.js';
+import '@saipem/design-system/%NPMDIR%/components/header/header.js';
+import '@saipem/design-system/%NPMDIR%/components/header-item/header-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

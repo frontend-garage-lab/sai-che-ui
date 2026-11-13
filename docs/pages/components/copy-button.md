@@ -10,7 +10,7 @@ layout: component
 ```
 
 ```jsx:react
-import { SlCopyButton } from '@shoelace-style/shoelace/dist/react/copy-button';
+import { SlCopyButton } from '@saipem/design-system/dist/react/copy-button';
 
 const App = () => (
   <SlCopyButton value="Shoelace rocks!" />
@@ -18,7 +18,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/copy-button/copy-button.js';
+import '@saipem/design-system/%NPMDIR%/components/copy-button/copy-button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -45,7 +45,7 @@ Copy Buttons display feedback in a tooltip. You can customize the labels using t
 ```
 
 ```jsx:react
-import { SlCopyButton } from '@shoelace-style/shoelace/dist/react/copy-button';
+import { SlCopyButton } from '@saipem/design-system/dist/react/copy-button';
 
 const App = () => (
   <SlCopyButton
@@ -58,7 +58,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/copy-button/copy-button.js';
+import '@saipem/design-system/%NPMDIR%/components/copy-button/copy-button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -89,8 +89,8 @@ Use the `copy-icon`, `success-icon`, and `error-icon` slots to customize the ico
 ```
 
 ```jsx:react
-import { SlCopyButton } from '@shoelace-style/shoelace/dist/react/copy-button';
-import { SlIcon } from '@shoelace-style/shoelace/dist/react/icon';
+import { SlCopyButton } from '@saipem/design-system/dist/react/copy-button';
+import { SlIcon } from '@saipem/design-system/dist/react/icon';
 
 const App = () => (
   <>
@@ -104,8 +104,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/copy-button/copy-button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/copy-button/copy-button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -149,8 +149,8 @@ To copy data from an attribute, use `from="id[attr]"` where `id` is the id of th
 ```
 
 ```jsx:react
-import { SlCopyButton } from '@shoelace-style/shoelace/dist/react/copy-button';
-import { SlInput } from '@shoelace-style/shoelace/dist/react/input';
+import { SlCopyButton } from '@saipem/design-system/dist/react/copy-button';
+import { SlInput } from '@saipem/design-system/dist/react/input';
 
 const App = () => (
   <>
@@ -174,8 +174,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/copy-button/copy-button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/copy-button/copy-button.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -213,7 +213,7 @@ This example demonstrates what happens when a copy error occurs. You can customi
 ```
 
 ```jsx:react
-import { SlCopyButton } from '@shoelace-style/shoelace/dist/react/copy-button';
+import { SlCopyButton } from '@saipem/design-system/dist/react/copy-button';
 
 const App = () => (
   <SlCopyButton from="i-do-not-exist" />
@@ -221,7 +221,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/copy-button/copy-button.js';
+import '@saipem/design-system/%NPMDIR%/components/copy-button/copy-button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -241,7 +241,7 @@ Copy buttons can be disabled by adding the `disabled` attribute.
 ```
 
 ```jsx:react
-import { SlCopyButton } from '@shoelace-style/shoelace/dist/react/copy-button';
+import { SlCopyButton } from '@saipem/design-system/dist/react/copy-button';
 
 const App = () => (
   <SlCopyButton value="You can't copy me" disabled />
@@ -249,7 +249,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/copy-button/copy-button.js';
+import '@saipem/design-system/%NPMDIR%/components/copy-button/copy-button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -269,7 +269,7 @@ A success indicator is briefly shown after copying. You can customize the length
 ```
 
 ```jsx:react
-import { SlCopyButton } from '@shoelace-style/shoelace/dist/react/copy-button';
+import { SlCopyButton } from '@saipem/design-system/dist/react/copy-button';
 
 const App = () => (
   <SlCopyButton value="Shoelace rocks!" feedback-duration={250} />
@@ -277,7 +277,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/copy-button/copy-button.js';
+import '@saipem/design-system/%NPMDIR%/components/copy-button/copy-button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -331,7 +331,7 @@ You can customize the button to your liking with CSS.
 ```
 
 ```jsx:react
-import { SlCopyButton } from '@shoelace-style/shoelace/dist/react/copy-button';
+import { SlCopyButton } from '@saipem/design-system/dist/react/copy-button';
 
 const css = `
   .custom-styles {
@@ -373,8 +373,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/copy-button/copy-button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/copy-button/copy-button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

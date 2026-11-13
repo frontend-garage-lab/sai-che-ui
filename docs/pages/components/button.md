@@ -10,13 +10,13 @@ layout: component
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
+import SlButton from '@saipem/design-system/dist/react/button';
 
 const App = () => <SlButton>Button</SlButton>;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -53,8 +53,8 @@ its area (a toolbar, a dialog footer, a panel):
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/tooltip/tooltip.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -88,7 +88,7 @@ Use the `variant` attribute to set the button's variant.
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
+import SlButton from '@saipem/design-system/dist/react/button';
 
 const App = () => (
   <>
@@ -103,7 +103,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -132,7 +132,7 @@ Use the `size` attribute to change a button's size.
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
+import SlButton from '@saipem/design-system/dist/react/button';
 
 const App = () => (
   <>
@@ -144,7 +144,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -173,7 +173,7 @@ Use the `outline` attribute to draw outlined buttons with transparent background
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
+import SlButton from '@saipem/design-system/dist/react/button';
 
 const App = () => (
   <>
@@ -200,7 +200,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -229,7 +229,7 @@ Use the `pill` attribute to give buttons rounded edges.
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
+import SlButton from '@saipem/design-system/dist/react/button';
 
 const App = () => (
   <>
@@ -247,7 +247,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -281,8 +281,8 @@ Use the `circle` attribute to create circular icon buttons. When this attribute 
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlIcon from '@saipem/design-system/dist/react/icon';
 
 const App = () => (
   <>
@@ -300,8 +300,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -335,7 +335,7 @@ Use the `text` variant to create text buttons that share the same size as regula
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
+import SlButton from '@saipem/design-system/dist/react/button';
 
 const App = () => (
   <>
@@ -353,7 +353,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -380,7 +380,7 @@ It's often helpful to have a button that works like a link. This is possible by 
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
+import SlButton from '@saipem/design-system/dist/react/button';
 
 const App = () => (
   <>
@@ -399,7 +399,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -430,7 +430,7 @@ As expected, buttons can be given a custom width by passing inline styles to the
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -448,7 +448,7 @@ export class ButtonSettingACustomWidthExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
+import SlButton from '@saipem/design-system/dist/react/button';
 
 const App = () => (
   <>
@@ -526,8 +526,8 @@ Use the `prefix` and `suffix` slots to add icons.
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlIcon from '@saipem/design-system/dist/react/icon';
 
 const App = () => (
   <>
@@ -589,8 +589,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -664,7 +664,7 @@ Use the `caret` attribute to add a dropdown indicator when a button will trigger
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
+import SlButton from '@saipem/design-system/dist/react/button';
 
 const App = () => (
   <>
@@ -682,7 +682,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -711,7 +711,7 @@ Use the `loading` attribute to make a button busy. The width will remain the sam
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
+import SlButton from '@saipem/design-system/dist/react/button';
 
 const App = () => (
   <>
@@ -738,7 +738,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -770,7 +770,7 @@ Use the `disabled` attribute to disable a button.
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
+import SlButton from '@saipem/design-system/dist/react/button';
 
 const App = () => (
   <>
@@ -802,7 +802,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -865,7 +865,7 @@ This example demonstrates how to style buttons using a custom class. This is the
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

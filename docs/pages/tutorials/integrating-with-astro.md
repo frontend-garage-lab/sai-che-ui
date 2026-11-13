@@ -27,7 +27,7 @@ There is a [Lit + Astro integration for SSR](https://docs.astro.build/en/guides/
 To get started using Shoelace with Astro, the following packages must be installed.
 
 ```bash
-npm install @shoelace-style/shoelace rollup-plugin-copy
+npm install @saipem/design-system rollup-plugin-copy
 ```
 
 ### Importing components
@@ -37,7 +37,7 @@ In `/src/pages/index.astro`, set the base path and import Shoelace.
 ```html
 ---
 // import default stylesheet
-import "@shoelace-style/shoelace/dist/themes/light.css";
+import "@saipem/design-system/dist/themes/light.css";
 ---
 
 <html>
@@ -48,16 +48,16 @@ import "@shoelace-style/shoelace/dist/themes/light.css";
 
 <script>
   // setBasePath to tell Shoelace where to load icons from.
-  import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
+  import { setBasePath } from '@saipem/design-system/dist/utilities/base-path.js';
   setBasePath('/shoelace-assets/');
 
   // Load all components.
-  import '@shoelace-style/shoelace';
+  import '@saipem/design-system';
 </script>
 ```
 
 :::tip
-If you want to cherry pick components, replace the main Shoelace import with 'import "@shoelace-style/shoelace/dist/components/button/button.js";' for whichever component you would like.
+If you want to cherry pick components, replace the main Shoelace import with 'import "@saipem/design-system/dist/components/button/button.js";' for whichever component you would like.
 :::
 
 You only have to import in the main `index.astro` file. The components can be used anywhere throughout the project.
@@ -68,7 +68,7 @@ In `/src/pages/index.astro`, set custom animations after the Shoelace import.
 
 ```html
 ---
-import { setBasePath } from "@shoelace-style/shoelace/dist/utilities/base-path.js";
+import { setBasePath } from "@saipem/design-system/dist/utilities/base-path.js";
 setBasePath("dist/assets");
 ---
 
@@ -82,14 +82,14 @@ setBasePath("dist/assets");
 
 <script>
   // setBasePath to tell Shoelace where to load icons from.
-  import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
+  import { setBasePath } from '@saipem/design-system/dist/utilities/base-path.js';
   setBasePath('/shoelace-assets/');
 
   // Load all components.
-  import '@shoelace-style/shoelace';
+  import '@saipem/design-system';
 
   const duration = 3000;
-  import { setDefaultAnimation } from '@shoelace-style/shoelace/dist/utilities/animation-registry.js';
+  import { setDefaultAnimation } from '@saipem/design-system/dist/utilities/animation-registry.js';
 
   setDefaultAnimation('tooltip.show', {
     keyframes: [
@@ -122,7 +122,7 @@ export default defineConfig({
         copyOnce: true,
         hook: 'buildStart',
         targets: [
-          { src: 'node_modules/@shoelace-style/shoelace/dist/assets/*', dest: 'public/shoelace-assets/assets/' }
+          { src: 'node_modules/@saipem/design-system/dist/assets/*', dest: 'public/shoelace-assets/assets/' }
         ]
       })
     ]

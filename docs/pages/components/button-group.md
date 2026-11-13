@@ -14,8 +14,8 @@ layout: component
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlButtonGroup from '@shoelace-style/shoelace/dist/react/button-group';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlButtonGroup from '@saipem/design-system/dist/react/button-group';
 
 const App = () => (
   <SlButtonGroup label="Alignment">
@@ -27,8 +27,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button-group/button-group.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button-group/button-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -76,8 +76,8 @@ All button sizes are supported, but avoid mixing sizes within the same button gr
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlButtonGroup from '@shoelace-style/shoelace/dist/react/button-group';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlButtonGroup from '@saipem/design-system/dist/react/button-group';
 
 const App = () => (
   <>
@@ -109,8 +109,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button-group/button-group.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button-group/button-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -188,8 +188,8 @@ Theme buttons are supported through the button's `variant` attribute.
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlButtonGroup from '@shoelace-style/shoelace/dist/react/button-group';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlButtonGroup from '@saipem/design-system/dist/react/button-group';
 
 const App = () => (
   <>
@@ -239,8 +239,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button-group/button-group.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button-group/button-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -318,8 +318,8 @@ Pill buttons are supported through the button's `pill` attribute.
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlButtonGroup from '@shoelace-style/shoelace/dist/react/button-group';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlButtonGroup from '@saipem/design-system/dist/react/button-group';
 
 const App = () => (
   <>
@@ -369,8 +369,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button-group/button-group.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button-group/button-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -423,11 +423,11 @@ Dropdowns can be placed inside button groups as long as the trigger is an `<sl-b
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlButtonGroup from '@shoelace-style/shoelace/dist/react/button-group';
-import SlDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import SlMenu from '@shoelace-style/shoelace/dist/react/menu';
-import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlButtonGroup from '@saipem/design-system/dist/react/button-group';
+import SlDropdown from '@saipem/design-system/dist/react/dropdown';
+import SlMenu from '@saipem/design-system/dist/react/menu';
+import SlMenuItem from '@saipem/design-system/dist/react/menu-item';
 
 const App = () => (
   <SlButtonGroup label="Example Button Group">
@@ -448,11 +448,11 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button-group/button-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button-group/button-group.js';
+import '@saipem/design-system/%NPMDIR%/components/dropdown/dropdown.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -497,11 +497,11 @@ Create a split button using a button and a dropdown. Use a [visually hidden](/co
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlButtonGroup from '@shoelace-style/shoelace/dist/react/button-group';
-import SlDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import SlMenu from '@shoelace-style/shoelace/dist/react/menu';
-import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlButtonGroup from '@saipem/design-system/dist/react/button-group';
+import SlDropdown from '@saipem/design-system/dist/react/dropdown';
+import SlMenu from '@saipem/design-system/dist/react/menu';
+import SlMenuItem from '@saipem/design-system/dist/react/menu-item';
 
 const App = () => (
   <SlButtonGroup label="Example Button Group">
@@ -519,12 +519,12 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button-group/button-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/visually-hidden/visually-hidden.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button-group/button-group.js';
+import '@saipem/design-system/%NPMDIR%/components/dropdown/dropdown.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/visually-hidden/visually-hidden.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -570,9 +570,9 @@ Buttons can be wrapped in tooltips to provide more detail when the user interact
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlButtonGroup from '@shoelace-style/shoelace/dist/react/button-group';
-import SlTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlButtonGroup from '@saipem/design-system/dist/react/button-group';
+import SlTooltip from '@saipem/design-system/dist/react/tooltip';
 
 const App = () => (
   <>
@@ -594,9 +594,9 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button-group/button-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button-group/button-group.js';
+import '@saipem/design-system/%NPMDIR%/components/tooltip/tooltip.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -669,10 +669,10 @@ Create interactive toolbars with button groups.
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlButtonGroup from '@shoelace-style/shoelace/dist/react/button-group';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
-import SlTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlButtonGroup from '@saipem/design-system/dist/react/button-group';
+import SlIcon from '@saipem/design-system/dist/react/icon';
+import SlTooltip from '@saipem/design-system/dist/react/tooltip';
 
 const css = `
   .button-group-toolbar sl-button-group:not(:last-of-type) {
@@ -739,10 +739,10 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button-group/button-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/button-group/button-group.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/tooltip/tooltip.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

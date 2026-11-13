@@ -26,7 +26,7 @@ for extra header buttons, and a close button. The default slot holds the panel's
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/detail-panel/detail-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/detail-panel/detail-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -90,11 +90,11 @@ Combine the panel with [`sl-tab-group`](/components/tab-group) and a list of
 {% raw %}
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/detail-panel/detail-panel.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/selectable-item/selectable-item.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
+import '@saipem/design-system/%NPMDIR%/components/detail-panel/detail-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/selectable-item/selectable-item.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-group/tab-group.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-panel/tab-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/tab/tab.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -163,8 +163,8 @@ shown before the close button.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/detail-panel/detail-panel.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+import '@saipem/design-system/%NPMDIR%/components/detail-panel/detail-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/icon-button/icon-button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -200,7 +200,7 @@ it off for a sidebar attached to the edge of the page.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/detail-panel/detail-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/detail-panel/detail-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -240,7 +240,7 @@ closing requires confirming unsaved changes first.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/detail-panel/detail-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/detail-panel/detail-panel.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

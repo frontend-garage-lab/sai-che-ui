@@ -16,8 +16,8 @@ Use it for things like review comments or any threaded discussion. Pass an [sl-a
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/avatar/avatar.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/comment/comment.js';
+import '@saipem/design-system/%NPMDIR%/components/avatar/avatar.js';
+import '@saipem/design-system/%NPMDIR%/components/comment/comment.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -49,9 +49,9 @@ when the slot has content.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/avatar/avatar.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/comment/comment.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+import '@saipem/design-system/%NPMDIR%/components/avatar/avatar.js';
+import '@saipem/design-system/%NPMDIR%/components/comment/comment.js';
+import '@saipem/design-system/%NPMDIR%/components/icon-button/icon-button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -80,8 +80,8 @@ The date line is only shown when `date` is set or the `date` slot has content.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/avatar/avatar.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/comment/comment.js';
+import '@saipem/design-system/%NPMDIR%/components/avatar/avatar.js';
+import '@saipem/design-system/%NPMDIR%/components/comment/comment.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -122,9 +122,9 @@ export class CommentWithoutADateExampleComponent {}
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/avatar/avatar.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/comment/comment.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+import '@saipem/design-system/%NPMDIR%/components/avatar/avatar.js';
+import '@saipem/design-system/%NPMDIR%/components/comment/comment.js';
+import '@saipem/design-system/%NPMDIR%/components/icon-button/icon-button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

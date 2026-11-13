@@ -13,21 +13,21 @@ Svelte [plays nice](https://custom-elements-everywhere.com/#svelte) with custom 
 To add Shoelace to your Svelte app, install the package from npm.
 
 ```bash
-npm install @shoelace-style/shoelace
+npm install @saipem/design-system
 ```
 
 Next, [include a theme](/getting-started/themes) and set the [base path](/getting-started/installation#setting-the-base-path) for icons and other assets. In this example, we'll import the light theme and use the CDN as a base path.
 
 ```jsx
 // main.js or main.ts
-import '@shoelace-style/shoelace/dist/themes/light.css';
-import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path';
+import '@saipem/design-system/dist/themes/light.css';
+import { setBasePath } from '@saipem/design-system/dist/utilities/base-path';
 
-setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@%VERSION%/%CDNDIR%/');
+setBasePath('https://cdn.jsdelivr.net/npm/@saipem/design-system@%VERSION%/%CDNDIR%/');
 ```
 
 :::tip
-If you'd rather not use the CDN for assets, you can create a build task that copies `node_modules/@shoelace-style/shoelace/dist/assets` into a public folder in your app. Then you can point the base path to that folder instead.
+If you'd rather not use the CDN for assets, you can create a build task that copies `node_modules/@saipem/design-system/dist/assets` into a public folder in your app. Then you can point the base path to that folder instead.
 :::
 
 ## Usage
@@ -45,8 +45,8 @@ If you'd rather not use the CDN for assets, you can create a build task that cop
 </sl-alert>
 
 <script>
-  import '@shoelace-style/shoelace/dist/components/alert/alert.js'
-  import '@shoelace-style/shoelace/dist/components/input/input.js';
+  import '@saipem/design-system/dist/components/alert/alert.js'
+  import '@saipem/design-system/dist/components/input/input.js';
 
   let message = $state('')
 </script>

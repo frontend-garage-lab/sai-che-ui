@@ -10,13 +10,13 @@ layout: component
 ```
 
 ```jsx:react
-import SlSpinner from '@shoelace-style/shoelace/dist/react/spinner';
+import SlSpinner from '@saipem/design-system/dist/react/spinner';
 
 const App = () => <SlSpinner />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/spinner/spinner.js';
+import '@saipem/design-system/%NPMDIR%/components/spinner/spinner.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -40,7 +40,7 @@ Spinners are sized based on the current font size. To change their size, set the
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/spinner/spinner.js';
+import '@saipem/design-system/%NPMDIR%/components/spinner/spinner.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -58,7 +58,7 @@ export class SpinnerSizeExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlSpinner from '@shoelace-style/shoelace/dist/react/spinner';
+import SlSpinner from '@saipem/design-system/dist/react/spinner';
 
 const App = () => (
   <>
@@ -80,7 +80,7 @@ The width of the spinner's track can be changed by setting the `--track-width` c
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/spinner/spinner.js';
+import '@saipem/design-system/%NPMDIR%/components/spinner/spinner.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -94,7 +94,7 @@ export class SpinnerTrackWidthExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlSpinner from '@shoelace-style/shoelace/dist/react/spinner';
+import SlSpinner from '@saipem/design-system/dist/react/spinner';
 
 const App = () => (
   <SlSpinner
@@ -117,7 +117,7 @@ The spinner's colors can be changed by setting the `--indicator-color` and `--tr
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/spinner/spinner.js';
+import '@saipem/design-system/%NPMDIR%/components/spinner/spinner.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -131,7 +131,7 @@ export class SpinnerColorExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlSpinner from '@shoelace-style/shoelace/dist/react/spinner';
+import SlSpinner from '@saipem/design-system/dist/react/spinner';
 
 const App = () => (
   <SlSpinner

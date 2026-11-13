@@ -113,9 +113,11 @@ Theme tokens give you a semantic way to reference colors in your app. The primar
   <div class="color-palette__example"><div class="color-palette__swatch " style="background-color: var(--sl-color-neutral-1000);"></div>1000</div>
 </div>
 
+<!-- CodePen disabled: the color token generator uses the public Shoelace package. Uncomment to re-enable.
 :::tip
 Looking for an easy way to customize your theme? [Try the color token generator!](https://codepen.io/claviska/full/QWveRgL)
 :::
+-->
 
 ## Primitives
 

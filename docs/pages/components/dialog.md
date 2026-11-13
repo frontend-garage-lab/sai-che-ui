@@ -27,8 +27,8 @@ layout: component
 
 ```jsx:react
 import { useState } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDialog from '@shoelace-style/shoelace/dist/react/dialog';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDialog from '@saipem/design-system/dist/react/dialog';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -49,8 +49,8 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dialog/dialog.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/dialog/dialog.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -115,8 +115,8 @@ before the title; `default` shows none. The footer buttons keep their own varian
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dialog/dialog.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/dialog/dialog.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 type DialogVariant = 'warning' | 'success' | 'danger';
@@ -185,8 +185,8 @@ Use the `--width` custom property to set the dialog's width.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dialog/dialog.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/dialog/dialog.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -211,8 +211,8 @@ export class DialogCustomWidthExampleComponent {
 
 ```jsx:react
 import { useState } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDialog from '@shoelace-style/shoelace/dist/react/dialog';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDialog from '@saipem/design-system/dist/react/dialog';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -259,8 +259,8 @@ By design, a dialog's height will never exceed that of the viewport. As such, di
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dialog/dialog.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/dialog/dialog.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -287,8 +287,8 @@ export class DialogScrollingExampleComponent {
 
 ```jsx:react
 import { useState } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDialog from '@shoelace-style/shoelace/dist/react/dialog';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDialog from '@saipem/design-system/dist/react/dialog';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -346,9 +346,9 @@ The header shows a functional close button by default. You can use the `header-a
 
 ```jsx:react
 import { useState } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDialog from '@shoelace-style/shoelace/dist/react/dialog';
-import SlIconButton from '@shoelace-style/shoelace/dist/react/icon-button';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDialog from '@saipem/design-system/dist/react/dialog';
+import SlIconButton from '@saipem/design-system/dist/react/icon-button';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -375,9 +375,9 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dialog/dialog.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/dialog/dialog.js';
+import '@saipem/design-system/%NPMDIR%/components/icon-button/icon-button.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -438,8 +438,8 @@ You can use `event.detail.source` to determine what triggered the request to clo
 
 ```jsx:react
 import { useState } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDialog from '@shoelace-style/shoelace/dist/react/dialog';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDialog from '@saipem/design-system/dist/react/dialog';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -467,8 +467,8 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dialog/dialog.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/dialog/dialog.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -528,9 +528,9 @@ By default, the dialog's panel will gain focus when opened. This allows a subseq
 
 ```jsx:react
 import { useState } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDialog from '@shoelace-style/shoelace/dist/react/dialog';
-import SlInput from '@shoelace-style/shoelace/dist/react/input';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDialog from '@saipem/design-system/dist/react/dialog';
+import SlInput from '@saipem/design-system/dist/react/input';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -551,9 +551,9 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dialog/dialog.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/dialog/dialog.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({

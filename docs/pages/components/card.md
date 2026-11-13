@@ -41,9 +41,9 @@ layout: component
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlCard from '@shoelace-style/shoelace/dist/react/card';
-import SlRating from '@shoelace-style/shoelace/dist/react/rating';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlCard from '@saipem/design-system/dist/react/card';
+import SlRating from '@saipem/design-system/dist/react/rating';
 
 const css = `
   .card-overview {
@@ -88,9 +88,9 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/card/card.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/card/card.js';
+import '@saipem/design-system/%NPMDIR%/components/rating/rating.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -152,7 +152,7 @@ Basic cards aren't very exciting, but they can display any content you want them
 ```
 
 ```jsx:react
-import SlCard from '@shoelace-style/shoelace/dist/react/card';
+import SlCard from '@saipem/design-system/dist/react/card';
 
 const css = `
   .card-basic {
@@ -172,7 +172,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/card/card.js';
+import '@saipem/design-system/%NPMDIR%/components/card/card.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -228,8 +228,8 @@ Headers can be used to display titles and more.
 ```
 
 ```jsx:react
-import SlCard from '@shoelace-style/shoelace/dist/react/card';
-import SlIconButton from '@shoelace-style/shoelace/dist/react/icon-button';
+import SlCard from '@saipem/design-system/dist/react/card';
+import SlIconButton from '@saipem/design-system/dist/react/icon-button';
 
 const css = `
   .card-header {
@@ -267,8 +267,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/card/card.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+import '@saipem/design-system/%NPMDIR%/components/card/card.js';
+import '@saipem/design-system/%NPMDIR%/components/icon-button/icon-button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -335,9 +335,9 @@ Footers can be used to display actions, summaries, or other relevant content.
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlCard from '@shoelace-style/shoelace/dist/react/card';
-import SlRating from '@shoelace-style/shoelace/dist/react/rating';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlCard from '@saipem/design-system/dist/react/card';
+import SlRating from '@saipem/design-system/dist/react/rating';
 
 const css = `
   .card-footer {
@@ -369,9 +369,9 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/card/card.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/rating/rating.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/card/card.js';
+import '@saipem/design-system/%NPMDIR%/components/rating/rating.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -426,7 +426,7 @@ Set `variant` to color the card's top edge, e.g. to tell apart the work areas of
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/card/card.js';
+import '@saipem/design-system/%NPMDIR%/components/card/card.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -475,7 +475,7 @@ Cards accept an `image` slot. The image is displayed atop the card and stretches
 ```
 
 ```jsx:react
-import SlCard from '@shoelace-style/shoelace/dist/react/card';
+import SlCard from '@saipem/design-system/dist/react/card';
 
 const css = `
   .card-image {
@@ -500,7 +500,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/card/card.js';
+import '@saipem/design-system/%NPMDIR%/components/card/card.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

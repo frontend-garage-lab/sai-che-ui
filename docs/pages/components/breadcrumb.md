@@ -17,8 +17,8 @@ Breadcrumbs are usually placed before a page's main content with the current pag
 ```
 
 ```jsx:react
-import SlBreadcrumb from '@shoelace-style/shoelace/dist/react/breadcrumb';
-import SlBreadcrumbItem from '@shoelace-style/shoelace/dist/react/breadcrumb-item';
+import SlBreadcrumb from '@saipem/design-system/dist/react/breadcrumb';
+import SlBreadcrumbItem from '@saipem/design-system/dist/react/breadcrumb-item';
 
 const App = () => (
   <SlBreadcrumb>
@@ -31,8 +31,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb/breadcrumb.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
+import '@saipem/design-system/%NPMDIR%/components/breadcrumb/breadcrumb.js';
+import '@saipem/design-system/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -71,8 +71,8 @@ For websites, you'll probably want to use links instead. You can make any breadc
 ```
 
 ```jsx:react
-import SlBreadcrumb from '@shoelace-style/shoelace/dist/react/breadcrumb';
-import SlBreadcrumbItem from '@shoelace-style/shoelace/dist/react/breadcrumb-item';
+import SlBreadcrumb from '@saipem/design-system/dist/react/breadcrumb';
+import SlBreadcrumbItem from '@saipem/design-system/dist/react/breadcrumb-item';
 
 const App = () => (
   <SlBreadcrumb>
@@ -88,8 +88,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb/breadcrumb.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
+import '@saipem/design-system/%NPMDIR%/components/breadcrumb/breadcrumb.js';
+import '@saipem/design-system/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -142,9 +142,9 @@ Use the `separator` slot to change the separator that goes between breadcrumb it
 ```
 
 ```jsx:react
-import '@shoelace-style/shoelace/dist/components/icon/icon.js';
-import SlBreadcrumb from '@shoelace-style/shoelace/dist/react/breadcrumb';
-import SlBreadcrumbItem from '@shoelace-style/shoelace/dist/react/breadcrumb-item';
+import '@saipem/design-system/dist/components/icon/icon.js';
+import SlBreadcrumb from '@saipem/design-system/dist/react/breadcrumb';
+import SlBreadcrumbItem from '@saipem/design-system/dist/react/breadcrumb-item';
 
 const App = () => (
   <>
@@ -177,9 +177,9 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb/breadcrumb.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/breadcrumb/breadcrumb.js';
+import '@saipem/design-system/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -231,9 +231,9 @@ Use the `prefix` slot to add content before any breadcrumb item.
 ```
 
 ```jsx:react
-import SlBreadcrumb from '@shoelace-style/shoelace/dist/react/breadcrumb';
-import SlBreadcrumbItem from '@shoelace-style/shoelace/dist/react/breadcrumb-item';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import SlBreadcrumb from '@saipem/design-system/dist/react/breadcrumb';
+import SlBreadcrumbItem from '@saipem/design-system/dist/react/breadcrumb-item';
+import SlIcon from '@saipem/design-system/dist/react/icon';
 
 const App = () => (
   <SlBreadcrumb>
@@ -248,9 +248,9 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb/breadcrumb.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/breadcrumb/breadcrumb.js';
+import '@saipem/design-system/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -286,9 +286,9 @@ Use the `suffix` slot to add content after any breadcrumb item.
 ```
 
 ```jsx:react
-import SlBreadcrumb from '@shoelace-style/shoelace/dist/react/breadcrumb';
-import SlBreadcrumbItem from '@shoelace-style/shoelace/dist/react/breadcrumb-item';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import SlBreadcrumb from '@saipem/design-system/dist/react/breadcrumb';
+import SlBreadcrumbItem from '@saipem/design-system/dist/react/breadcrumb-item';
+import SlIcon from '@saipem/design-system/dist/react/icon';
 
 const App = () => (
   <SlBreadcrumb>
@@ -303,9 +303,9 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb/breadcrumb.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/breadcrumb/breadcrumb.js';
+import '@saipem/design-system/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -358,7 +358,7 @@ import {
   SlIcon,
   SlMenu,
   SlMenuItem
-} from '@shoelace-style/shoelace/dist/react';
+} from '@saipem/design-system/dist/react';
 
 const App = () => (
   <SlBreadcrumb>
@@ -384,13 +384,13 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb/breadcrumb.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/breadcrumb/breadcrumb.js';
+import '@saipem/design-system/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/dropdown/dropdown.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -451,7 +451,7 @@ import {
   SlIcon,
   SlMenu,
   SlMenuItem
-} from '@shoelace-style/shoelace/dist/react';
+} from '@saipem/design-system/dist/react';
 
 const App = () => (
   <SlBreadcrumb>
@@ -478,13 +478,13 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb/breadcrumb.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/breadcrumb/breadcrumb.js';
+import '@saipem/design-system/%NPMDIR%/components/breadcrumb-item/breadcrumb-item.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/dropdown/dropdown.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

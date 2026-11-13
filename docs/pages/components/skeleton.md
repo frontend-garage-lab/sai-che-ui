@@ -56,7 +56,7 @@ Skeletons try not to be opinionated, as there are endless possibilities for desi
 ```
 
 ```jsx:react
-import SlSkeleton from '@shoelace-style/shoelace/dist/react/skeleton';
+import SlSkeleton from '@saipem/design-system/dist/react/skeleton';
 
 const css = `
   .skeleton-overview header {
@@ -110,7 +110,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/skeleton/skeleton.js';
+import '@saipem/design-system/%NPMDIR%/components/skeleton/skeleton.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -194,7 +194,7 @@ There are two built-in effects, `sheen` and `pulse`. Effects are intentionally s
 ```
 
 ```jsx:react
-import SlSkeleton from '@shoelace-style/shoelace/dist/react/skeleton';
+import SlSkeleton from '@saipem/design-system/dist/react/skeleton';
 
 const css = `
   .skeleton-effects {
@@ -223,7 +223,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/skeleton/skeleton.js';
+import '@saipem/design-system/%NPMDIR%/components/skeleton/skeleton.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -287,7 +287,7 @@ Use multiple skeletons and some clever styles to simulate paragraphs.
 ```
 
 ```jsx:react
-import SlSkeleton from '@shoelace-style/shoelace/dist/react/skeleton';
+import SlSkeleton from '@saipem/design-system/dist/react/skeleton';
 
 const css = `
   .skeleton-paragraphs sl-skeleton {
@@ -323,7 +323,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/skeleton/skeleton.js';
+import '@saipem/design-system/%NPMDIR%/components/skeleton/skeleton.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -389,7 +389,7 @@ Set a matching width and height to make a circle, square, or rounded avatar skel
 ```
 
 ```jsx:react
-import SlSkeleton from '@shoelace-style/shoelace/dist/react/skeleton';
+import SlSkeleton from '@saipem/design-system/dist/react/skeleton';
 
 const css = `
   .skeleton-avatars sl-skeleton {
@@ -422,7 +422,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/skeleton/skeleton.js';
+import '@saipem/design-system/%NPMDIR%/components/skeleton/skeleton.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -518,7 +518,7 @@ Use the `--border-radius` custom property to make circles, squares, and rectangl
 ```
 
 ```jsx:react
-import SlSkeleton from '@shoelace-style/shoelace/dist/react/skeleton';
+import SlSkeleton from '@saipem/design-system/dist/react/skeleton';
 
 const css = `
   .skeleton-shapes sl-skeleton {
@@ -571,7 +571,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/skeleton/skeleton.js';
+import '@saipem/design-system/%NPMDIR%/components/skeleton/skeleton.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -646,7 +646,7 @@ Set the `--color` and `--sheen-color` custom properties to adjust the skeleton's
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/skeleton/skeleton.js';
+import '@saipem/design-system/%NPMDIR%/components/skeleton/skeleton.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -660,7 +660,7 @@ export class SkeletonCustomColorsExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlSkeleton from '@shoelace-style/shoelace/dist/react/skeleton';
+import SlSkeleton from '@saipem/design-system/dist/react/skeleton';
 
 const css = `
   .skeleton-avatars sl-skeleton {

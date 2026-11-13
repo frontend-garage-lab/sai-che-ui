@@ -15,7 +15,7 @@ layout: component
 ```
 
 ```jsx:react
-import SlDetails from '@shoelace-style/shoelace/dist/react/details';
+import SlDetails from '@saipem/design-system/dist/react/details';
 
 const App = () => (
   <SlDetails summary="Toggle Me">
@@ -26,7 +26,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/details/details.js';
+import '@saipem/design-system/%NPMDIR%/components/details/details.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -56,7 +56,7 @@ Use the `disable` attribute to prevent the details from expanding.
 ```
 
 ```jsx:react
-import SlDetails from '@shoelace-style/shoelace/dist/react/details';
+import SlDetails from '@saipem/design-system/dist/react/details';
 
 const App = () => (
   <SlDetails summary="Disabled" disabled>
@@ -67,7 +67,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/details/details.js';
+import '@saipem/design-system/%NPMDIR%/components/details/details.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -105,8 +105,8 @@ Use the `expand-icon` and `collapse-icon` slots to change the expand and collaps
 ```
 
 ```jsx:react
-import SlDetails from '@shoelace-style/shoelace/dist/react/details';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import SlDetails from '@saipem/design-system/dist/react/details';
+import SlIcon from '@saipem/design-system/dist/react/icon';
 
 const css = `
   sl-details.custom-icon::part(summary-icon) {
@@ -131,8 +131,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/details/details.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/details/details.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -200,7 +200,7 @@ Details are designed to function independently, but you can simulate a group or 
 {% raw %}
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/details/details.js';
+import '@saipem/design-system/%NPMDIR%/components/details/details.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 const BODY =

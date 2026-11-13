@@ -33,12 +33,12 @@ Dropdowns are designed to work well with [menus](/components/menu) to provide a 
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDivider from '@shoelace-style/shoelace/dist/react/divider';
-import SlDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
-import SlMenu from '@shoelace-style/shoelace/dist/react/menu';
-import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDivider from '@saipem/design-system/dist/react/divider';
+import SlDropdown from '@saipem/design-system/dist/react/dropdown';
+import SlIcon from '@saipem/design-system/dist/react/icon';
+import SlMenu from '@saipem/design-system/dist/react/menu';
+import SlMenuItem from '@saipem/design-system/dist/react/menu-item';
 
 const App = () => (
   <SlDropdown>
@@ -69,12 +69,12 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/divider/divider.js';
+import '@saipem/design-system/%NPMDIR%/components/dropdown/dropdown.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -136,10 +136,10 @@ When dropdowns are used with [menus](/components/menu), you can listen for the [
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import SlMenu from '@shoelace-style/shoelace/dist/react/menu';
-import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDropdown from '@saipem/design-system/dist/react/dropdown';
+import SlMenu from '@saipem/design-system/dist/react/menu';
+import SlMenuItem from '@saipem/design-system/dist/react/menu-item';
 
 const App = () => {
   function handleSelect(event) {
@@ -163,12 +163,12 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/dropdown/dropdown.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import type SlMenuItem from '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.component.js';
+import type SlMenuItem from '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.component.js';
 
 @Component({
   selector: 'app-dropdown-selection-example',
@@ -220,10 +220,10 @@ Alternatively, you can listen for the `click` event on individual menu items. No
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import SlMenu from '@shoelace-style/shoelace/dist/react/menu';
-import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDropdown from '@saipem/design-system/dist/react/dropdown';
+import SlMenu from '@saipem/design-system/dist/react/menu';
+import SlMenuItem from '@saipem/design-system/dist/react/menu-item';
 
 const App = () => {
   function handleCut() {
@@ -254,10 +254,10 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/dropdown/dropdown.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -301,11 +301,11 @@ The preferred placement of the dropdown can be set with the `placement` attribut
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDivider from '@shoelace-style/shoelace/dist/react/divider';
-import SlDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import SlMenu from '@shoelace-style/shoelace/dist/react/menu';
-import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDivider from '@saipem/design-system/dist/react/divider';
+import SlDropdown from '@saipem/design-system/dist/react/dropdown';
+import SlMenu from '@saipem/design-system/dist/react/menu';
+import SlMenuItem from '@saipem/design-system/dist/react/menu-item';
 
 const App = () => (
   <SlDropdown placement="top-start">
@@ -325,11 +325,11 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/divider/divider.js';
+import '@saipem/design-system/%NPMDIR%/components/dropdown/dropdown.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -371,11 +371,11 @@ The distance from the panel to the trigger can be customized using the `distance
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDivider from '@shoelace-style/shoelace/dist/react/divider';
-import SlDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import SlMenu from '@shoelace-style/shoelace/dist/react/menu';
-import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDivider from '@saipem/design-system/dist/react/divider';
+import SlDropdown from '@saipem/design-system/dist/react/dropdown';
+import SlMenu from '@saipem/design-system/dist/react/menu';
+import SlMenuItem from '@saipem/design-system/dist/react/menu-item';
 
 const App = () => (
   <SlDropdown distance={30}>
@@ -395,11 +395,11 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/divider/divider.js';
+import '@saipem/design-system/%NPMDIR%/components/dropdown/dropdown.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -441,11 +441,11 @@ The offset of the panel along the trigger can be customized using the `skidding`
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDivider from '@shoelace-style/shoelace/dist/react/divider';
-import SlDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import SlMenu from '@shoelace-style/shoelace/dist/react/menu';
-import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDivider from '@saipem/design-system/dist/react/divider';
+import SlDropdown from '@saipem/design-system/dist/react/dropdown';
+import SlMenu from '@saipem/design-system/dist/react/menu';
+import SlMenuItem from '@saipem/design-system/dist/react/menu-item';
 
 const App = () => (
   <SlDropdown skidding={30}>
@@ -465,11 +465,11 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/divider/divider.js';
+import '@saipem/design-system/%NPMDIR%/components/dropdown/dropdown.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -529,11 +529,11 @@ To create a submenu, nest an `<sl-menu slot="submenu">` element in a [menu item]
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDivider from '@shoelace-style/shoelace/dist/react/divider';
-import SlDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import SlMenu from '@shoelace-style/shoelace/dist/react/menu';
-import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDivider from '@saipem/design-system/dist/react/divider';
+import SlDropdown from '@saipem/design-system/dist/react/dropdown';
+import SlMenu from '@saipem/design-system/dist/react/menu';
+import SlMenuItem from '@saipem/design-system/dist/react/menu-item';
 
 const css = `
   .dropdown-hoist {
@@ -579,11 +579,11 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/divider/divider.js';
+import '@saipem/design-system/%NPMDIR%/components/dropdown/dropdown.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -664,11 +664,11 @@ Dropdown panels will be clipped if they're inside a container that has `overflow
 ```
 
 ```jsx:react
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDivider from '@shoelace-style/shoelace/dist/react/divider';
-import SlDropdown from '@shoelace-style/shoelace/dist/react/dropdown';
-import SlMenu from '@shoelace-style/shoelace/dist/react/menu';
-import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDivider from '@saipem/design-system/dist/react/divider';
+import SlDropdown from '@saipem/design-system/dist/react/dropdown';
+import SlMenu from '@saipem/design-system/dist/react/menu';
+import SlMenuItem from '@saipem/design-system/dist/react/menu-item';
 
 const css = `
   .dropdown-hoist {
@@ -710,10 +710,10 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/dropdown/dropdown.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/dropdown/dropdown.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

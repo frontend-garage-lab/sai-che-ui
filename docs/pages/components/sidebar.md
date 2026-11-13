@@ -42,10 +42,10 @@ collapsed state; when collapsed only the group icons (and item prefix icons) rem
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar/sidebar.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar-group/sidebar-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar-item/sidebar-item.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/sidebar/sidebar.js';
+import '@saipem/design-system/%NPMDIR%/components/sidebar-group/sidebar-group.js';
+import '@saipem/design-system/%NPMDIR%/components/sidebar-item/sidebar-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -126,10 +126,10 @@ user's choice.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar/sidebar.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar-group/sidebar-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar-item/sidebar-item.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/sidebar/sidebar.js';
+import '@saipem/design-system/%NPMDIR%/components/sidebar-group/sidebar-group.js';
+import '@saipem/design-system/%NPMDIR%/components/sidebar-item/sidebar-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -187,10 +187,10 @@ Items with a `prefix` icon stay visible as icons when the sidebar is collapsed.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar/sidebar.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar-group/sidebar-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/sidebar-item/sidebar-item.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/sidebar/sidebar.js';
+import '@saipem/design-system/%NPMDIR%/components/sidebar-group/sidebar-group.js';
+import '@saipem/design-system/%NPMDIR%/components/sidebar-item/sidebar-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

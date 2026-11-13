@@ -10,13 +10,13 @@ layout: component
 ```
 
 ```jsx:react
-import SlBadge from '@shoelace-style/shoelace/dist/react/badge';
+import SlBadge from '@saipem/design-system/dist/react/badge';
 
 const App = () => <SlBadge>Badge</SlBadge>;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/badge/badge.js';
+import '@saipem/design-system/%NPMDIR%/components/badge/badge.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -42,7 +42,7 @@ Set the `variant` attribute to change the badge's variant.
 ```
 
 ```jsx:react
-import SlBadge from '@shoelace-style/shoelace/dist/react/badge';
+import SlBadge from '@saipem/design-system/dist/react/badge';
 
 const App = () => (
   <>
@@ -56,7 +56,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/badge/badge.js';
+import '@saipem/design-system/%NPMDIR%/components/badge/badge.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -86,7 +86,7 @@ Use the `pill` attribute to give badges rounded edges.
 ```
 
 ```jsx:react
-import SlBadge from '@shoelace-style/shoelace/dist/react/badge';
+import SlBadge from '@saipem/design-system/dist/react/badge';
 
 const App = () => (
   <>
@@ -110,7 +110,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/badge/badge.js';
+import '@saipem/design-system/%NPMDIR%/components/badge/badge.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -148,7 +148,7 @@ Use the `pulse` attribute to draw attention to the badge with a subtle animation
 ```
 
 ```jsx:react
-import SlBadge from '@shoelace-style/shoelace/dist/react/badge';
+import SlBadge from '@saipem/design-system/dist/react/badge';
 
 const css = `
   .badge-pulse sl-badge:not(:last-of-type) {
@@ -182,7 +182,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/badge/badge.js';
+import '@saipem/design-system/%NPMDIR%/components/badge/badge.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -228,8 +228,8 @@ One of the most common use cases for badges is attaching them to buttons. To mak
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/badge/badge.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/badge/badge.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -258,8 +258,8 @@ export class BadgeWithButtonsExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlBadge from '@shoelace-style/shoelace/dist/react/badge';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
+import SlBadge from '@saipem/design-system/dist/react/badge';
+import SlButton from '@saipem/design-system/dist/react/button';
 
 const App = () => (
   <>
@@ -300,10 +300,10 @@ When including badges in menu items, use the `suffix` slot to make sure they're 
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/badge/badge.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-label/menu-label.js';
+import '@saipem/design-system/%NPMDIR%/components/badge/badge.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-label/menu-label.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -323,11 +323,11 @@ export class BadgeWithMenuItemsExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlBadge from '@shoelace-style/shoelace/dist/react/badge';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlMenu from '@shoelace-style/shoelace/dist/react/menu';
-import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
-import SlMenuLabel from '@shoelace-style/shoelace/dist/react/menu-label';
+import SlBadge from '@saipem/design-system/dist/react/badge';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlMenu from '@saipem/design-system/dist/react/menu';
+import SlMenuItem from '@saipem/design-system/dist/react/menu-item';
+import SlMenuLabel from '@saipem/design-system/dist/react/menu-label';
 
 const App = () => (
   <SlMenu

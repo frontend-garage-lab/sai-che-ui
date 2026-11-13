@@ -10,13 +10,13 @@ layout: component
 ```
 
 ```jsx:react
-import SlProgressBar from '@shoelace-style/shoelace/dist/react/progress-bar';
+import SlProgressBar from '@saipem/design-system/dist/react/progress-bar';
 
 const App = () => <SlProgressBar value={50} />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/progress-bar/progress-bar.js';
+import '@saipem/design-system/%NPMDIR%/components/progress-bar/progress-bar.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -38,13 +38,13 @@ Use the `label` attribute to label the progress bar and tell assistive devices h
 ```
 
 ```jsx:react
-import SlProgressBar from '@shoelace-style/shoelace/dist/react/progress-bar';
+import SlProgressBar from '@saipem/design-system/dist/react/progress-bar';
 
 const App = () => <SlProgressBar value="50" label="Upload progress" />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/progress-bar/progress-bar.js';
+import '@saipem/design-system/%NPMDIR%/components/progress-bar/progress-bar.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -64,7 +64,7 @@ Use the `--height` custom property to set the progress bar's height.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/progress-bar/progress-bar.js';
+import '@saipem/design-system/%NPMDIR%/components/progress-bar/progress-bar.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -78,7 +78,7 @@ export class ProgressBarCustomHeightExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlProgressBar from '@shoelace-style/shoelace/dist/react/progress-bar';
+import SlProgressBar from '@saipem/design-system/dist/react/progress-bar';
 
 const App = () => <SlProgressBar value={50} style={{ '--height': '6px' }} />;
 ```
@@ -118,9 +118,9 @@ Use the default slot to show a value.
 
 ```jsx:react
 import { useState } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
-import SlProgressBar from '@shoelace-style/shoelace/dist/react/progress-bar';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlIcon from '@saipem/design-system/dist/react/icon';
+import SlProgressBar from '@saipem/design-system/dist/react/progress-bar';
 
 const App = () => {
   const [value, setValue] = useState(50);
@@ -153,9 +153,9 @@ const App = () => {
 {% raw %}
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/progress-bar/progress-bar.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/progress-bar/progress-bar.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -191,13 +191,13 @@ The `indeterminate` attribute can be used to inform the user that the operation 
 ```
 
 ```jsx:react
-import SlProgressBar from '@shoelace-style/shoelace/dist/react/progress-bar';
+import SlProgressBar from '@saipem/design-system/dist/react/progress-bar';
 
 const App = () => <SlProgressBar indeterminate />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/progress-bar/progress-bar.js';
+import '@saipem/design-system/%NPMDIR%/components/progress-bar/progress-bar.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

@@ -12,13 +12,13 @@ By default, a generic icon will be shown. You can personalize avatars by adding 
 ```
 
 ```jsx:react
-import SlAvatar from '@shoelace-style/shoelace/dist/react/avatar';
+import SlAvatar from '@saipem/design-system/dist/react/avatar';
 
 const App = () => <SlAvatar label="User avatar" />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/avatar/avatar.js';
+import '@saipem/design-system/%NPMDIR%/components/avatar/avatar.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -43,8 +43,8 @@ the icon tile of a work-area card.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/avatar/avatar.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/avatar/avatar.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -77,7 +77,7 @@ Avatar images can be lazily loaded by setting the `loading` attribute to `lazy`.
 ```
 
 ```jsx:react
-import SlAvatar from '@shoelace-style/shoelace/dist/react/avatar';
+import SlAvatar from '@saipem/design-system/dist/react/avatar';
 
 const App = () => (
   <SlAvatar
@@ -93,7 +93,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/avatar/avatar.js';
+import '@saipem/design-system/%NPMDIR%/components/avatar/avatar.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -123,13 +123,13 @@ When you don't have an image to use, you can set the `initials` attribute to sho
 ```
 
 ```jsx:react
-import SlAvatar from '@shoelace-style/shoelace/dist/react/avatar';
+import SlAvatar from '@saipem/design-system/dist/react/avatar';
 
 const App = () => <SlAvatar initials="SL" label="Avatar with initials: SL" />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/avatar/avatar.js';
+import '@saipem/design-system/%NPMDIR%/components/avatar/avatar.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -159,8 +159,8 @@ When no image or initials are set, an icon will be shown. The default avatar sho
 ```
 
 ```jsx:react
-import SlAvatar from '@shoelace-style/shoelace/dist/react/avatar';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import SlAvatar from '@saipem/design-system/dist/react/avatar';
+import SlIcon from '@saipem/design-system/dist/react/icon';
 
 const App = () => (
   <>
@@ -180,8 +180,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/avatar/avatar.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/avatar/avatar.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -217,7 +217,7 @@ the `--size` custom property.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/avatar/avatar.js';
+import '@saipem/design-system/%NPMDIR%/components/avatar/avatar.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -243,8 +243,8 @@ Avatars can be shaped using the `shape` attribute.
 ```
 
 ```jsx:react
-import SlAvatar from '@shoelace-style/shoelace/dist/react/avatar';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import SlAvatar from '@saipem/design-system/dist/react/avatar';
+import SlIcon from '@saipem/design-system/dist/react/icon';
 
 const App = () => (
   <>
@@ -256,7 +256,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/avatar/avatar.js';
+import '@saipem/design-system/%NPMDIR%/components/avatar/avatar.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -310,8 +310,8 @@ You can group avatars with a few lines of CSS.
 ```
 
 ```jsx:react
-import SlAvatar from '@shoelace-style/shoelace/dist/react/avatar';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import SlAvatar from '@saipem/design-system/dist/react/avatar';
+import SlIcon from '@saipem/design-system/dist/react/icon';
 
 const css = `
   .avatar-group sl-avatar:not(:first-of-type) {
@@ -353,7 +353,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/avatar/avatar.js';
+import '@saipem/design-system/%NPMDIR%/components/avatar/avatar.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

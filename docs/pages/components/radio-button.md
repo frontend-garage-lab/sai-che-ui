@@ -16,8 +16,8 @@ Radio buttons are designed to be used with [radio groups](/components/radio-grou
 ```
 
 ```jsx:react
-import SlRadioButton from '@shoelace-style/shoelace/dist/react/radio-button';
-import SlRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
+import SlRadioButton from '@saipem/design-system/dist/react/radio-button';
+import SlRadioGroup from '@saipem/design-system/dist/react/radio-group';
 
 const App = () => (
   <SlRadioGroup label="Select an option" name="a" value="1">
@@ -29,8 +29,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-button/radio-button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-button/radio-button.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-group/radio-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -62,8 +62,8 @@ To set the initial value and checked state, use the `value` attribute on the con
 ```
 
 ```jsx:react
-import SlRadioButton from '@shoelace-style/shoelace/dist/react/radio-button';
-import SlRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
+import SlRadioButton from '@saipem/design-system/dist/react/radio-button';
+import SlRadioGroup from '@saipem/design-system/dist/react/radio-group';
 
 const App = () => (
   <SlRadioGroup label="Select an option" name="a" value="1">
@@ -75,8 +75,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-button/radio-button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-button/radio-button.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-group/radio-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -106,8 +106,8 @@ Use the `disabled` attribute to disable a radio button.
 ```
 
 ```jsx:react
-import SlRadioButton from '@shoelace-style/shoelace/dist/react/radio-button';
-import SlRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
+import SlRadioButton from '@saipem/design-system/dist/react/radio-button';
+import SlRadioGroup from '@saipem/design-system/dist/react/radio-group';
 
 const App = () => (
   <SlRadioGroup label="Select an option" name="a" value="1">
@@ -121,8 +121,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-button/radio-button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-button/radio-button.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-group/radio-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -168,8 +168,8 @@ Use the `size` attribute to change a radio button's size.
 ```
 
 ```jsx:react
-import SlRadioButton from '@shoelace-style/shoelace/dist/react/radio-button';
-import SlRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
+import SlRadioButton from '@saipem/design-system/dist/react/radio-button';
+import SlRadioGroup from '@saipem/design-system/dist/react/radio-group';
 
 const App = () => (
   <SlRadioGroup size="small" label="Select an option" name="a" value="1">
@@ -197,8 +197,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-button/radio-button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-button/radio-button.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-group/radio-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -260,8 +260,8 @@ Use the `pill` attribute to give radio buttons rounded edges.
 ```
 
 ```jsx:react
-import SlRadioButton from '@shoelace-style/shoelace/dist/react/radio-button';
-import SlRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
+import SlRadioButton from '@saipem/design-system/dist/react/radio-button';
+import SlRadioGroup from '@saipem/design-system/dist/react/radio-group';
 
 const App = () => (
   <SlRadioGroup size="small" label="Select an option" name="a" value="1">
@@ -289,8 +289,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-button/radio-button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-button/radio-button.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-group/radio-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -348,9 +348,9 @@ Use the `prefix` and `suffix` slots to add icons.
 ```
 
 ```jsx:react
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
-import SlRadioButton from '@shoelace-style/shoelace/dist/react/radio-button';
-import SlRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
+import SlIcon from '@saipem/design-system/dist/react/icon';
+import SlRadioButton from '@saipem/design-system/dist/react/radio-button';
+import SlRadioGroup from '@saipem/design-system/dist/react/radio-group';
 
 const App = () => (
   <SlRadioGroup label="Select an option" name="a" value="1">
@@ -374,9 +374,9 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-button/radio-button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-button/radio-button.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-group/radio-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -434,9 +434,9 @@ You can omit button labels and use icons instead. Make sure to set a `label` att
 ```
 
 ```jsx:react
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
-import SlRadioButton from '@shoelace-style/shoelace/dist/react/radio-button';
-import SlRadioGroup from '@shoelace-style/shoelace/dist/react/radio-group';
+import SlIcon from '@saipem/design-system/dist/react/icon';
+import SlRadioButton from '@saipem/design-system/dist/react/radio-button';
+import SlRadioGroup from '@saipem/design-system/dist/react/radio-group';
 
 const App = () => (
   <SlRadioGroup label="Select an option" name="a" value="neutral">
@@ -464,9 +464,9 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-button/radio-button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/radio-group/radio-group.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-button/radio-button.js';
+import '@saipem/design-system/%NPMDIR%/components/radio-group/radio-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

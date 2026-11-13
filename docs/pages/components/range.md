@@ -10,13 +10,13 @@ layout: component
 ```
 
 ```jsx:react
-import SlRange from '@shoelace-style/shoelace/dist/react/range';
+import SlRange from '@saipem/design-system/dist/react/range';
 
 const App = () => <SlRange />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import '@saipem/design-system/%NPMDIR%/components/range/range.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -42,13 +42,13 @@ Use the `label` attribute to give the range an accessible label. For labels that
 ```
 
 ```jsx:react
-import SlRange from '@shoelace-style/shoelace/dist/react/range';
+import SlRange from '@saipem/design-system/dist/react/range';
 
 const App = () => <SlRange label="Volume" min={0} max={100} />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import '@saipem/design-system/%NPMDIR%/components/range/range.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -68,13 +68,13 @@ Add descriptive help text to a range with the `help-text` attribute. For help te
 ```
 
 ```jsx:react
-import SlRange from '@shoelace-style/shoelace/dist/react/range';
+import SlRange from '@saipem/design-system/dist/react/range';
 
 const App = () => <SlRange label="Volume" help-text="Controls the volume of the current song." min={0} max={100} />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import '@saipem/design-system/%NPMDIR%/components/range/range.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -96,13 +96,13 @@ Use the `min` and `max` attributes to set the range's minimum and maximum values
 ```
 
 ```jsx:react
-import SlRange from '@shoelace-style/shoelace/dist/react/range';
+import SlRange from '@saipem/design-system/dist/react/range';
 
 const App = () => <SlRange min={0} max={10} step={1} />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import '@saipem/design-system/%NPMDIR%/components/range/range.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -122,13 +122,13 @@ Use the `disabled` attribute to disable a slider.
 ```
 
 ```jsx:react
-import SlRange from '@shoelace-style/shoelace/dist/react/range';
+import SlRange from '@saipem/design-system/dist/react/range';
 
 const App = () => <SlRange disabled />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import '@saipem/design-system/%NPMDIR%/components/range/range.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -148,13 +148,13 @@ By default, the tooltip is shown on top. Set `tooltip` to `bottom` to show it be
 ```
 
 ```jsx:react
-import SlRange from '@shoelace-style/shoelace/dist/react/range';
+import SlRange from '@saipem/design-system/dist/react/range';
 
 const App = () => <SlRange tooltip="bottom" />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import '@saipem/design-system/%NPMDIR%/components/range/range.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -174,13 +174,13 @@ To disable the tooltip, set `tooltip` to `none`.
 ```
 
 ```jsx:react
-import SlRange from '@shoelace-style/shoelace/dist/react/range';
+import SlRange from '@saipem/design-system/dist/react/range';
 
 const App = () => <SlRange tooltip="none" />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import '@saipem/design-system/%NPMDIR%/components/range/range.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -205,7 +205,7 @@ You can customize the active and inactive portions of the track using the `--tra
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import '@saipem/design-system/%NPMDIR%/components/range/range.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -226,7 +226,7 @@ export class RangeCustomTrackColorsExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlRange from '@shoelace-style/shoelace/dist/react/range';
+import SlRange from '@saipem/design-system/dist/react/range';
 
 const App = () => (
   <SlRange
@@ -257,7 +257,7 @@ You can customize the initial offset of the active track using the `--track-acti
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import '@saipem/design-system/%NPMDIR%/components/range/range.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -281,7 +281,7 @@ export class RangeCustomTrackOffsetExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlRange from '@shoelace-style/shoelace/dist/react/range';
+import SlRange from '@saipem/design-system/dist/react/range';
 
 const App = () => (
   <SlRange
@@ -312,13 +312,13 @@ You can change the tooltip's content by setting the `tooltipFormatter` property 
 ```
 
 ```jsx:react
-import SlRange from '@shoelace-style/shoelace/dist/react/range';
+import SlRange from '@saipem/design-system/dist/react/range';
 
 const App = () => <SlRange min={0} max={100} step={1} tooltipFormatter={value => `Total - ${value}%`} />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/range/range.js';
+import '@saipem/design-system/%NPMDIR%/components/range/range.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

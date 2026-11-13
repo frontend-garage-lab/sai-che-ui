@@ -10,13 +10,13 @@ layout: component
 ```
 
 ```jsx:react
-import SlCheckbox from '@shoelace-style/shoelace/dist/react/checkbox';
+import SlCheckbox from '@saipem/design-system/dist/react/checkbox';
 
 const App = () => <SlCheckbox>Checkbox</SlCheckbox>;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/checkbox/checkbox.js';
+import '@saipem/design-system/%NPMDIR%/components/checkbox/checkbox.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -42,13 +42,13 @@ Use the `checked` attribute to activate the checkbox.
 ```
 
 ```jsx:react
-import SlCheckbox from '@shoelace-style/shoelace/dist/react/checkbox';
+import SlCheckbox from '@saipem/design-system/dist/react/checkbox';
 
 const App = () => <SlCheckbox checked>Checked</SlCheckbox>;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/checkbox/checkbox.js';
+import '@saipem/design-system/%NPMDIR%/components/checkbox/checkbox.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -68,13 +68,13 @@ Use the `indeterminate` attribute to make the checkbox indeterminate.
 ```
 
 ```jsx:react
-import SlCheckbox from '@shoelace-style/shoelace/dist/react/checkbox';
+import SlCheckbox from '@saipem/design-system/dist/react/checkbox';
 
 const App = () => <SlCheckbox indeterminate>Indeterminate</SlCheckbox>;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/checkbox/checkbox.js';
+import '@saipem/design-system/%NPMDIR%/components/checkbox/checkbox.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -94,13 +94,13 @@ Use the `disabled` attribute to disable the checkbox.
 ```
 
 ```jsx:react
-import SlCheckbox from '@shoelace-style/shoelace/dist/react/checkbox';
+import SlCheckbox from '@saipem/design-system/dist/react/checkbox';
 
 const App = () => <SlCheckbox disabled>Disabled</SlCheckbox>;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/checkbox/checkbox.js';
+import '@saipem/design-system/%NPMDIR%/components/checkbox/checkbox.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -124,7 +124,7 @@ Use the `size` attribute to change a checkbox's size.
 ```
 
 ```jsx:react
-import SlCheckbox from '@shoelace-style/shoelace/dist/react/checkbox';
+import SlCheckbox from '@saipem/design-system/dist/react/checkbox';
 
 const App = () => (
   <>
@@ -138,7 +138,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/checkbox/checkbox.js';
+import '@saipem/design-system/%NPMDIR%/components/checkbox/checkbox.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -164,13 +164,13 @@ Add descriptive help text to a switch with the `help-text` attribute. For help t
 ```
 
 ```jsx:react
-import SlCheckbox from '@shoelace-style/shoelace/dist/react/checkbox';
+import SlCheckbox from '@saipem/design-system/dist/react/checkbox';
 
 const App = () => <SlCheckbox help-text="What should the user know about the switch?">Label</SlCheckbox>;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/checkbox/checkbox.js';
+import '@saipem/design-system/%NPMDIR%/components/checkbox/checkbox.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -216,10 +216,10 @@ Use the `setCustomValidity()` method to set a custom validation message. This wi
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/checkbox/checkbox.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/checkbox/checkbox.js';
 import { afterNextRender, ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, viewChild } from '@angular/core';
-import type SlCheckbox from '@shoelace-style/shoelace/%NPMDIR%/components/checkbox/checkbox.component.js';
+import type SlCheckbox from '@saipem/design-system/%NPMDIR%/components/checkbox/checkbox.component.js';
 
 const ERROR_MESSAGE = `Don't forget to check me!`;
 
@@ -262,8 +262,8 @@ export class CheckboxCustomValidityExampleComponent {
 
 ```jsx:react
 import { useEffect, useRef } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlCheckbox from '@shoelace-style/shoelace/dist/react/checkbox';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlCheckbox from '@saipem/design-system/dist/react/checkbox';
 
 const App = () => {
   const checkbox = useRef(null);

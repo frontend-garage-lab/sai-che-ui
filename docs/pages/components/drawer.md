@@ -27,8 +27,8 @@ layout: component
 
 ```jsx:react
 import { useState } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDrawer from '@shoelace-style/shoelace/dist/react/drawer';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDrawer from '@saipem/design-system/dist/react/drawer';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -49,8 +49,8 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/drawer/drawer.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -99,8 +99,8 @@ By default, drawers slide in from the end. To make the drawer slide in from the 
 
 ```jsx:react
 import { useState } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDrawer from '@shoelace-style/shoelace/dist/react/drawer';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDrawer from '@saipem/design-system/dist/react/drawer';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -121,8 +121,8 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/drawer/drawer.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -167,8 +167,8 @@ To make the drawer slide in from the top, set the `placement` attribute to `top`
 
 ```jsx:react
 import { useState } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDrawer from '@shoelace-style/shoelace/dist/react/drawer';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDrawer from '@saipem/design-system/dist/react/drawer';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -189,8 +189,8 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/drawer/drawer.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -235,8 +235,8 @@ To make the drawer slide in from the bottom, set the `placement` attribute to `b
 
 ```jsx:react
 import { useState } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDrawer from '@shoelace-style/shoelace/dist/react/drawer';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDrawer from '@saipem/design-system/dist/react/drawer';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -257,8 +257,8 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/drawer/drawer.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -310,8 +310,8 @@ Unlike normal drawers, contained drawers are not modal. This means they do not s
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/drawer/drawer.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -350,8 +350,8 @@ export class DrawerContainedToAnElementExampleComponent {
 
 ```jsx:react
 import { useState } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDrawer from '@shoelace-style/shoelace/dist/react/drawer';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDrawer from '@saipem/design-system/dist/react/drawer';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -415,8 +415,8 @@ Use the `--size` custom property to set the drawer's size. This will be applied 
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/drawer/drawer.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -441,8 +441,8 @@ export class DrawerCustomSizeExampleComponent {
 
 ```jsx:react
 import { useState } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDrawer from '@shoelace-style/shoelace/dist/react/drawer';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDrawer from '@saipem/design-system/dist/react/drawer';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -489,8 +489,8 @@ By design, a drawer's height will never exceed 100% of its container. As such, d
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/drawer/drawer.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -517,8 +517,8 @@ export class DrawerScrollingExampleComponent {
 
 ```jsx:react
 import { useState } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDrawer from '@shoelace-style/shoelace/dist/react/drawer';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDrawer from '@saipem/design-system/dist/react/drawer';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -575,9 +575,9 @@ The header shows a functional close button by default. You can use the `header-a
 
 ```jsx:react
 import { useState } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDrawer from '@shoelace-style/shoelace/dist/react/drawer';
-import SlIconButton from '@shoelace-style/shoelace/dist/react/icon-button';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDrawer from '@saipem/design-system/dist/react/drawer';
+import SlIconButton from '@saipem/design-system/dist/react/icon-button';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -599,10 +599,10 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/drawer/drawer.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon-button/icon-button.js';
 
 @Component({
   selector: 'app-drawer-header-actions-example',
@@ -662,8 +662,8 @@ You can use `event.detail.source` to determine what triggered the request to clo
 
 ```jsx:react
 import { useState } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDrawer from '@shoelace-style/shoelace/dist/react/drawer';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDrawer from '@saipem/design-system/dist/react/drawer';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -691,8 +691,8 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/drawer/drawer.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -752,9 +752,9 @@ By default, the drawer's panel will gain focus when opened. This allows a subseq
 
 ```jsx:react
 import { useState } from 'react';
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-import SlDrawer from '@shoelace-style/shoelace/dist/react/drawer';
-import SlInput from '@shoelace-style/shoelace/dist/react/input';
+import SlButton from '@saipem/design-system/dist/react/button';
+import SlDrawer from '@saipem/design-system/dist/react/drawer';
+import SlInput from '@saipem/design-system/dist/react/input';
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -775,10 +775,10 @@ const App = () => {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/drawer/drawer.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/drawer/drawer.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
 
 @Component({
   selector: 'app-drawer-customizing-initial-focus-example',

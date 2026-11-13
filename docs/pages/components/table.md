@@ -44,9 +44,9 @@ The Code Connect snippet of the Table in Figma Dev Mode uses this form.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/table/table.js';
+import '@saipem/design-system/%NPMDIR%/components/table/table.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import type { SlTableColumnDef } from '@shoelace-style/shoelace/%NPMDIR%/components/table/table.types.js';
+import type { SlTableColumnDef } from '@saipem/design-system/%NPMDIR%/components/table/table.types.js';
 
 interface Correspondence {
   protocol: string;
@@ -106,9 +106,9 @@ ascending and descending order, and emits `sl-table-sort` every time the sort ch
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/table/table.js';
+import '@saipem/design-system/%NPMDIR%/components/table/table.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
-import type { SlTableColumnDef } from '@shoelace-style/shoelace/%NPMDIR%/components/table/table.types.js';
+import type { SlTableColumnDef } from '@saipem/design-system/%NPMDIR%/components/table/table.types.js';
 
 interface Correspondence {
   protocol: string;
@@ -200,9 +200,9 @@ the page. Clicks on links, buttons and other interactive content inside a cell n
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/table/table.js';
+import '@saipem/design-system/%NPMDIR%/components/table/table.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
-import type { SlTableColumnDef } from '@shoelace-style/shoelace/%NPMDIR%/components/table/table.types.js';
+import type { SlTableColumnDef } from '@saipem/design-system/%NPMDIR%/components/table/table.types.js';
 
 interface Correspondence {
   protocol: string;
@@ -278,9 +278,9 @@ are on screen.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/table/table.js';
+import '@saipem/design-system/%NPMDIR%/components/table/table.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
-import type { SlTableColumnDef } from '@shoelace-style/shoelace/%NPMDIR%/components/table/table.types.js';
+import type { SlTableColumnDef } from '@saipem/design-system/%NPMDIR%/components/table/table.types.js';
 
 interface Correspondence {
   protocol: string;
@@ -365,11 +365,11 @@ when there's nothing to display.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/input/input.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/table/table.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/input/input.js';
+import '@saipem/design-system/%NPMDIR%/components/table/table.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import type { SlTableColumnDef } from '@shoelace-style/shoelace/%NPMDIR%/components/table/table.types.js';
+import type { SlTableColumnDef } from '@saipem/design-system/%NPMDIR%/components/table/table.types.js';
 
 interface Correspondence {
   protocol: string;
@@ -439,11 +439,11 @@ can be pushed to the end of the toolbar with `margin-inline-start: auto`.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/table/table.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/table/table.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import type { SlTableColumnDef } from '@shoelace-style/shoelace/%NPMDIR%/components/table/table.types.js';
+import type { SlTableColumnDef } from '@saipem/design-system/%NPMDIR%/components/table/table.types.js';
 
 interface Correspondence {
   protocol: string;
@@ -532,12 +532,12 @@ row with an `x-small` gap and centred items so the dot and the icon share one ce
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/status/status.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/table/table.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/status/status.js';
+import '@saipem/design-system/%NPMDIR%/components/table/table.js';
 import { html } from 'lit';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import type { SlTableColumnDef } from '@shoelace-style/shoelace/%NPMDIR%/components/table/table.types.js';
+import type { SlTableColumnDef } from '@saipem/design-system/%NPMDIR%/components/table/table.types.js';
 
 interface Task {
   expiry: 'danger' | 'warning' | 'success';
@@ -622,12 +622,12 @@ of the Table Cell `Type=quick-info` proposes Status, Badge, Tag and every icon a
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/badge/badge.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/table/table.js';
+import '@saipem/design-system/%NPMDIR%/components/badge/badge.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/table/table.js';
 import { html } from 'lit';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import type { SlTableColumnDef } from '@shoelace-style/shoelace/%NPMDIR%/components/table/table.types.js';
+import type { SlTableColumnDef } from '@saipem/design-system/%NPMDIR%/components/table/table.types.js';
 
 interface Bid {
   number: string;
@@ -693,9 +693,9 @@ for drawing attention to a record's status at a glance.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/table/table.js';
+import '@saipem/design-system/%NPMDIR%/components/table/table.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import type { SlTableColumnDef } from '@shoelace-style/shoelace/%NPMDIR%/components/table/table.types.js';
+import type { SlTableColumnDef } from '@saipem/design-system/%NPMDIR%/components/table/table.types.js';
 
 interface Correspondence {
   protocol: string;
@@ -785,12 +785,12 @@ emits `sl-table-row-action` with both the row and the selected item.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/table/table.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/table/table.js';
 import { html } from 'lit';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
-import type { SlTableColumnDef } from '@shoelace-style/shoelace/%NPMDIR%/components/table/table.types.js';
+import type { SlTableColumnDef } from '@saipem/design-system/%NPMDIR%/components/table/table.types.js';
 
 interface Correspondence {
   protocol: string;
@@ -882,9 +882,9 @@ to replace the browser's own menu with your own.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/table/table.js';
+import '@saipem/design-system/%NPMDIR%/components/table/table.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
-import type { SlTableColumnDef } from '@shoelace-style/shoelace/%NPMDIR%/components/table/table.types.js';
+import type { SlTableColumnDef } from '@saipem/design-system/%NPMDIR%/components/table/table.types.js';
 
 interface Correspondence {
   protocol: string;
@@ -951,9 +951,9 @@ neighbouring [detail panel](/components/detail-panel). The container needs a def
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/table/table.js';
+import '@saipem/design-system/%NPMDIR%/components/table/table.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import type { SlTableColumnDef } from '@shoelace-style/shoelace/%NPMDIR%/components/table/table.types.js';
+import type { SlTableColumnDef } from '@saipem/design-system/%NPMDIR%/components/table/table.types.js';
 
 interface Correspondence {
   protocol: string;
@@ -1007,9 +1007,9 @@ export class TableFillingTheContainerExampleComponent {
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/table/table.js';
+import '@saipem/design-system/%NPMDIR%/components/table/table.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import type { SlTableColumnDef } from '@shoelace-style/shoelace/%NPMDIR%/components/table/table.types.js';
+import type { SlTableColumnDef } from '@saipem/design-system/%NPMDIR%/components/table/table.types.js';
 
 interface Correspondence {
   protocol: string;
@@ -1095,10 +1095,10 @@ another table's cell, where each row holds a small matrix of data, and keep the 
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/table/table.js';
+import '@saipem/design-system/%NPMDIR%/components/table/table.js';
 import { html } from 'lit';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import type { SlTableColumnDef } from '@shoelace-style/shoelace/%NPMDIR%/components/table/table.types.js';
+import type { SlTableColumnDef } from '@saipem/design-system/%NPMDIR%/components/table/table.types.js';
 
 interface Recipient {
   name: string;
@@ -1194,12 +1194,12 @@ Add the `sticky-actions` attribute to keep the row action column (the ⋮ menu o
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu/menu.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/menu-item/menu-item.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/table/table.js';
+import '@saipem/design-system/%NPMDIR%/components/menu/menu.js';
+import '@saipem/design-system/%NPMDIR%/components/menu-item/menu-item.js';
+import '@saipem/design-system/%NPMDIR%/components/table/table.js';
 import { html } from 'lit';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import type { SlTableColumnDef } from '@shoelace-style/shoelace/%NPMDIR%/components/table/table.types.js';
+import type { SlTableColumnDef } from '@saipem/design-system/%NPMDIR%/components/table/table.types.js';
 
 interface Correspondence {
   protocol: string;

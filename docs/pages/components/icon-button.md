@@ -12,13 +12,13 @@ For a full list of icons that come bundled with Shoelace, refer to the [icon com
 ```
 
 ```jsx:react
-import SlIconButton from '@shoelace-style/shoelace/dist/react/icon-button';
+import SlIconButton from '@saipem/design-system/dist/react/icon-button';
 
 const App = () => <SlIconButton name="gear" label="Settings" />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon-button/icon-button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -45,7 +45,7 @@ inherits its parent element's `font-size` and the coloured variants keep their s
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon-button/icon-button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -70,7 +70,7 @@ A custom `font-size` still works for any other size.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon-button/icon-button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -88,7 +88,7 @@ export class IconButtonSizes2ExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlIconButton from '@shoelace-style/shoelace/dist/react/icon-button';
+import SlIconButton from '@saipem/design-system/dist/react/icon-button';
 
 const App = () => (
   <>
@@ -129,7 +129,7 @@ Icon buttons are designed to have a uniform appearance, so their color is not in
 ```
 
 ```jsx:react
-import SlIconButton from '@shoelace-style/shoelace/dist/react/icon-button';
+import SlIconButton from '@saipem/design-system/dist/react/icon-button';
 
 const css = `
   .icon-button-color sl-icon-button::part(base) {
@@ -160,7 +160,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon-button/icon-button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -207,7 +207,7 @@ Use the `variant` attribute to give the icon button a semantic color with a soft
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon-button/icon-button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -230,7 +230,7 @@ export class IconButtonVariantsExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlIconButton from '@shoelace-style/shoelace/dist/react/icon-button';
+import SlIconButton from '@saipem/design-system/dist/react/icon-button';
 
 const App = () => (
   <div style={{ display: 'flex', gap: 'var(--sl-spacing-x-small)' }}>
@@ -255,13 +255,13 @@ Use the `href` attribute to convert the button to a link.
 ```
 
 ```jsx:react
-import SlIconButton from '@shoelace-style/shoelace/dist/react/icon-button';
+import SlIconButton from '@saipem/design-system/dist/react/icon-button';
 
 const App = () => <SlIconButton name="gear" label="Settings" href="https://example.com" target="_blank" />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon-button/icon-button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -285,8 +285,8 @@ Wrap a tooltip around an icon button to provide contextual information to the us
 ```
 
 ```jsx:react
-import SlIconButton from '@shoelace-style/shoelace/dist/react/icon-button';
-import SlTooltip from '@shoelace-style/shoelace/dist/react/tooltip';
+import SlIconButton from '@saipem/design-system/dist/react/icon-button';
+import SlTooltip from '@saipem/design-system/dist/react/tooltip';
 
 const App = () => (
   <SlTooltip content="Settings">
@@ -296,8 +296,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tooltip/tooltip.js';
+import '@saipem/design-system/%NPMDIR%/components/icon-button/icon-button.js';
+import '@saipem/design-system/%NPMDIR%/components/tooltip/tooltip.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -321,13 +321,13 @@ Use the `disabled` attribute to disable the icon button.
 ```
 
 ```jsx:react
-import SlIconButton from '@shoelace-style/shoelace/dist/react/icon-button';
+import SlIconButton from '@saipem/design-system/dist/react/icon-button';
 
 const App = () => <SlIconButton name="gear" label="Settings" disabled />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon-button/icon-button.js';
+import '@saipem/design-system/%NPMDIR%/components/icon-button/icon-button.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

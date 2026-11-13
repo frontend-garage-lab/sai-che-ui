@@ -1,12 +1,13 @@
 (() => {
-  function convertModuleLinks(html) {
-    html = html
-      .replace(/@shoelace-style\/shoelace/g, `https://esm.sh/@shoelace-style/shoelace@${shoelaceVersion}`)
-      .replace(/from 'react'/g, `from 'https://esm.sh/react@${reactVersion}'`)
-      .replace(/from "react"/g, `from "https://esm.sh/react@${reactVersion}"`);
+  // CodePen disabled: it opened the examples against the public Shoelace package, not @saipem/design-system. Uncomment to re-enable.
+  // function convertModuleLinks(html) {
+  //   html = html
+  //     .replace(/@saipem\/design-system/g, `https://esm.sh/@shoelace-style/shoelace@${shoelaceVersion}`)
+  //     .replace(/from 'react'/g, `from 'https://esm.sh/react@${reactVersion}'`)
+  //     .replace(/from "react"/g, `from "https://esm.sh/react@${reactVersion}"`);
 
-    return html;
-  }
+  //   return html;
+  // }
 
   function getAdjacentExample(name, pre) {
     let currentPre = pre.nextElementSibling;
@@ -61,17 +62,18 @@
     });
   }
 
-  const shoelaceVersion = document.documentElement.getAttribute('data-shoelace-version');
-  const reactVersion = '^18';
-  const cdndir = 'cdn';
-  const npmdir = 'dist';
+  // Used only by CodePen (see above). Uncomment together with it.
+  // const shoelaceVersion = document.documentElement.getAttribute('data-shoelace-version');
+  // const reactVersion = '^18';
+  // const cdndir = 'cdn';
+  // const npmdir = 'dist';
   let flavor = getFlavor();
   let count = 1;
 
-  // We need the version to open
-  if (!shoelaceVersion) {
-    throw new Error('The data-shoelace-version attribute is missing from <html>.');
-  }
+  // // We need the version to open
+  // if (!shoelaceVersion) {
+  //   throw new Error('The data-shoelace-version attribute is missing from <html>.');
+  // }
 
   // Sync flavor UI on page load
   syncFlavor();
@@ -147,95 +149,96 @@
     event.target.setAttribute('aria-expanded', codeBlock.classList.contains('code-preview--expanded'));
   }
 
-  //
-  // Open in CodePen
-  //
-  document.addEventListener('click', event => {
-    const button = event.target.closest('button');
+  // CodePen disabled: it opened the examples against the public Shoelace package, not @saipem/design-system. Uncomment to re-enable.
+  // //
+  // // Open in CodePen
+  // //
+  // document.addEventListener('click', event => {
+  //   const button = event.target.closest('button');
 
-    if (button?.classList.contains('code-preview__button--codepen')) {
-      const codeBlock = button.closest('.code-preview');
-      const htmlExample = codeBlock.querySelector('.code-preview__source--html > pre > code')?.textContent;
-      const reactExample = codeBlock.querySelector('.code-preview__source--react > pre > code')?.textContent;
-      // Angular examples need a build step, so the pen always falls back to the plain HTML version for them.
-      const isReact = flavor === 'react' && typeof reactExample === 'string';
-      const theme = document.documentElement.classList.contains('sl-theme-dark') ? 'dark' : 'light';
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const isDark = theme === 'dark' || (theme === 'auto' && prefersDark);
-      const editors = isReact ? '0010' : '1000';
-      let htmlTemplate = '';
-      let jsTemplate = '';
-      let cssTemplate = '';
+  //   if (button?.classList.contains('code-preview__button--codepen')) {
+  //     const codeBlock = button.closest('.code-preview');
+  //     const htmlExample = codeBlock.querySelector('.code-preview__source--html > pre > code')?.textContent;
+  //     const reactExample = codeBlock.querySelector('.code-preview__source--react > pre > code')?.textContent;
+  //     // Angular examples need a build step, so the pen always falls back to the plain HTML version for them.
+  //     const isReact = flavor === 'react' && typeof reactExample === 'string';
+  //     const theme = document.documentElement.classList.contains('sl-theme-dark') ? 'dark' : 'light';
+  //     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  //     const isDark = theme === 'dark' || (theme === 'auto' && prefersDark);
+  //     const editors = isReact ? '0010' : '1000';
+  //     let htmlTemplate = '';
+  //     let jsTemplate = '';
+  //     let cssTemplate = '';
 
-      const form = document.createElement('form');
-      form.action = 'https://codepen.io/pen/define';
-      form.method = 'POST';
-      form.target = '_blank';
+  //     const form = document.createElement('form');
+  //     form.action = 'https://codepen.io/pen/define';
+  //     form.method = 'POST';
+  //     form.target = '_blank';
 
-      // HTML templates
-      if (!isReact) {
-        htmlTemplate =
-          `<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@${shoelaceVersion}/${cdndir}/shoelace.js"></script>\n` +
-          `\n${htmlExample}`;
-        jsTemplate = '';
-      }
+  //     // HTML templates
+  //     if (!isReact) {
+  //       htmlTemplate =
+  //         `<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@${shoelaceVersion}/${cdndir}/shoelace.js"></script>\n` +
+  //         `\n${htmlExample}`;
+  //       jsTemplate = '';
+  //     }
 
-      // React templates
-      if (isReact) {
-        htmlTemplate = '<div id="root"></div>';
-        jsTemplate =
-          `import React from 'https://esm.sh/react@${reactVersion}';\n` +
-          `import ReactDOM from 'https://esm.sh/react-dom@${reactVersion}';\n` +
-          `import { setBasePath } from 'https://esm.sh/@shoelace-style/shoelace@${shoelaceVersion}/${cdndir}/utilities/base-path';\n` +
-          `\n` +
-          `// Set the base path for Shoelace assets\n` +
-          `setBasePath('https://esm.sh/@shoelace-style/shoelace@${shoelaceVersion}/${npmdir}/')\n` +
-          `\n${convertModuleLinks(reactExample)}\n` +
-          `\n` +
-          `ReactDOM.render(<App />, document.getElementById('root'));`;
-      }
+  //     // React templates
+  //     if (isReact) {
+  //       htmlTemplate = '<div id="root"></div>';
+  //       jsTemplate =
+  //         `import React from 'https://esm.sh/react@${reactVersion}';\n` +
+  //         `import ReactDOM from 'https://esm.sh/react-dom@${reactVersion}';\n` +
+  //         `import { setBasePath } from 'https://esm.sh/@shoelace-style/shoelace@${shoelaceVersion}/${cdndir}/utilities/base-path';\n` +
+  //         `\n` +
+  //         `// Set the base path for Shoelace assets\n` +
+  //         `setBasePath('https://esm.sh/@shoelace-style/shoelace@${shoelaceVersion}/${npmdir}/')\n` +
+  //         `\n${convertModuleLinks(reactExample)}\n` +
+  //         `\n` +
+  //         `ReactDOM.render(<App />, document.getElementById('root'));`;
+  //     }
 
-      // CSS templates
-      cssTemplate =
-        `@import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@${shoelaceVersion}/${cdndir}/themes/${
-          isDark ? 'dark' : 'light'
-        }.css';\n` +
-        '\n' +
-        'body {\n' +
-        '  font: 16px sans-serif;\n' +
-        '  background-color: var(--sl-color-neutral-0);\n' +
-        '  color: var(--sl-color-neutral-900);\n' +
-        '  padding: 1rem;\n' +
-        '}';
+  //     // CSS templates
+  //     cssTemplate =
+  //       `@import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@${shoelaceVersion}/${cdndir}/themes/${
+  //         isDark ? 'dark' : 'light'
+  //       }.css';\n` +
+  //       '\n' +
+  //       'body {\n' +
+  //       '  font: 16px sans-serif;\n' +
+  //       '  background-color: var(--sl-color-neutral-0);\n' +
+  //       '  color: var(--sl-color-neutral-900);\n' +
+  //       '  padding: 1rem;\n' +
+  //       '}';
 
-      // Docs: https://blog.codepen.io/documentation/prefill/
-      const data = {
-        title: '',
-        description: '',
-        tags: ['shoelace', 'web components'],
-        editors,
-        head: `<meta name="viewport" content="width=device-width">`,
-        html_classes: `sl-theme-${isDark ? 'dark' : 'light'}`,
-        css_external: ``,
-        js_external: ``,
-        js_module: true,
-        js_pre_processor: isReact ? 'babel' : 'none',
-        html: htmlTemplate,
-        css: cssTemplate,
-        js: jsTemplate
-      };
+  //     // Docs: https://blog.codepen.io/documentation/prefill/
+  //     const data = {
+  //       title: '',
+  //       description: '',
+  //       tags: ['shoelace', 'web components'],
+  //       editors,
+  //       head: `<meta name="viewport" content="width=device-width">`,
+  //       html_classes: `sl-theme-${isDark ? 'dark' : 'light'}`,
+  //       css_external: ``,
+  //       js_external: ``,
+  //       js_module: true,
+  //       js_pre_processor: isReact ? 'babel' : 'none',
+  //       html: htmlTemplate,
+  //       css: cssTemplate,
+  //       js: jsTemplate
+  //     };
 
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = 'data';
-      input.value = JSON.stringify(data);
-      form.append(input);
+  //     const input = document.createElement('input');
+  //     input.type = 'hidden';
+  //     input.name = 'data';
+  //     input.value = JSON.stringify(data);
+  //     form.append(input);
 
-      document.documentElement.append(form);
-      form.submit();
-      form.remove();
-    }
-  });
+  //     document.documentElement.append(form);
+  //     form.submit();
+  //     form.remove();
+  //   }
+  // });
 
   // Set the initial flavor
   window.addEventListener('turbo:load', syncFlavor);

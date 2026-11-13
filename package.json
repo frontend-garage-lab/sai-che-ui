@@ -1,8 +1,7 @@
 {
-  "name": "@shoelace-style/shoelace",
-  "description": "Sunset — Web Component Library. Successor: Web Awesome (@shoelace-style/webawesome).",
+  "name": "@saipem/design-system",
+  "description": "Saipem Design System — Web Component Library",
   "version": "2.20.1",
-  "homepage": "https://github.com/shoelace-style/shoelace",
   "author": "Cory LaViska",
   "license": "MIT",
   "customElements": "dist/custom-elements.json",
@@ -40,10 +39,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shoelace-style/shoelace.git"
+    "url": "git+https://github.com/frontend-garage-lab/sai-che-ui.git"
   },
   "bugs": {
-    "url": "https://github.com/shoelace-style/shoelace/issues"
+    "url": "https://github.com/frontend-garage-lab/sai-che-ui/issues"
   },
   "funding": {
     "type": "individual",

@@ -23,7 +23,7 @@ layout: component
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/split-panel/split-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -52,7 +52,7 @@ export class SplitPanelExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
+import SlSplitPanel from '@saipem/design-system/dist/react/split-panel';
 
 const App = () => (
   <SlSplitPanel>
@@ -110,7 +110,7 @@ To set the initial position, use the `position` attribute. If no position is pro
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/split-panel/split-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -158,7 +158,7 @@ To set the initial position in pixels instead of a percentage, use the `position
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/split-panel/split-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -187,7 +187,7 @@ export class SplitPanelInitialPositionInPixelsExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
+import SlSplitPanel from '@saipem/design-system/dist/react/split-panel';
 
 const App = () => (
   <SlSplitPanel position="200">
@@ -243,7 +243,7 @@ Add the `vertical` attribute to render the split panel in a vertical orientation
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/split-panel/split-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -272,7 +272,7 @@ export class SplitPanelVerticalExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
+import SlSplitPanel from '@saipem/design-system/dist/react/split-panel';
 
 const App = () => (
   <SlSplitPanel vertical style={{ height: '400px' }}>
@@ -360,7 +360,7 @@ For example, to snap the panel at `100px` and `50%`, use `snap="100px 50%"`.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/split-panel/split-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -443,7 +443,7 @@ Or, if you want to snap the panel to every `100px` interval, as well as at 50% o
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/split-panel/split-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -540,9 +540,9 @@ Note that the `snap-threshold` property will not automatically be applied if `sn
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/split-panel/split-panel.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import type { SnapFunctionParams } from '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.component.js';
+import type { SnapFunctionParams } from '@saipem/design-system/%NPMDIR%/components/split-panel/split-panel.component.js';
 
 @Component({
   selector: 'app-split-panel-using-a-custom-snap-function-example',
@@ -594,7 +594,7 @@ export class SplitPanelUsingACustomSnapFunctionExampleComponent {
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
+import SlSplitPanel from '@saipem/design-system/dist/react/split-panel';
 
 const css = `
   .split-panel-snapping {
@@ -684,7 +684,7 @@ Add the `disabled` attribute to prevent the divider from being repositioned.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/split-panel/split-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -713,7 +713,7 @@ export class SplitPanelDisabledExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
+import SlSplitPanel from '@saipem/design-system/dist/react/split-panel';
 
 const App = () => (
   <SlSplitPanel disabled>
@@ -787,9 +787,9 @@ Try resizing the example below with each option and notice how the panels respon
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/split-panel/split-panel.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -831,9 +831,9 @@ export class SplitPanelSettingThePrimaryPanelExampleComponent {
 
 ```jsx:react
 import { useState } from 'react';
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
-import SlSelect from '@shoelace-style/shoelace/dist/react/select';
-import SlMenuItem from '@shoelace-style/shoelace/dist/react/menu-item';
+import SlSplitPanel from '@saipem/design-system/dist/react/split-panel';
+import SlSelect from '@saipem/design-system/dist/react/select';
+import SlMenuItem from '@saipem/design-system/dist/react/menu-item';
 
 const App = () => {
   const [primary, setPrimary] = useState('');
@@ -908,7 +908,7 @@ This examples demonstrates how you can ensure both panels are at least 150px usi
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/split-panel/split-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -937,7 +937,7 @@ export class SplitPanelMinMaxExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
+import SlSplitPanel from '@saipem/design-system/dist/react/split-panel';
 
 const App = () => (
   <SlSplitPanel style={{ '--min': '150px', '--max': 'calc(100% - 150px)' }}>
@@ -1003,7 +1003,7 @@ Create complex layouts that can be repositioned independently by nesting split p
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/split-panel/split-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -1042,7 +1042,7 @@ export class SplitPanelNestedSplitPanelsExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
+import SlSplitPanel from '@saipem/design-system/dist/react/split-panel';
 
 const App = () => (
   <SlSplitPanel>
@@ -1115,8 +1115,8 @@ You can target the `divider` part to apply CSS properties to the divider. To add
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/split-panel/split-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -1146,8 +1146,8 @@ export class SplitPanelCustomizingTheDividerExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import SlSplitPanel from '@saipem/design-system/dist/react/split-panel';
+import SlIcon from '@saipem/design-system/dist/react/icon';
 
 const App = () => (
   <SlSplitPanel style={{ '--divider-width': '20px' }}>
@@ -1232,8 +1232,8 @@ Here's a more elaborate example that changes the divider's color and width and a
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/split-panel/split-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/split-panel/split-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -1291,8 +1291,8 @@ export class SplitPanelCustomizingTheDivider2ExampleComponent {}
 {% raw %}
 
 ```jsx:react
-import SlSplitPanel from '@shoelace-style/shoelace/dist/react/split-panel';
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
+import SlSplitPanel from '@saipem/design-system/dist/react/split-panel';
+import SlIcon from '@saipem/design-system/dist/react/icon';
 
 const css = `
   .split-panel-divider sl-split-panel {

@@ -27,7 +27,7 @@ label in the default slot, and an optional secondary value in the `meta` slot.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/selectable-item/selectable-item.js';
+import '@saipem/design-system/%NPMDIR%/components/selectable-item/selectable-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -93,7 +93,7 @@ Selecting or clearing an item emits `sl-change`. Combine multiple items to build
 {% raw %}
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/selectable-item/selectable-item.js';
+import '@saipem/design-system/%NPMDIR%/components/selectable-item/selectable-item.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 interface Doc {

@@ -10,13 +10,13 @@ layout: component
 ```
 
 ```jsx:react
-import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
+import SlTextarea from '@saipem/design-system/dist/react/textarea';
 
 const App = () => <SlTextarea />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import '@saipem/design-system/%NPMDIR%/components/textarea/textarea.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -42,13 +42,13 @@ Use the `label` attribute to give the textarea an accessible label. For labels t
 ```
 
 ```jsx:react
-import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
+import SlTextarea from '@saipem/design-system/dist/react/textarea';
 
 const App = () => <SlTextarea label="Comments" />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import '@saipem/design-system/%NPMDIR%/components/textarea/textarea.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -68,13 +68,13 @@ Add descriptive help text to a textarea with the `help-text` attribute. For help
 ```
 
 ```jsx:react
-import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
+import SlTextarea from '@saipem/design-system/dist/react/textarea';
 
 const App = () => <SlTextarea label="Feedback" help-text="Please tell us what you think." />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import '@saipem/design-system/%NPMDIR%/components/textarea/textarea.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -94,13 +94,13 @@ Use the `rows` attribute to change the number of text rows that get shown.
 ```
 
 ```jsx:react
-import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
+import SlTextarea from '@saipem/design-system/dist/react/textarea';
 
 const App = () => <SlTextarea rows={2} />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import '@saipem/design-system/%NPMDIR%/components/textarea/textarea.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -120,13 +120,13 @@ Use the `placeholder` attribute to add a placeholder.
 ```
 
 ```jsx:react
-import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
+import SlTextarea from '@saipem/design-system/dist/react/textarea';
 
 const App = () => <SlTextarea placeholder="Type something" />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import '@saipem/design-system/%NPMDIR%/components/textarea/textarea.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -146,13 +146,13 @@ Add the `filled` attribute to draw a filled textarea.
 ```
 
 ```jsx:react
-import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
+import SlTextarea from '@saipem/design-system/dist/react/textarea';
 
 const App = () => <SlTextarea placeholder="Type something" filled />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import '@saipem/design-system/%NPMDIR%/components/textarea/textarea.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -176,7 +176,7 @@ Use the `status` attribute to show the outcome of a validation on a textarea. It
 ```
 
 ```jsx:react
-import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
+import SlTextarea from '@saipem/design-system/dist/react/textarea';
 
 const App = () => (
   <>
@@ -190,7 +190,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import '@saipem/design-system/%NPMDIR%/components/textarea/textarea.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -216,13 +216,13 @@ Use the `disabled` attribute to disable a textarea.
 ```
 
 ```jsx:react
-import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
+import SlTextarea from '@saipem/design-system/dist/react/textarea';
 
 const App = () => <SlTextarea placeholder="Textarea" disabled />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import '@saipem/design-system/%NPMDIR%/components/textarea/textarea.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -246,7 +246,7 @@ Use the `size` attribute to change a textarea's size.
 ```
 
 ```jsx:react
-import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
+import SlTextarea from '@saipem/design-system/dist/react/textarea';
 
 const App = () => (
   <>
@@ -260,7 +260,7 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import '@saipem/design-system/%NPMDIR%/components/textarea/textarea.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -286,13 +286,13 @@ By default, textareas can be resized vertically by the user. To prevent resizing
 ```
 
 ```jsx:react
-import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
+import SlTextarea from '@saipem/design-system/dist/react/textarea';
 
 const App = () => <SlTextarea resize="none" />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import '@saipem/design-system/%NPMDIR%/components/textarea/textarea.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -312,13 +312,13 @@ Textareas will automatically resize to expand to fit their content when `resize`
 ```
 
 ```jsx:react
-import SlTextarea from '@shoelace-style/shoelace/dist/react/textarea';
+import SlTextarea from '@saipem/design-system/dist/react/textarea';
 
 const App = () => <SlTextarea resize="auto" />;
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/textarea/textarea.js';
+import '@saipem/design-system/%NPMDIR%/components/textarea/textarea.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

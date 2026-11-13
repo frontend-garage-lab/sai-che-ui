@@ -22,9 +22,9 @@ Tab groups make use of [tabs](/components/tab) and [tab panels](/components/tab-
 ```
 
 ```jsx:react
-import SlTab from '@shoelace-style/shoelace/dist/react/tab';
-import SlTabGroup from '@shoelace-style/shoelace/dist/react/tab-group';
-import SlTabPanel from '@shoelace-style/shoelace/dist/react/tab-panel';
+import SlTab from '@saipem/design-system/dist/react/tab';
+import SlTabGroup from '@saipem/design-system/dist/react/tab-group';
+import SlTabPanel from '@saipem/design-system/dist/react/tab-panel';
 
 const App = () => (
   <SlTabGroup>
@@ -50,9 +50,9 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/tab/tab.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-group/tab-group.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-panel/tab-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -96,9 +96,9 @@ Tabs can be shown on the bottom by setting `placement` to `bottom`.
 ```
 
 ```jsx:react
-import SlTab from '@shoelace-style/shoelace/dist/react/tab';
-import SlTabGroup from '@shoelace-style/shoelace/dist/react/tab-group';
-import SlTabPanel from '@shoelace-style/shoelace/dist/react/tab-panel';
+import SlTab from '@saipem/design-system/dist/react/tab';
+import SlTabGroup from '@saipem/design-system/dist/react/tab-group';
+import SlTabPanel from '@saipem/design-system/dist/react/tab-panel';
 
 const App = () => (
   <SlTabGroup placement="bottom">
@@ -124,9 +124,9 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/tab/tab.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-group/tab-group.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-panel/tab-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -168,9 +168,9 @@ Tabs can be shown on the starting side by setting `placement` to `start`.
 ```
 
 ```jsx:react
-import SlTab from '@shoelace-style/shoelace/dist/react/tab';
-import SlTabGroup from '@shoelace-style/shoelace/dist/react/tab-group';
-import SlTabPanel from '@shoelace-style/shoelace/dist/react/tab-panel';
+import SlTab from '@saipem/design-system/dist/react/tab';
+import SlTabGroup from '@saipem/design-system/dist/react/tab-group';
+import SlTabPanel from '@saipem/design-system/dist/react/tab-panel';
 
 const App = () => (
   <SlTabGroup placement="start">
@@ -196,9 +196,9 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/tab/tab.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-group/tab-group.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-panel/tab-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -240,9 +240,9 @@ Tabs can be shown on the ending side by setting `placement` to `end`.
 ```
 
 ```jsx:react
-import SlTab from '@shoelace-style/shoelace/dist/react/tab';
-import SlTabGroup from '@shoelace-style/shoelace/dist/react/tab-group';
-import SlTabPanel from '@shoelace-style/shoelace/dist/react/tab-panel';
+import SlTab from '@saipem/design-system/dist/react/tab';
+import SlTabGroup from '@saipem/design-system/dist/react/tab-group';
+import SlTabPanel from '@saipem/design-system/dist/react/tab-panel';
 
 const App = () => (
   <SlTabGroup placement="end">
@@ -268,9 +268,9 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/tab/tab.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-group/tab-group.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-panel/tab-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -330,9 +330,9 @@ Add the `closable` attribute to a tab to show a close button. This example shows
 ```
 
 ```jsx:react
-import SlTab from '@shoelace-style/shoelace/dist/react/tab';
-import SlTabGroup from '@shoelace-style/shoelace/dist/react/tab-group';
-import SlTabPanel from '@shoelace-style/shoelace/dist/react/tab-panel';
+import SlTab from '@saipem/design-system/dist/react/tab';
+import SlTabGroup from '@saipem/design-system/dist/react/tab-group';
+import SlTabPanel from '@saipem/design-system/dist/react/tab-panel';
 
 const App = () => {
   function handleClose(event) {
@@ -376,11 +376,11 @@ const App = () => {
 {% raw %}
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/tab/tab.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-group/tab-group.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-panel/tab-panel.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, signal, viewChild } from '@angular/core';
-import type SlTabGroup from '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.component.js';
+import type SlTabGroup from '@saipem/design-system/%NPMDIR%/components/tab-group/tab-group.component.js';
 
 interface Tab {
   name: string;
@@ -485,9 +485,9 @@ When there are more tabs than horizontal space allows, the nav will be scrollabl
 ```
 
 ```jsx:react
-import SlTab from '@shoelace-style/shoelace/dist/react/tab';
-import SlTabGroup from '@shoelace-style/shoelace/dist/react/tab-group';
-import SlTabPanel from '@shoelace-style/shoelace/dist/react/tab-panel';
+import SlTab from '@saipem/design-system/dist/react/tab';
+import SlTabGroup from '@saipem/design-system/dist/react/tab-group';
+import SlTabPanel from '@saipem/design-system/dist/react/tab-panel';
 
 const App = () => (
   <SlTabGroup>
@@ -577,9 +577,9 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/tab/tab.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-group/tab-group.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-panel/tab-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -685,9 +685,9 @@ When tabs are scrolled all the way to one side, the scroll button on that side c
 ```
 
 ```jsx:react
-import SlTab from '@shoelace-style/shoelace/dist/react/tab';
-import SlTabGroup from '@shoelace-style/shoelace/dist/react/tab-group';
-import SlTabPanel from '@shoelace-style/shoelace/dist/react/tab-panel';
+import SlTab from '@saipem/design-system/dist/react/tab';
+import SlTabGroup from '@saipem/design-system/dist/react/tab-group';
+import SlTabPanel from '@saipem/design-system/dist/react/tab-panel';
 
 const App = () => (
   <SlTabGroup auto-hide-scroll-buttons>
@@ -777,9 +777,9 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/tab/tab.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-group/tab-group.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-panel/tab-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -860,10 +860,10 @@ Add a leading `<sl-icon>` inside a tab's default slot to pair it with a label. T
 ```
 
 ```jsx:react
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
-import SlTab from '@shoelace-style/shoelace/dist/react/tab';
-import SlTabGroup from '@shoelace-style/shoelace/dist/react/tab-group';
-import SlTabPanel from '@shoelace-style/shoelace/dist/react/tab-panel';
+import SlIcon from '@saipem/design-system/dist/react/icon';
+import SlTab from '@saipem/design-system/dist/react/tab';
+import SlTabGroup from '@saipem/design-system/dist/react/tab-group';
+import SlTabPanel from '@saipem/design-system/dist/react/tab-panel';
 
 const App = () => (
   <SlTabGroup>
@@ -888,10 +888,10 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/tab/tab.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-group/tab-group.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-panel/tab-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -964,10 +964,10 @@ Set the `card` attribute on a tab to draw it as a bordered card, and pair it wit
 ```
 
 ```jsx:react
-import SlBadge from '@shoelace-style/shoelace/dist/react/badge';
-import SlTab from '@shoelace-style/shoelace/dist/react/tab';
-import SlTabGroup from '@shoelace-style/shoelace/dist/react/tab-group';
-import SlTabPanel from '@shoelace-style/shoelace/dist/react/tab-panel';
+import SlBadge from '@saipem/design-system/dist/react/badge';
+import SlTab from '@saipem/design-system/dist/react/tab';
+import SlTabGroup from '@saipem/design-system/dist/react/tab-group';
+import SlTabPanel from '@saipem/design-system/dist/react/tab-panel';
 
 const App = () => (
   <SlTabGroup>
@@ -1000,10 +1000,10 @@ const App = () => (
 {% raw %}
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/badge/badge.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/badge/badge.js';
+import '@saipem/design-system/%NPMDIR%/components/tab/tab.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-group/tab-group.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-panel/tab-panel.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 interface CardTab {
@@ -1073,9 +1073,9 @@ When focused, keyboard users can press [[Left]] or [[Right]] to select the desir
 ```
 
 ```jsx:react
-import SlTab from '@shoelace-style/shoelace/dist/react/tab';
-import SlTabGroup from '@shoelace-style/shoelace/dist/react/tab-group';
-import SlTabPanel from '@shoelace-style/shoelace/dist/react/tab-panel';
+import SlTab from '@saipem/design-system/dist/react/tab';
+import SlTabGroup from '@saipem/design-system/dist/react/tab-group';
+import SlTabPanel from '@saipem/design-system/dist/react/tab-panel';
 
 const App = () => (
   <SlTabGroup activation="manual">
@@ -1101,9 +1101,9 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab/tab.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-group/tab-group.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tab-panel/tab-panel.js';
+import '@saipem/design-system/%NPMDIR%/components/tab/tab.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-group/tab-group.js';
+import '@saipem/design-system/%NPMDIR%/components/tab-panel/tab-panel.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

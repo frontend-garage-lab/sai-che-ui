@@ -14,7 +14,7 @@ the upload runs.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/file-upload-item/file-upload-item.js';
+import '@saipem/design-system/%NPMDIR%/components/file-upload-item/file-upload-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -65,7 +65,7 @@ shows a progress bar driven by the `progress` attribute (0 to 100), and `failed`
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/file-upload-item/file-upload-item.js';
+import '@saipem/design-system/%NPMDIR%/components/file-upload-item/file-upload-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -160,10 +160,10 @@ request is in flight, then settle into `uploaded` or `failed`.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/file-drop/file-drop.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/file-upload-item/file-upload-item.js';
+import '@saipem/design-system/%NPMDIR%/components/file-drop/file-drop.js';
+import '@saipem/design-system/%NPMDIR%/components/file-upload-item/file-upload-item.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, signal, viewChild } from '@angular/core';
-import type SlFileDrop from '@shoelace-style/shoelace/%NPMDIR%/components/file-drop/file-drop.component.js';
+import type SlFileDrop from '@saipem/design-system/%NPMDIR%/components/file-drop/file-drop.component.js';
 
 interface Upload {
   id: number;
@@ -280,7 +280,7 @@ Listen for `sl-retry` to re-run the upload for that item.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/file-upload-item/file-upload-item.js';
+import '@saipem/design-system/%NPMDIR%/components/file-upload-item/file-upload-item.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 
 @Component({
@@ -338,7 +338,7 @@ Use `retry-label` and `remove-label` to translate the action buttons.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/file-upload-item/file-upload-item.js';
+import '@saipem/design-system/%NPMDIR%/components/file-upload-item/file-upload-item.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

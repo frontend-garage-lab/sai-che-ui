@@ -17,8 +17,8 @@ layout: component
 ```
 
 ```jsx:react
-import SlOption from '@shoelace-style/shoelace/dist/react/option';
-import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlOption from '@saipem/design-system/dist/react/option';
+import SlSelect from '@saipem/design-system/dist/react/select';
 
 const App = () => (
   <SlSelect>
@@ -33,8 +33,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -73,8 +73,8 @@ Use the `label` attribute to give the select an accessible label. For labels tha
 ```
 
 ```jsx:react
-import SlOption from '@shoelace-style/shoelace/dist/react/option';
-import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlOption from '@saipem/design-system/dist/react/option';
+import SlSelect from '@saipem/design-system/dist/react/select';
 
 const App = () => (
   <SlSelect label="Select one">
@@ -86,8 +86,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -117,8 +117,8 @@ Add descriptive help text to a select with the `help-text` attribute. For help t
 ```
 
 ```jsx:react
-import SlOption from '@shoelace-style/shoelace/dist/react/option';
-import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlOption from '@saipem/design-system/dist/react/option';
+import SlSelect from '@saipem/design-system/dist/react/select';
 
 const App = () => (
   <SlSelect label="Experience" help-text="Please tell us your skill level.">
@@ -130,8 +130,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -161,8 +161,8 @@ Use the `placeholder` attribute to add a placeholder.
 ```
 
 ```jsx:react
-import SlOption from '@shoelace-style/shoelace/dist/react/option';
-import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlOption from '@saipem/design-system/dist/react/option';
+import SlSelect from '@saipem/design-system/dist/react/select';
 
 const App = () => (
   <SlSelect placeholder="Select one">
@@ -174,8 +174,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -205,8 +205,8 @@ Use the `clearable` attribute to make the control clearable. The clear button on
 ```
 
 ```jsx:react
-import SlOption from '@shoelace-style/shoelace/dist/react/option';
-import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlOption from '@saipem/design-system/dist/react/option';
+import SlSelect from '@saipem/design-system/dist/react/select';
 
 const App = () => (
   <SlSelect placeholder="Clearable" clearable>
@@ -218,8 +218,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -249,8 +249,8 @@ Add the `filled` attribute to draw a filled select.
 ```
 
 ```jsx:react
-import SlOption from '@shoelace-style/shoelace/dist/react/option';
-import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlOption from '@saipem/design-system/dist/react/option';
+import SlSelect from '@saipem/design-system/dist/react/select';
 
 const App = () => (
   <SlSelect filled>
@@ -262,8 +262,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -293,8 +293,8 @@ Use the `pill` attribute to give selects rounded edges.
 ```
 
 ```jsx:react
-import SlOption from '@shoelace-style/shoelace/dist/react/option';
-import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlOption from '@saipem/design-system/dist/react/option';
+import SlSelect from '@saipem/design-system/dist/react/select';
 
 const App = () => (
   <SlSelect pill>
@@ -306,8 +306,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -337,8 +337,8 @@ Use the `status` attribute to show the outcome of a validation on a select. It c
 ```
 
 ```jsx:react
-import SlSelect from '@shoelace-style/shoelace/dist/react/select';
-import SlOption from '@shoelace-style/shoelace/dist/react/option';
+import SlSelect from '@saipem/design-system/dist/react/select';
+import SlOption from '@saipem/design-system/dist/react/option';
 
 const App = () => (
   <>
@@ -352,8 +352,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -383,8 +383,8 @@ Use the `disabled` attribute to disable a select.
 ```
 
 ```jsx:react
-import SlOption from '@shoelace-style/shoelace/dist/react/option';
-import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlOption from '@saipem/design-system/dist/react/option';
+import SlSelect from '@saipem/design-system/dist/react/select';
 
 const App = () => (
   <SlSelect placeholder="Disabled" disabled>
@@ -396,8 +396,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -430,8 +430,8 @@ To allow multiple options to be selected, use the `multiple` attribute. It's a g
 ```
 
 ```jsx:react
-import SlOption from '@shoelace-style/shoelace/dist/react/option';
-import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlOption from '@saipem/design-system/dist/react/option';
+import SlSelect from '@saipem/design-system/dist/react/select';
 
 const App = () => (
   <SlSelect label="Select a Few" value={["option-1", "option-2", "option-3"]} multiple clearable>
@@ -446,8 +446,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -487,9 +487,9 @@ When using `multiple`, the `value` _attribute_ uses space-delimited values to se
 ```
 
 ```jsx:react
-import SlDivider from '@shoelace-style/shoelace/dist/react/divider';
-import SlOption from '@shoelace-style/shoelace/dist/react/option';
-import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlDivider from '@saipem/design-system/dist/react/divider';
+import SlOption from '@saipem/design-system/dist/react/option';
+import SlSelect from '@saipem/design-system/dist/react/select';
 
 const App = () => (
   <SlSelect value={["option-1", "option-2"]} multiple clearable>
@@ -501,8 +501,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -539,8 +539,8 @@ Use `<sl-divider>` to group listbox items visually. You can also use `<small>` t
 ```
 
 ```jsx:react
-import SlOption from '@shoelace-style/shoelace/dist/react/option';
-import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlOption from '@saipem/design-system/dist/react/option';
+import SlSelect from '@saipem/design-system/dist/react/select';
 
 const App = () => (
   <SlSelect>
@@ -555,9 +555,9 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/divider/divider.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/divider/divider.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -609,8 +609,8 @@ Use the `size` attribute to change a select's size. Note that size does not appl
 ```
 
 ```jsx:react
-import SlOption from '@shoelace-style/shoelace/dist/react/option';
-import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlOption from '@saipem/design-system/dist/react/option';
+import SlSelect from '@saipem/design-system/dist/react/select';
 
 const App = () => (
   <>
@@ -640,8 +640,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -687,8 +687,8 @@ The preferred placement of the select's listbox can be set with the `placement` 
 ```
 
 ```jsx:react
-import SlOption from '@shoelace-style/shoelace/dist/react/option';
-import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlOption from '@saipem/design-system/dist/react/option';
+import SlSelect from '@saipem/design-system/dist/react/select';
 
 const App = () => (
   <SlSelect placement="top">
@@ -700,8 +700,8 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -749,9 +749,9 @@ Use the `prefix` and `suffix` slots to add presentational icons and text. Avoid 
 ```
 
 ```jsx:react
-import SlIcon from '@shoelace-style/shoelace/dist/react/icon';
-import SlOption from '@shoelace-style/shoelace/dist/react/option';
-import SlSelect from '@shoelace-style/shoelace/dist/react/select';
+import SlIcon from '@saipem/design-system/dist/react/icon';
+import SlOption from '@saipem/design-system/dist/react/option';
+import SlSelect from '@saipem/design-system/dist/react/select';
 
 const App = () => (
   <>
@@ -780,10 +780,10 @@ const App = () => (
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/badge/badge.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/badge/badge.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -865,10 +865,10 @@ Remember that custom tags are rendered in a shadow root. To style them, you can 
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/tag/tag.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/tag/tag.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -1021,9 +1021,9 @@ This can be hard to conceptualize, so heres a fairly large example showing how l
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/option/option.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/select/select.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/option/option.js';
+import '@saipem/design-system/%NPMDIR%/components/select/select.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

@@ -14,7 +14,7 @@ blocks.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/status/status.js';
+import '@saipem/design-system/%NPMDIR%/components/status/status.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -43,7 +43,7 @@ Set `variant` to match the meaning of the state.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/status/status.js';
+import '@saipem/design-system/%NPMDIR%/components/status/status.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -106,11 +106,11 @@ Map each lifecycle state to one variant and use the same mapping everywhere: tab
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/status/status.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/table/table.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/table-cell/table-cell.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/table-column/table-column.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/table-row/table-row.js';
+import '@saipem/design-system/%NPMDIR%/components/status/status.js';
+import '@saipem/design-system/%NPMDIR%/components/table/table.js';
+import '@saipem/design-system/%NPMDIR%/components/table-cell/table-cell.js';
+import '@saipem/design-system/%NPMDIR%/components/table-column/table-column.js';
+import '@saipem/design-system/%NPMDIR%/components/table-row/table-row.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -165,7 +165,7 @@ default in long columns of states, where coloured blocks would compete with the 
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/status/status.js';
+import '@saipem/design-system/%NPMDIR%/components/status/status.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -201,7 +201,7 @@ for users who prefer reduced motion.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/status/status.js';
+import '@saipem/design-system/%NPMDIR%/components/status/status.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -224,7 +224,7 @@ Use `size="small"` in dense lists and detail panels.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/status/status.js';
+import '@saipem/design-system/%NPMDIR%/components/status/status.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

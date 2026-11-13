@@ -17,8 +17,8 @@ so a stat and the table cells it counts share one colour.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/stat/stat.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/stat/stat.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -58,9 +58,9 @@ Put stats in a [stat group](/components/stat-group) to turn them into quick filt
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/stat/stat.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/stat-group/stat-group.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/stat/stat.js';
+import '@saipem/design-system/%NPMDIR%/components/stat-group/stat-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -113,9 +113,9 @@ A dashboard summary, e.g. contract review/consolidation status, with one stat se
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/icon/icon.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/stat/stat.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/stat-group/stat-group.js';
+import '@saipem/design-system/%NPMDIR%/components/icon/icon.js';
+import '@saipem/design-system/%NPMDIR%/components/stat/stat.js';
+import '@saipem/design-system/%NPMDIR%/components/stat-group/stat-group.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -154,7 +154,7 @@ The `prefix` slot is optional — the icon badge collapses when it's empty.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/stat/stat.js';
+import '@saipem/design-system/%NPMDIR%/components/stat/stat.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

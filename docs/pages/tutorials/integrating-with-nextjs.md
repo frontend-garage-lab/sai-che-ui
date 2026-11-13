@@ -41,7 +41,7 @@ After you've created your app, the first step to using Shoelace is modifying you
 To get started using Shoelace with NextJS, the following packages must be installed.
 
 ```bash
-npm install @shoelace-style/shoelace copy-webpack-plugin
+npm install @saipem/design-system copy-webpack-plugin
 ```
 
 Shoelace for obvious reasons, and the `copy-webpack-plugin` will be used later for adding our icons to our `public/` folder.
@@ -73,7 +73,7 @@ const nextConfig = {
       new CopyPlugin({
         patterns: [
           {
-            from: resolve(__dirname, 'node_modules/@shoelace-style/shoelace/dist/assets/'),
+            from: resolve(__dirname, 'node_modules/@saipem/design-system/dist/assets/'),
             to: resolve(__dirname, 'public/shoelace-assets/assets/')
           }
         ]
@@ -87,7 +87,7 @@ export default nextConfig;
 ```
 
 :::tip
-This will copy the files from `node_modules/@shoelace-style/shoelace/dist/assets` into your `public/shoelace-assets` folder on every development serve or build. You may want to avoid committing these into your repo. To do so, simply add `public/shoelace-assets` into your `.gitignore` folder
+This will copy the files from `node_modules/@saipem/design-system/dist/assets` into your `public/shoelace-assets` folder on every development serve or build. You may want to avoid committing these into your repo. To do so, simply add `public/shoelace-assets` into your `.gitignore` folder
 :::
 
 ### Importing the Shoelace's CSS (default theme)
@@ -97,9 +97,9 @@ Once we've got our webpack config / next config setup, lets modify our `app/layo
 ```javascript
 // app/layout.tsx
 import './globals.css';
-import '@shoelace-style/shoelace/dist/themes/light.css';
+import '@saipem/design-system/dist/themes/light.css';
 // We can also import the dark theme here as well.
-// import "@shoelace-style/shoelace/dist/themes/dark.css";
+// import "@saipem/design-system/dist/themes/dark.css";
 ```
 
 ### Writing a "setup" component
@@ -112,7 +112,7 @@ To do so, create a file called `app/shoelace-setup.tsx`
 'use client';
 // ^ Make sure to have 'use client'; because `setBasePath()` requires access to `document`.
 
-import { setBasePath } from "@shoelace-style/shoelace/dist/utilities/base-path.js"
+import { setBasePath } from "@saipem/design-system/dist/utilities/base-path.js"
 
 export default function ShoelaceSetup({
   children,
@@ -136,7 +136,7 @@ Our `layout.tsx` Should now look something like this:
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-+ import "@shoelace-style/shoelace/dist/themes/light.css";
++ import "@saipem/design-system/dist/themes/light.css";
 
 + import ShoelaceSetup from "./shoelace-setup";
 
@@ -178,8 +178,8 @@ import React from "react";
 import dynamic from "next/dynamic";
 
 const SlButton = dynamic(
-  // Notice how we use the full path to the component. If you only do `import("@shoelace-style/shoelace/dist/react")` you will load the entire component library and not get tree shaking.
-  () => import("@shoelace-style/shoelace/dist/react/button/index.js"),
+  // Notice how we use the full path to the component. If you only do `import("@saipem/design-system/dist/react")` you will load the entire component library and not get tree shaking.
+  () => import("@saipem/design-system/dist/react/button/index.js"),
   {
     loading: () => <p>Loading...</p>,
     ssr: false,
@@ -187,7 +187,7 @@ const SlButton = dynamic(
 );
 
 const SlIcon = dynamic(
-  () => import("@shoelace-style/shoelace/dist/react/icon/index.js"),
+  () => import("@saipem/design-system/dist/react/icon/index.js"),
   {
     loading: () => <p>Loading...</p>,
     ssr: false,
@@ -217,7 +217,7 @@ If you're stuck, there's an [example repo here](https://github.com/konnorRogers/
 To get started using Shoelace with NextJS, the following packages must be installed.
 
 ```bash
-yarn add @shoelace-style/shoelace copy-webpack-plugin next-compose-plugins next-transpile-modules
+yarn add @saipem/design-system copy-webpack-plugin next-compose-plugins next-transpile-modules
 ```
 
 ### Enabling ESM
@@ -236,7 +236,7 @@ There's one more step to enable ESM in NextJS, but we'll tackle that in our Next
 The next step is to import Shoelace's default theme (stylesheet) in your `_app.js` file:
 
 ```css
-import '@shoelace-style/shoelace/dist/themes/light.css';
+import '@saipem/design-system/dist/themes/light.css';
 ```
 
 ### Defining Custom Elements
@@ -255,14 +255,14 @@ function CustomEls({ URL }) {
       return;
     }
 
-    import('@shoelace-style/shoelace/dist/utilities/base-path').then(({ setBasePath }) => {
+    import('@saipem/design-system/dist/utilities/base-path').then(({ setBasePath }) => {
       setBasePath(`${URL}/static/static`);
 
       // This imports all components
-      import('@shoelace-style/shoelace/dist/react');
+      import('@saipem/design-system/dist/react');
       // If you're wanting to selectively import components, replace this line with your own definitions
 
-      // import("@shoelace-style/shoelace/dist/components/button/button");
+      // import("@saipem/design-system/dist/components/button/button");
       customEls.current = true;
     });
   }, [URL, customEls]);

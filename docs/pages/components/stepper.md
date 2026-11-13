@@ -17,8 +17,8 @@ the steps before it are shown as complete.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/step/step.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/stepper/stepper.js';
+import '@saipem/design-system/%NPMDIR%/components/step/step.js';
+import '@saipem/design-system/%NPMDIR%/components/stepper/stepper.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -75,9 +75,9 @@ emit `sl-step-change`, so you only need one listener to show the right panel.
 {% raw %}
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/button/button.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/step/step.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/stepper/stepper.js';
+import '@saipem/design-system/%NPMDIR%/components/button/button.js';
+import '@saipem/design-system/%NPMDIR%/components/step/step.js';
+import '@saipem/design-system/%NPMDIR%/components/stepper/stepper.js';
 import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, computed, signal } from '@angular/core';
 
 @Component({
@@ -148,8 +148,8 @@ Add `linear` when users must not jump back, e.g. once a distribution has been se
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/step/step.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/stepper/stepper.js';
+import '@saipem/design-system/%NPMDIR%/components/step/step.js';
+import '@saipem/design-system/%NPMDIR%/components/stepper/stepper.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -180,8 +180,8 @@ and screen readers announce the error after the label.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/step/step.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/stepper/stepper.js';
+import '@saipem/design-system/%NPMDIR%/components/step/step.js';
+import '@saipem/design-system/%NPMDIR%/components/stepper/stepper.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -212,8 +212,8 @@ Use `orientation="vertical"` in narrow places such as a drawer or a side panel.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/step/step.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/stepper/stepper.js';
+import '@saipem/design-system/%NPMDIR%/components/step/step.js';
+import '@saipem/design-system/%NPMDIR%/components/stepper/stepper.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
@@ -245,8 +245,8 @@ translate them.
 ```
 
 ```ts:angular
-import '@shoelace-style/shoelace/%NPMDIR%/components/step/step.js';
-import '@shoelace-style/shoelace/%NPMDIR%/components/stepper/stepper.js';
+import '@saipem/design-system/%NPMDIR%/components/step/step.js';
+import '@saipem/design-system/%NPMDIR%/components/stepper/stepper.js';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
