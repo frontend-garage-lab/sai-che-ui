@@ -12,16 +12,18 @@ export interface IconLibrary {
 }
 
 let registry: IconLibrary[] = [defaultLibrary, systemLibrary];
-let watchedIcons: SlIcon[] = [];
+// A Set keeps unwatching O(1): with an array, removing every icon of a large page (e.g. a table with an icon per row)
+// cost O(n²) on teardown.
+const watchedIcons = new Set<SlIcon>();
 
 /** Adds an icon to the list of watched icons. */
 export function watchIcon(icon: SlIcon) {
-  watchedIcons.push(icon);
+  watchedIcons.add(icon);
 }
 
 /** Removes an icon from the list of watched icons. */
 export function unwatchIcon(icon: SlIcon) {
-  watchedIcons = watchedIcons.filter(el => el !== icon);
+  watchedIcons.delete(icon);
 }
 
 /** Returns a library from the registry. */

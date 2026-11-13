@@ -118,6 +118,9 @@ async function buildTheSource() {
       'process.env.NODE_ENV': '"production"'
     },
     bundle: true,
+    // The CDN build is loaded as-is by browsers, so it ships minified (about -30% raw, -20% gzip). The npm build stays
+    // unminified because consumers' bundlers minify it. The dev server keeps readable output for debugging.
+    minify: !serve,
     //
     // We don't bundle certain dependencies in the unbundled build. This ensures we ship bare module specifiers,
     // allowing end users to better optimize when using a bundler. (Only packages that ship ESM can be external.)

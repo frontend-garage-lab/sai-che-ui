@@ -52,4 +52,4 @@ const metadata = await Promise.all(
   })
 );
 
-await fs.writeFile(path.join(iconDir, 'icons.json'), JSON.stringify(metadata, null, 2), 'utf8');
+await fs.writeFile(path.join(iconDir, 'icons.json'), JSON.stringify(metadata), 'utf8');
