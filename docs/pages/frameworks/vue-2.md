@@ -20,17 +20,26 @@ To add Shoelace to your Vue app, install the package from npm.
 npm install @saipem/design-system
 ```
 
+{# CDN disabled: the design system is installed locally only (not published on jsDelivr/npm). Uncomment to re-enable.
 Next, [include a theme](/getting-started/themes) and set the [base path](/getting-started/installation#setting-the-base-path) for icons and other assets. In this example, we'll import the light theme and use the CDN as a base path.
+#}
+Next, [include a theme](/getting-started/themes) and set the [base path](/getting-started/installation#setting-the-base-path) for icons and other assets. In this example, we'll import the light theme and point the base path at the library assets copied into your app.
 
 ```jsx
 import '@saipem/design-system/%NPMDIR%/themes/light.css';
 import { setBasePath } from '@saipem/design-system/%NPMDIR%/utilities/base-path';
 
+{# CDN disabled: the design system is installed locally only (not published on jsDelivr/npm). Uncomment to re-enable.
 setBasePath('https://cdn.jsdelivr.net/npm/@saipem/design-system@%VERSION%/%CDNDIR%/');
+#}
+setBasePath('/saipem-design-system');
 ```
 
 :::tip
+{# CDN disabled: the design system is installed locally only (not published on jsDelivr/npm). Uncomment to re-enable.
 If you'd rather not use the CDN for assets, you can create a build task that copies `node_modules/@saipem/design-system/dist/assets` into a public folder in your app. Then you can point the base path to that folder instead.
+#}
+Copy `node_modules/@saipem/design-system/dist/assets` into `public/saipem-design-system/assets` with a build task, so it is served at `/saipem-design-system/assets`. If your app is served from a sub-path, prefix the base path accordingly.
 :::
 
 ## Configuration

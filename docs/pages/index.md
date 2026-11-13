@@ -29,8 +29,10 @@ toc: false
 
 <div class="badges">
 
+{# CDN disabled: the design system is installed locally only (not published on jsDelivr/npm). Uncomment to re-enable.
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@saipem/design-system/badge)](https://www.jsdelivr.com/package/npm/@saipem/design-system)
 [![npm](https://img.shields.io/npm/dw/@saipem/design-system?label=npm&style=flat-square)](https://www.npmjs.com/package/@saipem/design-system)
+#}
 [![License](https://img.shields.io/badge/license-MIT-232323.svg?style=flat-square)](https://github.com/shoelace-style/shoelace/blob/next/LICENSE.md)<br>
 [![Discord](https://img.shields.io/badge/Discord-Join%20the%20chat-5965f2.svg?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/mg8f26C)
 [![Twitter](https://img.shields.io/badge/Twitter-Follow-00acee.svg?style=flat-square&logo=twitter&logoColor=white)](https://twitter.com/shoelace_style)
@@ -40,6 +42,7 @@ toc: false
 
 ## Quick Start
 
+{# CDN disabled: the design system is installed locally only (not published on jsDelivr/npm). Uncomment to re-enable.
 Add the following code to your page.
 
 <!-- prettier-ignore -->
@@ -47,6 +50,8 @@ Add the following code to your page.
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@saipem/design-system@%VERSION%/%CDNDIR%/themes/light.css" />
 <script type="module" src="https://cdn.jsdelivr.net/npm/@saipem/design-system@%VERSION%/%CDNDIR%/shoelace-autoloader.js"></script>
 ```
+
+#}
 
 Now you have access to all of Shoelace's components! Try adding a button:
 

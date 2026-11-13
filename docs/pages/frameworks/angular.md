@@ -36,13 +36,32 @@ import { setBasePath } from '@saipem/design-system/%NPMDIR%/utilities/base-path.
 import { AppComponent } from './app/app.component';
 import { appConfig } from './app/app.config';
 
+{# CDN disabled: the design system is installed locally only (not published on jsDelivr/npm). Uncomment to re-enable.
 setBasePath('https://cdn.jsdelivr.net/npm/@saipem/design-system@%VERSION%/%CDNDIR%/');
+#}
+setBasePath('/saipem-design-system');
 
 void bootstrapApplication(AppComponent, appConfig);
 ```
 
+{# CDN disabled: the design system is installed locally only (not published on jsDelivr/npm). Uncomment to re-enable.
 :::tip
 To avoid the CDN, copy `node_modules/@saipem/design-system/%NPMDIR%/assets` into your `public` folder with a build step and point `setBasePath()` at that folder instead.
+:::
+#}
+
+The base path must point to the folder that contains the library `assets` directory. Copy it at build time from `node_modules` by adding this entry to the `assets` array of your build target in `angular.json`:
+
+```json
+{
+  "glob": "**/*",
+  "input": "node_modules/@saipem/design-system/%NPMDIR%/assets",
+  "output": "saipem-design-system/assets"
+}
+```
+
+:::tip
+If the app is served from a sub-path (a `<base href>` other than `/`), prefix the base path accordingly, e.g. `setBasePath('/my-app/saipem-design-system')`.
 :::
 
 ### Application config

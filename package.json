@@ -37,13 +37,6 @@
     "custom elements",
     "components"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/frontend-garage-lab/sai-che-ui.git"
-  },
-  "bugs": {
-    "url": "https://github.com/frontend-garage-lab/sai-che-ui/issues"
-  },
   "funding": {
     "type": "individual",
     "url": "https://github.com/sponsors/claviska"

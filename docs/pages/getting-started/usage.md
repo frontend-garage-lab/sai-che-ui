@@ -214,6 +214,7 @@ If `settings.json` already exists, simply add the above line to the root of the 
 
 If you are using a [JetBrains IDE](https://www.jetbrains.com/) and you are installing Shoelace from NPM, the editor will automatically detect the `web-types.json` file from the package and you should immediately see component information in your editor.
 
+{# CDN disabled: the design system is installed locally only (not published on jsDelivr/npm). Uncomment to re-enable.
 If you are installing from the CDN, you can [download a local copy](https://cdn.jsdelivr.net/npm/@saipem/design-system/dist/web-types.json) and add it to the root of your project. Be sure to add a reference to the `web-types.json` file in your `package.json` in order for your editor to properly detect it.
 
 ```json
@@ -223,6 +224,8 @@ If you are installing from the CDN, you can [download a local copy](https://cdn.
   ...
 }
 ```
+
+#}
 
 If you are using types from multiple projects, you can add an array of references.
 

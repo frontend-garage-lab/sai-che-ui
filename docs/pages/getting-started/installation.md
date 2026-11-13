@@ -12,6 +12,8 @@ meta:
 
 You can load Shoelace via CDN or by installing it locally. If you're using a framework, make sure to check out the pages for [React](/frameworks/react), [Vue](/frameworks/vue), and [Angular](/frameworks/angular) for additional information.
 
+{# CDN disabled: the design system is installed locally only (not published on jsDelivr/npm). Uncomment to re-enable.
+
 ## CDN Installation (Easiest)
 
 <sl-tab-group>
@@ -73,6 +75,7 @@ If you want to load the light or dark theme based on the user's `prefers-color-s
 ```
 
 Now you can [start using Shoelace!](/getting-started/usage)
+#}
 
 ## npm installation
 

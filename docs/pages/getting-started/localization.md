@@ -28,7 +28,10 @@ Shoelace ships with a number of translations. The default is English (US), which
 
 The location of translations depends on how you're consuming Shoelace.
 
+{# CDN disabled: the design system is installed locally only (not published on jsDelivr/npm). Uncomment to re-enable.
+
 - If you're using the CDN, [import them from the CDN](https://www.jsdelivr.com/package/npm/@saipem/design-system?path=%CDNDIR%%2Ftranslations)
+  #}
 - If you're using a bundler, import them from `@saipem/design-system/%NPMDIR%/translations/[lang].js`
 
 You do not need to load translations up front. You can import them dynamically even after updating the `lang` attribute. Once a translation is registered, localized components will update automatically.

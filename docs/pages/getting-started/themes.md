@@ -124,14 +124,14 @@ The built-in dark theme uses an inverted color scale so, if you're using design 
 
 The dark theme works by taking the light theme's [color tokens](/tokens/color) and "flipping" the scale so 100 becomes 900, 200 becomes 800, 300 becomes 700, etc. Next, the luminance of each primitive was fine-tuned to avoid true black, which is often undesirable in dark themes, and provide a richer experience. The result is a custom dark palette that complements the light theme and makes it easy to offer light and dark modes with minimal effort.
 
+{# CDN disabled: the design system is installed locally only (not published on jsDelivr/npm). Uncomment to re-enable.
 To install the dark theme, add the following to the `<head>` section of your page.
 
 ```html
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@saipem/design-system@%VERSION%/%CDNDIR%/themes/dark.css"
-/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@saipem/design-system@%VERSION%/%CDNDIR%/themes/dark.css" />
 ```
+
+#}
 
 To activate the theme, apply the `sl-theme-dark` class to the `<html>` element.
 
