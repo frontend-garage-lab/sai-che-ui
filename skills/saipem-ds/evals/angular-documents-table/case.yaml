@@ -1,0 +1,6 @@
+schema_version: '1.1'
+name: angular-documents-table
+expected_outcome: |
+  An sl-table bound with [columns] and [data] (stable references, SlTableColumnDef), selection="multiple",
+  toolbar buttons in slot="toolbar" disabled without selection, sl-table-selection-change handled, rowVariant
+  for overdue rows, sl-status in the status column and an sl-empty-state in slot="empty".

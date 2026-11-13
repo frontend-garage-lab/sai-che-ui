@@ -1,0 +1,5 @@
+schema_version: '1.1'
+name: missing-component-gap
+expected_outcome: |
+  The agent says the DS has no date-range picker component and proposes the closest composition (two sl-input
+  type="date" labelled From / To, side by side), without inventing a component.

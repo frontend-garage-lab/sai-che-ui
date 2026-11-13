@@ -12,3 +12,11 @@ package-lock.json
 tsconfig.json
 cdn
 _site
+skills/saipem-ds/references/components
+skills/saipem-ds/references/catalog.md
+skills/saipem-ds/references/fork-differences.md
+skills/saipem-ds/references/tokens.md
+skills/saipem-ds/references/angular.md
+skills/saipem-ds/scripts/ds-api.json
+skills/saipem-ds/evals/results
+scripts/skills/upstream-baseline.json

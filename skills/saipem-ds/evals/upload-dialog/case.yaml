@@ -1,0 +1,6 @@
+schema_version: '1.1'
+name: upload-dialog
+expected_outcome: |
+  An sl-dialog containing an sl-file-drop (label, accept, multiple, max-files, max-file-size, hint) and sl-file-
+  upload-item elements with state/progress; the Upload primary is disabled until files are chosen. No native
+  file input.

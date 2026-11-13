@@ -1,0 +1,70 @@
+[
+  {
+    "query": "Crea la pagina Angular della lista transmittal con filtri, tabella e pannello di dettaglio usando i nostri componenti sl-",
+    "should_trigger": true
+  },
+  {
+    "query": "Add a confirmation dialog before deleting a document revision, using the design system components",
+    "should_trigger": true
+  },
+  {
+    "query": "In questo template ho messo sl-badge per lo stato del documento, è giusto o devo usare altro?",
+    "should_trigger": true
+  },
+  {
+    "query": "Which variants does sl-button support in our library? I want a secondary button",
+    "should_trigger": true
+  },
+  {
+    "query": "Rivedi questo componente Angular: il pulsante resta disabilitato anche quando isDisabled è false <sl-button disabled=\"{{ isDisabled }}\">",
+    "should_trigger": true
+  },
+  {
+    "query": "Make the KPI cards above the documents table clickable so they filter by status",
+    "should_trigger": true
+  },
+  {
+    "query": "Converti questo form HTML legacy con input e select nativi nei componenti Saipem DS",
+    "should_trigger": true
+  },
+  {
+    "query": "I need an upload area for PDF attachments with progress for each file in the transmittal wizard",
+    "should_trigger": true
+  },
+  {
+    "query": "Che token devo usare per lo sfondo grigio della pagina e per il padding delle card?",
+    "should_trigger": true
+  },
+  {
+    "query": "Il mio sl-select con formControlName non aggiorna il valore del form reattivo, come lo sistemo?",
+    "should_trigger": true
+  },
+  { "query": "Verifica i Code Connect del componente Button tra Figma e il codice", "should_trigger": false },
+  { "query": "Porta la pagina HTML advanced-search in Figma con le istanze della libreria", "should_trigger": false },
+  {
+    "query": "Aggiungi la variante 'info' al componente sl-badge nel sorgente della libreria (src/components/badge) e scrivi i test",
+    "should_trigger": false
+  },
+  {
+    "query": "Write unit tests for the DocumentsService that calls the REST API with HttpClient",
+    "should_trigger": false
+  },
+  { "query": "Build a settings page with Angular Material mat-form-field and mat-select", "should_trigger": false },
+  {
+    "query": "Upgrade the upstream Shoelace dependency in the docs site build and fix the eleventy config",
+    "should_trigger": false
+  },
+  { "query": "Spiegami la differenza tra signal e BehaviorSubject in Angular 22", "should_trigger": false },
+  {
+    "query": "Configura GitHub Actions per pubblicare il pacchetto npm della libreria su ogni tag",
+    "should_trigger": false
+  },
+  {
+    "query": "Create a matplotlib chart of documents distributed per month for the monthly report",
+    "should_trigger": false
+  },
+  {
+    "query": "Rinomina la variabile CSS --rs-gap in restyle.css e aggiorna le pagine della documentazione",
+    "should_trigger": false
+  }
+]

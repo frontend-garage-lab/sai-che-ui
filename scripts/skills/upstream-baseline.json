@@ -1,0 +1,2113 @@
+{
+ "description": "Public API of the upstream Shoelace release this DS was forked from. Generated, do not edit.",
+ "upstream": {
+  "package": "@shoelace-style/shoelace",
+  "version": "2.20.1",
+  "commit": "25bd8ec7"
+ },
+ "elements": {
+  "sl-alert": {
+   "attrs": {
+    "open": {},
+    "closable": {},
+    "variant": {
+     "values": [
+      "primary",
+      "success",
+      "neutral",
+      "warning",
+      "danger"
+     ],
+     "open": false
+    },
+    "duration": {},
+    "countdown": {
+     "values": [
+      "rtl",
+      "ltr"
+     ],
+     "open": false
+    }
+   },
+   "events": [
+    "sl-show",
+    "sl-after-show",
+    "sl-hide",
+    "sl-after-hide"
+   ],
+   "slots": [
+    "",
+    "icon"
+   ],
+   "parts": [
+    "base",
+    "icon",
+    "message",
+    "close-button",
+    "close-button__base"
+   ],
+   "cssProps": []
+  },
+  "sl-animated-image": {
+   "attrs": {
+    "src": {},
+    "alt": {},
+    "play": {}
+   },
+   "events": [
+    "sl-load",
+    "sl-error"
+   ],
+   "slots": [
+    "play-icon",
+    "pause-icon"
+   ],
+   "parts": [
+    "control-box"
+   ],
+   "cssProps": [
+    "--control-box-size",
+    "--icon-size"
+   ]
+  },
+  "sl-animation": {
+   "attrs": {
+    "name": {},
+    "play": {},
+    "delay": {},
+    "direction": {},
+    "duration": {},
+    "easing": {},
+    "end-delay": {},
+    "fill": {},
+    "iterations": {},
+    "iteration-start": {},
+    "playback-rate": {}
+   },
+   "events": [
+    "sl-cancel",
+    "sl-finish",
+    "sl-start"
+   ],
+   "slots": [
+    ""
+   ],
+   "parts": [],
+   "cssProps": []
+  },
+  "sl-avatar": {
+   "attrs": {
+    "image": {},
+    "label": {},
+    "initials": {},
+    "loading": {
+     "values": [
+      "eager",
+      "lazy"
+     ],
+     "open": false
+    },
+    "shape": {
+     "values": [
+      "circle",
+      "square",
+      "rounded"
+     ],
+     "open": false
+    }
+   },
+   "events": [
+    "sl-error"
+   ],
+   "slots": [
+    "icon"
+   ],
+   "parts": [
+    "base",
+    "icon",
+    "initials",
+    "image"
+   ],
+   "cssProps": [
+    "--size"
+   ]
+  },
+  "sl-badge": {
+   "attrs": {
+    "variant": {
+     "values": [
+      "primary",
+      "success",
+      "neutral",
+      "warning",
+      "danger"
+     ],
+     "open": false
+    },
+    "pill": {},
+    "pulse": {}
+   },
+   "events": [],
+   "slots": [
+    ""
+   ],
+   "parts": [
+    "base"
+   ],
+   "cssProps": []
+  },
+  "sl-breadcrumb": {
+   "attrs": {
+    "label": {}
+   },
+   "events": [],
+   "slots": [
+    "",
+    "separator"
+   ],
+   "parts": [
+    "base"
+   ],
+   "cssProps": []
+  },
+  "sl-breadcrumb-item": {
+   "attrs": {
+    "href": {},
+    "target": {
+     "values": [
+      "_blank",
+      "_parent",
+      "_self",
+      "_top"
+     ],
+     "open": false
+    },
+    "rel": {}
+   },
+   "events": [],
+   "slots": [
+    "",
+    "prefix",
+    "suffix",
+    "separator"
+   ],
+   "parts": [
+    "base",
+    "label",
+    "prefix",
+    "suffix",
+    "separator"
+   ],
+   "cssProps": []
+  },
+  "sl-button": {
+   "attrs": {
+    "title": {},
+    "variant": {
+     "values": [
+      "default",
+      "primary",
+      "success",
+      "neutral",
+      "warning",
+      "danger",
+      "text"
+     ],
+     "open": false
+    },
+    "size": {
+     "values": [
+      "small",
+      "medium",
+      "large"
+     ],
+     "open": false
+    },
+    "caret": {},
+    "disabled": {},
+    "loading": {},
+    "outline": {},
+    "pill": {},
+    "circle": {},
+    "type": {
+     "values": [
+      "button",
+      "submit",
+      "reset"
+     ],
+     "open": false
+    },
+    "name": {},
+    "value": {},
+    "href": {},
+    "target": {
+     "values": [
+      "_blank",
+      "_parent",
+      "_self",
+      "_top"
+     ],
+     "open": false
+    },
+    "rel": {},
+    "download": {},
+    "form": {},
+    "formaction": {},
+    "formenctype": {
+     "values": [
+      "application/x-www-form-urlencoded",
+      "multipart/form-data",
+      "text/plain"
+     ],
+     "open": false
+    },
+    "formmethod": {
+     "values": [
+      "post",
+      "get"
+     ],
+     "open": false
+    },
+    "formnovalidate": {},
+    "formtarget": {
+     "values": [
+      "_self",
+      "_blank",
+      "_parent",
+      "_top"
+     ],
+     "open": true
+    }
+   },
+   "events": [
+    "sl-blur",
+    "sl-focus",
+    "sl-invalid"
+   ],
+   "slots": [
+    "",
+    "prefix",
+    "suffix"
+   ],
+   "parts": [
+    "base",
+    "prefix",
+    "label",
+    "suffix",
+    "caret",
+    "spinner"
+   ],
+   "cssProps": []
+  },
+  "sl-button-group": {
+   "attrs": {
+    "label": {}
+   },
+   "events": [],
+   "slots": [
+    ""
+   ],
+   "parts": [
+    "base"
+   ],
+   "cssProps": []
+  },
+  "sl-card": {
+   "attrs": {},
+   "events": [],
+   "slots": [
+    "",
+    "header",
+    "footer",
+    "image"
+   ],
+   "parts": [
+    "base",
+    "image",
+    "header",
+    "body",
+    "footer"
+   ],
+   "cssProps": [
+    "--border-color",
+    "--border-radius",
+    "--border-width",
+    "--padding"
+   ]
+  },
+  "sl-carousel": {
+   "attrs": {
+    "loop": {},
+    "navigation": {},
+    "pagination": {},
+    "autoplay": {},
+    "autoplay-interval": {},
+    "slides-per-page": {},
+    "slides-per-move": {},
+    "orientation": {
+     "values": [
+      "horizontal",
+      "vertical"
+     ],
+     "open": false
+    },
+    "mouse-dragging": {}
+   },
+   "events": [
+    "sl-slide-change"
+   ],
+   "slots": [
+    "",
+    "next-icon",
+    "previous-icon"
+   ],
+   "parts": [
+    "base",
+    "scroll-container",
+    "pagination",
+    "pagination-item",
+    "pagination-item--active",
+    "navigation",
+    "navigation-button",
+    "navigation-button--previous",
+    "navigation-button--next"
+   ],
+   "cssProps": [
+    "--slide-gap",
+    "--aspect-ratio",
+    "--scroll-hint"
+   ]
+  },
+  "sl-carousel-item": {
+   "attrs": {},
+   "events": [],
+   "slots": [
+    ""
+   ],
+   "parts": [],
+   "cssProps": [
+    "--aspect-ratio"
+   ]
+  },
+  "sl-checkbox": {
+   "attrs": {
+    "title": {},
+    "name": {},
+    "value": {},
+    "size": {
+     "values": [
+      "small",
+      "medium",
+      "large"
+     ],
+     "open": false
+    },
+    "disabled": {},
+    "checked": {},
+    "indeterminate": {},
+    "form": {},
+    "required": {},
+    "help-text": {}
+   },
+   "events": [
+    "sl-blur",
+    "sl-change",
+    "sl-focus",
+    "sl-input",
+    "sl-invalid"
+   ],
+   "slots": [
+    "",
+    "help-text"
+   ],
+   "parts": [
+    "base",
+    "control",
+    "control--checked",
+    "control--indeterminate",
+    "checked-icon",
+    "indeterminate-icon",
+    "label",
+    "form-control-help-text"
+   ],
+   "cssProps": []
+  },
+  "sl-color-picker": {
+   "attrs": {
+    "value": {},
+    "label": {},
+    "format": {
+     "values": [
+      "hex",
+      "rgb",
+      "hsl",
+      "hsv"
+     ],
+     "open": false
+    },
+    "inline": {},
+    "size": {
+     "values": [
+      "small",
+      "medium",
+      "large"
+     ],
+     "open": false
+    },
+    "no-format-toggle": {},
+    "name": {},
+    "disabled": {},
+    "hoist": {},
+    "opacity": {},
+    "uppercase": {},
+    "swatches": {},
+    "form": {},
+    "required": {}
+   },
+   "events": [
+    "sl-blur",
+    "sl-change",
+    "sl-focus",
+    "sl-input",
+    "sl-invalid"
+   ],
+   "slots": [
+    "label"
+   ],
+   "parts": [
+    "base",
+    "trigger",
+    "swatches",
+    "swatch",
+    "grid",
+    "grid-handle",
+    "slider",
+    "slider-handle",
+    "hue-slider",
+    "hue-slider-handle",
+    "opacity-slider",
+    "opacity-slider-handle",
+    "preview",
+    "input",
+    "eye-dropper-button",
+    "eye-dropper-button__base",
+    "eye-dropper-button__prefix",
+    "eye-dropper-button__label",
+    "eye-dropper-button__suffix",
+    "eye-dropper-button__caret",
+    "format-button",
+    "format-button__base",
+    "format-button__prefix",
+    "format-button__label",
+    "format-button__suffix",
+    "format-button__caret"
+   ],
+   "cssProps": [
+    "--grid-width",
+    "--grid-height",
+    "--grid-handle-size",
+    "--slider-height",
+    "--slider-handle-size",
+    "--swatch-size"
+   ]
+  },
+  "sl-copy-button": {
+   "attrs": {
+    "value": {},
+    "from": {},
+    "disabled": {},
+    "copy-label": {},
+    "success-label": {},
+    "error-label": {},
+    "feedback-duration": {},
+    "tooltip-placement": {
+     "values": [
+      "top",
+      "right",
+      "bottom",
+      "left"
+     ],
+     "open": false
+    },
+    "hoist": {}
+   },
+   "events": [
+    "sl-copy",
+    "sl-error"
+   ],
+   "slots": [
+    "copy-icon",
+    "success-icon",
+    "error-icon"
+   ],
+   "parts": [
+    "button",
+    "copy-icon",
+    "success-icon",
+    "error-icon",
+    "tooltip__base",
+    "tooltip__base__popup",
+    "tooltip__base__arrow",
+    "tooltip__body"
+   ],
+   "cssProps": [
+    "--success-color",
+    "--error-color"
+   ]
+  },
+  "sl-details": {
+   "attrs": {
+    "open": {},
+    "summary": {},
+    "disabled": {}
+   },
+   "events": [
+    "sl-show",
+    "sl-after-show",
+    "sl-hide",
+    "sl-after-hide"
+   ],
+   "slots": [
+    "",
+    "summary",
+    "expand-icon",
+    "collapse-icon"
+   ],
+   "parts": [
+    "base",
+    "header",
+    "summary",
+    "summary-icon",
+    "content"
+   ],
+   "cssProps": []
+  },
+  "sl-dialog": {
+   "attrs": {
+    "open": {},
+    "label": {},
+    "no-header": {}
+   },
+   "events": [
+    "sl-show",
+    "sl-after-show",
+    "sl-hide",
+    "sl-after-hide",
+    "sl-initial-focus",
+    "sl-request-close"
+   ],
+   "slots": [
+    "",
+    "label",
+    "header-actions",
+    "footer"
+   ],
+   "parts": [
+    "base",
+    "overlay",
+    "panel",
+    "header",
+    "header-actions",
+    "title",
+    "close-button",
+    "close-button__base",
+    "body",
+    "footer"
+   ],
+   "cssProps": [
+    "--width",
+    "--header-spacing",
+    "--body-spacing",
+    "--footer-spacing"
+   ]
+  },
+  "sl-divider": {
+   "attrs": {
+    "vertical": {}
+   },
+   "events": [],
+   "slots": [],
+   "parts": [],
+   "cssProps": [
+    "--color",
+    "--width",
+    "--spacing"
+   ]
+  },
+  "sl-drawer": {
+   "attrs": {
+    "open": {},
+    "label": {},
+    "placement": {
+     "values": [
+      "top",
+      "end",
+      "bottom",
+      "start"
+     ],
+     "open": false
+    },
+    "contained": {},
+    "no-header": {}
+   },
+   "events": [
+    "sl-show",
+    "sl-after-show",
+    "sl-hide",
+    "sl-after-hide",
+    "sl-initial-focus",
+    "sl-request-close"
+   ],
+   "slots": [
+    "",
+    "label",
+    "header-actions",
+    "footer"
+   ],
+   "parts": [
+    "base",
+    "overlay",
+    "panel",
+    "header",
+    "header-actions",
+    "title",
+    "close-button",
+    "close-button__base",
+    "body",
+    "footer"
+   ],
+   "cssProps": [
+    "--size",
+    "--header-spacing",
+    "--body-spacing",
+    "--footer-spacing"
+   ]
+  },
+  "sl-dropdown": {
+   "attrs": {
+    "open": {},
+    "placement": {
+     "values": [
+      "top",
+      "top-start",
+      "top-end",
+      "bottom",
+      "bottom-start",
+      "bottom-end",
+      "right",
+      "right-start",
+      "right-end",
+      "left",
+      "left-start",
+      "left-end"
+     ],
+     "open": false
+    },
+    "disabled": {},
+    "stay-open-on-select": {},
+    "distance": {},
+    "skidding": {},
+    "hoist": {},
+    "sync": {
+     "values": [
+      "width",
+      "height",
+      "both"
+     ],
+     "open": false
+    }
+   },
+   "events": [
+    "sl-show",
+    "sl-after-show",
+    "sl-hide",
+    "sl-after-hide"
+   ],
+   "slots": [
+    "",
+    "trigger"
+   ],
+   "parts": [
+    "base",
+    "base__popup",
+    "trigger",
+    "panel"
+   ],
+   "cssProps": []
+  },
+  "sl-format-bytes": {
+   "attrs": {
+    "value": {},
+    "unit": {
+     "values": [
+      "byte",
+      "bit"
+     ],
+     "open": false
+    },
+    "display": {
+     "values": [
+      "long",
+      "short",
+      "narrow"
+     ],
+     "open": false
+    }
+   },
+   "events": [],
+   "slots": [],
+   "parts": [],
+   "cssProps": []
+  },
+  "sl-format-date": {
+   "attrs": {
+    "date": {},
+    "weekday": {
+     "values": [
+      "narrow",
+      "short",
+      "long"
+     ],
+     "open": false
+    },
+    "era": {
+     "values": [
+      "narrow",
+      "short",
+      "long"
+     ],
+     "open": false
+    },
+    "year": {
+     "values": [
+      "numeric",
+      "2-digit"
+     ],
+     "open": false
+    },
+    "month": {
+     "values": [
+      "numeric",
+      "2-digit",
+      "narrow",
+      "short",
+      "long"
+     ],
+     "open": false
+    },
+    "day": {
+     "values": [
+      "numeric",
+      "2-digit"
+     ],
+     "open": false
+    },
+    "hour": {
+     "values": [
+      "numeric",
+      "2-digit"
+     ],
+     "open": false
+    },
+    "minute": {
+     "values": [
+      "numeric",
+      "2-digit"
+     ],
+     "open": false
+    },
+    "second": {
+     "values": [
+      "numeric",
+      "2-digit"
+     ],
+     "open": false
+    },
+    "time-zone-name": {
+     "values": [
+      "short",
+      "long"
+     ],
+     "open": false
+    },
+    "time-zone": {},
+    "hour-format": {
+     "values": [
+      "auto",
+      "12",
+      "24"
+     ],
+     "open": false
+    }
+   },
+   "events": [],
+   "slots": [],
+   "parts": [],
+   "cssProps": []
+  },
+  "sl-format-number": {
+   "attrs": {
+    "value": {},
+    "type": {
+     "values": [
+      "currency",
+      "decimal",
+      "percent"
+     ],
+     "open": false
+    },
+    "no-grouping": {},
+    "currency": {},
+    "currency-display": {
+     "values": [
+      "symbol",
+      "narrowSymbol",
+      "code",
+      "name"
+     ],
+     "open": false
+    },
+    "minimum-integer-digits": {},
+    "minimum-fraction-digits": {},
+    "maximum-fraction-digits": {},
+    "minimum-significant-digits": {},
+    "maximum-significant-digits": {}
+   },
+   "events": [],
+   "slots": [],
+   "parts": [],
+   "cssProps": []
+  },
+  "sl-icon": {
+   "attrs": {
+    "name": {},
+    "src": {},
+    "label": {},
+    "library": {}
+   },
+   "events": [
+    "sl-load",
+    "sl-error"
+   ],
+   "slots": [],
+   "parts": [
+    "svg",
+    "use"
+   ],
+   "cssProps": []
+  },
+  "sl-icon-button": {
+   "attrs": {
+    "name": {},
+    "library": {},
+    "src": {},
+    "href": {},
+    "target": {
+     "values": [
+      "_blank",
+      "_parent",
+      "_self",
+      "_top"
+     ],
+     "open": false
+    },
+    "download": {},
+    "label": {},
+    "disabled": {}
+   },
+   "events": [
+    "sl-blur",
+    "sl-focus"
+   ],
+   "slots": [],
+   "parts": [
+    "base"
+   ],
+   "cssProps": []
+  },
+  "sl-image-comparer": {
+   "attrs": {
+    "position": {}
+   },
+   "events": [
+    "sl-change"
+   ],
+   "slots": [
+    "before",
+    "after",
+    "handle"
+   ],
+   "parts": [
+    "base",
+    "before",
+    "after",
+    "divider",
+    "handle"
+   ],
+   "cssProps": [
+    "--divider-width",
+    "--handle-size"
+   ]
+  },
+  "sl-include": {
+   "attrs": {
+    "src": {},
+    "mode": {
+     "values": [
+      "cors",
+      "no-cors",
+      "same-origin"
+     ],
+     "open": false
+    },
+    "allow-scripts": {}
+   },
+   "events": [
+    "sl-load",
+    "sl-error"
+   ],
+   "slots": [],
+   "parts": [],
+   "cssProps": []
+  },
+  "sl-input": {
+   "attrs": {
+    "title": {},
+    "type": {
+     "values": [
+      "date",
+      "datetime-local",
+      "email",
+      "number",
+      "password",
+      "search",
+      "tel",
+      "text",
+      "time",
+      "url"
+     ],
+     "open": false
+    },
+    "name": {},
+    "value": {},
+    "size": {
+     "values": [
+      "small",
+      "medium",
+      "large"
+     ],
+     "open": false
+    },
+    "filled": {},
+    "pill": {},
+    "label": {},
+    "help-text": {},
+    "clearable": {},
+    "disabled": {},
+    "placeholder": {},
+    "readonly": {},
+    "password-toggle": {},
+    "password-visible": {},
+    "no-spin-buttons": {},
+    "form": {},
+    "required": {},
+    "pattern": {},
+    "minlength": {},
+    "maxlength": {},
+    "min": {},
+    "max": {},
+    "step": {
+     "values": [
+      "any"
+     ],
+     "open": true
+    },
+    "autocapitalize": {
+     "values": [
+      "off",
+      "none",
+      "on",
+      "sentences",
+      "words",
+      "characters"
+     ],
+     "open": false
+    },
+    "autocorrect": {
+     "values": [
+      "off",
+      "on"
+     ],
+     "open": false
+    },
+    "autocomplete": {},
+    "autofocus": {},
+    "enterkeyhint": {
+     "values": [
+      "enter",
+      "done",
+      "go",
+      "next",
+      "previous",
+      "search",
+      "send"
+     ],
+     "open": false
+    },
+    "spellcheck": {},
+    "inputmode": {
+     "values": [
+      "none",
+      "text",
+      "decimal",
+      "numeric",
+      "tel",
+      "search",
+      "email",
+      "url"
+     ],
+     "open": false
+    }
+   },
+   "events": [
+    "sl-blur",
+    "sl-change",
+    "sl-clear",
+    "sl-focus",
+    "sl-input",
+    "sl-invalid"
+   ],
+   "slots": [
+    "label",
+    "prefix",
+    "suffix",
+    "clear-icon",
+    "show-password-icon",
+    "hide-password-icon",
+    "help-text"
+   ],
+   "parts": [
+    "form-control",
+    "form-control-label",
+    "form-control-input",
+    "form-control-help-text",
+    "base",
+    "input",
+    "prefix",
+    "clear-button",
+    "password-toggle-button",
+    "suffix"
+   ],
+   "cssProps": []
+  },
+  "sl-menu": {
+   "attrs": {},
+   "events": [
+    "sl-select"
+   ],
+   "slots": [
+    ""
+   ],
+   "parts": [],
+   "cssProps": []
+  },
+  "sl-menu-item": {
+   "attrs": {
+    "type": {
+     "values": [
+      "normal",
+      "checkbox"
+     ],
+     "open": false
+    },
+    "checked": {},
+    "value": {},
+    "loading": {},
+    "disabled": {}
+   },
+   "events": [],
+   "slots": [
+    "",
+    "prefix",
+    "suffix",
+    "submenu"
+   ],
+   "parts": [
+    "base",
+    "checked-icon",
+    "prefix",
+    "label",
+    "suffix",
+    "spinner",
+    "spinner__base",
+    "submenu-icon"
+   ],
+   "cssProps": [
+    "--submenu-offset"
+   ]
+  },
+  "sl-menu-label": {
+   "attrs": {},
+   "events": [],
+   "slots": [
+    ""
+   ],
+   "parts": [
+    "base"
+   ],
+   "cssProps": []
+  },
+  "sl-mutation-observer": {
+   "attrs": {
+    "attr": {},
+    "attr-old-value": {},
+    "char-data": {},
+    "char-data-old-value": {},
+    "child-list": {},
+    "disabled": {}
+   },
+   "events": [
+    "sl-mutation"
+   ],
+   "slots": [
+    ""
+   ],
+   "parts": [],
+   "cssProps": []
+  },
+  "sl-option": {
+   "attrs": {
+    "value": {},
+    "disabled": {}
+   },
+   "events": [],
+   "slots": [
+    "",
+    "prefix",
+    "suffix"
+   ],
+   "parts": [
+    "checked-icon",
+    "base",
+    "label",
+    "prefix",
+    "suffix"
+   ],
+   "cssProps": []
+  },
+  "sl-popup": {
+   "attrs": {
+    "anchor": {},
+    "active": {},
+    "placement": {
+     "values": [
+      "top",
+      "top-start",
+      "top-end",
+      "bottom",
+      "bottom-start",
+      "bottom-end",
+      "right",
+      "right-start",
+      "right-end",
+      "left",
+      "left-start",
+      "left-end"
+     ],
+     "open": false
+    },
+    "strategy": {
+     "values": [
+      "absolute",
+      "fixed"
+     ],
+     "open": false
+    },
+    "distance": {},
+    "skidding": {},
+    "arrow": {},
+    "arrow-placement": {
+     "values": [
+      "start",
+      "end",
+      "center",
+      "anchor"
+     ],
+     "open": false
+    },
+    "arrow-padding": {},
+    "flip": {},
+    "flip-fallback-placements": {},
+    "flip-fallback-strategy": {
+     "values": [
+      "best-fit",
+      "initial"
+     ],
+     "open": false
+    },
+    "flipBoundary": {},
+    "flip-padding": {},
+    "shift": {},
+    "shiftBoundary": {},
+    "shift-padding": {},
+    "auto-size": {
+     "values": [
+      "horizontal",
+      "vertical",
+      "both"
+     ],
+     "open": false
+    },
+    "sync": {
+     "values": [
+      "width",
+      "height",
+      "both"
+     ],
+     "open": false
+    },
+    "autoSizeBoundary": {},
+    "auto-size-padding": {},
+    "hover-bridge": {}
+   },
+   "events": [
+    "sl-reposition"
+   ],
+   "slots": [
+    "",
+    "anchor"
+   ],
+   "parts": [
+    "arrow",
+    "popup",
+    "hover-bridge"
+   ],
+   "cssProps": [
+    "--arrow-size",
+    "--arrow-color",
+    "--auto-size-available-width",
+    "--auto-size-available-height"
+   ]
+  },
+  "sl-progress-bar": {
+   "attrs": {
+    "value": {},
+    "indeterminate": {},
+    "label": {}
+   },
+   "events": [],
+   "slots": [
+    ""
+   ],
+   "parts": [
+    "base",
+    "indicator",
+    "label"
+   ],
+   "cssProps": [
+    "--height",
+    "--track-color",
+    "--indicator-color",
+    "--label-color"
+   ]
+  },
+  "sl-progress-ring": {
+   "attrs": {
+    "value": {},
+    "label": {}
+   },
+   "events": [],
+   "slots": [
+    ""
+   ],
+   "parts": [
+    "base",
+    "label"
+   ],
+   "cssProps": [
+    "--size",
+    "--track-width",
+    "--track-color",
+    "--indicator-width",
+    "--indicator-color",
+    "--indicator-transition-duration"
+   ]
+  },
+  "sl-qr-code": {
+   "attrs": {
+    "value": {},
+    "label": {},
+    "size": {},
+    "fill": {},
+    "background": {},
+    "radius": {},
+    "error-correction": {
+     "values": [
+      "L",
+      "M",
+      "Q",
+      "H"
+     ],
+     "open": false
+    }
+   },
+   "events": [],
+   "slots": [],
+   "parts": [
+    "base"
+   ],
+   "cssProps": []
+  },
+  "sl-radio": {
+   "attrs": {
+    "value": {},
+    "size": {
+     "values": [
+      "small",
+      "medium",
+      "large"
+     ],
+     "open": false
+    },
+    "disabled": {}
+   },
+   "events": [
+    "sl-blur",
+    "sl-focus"
+   ],
+   "slots": [
+    ""
+   ],
+   "parts": [
+    "base",
+    "control",
+    "control--checked",
+    "checked-icon",
+    "label"
+   ],
+   "cssProps": []
+  },
+  "sl-radio-button": {
+   "attrs": {
+    "value": {},
+    "disabled": {},
+    "size": {
+     "values": [
+      "small",
+      "medium",
+      "large"
+     ],
+     "open": false
+    },
+    "pill": {}
+   },
+   "events": [
+    "sl-blur",
+    "sl-focus"
+   ],
+   "slots": [
+    "",
+    "prefix",
+    "suffix"
+   ],
+   "parts": [
+    "base",
+    "button",
+    "button--checked",
+    "prefix",
+    "label",
+    "suffix"
+   ],
+   "cssProps": []
+  },
+  "sl-radio-group": {
+   "attrs": {
+    "label": {},
+    "help-text": {},
+    "name": {},
+    "value": {},
+    "size": {
+     "values": [
+      "small",
+      "medium",
+      "large"
+     ],
+     "open": false
+    },
+    "form": {},
+    "required": {}
+   },
+   "events": [
+    "sl-change",
+    "sl-input",
+    "sl-invalid"
+   ],
+   "slots": [
+    "",
+    "label",
+    "help-text"
+   ],
+   "parts": [
+    "form-control",
+    "form-control-label",
+    "form-control-input",
+    "form-control-help-text",
+    "button-group",
+    "button-group__base"
+   ],
+   "cssProps": []
+  },
+  "sl-range": {
+   "attrs": {
+    "title": {},
+    "name": {},
+    "value": {},
+    "label": {},
+    "help-text": {},
+    "disabled": {},
+    "min": {},
+    "max": {},
+    "step": {},
+    "tooltip": {
+     "values": [
+      "top",
+      "bottom",
+      "none"
+     ],
+     "open": false
+    },
+    "form": {}
+   },
+   "events": [
+    "sl-blur",
+    "sl-change",
+    "sl-focus",
+    "sl-input",
+    "sl-invalid"
+   ],
+   "slots": [
+    "label",
+    "help-text"
+   ],
+   "parts": [
+    "form-control",
+    "form-control-label",
+    "form-control-input",
+    "form-control-help-text",
+    "base",
+    "input",
+    "tooltip"
+   ],
+   "cssProps": [
+    "--thumb-size",
+    "--tooltip-offset",
+    "--track-color-active",
+    "--track-color-inactive",
+    "--track-height",
+    "--track-active-offset"
+   ]
+  },
+  "sl-rating": {
+   "attrs": {
+    "label": {},
+    "value": {},
+    "max": {},
+    "precision": {},
+    "readonly": {},
+    "disabled": {},
+    "getSymbol": {}
+   },
+   "events": [
+    "sl-change",
+    "sl-hover"
+   ],
+   "slots": [],
+   "parts": [
+    "base"
+   ],
+   "cssProps": [
+    "--symbol-color",
+    "--symbol-color-active",
+    "--symbol-size",
+    "--symbol-spacing"
+   ]
+  },
+  "sl-relative-time": {
+   "attrs": {
+    "date": {},
+    "format": {
+     "values": [
+      "long",
+      "short",
+      "narrow"
+     ],
+     "open": false
+    },
+    "numeric": {
+     "values": [
+      "always",
+      "auto"
+     ],
+     "open": false
+    },
+    "sync": {}
+   },
+   "events": [],
+   "slots": [],
+   "parts": [],
+   "cssProps": []
+  },
+  "sl-resize-observer": {
+   "attrs": {
+    "disabled": {}
+   },
+   "events": [
+    "sl-resize"
+   ],
+   "slots": [
+    ""
+   ],
+   "parts": [],
+   "cssProps": []
+  },
+  "sl-select": {
+   "attrs": {
+    "name": {},
+    "value": {},
+    "size": {
+     "values": [
+      "small",
+      "medium",
+      "large"
+     ],
+     "open": false
+    },
+    "placeholder": {},
+    "multiple": {},
+    "max-options-visible": {},
+    "disabled": {},
+    "clearable": {},
+    "open": {},
+    "hoist": {},
+    "filled": {},
+    "pill": {},
+    "label": {},
+    "placement": {
+     "values": [
+      "top",
+      "bottom"
+     ],
+     "open": false
+    },
+    "help-text": {},
+    "form": {},
+    "required": {},
+    "getTag": {}
+   },
+   "events": [
+    "sl-change",
+    "sl-clear",
+    "sl-input",
+    "sl-focus",
+    "sl-blur",
+    "sl-show",
+    "sl-after-show",
+    "sl-hide",
+    "sl-after-hide",
+    "sl-invalid"
+   ],
+   "slots": [
+    "",
+    "label",
+    "prefix",
+    "suffix",
+    "clear-icon",
+    "expand-icon",
+    "help-text"
+   ],
+   "parts": [
+    "form-control",
+    "form-control-label",
+    "form-control-input",
+    "form-control-help-text",
+    "combobox",
+    "prefix",
+    "suffix",
+    "display-input",
+    "listbox",
+    "tags",
+    "tag",
+    "tag__base",
+    "tag__content",
+    "tag__remove-button",
+    "tag__remove-button__base",
+    "clear-button",
+    "expand-icon"
+   ],
+   "cssProps": []
+  },
+  "sl-skeleton": {
+   "attrs": {
+    "effect": {
+     "values": [
+      "pulse",
+      "sheen",
+      "none"
+     ],
+     "open": false
+    }
+   },
+   "events": [],
+   "slots": [],
+   "parts": [
+    "base",
+    "indicator"
+   ],
+   "cssProps": [
+    "--border-radius",
+    "--color",
+    "--sheen-color"
+   ]
+  },
+  "sl-spinner": {
+   "attrs": {},
+   "events": [],
+   "slots": [],
+   "parts": [
+    "base"
+   ],
+   "cssProps": [
+    "--track-width",
+    "--track-color",
+    "--indicator-color",
+    "--speed"
+   ]
+  },
+  "sl-split-panel": {
+   "attrs": {
+    "position": {},
+    "position-in-pixels": {},
+    "vertical": {},
+    "disabled": {},
+    "primary": {
+     "values": [
+      "start",
+      "end"
+     ],
+     "open": false
+    },
+    "snap": {},
+    "snap-threshold": {}
+   },
+   "events": [
+    "sl-reposition"
+   ],
+   "slots": [
+    "start",
+    "end",
+    "divider"
+   ],
+   "parts": [
+    "start",
+    "end",
+    "panel",
+    "divider"
+   ],
+   "cssProps": [
+    "--divider-width",
+    "--divider-hit-area",
+    "--min",
+    "--max"
+   ]
+  },
+  "sl-switch": {
+   "attrs": {
+    "title": {},
+    "name": {},
+    "value": {},
+    "size": {
+     "values": [
+      "small",
+      "medium",
+      "large"
+     ],
+     "open": false
+    },
+    "disabled": {},
+    "checked": {},
+    "form": {},
+    "required": {},
+    "help-text": {}
+   },
+   "events": [
+    "sl-blur",
+    "sl-change",
+    "sl-input",
+    "sl-focus",
+    "sl-invalid"
+   ],
+   "slots": [
+    "",
+    "help-text"
+   ],
+   "parts": [
+    "base",
+    "control",
+    "thumb",
+    "label",
+    "form-control-help-text"
+   ],
+   "cssProps": [
+    "--width",
+    "--height",
+    "--thumb-size"
+   ]
+  },
+  "sl-tab": {
+   "attrs": {
+    "panel": {},
+    "active": {},
+    "closable": {},
+    "disabled": {}
+   },
+   "events": [
+    "sl-close"
+   ],
+   "slots": [
+    ""
+   ],
+   "parts": [
+    "base",
+    "close-button",
+    "close-button__base"
+   ],
+   "cssProps": []
+  },
+  "sl-tab-group": {
+   "attrs": {
+    "placement": {
+     "values": [
+      "top",
+      "bottom",
+      "start",
+      "end"
+     ],
+     "open": false
+    },
+    "activation": {
+     "values": [
+      "auto",
+      "manual"
+     ],
+     "open": false
+    },
+    "no-scroll-controls": {},
+    "fixed-scroll-controls": {}
+   },
+   "events": [
+    "sl-tab-show",
+    "sl-tab-hide"
+   ],
+   "slots": [
+    "",
+    "nav"
+   ],
+   "parts": [
+    "base",
+    "nav",
+    "tabs",
+    "active-tab-indicator",
+    "body",
+    "scroll-button",
+    "scroll-button--start",
+    "scroll-button--end",
+    "scroll-button__base"
+   ],
+   "cssProps": [
+    "--indicator-color",
+    "--track-color",
+    "--track-width"
+   ]
+  },
+  "sl-tab-panel": {
+   "attrs": {
+    "name": {},
+    "active": {}
+   },
+   "events": [],
+   "slots": [
+    ""
+   ],
+   "parts": [
+    "base"
+   ],
+   "cssProps": [
+    "--padding"
+   ]
+  },
+  "sl-tag": {
+   "attrs": {
+    "variant": {
+     "values": [
+      "primary",
+      "success",
+      "neutral",
+      "warning",
+      "danger",
+      "text"
+     ],
+     "open": false
+    },
+    "size": {
+     "values": [
+      "small",
+      "medium",
+      "large"
+     ],
+     "open": false
+    },
+    "pill": {},
+    "removable": {}
+   },
+   "events": [
+    "sl-remove"
+   ],
+   "slots": [
+    ""
+   ],
+   "parts": [
+    "base",
+    "content",
+    "remove-button",
+    "remove-button__base"
+   ],
+   "cssProps": []
+  },
+  "sl-textarea": {
+   "attrs": {
+    "title": {},
+    "name": {},
+    "value": {},
+    "size": {
+     "values": [
+      "small",
+      "medium",
+      "large"
+     ],
+     "open": false
+    },
+    "filled": {},
+    "label": {},
+    "help-text": {},
+    "placeholder": {},
+    "rows": {},
+    "resize": {
+     "values": [
+      "none",
+      "vertical",
+      "auto"
+     ],
+     "open": false
+    },
+    "disabled": {},
+    "readonly": {},
+    "form": {},
+    "required": {},
+    "minlength": {},
+    "maxlength": {},
+    "autocapitalize": {
+     "values": [
+      "off",
+      "none",
+      "on",
+      "sentences",
+      "words",
+      "characters"
+     ],
+     "open": false
+    },
+    "autocorrect": {},
+    "autocomplete": {},
+    "autofocus": {},
+    "enterkeyhint": {
+     "values": [
+      "enter",
+      "done",
+      "go",
+      "next",
+      "previous",
+      "search",
+      "send"
+     ],
+     "open": false
+    },
+    "spellcheck": {},
+    "inputmode": {
+     "values": [
+      "none",
+      "text",
+      "decimal",
+      "numeric",
+      "tel",
+      "search",
+      "email",
+      "url"
+     ],
+     "open": false
+    }
+   },
+   "events": [
+    "sl-blur",
+    "sl-change",
+    "sl-focus",
+    "sl-input",
+    "sl-invalid"
+   ],
+   "slots": [
+    "label",
+    "help-text"
+   ],
+   "parts": [
+    "form-control",
+    "form-control-label",
+    "form-control-input",
+    "form-control-help-text",
+    "base",
+    "textarea"
+   ],
+   "cssProps": []
+  },
+  "sl-tooltip": {
+   "attrs": {
+    "content": {},
+    "placement": {
+     "values": [
+      "top",
+      "top-start",
+      "top-end",
+      "right",
+      "right-start",
+      "right-end",
+      "bottom",
+      "bottom-start",
+      "bottom-end",
+      "left",
+      "left-start",
+      "left-end"
+     ],
+     "open": false
+    },
+    "disabled": {},
+    "distance": {},
+    "open": {},
+    "skidding": {},
+    "trigger": {},
+    "hoist": {}
+   },
+   "events": [
+    "sl-show",
+    "sl-after-show",
+    "sl-hide",
+    "sl-after-hide"
+   ],
+   "slots": [
+    "",
+    "content"
+   ],
+   "parts": [
+    "base",
+    "base__popup",
+    "base__arrow",
+    "body"
+   ],
+   "cssProps": [
+    "--max-width",
+    "--hide-delay",
+    "--show-delay"
+   ]
+  },
+  "sl-tree": {
+   "attrs": {
+    "selection": {
+     "values": [
+      "single",
+      "multiple",
+      "leaf"
+     ],
+     "open": false
+    }
+   },
+   "events": [
+    "sl-selection-change"
+   ],
+   "slots": [
+    "",
+    "expand-icon",
+    "collapse-icon"
+   ],
+   "parts": [
+    "base"
+   ],
+   "cssProps": [
+    "--indent-size",
+    "--indent-guide-color",
+    "--indent-guide-offset",
+    "--indent-guide-style",
+    "--indent-guide-width"
+   ]
+  },
+  "sl-tree-item": {
+   "attrs": {
+    "expanded": {},
+    "selected": {},
+    "disabled": {},
+    "lazy": {}
+   },
+   "events": [
+    "sl-expand",
+    "sl-after-expand",
+    "sl-collapse",
+    "sl-after-collapse",
+    "sl-lazy-change",
+    "sl-lazy-load"
+   ],
+   "slots": [
+    "",
+    "expand-icon",
+    "collapse-icon"
+   ],
+   "parts": [
+    "base",
+    "item",
+    "item--disabled",
+    "item--expanded",
+    "item--indeterminate",
+    "item--selected",
+    "indentation",
+    "expand-button",
+    "spinner",
+    "spinner__base",
+    "label",
+    "children",
+    "checkbox",
+    "checkbox__base",
+    "checkbox__control",
+    "checkbox__control--checked",
+    "checkbox__control--indeterminate",
+    "checkbox__checked-icon",
+    "checkbox__indeterminate-icon",
+    "checkbox__label"
+   ],
+   "cssProps": []
+  },
+  "sl-visually-hidden": {
+   "attrs": {},
+   "events": [],
+   "slots": [
+    ""
+   ],
+   "parts": [],
+   "cssProps": []
+  }
+ }
+}

@@ -213,6 +213,10 @@ await nextTask('Packaging up icons', () => {
   return execPromise(`node scripts/make-icons.js --outdir "${outdir}"`, { stdio: 'inherit' });
 });
 
+await nextTask('Generating the Saipem DS skill for AI agents', () => {
+  return execPromise(`node scripts/skills/build-skill.mjs`, { stdio: 'inherit' });
+});
+
 await nextTask('Running the TypeScript compiler', () => {
   return execPromise(`tsc --project ./tsconfig.prod.json --outdir "${outdir}"`, { stdio: 'inherit' });
 });

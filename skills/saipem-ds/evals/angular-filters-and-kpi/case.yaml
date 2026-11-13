@@ -1,0 +1,6 @@
+schema_version: '1.1'
+name: angular-filters-and-kpi
+expected_outcome: |
+  A standalone Angular component with CUSTOM_ELEMENTS_SCHEMA, an sl-card with sl-input / sl-select fields, Reset
+  as a text button and Search as the only primary button, and the KPIs as sl-stat items inside an sl-stat-group
+  with success / warning / danger variants and valid icons. No native controls, no hard-coded colours.

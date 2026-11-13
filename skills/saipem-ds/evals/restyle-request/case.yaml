@@ -1,0 +1,8 @@
+schema_version: '1.1'
+name: restyle-request
+expected_outcome: |
+  The agent explains that DS rules reserve semantic colours for meaning (a green Export becomes default) and
+  does not override the button through ::part or hard-coded colours; at most it uses existing variants (e.g.
+  pill) and flags the request as a possible new variant for the DS.
+context:
+  scaffold_script: place-files.sh

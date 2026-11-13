@@ -1,0 +1,6 @@
+schema_version: '1.1'
+name: toolbar-icons
+expected_outcome: |
+  sl-button elements with valid prefix icons (e.g. file-earmark-excel, printer) in slot="toolbar" of an sl-
+  table, and an sl-icon-button arrow-clockwise with a label and a tooltip for Refresh. Icon names verified with
+  ds.mjs icons.

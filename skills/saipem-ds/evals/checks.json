@@ -1,0 +1,71 @@
+{
+  "description": "Deterministic checks used by scripts/skills/run-evals.mjs on the files each case produces. Regexes are JavaScript syntax. Every listed file is also run through ds.mjs validate (0 errors required).",
+  "cases": {
+    "angular-filters-and-kpi": {
+      "files": ["src/app/document-filters.component.ts"],
+      "mustMatch": ["sl-stat-group", "<sl-stat\\b", "CUSTOM_ELEMENTS_SCHEMA", "sl-card"],
+      "mustNotMatch": ["<button\\b", "<input\\b", "#[0-9a-fA-F]{6}\\b"]
+    },
+    "angular-documents-table": {
+      "files": ["src/app/documents-table.component.ts"],
+      "mustMatch": [
+        "<sl-table\\b",
+        "\\[columns\\]|\\.columns\\s*=",
+        "rowVariant",
+        "sl-empty-state",
+        "sl-table-selection-change"
+      ],
+      "mustNotMatch": ["sl-table-(row|cell|column)\\b", "<table\\b"]
+    },
+    "html-delete-confirmation": {
+      "files": ["delete-dialog.html"],
+      "mustMatch": ["<sl-dialog\\b", "slot=\"footer\"", "variant=\"danger\""],
+      "mustNotMatch": ["<dialog\\b", "<button\\b"]
+    },
+    "detail-panel-statuses": {
+      "files": ["detail-panel.html"],
+      "mustMatch": ["<sl-detail-panel\\b", "<sl-description-list\\b", "<sl-status\\b"],
+      "mustNotMatch": ["<table\\b"]
+    },
+    "upload-dialog": {
+      "files": ["upload-dialog.html"],
+      "mustMatch": ["<sl-file-drop\\b", "<sl-file-upload-item\\b"],
+      "mustNotMatch": ["type=\"file\"", "<input\\b"]
+    },
+    "wizard-in-dialog": {
+      "files": ["create-transmittal.html"],
+      "mustMatch": ["<sl-stepper\\b", "<sl-step\\b", "<sl-dialog\\b"],
+      "mustNotMatch": ["<button\\b"]
+    },
+    "app-shell": {
+      "files": ["shell.html"],
+      "mustMatch": ["<sl-header\\b", "<sl-sidebar\\b", "<sl-sidebar-item\\b[^>]*\\bcurrent\\b", "<sl-breadcrumb\\b"],
+      "mustNotMatch": ["<nav\\b[^>]*class=.*sidebar"]
+    },
+    "angular-reactive-form": {
+      "files": ["src/app/revision-form.component.ts"],
+      "mustMatch": ["formControlName|\\[formControl\\]", "ValueAccessor|NG_VALUE_ACCESSOR", "\\[status\\]|status="],
+      "mustNotMatch": ["disabled=\"\\{\\{"]
+    },
+    "fix-legacy-template": {
+      "files": ["legacy.html"],
+      "mustMatch": ["MZ-CCX-L-RDW-100021", "Approve", "Reject", "Download", "<sl-status\\b|<sl-badge\\b"],
+      "mustNotMatch": ["sl-datepicker", "variant=\"brand\"", "<button\\b", "#0e6a81"]
+    },
+    "toolbar-icons": {
+      "files": ["toolbar.html"],
+      "mustMatch": ["slot=\"toolbar\"", "sl-icon-button"],
+      "mustNotMatch": ["<svg\\b", "variant=\"success\""]
+    },
+    "missing-component-gap": {
+      "files": ["date-range.html"],
+      "mustMatch": ["type=\"date\""],
+      "mustNotMatch": ["sl-date-?(range-)?picker", "sl-calendar", "sl-date-range"]
+    },
+    "restyle-request": {
+      "files": ["export-button.html"],
+      "mustMatch": ["<sl-button\\b"],
+      "mustNotMatch": ["::part", "#[0-9a-fA-F]{3,6}\\b", "variant=\"success\""]
+    }
+  }
+}

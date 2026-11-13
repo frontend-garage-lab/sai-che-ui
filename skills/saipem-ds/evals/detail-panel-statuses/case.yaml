@@ -1,0 +1,6 @@
+schema_version: '1.1'
+name: detail-panel-statuses
+expected_outcome: |
+  An sl-detail-panel with label / meta / actions slots, an sl-description-list with sl-description-list-item
+  entries, the status as sl-status (Working neutral, Signed primary, Distributed success, Rejected danger) as
+  its own item, the revision as a neutral sl-tag, dates like 16-Jun-2023.

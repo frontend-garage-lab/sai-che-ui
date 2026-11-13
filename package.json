@@ -31,7 +31,9 @@
   },
   "files": [
     "dist",
-    "cdn"
+    "cdn",
+    "skills",
+    "!skills/**/evals"
   ],
   "keywords": [
     "web components",
@@ -64,6 +66,9 @@
     "test": "web-test-runner --group default",
     "test:component": "web-test-runner -- --watch --group",
     "test:watch": "web-test-runner --watch --group default",
+    "skills:build": "node scripts/skills/build-skill.mjs",
+    "skills:test": "node scripts/skills/test-validator.mjs && node skills/saipem-ds/scripts/ds.mjs validate skills/saipem-ds/references/patterns.md skills/saipem-ds/references/design-rules.md",
+    "skills:eval": "node scripts/skills/run-evals.mjs",
     "spellcheck": "cspell \"**/*.{js,ts,json,html,css,md}\" --no-progress",
     "check-updates": "npx npm-check-updates --interactive --format group"
   },

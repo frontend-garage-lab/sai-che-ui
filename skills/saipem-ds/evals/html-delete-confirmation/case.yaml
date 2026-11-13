@@ -1,0 +1,5 @@
+schema_version: '1.1'
+name: html-delete-confirmation
+expected_outcome: |
+  An sl-dialog with a label, the danger (or warning) dialog variant, a short explanation naming the document, a
+  footer with Cancel (default) and a danger action named with its verb (e.g. Delete document).

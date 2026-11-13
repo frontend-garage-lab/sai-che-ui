@@ -1,0 +1,8 @@
+schema_version: '1.1'
+name: fix-legacy-template
+expected_outcome: |
+  legacy.html rewritten with real DS components: no invented tags/attributes/values, statuses as sl-status,
+  buttons with valid variants, a single primary, icons from the DS set, tokens instead of hex colours; every
+  datum and action of the original kept.
+context:
+  scaffold_script: place-files.sh

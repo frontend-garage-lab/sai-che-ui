@@ -1,0 +1,5 @@
+schema_version: '1.1'
+name: wizard-in-dialog
+expected_outcome: |
+  An sl-dialog with an sl-stepper of three sl-step elements (with description), footer with Cancel as text
+  button, Back, and a primary 'Next: <step>' button.

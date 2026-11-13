@@ -1,0 +1,6 @@
+schema_version: '1.1'
+name: angular-reactive-form
+expected_outcome: |
+  A standalone component with ReactiveFormsModule, a value accessor directive for sl-* controls (as in the
+  Angular guide), sl-input / sl-select with formControlName, the invalid state shown with the `status` attribute
+  bound as [status] plus help text, [disabled] on the primary button.
