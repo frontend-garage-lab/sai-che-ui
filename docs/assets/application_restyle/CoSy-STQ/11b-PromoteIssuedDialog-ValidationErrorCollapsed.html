@@ -1,0 +1,385 @@
+<!doctype html>
+<!--
+  CoSy-STQ · 11b-PromoteIssuedDialog-ValidationErrorCollapsed — restyle of application_screenshot/CoSy STQ/11-PromoteIssuedDialog-ValidationError.png
+  Promotion to Issued, Approval tab with the required fields empty and the validation note closed: it collapses to the "3 errors, see more" chip on the right, which reopens it. Invalid tabs carry a danger icon.
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/CoSy-STQ/11b-PromoteIssuedDialog-ValidationErrorCollapsed.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CoSy · Site Technical Queries</title>
+    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
+    <link rel="stylesheet" href="../_shared/restyle.css" />
+    <link rel="stylesheet" href="./flow.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <script>
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
+  </head>
+
+  <body class="sl-theme-light">
+    <sl-header>
+      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+      <span slot="logo"></span>
+
+      <sl-header-item slot="actions" class="project-selector">
+        000001 · Yard Training
+        <sl-menu slot="menu" aria-label="Project" style="width: 28rem">
+          <sl-input size="small" placeholder="Search code or project" clearable aria-label="Search projects">
+            <sl-icon slot="prefix" name="search"></sl-icon>
+          </sl-input>
+          <sl-divider></sl-divider>
+          <sl-menu-label>My projects</sl-menu-label>
+          <sl-menu-item type="checkbox" value="000001" checked title="Yard Training"
+            >Yard Training<span slot="suffix" class="rs-meta">000001</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032325" title="Bioraffineria Di Livorno EPC"
+            >Bioraffineria Di Livorno EPC<span slot="suffix" class="rs-meta">032325</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032239" title="Berri Project"
+            >Berri Project<span slot="suffix" class="rs-meta">032239</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="023144" title="Neptun Deep Project"
+            >Neptun Deep Project<span slot="suffix" class="rs-meta">023144</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032197" title="Natural Gas Storage Plant"
+            >Natural Gas Storage Plant<span slot="suffix" class="rs-meta">032197</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="F10412" title="–"
+            >–<span slot="suffix" class="rs-meta">F10412</span></sl-menu-item
+          >
+        </sl-menu>
+      </sl-header-item>
+      <sl-header-item slot="actions">
+        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+        Mario Rossi
+        <sl-menu slot="menu">
+          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+    </sl-header>
+
+    <div class="rs-shell">
+      <sl-sidebar label="Project navigation" collapsed>
+        <sl-sidebar-group label="Documenti di progetto" count="70">
+          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+          <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Procurement (SAP)" count="71">
+          <sl-icon slot="icon" name="cart"></sl-icon>
+          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Comunicazione" count="47">
+          <sl-icon slot="icon" name="envelope"></sl-icon>
+          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
+          <sl-sidebar-item href="#" current>Site Technical Queries</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Tasks" count="55">
+          <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+          <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Document Center">
+          <sl-icon slot="icon" name="archive"></sl-icon>
+          <sl-sidebar-item href="#">Document Center</sl-sidebar-item>
+          <sl-sidebar-item href="#">Binders Workspace</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="New &amp; import">
+          <sl-icon slot="icon" name="upload"></sl-icon>
+          <sl-sidebar-item href="#">New · Document</sl-sidebar-item>
+          <sl-sidebar-item href="#">New · Placeholder</sl-sidebar-item>
+          <sl-sidebar-item href="#">Import · Import new docs</sl-sidebar-item>
+          <sl-sidebar-item href="#">Import · Bulk upload docs</sl-sidebar-item>
+          <sl-sidebar-item href="#">Content · Bulk load templates</sl-sidebar-item>
+        </sl-sidebar-group>
+      </sl-sidebar>
+
+      <main class="rs-page rs-page--fill" aria-label="Site Technical Queries">
+        <sl-breadcrumb aria-label="Breadcrumb">
+          <sl-breadcrumb-item href="../DMS-Home/1-Home.html">Home</sl-breadcrumb-item>
+          <sl-breadcrumb-item href="#">Site Technical Queries</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Projects</sl-breadcrumb-item>
+        </sl-breadcrumb>
+
+        <div class="rs-page-header">
+          <div class="rs-page-header__text">
+            <h1 class="rs-title">Site Technical Queries</h1>
+            <span class="rs-meta">000001 - Test Project · 3 versions</span>
+          </div>
+        </div>
+
+        <sl-card aria-label="Filters">
+          <div slot="header" class="rs-cluster rs-cluster--between">
+            <h2 class="rs-heading rs-inline"><sl-icon name="filter"></sl-icon>Filters</h2>
+            <sl-button class="more-filters" size="small" variant="text">
+              <sl-icon slot="prefix" name="plus-lg"></sl-icon>
+              More filters (6)
+            </sl-button>
+          </div>
+          <form class="rs-grid rs-grid--fields">
+            <sl-select
+              class="rs-span-3 rs-span-md-6"
+              label="Discipline"
+              value="AUT"
+              placeholder="All disciplines"
+              clearable
+            >
+              <sl-option value="AUT">AUT - Automation</sl-option>
+              <sl-option value="INL">INL - Insulation</sl-option>
+            </sl-select>
+            <sl-select
+              class="rs-span-3 rs-span-md-6"
+              label="Contract number"
+              placeholder="All contracts"
+              clearable
+            ></sl-select>
+            <sl-select
+              class="rs-span-3 rs-span-md-6"
+              label="Subcontractor"
+              value="TESTSUBCO"
+              placeholder="All subcontractors"
+              clearable
+            >
+              <sl-option value="TESTSUBCO">TESTSUBCO</sl-option>
+            </sl-select>
+            <sl-select
+              class="rs-span-3 rs-span-md-6"
+              label="Unit"
+              placeholder="All units"
+              multiple
+              clearable
+            ></sl-select>
+          </form>
+        </sl-card>
+
+        <sl-table class="stq-list" fill sticky-header label="Site Technical Queries">
+          <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow" role="toolbar" aria-label="STQ actions">
+            <sl-dropdown>
+              <sl-button slot="trigger" size="small" variant="primary"
+                ><sl-icon slot="prefix" name="upload"></sl-icon>Import</sl-button
+              >
+              <sl-menu>
+                <sl-menu-item>Site Technical Query…</sl-menu-item>
+              </sl-menu>
+            </sl-dropdown>
+            <span class="rs-spacer"></span>
+            <sl-dropdown placement="bottom-end" hoist data-table-options>
+              <sl-button slot="trigger" size="small" caret
+                ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+              >
+            </sl-dropdown>
+          </div>
+          <sl-empty-state
+            slot="empty"
+            title-text="No Site Technical Queries"
+            description="No STQ matches the selected filters."
+          >
+            <sl-icon slot="icon" name="folder"></sl-icon>
+          </sl-empty-state>
+        </sl-table>
+      </main>
+    </div>
+
+    <sl-dialog label="Promote STQ-TS-AUT-8325_01 to Issued" open style="--width: 64rem">
+      <div class="rs-stack rs-stack--loose">
+        <sl-description-list cols="2">
+          <sl-description-list-item label="STQ No.">STQ-TS-AUT-8325_01</sl-description-list-item>
+          <sl-description-list-item label="Original filename">STQ-TS-AUT-8325_00.pdf</sl-description-list-item>
+        </sl-description-list>
+        <sl-tab-group>
+          <sl-tab slot="nav" panel="info">Info</sl-tab>
+          <sl-tab slot="nav" panel="from-subcontractor">From subcontractor</sl-tab>
+          <sl-tab slot="nav" panel="approval" active
+            ><sl-icon name="exclamation-octagon" variant="danger" label="Has errors"></sl-icon>Approval</sl-tab
+          >
+          <sl-tab-panel name="info">
+            <div class="rs-stack">
+              <sl-card aria-label="Revision">
+                <h3 slot="header" class="rs-heading">Revision</h3>
+                <div class="rs-grid rs-grid--fields">
+                  <sl-select class="rs-span-6" label="Project" value="000001"
+                    ><sl-option value="000001">000001 - Test Project</sl-option></sl-select
+                  >
+                  <sl-input class="rs-span-3" label="Revision code" value="01"></sl-input>
+                  <sl-select class="rs-span-3" label="Revision status" value="current">
+                    <sl-option value="current">Current</sl-option><sl-option value="superseded">Superseded</sl-option>
+                  </sl-select>
+                  <sl-textarea
+                    class="rs-span-12"
+                    label="Contractor response"
+                    value="hgfaeiufab"
+                    rows="4"
+                    required
+                  ></sl-textarea>
+                </div>
+              </sl-card>
+              <sl-card aria-label="Impact">
+                <h3 slot="header" class="rs-heading">Impact</h3>
+                <div class="rs-grid rs-grid--fields">
+                  <sl-select class="rs-span-12" label="Reason" value="fabrication" required
+                    ><sl-option value="fabrication">Fabrication Mistake</sl-option></sl-select
+                  >
+                  <sl-select class="rs-span-4" label="Cost impact by contractor" value="no" required
+                    ><sl-option value="yes">Yes</sl-option><sl-option value="no">No</sl-option></sl-select
+                  >
+                  <sl-select class="rs-span-4" label="Schedule impact by contractor" value="yes" required
+                    ><sl-option value="yes">Yes</sl-option><sl-option value="no">No</sl-option></sl-select
+                  >
+                  <sl-select class="rs-span-4" label="Material impact by contractor" value="yes"
+                    ><sl-option value="yes">Yes</sl-option><sl-option value="no">No</sl-option></sl-select
+                  >
+                  <sl-select class="rs-span-4" label="Rework" value="no" required
+                    ><sl-option value="yes">Yes</sl-option><sl-option value="no">No</sl-option></sl-select
+                  >
+                  <sl-select class="rs-span-4" label="As-built" value="yes"
+                    ><sl-option value="yes">Yes</sl-option><sl-option value="no">No</sl-option></sl-select
+                  >
+                </div>
+              </sl-card>
+            </div>
+          </sl-tab-panel>
+          <sl-tab-panel name="from-subcontractor"></sl-tab-panel>
+          <sl-tab-panel name="approval" active>
+            <div class="rs-stack rs-stack--loose">
+              <!-- Closable note: once closed it collapses to the chip on the right, which opens it again -->
+              <div class="rs-cluster rs-cluster--end validation-chip">
+                <sl-button size="small" variant="danger" outline
+                  ><sl-icon slot="prefix" name="exclamation-octagon"></sl-icon>3 errors, see more</sl-button
+                >
+              </div>
+              <sl-alert class="validation-note" variant="danger" closable>
+                <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+                <strong>Required fields missing</strong><br />
+                Fill in the required fields highlighted below to continue.
+              </sl-alert>
+              <sl-card aria-label="Field Specialist Engineer">
+                <h3 slot="header" class="rs-heading">Field Specialist Engineer</h3>
+                <div class="rs-grid rs-grid--fields">
+                  <sl-select
+                    class="rs-span-6"
+                    label="Name"
+                    placeholder="Select a user…"
+                    required
+                    status="danger"
+                    help-text="This field is required."
+                  ></sl-select>
+                  <sl-input
+                    class="rs-span-6"
+                    label="Date"
+                    type="date"
+                    required
+                    status="danger"
+                    help-text="This field is required."
+                  ></sl-input>
+                  <sl-textarea class="rs-span-12" label="Notes" rows="2"></sl-textarea>
+                </div>
+              </sl-card>
+              <sl-card aria-label="Verifier">
+                <h3 slot="header" class="rs-heading">Verifier</h3>
+                <div class="rs-grid rs-grid--fields">
+                  <sl-select
+                    class="rs-span-6"
+                    label="Name"
+                    placeholder="Select a user…"
+                    required
+                    status="danger"
+                    help-text="This field is required."
+                  ></sl-select>
+                </div>
+              </sl-card>
+              <sl-card aria-label="Approvers">
+                <h3 slot="header" class="rs-heading">Approvers</h3>
+                <div class="rs-grid rs-grid--fields">
+                  <sl-select class="rs-span-6" label="FEM approvers" value="u" multiple required
+                    ><sl-option value="u">user_cosy_writer</sl-option></sl-select
+                  >
+                  <sl-select class="rs-span-6" label="DS approvers" value="u" multiple required
+                    ><sl-option value="u">Meghana Dasari (Dasari.Meghana.Guest@s…</sl-option></sl-select
+                  >
+                </div>
+              </sl-card>
+            </div>
+          </sl-tab-panel>
+        </sl-tab-group>
+      </div>
+      <sl-button slot="footer" class="rs-footer-start" variant="text">Cancel</sl-button>
+      <sl-button slot="footer" variant="primary">Promote to Issued</sl-button>
+    </sl-dialog>
+    <script type="module">
+      import * as flow from './data.js';
+
+      await flow.mountTable('.stq-list', {
+        columns: flow.stqColumns,
+        data: flow.stqRows('Draft'),
+        isSelected: flow.isLatest('STQ-TS-AUT-8325_01')
+      });
+    </script>
+    <script type="module">
+      const note = document.querySelector('.validation-note');
+      const chip = document.querySelector('.validation-chip');
+      note.addEventListener('sl-after-hide', () => (chip.hidden = false));
+      chip.querySelector('sl-button').addEventListener('click', () => {
+        chip.hidden = true;
+        note.show();
+      });
+    </script>
+    <!-- More filters (closed in this state): STQ properties -->
+    <sl-drawer label="More filters" placement="end">
+      <div class="rs-stack">
+        <sl-input label="STQ No." placeholder="Any" clearable></sl-input>
+        <sl-input label="Subject" placeholder="Any" clearable></sl-input>
+        <sl-input label="Title" placeholder="Any" clearable></sl-input>
+        <sl-select label="Approval status" placeholder="Any" clearable>
+          <sl-option value="draft">Draft</sl-option>
+          <sl-option value="issued-for-verification">Issued for verification</sl-option>
+          <sl-option value="issued-to-fem">Issued to FEM</sl-option>
+          <sl-option value="issued-to-pm">Issued to PM</sl-option>
+          <sl-option value="issued-to-ds-qaqc">Issued to DS &amp; QA/QC</sl-option>
+          <sl-option value="approved-by-ds-qaqc">Approved by DS &amp; QA/QC</sl-option>
+          <sl-option value="ready-for-issue">Ready for issue</sl-option>
+          <sl-option value="issued-to-subco">Issued to Subco</sl-option>
+          <sl-option value="closed">Closed</sl-option>
+        </sl-select>
+        <sl-select label="Revision status" placeholder="Any" clearable>
+          <sl-option value="current">Current</sl-option>
+          <sl-option value="superseded">Superseded</sl-option>
+        </sl-select>
+        <sl-input type="date" label="STQ date"></sl-input>
+      </div>
+      <sl-button slot="footer" variant="text">Clear</sl-button>
+      <sl-button slot="footer" variant="primary"
+        ><sl-icon slot="prefix" name="filter"></sl-icon>Apply filters</sl-button
+      >
+    </sl-drawer>
+    <script type="module">
+      const moreFilters = document.querySelector('sl-drawer[label="More filters"]');
+      document.querySelector('.more-filters').addEventListener('click', () => moreFilters.show());
+    </script>
+  </body>
+</html>

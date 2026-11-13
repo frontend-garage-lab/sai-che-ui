@@ -24,9 +24,38 @@
     <sl-header>
       <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
       <span slot="logo"></span>
+
+      <sl-header-item slot="actions" class="project-selector">
+        000001 · Yard Training
+        <sl-menu slot="menu" aria-label="Project" style="width: 28rem">
+          <sl-input size="small" placeholder="Search code or project" clearable aria-label="Search projects">
+            <sl-icon slot="prefix" name="search"></sl-icon>
+          </sl-input>
+          <sl-divider></sl-divider>
+          <sl-menu-label>My projects</sl-menu-label>
+          <sl-menu-item type="checkbox" value="000001" checked title="Yard Training"
+            >Yard Training<span slot="suffix" class="rs-meta">000001</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032325" title="Bioraffineria Di Livorno EPC"
+            >Bioraffineria Di Livorno EPC<span slot="suffix" class="rs-meta">032325</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032239" title="Berri Project"
+            >Berri Project<span slot="suffix" class="rs-meta">032239</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="023144" title="Neptun Deep Project"
+            >Neptun Deep Project<span slot="suffix" class="rs-meta">023144</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032197" title="Natural Gas Storage Plant"
+            >Natural Gas Storage Plant<span slot="suffix" class="rs-meta">032197</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="F10412" title="–"
+            >–<span slot="suffix" class="rs-meta">F10412</span></sl-menu-item
+          >
+        </sl-menu>
+      </sl-header-item>
       <sl-header-item slot="actions">
-        <sl-avatar initials="UC" label="user_cosy_admin"></sl-avatar>
-        user_cosy_admin
+        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+        Mario Rossi
         <sl-menu slot="menu">
           <sl-menu-item>Profile</sl-menu-item>
           <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
@@ -93,7 +122,8 @@
 
       <main class="rs-page rs-page--fill" aria-label="Site Technical Queries">
         <sl-breadcrumb aria-label="Breadcrumb">
-          <sl-breadcrumb-item href="#">Default workspace</sl-breadcrumb-item>
+          <sl-breadcrumb-item href="../DMS-Home/1-Home.html">Home</sl-breadcrumb-item>
+          <sl-breadcrumb-item href="#">Site Technical Queries</sl-breadcrumb-item>
           <sl-breadcrumb-item>Projects</sl-breadcrumb-item>
         </sl-breadcrumb>
 
@@ -153,7 +183,7 @@
             <sl-table class="stq-list" fill sticky-header label="Site Technical Queries">
               <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow" role="toolbar" aria-label="STQ actions">
                 <sl-dropdown>
-                  <sl-button slot="trigger" size="small" variant="primary" caret
+                  <sl-button slot="trigger" size="small" variant="primary"
                     ><sl-icon slot="prefix" name="upload"></sl-icon>Import</sl-button
                   >
                   <sl-menu>

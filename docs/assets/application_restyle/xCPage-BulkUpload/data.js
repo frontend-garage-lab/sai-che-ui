@@ -45,26 +45,19 @@ export const bulkUploads = [
   ),
   bulkUpload('test', 'user_test2', '21-Jan-2026 12:10', 'Processed', 'Job Document', 'xlsx'),
   bulkUpload('test_bu_anselmo_1501', 'user_test1', '15-Jan-2026 12:10', 'Processed', 'Job Document', 'xlsx'),
-  bulkUpload(
-    'test_Filippo_bulk_update_2',
-    'De Angeli Filippo',
-    '15-Jan-2026 11:44',
-    'Validated',
-    'Job Document',
-    'xlsx'
-  ),
-  bulkUpload('test_Filippo_bulk_update', 'De Angeli Filippo', '15-Jan-2026 11:30', 'Validated', 'Job Document', 'xlsx'),
-  bulkUpload('test_Filippo_bulk upload', 'De Angeli Filippo', '15-Jan-2026 11:16', 'Validated', 'Job Document', 'xlsx'),
+  bulkUpload('test_Filippo_bulk_update_2', 'De Angeli Filippo', '15-Jan-2026 11:44', 'Ready', 'Job Document', 'xlsx'),
+  bulkUpload('test_Filippo_bulk_update', 'De Angeli Filippo', '15-Jan-2026 11:30', 'Ready', 'Job Document', 'xlsx'),
+  bulkUpload('test_Filippo_bulk upload', 'De Angeli Filippo', '15-Jan-2026 11:16', 'Ready', 'Job Document', 'xlsx'),
   bulkUpload(
     'test_from_xc_date_with_time_2811',
     'user_test1',
     '28-Nov-2025 12:04',
-    'Scheduled',
+    'Queued',
     'Isometric Document',
     'xlsx'
   ),
-  bulkUpload('test_from_xc_2811120725', 'user_test1', '28-Nov-2025 12:07', 'Validated', 'Job Document', 'xlsx'),
-  bulkUpload('test_bu_from_xc_2811115525', 'user_test1', '28-Nov-2025 11:55', 'Validated', 'Job Document', 'xlsx')
+  bulkUpload('test_from_xc_2811120725', 'user_test1', '28-Nov-2025 12:07', 'Ready', 'Job Document', 'xlsx'),
+  bulkUpload('test_bu_from_xc_2811115525', 'user_test1', '28-Nov-2025 11:55', 'Ready', 'Job Document', 'xlsx')
 ];
 
 export const isSelectedBulkUpload = row => row.name === 'test_iso_15';

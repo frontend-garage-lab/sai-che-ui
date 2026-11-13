@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
-  xCPage-Structures · 5-Structures-Progress — restyle of application_screenshot/xCPage - Structures/Structures Page - Folder Documents.png (WBS Activity Progress tab, Check Progress)
-  State: Test_Activity_23June selected; Progress tab, progress not calculated yet, Check progress.
+  xCPage-Structures · 5-Structures-Progress — restyle of application_screenshot/xCPage - Structures/Structures Page - Folder Documents.png (WBS Activity Progress tab)
+  State: Test_Activity_23June selected; WBS Activity Progress tab, progress not calculated yet (Check progress is in the Actions menu).
   Built only with sai-che-ui components (see REPORT.md in this folder for mapping and new elements).
   Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/xCPage-Structures/5-Structures-Progress.html
 -->
@@ -190,9 +190,23 @@
                       </div>
                       <p class="rs-meta">01 WBS › 1000 › Test_Discipline › Test_EMC</p>
                     </div>
-                    <sl-button size="small" variant="primary"
-                      ><sl-icon slot="prefix" name="plus-lg"></sl-icon>New child element</sl-button
-                    >
+                    <div class="rs-cluster">
+                      <sl-button size="small" variant="primary"
+                        ><sl-icon slot="prefix" name="plus-lg"></sl-icon>New child element</sl-button
+                      >
+                      <!-- Actions on the element shown on screen (Boffelli 2026-11-13); Check progress only for a WBS Activity -->
+                      <sl-dropdown placement="bottom-end">
+                        <sl-button slot="trigger" size="small" caret>Actions</sl-button>
+                        <sl-menu>
+                          <sl-menu-item value="rename"
+                            ><sl-icon slot="prefix" name="pencil"></sl-icon>Rename WBS element</sl-menu-item
+                          >
+                          <sl-menu-item value="progress"
+                            ><sl-icon slot="prefix" name="bar-chart-steps"></sl-icon>Check progress</sl-menu-item
+                          >
+                        </sl-menu>
+                      </sl-dropdown>
+                    </div>
                   </div>
                   <sl-tab-group class="node-tabs"
                     ><sl-tab slot="nav" panel="documents"
@@ -204,7 +218,9 @@
                     ><sl-tab slot="nav" panel="rules"
                       ><span class="rs-inline"><sl-icon name="diagram-3"></sl-icon>Content rules</span></sl-tab
                     ><sl-tab slot="nav" panel="progress" active
-                      ><span class="rs-inline"><sl-icon name="bar-chart-steps"></sl-icon>Progress</span></sl-tab
+                      ><span class="rs-inline"
+                        ><sl-icon name="bar-chart-steps"></sl-icon>WBS Activity Progress</span
+                      ></sl-tab
                     >
                     <sl-tab-panel name="properties">
                       <div class="rs-stack rs-stack--loose">
@@ -235,14 +251,8 @@
                     </sl-tab-panel>
                     <sl-tab-panel name="progress" active>
                       <div>
-                        <sl-empty-state
-                          title-text="Progress not calculated yet"
-                          description="Check progress calculates the progress of the activity from its linked documents."
-                        >
+                        <sl-empty-state title-text="Progress not calculated yet">
                           <sl-icon slot="icon" name="bar-chart-steps"></sl-icon>
-                          <sl-button slot="action" variant="primary"
-                            ><sl-icon slot="prefix" name="bar-chart-steps"></sl-icon>Check progress</sl-button
-                          >
                         </sl-empty-state>
                       </div>
                     </sl-tab-panel>

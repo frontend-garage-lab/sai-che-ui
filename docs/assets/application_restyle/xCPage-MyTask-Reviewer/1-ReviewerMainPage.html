@@ -126,7 +126,7 @@
           <h2 slot="header" class="rs-heading rs-inline"><sl-icon name="filter"></sl-icon>Filters</h2>
 
           <form class="rs-grid rs-grid--fields">
-            <sl-input class="rs-span-6" type="search" label="Search" placeholder="Task name, title, SP code or DIN"
+            <sl-input class="rs-span-6 task-search" type="search" label="Search" placeholder="Task name, title, SP code or DIN"
               clearable>
               <sl-icon slot="prefix" name="search"></sl-icon>
             </sl-input>
@@ -156,10 +156,20 @@
             <div class="rs-span-12 rs-cluster rs-cluster--between">
               <div class="rs-cluster">
                 <span class="rs-inline">
-                  <sl-checkbox size="small">Multiple search</sl-checkbox>
+                  <sl-checkbox class="multi-search" size="small">Multiple search</sl-checkbox>
                   <sl-tooltip content="Search several terms at once, separated by commas">
                     <sl-icon name="info-circle" label="About multiple search"></sl-icon>
                   </sl-tooltip>
+                </span>
+                <!-- Shown only with Multiple search on: attribute the comma-separated values apply to -->
+                <span class="rs-inline multi-filter" hidden>
+                  <span class="rs-body">Filter by</span>
+                  <sl-select size="small" value="name" aria-label="Filter by">
+                    <sl-option value="name">Name</sl-option>
+                    <sl-option value="title">Title</sl-option>
+                    <sl-option value="sp-code">SP code</sl-option>
+                    <sl-option value="din">DIN</sl-option>
+                  </sl-select>
                 </span>
                 <sl-checkbox size="small" checked>Case sensitive</sl-checkbox>
               </div>
@@ -342,6 +352,13 @@
       columns: flow.revisionColumns,
       data: flow.revisions
     });
+  </script>
+  <script type="module">
+    // Multiple search: "Filter by" next to the checkbox is shown only while it is on
+    const multi = document.querySelector('.multi-search');
+    const filterBy = document.querySelector('.multi-filter');
+    const sync = () => (filterBy.hidden = !multi.checked);
+    multi.addEventListener('sl-change', sync);
   </script>
 </body>
 

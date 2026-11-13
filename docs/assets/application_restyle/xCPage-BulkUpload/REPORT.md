@@ -26,7 +26,7 @@ pannello ed Edit; un nuovo bulk upload (2 regole) per Create → Manage → Set 
 | Selettore progetto 99_PAGE_AM                             | `sl-header-item` progetto, come gli altri flussi (dati 000001 · Yard Training)                                                                |
 | Filtri (5 campi) + Search / Reset / Show All              | `sl-card` Filters su una riga (4/2/2/2/2); Reset `text`, Search `primary`; **More filters** nell'header + drawer (Show all tolto, 2026-11-12) |
 | Create / Edit Bulk Upload sopra la griglia                | toolbar della tabella: Create bulk upload `primary` · Edit · spazio · Config                                                                  |
-| Bandierina colorata                                       | colonna **State** `sl-status` (Draft `neutral`, Validated `primary`, Scheduled `warning`, Processed `success`, aggiunti a `STATUS_VARIANT`)   |
+| Bandierina colorata                                       | colonna **State** `sl-status` (Draft `neutral`, Ready `success`, Queued `neutral`, Processed `success`; confermati da Boffelli il 2026-11-12) |
 | Icona XLS/XLSX, lucchetto                                 | `file-earmark-excel` (label XLS/XLSX) e `lock` nella cella Name                                                                               |
 | Allowed Template azzurro                                  | `sl-tag size="small" primary`                                                                                                                 |
 | Paginazione 10                                            | paginazione `sl-table`, 25 righe (come gli altri flussi)                                                                                      |
@@ -66,7 +66,7 @@ Nessuno. Lint `lint_html.py`: 0 ERR, solo i WARN di larghezza già accettati (me
 
 ## 7. Domande aperte
 
-- **Significato delle bandierine** (grigia, verde, azzurra, gialla): ipotizzati Draft / Processed / Validated / Scheduled.
+- **Significato delle bandierine** (grigia, verde, azzurra, gialla): confermati (Boffelli, 2026-11-12): Draft / Ready / Queued / Processed.
   Servono i valori reali del filtro State.
 - Posizione in navigazione: gruppo sidebar "Configuration" con la sola voce Bulk uploads (Distribution Matrices ha un
   gruppo proprio): confermare.
@@ -75,3 +75,5 @@ Nessuno. Lint `lint_html.py`: 0 ERR, solo i WARN di larghezza già accettati (me
 ## 8. Figma (2026-11-12)
 
 Sezione `xCPage-BulkUpload` (1839:110663) nel contenitore xCPage; 7 wrapper OLD/NEW, tutti `done` nel registro.
+
+Stati aggiornati il 2026-11-13: 35 istanze Status (5 per wrapper) Validated → Ready `success`, Scheduled → Queued `neutral`, modificate in-place.

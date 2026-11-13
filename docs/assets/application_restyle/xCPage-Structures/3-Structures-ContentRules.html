@@ -190,9 +190,23 @@
                       </div>
                       <p class="rs-meta">01 WBS › 1000 › Test_Discipline</p>
                     </div>
-                    <sl-button size="small" variant="primary"
-                      ><sl-icon slot="prefix" name="plus-lg"></sl-icon>New child element</sl-button
-                    >
+                    <div class="rs-cluster">
+                      <sl-button size="small" variant="primary"
+                        ><sl-icon slot="prefix" name="plus-lg"></sl-icon>New child element</sl-button
+                      >
+                      <!-- Actions on the element shown on screen (Boffelli 2026-11-13); Check progress only for a WBS Activity -->
+                      <sl-dropdown placement="bottom-end">
+                        <sl-button slot="trigger" size="small" caret>Actions</sl-button>
+                        <sl-menu>
+                          <sl-menu-item value="rename"
+                            ><sl-icon slot="prefix" name="pencil"></sl-icon>Rename WBS element</sl-menu-item
+                          >
+                          <sl-menu-item value="progress" disabled
+                            ><sl-icon slot="prefix" name="bar-chart-steps"></sl-icon>Check progress</sl-menu-item
+                          >
+                        </sl-menu>
+                      </sl-dropdown>
+                    </div>
                   </div>
                   <sl-tab-group class="node-tabs"
                     ><sl-tab slot="nav" panel="documents"

@@ -63,9 +63,7 @@ export const STATUS_VARIANT = {
   Consolidated: 'primary',
   Opened: 'primary',
   'Issued To CM/SM': 'primary',
-  // Bulk uploads (xCPage-BulkUpload): validated = checked, waiting for processing; scheduled = run pending
-  Validated: 'primary',
-  Scheduled: 'warning',
+  // Bulk uploads (xCPage-BulkUpload): Draft → Ready → Queued → Processed (Ready and Queued reuse the job catalog above)
   Processed: 'success'
 };
 
