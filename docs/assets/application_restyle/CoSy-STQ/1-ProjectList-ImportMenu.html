@@ -140,32 +140,11 @@
           <div slot="header" class="rs-cluster rs-cluster--between">
             <h2 class="rs-heading rs-inline"><sl-icon name="filter"></sl-icon>Filters</h2>
             <sl-button class="more-filters" size="small" variant="text">
-              <sl-icon slot="prefix" name="plus-lg"></sl-icon>
-              More filters (6)
+              <sl-icon slot="prefix" name="sliders"></sl-icon>
+              More filters
             </sl-button>
           </div>
-          <form class="rs-grid rs-grid--fields">
-            <sl-select class="rs-span-3 rs-span-md-6" label="Discipline" placeholder="All disciplines" clearable>
-              <sl-option value="AUT">AUT - Automation</sl-option>
-              <sl-option value="INL">INL - Insulation</sl-option>
-            </sl-select>
-            <sl-select
-              class="rs-span-3 rs-span-md-6"
-              label="Contract number"
-              placeholder="All contracts"
-              clearable
-            ></sl-select>
-            <sl-select class="rs-span-3 rs-span-md-6" label="Subcontractor" placeholder="All subcontractors" clearable>
-              <sl-option value="TESTSUBCO">TESTSUBCO</sl-option>
-            </sl-select>
-            <sl-select
-              class="rs-span-3 rs-span-md-6"
-              label="Unit"
-              placeholder="All units"
-              multiple
-              clearable
-            ></sl-select>
-          </form>
+          <form class="rs-grid rs-grid--fields filter-fields"></form>
         </sl-card>
 
         <sl-table fill sticky-header label="Site Technical Queries">
@@ -195,37 +174,142 @@
         </sl-table>
       </main>
     </div>
-    <!-- More filters (closed in this state): STQ properties -->
+    <!-- More filters (closed in this state): which STQ properties appear in the Filters card, and in which order.
+         Same structure as the table Config (checkbox + up / down), inside the drawer: with ~20 properties the user picks
+         the ones to keep in the card (user, 2026-11-17). Approval status is one already picked from the drawer. -->
     <sl-drawer label="More filters" placement="end">
       <div class="rs-stack">
-        <sl-input label="STQ No." placeholder="Any" clearable></sl-input>
-        <sl-input label="Subject" placeholder="Any" clearable></sl-input>
-        <sl-input label="Title" placeholder="Any" clearable></sl-input>
-        <sl-select label="Approval status" placeholder="Any" clearable>
-          <sl-option value="draft">Draft</sl-option>
-          <sl-option value="issued-for-verification">Issued for verification</sl-option>
-          <sl-option value="issued-to-fem">Issued to FEM</sl-option>
-          <sl-option value="issued-to-pm">Issued to PM</sl-option>
-          <sl-option value="issued-to-ds-qaqc">Issued to DS &amp; QA/QC</sl-option>
-          <sl-option value="approved-by-ds-qaqc">Approved by DS &amp; QA/QC</sl-option>
-          <sl-option value="ready-for-issue">Ready for issue</sl-option>
-          <sl-option value="issued-to-subco">Issued to Subco</sl-option>
-          <sl-option value="closed">Closed</sl-option>
-        </sl-select>
-        <sl-select label="Revision status" placeholder="Any" clearable>
-          <sl-option value="current">Current</sl-option>
-          <sl-option value="superseded">Superseded</sl-option>
-        </sl-select>
-        <sl-input type="date" label="STQ date"></sl-input>
+        <div class="rs-cluster rs-cluster--between">
+          <p class="rs-meta filter-count"></p>
+          <sl-button class="filter-reset" size="small" variant="text">Reset</sl-button>
+        </div>
+        <ul class="rs-table-config__list filter-list" aria-label="Filters shown in the Filters card"></ul>
       </div>
-      <sl-button slot="footer" variant="text">Clear</sl-button>
-      <sl-button slot="footer" variant="primary"
-        ><sl-icon slot="prefix" name="filter"></sl-icon>Apply filters</sl-button
-      >
+      <sl-button slot="footer" variant="primary" class="filter-done">Done</sl-button>
     </sl-drawer>
     <script type="module">
-      const moreFilters = document.querySelector('sl-drawer[label="More filters"]');
-      document.querySelector('.more-filters').addEventListener('click', () => moreFilters.show());
+      import { html, render } from 'https://cdn.jsdelivr.net/npm/lit@3/+esm';
+
+      const select = (...options) => ({ kind: 'select', options });
+      const all = [
+        {
+          id: 'discipline',
+          label: 'Discipline',
+          placeholder: 'All disciplines',
+          ...select('AUT - Automation', 'INL - Insulation')
+        },
+        { id: 'contract', label: 'Contract number', placeholder: 'All contracts', ...select() },
+        { id: 'subco', label: 'Subcontractor', placeholder: 'All subcontractors', ...select('TESTSUBCO') },
+        { id: 'unit', label: 'Unit', placeholder: 'All units', multiple: true, ...select() },
+        {
+          id: 'approval',
+          label: 'Approval status',
+          placeholder: 'Any',
+          ...select(
+            'Draft',
+            'Issued for verification',
+            'Issued to FEM',
+            'Issued to PM',
+            'Issued to DS & QA/QC',
+            'Approved by DS & QA/QC',
+            'Ready for issue',
+            'Issued to Subco',
+            'Closed'
+          )
+        },
+        { id: 'stq', label: 'STQ No.', kind: 'input' },
+        { id: 'subject', label: 'Subject', kind: 'input' },
+        { id: 'title', label: 'Title', kind: 'input' },
+        { id: 'revision', label: 'Revision status', placeholder: 'Any', ...select('Current', 'Superseded') },
+        { id: 'date', label: 'STQ date', kind: 'date' },
+        { id: 'originator', label: 'Originator', placeholder: 'Any', ...select() },
+        { id: 'area', label: 'Area', placeholder: 'Any', ...select() },
+        { id: 'system', label: 'System', placeholder: 'Any', ...select() },
+        { id: 'workpackage', label: 'Work package', placeholder: 'Any', ...select() },
+        { id: 'priority', label: 'Priority', placeholder: 'Any', ...select('High', 'Medium', 'Low') },
+        { id: 'reply', label: 'Reply status', placeholder: 'Any', ...select('Waiting', 'Replied') },
+        { id: 'due', label: 'Reply due date', kind: 'date' },
+        { id: 'createdby', label: 'Created by', kind: 'input' },
+        { id: 'created', label: 'Created on', kind: 'date' },
+        { id: 'modified', label: 'Modified on', kind: 'date' }
+      ];
+      const defaults = ['discipline', 'contract', 'subco', 'unit', 'approval'];
+      let order = all.map(f => f.id);
+      let shown = new Set(defaults);
+      const byId = id => all.find(f => f.id === id);
+
+      const field = f =>
+        f.kind === 'select'
+          ? html`<sl-select
+              class="rs-span-3 rs-span-md-6"
+              label=${f.label}
+              placeholder=${f.placeholder}
+              ?multiple=${f.multiple}
+              clearable
+            >
+              ${f.options.map(
+                o => html`<sl-option value=${o.toLowerCase().replace(/[^a-z0-9]+/g, '-')}>${o}</sl-option>`
+              )}
+            </sl-select>`
+          : html`<sl-input
+              class="rs-span-3 rs-span-md-6"
+              label=${f.label}
+              type=${f.kind === 'date' ? 'date' : 'text'}
+              placeholder="Any"
+              clearable
+            ></sl-input>`;
+
+      const move = (id, to) => {
+        const from = order.indexOf(id);
+        if (to < 0 || to >= order.length) return;
+        order.splice(from, 1);
+        order.splice(to, 0, id);
+        update();
+      };
+      const toggle = id => {
+        shown.has(id) ? shown.delete(id) : shown.add(id);
+        update();
+      };
+
+      function update() {
+        render(
+          order.filter(id => shown.has(id)).map(id => field(byId(id))),
+          document.querySelector('.filter-fields')
+        );
+        document.querySelector('.filter-count').textContent = `${shown.size} of ${all.length} shown in Filters`;
+        render(
+          order.map(
+            (id, index) =>
+              html`<li class="rs-table-config__item">
+                <sl-checkbox ?checked=${shown.has(id)} @sl-change=${() => toggle(id)}>${byId(id).label}</sl-checkbox>
+                <span class="rs-spacer"></span>
+                <sl-icon-button
+                  name="arrow-up"
+                  label="Move ${byId(id).label} up"
+                  ?disabled=${index === 0}
+                  @click=${() => move(id, index - 1)}
+                ></sl-icon-button>
+                <sl-icon-button
+                  name="arrow-down"
+                  label="Move ${byId(id).label} down"
+                  ?disabled=${index === order.length - 1}
+                  @click=${() => move(id, index + 1)}
+                ></sl-icon-button>
+              </li>`
+          ),
+          document.querySelector('.filter-list')
+        );
+      }
+      update();
+
+      const drawer = document.querySelector('sl-drawer[label="More filters"]');
+      document.querySelector('.more-filters').addEventListener('click', () => drawer.show());
+      document.querySelector('.filter-done').addEventListener('click', () => drawer.hide());
+      document.querySelector('.filter-reset').addEventListener('click', () => {
+        order = all.map(f => f.id);
+        shown = new Set(defaults);
+        update();
+      });
     </script>
   </body>
 </html>

@@ -404,3 +404,10 @@ signature_qrcode`, rev. A1, VDR-20240415); reviewer Aiello Ciro, Cazzaniga Alice
   con l'ora **DD-Mmm-YYYY HH:mm** a 24 ore (`01-Nov-2026 14:30`). Niente `gg/mm/aaaa`, ISO, anno a 2 cifre o mesi in
   italiano. Placeholder e testi d’aiuto mostrano lo **schema** del formato, non una data d’esempio: `dd-mmm-yyyy` (es. aiuto `Dates as dd-mmm-yyyy`, placeholder dei campi data in Figma; utente 2026-11-13). Il `value` di `sl-input type="date"` resta ISO (lo richiede il campo; la visualizzazione la decide il
   browser). Il mese è **sempre in inglese**, anche dentro nomi e identificativi dei dati mock (es. `…-PVA-13-Jan-2022`, utente 2026-11-13).
+- **More filters = scelta dei filtri** (utente 2026-11-17, commento Figma su CoSy-STQ/1): il drawer More filters non
+  contiene i campi ma l'elenco di tutte le proprietà filtrabili (anche ~20) con checkbox + frecce su/giù, come il
+  Config della tabella; le spuntate compaiono, in quell'ordine, nella card Filters. Applicato per ora solo a
+  CoSy-STQ/1-ProjectList-ImportMenu.
+- **DMS Home** (utente 2026-11-17): niente selettore progetto nell'header delle pagine Document Management System
+  (resta su Project discovery), niente conteggio "N document types" nel footer delle card, niente alert warning sulla
+  card non compatibile (resta il testo "Not available for this project").

@@ -134,11 +134,14 @@
             <h1 class="rs-title">Your projects</h1>
             <p class="rs-meta">6 projects you can work on in Project Management</p>
           </div>
-          <form class="rs-span-4 rs-span-md-6" role="search">
-            <sl-input type="search" label="Search" placeholder="Project code, name or client" clearable>
-              <sl-icon slot="prefix" name="search"></sl-icon>
-            </sl-input>
-          </form>
+          <div class="rs-span-4 rs-span-md-6 rs-cluster rs-cluster--nowrap rs-cluster--bottom">
+            <form class="rs-grow" role="search">
+              <sl-input type="search" label="Search" placeholder="Project code, name or client" clearable>
+                <sl-icon slot="prefix" name="search"></sl-icon>
+              </sl-input>
+            </form>
+            <sl-button><sl-icon slot="prefix" name="download"></sl-icon>Export project list</sl-button>
+          </div>
         </div>
 
         <section class="rs-grid rs-grid--stretch" aria-label="Your projects">

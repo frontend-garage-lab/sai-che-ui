@@ -114,6 +114,7 @@
         <div class="rs-page-header">
           <div class="rs-page-header__text">
             <h1 class="rs-title">Advanced search</h1>
+            <p class="rs-meta">Every search you run here is based on the project currently in use.</p>
           </div>
           <sl-button variant="primary" href="./2-AdvancedSearch-Edit.html">
             <sl-icon slot="prefix" name="plus-lg"></sl-icon>
@@ -153,7 +154,21 @@
           >
 
           <sl-tab-panel name="mine" active>
-            <sl-table class="my-searches" sticky-header label="My searches">
+            <sl-table class="my-searches" selection="multiple" sticky-header label="My searches">
+              <div
+                slot="toolbar"
+                class="rs-cluster rs-cluster--nowrap rs-grow"
+                role="toolbar"
+                aria-label="My searches actions"
+              >
+                <sl-button size="small"><sl-icon slot="prefix" name="globe"></sl-icon>Publish search</sl-button>
+                <span class="rs-spacer"></span>
+                <sl-dropdown placement="bottom-end" hoist data-table-options>
+                  <sl-button slot="trigger" size="small" caret
+                    ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                  >
+                </sl-dropdown>
+              </div>
               <sl-empty-state
                 slot="empty"
                 title-text="No saved searches"
