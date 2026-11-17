@@ -410,4 +410,14 @@ signature_qrcode`, rev. A1, VDR-20240415); reviewer Aiello Ciro, Cazzaniga Alice
   CoSy-STQ/1-ProjectList-ImportMenu.
 - **DMS Home** (utente 2026-11-17): niente selettore progetto nell'header delle pagine Document Management System
   (resta su Project discovery), niente conteggio "N document types" nel footer delle card, niente alert warning sulla
-  card non compatibile (resta il testo "Not available for this project").
+  card non compatibile (resta il testo "Not available for this project"). La vista con il selettore progetti aperto sta su
+  DMS-MyWork/4b-Dashboard-ProjectSelectorOpen; la vecchia DMS-Home/4-ProjectSelector-Open è stata eliminata (utente 2026-11-17).
+
+## Sidebar e header DMS da analisi funzionale cap. 4 (2026-11-17)
+
+Applicato a DMS-Home, DMS-MyWork, DMS-Downloads (propagazione agli altri flussi dopo revisione):
+- My work = Dashboard, Clipboard, Selected docs (punto aperto), Downloads, Preferences (§4.3, §4.9.8); niente gruppo Downloads separato.
+- Gruppo "Find": Project discovery + Advanced search (§4.2.3). Gruppo "Virtual binders" separato (§4.4.6). Etichette in inglese (Project documents, Communication).
+- Help platform-level (§4.2.6): voce "Help and knowledge base" nel menu del profilo (utente 2026-11-17, niente voce Help separata nell'header), vista aperta `DMS-MyWork/4c-Dashboard-ProfileMenuOpen.html`; gruppo Help in fondo alla sidebar.
+- Breadcrumb sempre `Home > <working area> > My work > <pagina>` (§4.2.4).
+- Tab del detail panel standard: Properties, Content, Versions, History, Relations, Workflow and tasks (§4.5.1).

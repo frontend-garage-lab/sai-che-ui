@@ -59,8 +59,9 @@
         <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
         Mario Rossi
         <sl-menu slot="menu">
-          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="person-fill"></sl-icon>Profile</sl-menu-item>
           <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="question-circle"></sl-icon>Help and knowledge base</sl-menu-item>
           <sl-divider></sl-divider>
           <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
         </sl-menu>
@@ -69,25 +70,32 @@
 
     <div class="rs-shell">
       <sl-sidebar label="Project navigation" collapsed>
-        <sl-sidebar-group label="My work" count="9">
+        <sl-sidebar-group label="My work" count="12">
           <sl-icon slot="icon" name="person-fill"></sl-icon>
-          <sl-sidebar-item href="4-Dashboard.html">Dashboard</sl-sidebar-item>
+          <sl-sidebar-item href="../DMS-MyWork/4-Dashboard.html">Dashboard</sl-sidebar-item>
           <sl-sidebar-item href="../DMS-MyWork/3-Clipboard.html" count="5" current>Clipboard</sl-sidebar-item>
           <sl-sidebar-item href="../DMS-MyWork/2-SelectedDocs.html" count="4">Selected docs</sl-sidebar-item>
-          <sl-sidebar-item href="6-Preferences.html">Preferences</sl-sidebar-item>
+          <sl-sidebar-item href="../DMS-Downloads/1-Downloads.html" count="3">Downloads</sl-sidebar-item>
+          <sl-sidebar-item href="../DMS-MyWork/6-Preferences.html">Preferences</sl-sidebar-item>
         </sl-sidebar-group>
 
-        <sl-sidebar-group label="Projects">
-          <sl-icon slot="icon" name="grid"></sl-icon>
+        <sl-sidebar-group label="Find">
+          <sl-icon slot="icon" name="search"></sl-icon>
           <sl-sidebar-item href="../DMS-Home/5-ProjectDiscovery.html">Project discovery</sl-sidebar-item>
+          <sl-sidebar-item href="../advanced-search/1-AdvancedSearch.html">Advanced search</sl-sidebar-item>
         </sl-sidebar-group>
-        <sl-sidebar-group label="Documenti di progetto" count="70">
+
+        <sl-sidebar-group label="Project documents" count="64">
           <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
           <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
           <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
           <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
           <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
           <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Virtual binders" count="6">
+          <sl-icon slot="icon" name="bookmark"></sl-icon>
           <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
         </sl-sidebar-group>
 
@@ -100,7 +108,7 @@
           <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
         </sl-sidebar-group>
 
-        <sl-sidebar-group label="Comunicazione" count="47">
+        <sl-sidebar-group label="Communication" count="42">
           <sl-icon slot="icon" name="envelope"></sl-icon>
           <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
           <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
@@ -117,15 +125,16 @@
           <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
         </sl-sidebar-group>
 
-        <sl-sidebar-group label="Downloads" count="3">
-          <sl-icon slot="icon" name="download"></sl-icon>
-          <sl-sidebar-item href="../DMS-Downloads/1-Downloads.html" count="3">My downloads</sl-sidebar-item>
+        <sl-sidebar-group label="Help">
+          <sl-icon slot="icon" name="question-circle"></sl-icon>
+          <sl-sidebar-item href="#">Help and knowledge base</sl-sidebar-item>
         </sl-sidebar-group>
       </sl-sidebar>
 
       <main class="rs-page rs-page--fill" aria-label="Clipboard">
         <sl-breadcrumb aria-label="Breadcrumb">
           <sl-breadcrumb-item href="../DMS-Home/1-Home.html">Home</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Project Management</sl-breadcrumb-item>
           <sl-breadcrumb-item>My work</sl-breadcrumb-item>
           <sl-breadcrumb-item>Clipboard</sl-breadcrumb-item>
         </sl-breadcrumb>
@@ -157,6 +166,15 @@
                 role="toolbar"
                 aria-label="Clipboard actions"
               >
+                <sl-input
+                  size="small"
+                  placeholder="Search in the Clipboard"
+                  clearable
+                  aria-label="Search in the Clipboard"
+                  class="clipboard-search"
+                >
+                  <sl-icon slot="prefix" name="search"></sl-icon>
+                </sl-input>
                 <sl-button variant="primary" size="small"
                   ><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-button
                 >
@@ -208,15 +226,20 @@
               <sl-tab slot="nav" panel="properties" active
                 ><span class="rs-inline"><sl-icon name="info-circle"></sl-icon>Properties</span></sl-tab
               >
-              <sl-tab slot="nav" panel="revisions"
-                ><span class="rs-inline"><sl-icon name="clock-history"></sl-icon>Revisions</span></sl-tab
+              <sl-tab slot="nav" panel="content"
+                ><span class="rs-inline"><sl-icon name="file-earmark-pdf"></sl-icon>Content</span></sl-tab
               >
-              <sl-tab slot="nav" panel="progress"
-                ><span class="rs-inline"><sl-icon name="bar-chart-steps"></sl-icon>Progress</span></sl-tab
+              <sl-tab slot="nav" panel="versions"
+                ><span class="rs-inline"><sl-icon name="files"></sl-icon>Versions</span></sl-tab
               >
-              <sl-tab slot="nav" panel="relations">Relations</sl-tab>
               <sl-tab slot="nav" panel="history"
-                ><span class="rs-inline"><sl-icon name="clock-history"></sl-icon>Business history</span></sl-tab
+                ><span class="rs-inline"><sl-icon name="clock-history"></sl-icon>History</span></sl-tab
+              >
+              <sl-tab slot="nav" panel="relations"
+                ><span class="rs-inline"><sl-icon name="diagram-3"></sl-icon>Relations</span></sl-tab
+              >
+              <sl-tab slot="nav" panel="workflow"
+                ><span class="rs-inline"><sl-icon name="clipboard-check"></sl-icon>Workflow and tasks</span></sl-tab
               >
 
               <sl-tab-panel name="properties" active>
@@ -259,10 +282,11 @@
                   </sl-details>
                 </div>
               </sl-tab-panel>
-              <sl-tab-panel name="revisions"></sl-tab-panel>
-              <sl-tab-panel name="progress"></sl-tab-panel>
-              <sl-tab-panel name="relations"></sl-tab-panel>
+              <sl-tab-panel name="content"></sl-tab-panel>
+              <sl-tab-panel name="versions"></sl-tab-panel>
               <sl-tab-panel name="history"></sl-tab-panel>
+              <sl-tab-panel name="relations"></sl-tab-panel>
+              <sl-tab-panel name="workflow"></sl-tab-panel>
             </sl-tab-group>
           </sl-detail-panel>
         </div>

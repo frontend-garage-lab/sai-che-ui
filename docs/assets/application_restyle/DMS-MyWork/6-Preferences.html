@@ -1,9 +1,9 @@
 <!doctype html>
 <!--
   DMS-MyWork · 6-Preferences — functional analysis §4.3 (personal workspace).
-  State: preferred project 032325 and preferred working area Project Management set, preferred starting page not set (the working area opens on the Dashboard); the three selects are chained: each one is enabled only once the previous one is set.
+  State: preferred project 032325 and preferred working area Project Management set, preferred starting page not set (the working area opens on the Dashboard); starting page depends on the working area, project independent (§4.3.3); e-mail notifications = daily summary (default). Layout: Sign-in / Project / E-mail cards on the left, "At your next sign-in" summary and "Saved where you use them" on the right, one Save in the page header.
   Built only with sai-che-ui components (see REPORT.md in this folder).
-  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/DMS-MyWork/2-SelectedDocs.html
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/DMS-MyWork/6-Preferences.html
 -->
 <html lang="en">
   <head>
@@ -59,8 +59,9 @@
         <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
         Mario Rossi
         <sl-menu slot="menu">
-          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="person-fill"></sl-icon>Profile</sl-menu-item>
           <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="question-circle"></sl-icon>Help and knowledge base</sl-menu-item>
           <sl-divider></sl-divider>
           <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
         </sl-menu>
@@ -69,25 +70,32 @@
 
     <div class="rs-shell">
       <sl-sidebar label="Project navigation" collapsed>
-        <sl-sidebar-group label="My work" count="9">
+        <sl-sidebar-group label="My work" count="12">
           <sl-icon slot="icon" name="person-fill"></sl-icon>
-          <sl-sidebar-item href="4-Dashboard.html">Dashboard</sl-sidebar-item>
+          <sl-sidebar-item href="../DMS-MyWork/4-Dashboard.html">Dashboard</sl-sidebar-item>
           <sl-sidebar-item href="../DMS-MyWork/3-Clipboard.html" count="5">Clipboard</sl-sidebar-item>
           <sl-sidebar-item href="../DMS-MyWork/2-SelectedDocs.html" count="4">Selected docs</sl-sidebar-item>
-          <sl-sidebar-item href="6-Preferences.html" current>Preferences</sl-sidebar-item>
+          <sl-sidebar-item href="../DMS-Downloads/1-Downloads.html" count="3">Downloads</sl-sidebar-item>
+          <sl-sidebar-item href="../DMS-MyWork/6-Preferences.html" current>Preferences</sl-sidebar-item>
         </sl-sidebar-group>
 
-        <sl-sidebar-group label="Projects">
-          <sl-icon slot="icon" name="grid"></sl-icon>
+        <sl-sidebar-group label="Find">
+          <sl-icon slot="icon" name="search"></sl-icon>
           <sl-sidebar-item href="../DMS-Home/5-ProjectDiscovery.html">Project discovery</sl-sidebar-item>
+          <sl-sidebar-item href="../advanced-search/1-AdvancedSearch.html">Advanced search</sl-sidebar-item>
         </sl-sidebar-group>
-        <sl-sidebar-group label="Documenti di progetto" count="70">
+
+        <sl-sidebar-group label="Project documents" count="64">
           <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
           <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
           <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
           <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
           <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
           <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Virtual binders" count="6">
+          <sl-icon slot="icon" name="bookmark"></sl-icon>
           <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
         </sl-sidebar-group>
 
@@ -100,7 +108,7 @@
           <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
         </sl-sidebar-group>
 
-        <sl-sidebar-group label="Comunicazione" count="47">
+        <sl-sidebar-group label="Communication" count="42">
           <sl-icon slot="icon" name="envelope"></sl-icon>
           <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
           <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
@@ -117,15 +125,16 @@
           <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
         </sl-sidebar-group>
 
-        <sl-sidebar-group label="Downloads" count="3">
-          <sl-icon slot="icon" name="download"></sl-icon>
-          <sl-sidebar-item href="../DMS-Downloads/1-Downloads.html" count="3">My downloads</sl-sidebar-item>
+        <sl-sidebar-group label="Help">
+          <sl-icon slot="icon" name="question-circle"></sl-icon>
+          <sl-sidebar-item href="#">Help and knowledge base</sl-sidebar-item>
         </sl-sidebar-group>
       </sl-sidebar>
 
       <main class="rs-page rs-stack rs-stack--loose" aria-label="Preferences">
         <sl-breadcrumb aria-label="Breadcrumb">
           <sl-breadcrumb-item href="../DMS-Home/1-Home.html">Home</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Project Management</sl-breadcrumb-item>
           <sl-breadcrumb-item>My work</sl-breadcrumb-item>
           <sl-breadcrumb-item>Preferences</sl-breadcrumb-item>
         </sl-breadcrumb>
@@ -134,73 +143,145 @@
           <div class="rs-page-header__text">
             <h1 class="rs-title">Preferences</h1>
             <p class="rs-meta">
-              Personal settings applied the next time you sign in. They do not change documents, permissions or other
-              users.
+              Personal settings, kept with your account on any browser. They never change documents, permissions or
+              other users, and take effect the next time they are used.
             </p>
+          </div>
+          <div class="rs-cluster rs-cluster--end">
+            <sl-button size="small">Cancel</sl-button>
+            <sl-button variant="primary" size="small">Save preferences</sl-button>
           </div>
         </div>
 
         <div class="rs-grid">
-          <sl-card class="rs-span-6 rs-span-lg-8 rs-span-md-12">
-            <div slot="header" class="rs-stack rs-stack--tight">
-              <h2 class="rs-subheading">Where you start</h2>
-              <p class="rs-meta">
-                Each preference is available once the previous one is set. Changing or clearing one also clears the ones
-                below it.
-              </p>
-            </div>
-            <form class="rs-stack">
-              <sl-select
-                label="Preferred project"
-                value="032325"
-                clearable
-                help-text="Set in the header project selector when you sign in."
-              >
-                <sl-option value="000001">000001 · Digital Collaboration</sl-option>
-                <sl-option value="032325">032325 · Bioraffineria Di Livorno EPC</sl-option>
-                <sl-option value="032239">032239 · Berri Project</sl-option>
-                <sl-option value="023144">023144 · Neptun Deep Project</sl-option>
-                <sl-option value="032197">032197 · Natural Gas Storage Plant</sl-option>
-                <sl-option value="F10412">F10412 · –</sl-option>
-              </sl-select>
-              <sl-select
-                label="Preferred working area"
-                value="pm"
-                clearable
-                help-text="Opened instead of the main landing page. Only areas compatible with the preferred project."
-              >
-                <sl-option value="pm">Project Management</sl-option>
-                <sl-option value="qm">Quality Management</sl-option>
-              </sl-select>
-              <sl-select
-                label="Preferred starting page"
-                placeholder="Dashboard (default)"
-                clearable
-                help-text="Where not set, the working area opens on your Dashboard."
-              >
-                <sl-option value="dashboard">Dashboard</sl-option>
-                <sl-option value="clipboard">Clipboard</sl-option>
-                <sl-option value="job">Job Document</sl-option>
-                <sl-option value="isometric">Isometric Document</sl-option>
-                <sl-option value="correspondence">Correspondence</sl-option>
-                <sl-option value="pva">Tasks · PVA</sl-option>
-              </sl-select>
-            </form>
-            <div slot="footer" class="rs-cluster rs-cluster--end">
-              <sl-button size="small">Cancel</sl-button>
-              <sl-button variant="primary" size="small">Save</sl-button>
-            </div>
-          </sl-card>
+          <div class="rs-stack rs-span-8 rs-span-md-12">
+            <sl-card>
+              <div slot="header" class="rs-stack rs-stack--tight">
+                <h2 class="rs-subheading">Sign-in</h2>
+                <p class="rs-meta">Where the application opens when you sign in, instead of the main landing page.</p>
+              </div>
+              <div class="rs-grid rs-grid--fields">
+                <sl-select
+                  class="rs-span-6 rs-span-md-12"
+                  label="Preferred working area"
+                  value="pm"
+                  clearable
+                  help-text="Only the working areas you can access."
+                >
+                  <sl-option value="pm">Project Management</sl-option>
+                  <sl-option value="qm">Quality Management</sl-option>
+                </sl-select>
+                <sl-select
+                  class="rs-span-6 rs-span-md-12"
+                  label="Preferred starting page"
+                  placeholder="Dashboard (default)"
+                  clearable
+                  help-text="A page of the preferred working area. Cleared when you change the area."
+                >
+                  <sl-option value="dashboard">Dashboard</sl-option>
+                  <sl-option value="clipboard">Clipboard</sl-option>
+                  <sl-option value="job">Job Document</sl-option>
+                  <sl-option value="isometric">Isometric Document</sl-option>
+                  <sl-option value="correspondence">Correspondence</sl-option>
+                  <sl-option value="pva">Tasks · PVA</sl-option>
+                </sl-select>
+              </div>
+            </sl-card>
 
-          <sl-card class="rs-span-6 rs-span-lg-4 rs-span-md-12">
-            <div slot="header" class="rs-stack rs-stack--tight">
-              <h2 class="rs-subheading">Dashboard and lists</h2>
-            </div>
-            <p class="rs-body">
-              The dashboard layout and the columns and filters of each list are saved where you use them: the layout in
-              Customise dashboard, separately for each working area, and the columns and filters in each list.
-            </p>
-          </sl-card>
+            <sl-card>
+              <div slot="header" class="rs-stack rs-stack--tight">
+                <h2 class="rs-subheading">Project</h2>
+                <p class="rs-meta">
+                  Set in the header when you open a compatible project-based working area and no project is selected
+                  yet. You can change project at any time.
+                </p>
+              </div>
+              <div class="rs-grid rs-grid--fields">
+                <sl-select
+                  class="rs-span-6 rs-span-md-12"
+                  label="Preferred project"
+                  value="032325"
+                  clearable
+                  help-text="Independent of the working area. Ignored where the area is not project-based."
+                >
+                  <sl-option value="000001">000001 · Digital Collaboration</sl-option>
+                  <sl-option value="032325">032325 · Bioraffineria Di Livorno EPC</sl-option>
+                  <sl-option value="032239">032239 · Berri Project</sl-option>
+                  <sl-option value="023144">023144 · Neptun Deep Project</sl-option>
+                  <sl-option value="032197">032197 · Natural Gas Storage Plant</sl-option>
+                  <sl-option value="F10412">F10412 · –</sl-option>
+                </sl-select>
+              </div>
+            </sl-card>
+
+            <sl-card>
+              <div slot="header" class="rs-cluster rs-cluster--between">
+                <div class="rs-stack rs-stack--tight">
+                  <h2 class="rs-subheading">E-mail notifications</h2>
+                  <p class="rs-meta">E-mails only: in-app notifications and your tasks are not affected.</p>
+                </div>
+                <sl-button variant="text" size="small"
+                  ><sl-icon slot="prefix" name="arrow-counterclockwise"></sl-icon>Reset to default</sl-button
+                >
+              </div>
+              <sl-radio-group label="How you receive e-mails" name="email-notifications" value="daily">
+                <sl-radio value="daily">
+                  <span class="rs-stack rs-stack--tight">
+                    <span class="rs-body">Receive only daily summary (default)</span>
+                    <span class="rs-meta">One e-mail a day with your work summary, no individual e-mails.</span>
+                  </span>
+                </sl-radio>
+                <sl-radio value="single">
+                  <span class="rs-stack rs-stack--tight">
+                    <span class="rs-body">Receive only single notifications</span>
+                    <span class="rs-meta">One e-mail for each notification addressed to you, no daily summary.</span>
+                  </span>
+                </sl-radio>
+              </sl-radio-group>
+            </sl-card>
+          </div>
+
+          <div class="rs-stack rs-span-4 rs-span-md-12">
+            <sl-card>
+              <div slot="header" class="rs-stack rs-stack--tight">
+                <h2 class="rs-subheading">At your next sign-in</h2>
+              </div>
+              <sl-description-list>
+                <sl-description-list-item label="Working area">Project Management</sl-description-list-item>
+                <sl-description-list-item label="Starting page">Dashboard (default)</sl-description-list-item>
+                <sl-description-list-item label="Project in the header"
+                  >032325 · Bioraffineria Di Livorno EPC</sl-description-list-item
+                >
+                <sl-description-list-item label="E-mails">Daily summary</sl-description-list-item>
+              </sl-description-list>
+            </sl-card>
+
+            <sl-card>
+              <div slot="header" class="rs-stack rs-stack--tight">
+                <h2 class="rs-subheading">Saved where you use them</h2>
+                <p class="rs-meta">These settings are not on this page.</p>
+              </div>
+              <div class="rs-stack">
+                <div class="rs-stack rs-stack--tight">
+                  <span class="rs-body">Dashboard layout</span>
+                  <span class="rs-meta">Per working area, in Customise dashboard.</span>
+                  <sl-button variant="text" size="small" href="5-Dashboard-Customise.html"
+                    >Customise dashboard<sl-icon slot="suffix" name="arrow-right"></sl-icon
+                  ></sl-button>
+                </div>
+                <sl-divider></sl-divider>
+                <div class="rs-stack rs-stack--tight">
+                  <span class="rs-body">Columns and filters</span>
+                  <span class="rs-meta">Per list, from Config and More filters in each list.</span>
+                </div>
+                <sl-divider></sl-divider>
+                <div class="rs-stack rs-stack--tight">
+                  <span class="rs-body">Saved searches</span>
+                  <span class="rs-meta">Criteria, columns and sorting belong to each search, in Advanced search.</span>
+                </div>
+              </div>
+            </sl-card>
+          </div>
         </div>
       </main>
     </div>
