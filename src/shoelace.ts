@@ -77,6 +77,8 @@ export { default as SlStatGroup } from './components/stat-group/stat-group.js';
 export { default as SlStatus } from './components/status/status.js';
 export { default as SlStep } from './components/step/step.js';
 export { default as SlStepper } from './components/stepper/stepper.js';
+export { default as SlLegend } from './components/legend/legend.js';
+export { default as SlLegendItem } from './components/legend-item/legend-item.js';
 /* plop:component */
 
 // Utilities

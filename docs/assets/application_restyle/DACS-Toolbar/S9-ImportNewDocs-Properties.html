@@ -26,14 +26,39 @@
       <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
       <span slot="logo"></span>
 
-      <sl-select slot="actions" size="small" value="000001" style="width: 16rem">
-        <sl-option value="000001">000001 - Yard Training</sl-option>
-      </sl-select>
+      <sl-header-item slot="actions" class="project-selector">
+        000001 · Yard Training
+        <sl-menu slot="menu" aria-label="Project" style="width: 28rem">
+          <sl-input size="small" placeholder="Search code or project" clearable aria-label="Search projects">
+            <sl-icon slot="prefix" name="search"></sl-icon>
+          </sl-input>
+          <sl-divider></sl-divider>
+          <sl-menu-label>My projects</sl-menu-label>
+          <sl-menu-item type="checkbox" value="000001" checked title="Yard Training"
+            >Yard Training<span slot="suffix" class="rs-meta">000001</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032325" title="Bioraffineria Di Livorno EPC"
+            >Bioraffineria Di Livorno EPC<span slot="suffix" class="rs-meta">032325</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032239" title="Berri Project"
+            >Berri Project<span slot="suffix" class="rs-meta">032239</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="023144" title="Neptun Deep Project"
+            >Neptun Deep Project<span slot="suffix" class="rs-meta">023144</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032197" title="Natural Gas Storage Plant"
+            >Natural Gas Storage Plant<span slot="suffix" class="rs-meta">032197</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="F10412" title="–"
+            >–<span slot="suffix" class="rs-meta">F10412</span></sl-menu-item
+          >
+        </sl-menu>
+      </sl-header-item>
       <sl-header-item slot="actions">
         <sl-avatar initials="TA" label="test_dc_admin"></sl-avatar>
         test_dc_admin
         <sl-menu slot="menu">
-          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="person-fill"></sl-icon>Profile</sl-menu-item>
           <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
           <sl-divider></sl-divider>
           <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
@@ -207,9 +232,9 @@
           <sl-tab slot="nav" panel="info-2">Info 2</sl-tab>
           <sl-tab slot="nav" panel="folder-links">Folder links</sl-tab>
           <sl-tab-panel name="info-1" active>
-            <div class="rs-stack rs-stack--loose">
-              <section class="rs-stack" aria-label="Identification">
-                <h3 class="rs-subheading">Identification</h3>
+            <div class="rs-stack">
+              <sl-card aria-label="Identification">
+                <h3 slot="header" class="rs-heading">Identification</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-input class="rs-span-6" label="Document name" value="TestDoc.pdf" required></sl-input>
                   <sl-input class="rs-span-6" label="Document identification number" value="test" required></sl-input>
@@ -219,24 +244,26 @@
                   >
                   <sl-input class="rs-span-12" label="Title"></sl-input>
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Revision">
-                <h3 class="rs-subheading">Revision</h3>
-                <sl-alert variant="warning" open>
-                  <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
-                  You are importing a Current revision.
-                </sl-alert>
-                <div class="rs-grid rs-grid--fields">
-                  <sl-input class="rs-span-3" label="Revision code" value="00" required></sl-input>
-                  <sl-select class="rs-span-3" label="Revision status" value="current" required>
-                    <sl-option value="current">Current</sl-option><sl-option value="superseded">Superseded</sl-option>
-                  </sl-select>
-                  <sl-input class="rs-span-6" label="Revision causal"></sl-input>
-                  <sl-input class="rs-span-6" label="Design dwg sub-rev"></sl-input>
+              </sl-card>
+              <sl-card aria-label="Revision">
+                <h3 slot="header" class="rs-heading">Revision</h3>
+                <div class="rs-stack">
+                  <sl-alert variant="warning" open>
+                    <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
+                    You are importing a Current revision.
+                  </sl-alert>
+                  <div class="rs-grid rs-grid--fields">
+                    <sl-input class="rs-span-3" label="Revision code" value="00" required></sl-input>
+                    <sl-select class="rs-span-3" label="Revision status" value="current" required>
+                      <sl-option value="current">Current</sl-option><sl-option value="superseded">Superseded</sl-option>
+                    </sl-select>
+                    <sl-input class="rs-span-6" label="Revision causal"></sl-input>
+                    <sl-input class="rs-span-6" label="Design dwg sub-rev"></sl-input>
+                  </div>
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Status">
-                <h3 class="rs-subheading">Status</h3>
+              </sl-card>
+              <sl-card aria-label="Status">
+                <h3 slot="header" class="rs-heading">Status</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-select class="rs-span-6" label="Document status" value="v"
                     ><sl-option value="v">Approved</sl-option></sl-select
@@ -245,9 +272,9 @@
                     <sl-option value="yes">Yes</sl-option><sl-option value="no">No</sl-option>
                   </sl-select>
                 </div>
-              </section>
-              <section class="rs-stack" aria-label="Classification">
-                <h3 class="rs-subheading">Classification</h3>
+              </sl-card>
+              <sl-card aria-label="Classification">
+                <h3 slot="header" class="rs-heading">Classification</h3>
                 <div class="rs-grid rs-grid--fields">
                   <sl-select class="rs-span-6" label="Document type" value="v" required
                     ><sl-option value="v">CA - CALCULATION</sl-option></sl-select
@@ -263,7 +290,7 @@
                   <sl-select class="rs-span-6" label="Item" placeholder="Select…" clearable></sl-select>
                   <sl-textarea class="rs-span-12" label="References" rows="3"></sl-textarea>
                 </div>
-              </section>
+              </sl-card>
             </div>
           </sl-tab-panel>
           <sl-tab-panel name="info-2"></sl-tab-panel>

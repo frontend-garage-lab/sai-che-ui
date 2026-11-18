@@ -28,14 +28,39 @@
     <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
     <span slot="logo"></span>
 
-    <sl-select slot="actions" size="small" value="99-page-am" style="width: 16rem">
-      <sl-option value="99-page-am">99_PAGE_AM · 99_Page_AM</sl-option>
-    </sl-select>
+    <sl-header-item slot="actions" class="project-selector">
+      000001 · Yard Training
+      <sl-menu slot="menu" aria-label="Project" style="width: 28rem">
+        <sl-input size="small" placeholder="Search code or project" clearable aria-label="Search projects">
+          <sl-icon slot="prefix" name="search"></sl-icon>
+        </sl-input>
+        <sl-divider></sl-divider>
+        <sl-menu-label>My projects</sl-menu-label>
+        <sl-menu-item type="checkbox" value="000001" checked title="Yard Training"
+          >Yard Training<span slot="suffix" class="rs-meta">000001</span></sl-menu-item
+        >
+        <sl-menu-item type="checkbox" value="032325" title="Bioraffineria Di Livorno EPC"
+          >Bioraffineria Di Livorno EPC<span slot="suffix" class="rs-meta">032325</span></sl-menu-item
+        >
+        <sl-menu-item type="checkbox" value="032239" title="Berri Project"
+          >Berri Project<span slot="suffix" class="rs-meta">032239</span></sl-menu-item
+        >
+        <sl-menu-item type="checkbox" value="023144" title="Neptun Deep Project"
+          >Neptun Deep Project<span slot="suffix" class="rs-meta">023144</span></sl-menu-item
+        >
+        <sl-menu-item type="checkbox" value="032197" title="Natural Gas Storage Plant"
+          >Natural Gas Storage Plant<span slot="suffix" class="rs-meta">032197</span></sl-menu-item
+        >
+        <sl-menu-item type="checkbox" value="F10412" title="–"
+          >–<span slot="suffix" class="rs-meta">F10412</span></sl-menu-item
+        >
+      </sl-menu>
+    </sl-header-item>
     <sl-header-item slot="actions">
       <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
       Mario Rossi
       <sl-menu slot="menu">
-        <sl-menu-item>Profile</sl-menu-item>
+        <sl-menu-item><sl-icon slot="prefix" name="person-fill"></sl-icon>Profile</sl-menu-item>
         <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
         <sl-divider></sl-divider>
         <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
@@ -178,8 +203,8 @@
             <sl-divider vertical></sl-divider>
             <sl-button size="small"><sl-icon slot="prefix" name="bar-chart-steps"></sl-icon>Progress</sl-button>
             <sl-button size="small"><sl-icon slot="prefix" name="x-circle"></sl-icon>Cancel PVA</sl-button>
-            <sl-divider vertical></sl-divider>
-            <sl-dropdown placement="bottom-start">
+            <span class="rs-spacer"></span>
+            <sl-dropdown placement="bottom-end">
               <sl-button slot="trigger" size="small" caret>
                 <sl-icon slot="prefix" name="download"></sl-icon>
                 Export
@@ -188,6 +213,9 @@
                 <sl-menu-item><sl-icon slot="prefix" name="file-earmark-excel"></sl-icon>Export to Excel</sl-menu-item>
                 <sl-menu-item><sl-icon slot="prefix" name="clock-history"></sl-icon>View last report</sl-menu-item>
               </sl-menu>
+            </sl-dropdown>
+            <sl-dropdown placement="bottom-end" hoist data-table-options="document-list">
+              <sl-button slot="trigger" size="small" caret><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button>
             </sl-dropdown>
           </div>
           <div class="rs-stack rs-stack--tight rs-grow">
@@ -203,7 +231,7 @@
               </sl-tab>
             </sl-tab-group>
 
-            <sl-table class="document-list" fill selection="multiple" sticky-header paginate page-size="25"
+            <sl-table id="document-list" class="document-list" fill selection="multiple" sticky-header paginate page-size="25"
               label="Job documents">
               <sl-empty-state slot="empty" title-text="Search for job documents"
                 description="Set one or more filters and select Search to list the documents of 99_PAGE_AM.">

@@ -2,12 +2,17 @@
 
 Pagina nuova da una bozza ("Saved documents" del DMS legacy), senza flusso di screenshot di origine. Chiamata **My favorites**.
 
+**2026-11-09:** My favorites rimossa ovunque (pagina, voce di sidebar, "Add to favorites" nel menu ⋮, colonne stella e Saved on), perché l'analisi funzionale §4.3 non la prevede. Il wrapper Figma `1366:89503` è stato riusato dall'utente come **1-Clipboard**: l'HTML corrispondente è da creare.
+
 ## Pagine
 
-| Pagina                | Stato riprodotto                                                                                                                                                                                                    |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `1-MyFavorites.html`  | My favorites con 5 documenti salvati (000001 ×2, 032325 ×3), tabella non ordinata, sidebar chiusa; nessun filtro, solo Config in toolbar                                                                            |
-| `2-SelectedDocs.html` | Selected docs con 4 documenti (quattro dei preferiti, nessun dato nuovo), i primi due spuntati; toolbar con Modify selected doc · IVA promote / demote · Add WBS & plan shop dwgs · Transmit docs e Config in fondo |
+| Pagina                       | Stato riprodotto                                                                                                                                                                                                    |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `4-Dashboard.html`           | Dashboard Project Management: 4 KPI, Waiting for your action (6), Checked out documents (3), Your documents by group                                                                                                |
+| `5-Dashboard-Customise.html` | Modalità personalizzazione: Your open drafts tolto (posizione libera), Tasks delegated by you nuovo e non attivo                                                                                                    |
+| `6-Preferences.html`         | Progetto e area preferiti impostati, pagina iniziale non impostata                                                                                                                                                  |
+| `3-Clipboard.html`           | Clipboard con 5 documenti, il primo spuntato e aperto nel pannello (Properties, Info aperto); dal Figma 1-Clipboard + analisi §4.3.2                                                                                |
+| `2-SelectedDocs.html`        | Selected docs con 4 documenti (quattro dei preferiti, nessun dato nuovo), i primi due spuntati; toolbar con Modify selected doc · IVA promote / demote · Add WBS & plan shop dwgs · Transmit docs e Config in fondo |
 
 ## Dati e azioni della bozza
 

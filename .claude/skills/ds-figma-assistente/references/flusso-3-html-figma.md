@@ -37,7 +37,7 @@ Carica `figma:figma-use` e `figma:figma-generate-design`, più `figma:figma-gene
 3. Scrivi la mappa, una riga per ogni elemento visibile:
 
 | Regione | Elemento HTML (tag + attributi) | Componente DS (da Code Connect) | Proprietà / valori | Contenuto reale |
-| --- | --- | --- | --- | --- |
+| ------- | ------------------------------- | ------------------------------- | ------------------ | --------------- |
 
 Regole:
 
@@ -70,6 +70,9 @@ Aspetta il sì, poi:
    (`importComponentByKeyAsync` con la key dal template Code Connect dell'icona). Vietati: cattura HTML→Figma,
    frame che imitano componenti, testi segnaposto, valori fissi, override che simulano una proprietà mancante, SVG.
 5. Togli **ogni residuo** della pagina clonata (colonne, righe, azioni, badge, testi).
+6. **Pagine già fatte, cambiate nell'HTML** (es. una regola di layout applicata a più pagine): non ricostruire,
+   modifica in-place il frame NEW esistente. Prova su una pagina, confronto con l'HTML, poi in blocco sulle altre con
+   le ricette di [regole-figma.md](regole-figma.md) §Avvolgere contenuti esistenti; aggiorna le note del registro.
 
 ## Fase 4 — Verifica (ciclo finché Figma = HTML)
 
@@ -101,10 +104,10 @@ Aspetta il sì, poi:
    rilancia `cc_inventario.py --figma …` e la validazione, poi il formatter. Se un node-id è cambiato, cerca e
    aggiorna tutti i template che lo citano **prima** del publish.
 5. **Pubblicazione, fatta dall'utente**, in due passi da confermare separatamente:
-   - libreria: in Figma A, *Assets → Libraries → Publish*, selezionando i componenti modificati;
+   - libreria: in Figma A, _Assets → Libraries → Publish_, selezionando i componenti modificati;
    - Code Connect: `code_connect.publish` dal suo terminale con il token (`--dry-run` prima, se vuole).
-6. **Aggiornamento del design in B**: l'utente accetta gli aggiornamenti della libreria (*Libraries → Updates →
-   Update*). Poi verifica che l'istanza in B esponga la correzione (leggi `componentProperties` e misure), applicala
+6. **Aggiornamento del design in B**: l'utente accetta gli aggiornamenti della libreria (_Libraries → Updates →
+   Update_). Poi verifica che l'istanza in B esponga la correzione (leggi `componentProperties` e misure), applicala
    alla pagina, togli gli override temporanei e allinea quelli locali rimasti (es. `itemSpacing`). Torna alla Fase 4.
 7. Se la correzione tocca pagine già fatte, elencale e proponi di aggiornarle.
 8. Registra il gap risolto nel reference di progetto, così non viene riproposto.

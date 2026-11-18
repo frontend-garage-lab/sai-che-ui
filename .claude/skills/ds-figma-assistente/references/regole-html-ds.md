@@ -25,16 +25,16 @@ text style). Le regole specifiche del progetto (mappature, pattern di pagina, sc
    `for n in <icone usate>; do [ -f <code_connect.dir>/icon-$n.figma.ts ] || echo "MANCA $n"; done`. Un'icona
    mancante scoperta solo nel flusso 3 blocca la pagina in `partial` e costa un publish in più (2026-10-30:
    `arrow-left` e `funnel` in QMIS 25, 27, 28).
-8b. **`sl-table size="small"` solo per una tabella annidata nella cella di un'altra tabella** (DECISIONS "Sotto-tabella
+   8b. **`sl-table size="small"` solo per una tabella annidata nella cella di un'altra tabella** (DECISIONS "Sotto-tabella
    in una cella"). Le tabelle di pagina, di dialog e di tab, cronologie comprese, usano la size normale anche quando
    sono strette o con molte colonne (errore segnalato dall'utente il 2026-10-30, QMIS 22).
-8c. **Config in ogni tabella con più colonne**: toolbar con `.rs-spacer` + `sl-dropdown data-table-options` (Config)
+   8c. **Config in ogni tabella con più colonne**: toolbar con `.rs-spacer` + `sl-dropdown data-table-options` (Config)
    in fondo a destra, anche se la tabella non ha altre azioni e anche nei dialog e nei tab. Verificalo prima di
    consegnare: ogni `sl-table` senza `data-table-options` è un errore (DECISIONS "Ordine dei pulsanti nella toolbar";
    2026-10-30, 11 tabelle QMIS senza Config).
    **Eccezione:** le tabelle dentro un `sl-detail-panel` (es. tab Revisions del dettaglio) non hanno toolbar né Config
    (segnalato dall'utente il 2026-10-30, DACS-Toolbar).
-8d. **Celle documento uniformi agli altri flussi** (DECISIONS "Cella documento con file", scelta dell'utente
+   8d. **Celle documento uniformi agli altri flussi** (DECISIONS "Cella documento con file", scelta dell'utente
    2026-10-30): nelle **liste principali** la struttura è quella di `documentColumns` (Quick info con l'icona del file
    nativo + `documentCell`); nelle **tabelle dei pannelli di dettaglio** (tab Revisions) e nel flusso DACS-Toolbar la
    cella è `documentRowCell` / `documentFileCell` (icona del file prima del nome, senza Quick info). Mai ridefinire
@@ -47,19 +47,24 @@ text style). Le regole specifiche del progetto (mappature, pattern di pagina, sc
     `scrollTop > 0` dopo il caricamento (uno `scrollIntoView` scorre anche gli antenati e nasconde breadcrumb e
     titolo): misura `scrollHeight`/`clientHeight` di `main` prima di dichiarare la pagina pronta per Figma.
 11. **Regioni nominate** con `aria-label` e una classe semantica.
+    11b. **Sezioni di un form lungo**: quando un form (pagina o dialog) è diviso in più sezioni con titolo e ha molti
+    campi (soglia nelle decisioni del progetto), ogni sezione è un componente card del DS con il titolo nell'header,
+    non un titolo libero su fondo neutro. I form brevi, a sezione unica o in sola lettura usano il sottotitolo semplice.
+    Card dentro un dialog sono ammesse solo in questo caso (decisione dell'utente 2026-11-09). Quando la regola
+    cambia, applicala a **tutte** le pagine che la soddisfano e aggiorna il frame Figma di ognuna (flusso 3).
 12. I contenitori senza componente Figma (es. menu dentro un dropdown, pannello di una tab) sono ammessi se sono
     contenuti nello snippet del genitore.
 
 ## Cosa conta come "nuovo elemento" (da segnalare sempre)
 
-| Caso | Esempio | Cosa scrivere nel report |
-| --- | --- | --- |
-| Superficie non DS | box con fondo o bordo | perché la card non basta; proposta di variante o componente |
-| Override `::part` | badge con colore non previsto | variante da aggiungere |
-| Composizione ricorrente | dual list, document viewer | proposta di pattern o componente composto |
-| Icona mancante | `funnel`, `inbox` | nome ideale + icona usata al suo posto |
-| Componente senza Code Connect usato come elemento principale | — | richiesta di template Code Connect |
-| Testo con stile non coperto | etichetta tabellare 11px | proposta di text style o token |
+| Caso                                                         | Esempio                       | Cosa scrivere nel report                                    |
+| ------------------------------------------------------------ | ----------------------------- | ----------------------------------------------------------- |
+| Superficie non DS                                            | box con fondo o bordo         | perché la card non basta; proposta di variante o componente |
+| Override `::part`                                            | badge con colore non previsto | variante da aggiungere                                      |
+| Composizione ricorrente                                      | dual list, document viewer    | proposta di pattern o componente composto                   |
+| Icona mancante                                               | `funnel`, `inbox`             | nome ideale + icona usata al suo posto                      |
+| Componente senza Code Connect usato come elemento principale | —                             | richiesta di template Code Connect                          |
+| Testo con stile non coperto                                  | etichetta tabellare 11px      | proposta di text style o token                              |
 
 ## Principi di design (applicativi enterprise)
 
@@ -88,3 +93,19 @@ text style). Le regole specifiche del progetto (mappature, pattern di pagina, sc
 - **Select multiple su una riga:** i tag di `sl-select multiple` non devono andare a capo. Imposta
   `max-options-visible` in base alla larghezza del campo (indicativamente 1 fino a `rs-span-4`, 2 fino a `rs-span-8`,
   3 a tutta larghezza): gli altri valori finiscono nel contatore "+N". In Figma: stessi tag visibili più il Tag "+N".
+
+- **Campo di ricerca di una lista o griglia (2026-11-09, segnalato dall'utente):** mai come campo piccolo senza etichetta
+  messo a caso nel page header. Per una tabella va nel suo slot `toolbar`. Per una griglia di card senza tabella:
+  intestazione a `rs-grid--fields`, titolo + sottotitolo con il conteggio a sinistra (`rs-span-8 rs-span-md-6`), `sl-input
+  type="search" label="Search"` a destra alla stessa altezza (`rs-span-4 rs-span-md-6`). Prima di inventare una posizione,
+  cerca come la stessa cosa è fatta nelle pagine esistenti e in `DECISIONS.md`.
+- **Spaziatura dentro `sl-card` (2026-11-09, segnalato dall'utente):** il body della card è `display: block`, senza gap.
+  Ogni blocco aggiunto al corpo (alert, testo, campi) va dentro una `rs-stack` (o accanto a un `sl-divider`, che ha i
+  suoi margini), mai come fratello diretto di una stack: altrimenti resta attaccato al blocco precedente.
+- **`sl-divider` tra due blocchi (2026-11-09, segnalato dall'utente):** il divider ha già i suoi margini. Non metterlo
+  dentro una `rs-stack` (tanto meno `--loose`): gap + margini raddoppiano lo spazio. Struttura giusta: blocco
+  (`rs-stack`) · `sl-divider` · blocco, come fratelli diretti del corpo della card.
+- **Icone solo del DS (2026-11-10):** il lint non controlla i nomi di `sl-icon`. Prima di chiudere una pagina verifica che
+  ogni `name` usato abbia il suo template `figma/icon-<nome>.figma.ts`; se manca, l'icona non esiste in Figma: scegline una
+  esistente oppure aggiungila al DS (set con le 6 varianti di colore, vettore dallo SVG di bootstrap-icons) prima del
+  flusso 3.

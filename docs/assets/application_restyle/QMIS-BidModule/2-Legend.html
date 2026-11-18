@@ -26,11 +26,39 @@
       <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
       <span slot="logo"></span>
 
+      <sl-header-item slot="actions" class="project-selector">
+        000001 · Yard Training
+        <sl-menu slot="menu" aria-label="Project" style="width: 28rem">
+          <sl-input size="small" placeholder="Search code or project" clearable aria-label="Search projects">
+            <sl-icon slot="prefix" name="search"></sl-icon>
+          </sl-input>
+          <sl-divider></sl-divider>
+          <sl-menu-label>My projects</sl-menu-label>
+          <sl-menu-item type="checkbox" value="000001" checked title="Yard Training"
+            >Yard Training<span slot="suffix" class="rs-meta">000001</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032325" title="Bioraffineria Di Livorno EPC"
+            >Bioraffineria Di Livorno EPC<span slot="suffix" class="rs-meta">032325</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032239" title="Berri Project"
+            >Berri Project<span slot="suffix" class="rs-meta">032239</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="023144" title="Neptun Deep Project"
+            >Neptun Deep Project<span slot="suffix" class="rs-meta">023144</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032197" title="Natural Gas Storage Plant"
+            >Natural Gas Storage Plant<span slot="suffix" class="rs-meta">032197</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="F10412" title="–"
+            >–<span slot="suffix" class="rs-meta">F10412</span></sl-menu-item
+          >
+        </sl-menu>
+      </sl-header-item>
       <sl-header-item slot="actions">
-        <sl-avatar initials="QA" label="user_qmis_admin"></sl-avatar>
-        user_qmis_admin
+        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+        Mario Rossi
         <sl-menu slot="menu">
-          <sl-menu-item>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="person-fill"></sl-icon>Profile</sl-menu-item>
           <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
           <sl-divider></sl-divider>
           <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
@@ -116,7 +144,7 @@
               type="search"
               label="Full-text"
               placeholder="Bid number, project, client…"
-              help-text="Dates as mm/dd/yy"
+              help-text="Dates as dd-mmm-yyyy"
               clearable
             >
               <sl-icon slot="prefix" name="search"></sl-icon>
@@ -241,34 +269,31 @@
     <!-- Legend: the Quick info badges, in the order they appear in a row -->
     <sl-dialog label="Legend" open>
       <div class="rs-stack">
-        <div class="rs-stack rs-stack--tight">
-          <h3 class="rs-subheading">Bid status</h3>
-          <div class="rs-cluster">
-            <span class="rs-inline"><sl-badge variant="warning">O</sl-badge>Ongoing</span>
-            <span class="rs-inline"><sl-badge variant="success">S</sl-badge>Submitted</span>
-            <span class="rs-inline"><sl-badge variant="primary">A</sl-badge>Awarded</span>
-            <span class="rs-inline"><sl-badge variant="accent">OH</sl-badge>On hold</span>
-            <span class="rs-inline"><sl-badge variant="danger">L</sl-badge>Lost</span>
-            <span class="rs-inline"><sl-badge variant="neutral">C</sl-badge>Cancelled</span>
-          </div>
-        </div>
-        <div class="rs-stack rs-stack--tight">
-          <h3 class="rs-subheading">Bid documents status</h3>
-          <div class="rs-cluster">
-            <span class="rs-inline"><sl-badge variant="warning" pill>W</sl-badge>Working</span>
-            <span class="rs-inline"><sl-badge variant="neutral" pill>I</sl-badge>Issued</span>
-            <span class="rs-inline"><sl-badge variant="success" pill>A</sl-badge>Approved</span>
-            <span class="rs-inline"><sl-badge variant="danger" pill>R</sl-badge>Rejected</span>
-          </div>
-        </div>
-        <div class="rs-stack rs-stack--tight">
-          <h3 class="rs-subheading">Bid approval</h3>
-          <div class="rs-cluster">
-            <span class="rs-inline"><sl-badge variant="neutral" pill>TE</sl-badge>Technical docs approved</span>
-            <span class="rs-inline"><sl-badge variant="neutral" pill>CO</sl-badge>Commercial docs approved</span>
-            <span class="rs-inline"><sl-badge variant="neutral" pill>PM</sl-badge>Bid docs shared with proposal</span>
-          </div>
-        </div>
+        <sl-legend label="Bid status" layout="list" columns="2">
+          <sl-legend-item><sl-badge slot="marker" variant="warning">O</sl-badge>Ongoing</sl-legend-item>
+          <sl-legend-item><sl-badge slot="marker" variant="success">S</sl-badge>Submitted</sl-legend-item>
+          <sl-legend-item><sl-badge slot="marker" variant="primary">A</sl-badge>Awarded</sl-legend-item>
+          <sl-legend-item><sl-badge slot="marker" variant="accent">OH</sl-badge>On hold</sl-legend-item>
+          <sl-legend-item><sl-badge slot="marker" variant="danger">L</sl-badge>Lost</sl-legend-item>
+          <sl-legend-item><sl-badge slot="marker" variant="neutral">C</sl-badge>Cancelled</sl-legend-item>
+        </sl-legend>
+        <sl-legend label="Bid documents status" layout="list" columns="2">
+          <sl-legend-item><sl-badge slot="marker" variant="warning" pill>W</sl-badge>Working</sl-legend-item>
+          <sl-legend-item><sl-badge slot="marker" variant="neutral" pill>I</sl-badge>Issued</sl-legend-item>
+          <sl-legend-item><sl-badge slot="marker" variant="success" pill>A</sl-badge>Approved</sl-legend-item>
+          <sl-legend-item><sl-badge slot="marker" variant="danger" pill>R</sl-badge>Rejected</sl-legend-item>
+        </sl-legend>
+        <sl-legend label="Bid approval" layout="list">
+          <sl-legend-item
+            ><sl-badge slot="marker" variant="neutral" pill>TE</sl-badge>Technical docs approved</sl-legend-item
+          >
+          <sl-legend-item
+            ><sl-badge slot="marker" variant="neutral" pill>CO</sl-badge>Commercial docs approved</sl-legend-item
+          >
+          <sl-legend-item
+            ><sl-badge slot="marker" variant="neutral" pill>PM</sl-badge>Bid docs shared with proposal</sl-legend-item
+          >
+        </sl-legend>
       </div>
       <sl-button slot="footer" variant="primary" href="./1-BidList.html">Close</sl-button>
     </sl-dialog>

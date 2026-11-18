@@ -1,0 +1,24 @@
+/*
+ * xCPage-UserManagement — layout rules specific to this flow. Shared rules live in ../_shared/restyle.css.
+ */
+
+/* Above the workspace: header, breadcrumb, title and a two-row filters card (as xCPage-BulkUpload) */
+.rs-workspace {
+  --rs-workspace-offset: 30.4375rem;
+  --rs-workspace-height: max(24rem, calc(100vh - var(--rs-workspace-offset)));
+}
+
+/* One-row filters card (Project users, Roles, Corporate groups): fields, options and Reset / Search on the same row,
+   bottom-aligned; controls without a label (switch, buttons) take the height of an input. */
+.rs-workspace:has(.group-list, .role-list, .cg-list) {
+  --rs-workspace-offset: 25.5rem;
+}
+
+.filters-inline {
+  align-items: end;
+}
+
+.filters-inline__control {
+  min-height: var(--sl-input-height-medium);
+  align-items: center;
+}

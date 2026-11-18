@@ -1,0 +1,315 @@
+<!doctype html>
+<!--
+  CoSy-STQ · 1b-ProjectList-MoreFiltersOpen — same page as 1-ProjectList-ImportMenu, with the More filters drawer open.
+  State: the drawer lists all STQ properties that can be used as filters (checkbox + up / down, like the table Config);
+  the 5 checked ones are shown, in that order, in the Filters card (Approval status is one picked from here).
+  Import menu closed.
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/CoSy-STQ/1b-ProjectList-MoreFiltersOpen.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CoSy · Site Technical Queries</title>
+    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
+    <link rel="stylesheet" href="../_shared/restyle.css" />
+    <link rel="stylesheet" href="./flow.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <script>
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
+  </head>
+
+  <body class="sl-theme-light">
+    <sl-header>
+      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+      <span slot="logo"></span>
+
+      <sl-header-item slot="actions" class="project-selector">
+        000001 · Yard Training
+        <sl-menu slot="menu" aria-label="Project" style="width: 28rem">
+          <sl-input size="small" placeholder="Search code or project" clearable aria-label="Search projects">
+            <sl-icon slot="prefix" name="search"></sl-icon>
+          </sl-input>
+          <sl-divider></sl-divider>
+          <sl-menu-label>My projects</sl-menu-label>
+          <sl-menu-item type="checkbox" value="000001" checked title="Yard Training"
+            >Yard Training<span slot="suffix" class="rs-meta">000001</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032325" title="Bioraffineria Di Livorno EPC"
+            >Bioraffineria Di Livorno EPC<span slot="suffix" class="rs-meta">032325</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032239" title="Berri Project"
+            >Berri Project<span slot="suffix" class="rs-meta">032239</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="023144" title="Neptun Deep Project"
+            >Neptun Deep Project<span slot="suffix" class="rs-meta">023144</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032197" title="Natural Gas Storage Plant"
+            >Natural Gas Storage Plant<span slot="suffix" class="rs-meta">032197</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="F10412" title="–"
+            >–<span slot="suffix" class="rs-meta">F10412</span></sl-menu-item
+          >
+        </sl-menu>
+      </sl-header-item>
+      <sl-header-item slot="actions">
+        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+        Mario Rossi
+        <sl-menu slot="menu">
+          <sl-menu-item><sl-icon slot="prefix" name="person-fill"></sl-icon>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+    </sl-header>
+
+    <div class="rs-shell">
+      <sl-sidebar label="Project navigation" collapsed>
+        <sl-sidebar-group label="Documenti di progetto" count="70">
+          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+          <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Procurement (SAP)" count="71">
+          <sl-icon slot="icon" name="cart"></sl-icon>
+          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Comunicazione" count="47">
+          <sl-icon slot="icon" name="envelope"></sl-icon>
+          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
+          <sl-sidebar-item href="#" current>Site Technical Queries</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Tasks" count="55">
+          <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+          <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Document Center">
+          <sl-icon slot="icon" name="archive"></sl-icon>
+          <sl-sidebar-item href="#">Document Center</sl-sidebar-item>
+          <sl-sidebar-item href="#">Binders Workspace</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="New &amp; import">
+          <sl-icon slot="icon" name="upload"></sl-icon>
+          <sl-sidebar-item href="#">New · Document</sl-sidebar-item>
+          <sl-sidebar-item href="#">New · Placeholder</sl-sidebar-item>
+          <sl-sidebar-item href="#">Import · Import new docs</sl-sidebar-item>
+          <sl-sidebar-item href="#">Import · Bulk upload docs</sl-sidebar-item>
+          <sl-sidebar-item href="#">Content · Bulk load templates</sl-sidebar-item>
+        </sl-sidebar-group>
+      </sl-sidebar>
+
+      <main class="rs-page rs-page--fill" aria-label="Site Technical Queries">
+        <sl-breadcrumb aria-label="Breadcrumb">
+          <sl-breadcrumb-item href="../DMS-Home/1-Home.html">Home</sl-breadcrumb-item>
+          <sl-breadcrumb-item href="#">Site Technical Queries</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Projects</sl-breadcrumb-item>
+        </sl-breadcrumb>
+
+        <div class="rs-page-header">
+          <div class="rs-page-header__text">
+            <h1 class="rs-title">Site Technical Queries</h1>
+            <span class="rs-meta">14 projects</span>
+          </div>
+        </div>
+
+        <sl-card aria-label="Filters">
+          <div slot="header" class="rs-cluster rs-cluster--between">
+            <h2 class="rs-heading rs-inline"><sl-icon name="filter"></sl-icon>Filters</h2>
+            <sl-button class="more-filters" size="small" variant="text">
+              <sl-icon slot="prefix" name="sliders"></sl-icon>
+              More filters
+            </sl-button>
+          </div>
+          <form class="rs-grid rs-grid--fields filter-fields"></form>
+        </sl-card>
+
+        <sl-table fill sticky-header label="Site Technical Queries">
+          <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow" role="toolbar" aria-label="STQ actions">
+            <sl-dropdown>
+              <sl-button slot="trigger" size="small" variant="primary"
+                ><sl-icon slot="prefix" name="upload"></sl-icon>Import</sl-button
+              >
+              <sl-menu>
+                <sl-menu-item>Site Technical Query…</sl-menu-item>
+              </sl-menu>
+            </sl-dropdown>
+            <span class="rs-spacer"></span>
+            <sl-dropdown placement="bottom-end" hoist data-table-options>
+              <sl-button slot="trigger" size="small" caret
+                ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+              >
+            </sl-dropdown>
+          </div>
+          <sl-empty-state
+            slot="empty"
+            title-text="No Site Technical Queries"
+            description="Use Filters to see the Site Technical Queries."
+          >
+            <sl-icon slot="icon" name="folder"></sl-icon>
+          </sl-empty-state>
+        </sl-table>
+      </main>
+    </div>
+    <!-- More filters (closed in this state): which STQ properties appear in the Filters card, and in which order.
+         Same structure as the table Config (checkbox + up / down), inside the drawer: with ~20 properties the user picks
+         the ones to keep in the card (user, 2026-11-17). Approval status is one already picked from the drawer. -->
+    <sl-drawer label="More filters" placement="end" open>
+      <div class="rs-stack">
+        <div class="rs-cluster rs-cluster--between">
+          <p class="rs-meta filter-count"></p>
+          <sl-button class="filter-reset" size="small" variant="text">Reset</sl-button>
+        </div>
+        <ul class="rs-table-config__list filter-list" aria-label="Filters shown in the Filters card"></ul>
+      </div>
+      <sl-button slot="footer" variant="primary" class="filter-done">Done</sl-button>
+    </sl-drawer>
+    <script type="module">
+      import { html, render } from 'https://cdn.jsdelivr.net/npm/lit@3/+esm';
+
+      const select = (...options) => ({ kind: 'select', options });
+      const all = [
+        {
+          id: 'discipline',
+          label: 'Discipline',
+          placeholder: 'All disciplines',
+          ...select('AUT - Automation', 'INL - Insulation')
+        },
+        { id: 'contract', label: 'Contract number', placeholder: 'All contracts', ...select() },
+        { id: 'subco', label: 'Subcontractor', placeholder: 'All subcontractors', ...select('TESTSUBCO') },
+        { id: 'unit', label: 'Unit', placeholder: 'All units', multiple: true, ...select() },
+        {
+          id: 'approval',
+          label: 'Approval status',
+          placeholder: 'Any',
+          ...select(
+            'Draft',
+            'Issued for verification',
+            'Issued to FEM',
+            'Issued to PM',
+            'Issued to DS & QA/QC',
+            'Approved by DS & QA/QC',
+            'Ready for issue',
+            'Issued to Subco',
+            'Closed'
+          )
+        },
+        { id: 'stq', label: 'STQ No.', kind: 'input' },
+        { id: 'subject', label: 'Subject', kind: 'input' },
+        { id: 'title', label: 'Title', kind: 'input' },
+        { id: 'revision', label: 'Revision status', placeholder: 'Any', ...select('Current', 'Superseded') },
+        { id: 'date', label: 'STQ date', kind: 'date' },
+        { id: 'originator', label: 'Originator', placeholder: 'Any', ...select() },
+        { id: 'area', label: 'Area', placeholder: 'Any', ...select() },
+        { id: 'system', label: 'System', placeholder: 'Any', ...select() },
+        { id: 'workpackage', label: 'Work package', placeholder: 'Any', ...select() },
+        { id: 'priority', label: 'Priority', placeholder: 'Any', ...select('High', 'Medium', 'Low') },
+        { id: 'reply', label: 'Reply status', placeholder: 'Any', ...select('Waiting', 'Replied') },
+        { id: 'due', label: 'Reply due date', kind: 'date' },
+        { id: 'createdby', label: 'Created by', kind: 'input' },
+        { id: 'created', label: 'Created on', kind: 'date' },
+        { id: 'modified', label: 'Modified on', kind: 'date' }
+      ];
+      const defaults = ['discipline', 'contract', 'subco', 'unit', 'approval'];
+      let order = all.map(f => f.id);
+      let shown = new Set(defaults);
+      const byId = id => all.find(f => f.id === id);
+
+      const field = f =>
+        f.kind === 'select'
+          ? html`<sl-select
+              class="rs-span-3 rs-span-md-6"
+              label=${f.label}
+              placeholder=${f.placeholder}
+              ?multiple=${f.multiple}
+              clearable
+            >
+              ${f.options.map(
+                o => html`<sl-option value=${o.toLowerCase().replace(/[^a-z0-9]+/g, '-')}>${o}</sl-option>`
+              )}
+            </sl-select>`
+          : html`<sl-input
+              class="rs-span-3 rs-span-md-6"
+              label=${f.label}
+              type=${f.kind === 'date' ? 'date' : 'text'}
+              placeholder="Any"
+              clearable
+            ></sl-input>`;
+
+      const move = (id, to) => {
+        const from = order.indexOf(id);
+        if (to < 0 || to >= order.length) return;
+        order.splice(from, 1);
+        order.splice(to, 0, id);
+        update();
+      };
+      const toggle = id => {
+        shown.has(id) ? shown.delete(id) : shown.add(id);
+        update();
+      };
+
+      function update() {
+        render(
+          order.filter(id => shown.has(id)).map(id => field(byId(id))),
+          document.querySelector('.filter-fields')
+        );
+        document.querySelector('.filter-count').textContent = `${shown.size} of ${all.length} shown in Filters`;
+        render(
+          order.map(
+            (id, index) =>
+              html`<li class="rs-table-config__item">
+                <sl-checkbox ?checked=${shown.has(id)} @sl-change=${() => toggle(id)}>${byId(id).label}</sl-checkbox>
+                <span class="rs-spacer"></span>
+                <sl-icon-button
+                  name="arrow-up"
+                  label="Move ${byId(id).label} up"
+                  ?disabled=${index === 0}
+                  @click=${() => move(id, index - 1)}
+                ></sl-icon-button>
+                <sl-icon-button
+                  name="arrow-down"
+                  label="Move ${byId(id).label} down"
+                  ?disabled=${index === order.length - 1}
+                  @click=${() => move(id, index + 1)}
+                ></sl-icon-button>
+              </li>`
+          ),
+          document.querySelector('.filter-list')
+        );
+      }
+      update();
+
+      const drawer = document.querySelector('sl-drawer[label="More filters"]');
+      document.querySelector('.more-filters').addEventListener('click', () => drawer.show());
+      document.querySelector('.filter-done').addEventListener('click', () => drawer.hide());
+      document.querySelector('.filter-reset').addEventListener('click', () => {
+        order = all.map(f => f.id);
+        shown = new Set(defaults);
+        update();
+      });
+    </script>
+  </body>
+</html>

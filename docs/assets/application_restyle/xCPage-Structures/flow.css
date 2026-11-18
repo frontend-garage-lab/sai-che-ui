@@ -1,0 +1,88 @@
+/*
+ * xCPage-Structures — layout rules specific to this flow. Shared rules live in ../_shared/restyle.css.
+ */
+
+/* Above the workspace: header, breadcrumb, title */
+.rs-workspace {
+  --rs-workspace-offset: 15rem;
+}
+
+/* One surface with tree + folder content (~30% + ~40% of the page), Clipboard panel ~30% on the right */
+.structures-workspace {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
+}
+
+/* Clipboard closed (sl-detail-panel ×): the structures surface takes the whole width */
+.structures-workspace--no-clipboard {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.structures-card::part(base) {
+  height: 100%;
+}
+
+.structures-card::part(body) {
+  height: 100%;
+  min-height: 0;
+}
+
+/* The tree column is as wide as the structure tabs (21.5rem = 4 tabs + gutter) and never narrower: more room for the folder content */
+.structures-split {
+  --min: 21.5rem;
+  --max: 50%;
+
+  height: 100%;
+}
+
+.structure-pane {
+  height: 100%;
+  min-height: 0;
+  padding-inline-end: var(--rs-gutter);
+}
+
+.node-pane {
+  height: 100%;
+  min-height: 0;
+  padding-inline-start: var(--rs-gutter);
+}
+
+/* Structure tabs own the tree: the tab group fills the column, the tree scrolls in the active panel */
+.structure-pane {
+  display: flex;
+  flex-direction: column;
+}
+
+.structure-tabs {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.tree-scroll {
+  height: 100%;
+}
+
+.node-tabs {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Documents tab: the table takes the height of the tab */
+.node-documents {
+  display: flex;
+  flex-direction: column;
+}
+
+.node-documents sl-table {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.clipboard-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.clipboard-body sl-table {
+  flex: 1 1 auto;
+  min-height: 0;
+}

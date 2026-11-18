@@ -59,6 +59,30 @@ describe('<sl-menu>', () => {
     expect(selectHandler).to.have.been.calledOnce;
   });
 
+  it('lets a text field inside the menu keep space and enter, and moves to the first item on ArrowDown', async () => {
+    const menu = await fixture<SlMenu>(html`
+      <sl-menu>
+        <sl-input size="small" placeholder="Search"></sl-input>
+        <sl-menu-item value="item-1">Item 1</sl-menu-item>
+        <sl-menu-item value="item-2">Item 2</sl-menu-item>
+      </sl-menu>
+    `);
+    const input = menu.querySelector('sl-input')!;
+    const [item1] = menu.querySelectorAll('sl-menu-item');
+    const selectHandler = sinon.spy();
+    menu.addEventListener('sl-select', selectHandler);
+
+    input.focus();
+    await sendKeys({ type: 'ab c' });
+    await sendKeys({ press: 'Enter' });
+
+    expect(input.value).to.equal('ab c');
+    expect(selectHandler).to.not.have.been.called;
+
+    await sendKeys({ press: 'ArrowDown' });
+    expect(document.activeElement).to.equal(item1);
+  });
+
   it('does not select disabled items when clicking', async () => {
     const menu = await fixture<SlMenu>(html`
       <sl-menu>

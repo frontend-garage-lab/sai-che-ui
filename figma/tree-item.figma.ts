@@ -16,6 +16,13 @@ function text(...layerNames: string[]) {
 const selected = instance.getEnum('State', { default: false, hover: false, selected: true, disabled: false });
 const disabled = instance.getEnum('State', { default: false, hover: false, selected: false, disabled: true });
 const expanded = instance.getEnum('Expanded', { true: true, false: false });
+// Show Expand Icon off = leaf (no children, no chevron). A collapsed item with the chevron has children that are not
+// loaded yet: in code that is `lazy` (the expand button shows without child items).
+const showExpand = instance.getBoolean('Show Expand Icon');
+const lazy = !expanded && showExpand;
+// Show Icon + Icon: the icon before the label (default folder), part of the label in code.
+const iconSwap = instance.getBoolean('Show Icon') ? instance.getInstanceSwap('Icon') : null;
+const icon = iconSwap && iconSwap.type === 'INSTANCE' ? iconSwap.executeTemplate().example : '';
 // Nested items live in the Children slot, which only exists when the item is expanded.
 // `getSlot` alone only shows a collapsed `<Slot />` placeholder for the slot node, which has no Code Connect to open:
 // the connected instances placed directly in the slot are rendered through their own templates instead, interpolated
@@ -35,7 +42,7 @@ const child8 = childAt(7);
 const childFallback = childList.length || !childSlot ? '' : figma.html`\n    ${childSlot}`;
 
 export default {
-  example: figma.html`<sl-tree-item${selected ? ' selected' : ''}${disabled ? ' disabled' : ''}${expanded ? ' expanded' : ''}>${text('Folder name')}${child1}${child2}${child3}${child4}${child5}${child6}${child7}${child8}${childFallback}${childList.length || childFallback ? '\n' : ''}</sl-tree-item>`,
+  example: figma.html`<sl-tree-item${selected ? ' selected' : ''}${disabled ? ' disabled' : ''}${expanded ? ' expanded' : ''}${lazy ? ' lazy' : ''}>${icon}${text('Folder name')}${child1}${child2}${child3}${child4}${child5}${child6}${child7}${child8}${childFallback}${childList.length || childFallback ? '\n' : ''}</sl-tree-item>`,
   imports: ["import 'src/components/tree-item/tree-item.js'"],
   id: 'tree-item',
   metadata: { nestable: true }

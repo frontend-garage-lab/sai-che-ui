@@ -70,7 +70,8 @@ return wrappers.map(w => {
 - Un frame con altezza FIXED può comunque crescere quando ci metti contenuto più alto (es. pagina con scroll nell'HTML): dopo la costruzione rifai `resize(1600, 1000)` sul frame NEW e controlla l'altezza della colonna `NEW` del wrapper (label + 12 + 1000 = 1029).
 - Dopo aver svuotato `Header Actions` o spento l'icona di una **Card**, la linea sotto l'header può restare corta (layout non ricalcolato) anche se le misure sono giuste: porta il frame header e il testo `Card header` a `FIXED`, `resize`, poi di nuovo `FILL`. Confronta i pixel dello screenshot, non le misure.
 - Select `Multiple=true` (dal 2026-10-28): i tag sono istanze **Tag** nello slot `Tags` (svuotalo e metti un Tag removable per valore, size uguale al Select); con valori spegni `Show Placeholder`. Multi-select vuoto: `Multiple=true`, slot `Tags` vuoto, `Show Placeholder=true`.
-- Il master **Table** ha le Table Column direttamente nello slot `Rows` (nessun frame `Columns`: quello presente in alcune pagine è stato aggiunto a mano). La variante colonna `Kind=actions` esiste solo con `Align=center`.
+- Il master **Table** ha le Table Column direttamente nello slot `Rows` (nessun frame `Columns`: quello presente in alcune pagine è stato aggiunto a mano). La variante colonna `Kind=actions` esiste solo con `Align=center`. La colonna ⋮ (`Kind=actions`) va sempre con `Sticky=true`, come `sticky-actions` nell'HTML (utente, 2026-11-10).
+- **Avatar ridimensionati**: mai fare `resize` di un Avatar per cambiarne la misura (il testo resta alla misura della variante e esce dal cerchio: 125 header con `Size=medium` a 24 px, segnalato dall'utente 2026-11-10). Si cambia la variante `Size` (24 px = `small`, es. account dell'Header). Dopo aver costruito un header, controlla che nessun Avatar abbia `fontSize` > 60% della larghezza.
 - Variabili e stili dalla libreria: `figma.variables.importVariableByKeyAsync`, `importStyleByKeyAsync`, poi
   `setBoundVariable`. Mai valori fissi.
 - Icone: solo componenti icona del DS, importati per key (`importComponentByKeyAsync`). Mai `createNodeFromSvg` nel
@@ -96,6 +97,9 @@ return wrappers.map(w => {
 - Spostare un wrapper in una SECTION cambia gli id dei nodi interni: ritrovali per nome partendo dal wrapper.
 
 ## Ricette sul master (file DS, solo dopo approvazione)
+
+- **Ogni proprietà deve restare usata.** Se sposti un binding (es. `visible`) da una proprietà a un'altra, la vecchia resta senza riferimenti e il publish la blocca ("Invalid assets · Unused properties"). Prima di chiudere un fix, controlla che ogni proprietà non-VARIANT del set compaia in `componentPropertyReferences` di almeno un nodo.
+- **Un auto-layout non si restringe se i figli sono nascosti o lo slot è vuoto**: conserva l'ultima misura. Per far sparire un gruppo, nascondi il nodo **esterno**, non quello interno.
 
 1. Leggi il codice del componente (sorgente + stili) per sapere come gestisce davvero il caso.
 2. Baseline: id, key, `componentPropertyDefinitions` del set.
@@ -243,3 +247,53 @@ il fill `IMAGE`.
 - Tabella in un contenitore HUG (es. Attachments nel Detail Panel): `layoutSizingVertical = "FIXED"` con l'altezza toolbar + header + righe, altrimenti collassa.
 - Tab Group con più di 4 tab: le proprietà booleane `Tab 5/6/7` aggiungono le tab (non serve un gap DS).
 - Clonare una variante per aggiungere un asse **perde** i `componentPropertyReferences` delle istanze annidate (es. l'INSTANCE_SWAP dell'icona): dopo il clone ricollegali (`ic.componentPropertyReferences = { mainComponent: '<Prop>#id' }`) e prova lo swap su un'istanza temporanea.
+
+## Avvolgere contenuti esistenti in un componente (aggiunto 2026-11-09, sezioni di form → Card)
+
+Caso tipico: una pagina già fatta cambia layout (es. le sezioni di un form diventano card) e va aggiornata in-place.
+
+- **Un nodo dentro lo slot di un'istanza non si sposta in un'altra istanza**: `appendChild` lo ricrea con un id nuovo
+  e la riga dopo fallisce con "node does not exist" (la chiamata viene annullata per intero). Procedura: inserire
+  l'istanza nuova con `insertChild(idx, …)` (`idx` con `findIndex` per id: `indexOf` restituisce −1 sui nodi annidati
+  in istanza), **rileggerla** da `parent.children[idx]`, **clonare** il contenuto nello slot, rimuovere l'originale
+  ritrovandolo per nome/struttura. Ogni id va riletto dopo ogni spostamento.
+- **Il clone eredita il sizing del vecchio contesto**: dentro lo slot del nuovo componente impostare
+  `layoutSizingHorizontal = "FILL"` e `layoutSizingVertical = "HUG"` (un FILL verticale in uno slot HUG collassa a
+  pochi pixel).
+- **Il padding del nuovo contenitore riduce la larghezza**: i figli `FIXED` calcolati sulla griglia a colonne vanno
+  ricalcolati (span = `round((w+gap)/(colVecchia+gap))`, nuova w = `span·colNuova + (span−1)·gap`). Cercare le righe
+  in cui la somma dei figli supera la larghezza e i figli isolati fuori griglia; restituire span prima/dopo.
+- **I contenitori HUG crescono** (un dialog si allunga e il footer esce dal frame): applicare il limite dell'HTML
+  (`max-height` → altezza FIXED + corpo FILL con clip) e ricentrare.
+- Elementi affiancati in una grid HTML (stessa altezza per `align-items: stretch`): `layoutSizingVertical = "FILL"`.
+- Prima scansione read-only su tutte le pagine coinvolte (titoli dall'HTML → nodo in Figma); le sezioni non trovate di
+  solito sono fuori dallo stato disegnato (tab non attiva, parte tagliata dallo scroll): non vanno aggiunte.
+
+- **Mai `clone()` di un sotto-layer di un'istanza preso da un altro frame** (es. la colonna `Selection` della tabella di S2) per inserirlo in uno SLOT di un'altra istanza: la struttura risulta corretta, ma nel render della pagina intera la copia esce vuota o fuori posto, e lo screenshot del solo nodo può sembrare giusto. Crea invece un'istanza nuova dalla variante del master (`(await old.getMainComponentAsync()).parent` → variante giusta → `createInstance()`) e poi imposta le proprietà (2026-11-09, segnalato dall'utente sulla Clipboard).
+- Dopo una modifica dentro una tabella o un altro slot, verifica sempre con lo screenshot del **frame intero della pagina**, non solo del nodo modificato: i due render possono non coincidere.
+- **Dopo "Update" della libreria nel file di progetto** le istanze possono mantenere il layout precedente anche se il componente è già quello nuovo (es. un frame aggiunto al master che resta in mezzo alla voce, misure vecchie). Prima di misurare forza il ricalcolo: `setProperties` di un BOOLEAN avanti e indietro sulle istanze toccate, e per Input/Divider la ricetta FIXED → `resize(w-1)` → `resize(w)` → `FILL` (2026-11-09).
+- **Margini che nel codice collassano** (elementi block con margini verticali consecutivi, es. `sl-input` e `sl-divider` dentro `sl-menu`): in Figma padding e spaziature si sommano. Riproduci lo spazio reale misurato nel browser, togliendo uno dei due (es. `paddingBottom = 0` sul frame del campo).
+- **Prima di proporre una correzione al master per una differenza di testo** (dimensione, interlinea), confronta l'istanza con il master: spesso è un override locale ereditato da una pagina clonata. Conta quante istanze nel file hanno lo stesso scarto (es. testi `Meta` con `fontSize !== 14`): se è solo una, si corregge l'istanza, non il master (2026-11-10, Detail Panel della Clipboard).
+- **Non riassegnare a un INSTANCE_SWAP il componente che ha già** (es. `Icon` = la stessa icona di default del master): lo swap azzera gli override annidati, compreso il colore dell'icona impostato nel master. Imposta lo swap solo quando l'icona cambia (2026-11-10, Stat primary della Dashboard).
+
+## Slot di dimensione fissa (aggiunto 2026-11-12, Split Panel)
+
+- Larghezza, altezza e min-size di uno **SLOT** non si sovrascrivono nell'istanza (`resize` non ha effetto, `minWidth` dà "cannot be overridden in an instance"). Se la misura dello slot deve cambiare da istanza a istanza (es. posizione di uno split), nel master lo slot va in **HUG** (con un `minWidth` di riserva): la misura la dà il contenuto messo nell'istanza.
+- Nello slot `Items` della Description List invece `itemSpacing` si può sovrascrivere (8 = gap del codice tra le righe).
+- I figli nascosti con `visible = false` di un'istanza (es. la 4ª Tab del Tab Group) poi non si ritrovano più nei `children`: per mostrare una tab in più usa i booleani `Tab 5/6/7`.
+
+## Tabelle vuote, Tab Group clonati, multi-select (aggiunto 2026-11-12, xCPage-UserManagement)
+
+- **Tabella vuota con intestazioni** (empty state sotto le colonne, come `sl-table` senza righe): `Show Rows` resta
+  `true`, `Show Empty` = `true`; si rimuovono le celle visibili da ogni slot `Cells` (la cella template nascosta
+  resta), ogni colonna `resize(w, 40)`, il frame `Columns` in `HUG` e lo slot `Empty` in `FILL`. Con `Show Rows=false`
+  sparisce anche la riga delle intestazioni.
+- Dopo un `setProperties` sulla Table, `findOne('Columns').children` può risultare vuoto (lettura aliasata) mentre le
+  celle ci sono: rimuovi le celle per id completo preso da `get_metadata` (`I<table>;<slot Rows>;<colonna>;<slot Cells>`).
+- **Clonare un Tab Group** con tab nascoste via override perde quelle tab (non tornano visibili): per un Tab Group
+  con tab diverse crea un'istanza **fresca** del master, clona il contenuto del pannello nello slot `Panel` e metti
+  `FILL` sia sullo slot sia sul contenuto (altrimenti il pannello resta largo 378 px).
+- **Select `Multiple=true`**: con i Tag nello slot, `clear-group` ed `expand-group` restano attaccati ai tag invece che
+  al bordo destro. Metti `tags-group.layoutSizingHorizontal = "FILL"` sull'istanza.
+- Cella con icona + testo (es. nome utente con `person-fill`): `Table Cell` `Type=document` con `File type` (swap
+  dell'icona) e `Meta 1/2` vuoti; il layer `Reference` vuoto va nascosto, altrimenti il testo sale.
