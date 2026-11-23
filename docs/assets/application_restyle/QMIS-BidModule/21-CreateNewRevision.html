@@ -283,56 +283,71 @@
           <!-- Bid details -->
           <sl-detail-panel contained class="rs-span-4 rs-span-lg-5" aria-label="Bid details">
             <span slot="label">Details</span>
-            <div class="rs-inset">
-              <div class="rs-stack">
-                <div class="rs-stack rs-stack--tight">
-                  <h3 class="rs-subheading">Saipem DEMO</h3>
-                  <span class="rs-meta">2026-BID-000004 · ABB POWER SYSTEMS</span>
-                </div>
-                <sl-description-list cols="2">
-                  <sl-description-list-item label="Bid status"
-                    ><sl-status filled size="small" variant="warning">Ongoing</sl-status></sl-description-list-item
-                  >
-                  <sl-description-list-item label="Bid open date">15-Oct-2026</sl-description-list-item>
-                  <sl-description-list-item label="Business unit">Robotics&amp;Ind. Sol.</sl-description-list-item>
-                  <sl-description-list-item label="Saipem bidding entity">HO - Bucharest - EC</sl-description-list-item>
-                </sl-description-list>
-                <div class="rs-stack rs-stack--tight">
-                  <h3 class="rs-subheading">Approval</h3>
-                  <sl-description-list cols="2">
-                    <sl-description-list-item label="Documents"
-                      ><sl-status filled size="small" variant="success">Approved</sl-status></sl-description-list-item
-                    >
-                    <sl-description-list-item label="Owners">user_qmis_admin</sl-description-list-item>
-                    <sl-description-list-item label="Technical">—</sl-description-list-item>
-                    <sl-description-list-item label="Commercial">—</sl-description-list-item>
-                  </sl-description-list>
-                </div>
-                <sl-divider></sl-divider>
-                <div class="rs-stack rs-stack--tight">
-                  <div class="rs-cluster rs-cluster--between">
-                    <h3 class="rs-subheading">Attachments</h3>
-                    <span class="rs-meta">2</span>
+            <sl-tab-group>
+              <sl-tab slot="nav" panel="properties" active
+                ><span class="rs-inline"><sl-icon name="info-circle"></sl-icon>Properties</span></sl-tab
+              >
+              <sl-tab slot="nav" panel="relations"
+                ><span class="rs-inline"><sl-icon name="diagram-3"></sl-icon>Relations</span></sl-tab
+              >
+
+              <sl-tab-panel name="properties" active>
+                <div class="rs-inset rs-stack">
+                  <div class="rs-stack rs-stack--tight">
+                    <h3 class="rs-subheading">Saipem DEMO</h3>
+                    <span class="rs-meta">2026-BID-000004 · ABB POWER SYSTEMS</span>
                   </div>
-                  <sl-table class="attachment-panel" label="Attachments">
-                    <div
-                      slot="toolbar"
-                      class="rs-cluster rs-cluster--nowrap rs-grow"
-                      role="toolbar"
-                      aria-label="Attachment actions"
+                  <sl-description-list cols="2">
+                    <sl-description-list-item label="Bid status"
+                      ><sl-status filled size="small" variant="warning">Ongoing</sl-status></sl-description-list-item
                     >
-                      <sl-switch size="small">Current versions</sl-switch>
-                      <span class="rs-spacer"></span>
-                      <sl-dropdown placement="bottom-end" hoist data-table-options>
-                        <sl-button slot="trigger" size="small" caret
-                          ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
-                        >
-                      </sl-dropdown>
-                    </div>
-                  </sl-table>
+                    <sl-description-list-item label="Bid open date">15-Oct-2026</sl-description-list-item>
+                    <sl-description-list-item label="Business unit">Robotics&amp;Ind. Sol.</sl-description-list-item>
+                    <sl-description-list-item label="Saipem bidding entity"
+                      >HO - Bucharest - EC</sl-description-list-item
+                    >
+                  </sl-description-list>
+                  <div class="rs-stack rs-stack--tight">
+                    <h3 class="rs-subheading">Approval</h3>
+                    <sl-description-list cols="2">
+                      <sl-description-list-item label="Documents"
+                        ><sl-status filled size="small" variant="success">Approved</sl-status></sl-description-list-item
+                      >
+                      <sl-description-list-item label="Owners">user_qmis_admin</sl-description-list-item>
+                      <sl-description-list-item label="Technical">—</sl-description-list-item>
+                      <sl-description-list-item label="Commercial">—</sl-description-list-item>
+                    </sl-description-list>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </sl-tab-panel>
+
+              <sl-tab-panel name="relations">
+                <div class="rs-inset rs-stack">
+                  <div class="rs-stack rs-stack--tight">
+                    <div class="rs-cluster rs-cluster--between">
+                      <h3 class="rs-subheading">Attachments</h3>
+                      <span class="rs-meta">2</span>
+                    </div>
+                    <sl-table class="attachment-panel" label="Attachments">
+                      <div
+                        slot="toolbar"
+                        class="rs-cluster rs-cluster--nowrap rs-grow"
+                        role="toolbar"
+                        aria-label="Attachment actions"
+                      >
+                        <sl-switch size="small">Current versions</sl-switch>
+                        <span class="rs-spacer"></span>
+                        <sl-dropdown placement="bottom-end" hoist data-table-options>
+                          <sl-button slot="trigger" size="small" caret
+                            ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                          >
+                        </sl-dropdown>
+                      </div>
+                    </sl-table>
+                  </div>
+                </div>
+              </sl-tab-panel>
+            </sl-tab-group>
           </sl-detail-panel>
         </div>
       </main>

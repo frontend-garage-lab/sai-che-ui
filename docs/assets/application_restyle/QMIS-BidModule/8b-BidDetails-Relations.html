@@ -1,0 +1,400 @@
+<!doctype html>
+<!--
+  QMIS-BidModule · 8b-BidDetails-Relations — variant of 8-BidCreated (no legacy screenshot)
+  State: Bid list, 2026-BID-000004 selected, Details panel on the Relations tab (Attachments table).
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/application_restyle/QMIS-BidModule/8b-BidDetails-Relations.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>QMIS · Bids</title>
+    <link rel="icon" href="/docs/assets/images/saipem-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/_utility.css" />
+    <link rel="stylesheet" href="../_shared/restyle.css" />
+    <link rel="stylesheet" href="./flow.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <script>
+      // Reload when esbuild rebuilds after a change in src/
+      new EventSource('/esbuild').addEventListener('change', () => location.reload());
+    </script>
+  </head>
+
+  <body class="sl-theme-light">
+    <sl-header>
+      <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
+      <span slot="logo"></span>
+
+      <sl-header-item slot="actions" class="project-selector">
+        000001 · Yard Training
+        <sl-menu slot="menu" aria-label="Project" style="width: 28rem">
+          <sl-input size="small" placeholder="Search code or project" clearable aria-label="Search projects">
+            <sl-icon slot="prefix" name="search"></sl-icon>
+          </sl-input>
+          <sl-divider></sl-divider>
+          <sl-menu-label>My projects</sl-menu-label>
+          <sl-menu-item type="checkbox" value="000001" checked title="Yard Training"
+            >Yard Training<span slot="suffix" class="rs-meta">000001</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032325" title="Bioraffineria Di Livorno EPC"
+            >Bioraffineria Di Livorno EPC<span slot="suffix" class="rs-meta">032325</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032239" title="Berri Project"
+            >Berri Project<span slot="suffix" class="rs-meta">032239</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="023144" title="Neptun Deep Project"
+            >Neptun Deep Project<span slot="suffix" class="rs-meta">023144</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="032197" title="Natural Gas Storage Plant"
+            >Natural Gas Storage Plant<span slot="suffix" class="rs-meta">032197</span></sl-menu-item
+          >
+          <sl-menu-item type="checkbox" value="F10412" title="–"
+            >–<span slot="suffix" class="rs-meta">F10412</span></sl-menu-item
+          >
+        </sl-menu>
+      </sl-header-item>
+      <sl-notification-panel slot="actions" description="All projects and working areas">
+        <sl-notification-item
+          variant="danger"
+          heading="ZIP download failed"
+          date="2026-11-23T12:38:00"
+          project="99_PAGE_AM"
+          section="Job Documents"
+        >
+          The archive could not be generated. No file was produced.
+          <sl-button slot="actions" size="small"
+            ><sl-icon slot="prefix" name="arrow-right"></sl-icon>Open My downloads</sl-button
+          >
+        </sl-notification-item>
+        <sl-notification-item
+          variant="warning"
+          heading="Promote completed with exceptions"
+          date="2026-11-23T12:30:00"
+          project="99_PAGE_AM"
+          section="Isometric Document"
+        >
+          2 of 3 promoted; 1 not promoted because a mandatory attribute is empty. See the result for each document.
+          <sl-button slot="actions" size="small"
+            ><sl-icon slot="prefix" name="arrow-right"></sl-icon>Open My downloads</sl-button
+          >
+        </sl-notification-item>
+        <sl-notification-item
+          variant="success"
+          heading="Excel export completed"
+          date="2026-11-20T17:02:00"
+          project="99_PAGE_AM"
+          section="Job Documents"
+          read
+        >
+          The Job Documents list was exported (24 rows).
+          <sl-button slot="actions" size="small"><sl-icon slot="prefix" name="download"></sl-icon>Download</sl-button>
+        </sl-notification-item>
+        <sl-notification-item
+          variant="info"
+          heading="Review assigned"
+          date="2026-11-20T09:00:00"
+          project="12_COSY_DEMO"
+          read
+        >
+          You were assigned to the review of DOC-0107.
+        </sl-notification-item>
+        <span slot="footer">Notifications are kept for 3 days from when they are generated, read or unread.</span>
+      </sl-notification-panel>
+      <sl-header-item slot="actions">
+        <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
+        Mario Rossi
+        <sl-menu slot="menu">
+          <sl-menu-item><sl-icon slot="prefix" name="person-fill"></sl-icon>Profile</sl-menu-item>
+          <sl-menu-item><sl-icon slot="prefix" name="gear"></sl-icon>Preferences</sl-menu-item>
+          <sl-divider></sl-divider>
+          <sl-menu-item><sl-icon slot="prefix" name="box-arrow-right"></sl-icon>Sign out</sl-menu-item>
+        </sl-menu>
+      </sl-header-item>
+    </sl-header>
+
+    <div class="rs-shell">
+      <sl-sidebar label="Project navigation" collapsed>
+        <sl-sidebar-group label="Documenti di progetto" count="70">
+          <sl-icon slot="icon" name="file-earmark-text"></sl-icon>
+          <sl-sidebar-item href="#" count="6">Job Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="24">Isometric Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Advance Revision Notice</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="12">Reference Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="16">Certificate and Other Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="6">Dynamic Virtual Binder</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Procurement (SAP)" count="71">
+          <sl-icon slot="icon" name="cart"></sl-icon>
+          <sl-sidebar-item href="#" count="13">Purchase Request</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="18">Purchase Order</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="7">Bid Document</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">ASO - Expediting Report</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="10">Invoice</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Comunicazione" count="47">
+          <sl-icon slot="icon" name="envelope"></sl-icon>
+          <sl-sidebar-item href="#" count="19">Correspondence</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="23">Comment</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Preparation area</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Incoming</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Outgoing</sl-sidebar-item>
+          <sl-sidebar-item href="#">Transmittal · Distribution process</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Tasks" count="55">
+          <sl-icon slot="icon" name="clipboard-check"></sl-icon>
+          <sl-sidebar-item href="#" count="22">PVA</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="22">Consolidation</sl-sidebar-item>
+          <sl-sidebar-item href="#" count="11">Review</sl-sidebar-item>
+        </sl-sidebar-group>
+
+        <sl-sidebar-group label="Bid">
+          <sl-icon slot="icon" name="briefcase"></sl-icon>
+          <sl-sidebar-item href="./1-BidList.html" current>Bids</sl-sidebar-item>
+        </sl-sidebar-group>
+      </sl-sidebar>
+
+      <main class="rs-page rs-page--fill" aria-label="Bids">
+        <sl-breadcrumb aria-label="Breadcrumb">
+          <sl-breadcrumb-item href="#">Home</sl-breadcrumb-item>
+          <sl-breadcrumb-item>Bids</sl-breadcrumb-item>
+        </sl-breadcrumb>
+
+        <div class="rs-page-header">
+          <div class="rs-page-header__text">
+            <h1 class="rs-title">Bids</h1>
+          </div>
+          <div class="rs-cluster">
+            <sl-button variant="text" href="./2-Legend.html"
+              ><sl-icon slot="prefix" name="info-circle"></sl-icon>Legend</sl-button
+            >
+            <sl-button variant="text"><sl-icon slot="prefix" name="question-circle"></sl-icon>User guide</sl-button>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <sl-card aria-label="Filters">
+          <div slot="header" class="rs-cluster rs-cluster--between">
+            <h2 class="rs-heading rs-inline"><sl-icon name="filter"></sl-icon>Filters</h2>
+            <sl-button class="more-filters" size="small" variant="text">
+              <sl-icon slot="prefix" name="plus-lg"></sl-icon>
+              More filters (8)
+            </sl-button>
+          </div>
+
+          <form class="rs-grid rs-grid--fields">
+            <sl-input
+              class="rs-span-4 rs-span-md-6"
+              type="search"
+              label="Full-text"
+              placeholder="Bid number, project, client…"
+              help-text="Dates as dd-mmm-yyyy"
+              clearable
+            >
+              <sl-icon slot="prefix" name="search"></sl-icon>
+            </sl-input>
+            <sl-select class="rs-span-2 rs-span-md-6" label="Bid status" placeholder="Any" clearable multiple>
+              <sl-option value="O">Ongoing</sl-option>
+              <sl-option value="S">Submitted</sl-option>
+              <sl-option value="A">Awarded</sl-option>
+              <sl-option value="OH">On hold</sl-option>
+              <sl-option value="L">Lost</sl-option>
+              <sl-option value="C">Cancelled</sl-option>
+            </sl-select>
+            <sl-select class="rs-span-2 rs-span-md-6" label="Business unit" placeholder="Any" clearable>
+              <sl-option value="onshore">Onshore</sl-option>
+              <sl-option value="offshore">Offshore</sl-option>
+              <sl-option value="floaters">Floaters</sl-option>
+              <sl-option value="robotics">Robotics&amp;Ind. Sol.</sl-option>
+            </sl-select>
+            <sl-select class="rs-span-2 rs-span-md-6" label="Approval status" placeholder="Any" clearable>
+              <sl-option value="TE">Technical docs approved</sl-option>
+              <sl-option value="CO">Commercial docs approved</sl-option>
+              <sl-option value="PM">Bid docs shared with proposal</sl-option>
+            </sl-select>
+            <sl-select class="rs-span-2 rs-span-md-6" label="Project type" placeholder="Any" clearable></sl-select>
+
+            <div class="rs-span-12 rs-cluster rs-cluster--between">
+              <div class="rs-cluster">
+                <sl-checkbox size="small">Advanced query</sl-checkbox>
+                <sl-checkbox size="small" checked>Include CRM</sl-checkbox>
+                <sl-checkbox size="small">My tasks</sl-checkbox>
+              </div>
+              <div class="rs-cluster">
+                <sl-button type="reset" variant="text">Clear filters</sl-button>
+                <sl-button type="submit" variant="primary"
+                  ><sl-icon slot="prefix" name="search"></sl-icon>Search</sl-button
+                >
+              </div>
+            </div>
+          </form>
+        </sl-card>
+
+        <div class="rs-workspace">
+          <!-- Bid list -->
+          <section class="rs-workspace__main rs-span-8 rs-span-lg-7" aria-label="Bid list">
+            <sl-table
+              selection="multiple"
+              class="bid-list"
+              sticky-actions
+              fill
+              sticky-header
+              paginate
+              page-size="25"
+              label="Bid list"
+            >
+              <div slot="toolbar" class="rs-cluster rs-cluster--nowrap rs-grow">
+                <sl-button size="small" variant="primary" href="./3-AddBid-Open.html"
+                  ><sl-icon slot="prefix" name="plus-lg"></sl-icon>Add</sl-button
+                >
+                <sl-button size="small"><sl-icon slot="prefix" name="eye"></sl-icon>View</sl-button>
+                <sl-button size="small"><sl-icon slot="prefix" name="pencil"></sl-icon>Edit</sl-button>
+                <sl-button size="small"><sl-icon slot="prefix" name="files"></sl-icon>Create new revision</sl-button>
+                <sl-divider vertical></sl-divider>
+                <sl-dropdown placement="bottom-start">
+                  <sl-button slot="trigger" size="small" caret>More</sl-button>
+                  <sl-menu>
+                    <sl-menu-item><sl-icon slot="prefix" name="printer"></sl-icon>Print notice</sl-menu-item>
+                    <sl-menu-item><sl-icon slot="prefix" name="send"></sl-icon>Send notice</sl-menu-item>
+                  </sl-menu>
+                </sl-dropdown>
+                <sl-divider vertical></sl-divider>
+                <sl-button size="small" variant="danger" outline
+                  ><sl-icon slot="prefix" name="trash"></sl-icon>Delete</sl-button
+                >
+                <span class="rs-spacer"></span>
+                <sl-button size="small"><sl-icon slot="prefix" name="file-earmark-excel"></sl-icon>Export</sl-button>
+                <sl-dropdown placement="bottom-end" hoist data-table-options>
+                  <sl-button slot="trigger" size="small" caret
+                    ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                  >
+                </sl-dropdown>
+              </div>
+
+              <sl-empty-state slot="empty" title-text="No bids" description="Bids matching the filters appear here.">
+                <sl-icon slot="icon" name="briefcase"></sl-icon>
+              </sl-empty-state>
+            </sl-table>
+          </section>
+
+          <!-- Bid details -->
+          <sl-detail-panel contained class="rs-span-4 rs-span-lg-5" aria-label="Bid details">
+            <span slot="label">Details</span>
+            <sl-tab-group>
+              <sl-tab slot="nav" panel="properties"
+                ><span class="rs-inline"><sl-icon name="info-circle"></sl-icon>Properties</span></sl-tab
+              >
+              <sl-tab slot="nav" panel="relations" active
+                ><span class="rs-inline"><sl-icon name="diagram-3"></sl-icon>Relations</span></sl-tab
+              >
+
+              <sl-tab-panel name="properties">
+                <div class="rs-inset rs-stack">
+                  <div class="rs-stack rs-stack--tight">
+                    <h3 class="rs-subheading">Saipem DEMO</h3>
+                    <span class="rs-meta">2026-BID-000004 · ABB POWER SYSTEMS</span>
+                  </div>
+                  <sl-description-list cols="2">
+                    <sl-description-list-item label="Bid status"
+                      ><sl-status filled size="small" variant="warning">Ongoing</sl-status></sl-description-list-item
+                    >
+                    <sl-description-list-item label="Bid open date">15-Oct-2026</sl-description-list-item>
+                    <sl-description-list-item label="Business unit">Robotics&amp;Ind. Sol.</sl-description-list-item>
+                    <sl-description-list-item label="Saipem bidding entity"
+                      >HO - Bucharest - EC</sl-description-list-item
+                    >
+                  </sl-description-list>
+                  <div class="rs-stack rs-stack--tight">
+                    <h3 class="rs-subheading">Approval</h3>
+                    <sl-description-list cols="2">
+                      <sl-description-list-item label="Documents"
+                        ><sl-status filled size="small" variant="warning">Working</sl-status></sl-description-list-item
+                      >
+                      <sl-description-list-item label="Owners">user_qmis_admin</sl-description-list-item>
+                      <sl-description-list-item label="Technical"
+                        ><sl-status filled size="small" variant="neutral"
+                          >Not requested</sl-status
+                        ></sl-description-list-item
+                      >
+                      <sl-description-list-item label="Commercial"
+                        ><sl-status filled size="small" variant="neutral"
+                          >Not requested</sl-status
+                        ></sl-description-list-item
+                      >
+                    </sl-description-list>
+                  </div>
+                </div>
+              </sl-tab-panel>
+
+              <sl-tab-panel name="relations" active>
+                <div class="rs-inset rs-stack">
+                  <div class="rs-stack rs-stack--tight">
+                    <div class="rs-cluster rs-cluster--between">
+                      <h3 class="rs-subheading">Attachments</h3>
+                      <span class="rs-meta">1</span>
+                    </div>
+                    <sl-table class="attachment-panel" label="Attachments">
+                      <div
+                        slot="toolbar"
+                        class="rs-cluster rs-cluster--nowrap rs-grow"
+                        role="toolbar"
+                        aria-label="Attachment actions"
+                      >
+                        <sl-switch size="small">Current versions</sl-switch>
+                        <span class="rs-spacer"></span>
+                        <sl-dropdown placement="bottom-end" hoist data-table-options>
+                          <sl-button slot="trigger" size="small" caret
+                            ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                          >
+                        </sl-dropdown>
+                      </div>
+                    </sl-table>
+                  </div>
+                </div>
+              </sl-tab-panel>
+            </sl-tab-group>
+          </sl-detail-panel>
+        </div>
+      </main>
+    </div>
+
+    <!-- More filters (closed in this state): the 8 secondary legacy filters -->
+    <sl-drawer label="More filters" placement="end">
+      <div class="rs-stack">
+        <sl-select label="Saipem bidding entity" placeholder="Any" clearable></sl-select>
+        <sl-select label="Activity type" placeholder="Any" clearable></sl-select>
+        <sl-select label="Project country" placeholder="Any" clearable></sl-select>
+        <sl-select label="Project value size" placeholder="Any" clearable></sl-select>
+        <sl-input type="date" label="Bid open date from"></sl-input>
+        <sl-input type="date" label="Bid open date to"></sl-input>
+        <sl-input type="date" label="Contract award estimated date from"></sl-input>
+        <sl-input type="date" label="Contract award estimated date to"></sl-input>
+      </div>
+      <sl-button slot="footer" variant="text">Clear</sl-button>
+      <sl-button slot="footer" variant="primary"
+        ><sl-icon slot="prefix" name="filter"></sl-icon>Apply filters</sl-button
+      >
+    </sl-drawer>
+
+    <script type="module">
+      import * as flow from './data.js';
+
+      document
+        .querySelector('.more-filters')
+        .addEventListener('click', () => document.querySelector('sl-drawer').show());
+
+      await flow.mountTable('.bid-list', {
+        columns: flow.bidColumns,
+        data: flow.bidsCreated,
+        isSelected: flow.isNewBid
+      });
+      await flow.mountTable('.attachment-panel', {
+        columns: flow.attachmentPanelColumns,
+        data: flow.panelAttachmentsOf('CommercialAttachment.docx')
+      });
+    </script>
+  </body>
+</html>

@@ -337,3 +337,14 @@ Caso tipico: una pagina già fatta cambia layout (es. le sezioni di un form dive
   `clipsContent = false` sul frame diretto: taglia anche il primo antenato che clippa (es. Body). Meglio evitare la
   sporgenza: contenitore in HUG sull'elemento più alto e `counterAxisAlignItems = 'CENTER'`. Verifica con uno
   screenshot a scala 4, non a 1x.
+
+## Tab Group nel Detail Panel e tabelle ricostruite (aggiunto 2026-11-23, QMIS Details)
+
+- Tab Group dentro lo slot `Body` di un Detail Panel: il contenuto della tab attiva va come fratello **sotto** il Tab
+  Group, e lo slot `Panel` del Tab Group va nascosto (`visible = false`), altrimenti resta un vuoto di ~96 px.
+- Le etichette delle Tab non hanno proprietà TEXT: si cambia il `characters` del testo visibile. Stati: `active` /
+  `default`.
+- Per ricostruire una tabella configurata in un altro frame senza clonare sotto-layer di istanza: replica ricorsiva
+  (istanza → `getMainComponentAsync().createInstance()` + `setProperties` + override dei testi; SLOT → svuota e
+  replica i figli; FRAME → auto-layout con le stesse variabili). Dopo, testi cella con `textTruncation = 'ENDING'`,
+  `maxLines = 1`, e nascondi le righe meta vuote della cella `document`.
