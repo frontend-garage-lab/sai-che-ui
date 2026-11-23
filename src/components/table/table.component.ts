@@ -1,4 +1,4 @@
-import { FlexRender, TableController } from '@tanstack/lit-table';
+import { FlexRender, flexRender, TableController } from '@tanstack/lit-table';
 import { html, nothing } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { property, state } from 'lit/decorators.js';
@@ -51,6 +51,8 @@ const maxToolbarActions = 10;
  * @event {{ selection: unknown[] }} sl-table-selection-change - Emitted when the row selection changes.
  * @event {{ columnId: string, direction: 'asc' | 'desc' }} sl-table-sort - Emitted when the user sorts on a column.
  * @event {{ page: number, pageSize: number }} sl-table-page-change - Emitted when the user changes page or page size.
+ * @event {{ groupId: string, value: unknown, expanded: boolean }} sl-table-group-toggle - Emitted when the user
+ *  expands or collapses a group.
  * @event {{ row: unknown, originalEvent: MouseEvent }} sl-table-row-context-menu - Emitted when a row is
  *  right-clicked. Call `preventDefault()` on `originalEvent` to suppress the browser's own context menu.
  * @event {{ row: unknown, item: SlMenuItem }} sl-table-row-action - Emitted when an item in a row's action menu is
@@ -69,6 +71,10 @@ const maxToolbarActions = 10;
  * @csspart body - The container that wraps the rows.
  * @csspart row - A body row.
  * @csspart cell - A body cell.
+ * @csspart group-row - A group header row, shown when `group-by` is set.
+ * @csspart group-toggle - The expand/collapse button of a group header row, an `<sl-icon-button>` element.
+ * @csspart group-label - The label of a group header row.
+ * @csspart group-count - The row count of a group header row.
  * @csspart checkbox - A row's selection checkbox, an `<sl-checkbox>` element.
  * @csspart actions - The container that wraps a row's action menu trigger.
  * @csspart action-trigger - The button that opens a row's action menu, an `<sl-icon-button>` element.
@@ -81,6 +87,7 @@ const maxToolbarActions = 10;
  * @cssproperty [--border-radius=var(--sl-border-radius-medium)] - The radius of the table's outer border.
  * @cssproperty [--header-background-color=var(--sl-surface-sunken)] - The background color of the header row.
  * @cssproperty [--stripe-background-color=var(--sl-color-neutral-50)] - The background color of striped rows.
+ * @cssproperty [--group-background-color=var(--sl-color-primary-50)] - The background color of group header rows.
  * @cssproperty [--max-height=none] - The maximum height of the scrolling area that holds the header and the rows.
  */
 export default class SlTable<TData extends Record<string, unknown> = Record<string, unknown>> extends ShoelaceElement {
@@ -100,6 +107,7 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
   @state() private rowSelection: RowSelectionState = {};
   @state() private hasToolbar = false;
   @state() private focusedRowId: string | null = null;
+  @state() private expanded: true | Record<string, boolean> = true;
 
   /** The column definitions. Build this array once and keep the reference stable between renders. */
   @property({ attribute: false }) columns: SlTableColumnDef<TData>[] = [];
@@ -118,6 +126,28 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
     row: TData,
     index: number
   ) => '' | 'primary' | 'accent' | 'success' | 'neutral' | 'warning' | 'danger' = () => '';
+
+  /**
+   * The id of the column to group rows by. Rows sharing the same grouping value are shown under a collapsible group
+   * header row. The value comes from the column's accessor, or from its `getGroupingValue` when you need a coarser key
+   * (e.g. the month of a date). Groups keep the order of their first row in `data`; sorting on the grouping column sorts
+   * the groups by their grouping value, so return a sortable key (e.g. `2026-11`) and format it with `groupLabel`.
+   * Pagination counts data rows, and group header rows are repeated on every page their rows appear on.
+   */
+  @property({ attribute: 'group-by', reflect: true }) groupBy = '';
+
+  /** Renders a group header row's label. Defaults to the grouping value as text. */
+  @property({ attribute: false }) groupLabel: (value: unknown, rows: TData[]) => unknown = value => String(value ?? '');
+
+  /** Renders a group header row's count. Return an empty string to hide it. */
+  @property({ attribute: false }) groupCountFormatter: (count: number) => string = count =>
+    `${count} ${count === 1 ? 'item' : 'items'}`;
+
+  /** When set, groups start collapsed. Only read when `group-by` changes. */
+  @property({ type: Boolean, attribute: 'groups-collapsed' }) groupsCollapsed = false;
+
+  /** The label of a group's expand/collapse button. */
+  @property({ attribute: 'toggle-group-label' }) toggleGroupLabel = 'Toggle group';
 
   /** An accessible label for the table, announced by screen readers. */
   @property() label = '';
@@ -241,6 +271,10 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
   willUpdate(changedProperties: PropertyValues<this>) {
     super.willUpdate(changedProperties);
 
+    if (changedProperties.has('groupBy')) {
+      this.expanded = this.groupsCollapsed ? {} : true;
+    }
+
     const tracks = this.columns
       .filter(column => !this.isActionsColumn(column))
       .map(column => (column.meta as SlTableColumnMeta | undefined)?.width ?? 'minmax(0, 1fr)');
@@ -268,6 +302,7 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
 
   private buildOptions(): TableOptions<SlTableFeatures, TData> {
     const isServerPaginated = this.totalItems !== undefined;
+    const isGrouped = this.groupBy !== '';
 
     return {
       features: slTableFeatures,
@@ -276,11 +311,15 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
       getRowId: this.getRowId,
       renderFallbackValue: null,
       manualSorting: this.sortMode === 'server',
-      manualPagination: isServerPaginated,
-      rowCount: isServerPaginated ? this.totalItems : undefined,
+      // When grouping, pagination is applied to data rows in render (see `getVisibleRows`), not to group rows
+      manualPagination: isServerPaginated || isGrouped,
+      rowCount: isServerPaginated ? this.totalItems : isGrouped ? this.data.length : undefined,
+      groupedColumnMode: false,
+      enableSubRowSelection: false,
       enableMultiSort: false,
       enableSortingRemoval: false,
-      enableRowSelection: row => this.selection !== 'none' && !this.rowDisabled(row.original, row.index),
+      enableRowSelection: row =>
+        this.selection !== 'none' && !row.getIsGrouped() && !this.rowDisabled(row.original, row.index),
       enableMultiRowSelection: this.selection === 'multiple',
       state: {
         sorting: this.sortColumn ? [{ id: this.sortColumn, desc: this.sortDirection === 'desc' }] : [],
@@ -288,12 +327,47 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
           pageIndex: this.page - 1,
           pageSize: this.paginate ? this.pageSize : Number.POSITIVE_INFINITY
         },
-        rowSelection: this.rowSelection
+        rowSelection: this.rowSelection,
+        grouping: isGrouped ? [this.groupBy] : []
       },
       onSortingChange: updater => this.handleSortingChange(updater),
       onPaginationChange: updater => this.handlePaginationChange(updater),
       onRowSelectionChange: updater => this.handleRowSelectionChange(updater)
     };
+  }
+
+  /**
+   * The rows on the current page in display order. Without grouping these are TanStack's paginated rows. With grouping,
+   * the page is cut from the data rows (in group order), and each group with rows on the page is preceded by its header
+   * row; the rows of collapsed groups are left out.
+   */
+  private getVisibleRows(table: SlTableInstance<TData>): Row<SlTableFeatures, TData>[] {
+    if (!this.groupBy) return table.getRowModel().rows;
+
+    const groups = table.getRowModel().rows;
+    const leaves = groups.flatMap(group => group.subRows.map(leaf => ({ group, leaf })));
+    const isServerPaginated = this.totalItems !== undefined;
+    const pageLeaves =
+      this.paginate && !isServerPaginated
+        ? leaves.slice((this.page - 1) * this.pageSize, this.page * this.pageSize)
+        : leaves;
+    const result: Row<SlTableFeatures, TData>[] = [];
+    let current: Row<SlTableFeatures, TData> | undefined;
+
+    for (const { group, leaf } of pageLeaves) {
+      if (group !== current) {
+        current = group;
+        result.push(group);
+      }
+      if (this.isGroupExpanded(group)) result.push(leaf);
+    }
+
+    return result;
+  }
+
+  /** The data rows on the current page that the user can see and select. */
+  private getVisibleDataRows(table: SlTableInstance<TData>) {
+    return this.getVisibleRows(table).filter(row => !row.getIsGrouped());
   }
 
   /** The number of records the table knows about, whether they're on screen or not. */
@@ -340,7 +414,19 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
   /** Selects every selectable row on the current page. Only applies when selection is `multiple`. */
   selectAll() {
     if (this.selection !== 'multiple') return;
-    this.table.toggleAllPageRowsSelected(true);
+
+    const table = this.table;
+
+    if (!this.groupBy) {
+      table.toggleAllPageRowsSelected(true);
+      return;
+    }
+
+    const next = { ...this.rowSelection };
+    this.getVisibleDataRows(table)
+      .filter(row => row.getCanSelect())
+      .forEach(row => (next[row.id] = true));
+    this.handleRowSelectionChange(next);
   }
 
   /** Clears the selection. */
@@ -438,6 +524,13 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
       return;
     }
 
+    const groupId = this.findGroupId(event);
+
+    if (groupId) {
+      this.toggleGroup(this.table.getRow(groupId));
+      return;
+    }
+
     if (this.selection === 'none' || this.isInteractiveTarget(event)) return;
 
     const rowId = this.findRowId(event);
@@ -451,6 +544,40 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
     this.focusRow(row);
     row.getToggleSelectedHandler()(event);
   };
+
+  // Which groups are open is kept here, not in TanStack's expanded state: in v9 `row.getIsExpanded()` and
+  // `row.toggleExpanded()` read an internal atom that a controlled `state.expanded` doesn't update, so a collapsed group
+  // would never reopen
+  private isGroupExpanded(row: Row<SlTableFeatures, TData>) {
+    return this.expanded === true || Boolean(this.expanded[row.id]);
+  }
+
+  private toggleGroup(row: Row<SlTableFeatures, TData>) {
+    const expanded = !this.isGroupExpanded(row);
+    const next: Record<string, boolean> =
+      this.expanded === true
+        ? Object.fromEntries(this.table.getRowModel().rows.map(group => [group.id, true]))
+        : { ...this.expanded };
+
+    if (expanded) {
+      next[row.id] = true;
+    } else {
+      delete next[row.id];
+    }
+
+    this.expanded = next;
+    this.emit('sl-table-group-toggle', { detail: { groupId: row.id, value: row.groupingValue, expanded } });
+  }
+
+  private findGroupId(event: Event): string | null {
+    for (const target of event.composedPath()) {
+      if (!(target instanceof HTMLElement)) continue;
+      if (target === this) break;
+      if (target.dataset.groupId !== undefined) return target.dataset.groupId;
+    }
+
+    return null;
+  }
 
   private handleMenuSelect = (event: SlSelectEvent) => {
     const rowId = this.findRowId(event);
@@ -480,17 +607,37 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
 
   private handleKeyDown = (event: KeyboardEvent) => {
     const table = this.table;
-    const rows = table.getRowModel().rows;
+    const rows = this.getVisibleRows(table);
 
     if (rows.length === 0) return;
 
     if (event.key === 'a' && (event.ctrlKey || event.metaKey) && this.selection === 'multiple') {
       event.preventDefault();
-      table.toggleAllPageRowsSelected(true);
+      this.selectAll();
       return;
     }
 
-    const rowId = this.findRowId(event);
+    const groupId = this.findGroupId(event);
+
+    if (groupId) {
+      const group = table.getRow(groupId);
+      const isRtl = this.localize.dir() === 'rtl';
+      const collapseKey = isRtl ? 'ArrowRight' : 'ArrowLeft';
+      const expandKey = isRtl ? 'ArrowLeft' : 'ArrowRight';
+
+      if (
+        [' ', 'Enter'].includes(event.key) ||
+        (event.key === collapseKey && this.isGroupExpanded(group)) ||
+        (event.key === expandKey && !this.isGroupExpanded(group))
+      ) {
+        event.preventDefault();
+        this.toggleGroup(group);
+        this.focusRow(group);
+        return;
+      }
+    }
+
+    const rowId = groupId ?? this.findRowId(event);
 
     if (!rowId) return;
 
@@ -498,6 +645,7 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
     const index = rows.findIndex(row => row.id === activeRow.id);
 
     if ([' ', 'Enter'].includes(event.key)) {
+      if (activeRow.getIsGrouped()) return;
       if (this.selection === 'none' || !activeRow.getCanSelect() || this.isInteractiveTarget(event)) return;
 
       event.preventDefault();
@@ -521,7 +669,8 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
   private focusRow(row: Row<SlTableFeatures, TData>) {
     this.focusedRowId = row.id;
     void this.updateComplete.then(() => {
-      this.shadowRoot!.querySelector<HTMLElement>(`[data-row-id="${row.id}"]`)?.focus();
+      const attribute = row.getIsGrouped() ? 'data-group-id' : 'data-row-id';
+      this.shadowRoot!.querySelector<HTMLElement>(`[${attribute}="${CSS.escape(row.id)}"]`)?.focus();
     });
   }
 
@@ -565,7 +714,7 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
 
   private renderHeaderRow(table: SlTableInstance<TData>) {
     const [headerGroup] = table.getHeaderGroups();
-    const selectableRows = table.getRowModel().rows.filter(row => row.getCanSelect());
+    const selectableRows = this.getVisibleDataRows(table).filter(row => row.getCanSelect());
     const selectedCount = selectableRows.filter(row => row.getIsSelected()).length;
     const hasActionsColumn = this.columns.some(column => this.isActionsColumn(column));
 
@@ -637,7 +786,11 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
           : ''}"
         role="gridcell"
       >
-        ${FlexRender({ cell })}
+        ${
+          // Not `FlexRender`: it leaves the grouping column's cells empty in data rows (TanStack placeholders), while
+          // the table keeps showing the value in every row and puts the group's label in its own header row
+          flexRender(cell.column.columnDef.cell, cell.getContext())
+        }
       </div>
     `;
   }
@@ -661,6 +814,41 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
           ></sl-icon-button>
           ${content ?? ''}
         </sl-dropdown>
+      </div>
+    `;
+  }
+
+  private renderGroupRow(row: Row<SlTableFeatures, TData>, focusableRowId: string | undefined) {
+    const expanded = this.isGroupExpanded(row);
+    const leaves = row.getLeafRows().filter(leaf => !leaf.getIsGrouped());
+    const count = this.groupCountFormatter(leaves.length);
+
+    return html`
+      <div
+        part="group-row"
+        class="table__group-row ${expanded ? 'table__group-row--expanded' : ''}"
+        role="row"
+        data-group-id=${row.id}
+        tabindex=${row.id === focusableRowId ? '0' : '-1'}
+        aria-expanded=${expanded ? 'true' : 'false'}
+      >
+        <div class="table__group-cell" role="gridcell">
+          <sl-icon-button
+            part="group-toggle"
+            class="table__group-toggle"
+            library="system"
+            name="chevron-down"
+            label=${this.toggleGroupLabel}
+            tabindex="-1"
+          ></sl-icon-button>
+          <span part="group-label" class="table__group-label"
+            >${this.groupLabel(
+              row.groupingValue,
+              leaves.map(leaf => leaf.original)
+            )}</span
+          >
+          ${count ? html`<span part="group-count" class="table__group-count">${count}</span>` : ''}
+        </div>
       </div>
     `;
   }
@@ -706,15 +894,18 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
 
   render() {
     const table = this.table;
-    const rows = table.getRowModel().rows;
+    const rows = this.getVisibleRows(table);
     const isEmpty = rows.length === 0;
     const start = this.itemCount === 0 ? 0 : (this.page - 1) * this.pageSize + 1;
     const end = Math.min(this.page * this.pageSize, this.itemCount);
     const pageCount = Math.max(1, table.getPageCount());
 
     const defaultFocusableRowId =
-      table.getSelectedRowModel().rows.find(selected => !this.rowDisabled(selected.original, selected.index))?.id ??
-      rows[0]?.id;
+      table
+        .getSelectedRowModel()
+        .rows.find(
+          selected => !this.rowDisabled(selected.original, selected.index) && rows.some(row => row.id === selected.id)
+        )?.id ?? rows[0]?.id;
     const focusableRowId =
       this.focusedRowId && rows.some(row => row.id === this.focusedRowId) ? this.focusedRowId : defaultFocusableRowId;
 
@@ -728,7 +919,9 @@ export default class SlTable<TData extends Record<string, unknown> = Record<stri
           ${this.renderHeaderRow(table)}
 
           <div part="body" class="table__body" role="rowgroup">
-            ${rows.map(row => this.renderBodyRow(row, focusableRowId))}
+            ${rows.map(row =>
+              row.getIsGrouped() ? this.renderGroupRow(row, focusableRowId) : this.renderBodyRow(row, focusableRowId)
+            )}
             ${isEmpty
               ? html`<div part="empty" class="table__empty"><slot name="empty">No results found.</slot></div>`
               : ''}

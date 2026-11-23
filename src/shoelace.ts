@@ -70,6 +70,8 @@ export { default as SlTable } from './components/table/table.js';
 export * from './components/table/table.types.js';
 export { default as SlHeader } from './components/header/header.js';
 export { default as SlHeaderItem } from './components/header-item/header-item.js';
+export { default as SlNotificationPanel } from './components/notification-panel/notification-panel.js';
+export { default as SlNotificationItem } from './components/notification-item/notification-item.js';
 export { default as SlFileDrop } from './components/file-drop/file-drop.js';
 export { default as SlFileUploadItem } from './components/file-upload-item/file-upload-item.js';
 export { default as SlStat } from './components/stat/stat.js';

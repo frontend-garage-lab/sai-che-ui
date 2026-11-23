@@ -94,6 +94,37 @@ const markerVariants = [
       })
   )
 ];
+// `Type=group` cells form the group header rows of <sl-table group-by>: the lead cell (first column) carries the label
+// and the count. The grouping key is a data field the design doesn't name, so the snippet leaves a placeholder.
+// A lead whose exposed toggle shows `chevron-right` is a collapsed group; all collapsed → `groups-collapsed`.
+// The cells sit in each column's Cells slot: `findConnectedInstances` doesn't descend into connected instances (the
+// Table Columns), so they are read slot by slot.
+const groupLeads = columns
+  .flatMap(column => {
+    if (column.type !== 'INSTANCE') return [];
+    const cells = column.getSlot('Cells');
+    return cells ? cells.connectedInstances : [];
+  })
+  .filter(
+    cell => cell.type === 'INSTANCE' && cell.getEnum('Type', { group: true }) === true && cell.getBoolean('Group Lead')
+  );
+const groupCollapsed = groupLeads.map(cell => {
+  const toggle = cell.type === 'INSTANCE' ? cell.findInstance('Icon Button / group-toggle') : undefined;
+  const icon = toggle && toggle.type === 'INSTANCE' ? toggle.getInstanceSwap('Icon') : undefined;
+  return !!icon && icon.type === 'INSTANCE' && /chevron-right/.test(icon.name);
+});
+const groupAttributes = groupLeads.length
+  ? ` group-by="<column id>"${groupCollapsed.every(Boolean) ? ' groups-collapsed' : ''}`
+  : '';
+const groupCount = groupLeads[0] && groupLeads[0].type === 'INSTANCE' ? groupLeads[0].getString('Count') : '';
+const groupNoun = groupCount.replace(/^\d+\s*/, '').replace(/s$/, '') || 'item';
+const groupCode = groupLeads.length
+  ? `\n// Group header rows: the label is the grouping value, the count follows groupCountFormatter
+const groupLabel = value => String(value);
+const groupCountFormatter = count => \`\${count} \${count === 1 ? '${groupNoun}' : '${groupNoun}s'}\`;`
+  : '';
+const groupBinding = groupLeads.length ? ' .groupLabel=${groupLabel} .groupCountFormatter=${groupCountFormatter}' : '';
+
 // `columns`, `data` and `rowVariant` are JS-only properties (`attribute: false`): the snippet declares them and binds
 // them with the Lit `.property` syntax instead of setting them through a script.
 // Several tables can sit in the same snippet (e.g. a Dialog body), so a table with a custom layer name gets prefixed
@@ -119,7 +150,7 @@ const columnsCode = entries.length
 const dataCode = showRows
   ? `const ${dataVar} = []; // one object per record, keyed by each column accessorKey`
   : `const ${dataVar} = []; // no records: the empty slot is shown`;
-const properties = `${columnsCode}\n${dataCode}${rowVariantCode}`;
+const properties = `${columnsCode}\n${dataCode}${rowVariantCode}${groupCode}`;
 
 // `striped` lives on the cells (or on the rows of the legacy Table Row), `page-size` is on the pagination.
 const header = instance.findInstance('Table Header Row');
@@ -145,7 +176,7 @@ const stickyActions = described.some(column => column.kind === 'actions' && colu
 export default {
   example: figma.html`${properties}
 
-<sl-table .columns=\${${columnsVar}} .data=\${${dataVar}}${rowVariantBinding}${size}${selection}${striped}${paginate}${sortAttributes}${stickyActions} sticky-header>${
+<sl-table .columns=\${${columnsVar}} .data=\${${dataVar}}${rowVariantBinding}${groupBinding}${size}${selection}${striped}${paginate}${sortAttributes}${groupAttributes}${stickyActions} sticky-header>${
     toolbar
       ? toolbarIsComponent
         ? figma.html`\n  ${toolbar}`

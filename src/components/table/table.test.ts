@@ -4,6 +4,7 @@ import { expect, fixture, html, waitUntil } from '@open-wc/testing';
 import sinon from 'sinon';
 import type { SlTableColumnDef } from './table.types.js';
 import type {
+  SlTableGroupToggleEvent,
   SlTablePageChangeEvent,
   SlTableRowActionEvent,
   SlTableRowContextMenuEvent,
@@ -340,6 +341,91 @@ describe('<sl-table>', () => {
       await waitUntil(() => el.shadowRoot!.querySelector('[part~="empty"]'));
 
       expect(el.shadowRoot!.querySelector('[part~="empty"]')).to.exist;
+    });
+  });
+
+  describe('grouping', () => {
+    const groupedData: ProtocolRecord[] = [
+      { protocol: 'A-1', subject: 'Meeting' },
+      { protocol: 'B-1', subject: 'Training' },
+      { protocol: 'A-2', subject: 'Meeting' }
+    ];
+
+    async function makeGroupedTable(overrides: Partial<SlTable<ProtocolRecord>> = {}) {
+      return makeTable({ data: groupedData, groupBy: 'subject', ...overrides });
+    }
+
+    const groupRows = (el: SlTable<ProtocolRecord>) => [
+      ...el.shadowRoot!.querySelectorAll<HTMLElement>('[part~="group-row"]')
+    ];
+    const dataRows = (el: SlTable<ProtocolRecord>) => [
+      ...el.shadowRoot!.querySelectorAll<HTMLElement>('[part~="row"]')
+    ];
+
+    it('renders a header per group, in order of first appearance, followed by its rows', async () => {
+      const el = await makeGroupedTable();
+      const order = [...el.shadowRoot!.querySelectorAll<HTMLElement>('[part~="group-row"], [part~="row"]')].map(row =>
+        row.matches('[part~="group-row"]')
+          ? row.querySelector('[part~="group-label"]')!.textContent
+          : row.querySelector('[part~="cell"]')!.textContent!.trim()
+      );
+
+      expect(order).to.deep.equal(['Meeting', 'A-1', 'A-2', 'Training', 'B-1']);
+      expect(groupRows(el)[0].querySelector('[part~="group-count"]')!.textContent).to.equal('2 items');
+      // The grouping column still shows its value in every data row
+      expect(dataRows(el).map(row => row.querySelectorAll('[part~="cell"]')[1].textContent!.trim())).to.deep.equal([
+        'Meeting',
+        'Meeting',
+        'Training'
+      ]);
+    });
+
+    it('collapses a group on click and emits sl-table-group-toggle', async () => {
+      const el = await makeGroupedTable();
+      const handler = sinon.spy();
+      el.addEventListener('sl-table-group-toggle', handler);
+
+      await clickOnElement(groupRows(el)[0]);
+      await el.updateComplete;
+
+      expect(handler).to.have.been.calledOnce;
+      expect((handler.firstCall.args[0] as SlTableGroupToggleEvent).detail.expanded).to.be.false;
+      expect(groupRows(el)[0].getAttribute('aria-expanded')).to.equal('false');
+      expect(dataRows(el)).to.have.lengthOf(1);
+
+      await clickOnElement(groupRows(el)[0]);
+      await el.updateComplete;
+
+      expect(groupRows(el)[0].getAttribute('aria-expanded')).to.equal('true');
+      expect(dataRows(el)).to.have.lengthOf(3);
+    });
+
+    it('starts collapsed with groups-collapsed', async () => {
+      const el = await fixture<SlTable<ProtocolRecord>>(
+        html`<sl-table group-by="subject" groups-collapsed></sl-table>`
+      );
+      el.columns = columns;
+      el.data = groupedData;
+      await el.updateComplete;
+
+      expect(groupRows(el)).to.have.lengthOf(2);
+      expect(dataRows(el)).to.have.lengthOf(0);
+    });
+
+    it('paginates data rows and repeats the group header on each page', async () => {
+      const el = await makeGroupedTable({ paginate: true, pageSize: 1, page: 2 });
+
+      expect(dataRows(el).map(row => row.dataset.rowId)).to.deep.equal(['2']);
+      expect(groupRows(el)).to.have.lengthOf(1);
+      expect(el.pageCount).to.equal(3);
+    });
+
+    it('selects only data rows with select all', async () => {
+      const el = await makeGroupedTable({ selection: 'multiple' });
+      el.selectAll();
+      await el.updateComplete;
+
+      expect(el.getSelection()).to.have.lengthOf(3);
     });
   });
 });

@@ -13,7 +13,8 @@ const type = instance.getEnum('Type', {
   checkbox: 'checkbox',
   actions: 'actions',
   composite: 'composite',
-  'quick-info': 'quick-info'
+  'quick-info': 'quick-info',
+  group: 'group'
 });
 const text = instance.getString('Text');
 const meta1 = instance.getString('Meta 1');
@@ -48,26 +49,35 @@ const markerVariant =
         danger: 'danger'
       })
     : 'primary';
+// `group` is a group header cell: one per column on the same row, `Group Lead` on the first one shows the toggle, the
+// label (the grouping value) and `Count`. It maps to `group-by` on <sl-table>, not to a column `cell`.
+const groupLead = type === 'group' && instance.getBoolean('Group Lead');
+const count = groupLead ? instance.getString('Count') : '';
+
 const markerNote = marker ? ` (row marker: table.rowVariant = row => '${markerVariant}')` : '';
 
 const example =
-  type === 'quick-info'
-    ? figma.html`<!-- cell: ({ row }) => html\`<span style="display: inline-flex; align-items: center; gap: var(--sl-spacing-x-small);">${content}</span>\`${markerNote} -->`
-    : type === 'composite'
-      ? figma.html`<!-- cell: ({ row }) => html\`${content}\`${markerNote} -->`
-      : type === 'document' && fileIcon
-        ? figma.html`<!-- cell: ({ row }) => documentFileCell('${fileType}', '${text}', '${meta1}') (_shared/restyle.js: file icon before name + meta, no Quick info column)${markerNote} -->`
-        : type === 'document'
-          ? figma.html`<!-- cell: ({ row }) => html\`<strong>${text}</strong><br /><small>${meta1}</small>\`${markerNote} -->`
-          : type === 'status'
-            ? figma.html`<!-- cell: () => html\`<sl-status variant="neutral" size="small">…</sl-status>\`${markerNote} -->`
-            : type === 'tag'
-              ? figma.html`<!-- cell: ({ row }) => html\`<sl-tag size="small" variant="neutral">…</sl-tag>\`${markerNote} -->`
-              : type === 'checkbox'
-                ? figma.html`<!-- selection column: set selection="multiple" on <sl-table> -->`
-                : type === 'actions'
-                  ? figma.html`<!-- actions column: { id: 'actions', meta: { actions: true }, cell: () => html\`<sl-menu>…</sl-menu>\` } -->`
-                  : figma.html`<!-- cell: the column's accessorKey value${markerNote} -->`;
+  type === 'group'
+    ? groupLead
+      ? figma.html`<!-- group header row "${text}" · "${count}": set group-by="<column id>" on <sl-table>, with table.groupLabel / table.groupCountFormatter -->`
+      : figma.html`<!-- group header row (continuation): rendered by <sl-table group-by> -->`
+    : type === 'quick-info'
+      ? figma.html`<!-- cell: ({ row }) => html\`<span style="display: inline-flex; align-items: center; gap: var(--sl-spacing-x-small);">${content}</span>\`${markerNote} -->`
+      : type === 'composite'
+        ? figma.html`<!-- cell: ({ row }) => html\`${content}\`${markerNote} -->`
+        : type === 'document' && fileIcon
+          ? figma.html`<!-- cell: ({ row }) => documentFileCell('${fileType}', '${text}', '${meta1}') (_shared/restyle.js: file icon before name + meta, no Quick info column)${markerNote} -->`
+          : type === 'document'
+            ? figma.html`<!-- cell: ({ row }) => html\`<strong>${text}</strong><br /><small>${meta1}</small>\`${markerNote} -->`
+            : type === 'status'
+              ? figma.html`<!-- cell: () => html\`<sl-status variant="neutral" size="small">…</sl-status>\`${markerNote} -->`
+              : type === 'tag'
+                ? figma.html`<!-- cell: ({ row }) => html\`<sl-tag size="small" variant="neutral">…</sl-tag>\`${markerNote} -->`
+                : type === 'checkbox'
+                  ? figma.html`<!-- selection column: set selection="multiple" on <sl-table> -->`
+                  : type === 'actions'
+                    ? figma.html`<!-- actions column: { id: 'actions', meta: { actions: true }, cell: () => html\`<sl-menu>…</sl-menu>\` } -->`
+                    : figma.html`<!-- cell: the column's accessorKey value${markerNote} -->`;
 
 export default {
   example,

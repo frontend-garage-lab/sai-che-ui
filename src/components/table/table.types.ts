@@ -1,4 +1,6 @@
 import {
+  columnGroupingFeature,
+  createGroupedRowModel,
   createPaginatedRowModel,
   createSortedRowModel,
   metaHelper,
@@ -21,8 +23,13 @@ export interface SlTableColumnMeta {
   actions?: boolean;
 }
 
-/** The feature set every `sl-table` instance registers: single-column sorting, pagination and row selection. */
+/**
+ * The feature set every `sl-table` instance registers: single-column sorting, pagination, row selection and row
+ * grouping. Grouping only kicks in when `group-by` is set; which groups are open is tracked by `sl-table` itself.
+ */
 export const slTableFeatures = tableFeatures({
+  columnGroupingFeature,
+  groupedRowModel: createGroupedRowModel(),
   rowSortingFeature,
   sortedRowModel: createSortedRowModel(),
   rowPaginationFeature,
