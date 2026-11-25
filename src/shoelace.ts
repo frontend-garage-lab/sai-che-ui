@@ -40,6 +40,7 @@ export { default as SlOption } from './components/option/option.js';
 export { default as SlPopup } from './components/popup/popup.js';
 export { default as SlProgressBar } from './components/progress-bar/progress-bar.js';
 export { default as SlProgressRing } from './components/progress-ring/progress-ring.js';
+export { default as SlChart } from './components/chart/chart.js';
 export { default as SlQrCode } from './components/qr-code/qr-code.js';
 export { default as SlRadio } from './components/radio/radio.js';
 export { default as SlRadioButton } from './components/radio-button/radio-button.js';

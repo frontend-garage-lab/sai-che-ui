@@ -1,0 +1,117 @@
+<!doctype html>
+<!--
+  sl-chart · all Figma variants (Type × Stacked) with the same sample data as the Saipem DS master (Chart, 1779:454).
+  Serve with `node scripts/serve-demo.js` → http://localhost:4100/docs/assets/demo/chart/
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>sl-chart · variants</title>
+    <link rel="stylesheet" href="/src/themes/light.css" />
+    <link rel="stylesheet" href="/src/themes/dark.css" />
+    <script type="module" src="/shoelace.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: var(--sl-spacing-x-large);
+        font-family: var(--sl-font-sans);
+        background: var(--sl-color-neutral-0);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 480px);
+        gap: var(--sl-spacing-large);
+      }
+      figure {
+        margin: 0;
+      }
+      figcaption {
+        font-size: var(--sl-font-size-x-small);
+        color: var(--sl-color-neutral-600);
+      }
+      sl-chart {
+        width: 480px;
+        height: 300px;
+        padding: var(--sl-spacing-medium);
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body class="sl-theme-light">
+    <div class="grid"></div>
+    <script type="module">
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+      const two = {
+        labels: months,
+        datasets: [
+          { label: 'Planned', data: [12, 19, 14, 22, 18, 25] },
+          { label: 'Actual', data: [10, 17, 16, 20, 21, 23] }
+        ]
+      };
+      const parts = {
+        labels: ['Engineering', 'Procurement', 'Construction', 'Commissioning'],
+        datasets: [{ label: 'Hours', data: [42, 18, 30, 10] }]
+      };
+      const data = {
+        bar: two,
+        'horizontal-bar': two,
+        line: two,
+        area: two,
+        pie: parts,
+        doughnut: parts,
+        'polar-area': parts,
+        radar: {
+          labels: ['Cost', 'Schedule', 'Quality', 'Safety', 'Scope'],
+          datasets: [
+            { label: 'Project A', data: [4, 3, 5, 4, 2] },
+            { label: 'Project B', data: [3, 5, 3, 4, 4] }
+          ]
+        },
+        scatter: {
+          datasets: [{ label: 'Samples', data: [1, 2, 3, 4, 5, 6].map((x, i) => ({ x, y: [3, 5, 4, 7, 6, 9][i] })) }]
+        },
+        bubble: {
+          datasets: [
+            {
+              label: 'Projects',
+              data: [
+                { x: 10, y: 20, r: 8 },
+                { x: 25, y: 12, r: 14 },
+                { x: 40, y: 30, r: 6 },
+                { x: 55, y: 18, r: 11 }
+              ]
+            }
+          ]
+        }
+      };
+      const variants = [
+        ['bar', false],
+        ['bar', true],
+        ['horizontal-bar', false],
+        ['horizontal-bar', true],
+        ['line', false],
+        ['area', false],
+        ['area', true],
+        ['pie', false],
+        ['doughnut', false],
+        ['radar', false],
+        ['polar-area', false],
+        ['scatter', false],
+        ['bubble', false]
+      ];
+      await customElements.whenDefined('sl-chart');
+      const grid = document.querySelector('.grid');
+      for (const [type, stacked] of variants) {
+        const figure = document.createElement('figure');
+        figure.innerHTML = `<figcaption>Type=${type} · Stacked=${stacked}</figcaption>`;
+        const chart = document.createElement('sl-chart');
+        chart.type = type;
+        chart.stacked = stacked;
+        chart.label = type;
+        chart.data = data[type];
+        figure.append(chart);
+        grid.append(figure);
+      }
+    </script>
+  </body>
+</html>

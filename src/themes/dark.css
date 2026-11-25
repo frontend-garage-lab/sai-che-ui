@@ -428,6 +428,20 @@
   --sl-line-height-loose: 2.2;
   --sl-line-height-looser: 2.6;
 
+  /* Charts (sl-chart): data series palette, grid and axis */
+  --sl-color-chart-1: var(--sl-color-primary-600);
+  --sl-color-chart-2: var(--sl-color-amber-600);
+  --sl-color-chart-3: var(--sl-color-emerald-600);
+  --sl-color-chart-4: var(--sl-color-violet-600);
+  --sl-color-chart-5: var(--sl-color-rose-600);
+  --sl-color-chart-6: var(--sl-color-sky-600);
+  --sl-color-chart-7: var(--sl-color-lime-600);
+  --sl-color-chart-8: var(--sl-color-orange-600);
+  --sl-chart-grid-color: var(--sl-color-neutral-200);
+  --sl-chart-axis-color: var(--sl-color-neutral-600);
+  --sl-chart-tooltip-background: var(--sl-color-neutral-800);
+  --sl-chart-tooltip-color: var(--sl-color-neutral-0);
+
   /* Focus rings */
   --sl-focus-ring-color: var(--sl-color-primary-700);
   --sl-focus-ring-style: solid;

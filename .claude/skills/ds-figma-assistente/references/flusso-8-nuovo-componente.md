@@ -64,6 +64,18 @@ l'approvazione.
 5. Descrizione del set (`description`) con una riga dalla documentazione.
 6. Ogni chiamata `use_figma` restituisce gli id; nessun delete + create sui nodi creati dopo che sono stati
    referenziati.
+7. **Componenti disegnati su canvas o da una libreria** (grafici, QR, mappe): la geometria non si inventa. Prima di
+   disegnare, renderizza ogni variante con gli stessi dati (pagina demo su `anteprima.base_url`) e leggi dal
+   componente i valori calcolati (es. per Chart.js: `chartArea`, `scales[*].ticks`, min/max), poi riportali nel master.
+   Se il default della libreria è sbagliato per il DS (assi che non partono da 0, curve, etichette sopra i dati),
+   correggi il **codice** e rileggi. Trasparenze: usa l'opacità del layer, non della paint (vedi regole-figma.md,
+   "Opacità legate a variabili"). (2026-11-25, sl-chart)
+   Leggi anche le regole implicite della libreria, non solo assi e tick: per le barre Chart.js usa
+   `categoryPercentage` 0.8 e `barPercentage` 0.9 (spazio tra le barre di un gruppo) e arrotonda solo l'estremità
+   libera (`borderSkipped: 'start'`); nelle barre impilate solo il segmento esterno va arrotondato. Confronta ogni
+   variante a scala 1 con il componente, non solo l'insieme. (2026-11-25)
+   Bordi tra elementi adiacenti (fette di pie/doughnut): nel canvas il bordo è centrato e condiviso, quindi lo spazio
+   visibile è `borderWidth`; in Figma usa un contorno INSIDE di `borderWidth / 2` per elemento. (2026-11-25)
 
 ## 5. Verifica del master
 
@@ -78,6 +90,9 @@ testi): misure, padding, colori, tipografia, icone. Controlla anche che:
 Correggi e ripeti, con al massimo un giro di conferma.
 
 ## 6. Pagina di documentazione
+
+La sezione **Variants resta sempre**, anche quando Examples mostra già tutte le varianti: contiene il **master**
+(non istanze) nella `Matrix`, con le etichette delle combinazioni (utente 2026-11-25, Chart).
 
 Costruisci la pagina con la **stessa struttura della pagina di riferimento** (flusso 6). Nel file Saipem DS il
 frame è `<Nome> — Documentation`: auto-layout verticale, larghezza 1520, padding 80/80/96/80, gap 64, fondo legato.
