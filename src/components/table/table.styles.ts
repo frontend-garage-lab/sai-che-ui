@@ -7,6 +7,7 @@ export default css`
     --header-background-color: var(--sl-surface-sunken);
     --stripe-background-color: var(--sl-color-neutral-50);
     --max-height: none;
+    --group-background-color: var(--sl-color-primary-50);
 
     display: block;
   }
@@ -177,6 +178,73 @@ export default css`
 
   .table__body {
     display: block;
+  }
+
+  .table__group-row {
+    display: grid;
+    grid-template-columns: var(--sl-table-column-template, 1fr);
+    box-sizing: border-box;
+    width: 100%;
+    min-width: min-content;
+    background-color: var(--group-background-color);
+    border-bottom: solid var(--sl-panel-border-width) var(--border-color);
+    cursor: pointer;
+    outline: none;
+  }
+
+  .table__group-row:focus-visible {
+    outline: var(--sl-focus-ring);
+    outline-offset: calc(-1 * var(--sl-focus-ring-width));
+  }
+
+  .table__group-cell {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: var(--sl-spacing-x-small);
+    padding: var(--sl-spacing-2x-small) var(--sl-spacing-medium);
+    padding-inline-start: var(--sl-spacing-x-small);
+    /* Keeps the label in view while the table scrolls horizontally */
+    position: sticky;
+    inset-inline-start: 0;
+    width: max-content;
+  }
+
+  .table__group-toggle {
+    font-size: var(--sl-font-size-small);
+  }
+
+  .table__group-toggle::part(base) {
+    padding: var(--sl-spacing-3x-small);
+  }
+
+  .table__group-row:not(.table__group-row--expanded) .table__group-toggle {
+    rotate: -90deg;
+  }
+
+  :host(:dir(rtl)) .table__group-row:not(.table__group-row--expanded) .table__group-toggle {
+    rotate: 90deg;
+  }
+
+  .table__group-label {
+    font-size: var(--sl-font-size-small);
+    font-weight: var(--sl-font-weight-semibold);
+    color: var(--sl-color-primary-700);
+  }
+
+  .table__group-count {
+    font-size: var(--sl-font-size-x-small);
+    color: var(--sl-color-neutral-600);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .table__group-toggle {
+      transition: rotate var(--sl-transition-fast) ease;
+    }
+  }
+
+  .table__body > :last-child {
+    border-bottom: none;
   }
 
   .table__row:last-of-type {

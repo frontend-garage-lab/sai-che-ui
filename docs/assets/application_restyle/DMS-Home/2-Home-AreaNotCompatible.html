@@ -26,6 +26,53 @@
       <img slot="logo" src="/docs/assets/images/saipem-mark.png" alt="Saipem" width="32" height="32" />
       <span slot="logo"></span>
 
+      <sl-notification-panel slot="actions" description="All projects and working areas">
+        <sl-notification-item
+          variant="danger"
+          heading="ZIP download failed"
+          date="2026-11-23T12:38:00"
+          project="99_PAGE_AM"
+          section="Job Documents"
+        >
+          The archive could not be generated. No file was produced.
+          <sl-button slot="actions" size="small"
+            ><sl-icon slot="prefix" name="arrow-right"></sl-icon>Open My downloads</sl-button
+          >
+        </sl-notification-item>
+        <sl-notification-item
+          variant="warning"
+          heading="Promote completed with exceptions"
+          date="2026-11-23T12:30:00"
+          project="99_PAGE_AM"
+          section="Isometric Document"
+        >
+          2 of 3 promoted; 1 not promoted because a mandatory attribute is empty. See the result for each document.
+          <sl-button slot="actions" size="small"
+            ><sl-icon slot="prefix" name="arrow-right"></sl-icon>Open My downloads</sl-button
+          >
+        </sl-notification-item>
+        <sl-notification-item
+          variant="success"
+          heading="Excel export completed"
+          date="2026-11-20T17:02:00"
+          project="99_PAGE_AM"
+          section="Job Documents"
+          read
+        >
+          The Job Documents list was exported (24 rows).
+          <sl-button slot="actions" size="small"><sl-icon slot="prefix" name="download"></sl-icon>Download</sl-button>
+        </sl-notification-item>
+        <sl-notification-item
+          variant="info"
+          heading="Review assigned"
+          date="2026-11-20T09:00:00"
+          project="12_COSY_DEMO"
+          read
+        >
+          You were assigned to the review of DOC-0107.
+        </sl-notification-item>
+        <span slot="footer">Notifications are kept for 3 days from when they are generated, read or unread.</span>
+      </sl-notification-panel>
       <sl-header-item slot="actions">
         <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
         Mario Rossi
@@ -43,20 +90,20 @@
       <div class="rs-page-header">
         <div class="rs-page-header__text">
           <h1 class="rs-title">Document Management System</h1>
-          <p class="rs-body">Select a working area. Current project: <strong>F10412 · –</strong></p>
+          <p class="rs-body">Select a work area. Current project: <strong>F10412 · –</strong></p>
         </div>
       </div>
 
       <section class="rs-grid rs-grid--stretch" aria-label="Working areas">
-        <sl-card class="rs-span-3 rs-span-md-6">
+        <sl-card class="rs-span-4 rs-span-md-6">
           <div class="rs-stack">
             <sl-avatar shape="rounded" variant="primary" label="Project Management"
               ><sl-icon slot="icon" name="briefcase"></sl-icon
             ></sl-avatar>
             <h2 class="rs-heading">Project Management</h2>
             <p class="rs-body">
-              Project documents, procurement, site processes, completion and communications. The document types
-              available depend on the selected project.
+              Project documents, procurement, site processes, completion and communications: document types depend on
+              the selected project.
             </p>
           </div>
           <sl-divider></sl-divider>
@@ -65,19 +112,17 @@
             <sl-menu aria-label="Quick access to Project Management">
               <sl-menu-item><sl-icon slot="prefix" name="check2-circle"></sl-icon>Tasks</sl-menu-item>
               <sl-menu-item><sl-icon slot="prefix" name="file-earmark-text"></sl-icon>Job Document</sl-menu-item>
-              <sl-menu-item
-                ><sl-icon slot="prefix" name="file-earmark-text"></sl-icon>Field Design Change (FDC)</sl-menu-item
-              >
               <sl-menu-item><sl-icon slot="prefix" name="file-earmark-text"></sl-icon>Correspondence</sl-menu-item>
             </sl-menu>
           </div>
-          <div slot="footer" class="rs-cluster rs-cluster--end">
+          <div slot="footer" class="rs-cluster rs-cluster--between">
+            <span class="rs-meta">14 document types in the project</span>
             <sl-button variant="primary" size="small" href="#"
               >Open<sl-icon slot="suffix" name="arrow-right"></sl-icon
             ></sl-button>
           </div>
         </sl-card>
-        <sl-card class="rs-span-3 rs-span-md-6">
+        <sl-card class="rs-span-4 rs-span-md-6">
           <div class="rs-stack">
             <sl-avatar shape="rounded" variant="neutral" label="Quality Management"
               ><sl-icon slot="icon" name="shield-check"></sl-icon
@@ -108,19 +153,21 @@
             <sl-button size="small" disabled>Open<sl-icon slot="suffix" name="arrow-right"></sl-icon></sl-button>
           </div>
         </sl-card>
-        <sl-card class="rs-span-3 rs-span-md-6">
+        <sl-card class="rs-span-4 rs-span-md-6">
           <div class="rs-stack">
-            <sl-avatar shape="rounded" variant="neutral" label="Equipment Database"
+            <sl-avatar shape="rounded" variant="primary" label="Equipment Database"
               ><sl-icon slot="icon" name="gear"></sl-icon
             ></sl-avatar>
             <h2 class="rs-heading">Equipment Database</h2>
             <p class="rs-body">Database of project equipment.</p>
           </div>
-          <div slot="footer" class="rs-cluster">
-            <sl-tag size="small" variant="neutral">To be defined</sl-tag>
+          <div slot="footer" class="rs-cluster rs-cluster--end">
+            <sl-button variant="primary" size="small" href="#"
+              >Open<sl-icon slot="suffix" name="arrow-right"></sl-icon
+            ></sl-button>
           </div>
         </sl-card>
-        <sl-card class="rs-span-3 rs-span-md-6">
+        <sl-card class="rs-span-4 rs-span-md-6">
           <div class="rs-stack">
             <sl-avatar shape="rounded" variant="neutral" label="Project Data Repository"
               ><sl-icon slot="icon" name="archive"></sl-icon
@@ -130,6 +177,62 @@
           </div>
           <div slot="footer" class="rs-cluster">
             <sl-tag size="small" variant="neutral">To be defined</sl-tag>
+          </div>
+        </sl-card>
+        <sl-card class="rs-span-4 rs-span-md-6">
+          <div class="rs-stack">
+            <sl-avatar shape="rounded" variant="primary" label="Administration"
+              ><sl-icon slot="icon" name="shield-lock"></sl-icon
+            ></sl-avatar>
+            <h2 class="rs-heading">Administration</h2>
+            <p class="rs-body">
+              Configuration of the selected project for each work area: project and work areas, roles, object types,
+              lists of values, numbering, distribution and templates.
+            </p>
+          </div>
+          <sl-divider></sl-divider>
+          <div class="rs-stack rs-stack--tight">
+            <h3 class="rs-subheading">Quick access</h3>
+            <sl-menu aria-label="Quick access to Administration">
+              <sl-menu-item><sl-icon slot="prefix" name="grid"></sl-icon>Configuration Overview</sl-menu-item>
+              <sl-menu-item><sl-icon slot="prefix" name="briefcase"></sl-icon>Project</sl-menu-item>
+              <sl-menu-item><sl-icon slot="prefix" name="file-earmark"></sl-icon>Object Types</sl-menu-item>
+              <sl-menu-item><sl-icon slot="prefix" name="filter"></sl-icon>Lists of Values</sl-menu-item>
+            </sl-menu>
+          </div>
+          <div slot="footer" class="rs-cluster rs-cluster--between">
+            <span class="rs-meta">PM active · QM active</span>
+            <sl-button variant="primary" size="small" href="#"
+              >Open<sl-icon slot="suffix" name="arrow-right"></sl-icon
+            ></sl-button>
+          </div>
+        </sl-card>
+        <sl-card class="rs-span-4 rs-span-md-6">
+          <div class="rs-stack">
+            <sl-avatar shape="rounded" variant="primary" label="System Administration"
+              ><sl-icon slot="icon" name="lock"></sl-icon
+            ></sl-avatar>
+            <h2 class="rs-heading">System Administration</h2>
+            <p class="rs-body">
+              Global configuration of the installation: catalogue of types and fields, security profiles, global lists
+              and templates, distribution definitions, parameters, integrations, platform settings, batch monitoring.
+            </p>
+          </div>
+          <sl-divider></sl-divider>
+          <div class="rs-stack rs-stack--tight">
+            <h3 class="rs-subheading">Quick access</h3>
+            <sl-menu aria-label="Quick access to System Administration">
+              <sl-menu-item><sl-icon slot="prefix" name="grid"></sl-icon>System Overview</sl-menu-item>
+              <sl-menu-item><sl-icon slot="prefix" name="file-earmark"></sl-icon>Object Type Schemas</sl-menu-item>
+              <sl-menu-item><sl-icon slot="prefix" name="filter"></sl-icon>Global Lists of Values</sl-menu-item>
+              <sl-menu-item><sl-icon slot="prefix" name="clock-history"></sl-icon>Batch Monitoring</sl-menu-item>
+            </sl-menu>
+          </div>
+          <div slot="footer" class="rs-cluster rs-cluster--between">
+            <span class="rs-meta">2 batches with failures</span>
+            <sl-button variant="primary" size="small" href="#"
+              >Open<sl-icon slot="suffix" name="arrow-right"></sl-icon
+            ></sl-button>
           </div>
         </sl-card>
       </section>

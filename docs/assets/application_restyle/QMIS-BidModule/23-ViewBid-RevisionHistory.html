@@ -54,6 +54,53 @@
           >
         </sl-menu>
       </sl-header-item>
+      <sl-notification-panel slot="actions" description="All projects and working areas">
+        <sl-notification-item
+          variant="danger"
+          heading="ZIP download failed"
+          date="2026-11-23T12:38:00"
+          project="99_PAGE_AM"
+          section="Job Documents"
+        >
+          The archive could not be generated. No file was produced.
+          <sl-button slot="actions" size="small"
+            ><sl-icon slot="prefix" name="arrow-right"></sl-icon>Open My downloads</sl-button
+          >
+        </sl-notification-item>
+        <sl-notification-item
+          variant="warning"
+          heading="Promote completed with exceptions"
+          date="2026-11-23T12:30:00"
+          project="99_PAGE_AM"
+          section="Isometric Document"
+        >
+          2 of 3 promoted; 1 not promoted because a mandatory attribute is empty. See the result for each document.
+          <sl-button slot="actions" size="small"
+            ><sl-icon slot="prefix" name="arrow-right"></sl-icon>Open My downloads</sl-button
+          >
+        </sl-notification-item>
+        <sl-notification-item
+          variant="success"
+          heading="Excel export completed"
+          date="2026-11-20T17:02:00"
+          project="99_PAGE_AM"
+          section="Job Documents"
+          read
+        >
+          The Job Documents list was exported (24 rows).
+          <sl-button slot="actions" size="small"><sl-icon slot="prefix" name="download"></sl-icon>Download</sl-button>
+        </sl-notification-item>
+        <sl-notification-item
+          variant="info"
+          heading="Review assigned"
+          date="2026-11-20T09:00:00"
+          project="12_COSY_DEMO"
+          read
+        >
+          You were assigned to the review of DOC-0107.
+        </sl-notification-item>
+        <span slot="footer">Notifications are kept for 3 days from when they are generated, read or unread.</span>
+      </sl-notification-panel>
       <sl-header-item slot="actions">
         <sl-avatar initials="MR" label="Mario Rossi"></sl-avatar>
         Mario Rossi
@@ -236,64 +283,79 @@
           <!-- Bid details -->
           <sl-detail-panel contained class="rs-span-4 rs-span-lg-5" aria-label="Bid details">
             <span slot="label">Details</span>
-            <div class="rs-inset">
-              <div class="rs-stack">
-                <div class="rs-stack rs-stack--tight">
-                  <h3 class="rs-subheading">Saipem DEMO</h3>
-                  <span class="rs-meta">2026-BID-000004 · ABB POWER SYSTEMS</span>
-                </div>
-                <sl-description-list cols="2">
-                  <sl-description-list-item label="Bid status"
-                    ><sl-status filled size="small" variant="warning">Ongoing</sl-status></sl-description-list-item
-                  >
-                  <sl-description-list-item label="Bid open date">15-Oct-2026</sl-description-list-item>
-                  <sl-description-list-item label="Business unit">Robotics&amp;Ind. Sol.</sl-description-list-item>
-                  <sl-description-list-item label="Saipem bidding entity">HO - Bucharest - EC</sl-description-list-item>
-                </sl-description-list>
-                <div class="rs-stack rs-stack--tight">
-                  <h3 class="rs-subheading">Approval</h3>
+            <sl-tab-group>
+              <sl-tab slot="nav" panel="properties" active
+                ><span class="rs-inline"><sl-icon name="info-circle"></sl-icon>Properties</span></sl-tab
+              >
+              <sl-tab slot="nav" panel="relations"
+                ><span class="rs-inline"><sl-icon name="diagram-3"></sl-icon>Relations</span></sl-tab
+              >
+
+              <sl-tab-panel name="properties" active>
+                <div class="rs-inset rs-stack">
+                  <div class="rs-stack rs-stack--tight">
+                    <h3 class="rs-subheading">Saipem DEMO</h3>
+                    <span class="rs-meta">2026-BID-000004 · ABB POWER SYSTEMS</span>
+                  </div>
                   <sl-description-list cols="2">
-                    <sl-description-list-item label="Documents"
-                      ><sl-status filled size="small" variant="warning">Working</sl-status></sl-description-list-item
+                    <sl-description-list-item label="Bid status"
+                      ><sl-status filled size="small" variant="warning">Ongoing</sl-status></sl-description-list-item
                     >
-                    <sl-description-list-item label="Owners">user_qmis_admin</sl-description-list-item>
-                    <sl-description-list-item label="Technical"
-                      ><sl-status filled size="small" variant="neutral"
-                        >Not requested</sl-status
-                      ></sl-description-list-item
-                    >
-                    <sl-description-list-item label="Commercial"
-                      ><sl-status filled size="small" variant="neutral"
-                        >Not requested</sl-status
-                      ></sl-description-list-item
+                    <sl-description-list-item label="Bid open date">15-Oct-2026</sl-description-list-item>
+                    <sl-description-list-item label="Business unit">Robotics&amp;Ind. Sol.</sl-description-list-item>
+                    <sl-description-list-item label="Saipem bidding entity"
+                      >HO - Bucharest - EC</sl-description-list-item
                     >
                   </sl-description-list>
-                </div>
-                <sl-divider></sl-divider>
-                <div class="rs-stack rs-stack--tight">
-                  <div class="rs-cluster rs-cluster--between">
-                    <h3 class="rs-subheading">Attachments</h3>
-                    <span class="rs-meta">1</span>
+                  <div class="rs-stack rs-stack--tight">
+                    <h3 class="rs-subheading">Approval</h3>
+                    <sl-description-list cols="2">
+                      <sl-description-list-item label="Documents"
+                        ><sl-status filled size="small" variant="warning">Working</sl-status></sl-description-list-item
+                      >
+                      <sl-description-list-item label="Owners">user_qmis_admin</sl-description-list-item>
+                      <sl-description-list-item label="Technical"
+                        ><sl-status filled size="small" variant="neutral"
+                          >Not requested</sl-status
+                        ></sl-description-list-item
+                      >
+                      <sl-description-list-item label="Commercial"
+                        ><sl-status filled size="small" variant="neutral"
+                          >Not requested</sl-status
+                        ></sl-description-list-item
+                      >
+                    </sl-description-list>
                   </div>
-                  <sl-table class="attachment-panel" label="Attachments">
-                    <div
-                      slot="toolbar"
-                      class="rs-cluster rs-cluster--nowrap rs-grow"
-                      role="toolbar"
-                      aria-label="Attachment actions"
-                    >
-                      <sl-switch size="small">Current versions</sl-switch>
-                      <span class="rs-spacer"></span>
-                      <sl-dropdown placement="bottom-end" hoist data-table-options>
-                        <sl-button slot="trigger" size="small" caret
-                          ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
-                        >
-                      </sl-dropdown>
-                    </div>
-                  </sl-table>
                 </div>
-              </div>
-            </div>
+              </sl-tab-panel>
+
+              <sl-tab-panel name="relations">
+                <div class="rs-inset rs-stack">
+                  <div class="rs-stack rs-stack--tight">
+                    <div class="rs-cluster rs-cluster--between">
+                      <h3 class="rs-subheading">Attachments</h3>
+                      <span class="rs-meta">1</span>
+                    </div>
+                    <sl-table class="attachment-panel" label="Attachments">
+                      <div
+                        slot="toolbar"
+                        class="rs-cluster rs-cluster--nowrap rs-grow"
+                        role="toolbar"
+                        aria-label="Attachment actions"
+                      >
+                        <sl-switch size="small">Current versions</sl-switch>
+                        <span class="rs-spacer"></span>
+                        <sl-dropdown placement="bottom-end" hoist data-table-options>
+                          <sl-button slot="trigger" size="small" caret
+                            ><sl-icon slot="prefix" name="gear"></sl-icon>Config</sl-button
+                          >
+                        </sl-dropdown>
+                      </div>
+                    </sl-table>
+                  </div>
+                </div>
+              </sl-tab-panel>
+            </sl-tab-group>
           </sl-detail-panel>
         </div>
       </main>

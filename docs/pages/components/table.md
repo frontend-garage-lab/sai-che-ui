@@ -340,6 +340,73 @@ table.summaryFormatter = (start, end, total) => `Displaying ${start} - ${end} of
 table.pageFormatter = (page, pageCount) => `Page ${page} of ${pageCount}`;
 ```
 
+### Grouping rows
+
+Set `group-by` to a column id to gather rows that share a value under a collapsible group header. The grouping value
+comes from the column's accessor, or from its `getGroupingValue` when the key is coarser than what the cell shows, like
+the month of a date. Use `groupLabel` to render the header and `groupCountFormatter` to word the count. Groups keep the
+order of their first row in `data`; when users sort on the grouping column the groups are sorted by their grouping value,
+so return a sortable key (`2026-11`) and turn it into a label in `groupLabel`.
+
+Pagination counts data rows: a group's header is repeated on every page its rows appear on. Click a header, or press
+<kbd>Enter</kbd>, <kbd>Space</kbd>, <kbd>←</kbd> and <kbd>→</kbd> on it, to collapse and expand it. Add
+`groups-collapsed` to start with every group closed.
+
+```html:preview
+<sl-table class="grouped-table" group-by="status" paginate page-size="10" page-sizes="5 10 25">
+  <sl-select slot="toolbar" class="grouped-table__group-by" label="Group by" size="small" value="status">
+    <sl-option value="status">Status</sl-option>
+    <sl-option value="start">Month</sl-option>
+    <sl-option value="none">None</sl-option>
+  </sl-select>
+</sl-table>
+
+<script type="module">
+  const table = document.querySelector('.grouped-table');
+  const groupBy = document.querySelector('.grouped-table__group-by');
+  const month = new Intl.DateTimeFormat('en-GB', { month: 'long', year: 'numeric' });
+  const day = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+
+  table.columns = [
+    {
+      id: 'start',
+      accessorKey: 'start',
+      header: 'Start',
+      meta: { width: '10rem' },
+      getGroupingValue: row => row.start.slice(0, 7),
+      cell: ({ getValue }) => day.format(new Date(getValue()))
+    },
+    { id: 'audit', accessorKey: 'audit', header: 'Audit Number' },
+    { id: 'status', accessorKey: 'status', header: 'Status' },
+    { id: 'location', accessorKey: 'location', header: 'Location' },
+    { id: 'company', accessorKey: 'company', header: 'Leading Company' }
+  ];
+
+  // The month key (2026-11) sorts correctly; only the label is formatted
+  table.groupLabel = key => (table.groupBy === 'start' ? month.format(new Date(`${key}-01`)) : key);
+  table.groupCountFormatter = count => `${count} ${count === 1 ? 'audit' : 'audits'}`;
+
+  table.data = [
+    { start: '2026-11-12', audit: 'PRJ001-IQA002', status: 'In execution', location: 'Dubai', company: 'Company A' },
+    { start: '2026-11-24', audit: 'PRJ005-IQA003', status: 'Program', location: 'Oslo', company: 'Company E' },
+    { start: '2027-01-11', audit: 'PRJ003-SQA002', status: 'Cancelled', location: 'Genoa', company: 'Company C' },
+    { start: '2027-03-01', audit: 'PRJ002-EQA001', status: 'Program', location: 'Bergen', company: 'Company B' },
+    { start: '2027-05-04', audit: 'PRJ002-RBI001', status: 'Program', location: 'Lagos', company: 'Company B' },
+    { start: '2027-05-18', audit: 'PRJ004-IQA001', status: 'In execution', location: 'Milan', company: 'Company D' }
+  ];
+
+  groupBy.addEventListener('sl-change', () => {
+    table.groupBy = groupBy.value === 'none' ? '' : groupBy.value;
+    table.page = 1;
+  });
+
+  table.addEventListener('sl-table-group-toggle', event => console.log(event.detail));
+</script>
+```
+
+The "Group by" `sl-select` in the `toolbar` slot sets `groupBy` from its `sl-change` event; an empty string turns
+grouping off. Changing `groupBy` reopens every group (or closes them all with `groups-collapsed`).
+
 ### Toolbar and empty state
 
 The `toolbar` slot sits above the header — a good place for filters and actions. The `empty` slot replaces the rows

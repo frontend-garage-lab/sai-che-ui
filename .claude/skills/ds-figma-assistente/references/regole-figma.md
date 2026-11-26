@@ -297,3 +297,54 @@ Caso tipico: una pagina già fatta cambia layout (es. le sezioni di un form dive
   al bordo destro. Metti `tags-group.layoutSizingHorizontal = "FILL"` sull'istanza.
 - Cella con icona + testo (es. nome utente con `person-fill`): `Table Cell` `Type=document` con `File type` (swap
   dell'icona) e `Meta 1/2` vuoti; il layer `Reference` vuoto va nascosto, altrimenti il testo sale.
+
+## Righe a tutta larghezza e icone annidate (aggiunto 2026-11-23)
+
+- **Table: riga di gruppo** (`sl-table group-by`). Il master è per colonne, quindi la riga è una Table Cell
+  `Type=group` alla stessa posizione in ogni colonna: `Group Lead=true` solo sulla prima (chevron + `Text` + `Count`),
+  `false` sulle altre (solo la fascia). L'etichetta scorre sopra le colonne successive grazie a `clipsContent=false`
+  sullo slot `Cells` delle Table Column e a `itemReverseZIndex=true` sullo slot `Rows` della Table. Gruppo chiuso:
+  sull'istanza esposta `Icon Button / group-toggle` imposta `Icon` = `chevron-right`.
+- **Nel master non usare `swapComponent` sull'icona interna di un'istanza** che ha una proprietà `Icon`: l'override
+  blocca l'icona e la proprietà viene ignorata nelle istanze. Imposta l'icona con `setProperties` e, se l'override
+  c'è già, rimuovilo con `resetOverrides()` (che reimposta anche il nome del layer: ritrovalo per posizione).
+- Prima di contare su un'istanza annidata, controlla che la variante usata abbia i `componentPropertyReferences`
+  (es. Icon Button `Size=small` non li aveva fino al 2026-11-23). Confronta le varianti per nome di layer, non per
+  nomi fissi: le varianti colorate usano `bg-filled` / `icon-contrast` al posto di `filled-overlay`.
+
+## Opacità legate a variabili e cloni delle pagine doc (aggiunto 2026-11-23, Notification Panel)
+
+- `setBoundVariableForPaint` restituisce una paint con `opacity: 1`: l'opacità va rimessa dopo (`{ ...paint, opacity }`).
+  Anche così, **nelle istanze** una fill legata a variabile con opacità < 1 può essere letta e resa al 100% (sfondo
+  bianco pieno al posto del 10%), mentre il master è corretto. Per lavaggi e testi/icone semitrasparenti usa
+  l'**opacità del layer** (`node.opacity`) con la paint al 100%: per uno sfondo, un rettangolo `Wash` ABSOLUTE in fondo
+  (vincoli STRETCH, raggio legato). Verifica sempre con lo screenshot di un'istanza, non del master.
+- **Clonare un frame `<Nome> — Documentation`** come base per un componente nuovo clona anche i **master** che stanno
+  nelle `Matrix` della sezione Variants: subito dopo il clone cerca `COMPONENT`/`COMPONENT_SET` nel clone ed elimina
+  quelli creati dal clone (id nuovi), poi sposta lì i master nuovi. Rimuovi anche i testi d'aiuto ereditati dagli
+  esempi (es. "Swap the Logo instance…") e riallinea fondo e larghezza degli `Stage` copiati da card diverse.
+- Un componente del DS senza proprietà di testo (es. **Badge**) non permette di collegare il suo testo a una proprietà
+  del componente che lo contiene (`Cannot set component property references on instance sublayer`): dai al layer un
+  nome stabile (es. `Count`) e documentalo nella descrizione.
+
+- **Liste di istanze con divider (2026-11-23):** quando aggiungi, togli o riordini istanze in una lista (Items del
+  Notification Popup, righe, voci di menu), riallinea l'override del bordo: `strokeBottomWeight = 1` su tutte tranne
+  l'ultima (`0`, come `:last-of-type` nel codice). L'override resta sull'istanza che era l'ultima e fa sparire il
+  divider quando non lo è più. Dopo uno swap di versione della libreria ricontrolla anche il numero di istanze nello
+  slot.
+- **Clip dei frame creati via API (2026-11-23):** `figma.createAutoLayout()` crea frame con `clipsContent = true`. Se
+  un figlio sporge di proposito (es. badge "New" 23px in una riga di 20px, come il margine negativo nel CSS), non basta
+  `clipsContent = false` sul frame diretto: taglia anche il primo antenato che clippa (es. Body). Meglio evitare la
+  sporgenza: contenitore in HUG sull'elemento più alto e `counterAxisAlignItems = 'CENTER'`. Verifica con uno
+  screenshot a scala 4, non a 1x.
+
+## Tab Group nel Detail Panel e tabelle ricostruite (aggiunto 2026-11-23, QMIS Details)
+
+- Tab Group dentro lo slot `Body` di un Detail Panel: il contenuto della tab attiva va come fratello **sotto** il Tab
+  Group, e lo slot `Panel` del Tab Group va nascosto (`visible = false`), altrimenti resta un vuoto di ~96 px.
+- Le etichette delle Tab non hanno proprietà TEXT: si cambia il `characters` del testo visibile. Stati: `active` /
+  `default`.
+- Per ricostruire una tabella configurata in un altro frame senza clonare sotto-layer di istanza: replica ricorsiva
+  (istanza → `getMainComponentAsync().createInstance()` + `setProperties` + override dei testi; SLOT → svuota e
+  replica i figli; FRAME → auto-layout con le stesse variabili). Dopo, testi cella con `textTruncation = 'ENDING'`,
+  `maxLines = 1`, e nascondi le righe meta vuote della cella `document`.
